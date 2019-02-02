@@ -1,0 +1,21 @@
+#itsme{
+    border-radius: 50%;
+    border: 10px;
+}
+
+.button{
+    background-color: orangered;
+    padding:10px;
+    border-radius: 12px;
+    transition:background-color 0.5s ease;
+    color:white;
+    display: inline-block;
+}
+.button:hover{
+    opacity: 0.5;
+    color:white;
+    background-color: darkgreen;
+    text-decoration: none;
+}
+#frorjb{
+}
