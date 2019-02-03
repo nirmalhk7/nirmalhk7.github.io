@@ -16,7 +16,15 @@
 		<meta name="rating" content="general">
     <!-- Favicon for the website -->
 	<link rel="shortcut icon" href="images/sign.ico">
-	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA133733565-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-133733565-1');
+    </script>
+
 
 	
     <!--width=device width sets the width of page to follow screen width of device. Initial scale 1 sets initial zoom level. This helps in rendering on mobile devices.-->
@@ -34,8 +42,8 @@
     <!--navbar is the bar at top of screen. navbar-expand-sm means stacks the navbar vertically on XL,L,M or small screens.-->
     <ul class="navbar-nav">
         <!--ml auto aligns it right-->
-        <a href="main.html"><li class="nav-item">Home</li></a>
-        <a href="main.html#heading"><li class="nav-item">About Me</li></a>
+        <a href="index.html"><li class="nav-item">Home</li></a>
+        <a href="index.html#heading"><li class="nav-item">About Me</li></a>
         <a href="projects.html"><li class="nav-item">Projects</li></a>
         <a href="blog.html"><li class="nav-item">Blog</li></a>
         <a href="#address"><li class="nav-item">Say Hi!</li></a>
@@ -83,12 +91,12 @@
                 </div>
                 <div class="row" style="font-size:15px;justify-content: center; padding-top: 5px;padding-bottom:10px">visitor to this website.</div>
                 <div class="row justify-content-md-center" style="padding-top: 10px;" id="#other2">
-                    <a href="#" class="fa fa-linkedin"></a>
-                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="https://www.linkedin.com/in/nirmalhk7/" class="fa fa-linkedin" target="_blank"></a>
+                    <a href="https://www.twitter.com/nirmalhk7" class="fa fa-twitter" target="_blank"></a>
                 </div>
                 <div class="row justify-content-md-center" style="padding-top:5px;padding-bottom: 20px;">
-                    <a href="#" class="fa fa-github"></a>
-                    <a href="#" class="fa fa-envelope"></a>
+                    <a href="https://www.github.com/nirmalhk7" class="fa fa-github" target="_blank"></a>
+                    <a href="mailto:nirmalhk7@programmer.net" class="fa fa-envelope" target="_blank"></a>
                 </div>
              </div>
             <div class="col-sm-6" style="background-color: darkslategray;  padding-top: 20px;padding-left: 30px;">
@@ -114,7 +122,7 @@
                 <img src="images/vcard.png" alt="VCard for Nirmal Khedkar" height="250px" width="250px">
             </div>
         </div>
-        <div id="bottomrow">
+        <div class="bottomrow">
             <p style="text-align:left; padding-top:6px;">
                 Made with &hearts; by Nirmal Khedkar.
                 <span style="float:right; padding-top:4px;">Copyright &copy; 2019.</span>

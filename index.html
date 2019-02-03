@@ -16,17 +16,24 @@
 		<meta name="rating" content="general">
     <!-- Favicon for the website -->
 	<link rel="shortcut icon" href="images/sign.ico">
-	
+	<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Merriweather+Sans|Staatliches|Quattrocento+Sans" rel="stylesheet">
 
-	
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA133733565-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-133733565-1');
+    </script>
     <!--width=device width sets the width of page to follow screen width of device. Initial scale 1 sets initial zoom level. This helps in rendering on mobile devices.-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Merriweather+Sans|Staatliches|Quattrocento+Sans" rel="stylesheet">
     <title>Official Webpage of Nirmal Khedkar</title>
 </head>
 <body>
@@ -53,12 +60,12 @@
         <div class="container" id="box2">
             <div class="row">
                 <div class="col-sm-4">
-                    <img src="images/mecircle.jpg" class="img-circle" id="itsme">
+                    <img src="images/mecircle.jpg" id="itsme">
                 </div>
                 <div class="col-sm-1">
                 </div>
                 <div class="col-sm-7">
-                    <div class="row">
+                    <div class="row" id="aboutme">
                         <h3 id="heading">Im Nirmal Khedkar</h3>
                         <br>Im from India, and Im first year student at National Institute of Technology Karnataka. Programming, reading books, reading news, table tennis and making applications that eliminate iterative work is my hobby. I like to constantly challenge myself with problems. I also have a knack for finance and investment.
                     </div>
@@ -96,12 +103,12 @@
                 </div>
                 <div class="row" style="font-size:15px;justify-content: center; padding-top: 5px;padding-bottom:10px">visitor to this website.</div>
                 <div class="row justify-content-md-center" style="padding-top: 10px;" id="#other2">
-                    <a href="#" class="fa fa-linkedin"></a>
-                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="https://www.linkedin.com/in/nirmalhk7/" class="fa fa-linkedin"></a>
+                    <a href="https://twitter.com/nirmalhk7" class="fa fa-twitter"></a>
                 </div>
                 <div class="row justify-content-md-center" style="padding-top:5px;padding-bottom: 20px;">
-                    <a href="#" class="fa fa-github"></a>
-                    <a href="#" class="fa fa-envelope"></a>
+                    <a href="https://www.github.com/nirmalhk7" class="fa fa-github"></a>
+                    <a href="mailto:nirmalhk7@programmer.net" class="fa fa-envelope"></a>
                 </div>
              </div>
             <div class="col-sm-6" style="background-color: darkslategray;  padding-top: 20px;padding-left: 30px;">
@@ -114,7 +121,6 @@
                 <br>
                 <br>
                 <div id="google_translate_element"></div>
-
                 <script type="text/javascript">
                 function googleTranslateElementInit()
                 {
@@ -127,10 +133,10 @@
                 <img src="images/vcard.png" alt="VCard for Nirmal Khedkar" height="250px" width="250px">
             </div>
         </div>
-        <div id="bottomrow">
+        <div class="bottomrow">
             <p style="text-align:left; padding-top:6px;">
-                Made with &hearts; by Nirmal Khedkar.
-                <span style="float:right; padding-top:4px;">Copyright &copy; 2019.</span>
+                <div class="fadeIn">Made with &hearts; by Nirmal Khedkar.
+                <span style="float:right; padding-top:4px;">Copyright &copy; 2019.</span></div>
             </p>
         </div>
     </footer> 
