@@ -2,8 +2,11 @@
     font-family: 'Major Mono Display', monospace;
     font-size:25px;
 }
-html {
-  scroll-behavior: smooth;
+html,body {
+    height: 100%;
+    width: 100%;
+    min-height: 100%!important;
+    scroll-behavior: smooth;
 }
 /*Can also create id selector instead of p to format certain parts of webpage
 Add a . before the class name to indicate that its a class.*/
@@ -37,14 +40,15 @@ Add a . before the class name to indicate that its a class.*/
 .nav-item:active{
     transform: translateY(4px);
 }
+
 .img{
-    background-image: url("images/Mars.jpg");
-    background-position: center;
+    background: url("images/Mars.jpg") no-repeat center center fixed;    
     background-size: cover;
-    height: 80vh; 
+    height: 80%;
+    position: relative;
     width: 100%;
-    margin: 0dp;
-    padding: 0dp;
+    display: table;
+    
  }
 /*@media only screen and (max-width:1500px)
 {
@@ -87,7 +91,7 @@ hr {
   width: 20px;
   text-align: center;
   text-decoration: none;
-  margin: 5px 2px;
+  margin: 5px 2px;  
      transition: transform .2s;
 }
 
@@ -131,10 +135,16 @@ hr {
     width: auto;
     text-decoration: none;
 }
-#bottomrow{
+#vcard{
+    justify-content: center;
+    padding-left:10px;
+}
+.bottomrow{
     background-color: black;
     font-size: 15px;
     color: white;
+    animation-name: "bottomrow";
+    animation-duration: 4s;
     padding-top: 2.5px;
     padding-bottom: 2.5px;
     padding-left: 20px;
