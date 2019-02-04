@@ -1,6 +1,7 @@
 #heading{
     font-family: 'Major Mono Display', monospace;
     font-size:25px;
+    clear: both;
 }
 html,body {
     height: 100%;
@@ -103,7 +104,6 @@ hr {
       -ms-transform: scale(1.5); /* IE 9 */
   -webkit-transform: scale(1.5); /* Safari 3-8 */
   transform: scale(1.1); 
-
 }
 
 .fa-twitter {
