@@ -23,6 +23,13 @@
     background-color: darkgreen;
     text-decoration: none;
 }
+#im1{
+    background: url("images/My%20Post.jpg") no-repeat center center;    
+    height: 100%;
+    position: relative;
+    width: 100%;
+ 
+}
 #aboutme{
     padding-top: 20px;
     padding-left: 10px;
