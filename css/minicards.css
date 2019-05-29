@@ -5,8 +5,9 @@
     font-size: 1.6rem;
     color: black;
     text-transform: uppercase;
+    border-radius: 25px;
 }
 
-.minicard:hover {
+.minicard-box:hover {
     box-shadow: 1px 1px 5px #999;
 }
