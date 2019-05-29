@@ -63,35 +63,51 @@
 @import url("fontawesome-free-5.8.2-web/css/brands.css");
 @import url("fonts.css");
 
+@media only screen and (min-width:480px) {
+    #home {
+        background-image: url("../images/me3.JPG");
+        background-size: cover;
+    }
+}
+
+@media only screen and (max-width:480px) {
+    #home {
+        background-image: url("../images/me4.JPG");
+        background-size: cover;
+    }
+}
 
 @media only screen and (max-width:480px) {
     #profiles {
         display: none;
     }
 }
+
 @media only screen and (min-width:480px) {
     #smalldevice {
         display: none;
     }
 }
 
-.tw:hover{
-    color:#38A1F3!important;
+.tw:hover {
+    color: #38A1F3 !important;
     size: 110%
 }
 
-.ln:hover{
-    color:#0077B5!important;
+.ln:hover {
+    color: #0077B5 !important;
 }
 
-.gi:hover{
-    color:#333;
+.gi:hover {
+    color: #333;
 }
-.go:hover{
-    color:#553b08;
+
+.go:hover {
+    color: #553b08;
 }
-.pi:hover{
-    color:#bd081c;
+
+.pi:hover {
+    color: #bd081c;
 }
 
 
