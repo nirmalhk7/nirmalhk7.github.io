@@ -1,0 +1,168 @@
+#heading{
+    font-family: 'Major Mono Display', monospace;
+    font-size:25px;
+    clear: both;
+}
+html,body {
+    height: 100%;
+    width: 100%;
+    min-height: 100%!important;
+    scroll-behavior: smooth;
+}
+/*Can also create id selector instead of p to format certain parts of webpage
+Add a . before the class name to indicate that its a class.*/
+
+.navbar-nav{
+    padding-left:50px;
+    padding-right: 50px;
+}
+.navbar{
+    background-color: black;
+    display: flex;
+    justify-content: flex-end;
+}
+.nav-item{
+    font-family: 'Staatliches', cursive;
+    text-transform: uppercase;
+    color:white;
+    margin-right: 0.75rem;
+    padding-right:0.75rem;
+    margin-left:0.75rem;
+    transition:background-color 0.5s ease;
+    padding-left:0.75rem;
+    font-size: 1.25rem;
+}
+.nav-item:hover{
+    background-color:white;
+        color:purple;
+    text-decoration: none !important;
+    color: black;
+}
+.nav-item:active{
+    transform: translateY(4px);
+}
+.icon {
+  display: none;
+    color:green;
+    font-size:1.25rem;
+}
+@media screen and (max-width: 600px) {
+  .navbar a:not(:first-child) {display: none;}
+  .navbar a.icon {
+    float: right;
+    display: block;
+    color:white;
+  }
+}
+.img{
+    background: url("images/Mars.jpg") no-repeat center center fixed;    
+    background-size: cover;
+    height: 80%;
+    position: relative;
+    width: 100%;
+    display: table;
+    
+ }
+
+/*After 640px navbar should go into hamburbar*/
+@media only screen and (max-width:600px)
+{
+    .img{
+        width:100%;
+        height:auto;
+    }
+}
+hr { 
+  max-width:1200px;
+    width: 100%;
+  border-width: 1px;
+  border-color: darkgrey;
+} 
+.container{
+    font-family: 'Merriweather Sans',sans-serif;
+    font-size:15px;
+}
+#emphasis1{
+    color:white;
+    background-color:orangered;
+    padding-top:30px;
+    padding-bottom: 30px;
+}
+#emphasis2{
+    
+    color:white;
+    margin: 0px;
+    padding-top: 30px;
+    padding-bottom:30px;
+}
+
+.site-footer{
+    color:white;
+    padding-top: 0px;
+    margin: 0px;
+}
+.fa {
+  padding: 20px;
+  font-size: 25px;
+  width: 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;  
+     transition: transform .2s;
+}
+
+.fa:hover {
+    opacity: 0.5;
+    text-decoration: none;
+    resize: both;
+    color:white;
+      -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.1); 
+}
+
+.fa-twitter {
+  background-color:#55ACEE;
+  color: white;
+    width:auto;
+    border-radius: 50%;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+    width:auto;
+    border-radius: 50%;
+    text-decoration: none;
+}
+.fa-envelope{
+    background-color: red;
+    color:white;
+    border-radius: 50%;
+    width:auto;
+    text-decoration: none;
+}
+
+.fa-github{
+    background-color: black;
+    color:white;
+    border-radius: 50%;
+    width: auto;
+    text-decoration: none;
+}
+
+#vcard{
+    justify-content: center;
+    padding-left:10px;
+}
+.bottomrow{
+    background-color: white;
+    font-size: 15px;
+    color: black;
+    animation-name: "bottomrow";
+    animation-duration: 4s;
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}

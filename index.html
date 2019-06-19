@@ -1,628 +1,225 @@
 <!DOCTYPE html>
-
-<html class="no-js" lang="en">
-
-
+<!--Specifies document is HTML-->
+<html lang="en">
+<!--English. Required for Bootstrap-->
 <head>
-    <!--- basic page needs
-    ================================================== -->
     <meta charset="utf-8">
-    <title>Official Website of Nirmal Khedkar</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- mobile specific metas
-    ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/vendor.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Nirmal Khedkar is a first year undergrad at NITK Surathkal pursuing B Tech in Information Technology. This is his official website.">
+    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="none">
+    <meta name="abstract" content="This Website is about Nirmal Khedkar">
+    <meta name="keywords" content="Nirmal Khedkar, Data Analysis, Machine Learning, Artificial Intelligence, Internships, Hire, Finance, Technology,Investment, Nirmal, Khedkar, nirmalhk7">
+    
+    <meta name="revisit-after" content="1 day">
+    <meta name="contact" content="nirmalhk7@gmail.com" />
+		<meta name="rating" content="general">
+    <!-- Favicon for the website -->
+	<link rel="shortcut icon" href="images/sign.ico">
+	<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Merriweather+Sans|Staatliches" rel="stylesheet">
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA133733565-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-133733565-1');
+    </script>
+    <!--width=device width sets the width of page to follow screen width of device. Initial scale 1 sets initial zoom level. This helps in rendering on mobile devices.-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/flicker-animation.css">
-    <link rel="stylesheet" href="css/minicards.css">
-    <!-- script
-    ================================================== -->
-    <script src="js/modernizr.js"></script>
-    <script src="js/pace.min.js"></script>
-    <!-- favicons
-    ================================================== -->
-    <link rel="shortcut icon" href="sign.icon" type="image/x-icon">
-    <link rel="icon" href="sign.ico" type="image/x-icon">
+    <title>Official Webpage of Nirmal Khedkar</title>
 </head>
-
-<body id="top">
-    <!-- header
-    ================================================== -->
-    <header class="s-header">
-        <div class="header-logo current">
-            nirmalhk7
-            <!--<a class="site-logo" href="index.html"><img src="images/logo.png" alt="Homepage"></a>-->
-        </div>
-        <nav class="header-nav-wrap">
-            <ul class="header-nav">
-                <li class="current"><a class="smoothscroll" href="#home" title="Home">Home</a></li>
-                <li><a class="smoothscroll" href="#about" title="About">About</a></li>
-                <li><a class="smoothscroll" href="#works" title="Works">Portfolio</a></li>
-                <li><a class="smoothscroll" href="#blog" title="Blog">Blog</a></li>
-                <li><a class="smoothscroll" href="#contact" title="Contact">Contact</a></li>
-            </ul>
-        </nav>
-        <a class="header-menu-toggle" href="#0"><span>Menu</span></a>
-    </header> <!-- end s-header -->
-    <!-- home
-   ================================================== -->
-    <section id="home" class="s-home page-hero target-section" data-parallax="scroll" data-natural-width=3000 data-natural-height=2000 data-position-y=center>
-        <div class="overlay"></div>
-        <div class="shadow-overlay"></div>
-        <div class="home-content">
-            <div class="row home-content__main">
-                <h3>Hey!</h3>
-                <h1>
-                    I'm Nirmal Khedkar, <br>
-                    student developer<br>
-                    based in Surathkal, India.
-                </h1>
-                <div class="home-content__buttons">
-                    <a href="#works" class="smoothscroll btn btn--stroke">
-                        Latest Projects
-                    </a>
-                    <a href="#about" class="smoothscroll btn btn--stroke">
-                        More About Me
-                    </a>
-                </div>
-                <div class="home-content__scroll">
-                    <a href="#about" class="scroll-link smoothscroll">
-                        <span>Scroll Down</span>
-                    </a>
-                </div>
-            </div>
-        </div> <!-- end home-content -->
-        <ul class="home-social">
-            <li>
-                <a href="#"><i class="im im-twitter tw" aria-hidden="true"></i><span>Twitter</span></a>
-            </li>
-            <li>
-                <a href="https://www.linkedin.com/in/nirmalhk7/"><i class="im im-linkedin ln" aria-hidden="true"></i><span>LinkedIn</span></a>
-            </li>
-            <li>
-                <a href="https://www.github.com/nirmalhk7"><i class="im im-github gi" aria-hidden="true"></i><span>GitHub</span></a>
-            </li>
-            <li>
-                <a href="https://www.goodreads.com/user/show/93069537-nirmal"><i class="fab fa-goodreads go" aria-hidden="true"></i><span>Goodreads</span></a>
-            </li>
-            <li>
-                <a href="#"><i class="im im-pinterest pi" aria-hidden="true"></i><span>Pinterest</span></a>
-            </li>
-        </ul>
-        <!-- end home-social -->
-    </section> <!-- end s-home -->
-    <!-- about
-    ================================================== -->
-    <section id="about" class="s-about target-section">
-        <div class="row narrow section-intro has-bottom-sep">
-            <div class="col-full text-center">
-                <h3>Nirmal Khedkar</h3>
-                <h1>More About Me</h1>
-                <p class="lead">I'm a student in National Institute of Technology Karnataka, Surathkal doing a Bachelors in Information Technology.</p>
-            </div>
-        </div>
-        <div class="row about-content">
-            <div class="col-six tab-full left">
-                <h3>Howdy!</h3>
-                <p>I'm from India, and I'm second year student at National Institute of Technology, Karnataka. Programming, reading books, reading news, table tennis and <em>making applications that eliminate iterative work</em> is my hobby. I like to constantly challenge myself with problems. I also have a knack for finance and investment.</p>
-                <h5>Academics</h5>
-                I completed my 10th grade in Bangalore with <strong>9.4 CGPA</strong> and my 12th grade with
-                87.9% . I currently study in <b>National Institute of Technology Karnataka</b> doing BTech in Information Technology and have <strong>CGPA 7.3</strong>.
-                <br>
-                <small>(as of May 2019)</small>
-                <h5>Technical Things</h5>
-                My projects are listed below and are mostly available on GitHub. I'm also a passionate competitive coder
-                <div id="smalldevice">
-                    : find my profiles on reknowned platforms here:
-                    <ul class="disc">
-                        <li><a href="https://www.hackerrank.com/nirmalhk7">HackerRank</a></li>
-                        <li><a href="https://www.codechef.com/users/nirmalhk7">CodeChef</a></li>
-                        <li><a href="https://www.kaggle.com/nirmalhk7">Kaggle</a></li>
-                        <li><a href="https://stackoverflow.com/users/10005612/nirmal-khedkar?tab=profile">StackOverflow</a></li>
-                    </ul>
-                </div>.
-                <h5>Finance</h5>
-                I strongly think that the best way to earn more is to read more about exactly how money works. As a student, I love to read about money, stock markets and financial incidents around the world.
-            </div>
-            <div class="col-six tab-full right">
-                <h3 style="text-align: center;">I've got some skills.</h3>
-                <!--
-                   <ul class="skill-bars">
-                    <li>
-                        <div class="progress percent90"><span>90%</span></div>
-                        <strong>HTML5</strong>
-                    </li>
-                    <li>
-                        <div class="progress percent85"><span>85%</span></div>
-                        <strong>CSS</strong>
-                    </li>
-                    <li>
-                        <div class="progress percent70"><span>70%</span></div>
-                        <strong>Android</strong>
-                    </li>
-                    <li>
-                        <div class="progress percent95"><span>95%</span></div>
-                        <strong>Dialogflow</strong>
-                    </li>
-                    <li>
-                        <div class="progress percent75"><span>75%</span></div>
-                        <strong>Javascript</strong>
-                    </li>
-                    <li>
-                        <div class="progress percent90"><span>90%</span></div>
-                        <strong>Angular JS</strong>
-                    </li>
-                </ul>
-            -->
-                <div class="row">
-                    <div class="col-four minicard minicard-box">
-                        HTML
-                    </div>
-                    <div class="col-four minicard minicard-box">
-                        CSS
-                    </div>
-                    <div class="col-four minicard minicard-box">
-                        Javascript
-                    </div>
-                    <div class="col-four minicard minicard-box">
-                        Android
-                    </div>
-                    <div class="col-four minicard minicard-box">
-                        Dialogflow
-                    </div>
-                    <div class="col-four minicard minicard-box">
-                        C++/C
-                    </div>
-                    <div class="col-four minicard minicard-box">
-                        Java
-                    </div>
-                    <div class="col-four minicard minicard-box">
-                        Python
-                    </div>
-                </div>
-                <br>
-                <div id="profiles">
-                    <h3 style="text-align: center;margin-top: 1.8rem">Profiles</h3>
-                    <div class="row">
-                        <a href="https://www.hackerrank.com/nirmalhk7">
-                            <div class="col-four minicard minicard-box">
-                                HackerRank
-                            </div>
-                        </a>
-                        <a href="https://www.codechef.com/users/nirmalhk7">
-                            <div class="col-four minicard minicard-box">
-                                CodeChef
-                            </div>
-                        </a>
-                        <a href="https://www.kaggle.com/nirmalhk7">
-                            <div class="col-four minicard minicard-box">
-                                Kaggle
-                            </div>
-                        </a>
-                        <a href="https://stackoverflow.com/users/10005612/nirmal-khedkar?tab=profile">
-                            <div class="col-four minicard minicard-box">
-                                StackOverflow
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <br>
-                <h3 style="text-align: center;margin-top: 1.8rem">Memberships</h3>
-                <div class="row" style="margin-left:15px">
-                    <ul>
-                        <li>Web Developer at TEDxNITKSurathkal</li>
-                    </ul>
-                </div>
-                <a href="#0" class="btn btn--primary full-width">Download My CV</a>
-                <a href="#0" class="btn full-width">Want to Hire?</a>
-            </div>
-        </div> <!-- end about-content -->
-        <div class="row about-content about-content--timeline">
-            <div class="col-full text-center">
-                <h3>My Work Experience.</h3>
-            </div>
-            <div class="col-six tab-full left">
-                <div class="timeline">
-                    <div class="timeline__block">
-                        <div class="timeline__bullet"></div>
-                        <div class="timeline__header">
-                            <p class="timeline__timeframe">May 2019 - Present</p>
-                            <h3>Integrated Resources and Information Sharing (IRIS), NITK</h3>
-                            <h5>Frontend Intern</h5>
-                        </div>
-                        <div class="timeline__desc">
-                            <p>My job as a Frontend Intern was to aid the design migration of IRIS to a brand new design. With help from mentors I was able to get an insight of how the platform works.</p>
-                        </div>
-                    </div> <!-- end timeline__block -->
-                </div> <!-- end timeline -->
-            </div> <!-- end left -->
-            <div class="col-six tab-full right">
-                <div class="timeline">
-                </div> <!-- end timeline -->
-            </div> <!-- end right -->
-        </div> <!-- end about-content timeline -->
-    </section> <!-- end about -->
-    <!-- s-stats
-    ================================================== -->
-    <!-- <div class="col-block stats__col ">
-                <div class="stats__count">
-                    128
-                </div>
-            </div>
-    <section id="stats" class="s-stats">
-        <div class="row block-1-4 block-tab-1-2 block-mob-full stats">
-            <div class="col-block stats__col ">
-                <div class="stats__count">
-                    128
-                </div>
-            </div>
-            <div class="col-block stats__col">
-                <div class="stats__count">
-                    1500
-                </div>
-                <h4>Cups of Coffee</h4>
-            </div>
-            <div class="col-block stats__col stats__col--highlight">
-                <div class="stats__upsign">
-                    <a href="#"><i class="im im-arrow-up" aria-hidden="true"></i></a>
-                </div>
-                <div class="stats__count">
-                    110
-                </div>
-                <h4>Projects Completed</h4>
-            </div>
-            <div class="col-block stats__col">
-                <div class="stats__count">
-                    101
-                </div>
-                <h4>Happy Clients</h4>
-            </div>
-        </div>
-    </section>-->
-    <!-- end s-stats -->
-    <!-- works
-    ================================================== -->
-    <section id="works" class="s-works target-section">
-        <div class="row narrow section-intro has-bottom-sep">
-            <div class="col-full">
-                <h3>Portfolio</h3>
-                <h1>See My Latest Projects.</h1>
-                <p class="lead">Find my projects categorized here:</p>
-            </div>
-        </div>
-        <div class="row masonry-wrap">
-            <div class="masonry">
-                <div class="masonry__brick">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="images/portfolio/gallery/g-beetle.jpg" class="thumb-link" title="The Beetle Car" data-size="1050x700">
-                                <img src="images/portfolio/beetle.jpg" srcset="images/portfolio/beetle.jpg 1x, images/portfolio/beetle@2x.jpg 2x" alt="">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">
-                                The Beetle
-                            </h3>
-                            <p class="item-folio__cat">
-                                Web Development
-                            </p>
-                        </div>
-                        <!--
-                        <a href="https://www.behance.net/" class="item-folio__project-link" title="Project link">
-                            <i class="im im-link"></i>
-                        </a>-->
-                        <div class="item-folio__caption">
-                            <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
-                        </div>
-                    </div> <!-- end item-folio -->
-                </div> <!-- end masonry__brick -->
-                <div class="masonry__brick">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="images/portfolio/gallery/g-lighthouse.jpg" class="thumb-link" title="Lighthouse" data-size="1050x700">
-                                <img src="images/portfolio/lighthouse.jpg" srcset="images/portfolio/lighthouse.jpg 1x, images/portfolio/lighthouse@2x.jpg 2x" alt="">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">
-                                Lighthouse
-                            </h3>
-                            <p class="item-folio__cat">
-                                Web Design
-                            </p>
-                        </div>
-                        <a href="https://www.behance.net/" class="item-folio__project-link" title="Project link">
-                            <i class="im im-link"></i>
-                        </a>
-                        <div class="item-folio__caption">
-                            <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
-                        </div>
-                    </div> <!-- end item-folio -->
-                </div> <!-- end masonry__brick -->
-                <div class="masonry__brick">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="images/portfolio/gallery/g-salad.jpg" class="thumb-link" data-size="1050x700">
-                                <img src="images/portfolio/salad.jpg" srcset="images/portfolio/salad.jpg 1x, images/portfolio/salad@2x.jpg 2x" alt="">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">
-                                Salad
-                            </h3>
-                            <p class="item-folio__cat">
-                                Branding
-                            </p>
-                        </div>
-                        <a href="https://www.behance.net/" class="item-folio__project-link" title="Project link">
-                            <i class="im im-link"></i>
-                        </a>
-                        <span class="item-folio__caption">
-                            <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
-                        </span>
-                    </div> <!-- end item-folio -->
-                </div> <!-- end masonry__brick -->
-                See More ->
-            </div>
-        </div> <!-- end masonry -->
-    </section> <!-- end works -->
-    <!-- testimonials
-    ==================================================
-    <div class="s-testimonials" style="display: none">
-        <div class="overlay"></div>
-        <div class="row testimonials-header">
-            <div class="col-full">
-                <h1 class="h02">What People Say.</h1>
-            </div>
-        </div>
-        <div class="row testimonials">
-            <div class="col-full testimonials__slider">
-                <div class="testimonials__slide">
-                    <img src="images/avatars/user-01.jpg" alt="Author image" class="testimonials__avatar">
-                    <p>Qui ipsam temporibus quisquam velMaiores eos cumque distinctio nam accusantium ipsum.
-                        Laudantium quia consequatur molestias delectus culpa facere hic dolores aperiam. Accusantium quos qui praesentium corpori.</p>
-                    <div class="testimonials__author h06">
-                        Tim Cook
-                        <span>CEO, Apple</span>
-                    </div>
-                </div>
-                <div class="testimonials__slide">
-                    <img src="images/avatars/user-05.jpg" alt="Author image" class="testimonials__avatar">
-                    <p>Excepturi nam cupiditate culpa doloremque deleniti repellat. Veniam quos repellat voluptas animi adipisci.
-                        Nisi eaque consequatur. Quasi voluptas eius distinctio. Atque eos maxime. Qui ipsam temporibus quisquam vel.</p>
-                    <div class="testimonials__author h06">
-                        Sundar Pichai
-                        <span>CEO, Google</span>
-                    </div>
-                </div>
-                <div class="testimonials__slide">
-                    <img src="images/avatars/user-02.jpg" alt="Author image" class="testimonials__avatar">
-                    <p>Repellat dignissimos libero. Qui sed at corrupti expedita voluptas odit. Nihil ea quia nesciunt. Ducimus aut sed ipsam.
-                        Autem eaque officia cum exercitationem sunt voluptatum accusamus. Quasi voluptas eius distinctio.</p>
-                    <div class="testimonials__author h06">
-                        Satya Nadella
-                        <span>CEO, Microsoft</span>
-                    </div>
-                </div>
-            </div> 
-        </div> 
-    </div> -->
-    <!-- blog
-    ================================================== -->
-    <section id="blog" class="s-blog target-section">
-        <div class="row narrow section-intro has-bottom-sep">
-            <div class="col-full">
-                <h3>Journal</h3>
-                <h1>Latest From The Blog.</h1>
-                <p class="lead">Here's my take on subjects that matter today. Stay tuned!</p>
-            </div>
-        </div>
-        <!--
-        <div class="row blog-content">
-            <div class="col-full">
-                <div class="blog-list block-1-2 block-tab-full">
-                    <article class="col-block">
-                        <div class="blog-date">
-                            <a href="blog-single.html">Sept 16, 2017</a>
-                        </div>
-                        <h2 class="h01"><a href="blog-single.html">The 10 Golden Rules of Clean Simple Design.</a></h2>
-                        <p>
-                            Blog.
-                        </p>
-                        <div class="blog-cat">
-                            <a href="blog.html">Branding</a><a href="blog.html">Design</a>
-                        </div>
-                    </article>
-                    <article class="col-block">
-                        <div class="blog-date">
-                            <a href="blog-single.html">Sept 15, 2017</a>
-                        </div>
-                        <h2 class="h01"><a href="blog-single.html">Photography Can Improve Your Graphic Design.</a></h2>
-                        <p>
-                            Blog.
-                        </p>
-                        <div class="blog-cat">
-                            <a href="blog.html">Photography</a>
-                        </div>
-                    </article>
-                    <article class="col-block">
-                        <div class="blog-date">
-                            <a href="blog-single.html">Sept 14, 2017</a>
-                        </div>
-                        <h2 class="h01"><a href="blog-single.html">Workspace Design Trends and Ideas.</a></h2>
-                        <p>
-                            Blog
-                        </p>
-                        <div class="blog-cat">
-                            <a href="blog.html">Branding</a><a href="blog.html">Wordpress</a>
-                        </div>
-                    </article>
-                    <article class="col-block">
-                        <div class="blog-date">
-                            <a href="blog-single.html">Sept 12, 2017</a>
-                        </div>
-                        <h2 class="h01"><a href="blog-single.html">Using Patterns in your Branding.</a></h2>
-                        <p>
-                            Blog
-                        </p>
-                        <div class="blog-cat">
-                            <a href="blog.html">Design</a><a href="blog.html">Branding</a>
-                        </div>
-                    </article>
-                </div> 
-            </div> 
-        </div>
-        -->
-    </section>
-    <!-- s-stats
-    ================================================== -->
-    <section id="works" class="s-works target-section">
-        <div class="row narrow section-intro has-bottom-sep">
-            <div class="col-full">
-                <blockquote>
-                    <p>Being realistic is the most commonly traveled road to mediocrity.</p>
-                    <cite>Will Smith</cite>
-                </blockquote>
-            </div>
-        </div>
-        <!-- end masonry -->
-    </section>
-    <section id="contact" class="s-contact target-section fadeIn">
-        <div class="overlay"></div>
-        <div class="row narrow section-intro">
-            <div class="col-full">
-                <h3>Contact Me</h3>
-                <h1>Say Hi!</h1>
-                <p class="lead">I'll reach you out as soon as I can.</p>
-            </div>
-        </div>
-        <div class="row contact__main">
-            <div class="col-eight tab-full contact__form">
-                <form action="https://getsimpleform.com/messages?form_api_token=162ff4fa2bb9c89f908b059c33b0a806" method="post">
-                    <input type='hidden' name='redirect_to' value='https://nirmalhk7.github.io/#contact' />
-                    <input type='text' name='NAME:' class="full-width" placeholder="Name" />
-                    <div class="form-field">
-                        <input name="contactEmail: " type="email" id="contactEmail" placeholder="Email" value="" required="" aria-required="true" class="full-width" />
-                    </div>
-                    <input name="contactSubject: " type="text" id="contactSubject" placeholder="Subject" value="" class="full-width">
-                    <div class="form-field">
-                        <textarea name="contactMessage: " id="contactMessage" placeholder="message" rows="10" cols="40" required="" aria-required="true" class="full-width"></textarea>
-                    </div>
-                    <input type='submit' value='Submit' class="full-width btn" />
-                </form>
-               
-                <!-- contact-success -->
-            </div>
-            <div class="col-four tab-full contact__infos">
-                <h4 class="h06">Email</h4>
-                <p>nirmalhk7@gmail.com<br>
-                    nirmalhk7@programmer.net
-                </p>
-                <h4 class="h06">Address</h4>
-                <p>
-                    Block 7,<br> National Institute of Technology Karnataka Surathkal Hostel,<br>
-                    NITK Surathkal,<br>
-                    Karnataka, India
-                </p>
-            </div>
-        </div>
-    </section> <!-- end s-contact -->
-    <!-- footer
-    ================================================== -->
-    <footer>
-        <div class="row flicker-3">
-            <div class="col-full">
-                <ul class="footer-social">
-                    <li>
-                        <a class="tw" href="#0">
-                            <i class="im im-twitter" aria-hidden="true"></i>
-                            <span>Twitter</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="ln" href="https://www.linkedin.com/in/nirmalhk7">
-                            <i class="im im-linkedin" aria-hidden="true"></i>
-                            <span>Linkedin</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="gi" href="https://www.github.com/nirmalhk7">
-                            <i class="im im-github" aria-hidden="true"></i>
-                            <span>Github</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="go" href="https://www.goodreads.com/user/show/93069537-nirmal">
-                            <i class="fab fa-goodreads" aria-hidden="true"></i>
-                            <span>Goodreads</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="pi" href="#0">
-                            <i class="im im-pinterest" aria-hidden="true"></i><span>Pinterest</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row footer-bottom">
-            <div class="col-twelve">
-                <div class="copyright flicker-3">
-                    <span>Made with <i class="im im-heart" style="font-size: 14px;"></i> by Nirmal Khedkar</span>
-                    <span>Theme by <a href="https://www.styleshout.com/">styleshout</a> (Copyright Hola 2017)</span>
-                </div>
-                <div class="go-top">
-                    <a class="smoothscroll" title="Back to Top" href="#top"><i class="im im-arrow-up" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </div> <!-- end footer-bottom -->
-    </footer> <!-- end footer -->
-    <!-- photoswipe background
-    ================================================== -->
-    <div aria-hidden="true" class="pswp" role="dialog" tabindex="-1">
-        <div class="pswp__bg"></div>
-        <div class="pswp__scroll-wrap">
-            <div class="pswp__container">
-                <div class="pswp__item"></div>
-                <div class="pswp__item"></div>
-                <div class="pswp__item"></div>
-            </div>
-            <div class="pswp__ui pswp__ui--hidden">
-                <div class="pswp__top-bar">
-                    <div class="pswp__counter"></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button> <button class="pswp__button pswp__button--share" title="Share"></button> <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button> <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                    <div class="pswp__preloader">
-                        <div class="pswp__preloader__icn">
-                            <div class="pswp__preloader__cut">
-                                <div class="pswp__preloader__donut"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                    <div class="pswp__share-tooltip"></div>
-                </div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button> <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
-                <div class="pswp__caption">
-                    <div class="pswp__caption__center"></div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end photoSwipe background -->
-    <div id="preloader">
-        <div id="loader"></div>
+<body>
+    <nav class="navbar navbar-expand-sm sticky-top" id="myTopnav">
+    <!--navbar is the bar at top of screen. navbar-expand-sm means stacks the navbar vertically on XL,L,M or small screens.-->
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <ul class="navbar-nav">
+        <!--ml auto aligns it right-->
+	 <a href="#"><li class="nav-item">Home</li></a>
+        <a href="#heading"><li class="nav-item">About Me</li></a>
+        <a href="projects.html"><li class="nav-item">Projects</li></a>
+        <a href="https://www.medium.com/@nirmalhk7"><li class="nav-item">Blog</li></a>
+        <a href="#address"><li class="nav-item">Say Hi!</li></a>
+ </a>
+    </ul>
+    </nav>
+    <div class="img">
     </div>
-    <!-- Java Script
-    ================================================== -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-</body>
+    <div id="emphasis1">        
+        <div class="container">
+            <div style="text-align:left;">
+                <em><p>“Being realistic is the most commonly traveled road to mediocrity.”</p></em>
+                <span style="float:right;">– Will Smith</span>
+            </div>
+        </div>
+    </div>
+    <div id="emphasis2" style="background-color: #242582">
+        <div class="container" id="box2">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="images/mecircle.jpg" id="itsme">
+                </div>
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-7">
+                    <div class="row" id="aboutme">
+                        <h3 id="heading">im Nirmal Khedkar</h3>
+                        <br>Im from India, and Im first year student at National Institute of Technology Karnataka. Programming, reading books, reading news, table tennis and making applications that eliminate iterative work is my hobby. I like to constantly challenge myself with problems. I also have a knack for finance and investment.
+                    </div>
+                    <div class="row">
+                    <br><br>
+                    </div>
+                    <div class="row" id="frorjb">
+                        <div class="col">
+                            <a href="projects.html" class="button">Looking for Freelance?</a>
+                        </div>
+                        <div class="col">
+                            <a href="#" class="button">Looking for Hire?</a>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="emphasis1" style="background-color: #2F2FA2;padding:0px;">
+        <div class="container-fluid">
+            <div class="row">
+            <div class="col-sm-3">
+                <div class="row" style="padding:30px;">
+                    <div id="heading">Academics</div>
+                    <ul style="list-style-type: circle">
+                    <li><strong>10th Grade:</strong> CGPA9.4</li>
+                    <li><strong>12th Grade:</strong> 87.9%</li>
+                    <li><strong>NITK Surathkal:</strong> CGPA7.2</li>
+                </div>
+                <div class="row" style="padding-top:30px;padding-left: 30px;">
+                    <p><div id="heading">languages</div></p>
+                  
+                    
+                </div>
+                <div class="row" style="padding-left:30px; padding-bottom: 30px;background-color: #2F2FA2">
+                    <strong><ul style="list-style-type: circle">
+                    <li>C++</li>
+                    <li>Java</li>
+                    <li>SQL</li>
+                    </ul>
+                    </strong>
+                </div>
+            </div>
+            <div class="col-sm-9" style="padding:0px;">
+                <div id="im1"></div>
+            </div>
+        </div>
+            </div>
+    </div>
+    <div id="emphasis2" style="padding:0px;background-color: #242582;">
+        <div class="container-fluid">
+        <div class="row" style="padding:30px;background-color: #242582">
+            <div class="col-sm-4">
+                <div id="heading">experiences</div>
+                        <strong>
+                            <ul style="list-style-type: circle">
+                                <li></li>
+                            </ul>
+                        </strong>
+                    
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+            </div>
+    </div>
+    
+    <div id="emphasis2" style="padding-top:0px;padding-bottom: 0px;background-color: #2F2FA2;">
+        <div class="container">
+            <div class="row" style="padding:30px;background-color: #2F2FA2">
+            
+                <div class="col-sm-7">
+                <div id="heading" ><div style="font-size: 100px;">Wanna talk?</div></div>
+                </div>
+                <div class="col-sm-5">
+                      <iframe
+                        allow="microphone;"
+                        width="350"
+                        height="430"
+                        src="https://console.dialogflow.com/api-client/demo/embedded/48b65689-0f46-43ae-b803-eeb2ab93a44a">
+                    </iframe>  
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <footer class="site-footer" id="address">
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3" style="background-color: #553d67;padding-top: 30px">
+                <div class="row" style="justify-content: center;padding-top: 20px;font-size:15px; padding-bottom: 5px;">Congratulations, you are the</div>
+                <div class="row" style="justify-content: center;">
+                    <a href="http://www.hitwebcounter.com" target="_blank">
+                        <img src="http://hitwebcounter.com/counter/counter.php?page=7033465&style=0038&nbdigits=5&type=ip&initCount=50" title="install tracking codes" Alt="install tracking codes"   border="0" >
+                    </a>          
+                </div>
+                <div class="row" style="font-size:15px;justify-content: center; padding-top: 5px;padding-bottom:10px">'th visitor to this website.</div>
+                <div class="row justify-content-md-center" style="padding-top: 10px;justify-content:center;" id="#other2">
+                    <a href="https://www.linkedin.com/in/nirmalhk7/" class="fa fa-linkedin"></a>
 
+<!--
+                    <a href="https://twitter.com/nirmalhk7" class="fa fa-twitter"></a>
+-->
+
+                </div>
+                <div class="row justify-content-md-center" style="padding-top:5px;padding-bottom: 20px;justify-content:center;">
+                    <a href="https://www.github.com/nirmalhk7" class="fa fa-github"></a>
+                    <a href="mailto:nirmalhk7@programmer.net" class="fa fa-envelope"></a>
+                </div>
+             </div>
+            <div class="col-sm-6" style="background-color: #99738e;padding-left: 30px;padding-top:30px;">
+                <div class="row">
+                    <div id="heading" style="padding-bottom: 30px;padding-left: 15px;">More ways to contact</div>
+                </div>
+                
+                    <b>Address</b>: NITK Hostel Block 7,National Institute of Technology Karnataka Surathkal
+                    Srinivasanagar, Surathkal, Karnataka 575025
+                    <br>
+                    <br>
+                    <b>Email</b>: <a href="mailto:nirmalhk7@programmer.net" style="color: white">nirmalhk7@programmer.net</a>
+                
+                <div class="row">
+                    <div class="col" style="padding-top:30px; padding-bottom:30px">
+                        <div id="google_translate_element"></div>
+                        <script type="text/javascript">
+                        function googleTranslateElementInit()
+                        {
+                            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                        }
+                        </script>
+                        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                    </div>
+                    <div class="col" style="padding-top:30px;">
+                        <span id="goodreadsbutton"style="color: #382110">my currently-reading shelf:</span><br/><a href="https://www.goodreads.com/review/list/93069537?shelf=currently-reading" title="Nirmal's book recommendations, liked quotes, book clubs, book trivia, book lists (currently-reading shelf)", rel="nofollow"><img border="0" alt="Nirmal's Currently Reading Shelf" src="https://www.goodreads.com/images/badge/badge1.jpg"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3" id="vcard" style="background-color: #99738e;  padding-top: 30px;justify-content:center;">
+                <img src="images/vcard.png" alt="VCard for Nirmal Khedkar" height="250px" width="250px" style="justify-content: center;">
+            </div>
+        </div>
+        <div class="bottomrow">
+            <div style="text-align:left; padding:10px;">
+                <div class="fadeIn" style="text-align: center">Made with &hearts; by Nirmal Khedkar
+                &copy; 2019.</div>
+            </div>
+        </div>
+        </div>
+    </footer> 
+    </body>
 </html>
