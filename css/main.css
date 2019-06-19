@@ -63,19 +63,43 @@
 @import url("fontawesome-free-5.8.2-web/css/brands.css");
 @import url("fonts.css");
 
-@media only screen and (min-width:480px) {
+@media only screen and (min-width: 1300px) {
     #home {
-        background-image: url("../images/me3.JPG");
+        background-image: url("../images/BeachNK_1.jpg");
+        background-size: cover;
+    }
+}
+@media only screen and (max-width: 1300px) {
+    #home {
+        background-image: url("../images/TreesNK_1.jpg");
+        background-size: cover;
+    }
+}
+/*1220px needed*/
+@media only screen and (min-width: 0px) {
+    /*From 0 to 320px display nothing*/
+    @media only screen and (max-width: 320px) {
+        #home {
+        background-image: url("../images/nothign.jpg");
+        background-size: cover;
+    }
+}
+@media only screen and (min-width: 1024px) {
+     #contact {
+        background-image: url("../images/contact-bg.jpg");
         background-size: cover;
     }
 }
 
-@media only screen and (max-width:480px) {
-    #home {
-        background-image: url("../images/me4.JPG");
+@media only screen and (max-width: 1024px) {
+     #contact {
+        background-image: url("../images/MilkyWay.jpg");
         background-size: cover;
     }
 }
+
+
+
 
 @media only screen and (max-width:480px) {
     #profiles {
@@ -89,25 +113,32 @@
     }
 }
 
+.gi .tw .ln .go .pi{
+    transition-duration: 2s;
+}
 .tw:hover {
     color: #38A1F3 !important;
-    size: 110%
+    transform: scale(1.1);
 }
 
 .ln:hover {
     color: #0077B5 !important;
+    transform: scale(1.1);
 }
 
 .gi:hover {
     color: #333;
+    transform: scale(1.1);
 }
 
 .go:hover {
     color: #553b08;
+    transform: scale(2.1);
 }
 
 .pi:hover {
     color: #bd081c;
+    transform: scale(1.1);
 }
 
 
@@ -3265,9 +3296,10 @@ html.no-csstransitions .home-content__main {
  *
  * ------------------------------------------------------------------- */
 
+
 .s-contact {
     background-color: #151515;
-    background-image: url("../images/contact-bg.jpg");
+
     background-repeat: no-repeat;
     background-position: center, center;
     padding-top: 13.2rem;
@@ -3275,6 +3307,7 @@ html.no-csstransitions .home-content__main {
     color: rgba(255, 255, 255, 0.5);
     position: relative;
 }
+
 
 .s-contact .overlay {
     position: absolute;
