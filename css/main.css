@@ -65,13 +65,13 @@
 
 @media only screen and (min-width: 1300px) {
     #home {
-        background-image: url("images/BeachNK_1.jpg");
+        background-image: url("BeachNK_1.jpg");
         background-size: cover;
     }
 }
 @media only screen and (max-width: 1300px) {
     #home {
-        background-image: url("images/TreesNK_1.jpg");
+        background-image: url("TreesNK_1.jpg");
         background-size: cover;
     }
 }
@@ -86,14 +86,14 @@
 }
 @media only screen and (min-width: 1024px) {
      #contact {
-        background-image: url("images/contact-bg.jpg");
+        background-image: url("contact-bg.jpg");
         background-size: cover;
     }
 }
 
 @media only screen and (max-width: 1024px) {
      #contact {
-        background-image: url("images/MilkyWay.jpg");
+        background-image: url("MilkyWay.jpg");
         background-size: cover;
     }
 }
