@@ -1,19 +1,14 @@
-
--->
 <!DOCTYPE html>
-
 <html class="no-js" lang="en">
-
 
 <head>
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Official Website of Nirmal Khedkar</title>
+    <title>Nirmal Khedkar</title>
     <meta name="description" content="Developer and student at NITK Surathkal">
     <meta name="author" content="Nirmal Khedkar">
     <meta name="google-site-verification" content="5ksq7CY5sGyWbkAcl57jwyuGf7jPxDaNoKO0IBP0fqw" />
-
     <!-- mobile specific metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +19,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/flicker-animation.css">
     <link rel="stylesheet" href="css/minicards.css">
+    <link rel="stylesheet" href="css/accordion.css">
     <!-- script
     ================================================== -->
     <script src="js/modernizr.js"></script>
@@ -33,7 +29,6 @@
     <link rel="shortcut icon" href="sign.icon" type="image/x-icon">
     <link rel="icon" href="sign.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/c586b4df75.js"></script>
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA133733565-1"></script>
 </head>
 
@@ -41,10 +36,8 @@
     <!-- header
     ================================================== -->
     <header class="s-header">
-
         <div class="header-logo current">
             nirmalhk7
-            <!--<a class="site-logo" href="index.html"><img src="images/logo.png" alt="Homepage"></a>-->
         </div>
         <nav class="header-nav-wrap">
             <ul class="header-nav">
@@ -111,7 +104,6 @@
 
 #TeamIronMan #LoveYou3000
 -->
-
         <div class="home-content">
             <div class="row home-content__main">
                 <h3>Hey!</h3>
@@ -346,11 +338,53 @@
     <!-- works
     ================================================== -->
     <section id="works" class="s-works target-section">
+        <div class="row">
+            <div class="col-six tab-full right">
+                <div class="narrow section-intro has-bottom-sep">
+                    <div class="col-full">
+                        <h3>Portfolio</h3>
+                        <h1>See My Latest Projects.</h1>
+                        <p class="lead">Find my projects categorized here.
+                            <br>
+                            And there's always more to come.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-six tab-full left">
+                <button class="accordion" style="padding-top: 0px!important">First Aid Man</button>
+                <div class="panel">
+                    <p>
+                        <code>Google Assistant</code>
+                        <br>
+                        Built by Dialogflow, it makes life-saving first aid information only a "Hey Google" away. Find it <a href="https://nirmalhk7.github.io/firstaidman">here</a>.
+                    </p>
+                </div>
+                <button class="accordion" style="padding-top: 0px!important">Crypto</button>
+                <div class="panel">
+                    <p>
+                        <code>C++</code>
+                        <br>
+                        Built with Diffie Hellman principles. Wanna get that James Bond feeling? Find it <a href="https://nirmalhk7.github.io/crypto">here</a>.
+                    </p>
+                </div>
+                <button class="accordion" style="padding-top: 0px!important">Nirmalhk7</button>
+                <div class="panel">
+                    <p>
+                        <code>Android</code>
+                        <br>
+                        An app tailor-made for myself. This is still under wraps. Find it <a href="https://nirmalhk7.github.io">here</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="works" class="s-works target-section" style="display: none">
         <div class="row narrow section-intro has-bottom-sep">
             <div class="col-full">
                 <h3>Portfolio</h3>
                 <h1>See My Latest Projects.</h1>
-                <p class="lead">Find my projects categorized here:</p>
+                <p class="lead">Find my projects categorized here.</p>
             </div>
         </div>
         <div class="row masonry-wrap">
@@ -483,8 +517,7 @@
                 <p class="lead">Here's my take on subjects that matter today. Stay tuned!</p>
             </div>
         </div>
-        <!--
-        <div class="row blog-content">
+        <div class="row blog-content" style="display: none;">
             <div class="col-full">
                 <div class="blog-list block-1-2 block-tab-full">
                     <article class="col-block">
@@ -535,10 +568,9 @@
                             <a href="blog.html">Design</a><a href="blog.html">Branding</a>
                         </div>
                     </article>
-                </div> 
-            </div> 
+                </div>
+            </div>
         </div>
-        -->
     </section>
     <!-- s-stats
     ================================================== -->
@@ -576,7 +608,6 @@
                     </div>
                     <input type='submit' value='Submit' class="full-width btn" />
                 </form>
-               
                 <!-- contact-success -->
             </div>
             <div class="col-four tab-full contact__infos">
@@ -634,8 +665,8 @@
         <div class="row footer-bottom">
             <div class="col-twelve">
                 <div class="copyright flicker-3">
-                    <span>Made with <i class="im im-heart" style="font-size: 14px;"></i> by Nirmal Khedkar</span>
-                    <span>Theme by <a href="https://www.styleshout.com/">styleshout</a> (Copyright Hola 2017)</span>
+                    <span style="color: #1f1f1f">Made with <i class="im im-heart" style="font-size: 14px;"></i> by Nirmal Khedkar</span>
+                    <span style="color: #1f1f1f">Theme by <a href="https://www.styleshout.com/">styleshout</a> (Copyright Hola 2017)</span>
                 </div>
                 <div class="go-top">
                     <a class="smoothscroll" title="Back to Top" href="#top"><i class="im im-arrow-up" aria-hidden="true"></i></a>
@@ -681,6 +712,22 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+    <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+    </script>
 </body>
 
 </html>
