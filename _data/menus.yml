@@ -1,0 +1,14 @@
+- name: Home
+  url: home
+
+- name: About
+  url: about
+
+- name: Portfolio
+  url: works
+
+- name: Blog
+  url: blog
+
+- name: Contact
+  url: contact

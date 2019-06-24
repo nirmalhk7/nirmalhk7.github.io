@@ -1,0 +1,24 @@
+- name: Twitter
+  url: tw
+  icon: im im-twitter tw
+  initial: tw
+
+- name: LinkedIn
+  url: https://www.linkedin.com/in/nirmalhk7/
+  icon: im im-linkedin ln
+  initial: ln
+
+- name: GitHub
+  url: https://www.github.com/nirmalhk7
+  icon: im im-github gi
+  initial: gi
+
+- name: Goodreads
+  url: https://www.goodreads.com/user/show/93069537-nirmal
+  icon: fab fa-goodreads go
+  initial: go
+
+- name: Pinterest
+  url: tw
+  icon: im im-pinterest pi
+  initial: pi

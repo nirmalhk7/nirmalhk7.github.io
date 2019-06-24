@@ -1,0 +1,190 @@
+---
+layout: default
+title: Main
+---
+<section id="home" class="s-home page-hero target-section" data-parallax="scroll" data-natural-width=3000 data-natural-height=2000 data-position-y=center>
+    <div class="overlay"></div>
+    <div class="shadow-overlay"></div>
+    <div class="home-content">
+        <div class="row home-content__main">
+            <h3>Hey!</h3>
+            <h1>
+                I'm Nirmal Khedkar, <br>
+                student developer<br>
+                based in Surathkal, India.
+            </h1>
+            <div class="home-content__buttons">
+                <a href="#works" class="smoothscroll btn btn--stroke">
+                    Latest Projects
+                </a>
+                <a href="#about" class="smoothscroll btn btn--stroke">
+                    More About Me
+                </a>
+            </div>
+            <div class="home-content__scroll">
+                <a href="#about" class="scroll-link smoothscroll">
+                    <span>Scroll Down</span>
+                </a>
+            </div>
+        </div>
+    </div> <!-- end home-content -->
+    <ul class="home-social">
+        {% for socialprofile in site.data.socialprofiles %}
+        <li>
+            <a href="{{ socialprofile.url }}">
+                <i class="{{ socialprofile.icon }}" aria-hidden="true"></i>
+                <span>{{ socialprofile.name }}</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <!-- end home-social -->
+</section>
+<section id="about" class="s-about target-section">
+    <div class="row narrow section-intro has-bottom-sep">
+        <div class="col-full text-center">
+            <h3>Nirmal Khedkar</h3>
+            <h1>More About Me</h1>
+            <p class="lead">I'm a student in National Institute of Technology Karnataka, Surathkal doing a Bachelors in Information Technology.</p>
+        </div>
+    </div>
+    <div class="row about-content">
+        <div class="col-six tab-full left">
+            <h3>Howdy!</h3>
+            <p>I'm from India, and I'm second year student at National Institute of Technology, Karnataka. Programming, reading books, reading news, table tennis and <em>making applications that eliminate iterative work</em> is my hobby. I like to constantly challenge myself with problems. I also have a knack for finance and investment.</p>
+            <h5>Academics</h5>
+            I completed my 10th grade in Bangalore with <strong>9.4 CGPA</strong> and my 12th grade with
+            87.9% . I currently study in <b>National Institute of Technology Karnataka</b> doing BTech in Information Technology and have <strong>CGPA 7.3</strong>.
+            <br>
+            <small>(as of May 2019)</small>
+            <h5>Technical Things</h5>
+            My projects are listed below and are mostly available on GitHub. I'm also a passionate competitive coder
+            <div id="smalldevice">
+                : find my profiles on reknowned platforms here:
+                <ul class="disc">
+                    {% for cvprofile in site.data.cvprofiles %}
+                    <li>
+                        <a href="{{ cvprofile.url }}">
+                            {{ cvprofile.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>.
+            <h5>Finance</h5>
+            I strongly think that the best way to earn more is to read more about exactly how money works. As a student, I love to read about money, stock markets and financial incidents around the world.
+        </div>
+        <div class="col-six tab-full right">
+            <h3 style="text-align: center;">I've got some skills.</h3>
+            <div class="row">
+                {% for skill in site.data.skills %}
+                <div class="col-four minicard minicard-box">
+                    {{skill.name}}
+                </div>
+                {% endfor %}
+            </div>
+            <br>
+            <div id="profiles">
+                <h3 style="text-align: center;margin-top: 1.8rem">Profiles</h3>
+                <div class="row">
+                    {% for cvprofile in site.data.cvprofiles %}
+                    <a href="{{ cvprofile.url }}">
+                        <div class="col-four minicard minicard-box">
+                            {{ cvprofile.name }}
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <h3 style="text-align: center;margin-top: 1.8rem">Memberships</h3>
+            <div class="row" style="margin-left:15px">
+                <ul>
+                    {% for membership in site.data.memberships %}
+                    <li>{{ membership.position }} at {{ membership.club }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <a href="#0" class="btn btn--primary full-width">Download My CV</a>
+            <a href="#0" class="btn full-width">Want to Hire?</a>
+        </div>
+    </div> <!-- end about-content -->
+    <div class="row about-content about-content--timeline">
+        <div class="col-full text-center">
+            <h3>My Work Experience.</h3>
+        </div>
+        {% for workexperience in site.data.workexperiences %}
+        <div class="col-six tab-full left">
+            <div class="timeline">
+                <div class="timeline__block">
+                    <div class="timeline__bullet"></div>
+                    <div class="timeline__header">
+                        <p class="timeline__timeframe">{{ workexperience.timeframe }}</p>
+                        <h3>{{ workexperience.company }}</h3>
+                        <h5>{{ workexperience.post }}</h5>
+                    </div>
+                    <div class="timeline__desc">
+                        <p>{{ workexperience.description }}</p>
+                    </div>
+                </div> <!-- end timeline__block -->
+            </div> <!-- end timeline -->
+        </div>
+        {% endfor %}
+        <div class="col-six tab-full right">
+            <div class="timeline">
+            </div> <!-- end timeline -->
+        </div> <!-- end right -->
+    </div> <!-- end about-content timeline -->
+</section>
+<section id="works" class="s-works target-section">
+    <div class="row">
+        <div class="col-six tab-full right">
+            <div class="narrow section-intro has-bottom-sep">
+                <div class="col-full">
+                    <h3>Portfolio</h3>
+                    <h1>See My Latest Projects.</h1>
+                    <p class="lead">Find my projects categorized here.
+                        <br>
+                        And there's always more to come.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-six tab-full left">
+            <button class="accordion" style="padding-top: 0px!important">First Aid Man</button>
+            <div class="panel">
+                <p>
+                    <code>Google Assistant</code>
+                    <br>
+                    Built by Dialogflow, it makes life-saving first aid information only a "Hey Google" away. Find it <a href="https://nirmalhk7.github.io/firstaidman">here</a>.
+                </p>
+            </div>
+            <button class="accordion" style="padding-top: 0px!important">Crypto</button>
+            <div class="panel">
+                <p>
+                    <code>C++</code>
+                    <br>
+                    Built with Diffie Hellman principles. Wanna get that James Bond feeling? Find it <a href="https://nirmalhk7.github.io/crypto">here</a>.
+                </p>
+            </div>
+            <button class="accordion" style="padding-top: 0px!important">Nirmalhk7</button>
+            <div class="panel">
+                <p>
+                    <code>Android</code>
+                    <br>
+                    An app tailor-made for myself. This is still under wraps. Find it <a href="https://nirmalhk7.github.io">here</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="blog" class="s-works target-section">
+    <div class="row narrow section-intro has-bottom-sep">
+        <div class="col-full">
+            <h3>Journal</h3>
+            <h1>Latest From The Blog.</h1>
+            <p class="lead">Here's my take on subjects that matter today. Find them <a href="blog.html">here</a>.</p>
+        </div>
+    </div>
+</section>
+{{ content }}

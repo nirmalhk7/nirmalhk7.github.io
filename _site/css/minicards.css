@@ -1,0 +1,12 @@
+.minicard {
+    text-align: center;
+    padding: 1em;
+    font-family: "montserrat-bold", sans-serif;
+    font-size: 1.6rem;
+    color: black;
+    text-transform: uppercase;
+}
+
+.minicard-box:hover {
+    box-shadow: 1px 1px 5px #999;
+}
