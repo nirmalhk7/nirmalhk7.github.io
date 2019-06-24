@@ -1,6 +1,5 @@
 ---
-title: kkk
-layout: default
+title: TODO
 ---
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -9,7 +8,7 @@ layout: default
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>{{ page.title }}- {{site-title}}</title>
+    <title>{{ page.title }} | {{ site.title }}</title>
     <meta name="description" content="Developer and student at NITK Surathkal">
     <meta name="author" content="Nirmal Khedkar">
     <meta name="google-site-verification" content="5ksq7CY5sGyWbkAcl57jwyuGf7jPxDaNoKO0IBP0fqw" />
@@ -45,6 +44,15 @@ layout: default
         </div>
         <nav class="header-nav-wrap">
             <ul class="header-nav">
+             <!--
+                {% for menu in site.data.menus %}
+                <li>
+                    <a class="smoothscroll" href="{{ menu.url }}" title="{{ menu.url }}">
+                        {{ menu.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            -->
                 <li class="current"><a class="smoothscroll" href="#home" title="Home">Home</a></li>
                 <li><a class="smoothscroll" href="#about" title="About">About</a></li>
                 <li><a class="smoothscroll" href="#works" title="Works">Portfolio</a></li>
@@ -267,7 +275,6 @@ layout: default
         </div>
         <!-- end masonry -->
     </section>
-    
     <!-- s-stats
     ================================================== -->
     <section id="contact" class="s-contact target-section fadeIn">
