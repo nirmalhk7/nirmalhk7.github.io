@@ -59,19 +59,17 @@
  * ------------------------------------------------------------------- */
 
 @import url("iconic/css/iconmonstr-iconic-font.min.css");
-@import url("fontawesome-free-5.8.2-web/css/fontawesome.min.css");
-@import url("fontawesome-free-5.8.2-web/css/brands.css");
 @import url("fonts.css");
 
 @media only screen and (min-width: 1300px) {
     #home {
-        background-image: url("BeachNK_1.jpg");
+        background-image: url("/assets/images/BeachNK_1.jpg");
         background-size: cover;
     }
 }
 @media only screen and (max-width: 1300px) {
     #home {
-        background-image: url("TreesNK_1.jpg");
+        background-image: url("/assets/images/TreesNK_1.jpg");
         background-size: cover;
     }
 }
@@ -86,7 +84,7 @@
 }
 @media only screen and (min-width: 1024px) {
      #contact {
-        background-image: url("contact-bg.jpg");
+        background-image: url("/assets/images/contact-bg.jpg");
         background-size: cover;
     }
 }
