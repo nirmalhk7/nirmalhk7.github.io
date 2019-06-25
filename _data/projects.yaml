@@ -1,0 +1,19 @@
+- name: First Aid Man
+  medium: Dialogflow
+  desc: Built by Dialogflow, it makes life-saving first aid information only a "Hey Google" away.
+  link: https://nirmalhk7.github.io/firstaidman
+
+- name: Crypto
+  medium: C++
+  desc: Built with Diffie Hellman principles. Wanna get that James Bond feeling? 
+  link: https://nirmalhk7.github.io/crypto
+
+- name: NirmalHK7
+  medium: Android
+  desc: An app tailor-made for myself. This is still under wraps.
+  link: https://nirmalhk7.github.io
+
+- name: nirmalhk7.github.io
+  medium: Jekyll, C++
+  desc: Previously a simple website, now powered with Jekyll.
+  link: https://nirmalhk7.github.io
