@@ -1,0 +1,111 @@
+---
+layout: default
+title: Spacewalk
+---
+    <!--
+    ──────────────▐█████───────
+──────▄▄████████████▄──────
+────▄██▀▀────▐███▐████▄────
+──▄██▀───────███▌▐██─▀██▄──
+─▐██────────▐███─▐██───██▌─
+─██▌────────███▌─▐██───▐██─
+▐██────────▐███──▐██────██▌
+██▌────────███▌──▐██────▐██
+██▌───────▐███───▐██────▐██
+██▌───────███▌──▄─▀█────▐██
+██▌──────▐████████▄─────▐██
+██▌──────█████████▀─────▐██
+▐██─────▐██▌────▀─▄█────██▌
+─██▌────███─────▄███───▐██─
+─▐██▄──▐██▌───────────▄██▌─
+──▀███─███─────────▄▄███▀──
+──────▐██▌─▀█████████▀▀────
+──────███──────────────────-->
+<section class="page-header page-hero" style="background-image:url(/assets/images/blog/blog-bg-01.jpg)">
+
+    <div class="row page-header__content">
+        <article class="col-full">
+            <h1 class="page-header__title">
+                <a href="#0" title="">
+                    {{ page.title }}
+                </a>
+            </h1>
+            <div class="page-header__info">
+                <div class="page-header__cat">
+                    Technology, Finance, Environment and Future.
+                </div>
+            </div>
+            <p>Official Blog of Nirmal Khedkar</p>
+            <p>
+                <a href="#0" class="btn btn--stroke page-header__btn" style="all 0.3s ease-in-out">Lets Go!</a>
+            </p>
+        </article>
+    </div>
+
+</section>
+<section class="page-header page-hero" style="display:none;background-image:url(/assets/images/blog/blog-bg-01.jpg)">
+    <div class="row page-header__content">
+        <article class="col-full">
+            <div class="page-header__info">
+                <div class="page-header__cat">
+                    <a href="#0">Branding</a><a href="#0">Design</a>
+                </div>
+                <div class="page-header__date">
+                    Sept 16, 2017
+                </div>
+            </div>
+            <h1 class="page-header__title">
+                <a href="#0" title="">
+                    The 10 Golden Rules of Clean Simple Design.
+                </a>
+            </h1>
+            <p>Pellentesque in ipsum id orci porta dapibus amet dui. Ad id deserunt ratione autem eius et minima ut et. Nihil sed quis velit aut enim aliquam. Quas non ad sint eveniet voluptatem est iure...</p>
+            <p>
+                <a href="#0" class="btn btn--stroke page-header__btn">Read More</a>
+            </p>
+        </article>
+    </div>
+</section> <!-- end page-header -->
+<!-- blog
+    ================================================== -->
+<section class="blog-content-wrap" id="0">
+    <div class="row blog-content">
+        <div class="col-full">
+           {{ paginator.page }} of {{ paginator.total_pages }}
+            <div class="blog-list block-1-2 block-tab-full">
+                {% for post in paginator.posts %}
+                <article class="col-block">
+                    <div class="blog-date">
+                        <a href="blog-single.html">{{ page.date | date_to_string }}</a>
+                    </div>
+                    <h2 class="h01"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                    <p>
+                        {{ post.excerpt }}
+                    </p>
+                    <div class="blog-cat">
+                        {{ post.tags }}
+                    </div>
+                </article>
+                {% endfor %}
+            </div><!-- end blog-list -->
+        </div> <!-- end col-full -->
+    </div> <!-- end blog-content -->
+    <div class="row blog-entries-nav">
+        <div class="col-full">
+            {% if paginator.previous_page %}
+            <a href="{{ paginator.previous_page_path }}" class="btn btn--stroke">
+                <i class="im im-arrow-left"></i>
+                Prev
+            </a>
+            {% endif %}
+            {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path }}" class="btn btn--stroke">
+                Next
+                <i class="im im-arrow-right"></i>
+            </a>
+            {% endif %}
+            <br>
+            
+        </div>
+    </div>
+</section>

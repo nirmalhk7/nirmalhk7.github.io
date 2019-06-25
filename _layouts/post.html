@@ -1,17 +1,16 @@
 ---
 layout: default
-title: Blog1
 ---
 
-<article class="blog-single">
+<article class="blog-single has-bottom-sep">
     <!-- page header/blog hero
         ================================================== -->
-    <div class="page-header page-header--single page-hero" style="background-image:url(images/blog/blog-bg-02.jpg)">
+    <div class="page-header page-header--single page-hero" style="background-image:url(/assets/images/blog/{{ page.img }})">
         <div class="row page-header__content narrow">
             <article class="col-full">
                 <div class="page-header__info">
                     <div class="page-header__cat">
-                        <a href="#0">Branding</a><a href="#0">Design</a>
+                        {{ page.tags }}
                     </div>
                 </div>
                 <h1 class="page-header__title">
@@ -23,7 +22,14 @@ title: Blog1
                     <li class="date">{{ page.date | date_to_string }}</li>
                 </ul>
             </article>
-        </div>
+<!--
+                _   ___                      ____  ____ _______
+   / | / (_)________ ___  ____ _/ / / / / //_/__  /
+  /  |/ / / ___/ __ `__ \/ __ `/ / /_/ / ,<    / / 
+ / /|  / / /  / / / / / / /_/ / / __  / /| |  / /  
+/_/ |_/_/_/  /_/ /_/ /_/\__,_/_/_/ /_/_/ |_| /_/   
+                                                   
+     -->   </div>
     </div> <!-- end page-header -->
     <div class="row blog-content">
         <div class="col-full blog-content__main">
@@ -31,6 +37,4 @@ title: Blog1
         </div><!-- end blog-content__main -->
     </div> <!-- end blog-content -->
 </article> <!-- end footer -->
-<div id="preloader">
-    <div id="loader"></div>
-</div>
+

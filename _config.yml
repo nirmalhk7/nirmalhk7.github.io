@@ -1,3 +1,7 @@
 name: Nirmal Khedkar
 title: Nirmal Khedkar
+plugins:
+  - jekyll-paginate
 
+paginate: 6
+paginate_path: "/blog/page:num/"

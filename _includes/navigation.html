@@ -6,7 +6,7 @@
         <ul class="header-nav">
             {% for menu in site.data.menus %}
             <li>
-                <a class="smoothscroll" href="#{{ menu.url }}" title="{{ menu.url }}">
+                <a class="smoothscroll" href="{{ menu.url }}" title="{{ menu.url }}">
                     {{ menu.name }}
                 </a>
             </li>

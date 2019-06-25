@@ -1,14 +1,14 @@
 - name: Home
-  url: home
+  url: index.html
 
 - name: About
-  url: about
+  url: index.html#about
 
 - name: Portfolio
-  url: works
+  url: index.html#works
 
 - name: Blog
-  url: blog
+  url: index.html#blog
 
 - name: Contact
-  url: contact
+  url: index.html#contact
