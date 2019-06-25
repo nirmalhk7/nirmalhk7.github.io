@@ -28,7 +28,7 @@ title: Main
             </div>
         </div>
     </div>
-               <!--
+    <!--
 ░░░░░░░██████████████████░░░░░░░
 ░░░░████▓▓▓█▓▓▓▓▓▓▓▓█▓▓▓███░░░░░
 ░░░██▓▓█▓▓▓█▓▓▓▓▓▓▓▓█▓▓▓█▓▓█░░░░
@@ -200,30 +200,16 @@ title: Main
             </div>
         </div>
         <div class="col-six tab-full left">
-            <button class="accordion" style="padding-top: 0px!important">First Aid Man</button>
+            {% for project in site.data.projects %}
+            <button class="accordion" style="padding-top: 0px!important">{{ project.name }}</button>
             <div class="panel">
                 <p>
-                    <code>Google Assistant</code>
+                    <code>{{ project.medium}}</code>
                     <br>
-                    Built by Dialogflow, it makes life-saving first aid information only a "Hey Google" away. Find it <a href="https://nirmalhk7.github.io/firstaidman">here</a>.
+                    {{ project.desc }} Find it <a href="{{ project.link }}https://nirmalhk7.github.io/firstaidman">here</a>.
                 </p>
             </div>
-            <button class="accordion" style="padding-top: 0px!important">Crypto</button>
-            <div class="panel">
-                <p>
-                    <code>C++</code>
-                    <br>
-                    Built with Diffie Hellman principles. Wanna get that James Bond feeling? Find it <a href="https://nirmalhk7.github.io/crypto">here</a>.
-                </p>
-            </div>
-            <button class="accordion" style="padding-top: 0px!important">Nirmalhk7</button>
-            <div class="panel">
-                <p>
-                    <code>Android</code>
-                    <br>
-                    An app tailor-made for myself. This is still under wraps. Find it <a href="https://nirmalhk7.github.io">here</a>.
-                </p>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
