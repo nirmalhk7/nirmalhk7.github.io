@@ -1,11 +1,11 @@
 <header class="s-header">
-    <div class="header-logo current">
+    <div class="header-logo current" href="{{ site.url }}">
         nirmalhk7
     </div>
     <nav class="header-nav-wrap">
         <ul class="header-nav">
-            <li class="current"><a class="smoothscroll" href='{{ "/" | relative_url }}' title="Home">Home</a></li>
-            <li><a class="smoothscroll" href="{{ '/#about' | relative_url }}" title="About">About</a></li>
+            <li><a class="smoothscroll" href="{{ site.url }}" title="Home">Home</a></li>
+            <li><a class="smoothscroll" href="{{ site.url }}#about" title="About">About</a></li>
             <li><a class="smoothscroll" href="/#works" title="Works">Portfolio</a></li>
             <li><a class="smoothscroll" href="/#blog" title="Blog">Blog</a></li>
             <li><a class="smoothscroll" href="#contact" title="Contact">Contact</a></li>

@@ -1,0 +1,39 @@
+---
+layout: default
+title: Projects
+---
+<section class="page-header page-hero" style="background-image:url(assets/images/blog-bg-01.jpg)">
+    <div class="row page-header__content">
+        <article class="col-full">
+            <h1 class="page-header__title">
+                <a href="#0" title="">
+                    {{ page.title }}
+                </a>
+            </h1>
+            <div class="page-header__info">
+                <div class="page-header__cat">
+                    Project Catalogue of Nirmal Khedkar
+                </div>
+            </div>
+            <p>There's always more to come.</p>
+        </article>
+    </div>
+</section>
+<!-- end page-header -->
+<!-- blog
+    ================================================== -->
+<section class="blog-content-wrap" id="blog">
+    <div class="row blog-content">
+        <div class="col-full">
+            <div class="blog-list block-1-2 block-tab-full">
+                {% for project in site.projects %}
+                <li>
+                    <h2><a href="{{ project.url }}">{{ project.name }}</a></h2>
+                    <h3>{{ project.position }}</h3>
+                    <p>{{ project.content | markdownify }}</p>
+                </li>
+                {% endfor %}
+            </div><!-- end blog-list -->
+        </div> <!-- end col-full -->
+    </div> <!-- end blog-content -->
+</section>
