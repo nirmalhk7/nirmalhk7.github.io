@@ -1,0 +1,14 @@
+{% assign min = 1 %}
+{% assign max = 3 %}
+{% assign diff = max | minus: min %}
+{% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min %}
+<section class="s-blog target-section">
+    <div class="row narrow section-intro has-bottom-sep">
+        <div class="col-full">
+            <blockquote>
+                <p>{{ site.data.quotes.lines[randomNumber].content }}</p>
+                <cite>{{ site.data.quotes.lines[randomNumber].saidby }}</cite>
+            </blockquote>
+        </div>
+    </div>
+</section>

@@ -91,7 +91,7 @@
 
 @media only screen and (max-width: 1024px) {
      #contact {
-        background-image: url("MilkyWay.jpg");
+        background-image: url("/assets/images/MilkyWay.jpg");
         background-size: cover;
     }
 }
