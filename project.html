@@ -27,11 +27,15 @@ title: Projects
         <div class="col-full">
             <div class="blog-list block-1-2 block-tab-full">
                 {% for project in site.projects %}
-                <li>
-                    <h2><a href="{{ project.url }}">{{ project.name }}</a></h2>
-                    <h3>{{ project.position }}</h3>
-                    <p>{{ project.content | markdownify }}</p>
-                </li>
+                <button class="accordion" style="padding-top: 0px!important">
+                    {{ project.name }}
+                    <code>{{ project.medium}}</code>
+                </button>
+                <div class="panel">
+                    <p>
+                        {{ project.content | markdownify }}
+                    </p>
+                </div>
                 {% endfor %}
             </div><!-- end blog-list -->
         </div> <!-- end col-full -->

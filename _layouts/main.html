@@ -199,13 +199,14 @@ title: Main
             </div>
         </div>
         <div class="col-six tab-full left">
-            {% for project in site.data.projects %}
-            <button class="accordion" style="padding-top: 0px!important">{{ project.name }}</button>
+            {% for project in site.projects | limit:5 %}
+            <button class="accordion" style="padding-top: 0px!important">
+                {{ project.name }}
+                <code>{{ project.medium}}</code>
+            </button>
             <div class="panel">
                 <p>
-                    <code>{{ project.medium}}</code>
-                    <br>
-                    {{ project.desc }}. Find it <a href="{{ project.link }}">here</a>.
+                    {{ project.excerpt }}Find more <a href="{{ site.url }}/project.html#{{ project.name }}">here</a>.
                 </p>
             </div>
             {% endfor %}
