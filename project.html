@@ -28,8 +28,8 @@ title: Projects
             <div class="blog-list block-1-2 block-tab-full">
                 {% for project in site.projects %}
                 <button class="accordion" style="padding-top: 0px!important">
-                    {{ project.name }}
-                    <code>{{ project.medium}}</code>
+                    {{ project.medium}}: {{ project.name }}
+                    
                 </button>
                 <div class="panel">
                     <p>
