@@ -4,12 +4,14 @@ layout: default
 <article class="blog-single has-bottom-sep">
     <!-- page header/blog hero
         ================================================== -->
-    <div class="page-header page-header--single page-hero" style="background-image:url(/assets/images/blog/{{ page.img }})">
+    <div class="page-header page-header--single page-hero parallax" style="background-image:url(/assets/images/blog/{{ page.img }})">
         <div class="row page-header__content narrow">
             <article class="col-full">
                 <div class="page-header__info">
                     <div class="page-header__cat">
-                        {{ page.tags }}
+                        {% for tags in page.tags %}
+                        <a href="#0">{{ tags }}</a>
+                        {% endfor %}
                     </div>
                 </div>
                 <h1 class="page-header__title">
@@ -35,11 +37,28 @@ layout: default
         <div class="col-full blog-content__main">
             {{ content }}
             <div class="blog-content__pagenav">
-                <p class="blog-content__tags">
+                <p class="boxfont">Spread the love</p>
+                <a href="#0" class="share">
+                    <i class="im im-facebook" aria-hidden="true"></i>
+                </a>
+                <a href="http://twitter.com/share?text={{ page.title }}- Nirmal Khedkar&url=http://{{ page.url }}
+" class="share">
+                    <i class="im im-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="#0" class="share">
+                    <i class="im im-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="#0" class="share">
+                    <i class="im im-pinterest" aria-hidden="true"></i>
+                </a>
+                <a href="#0" class="share">
+                    <i class="im im-linkedin" aria-hidden="true"></i>
+                </a>
+                <p class="blog-content__tags" style="margin-top: 3rem!important">
                     <span>{% if post %}
-                            {% assign categories = post.categories %}
+                        {% assign categories = post.categories %}
                         {% else %}
-                            {% assign categories = page.categories %}
+                        {% assign categories = page.categories %}
                         {% endif %}
                         {% for category in categories %}
                         <a href="{{site.baseurl}}/categories/#{{category|slugize}}">{{category}}</a>
@@ -61,3 +80,17 @@ layout: default
         </div><!-- end blog-content__main -->
     </div> <!-- end blog-content -->
 </article> <!-- end footer -->
+<style>
+.share {
+    padding: 0.5em;
+    margin-top: 1em;
+}
+
+.share:active {}
+
+.boxfont {
+    font-family: "montserrat-semibold", sans-serif;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+</style>

@@ -30,21 +30,39 @@
     <link rel="icon" href="/assets/images/sign.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/c586b4df75.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA133733565-1"></script>
+    <style>
+    .parallax {
+        /* Set a specific height */
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .now{
+            color: #af2b2b!important;
+    }
+    </style>
 </head>
 
 <body id="top">
     <!-- header
     ================================================== -->
     <header class="s-header">
-    <div class="header-logo current" href="http://localhost:4000">
+    <a href="http://localhost:4000">
+    <div class="header-logo" >
         nirmalhk7
     </div>
+</a>
     <nav class="header-nav-wrap">
         <ul class="header-nav">
-            <li><a class="smoothscroll" href="http://localhost:4000" title="Home">Home</a></li>
-            <li><a class="smoothscroll" href="http://localhost:4000#about" title="About">About</a></li>
-            <li><a class="smoothscroll" href="/#works" title="Works">Portfolio</a></li>
-            <li><a class="smoothscroll" href="/#blog" title="Blog">Blog</a></li>
+            <li ><a  href="http://localhost:4000" title="Home"  class="now">Home</a></li>
+            <li><a  href="http://localhost:4000#about" title="About">About</a></li>
+            
+            
+            <li><a  href="/#works" title="Works">Works</a></li>
+            <li><a  href="/#blog" title="Blog">Blog</a></li>
+            
             <li><a class="smoothscroll" href="#contact" title="Contact">Contact</a></li>
         </ul>
     </nav>
@@ -54,7 +72,7 @@
     <!-- home
    ================================================== -->
     <!-- end s-home -->
-    <section id="home" class="s-home page-hero target-section" data-parallax="scroll" data-natural-width=3000 data-natural-height=2000 data-position-y=center>
+    <section id="home" class="s-home page-hero target-section parallax" data-parallax="scroll" data-natural-width=3000 data-natural-height=2000 data-position-y=center>
     <div class="overlay"></div>
     <div class="home-content">
         <div class="row home-content__main">
@@ -329,7 +347,7 @@
         <div class="col-six tab-full right">
             <div class="narrow section-intro has-bottom-sep">
                 <div class="col-full">
-                    <h3>Portfolio</h3>
+                    <h3>Works</h3>
                     <h1>See My Latest Projects.</h1>
                     <p class="lead">Find my projects categorized <a href="http://localhost:4000/project.html">here</a>.
                         
@@ -501,7 +519,8 @@ Find more <a href="http://localhost:4000/project.html#nirmalhk7.github.io">here<
             </div>
         </div>
     </div> <!-- end footer-bottom -->
-</footer> <!-- end footer -->
+</footer>
+    <!-- end footer -->
     <!-- photoswipe background
     ================================================== -->
     <div aria-hidden="true" class="pswp" role="dialog" tabindex="-1">
@@ -547,7 +566,7 @@ Find more <a href="http://localhost:4000/project.html#nirmalhk7.github.io">here<
 
     for (i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function() {
-            
+
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
             if (panel.style.maxHeight) {

@@ -30,21 +30,39 @@
     <link rel="icon" href="/assets/images/sign.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/c586b4df75.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA133733565-1"></script>
+    <style>
+    .parallax {
+        /* Set a specific height */
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .now{
+            color: #af2b2b!important;
+    }
+    </style>
 </head>
 
 <body id="top">
     <!-- header
     ================================================== -->
     <header class="s-header">
-    <div class="header-logo current" href="http://localhost:4000">
+    <a href="http://localhost:4000">
+    <div class="header-logo" >
         nirmalhk7
     </div>
+</a>
     <nav class="header-nav-wrap">
         <ul class="header-nav">
-            <li><a class="smoothscroll" href="http://localhost:4000" title="Home">Home</a></li>
-            <li><a class="smoothscroll" href="http://localhost:4000#about" title="About">About</a></li>
-            <li><a class="smoothscroll" href="/#works" title="Works">Portfolio</a></li>
-            <li><a class="smoothscroll" href="/#blog" title="Blog">Blog</a></li>
+            <li ><a  href="http://localhost:4000" title="Home" >Home</a></li>
+            <li><a  href="http://localhost:4000#about" title="About">About</a></li>
+            
+            <li><a  href="http://localhost:4000/project.html" title="Works" >Portfolio</a></li>
+            <li><a  href="http://localhost:4000/blog/index.html" title="Blog" >Blog</a></li>
+            
+            
             <li><a class="smoothscroll" href="#contact" title="Contact">Contact</a></li>
         </ul>
     </nav>
@@ -57,12 +75,18 @@
     <article class="blog-single has-bottom-sep">
     <!-- page header/blog hero
         ================================================== -->
-    <div class="page-header page-header--single page-hero" style="background-image:url(/assets/images/blog/imgLocation)">
+    <div class="page-header page-header--single page-hero parallax" style="background-image:url(/assets/images/blog/ImageInBlogFolder.jpg)">
         <div class="row page-header__content narrow">
             <article class="col-full">
                 <div class="page-header__info">
                     <div class="page-header__cat">
-                        tags3tags2tags1
+                        
+                        <a href="#0">tags3</a>
+                        
+                        <a href="#0">tags2</a>
+                        
+                        <a href="#0">tags1</a>
+                        
                     </div>
                 </div>
                 <h1 class="page-header__title">
@@ -88,20 +112,86 @@
         <div class="col-full blog-content__main">
             <p>File excerpt.</p>
 
-<h1 id="welcome">Welcome</h1>
+<h1 id="this-is-an-h1">This is an &lt;h1&gt;</h1>
+<h2 id="this-is-an-h2">This is an &lt;h2&gt;</h2>
+<h3 id="this-is-an-h3">This is an &lt;h3&gt;</h3>
+<h4 id="this-is-an-h4">This is an &lt;h4&gt;</h4>
+<h5 id="this-is-an-h5">This is an &lt;h5&gt;</h5>
+<h6 id="this-is-an-h6">This is an &lt;h6&gt;</h6>
 
-<p><strong>Hello world</strong>, this is my first Jekyll blog post.</p>
+<blockquote>
+  <p>Pardon my French</p>
+</blockquote>
 
-<p>I hope you like it!</p>
+<p><small>(While supplies last. Offer expires on the vernal equinox. Not valid in Ohio.)</small></p>
+<p>
+	A <a href="#">link</a>,
+	<abbr title="this really isn't a very good description">abbrebation</abbr>,
+	<strong>strong text</strong>,
+	<em>em text</em>,
+	<del>deleted text</del>, and
+	<mark>this is a mark text.</mark>
+	<code>.code</code>
+</p>
+
+<p><em>This text is in italics.</em>
+<em>And so is this text.</em></p>
+
+<p><strong>This text is in bold.</strong>
+<strong>And so is this text.</strong></p>
+
+<p><strong><em>This text is in both.</em></strong>
+<strong><em>As is this!</em></strong>
+<em><strong>And this!</strong></em></p>
+
+<ul>
+  <li>Item</li>
+  <li>Item</li>
+  <li>One last item</li>
+</ul>
+
+<ol>
+  <li>Item one</li>
+  <li>Item two</li>
+</ol>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />First task to complete.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Second task that needs done
+This checkbox below will be a checked HTML checkbox.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />This task has been completed</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">foobar</span>
+    <span class="nb">puts</span> <span class="s2">"Hello world!"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p><a href="http://test.com/" title="Link to Test.com">Click me!</a>
+<a href="https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png">alt text</a></p>
+
 
             <div class="blog-content__pagenav">
-                <p class="blog-content__tags">
+                <p class="boxfont">Spread the love</p>
+                <a href="#0" class="share">
+                    <i class="im im-facebook" aria-hidden="true"></i>
+                </a>
+                <a href="http://twitter.com/share?text=fileTitle- Nirmal Khedkar&url=http:///categorytitle1%20categorytitle2/2019/06/30/template.html
+" class="share">
+                    <i class="im im-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="#0" class="share">
+                    <i class="im im-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="#0" class="share">
+                    <i class="im im-pinterest" aria-hidden="true"></i>
+                </a>
+                <a href="#0" class="share">
+                    <i class="im im-linkedin" aria-hidden="true"></i>
+                </a>
+                <p class="blog-content__tags" style="margin-top: 3rem!important">
                     <span>
                         
-                        <a href="/categories/#categoryTitle1">categoryTitle1</a>
-                        &nbsp;
-                        
-                        <a href="/categories/#categoryTitle2">categoryTitle2</a>
+                        <a href="/categories/#categoryTitle1 categoryTitle2">categoryTitle1 categoryTitle2</a>
                         
                         
                     </span>
@@ -124,6 +214,20 @@
         </div><!-- end blog-content__main -->
     </div> <!-- end blog-content -->
 </article> <!-- end footer -->
+<style>
+.share {
+    padding: 0.5em;
+    margin-top: 1em;
+}
+
+.share:active {}
+
+.boxfont {
+    font-family: "montserrat-semibold", sans-serif;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+</style>
     
 
 
@@ -236,7 +340,8 @@
             </div>
         </div>
     </div> <!-- end footer-bottom -->
-</footer> <!-- end footer -->
+</footer>
+    <!-- end footer -->
     <!-- photoswipe background
     ================================================== -->
     <div aria-hidden="true" class="pswp" role="dialog" tabindex="-1">
@@ -282,7 +387,7 @@
 
     for (i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function() {
-            
+
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
             if (panel.style.maxHeight) {

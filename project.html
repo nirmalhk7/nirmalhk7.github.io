@@ -2,7 +2,7 @@
 layout: default
 title: Projects
 ---
-<section class="page-header page-hero" style="background-image:url(assets/images/blog-bg-01.jpg)">
+<section class="page-header page-hero parallax" style="background-image:url(assets/images/blog-bg-01.jpg)">
     <div class="row page-header__content">
         <article class="col-full">
             <h1 class="page-header__title">
@@ -34,7 +34,7 @@ title: Projects
                     <button class="accordion" style="padding-top: 0px!important">
                         {{ item.name }}
                     </button>
-                    <div class="panel">
+                    <div class="panel"  id="#{{ item.name }}">
                         <p>
                             {{ item.content | markdownify }}
                         </p>

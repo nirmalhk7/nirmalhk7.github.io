@@ -1,13 +1,21 @@
 <header class="s-header">
-    <div class="header-logo current" href="{{ site.url }}">
+    <a href="{{ site.url }}">
+    <div class="header-logo" >
         nirmalhk7
     </div>
+</a>
     <nav class="header-nav-wrap">
         <ul class="header-nav">
-            <li><a class="smoothscroll" href="{{ site.url }}" title="Home">Home</a></li>
-            <li><a class="smoothscroll" href="{{ site.url }}#about" title="About">About</a></li>
-            <li><a class="smoothscroll" href="/#works" title="Works">Portfolio</a></li>
-            <li><a class="smoothscroll" href="/#blog" title="Blog">Blog</a></li>
+            <li ><a  href="{{ site.url }}" title="Home" {% if page.url == "/" %} class="now"{% endif %}>Home</a></li>
+            <li><a  href="{{ site.url }}#about" title="About">About</a></li>
+            {% if page.url != "/" %}
+            <li><a  href="{{ site.url }}/project.html" title="Works" {% if page.url == "/project.html" %} class="now"{% endif %}>Portfolio</a></li>
+            <li><a  href="{{ site.url }}/blog/index.html" title="Blog" {% if page.url == "/blog/" %} class="now"{% endif %}>Blog</a></li>
+            {% endif %}
+            {% if page.url == "/" %}
+            <li><a  href="/#works" title="Works">Works</a></li>
+            <li><a  href="/#blog" title="Blog">Blog</a></li>
+            {% endif %}
             <li><a class="smoothscroll" href="#contact" title="Contact">Contact</a></li>
         </ul>
     </nav>
