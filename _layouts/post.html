@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-
 <article class="blog-single has-bottom-sep">
     <!-- page header/blog hero
         ================================================== -->
@@ -22,19 +21,43 @@ layout: default
                     <li class="date">{{ page.date | date_to_string }}</li>
                 </ul>
             </article>
-<!--
+            <!--
                 _   ___                      ____  ____ _______
    / | / (_)________ ___  ____ _/ / / / / //_/__  /
   /  |/ / / ___/ __ `__ \/ __ `/ / /_/ / ,<    / / 
  / /|  / / /  / / / / / / /_/ / / __  / /| |  / /  
 /_/ |_/_/_/  /_/ /_/ /_/\__,_/_/_/ /_/_/ |_| /_/   
-                                                   
-     -->   </div>
+
+     -->
+        </div>
     </div> <!-- end page-header -->
     <div class="row blog-content">
         <div class="col-full blog-content__main">
-        	{{ content }}
+            {{ content }}
+            <div class="blog-content__pagenav">
+                <p class="blog-content__tags">
+                    <span>{% if post %}
+                            {% assign categories = post.categories %}
+                        {% else %}
+                            {% assign categories = page.categories %}
+                        {% endif %}
+                        {% for category in categories %}
+                        <a href="{{site.baseurl}}/categories/#{{category|slugize}}">{{category}}</a>
+                        {% unless forloop.last %}&nbsp;{% endunless %}
+                        {% endfor %}
+                    </span>
+                    <span class="blog-content__tag-list">
+                        {% for tags in page.tags %}
+                        <a href="#0">{{ tags }}</a>
+                        {% endfor %}
+                    </span>
+                </p>
+                <div class="blog-content__all">
+                    <a href="blog.html" class="btn btn--primary">
+                        View All Post
+                    </a>
+                </div>
+            </div>
         </div><!-- end blog-content__main -->
     </div> <!-- end blog-content -->
 </article> <!-- end footer -->
-

@@ -64,10 +64,14 @@ title: Spacewalk
             <div class="row narrow section-intro has-bottom-sep" style="padding-top: 5em">
                 <div class="col-full text-center">
                     <h3>{{ page.title }}</h3>
-                    <h1>The Latest</h1>
-                    <p class="lead">{% if paginator.total_pages != 1 %}
+                    <h1>The Latest Posts</h1>
+                    <p class="lead">
+                        {% if paginator.total_pages > 1 %}
                         {{ paginator.page }} of {{ paginator.total_pages }}
                         {% endif %}</p>
+                    {% if paginator.total_posts == 0 %}
+                    There's nothing here right now. Nevertheless, stay tuned!
+                    {% endif %}
                 </div>
             </div>
             <div class="blog-list block-1-2 block-tab-full">
@@ -81,7 +85,15 @@ title: Spacewalk
                         {{ post.excerpt }}
                     </p>
                     <div class="blog-cat">
-                        {{ post.category }}
+                        {% if post %}
+                            {% assign categories = post.categories %}
+                        {% else %}
+                            {% assign categories = page.categories %}
+                        {% endif %}
+                        {% for category in categories %}
+                        <a href="{{site.baseurl}}/categories/#{{category|slugize}}">{{category}}</a>
+                        {% unless forloop.last %}&nbsp;{% endunless %}
+                        {% endfor %}
                     </div>
                 </article>
                 {% endfor %}
