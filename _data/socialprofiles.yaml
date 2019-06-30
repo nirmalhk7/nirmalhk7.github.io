@@ -1,8 +1,8 @@
-- name: Twitter
-  url: tw
-  icon: im im-twitter tw
-  initial: tw
-
+#- name: Twitter
+#  url: tw
+#  icon: im im-twitter tw
+#  initial: tw
+#
 - name: LinkedIn
   url: https://www.linkedin.com/in/nirmalhk7/
   icon: im im-linkedin ln
