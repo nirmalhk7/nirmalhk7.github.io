@@ -191,9 +191,8 @@ title: Main
                 <div class="col-full">
                     <h3>Portfolio</h3>
                     <h1>See My Latest Projects.</h1>
-                    <p class="lead">Find my projects categorized here.
-                        <br>
-                        And there's always more to come.
+                    <p class="lead">Find my projects categorized <a href="{{ site.url }}/project.html">here</a>.
+                        
                     </p>
                 </div>
             </div>
@@ -201,16 +200,15 @@ title: Main
         <div class="col-six tab-full left">
             {% for project in site.projects limit:5 %}
             <button class="accordion" style="padding-top: 0px!important">
-                {{ project.medium}}: {{ project.name }}
-                
+                {{ project.name }}
             </button>
             <div class="panel">
-                <p>
+                <p> 
+                    <code>{{ project.medium}}</code>
                     {{ project.excerpt }}Find more <a href="{{ site.url }}/project.html#{{ project.name }}">here</a>.
                 </p>
             </div>
             {% endfor %}
-
         </div>
     </div>
 </section>

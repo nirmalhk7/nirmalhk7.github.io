@@ -1,6 +1,6 @@
 ---
 name: nirmalhk7.github.io
-medium: Jekyll,HTML,CSS
+medium: Jekyll
 ---
 Previously a simple website, now powered with Jekyll.
 

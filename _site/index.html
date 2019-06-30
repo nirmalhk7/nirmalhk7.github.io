@@ -331,9 +331,8 @@
                 <div class="col-full">
                     <h3>Portfolio</h3>
                     <h1>See My Latest Projects.</h1>
-                    <p class="lead">Find my projects categorized here.
-                        <br>
-                        And there's always more to come.
+                    <p class="lead">Find my projects categorized <a href="http://localhost:4000/project.html">here</a>.
+                        
                     </p>
                 </div>
             </div>
@@ -341,11 +340,11 @@
         <div class="col-six tab-full left">
             
             <button class="accordion" style="padding-top: 0px!important">
-                C++: Crypto
-                
+                Crypto
             </button>
             <div class="panel">
-                <p>
+                <p> 
+                    <code>C++</code>
                     <p>Built with Diffie Hellman principles. Wanna get that James Bond feeling?</p>
 
 Find more <a href="http://localhost:4000/project.html#Crypto">here</a>.
@@ -353,11 +352,11 @@ Find more <a href="http://localhost:4000/project.html#Crypto">here</a>.
             </div>
             
             <button class="accordion" style="padding-top: 0px!important">
-                Dialogflow: First Aid Man
-                
+                First Aid Man
             </button>
             <div class="panel">
-                <p>
+                <p> 
+                    <code>Dialogflow</code>
                     <p>Built by Dialogflow, it makes life-saving first aid information only a “Hey Google” away.</p>
 
 Find more <a href="http://localhost:4000/project.html#First Aid Man">here</a>.
@@ -365,18 +364,17 @@ Find more <a href="http://localhost:4000/project.html#First Aid Man">here</a>.
             </div>
             
             <button class="accordion" style="padding-top: 0px!important">
-                Jekyll,HTML,CSS: nirmalhk7.github.io
-                
+                nirmalhk7.github.io
             </button>
             <div class="panel">
-                <p>
+                <p> 
+                    <code>Jekyll</code>
                     <p>Previously a simple website, now powered with Jekyll.</p>
 
 Find more <a href="http://localhost:4000/project.html#nirmalhk7.github.io">here</a>.
                 </p>
             </div>
             
-
         </div>
     </div>
 </section>
@@ -549,11 +547,7 @@ Find more <a href="http://localhost:4000/project.html#nirmalhk7.github.io">here<
 
     for (i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function() {
-            for (j = 0; j < acc.length; j++) {
-                
-                    this.classList.toggle("collapse");
-                
-            }
+            data-toggle()
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
             if (panel.style.maxHeight) {

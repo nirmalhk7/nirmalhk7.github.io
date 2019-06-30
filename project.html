@@ -26,17 +26,21 @@ title: Projects
     <div class="row blog-content">
         <div class="col-full">
             <div class="blog-list block-1-2 block-tab-full">
-                {% for project in site.projects %}
-                <button class="accordion" style="padding-top: 0px!important">
-                    {{ project.medium}}: {{ project.name }}
-                    
-                </button>
-                <div class="panel">
-                    <p>
-                        {{ project.content | markdownify }}
-                    </p>
-                </div>
-                {% endfor %}
+                {% assign groups = site.projects | group_by: "medium" | sort: "name" %}
+                {% for group in groups %}
+                <br>
+                <h4>{{ group.name }}</h4>
+                    {% for item in group.items %}
+                    <button class="accordion" style="padding-top: 0px!important">
+                        {{ item.name }}
+                    </button>
+                    <div class="panel">
+                        <p>
+                            {{ item.content | markdownify }}
+                        </p>
+                    </div>
+                    {%endfor%}
+                {%endfor%}
             </div><!-- end blog-list -->
         </div> <!-- end col-full -->
     </div> <!-- end blog-content -->
