@@ -78,7 +78,6 @@
     /*From 0 to 320px display nothing*/
     @media only screen and (max-width: 320px) {
         #home {
-        background-image: url("images/nothign.jpg");
         background-size: cover;
     }
 }
