@@ -59,7 +59,7 @@
  * ------------------------------------------------------------------- */
 
 @import url("iconic/css/iconmonstr-iconic-font.min.css");
-@import url("fonts.css");
+@import url("fonts.min.css");
 
 @media only screen and (min-width: 1300px) {
     #home {
@@ -78,7 +78,6 @@
     /*From 0 to 320px display nothing*/
     @media only screen and (max-width: 320px) {
         #home {
-        background-image: url("images/nothign.jpg");
         background-size: cover;
     }
 }
