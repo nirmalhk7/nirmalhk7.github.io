@@ -235,26 +235,23 @@
     </div>
     <div class="row contact__main">
         <div class="col-eight tab-full contact__form">
-            <form name="contactForm" id="contactForm" method="post" action="">
-                <div class="form-field">
-                    <input type='text' name='NAME:' id="contactName" class="full-width" placeholder="Name" required />
-                    <label id="contactName-error" class="error" for="NAME">This field is required.</label>
-                </div>
+            <form id="contact_form">
+                <input type='text' name='NAME:' id="contactName" class="full-width" placeholder="Name" required />
                 <div class="form-field">
                     <input name="contactEmail: " type="email" id="contactEmail" placeholder="Email" value="" required aria-required="true" class="full-width" />
-                    <label id="contactEmail-error" class="error" for="contactEmail">This field is required.</label>
                 </div>
-                <input name="message" type="text" id="contactSubject" placeholder="Subject" value="" class="full-width" />
+                    <input name="message" type="text" id="contactSubject" placeholder="Subject" value="" class="full-width"/>
+                
                 <div class="form-field">
-                    <textarea name="content" id="contactMessage" placeholder="Message" rows="10" cols="40" required="" aria-required="true" class="full-width"></textarea>
-                    <label id="contactMessage-error" class="error" for="content">This field is required.</label>
+                    <textarea name="content" id="contactMessage" placeholder="message" rows="10" cols="40" required="" aria-required="true" class="full-width"></textarea>
                 </div>
-                <input type='submit' value='Submit' class="full-width btn submitx" />
+                <input type='submit' value='Submit' class="full-width btn submitbtn" id="submitx" />
+                
             </form>
             <div class="alert-box alert  hideit">
-                <p id="#alertbox"></p>
-                <i class="im im-x-mark alert-box__close"></i>
-            </div>
+                    <p id="#alertbox">Thanks! Your message has been delivered.</p>
+                    <i class="im im-x-mark alert-box__close"></i>
+                </div>
             <!-- contact-success -->
         </div>
         <div class="col-four tab-full contact__infos">
@@ -271,6 +268,7 @@
         </div>
     </div>
 </section>
+
     <!-- footer
     ================================================== -->
     <footer>
@@ -389,12 +387,10 @@
     </script>
     <script>
     $(document).ready(function() {
-        $('.error').hide();
+
         $('#submitx').click(function(e) {
-            $('.error').hide();
             e.preventDefault();
             e.stopPropagation();
-            
             var name = $("#contactName").val();
             var email = $("#contactEmail").val();
             var subj = $("#contactSubject").val();
@@ -410,22 +406,17 @@
 
                 },
                 success: function() {
-
+                    
                     $('.alert-box').removeClass("alert-box--error");
-                    var name = $("#contactName").val();
-                    $('.alert-box').html("Hey " + name "! Your message ");
-
                     $('.alert-box').addClass("alert-box--success");
                     $('.alert').show();
-
+                    
                 }
             })
             //End of submitx
         });
         //Endof Doc Ready
     });
-    </script>
-    <script>
     </script>
 </body>
 

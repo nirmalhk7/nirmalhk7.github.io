@@ -137,12 +137,10 @@ title: MO
     </script>
     <script>
     $(document).ready(function() {
-        $('.error').hide();
+
         $('#submitx').click(function(e) {
-            $('.error').hide();
             e.preventDefault();
             e.stopPropagation();
-            
             var name = $("#contactName").val();
             var email = $("#contactEmail").val();
             var subj = $("#contactSubject").val();
@@ -158,22 +156,17 @@ title: MO
 
                 },
                 success: function() {
-
+                    
                     $('.alert-box').removeClass("alert-box--error");
-                    var name = $("#contactName").val();
-                    $('.alert-box').html("Hey " + name "! Your message ");
-
                     $('.alert-box').addClass("alert-box--success");
                     $('.alert').show();
-
+                    
                 }
             })
             //End of submitx
         });
         //Endof Doc Ready
     });
-    </script>
-    <script>
     </script>
 </body>
 
