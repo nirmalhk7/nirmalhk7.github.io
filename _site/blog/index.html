@@ -29,7 +29,16 @@
     <link rel="shortcut icon" href="/assets/images/eagle.ico" type="image/x-icon">
     <link rel="icon" href="/assets/images/eagle.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/c586b4df75.js"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA133733565-1"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133733565-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133733565-2');
+    </script>
     <style>
     .parallax {
         /* Set a specific height */
@@ -39,8 +48,13 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
-    .now{
-            color: #af2b2b!important;
+
+    .now {
+        color: #af2b2b !important;
+    }
+
+    .alert {
+        display: none;
     }
     </style>
 </head>
@@ -224,8 +238,8 @@
     <div class="row narrow section-intro has-bottom-sep">
         <div class="col-full">
             <blockquote>
-                <p>It’s not enough to be against something. You have to be for something better.</p>
-                <cite>Tony Stark</cite>
+                <p>Being realistic is the most commonly traveled road to mediocrity.</p>
+                <cite>Will Smith</cite>
             </blockquote>
         </div>
     </div>
@@ -244,18 +258,23 @@
     </div>
     <div class="row contact__main">
         <div class="col-eight tab-full contact__form">
-            <form action="https://getsimpleform.com/messages?form_api_token=162ff4fa2bb9c89f908b059c33b0a806" method="post">
-                <input type='hidden' name='redirect_to' value='https://nirmalhk7.github.io/#contact' />
-                <input type='text' name='NAME:' class="full-width" placeholder="Name" />
+            <form id="contact_form">
+                <input type='text' name='NAME:' id="contactName" class="full-width" placeholder="Name" required />
                 <div class="form-field">
-                    <input name="contactEmail: " type="email" id="contactEmail" placeholder="Email" value="" required="" aria-required="true" class="full-width" />
+                    <input name="contactEmail: " type="email" id="contactEmail" placeholder="Email" value="" required aria-required="true" class="full-width" />
                 </div>
-                <input name="contactSubject: " type="text" id="contactSubject" placeholder="Subject" value="" class="full-width">
+                    <input name="message" type="text" id="contactSubject" placeholder="Subject" value="" class="full-width"/>
+                
                 <div class="form-field">
-                    <textarea name="contactMessage: " id="contactMessage" placeholder="message" rows="10" cols="40" required="" aria-required="true" class="full-width"></textarea>
+                    <textarea name="content" id="contactMessage" placeholder="message" rows="10" cols="40" required="" aria-required="true" class="full-width"></textarea>
                 </div>
-                <input type='submit' value='Submit' class="full-width btn" />
+                <input type='submit' value='Submit' class="full-width btn submitbtn" id="submitx" />
+                
             </form>
+            <div class="alert-box alert  hideit">
+                    <p id="#alertbox">Thanks! Your message has been delivered.</p>
+                    <i class="im im-x-mark alert-box__close"></i>
+                </div>
             <!-- contact-success -->
         </div>
         <div class="col-four tab-full contact__infos">
@@ -272,6 +291,7 @@
         </div>
     </div>
 </section>
+
     <!-- footer
     ================================================== -->
     <footer>
@@ -387,6 +407,39 @@
             }
         });
     }
+    </script>
+    <script>
+    $(document).ready(function() {
+
+        $('#submitx').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var name = $("#contactName").val();
+            var email = $("#contactEmail").val();
+            var subj = $("#contactSubject").val();
+            var body = $("#contactMessage").val();
+            $.ajax({
+                dataType: 'jsonp',
+                url: "http://getsimpleform.com/messages/ajax?form_api_token=162ff4fa2bb9c89f908b059c33b0a806",
+                data: {
+                    NAME: name,
+                    contactEmail: email,
+                    message: subj,
+                    content: body
+
+                },
+                success: function() {
+                    
+                    $('.alert-box').removeClass("alert-box--error");
+                    $('.alert-box').addClass("alert-box--success");
+                    $('.alert').show();
+                    
+                }
+            })
+            //End of submitx
+        });
+        //Endof Doc Ready
+    });
     </script>
 </body>
 

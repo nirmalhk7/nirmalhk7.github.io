@@ -33,14 +33,15 @@ title: MO
     <link rel="icon" href="/assets/images/eagle.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/c586b4df75.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133733565-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133733565-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-133733565-2');
-</script>
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133733565-2');
+    </script>
     <style>
     .parallax {
         /* Set a specific height */
@@ -50,8 +51,13 @@ title: MO
         background-repeat: no-repeat;
         background-size: cover;
     }
-    .now{
-            color: #af2b2b!important;
+
+    .now {
+        color: #af2b2b !important;
+    }
+
+    .alert {
+        display: none;
     }
     </style>
 </head>
@@ -128,6 +134,39 @@ title: MO
             }
         });
     }
+    </script>
+    <script>
+    $(document).ready(function() {
+
+        $('#submitx').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var name = $("#contactName").val();
+            var email = $("#contactEmail").val();
+            var subj = $("#contactSubject").val();
+            var body = $("#contactMessage").val();
+            $.ajax({
+                dataType: 'jsonp',
+                url: "http://getsimpleform.com/messages/ajax?form_api_token=162ff4fa2bb9c89f908b059c33b0a806",
+                data: {
+                    NAME: name,
+                    contactEmail: email,
+                    message: subj,
+                    content: body
+
+                },
+                success: function() {
+                    
+                    $('.alert-box').removeClass("alert-box--error");
+                    $('.alert-box').addClass("alert-box--success");
+                    $('.alert').show();
+                    
+                }
+            })
+            //End of submitx
+        });
+        //Endof Doc Ready
+    });
     </script>
 </body>
 
