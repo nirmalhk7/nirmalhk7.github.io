@@ -215,8 +215,8 @@
     <div class="row narrow section-intro has-bottom-sep">
         <div class="col-full">
             <blockquote>
-                <p>Being realistic is the most commonly traveled road to mediocrity.</p>
-                <cite>Will Smith</cite>
+                <p>It’s not enough to be against something. You have to be for something better.</p>
+                <cite>Tony Stark</cite>
             </blockquote>
         </div>
     </div>
@@ -255,7 +255,7 @@
                 
             </form>
             <div class="alert-box alert  hideit">
-                    <p id="#alertbox">Thanks! Your message has been delivered.</p>
+                    <p class="alertbox"</p>
                     <i class="im im-x-mark alert-box__close"></i>
                 </div>
             <!-- contact-success -->
@@ -450,7 +450,8 @@
 
                     },
                     success: function() {
-
+                        var name = $("#contactName").val();
+                        $('.alertbox').html("Hey " + name + "! Your message has been delivered.");
                         $('.alert-box').removeClass("alert-box--error");
                         $('.alert-box').addClass("alert-box--success");
                         $('.alert').show();

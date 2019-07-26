@@ -267,8 +267,8 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
     <div class="row narrow section-intro has-bottom-sep">
         <div class="col-full">
             <blockquote>
-                <p>It’s not enough to be against something. You have to be for something better.</p>
-                <cite>Tony Stark</cite>
+                <p>Being realistic is the most commonly traveled road to mediocrity.</p>
+                <cite>Will Smith</cite>
             </blockquote>
         </div>
     </div>
@@ -307,7 +307,7 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
                 
             </form>
             <div class="alert-box alert  hideit">
-                    <p id="#alertbox">Thanks! Your message has been delivered.</p>
+                    <p class="alertbox"</p>
                     <i class="im im-x-mark alert-box__close"></i>
                 </div>
             <!-- contact-success -->
@@ -502,7 +502,8 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
 
                     },
                     success: function() {
-
+                        var name = $("#contactName").val();
+                        $('.alertbox').html("Hey " + name + "! Your message has been delivered.");
                         $('.alert-box').removeClass("alert-box--error");
                         $('.alert-box').addClass("alert-box--success");
                         $('.alert').show();

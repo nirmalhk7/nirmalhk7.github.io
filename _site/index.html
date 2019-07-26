@@ -464,7 +464,7 @@ Find more <a href="http://localhost:4000/project.html#nirmalhk7.github.io">here<
                 
             </form>
             <div class="alert-box alert  hideit">
-                    <p id="#alertbox">Thanks! Your message has been delivered.</p>
+                    <p class="alertbox"</p>
                     <i class="im im-x-mark alert-box__close"></i>
                 </div>
             <!-- contact-success -->
@@ -659,7 +659,8 @@ Find more <a href="http://localhost:4000/project.html#nirmalhk7.github.io">here<
 
                     },
                     success: function() {
-
+                        var name = $("#contactName").val();
+                        $('.alertbox').html("Hey " + name + "! Your message has been delivered.");
                         $('.alert-box').removeClass("alert-box--error");
                         $('.alert-box').addClass("alert-box--success");
                         $('.alert').show();

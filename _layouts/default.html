@@ -194,7 +194,8 @@ title: MO
 
                     },
                     success: function() {
-
+                        var name = $("#contactName").val();
+                        $('.alertbox').html("Hey " + name + "! Your message has been delivered.");
                         $('.alert-box').removeClass("alert-box--error");
                         $('.alert-box').addClass("alert-box--success");
                         $('.alert').show();
