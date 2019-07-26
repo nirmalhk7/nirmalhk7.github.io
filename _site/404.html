@@ -144,14 +144,20 @@
     <div class="row contact__main">
         <div class="col-eight tab-full contact__form">
             <form id="contact_form">
+                <div class="form-field">
                 <input type='text' name='NAME:' id="contactName" class="full-width" placeholder="Name" required />
+                <label id="contactName-error" class="error" for="contactName">This field is required.</label>
+            </div>
                 <div class="form-field">
                     <input name="contactEmail: " type="email" id="contactEmail" placeholder="Email" value="" required aria-required="true" class="full-width" />
+                    <label id="contactEmail-error" class="error" for="contactEmail">This field is required.</label>
                 </div>
                     <input name="message" type="text" id="contactSubject" placeholder="Subject" value="" class="full-width"/>
+
                 
                 <div class="form-field">
                     <textarea name="content" id="contactMessage" placeholder="message" rows="10" cols="40" required="" aria-required="true" class="full-width"></textarea>
+                    <label id="contactMessage-error" class="error" for="contactMessage">This field is required.</label>
                 </div>
                 <input type='submit' value='Submit' class="full-width btn submitbtn" id="submitx" />
                 
@@ -295,6 +301,42 @@
     </script>
     <script>
     $(document).ready(function() {
+        $('.error').hide();
+
+        $("#submitx").click(function() {
+            // validate and process form here
+            var name = $("#contactName").val();
+            var email = $("#contactEmail").val();
+            var body = $("#contactMessage").val();
+            $('.error').hide();
+            if (name == "") {
+                $("#contactName-error").show();
+                $("#contactName").focus();
+                return false;
+            }
+            if (email == "") {
+                $("#contactEmail-error").show();
+                $("#contactEmail").focus();
+                return false;
+            }
+            if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+                $("#contactEmail-error").show();
+
+                $("#contactEmail-error").html("Invalid Email Address");
+                $("#contactEmail").focus();
+                return false;
+            }
+            if (body == "") {
+                $("#contactMessage-error").show();
+                $("#contactMessage").focus();
+                return false;
+            }
+
+        });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
 
         $('#submitx').click(function(e) {
             e.preventDefault();
@@ -303,24 +345,27 @@
             var email = $("#contactEmail").val();
             var subj = $("#contactSubject").val();
             var body = $("#contactMessage").val();
-            $.ajax({
-                dataType: 'jsonp',
-                url: "http://getsimpleform.com/messages/ajax?form_api_token=162ff4fa2bb9c89f908b059c33b0a806",
-                data: {
-                    NAME: name,
-                    contactEmail: email,
-                    message: subj,
-                    content: body
 
-                },
-                success: function() {
-                    
-                    $('.alert-box').removeClass("alert-box--error");
-                    $('.alert-box').addClass("alert-box--success");
-                    $('.alert').show();
-                    
-                }
-            })
+            if (name != "" && email != "" && body != "") {
+                $.ajax({
+                    dataType: 'jsonp',
+                    url: "http://getsimpleform.com/messages/ajax?form_api_token=162ff4fa2bb9c89f908b059c33b0a806",
+                    data: {
+                        NAME: name,
+                        contactEmail: email,
+                        message: subj,
+                        content: body
+
+                    },
+                    success: function() {
+
+                        $('.alert-box').removeClass("alert-box--error");
+                        $('.alert-box').addClass("alert-box--success");
+                        $('.alert').show();
+
+                    }
+                });
+            }
             //End of submitx
         });
         //Endof Doc Ready
