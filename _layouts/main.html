@@ -106,9 +106,9 @@ title: Main
             <br>
             <small>(as of May 2019)</small>
             <h5>Technical Things</h5>
-            My projects are listed below and are mostly available on GitHub. I'm also a passionate competitive coder
+            My projects are listed below and are mostly available on GitHub. I'm also a passionate competitive coder: find my profiles on reknowned platforms here
             <div id="smalldevice">
-                : find my profiles on reknowned platforms here:
+                :
                 <ul class="disc">
                     {% for cvprofile in site.data.cvprofiles %}
                     <li>
@@ -126,7 +126,7 @@ title: Main
             <h3 style="text-align: center;">I've got some skills.</h3>
             <div class="row">
                 {% for skill in site.data.skills %}
-                <div class="col-four minicard minicard-box">
+                <div class="col-three minicard minicard-box">
                     {{skill.name}}
                 </div>
                 {% endfor %}
@@ -137,7 +137,7 @@ title: Main
                 <div class="row">
                     {% for cvprofile in site.data.cvprofiles %}
                     <a href="{{ cvprofile.url }}">
-                        <div class="col-four minicard minicard-box">
+                        <div class="col-three minicard minicard-box">
                             {{ cvprofile.name }}
                         </div>
                     </a>
@@ -153,8 +153,8 @@ title: Main
                     {% endfor %}
                 </ul>
             </div>
-            <a href="#0" class="btn btn--primary full-width">Download My CV</a>
-            <a href="#0" class="btn full-width">Want to Hire?</a>
+            <a href="#0" class="smoothscroll btn btn--primary full-width">Download My CV</a>
+            <a href="#contact" class="smoothscroll btn full-width">Want to Hire?</a>
         </div>
     </div> <!-- end about-content -->
     <div class="row about-content about-content--timeline">
@@ -217,7 +217,7 @@ title: Main
         <div class="col-full">
             <h3>Journal</h3>
             <h1>Latest From The Blog.</h1>
-            <p class="lead">Here's my take on subjects that matter today. Find them <a href="blog/index.html">here</a>.</p>
+            <p class="lead">I have strong views on topics like Finance, Technology, Future and Environment. Find me blogging about them <a href="blog/index.html">here</a>.</p>
         </div>
     </div>
 </section>
