@@ -1,2 +1,2 @@
 .minicard{text-align:center;padding:0.5em;font-family:montserrat-bold,sans-serif;font-size:1.4rem;color:#000;text-transform:uppercase;-webkit-transition: box-shadow 0.5s; /* For Safari 3.1 to 6.0 */
-  transition: box-shadow 0.5s;}.minicard:hover{box-shadow:1px 1px 5px #999}
+  transition: box-shadow 0.2s;}.minicard:hover{box-shadow:1px 1px 5px #999}

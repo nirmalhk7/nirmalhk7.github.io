@@ -125,12 +125,17 @@ title: Main
         <div class="col-six tab-full right">
             <h3 style="text-align: center;">I've got some skills.</h3>
             <div class="row">
-                {% for skill in site.data.skills %}
+                {% assign gp = site.data.skills | group_by: "type" %}
+                {% for g in gp %}
+                <br>
+                <h5>{{ g.name }}</h5>
+                <hr style="border-color: #af2b2b">
+                {% for item in g.items %}
                 <div class="col-three minicard minicard-box">
-                    {{skill.name}}
+                    {{item.name}}
                 </div>
                 {% endfor %}
-       
+                {%endfor%}
             </div>
             <br>
             <div id="profiles">

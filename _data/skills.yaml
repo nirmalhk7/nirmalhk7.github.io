@@ -1,16 +1,16 @@
 - name: HTML/CSS/JS
-  type: Native
+  type: Native and Sturucture Languages
 - name: C++/C
-  type: Native
+  type: Native and Sturucture Languages
 - name: JAVA
-  type: Native
+  type: Native and Sturucture Languages
 - name: Jekyll
-  type: Framework
+  type: Frameworks
 - name: Android
-  type: Platform
+  type: Platforms
 - name: Dialogflow
-  type: Platform
+  type: Platforms
 - name: Python
-  type: Platform
+  type: Platforms
 - name: React
-  type: Framework
+  type: Frameworks
