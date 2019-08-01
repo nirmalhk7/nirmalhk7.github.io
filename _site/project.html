@@ -19,15 +19,18 @@
     <link rel="stylesheet" href="/assets/css/main.min.css">
     <link rel="stylesheet" href="/assets/css/flicker-animation.min.css">
     <link rel="stylesheet" href="/assets/css/minicards.min.css">
-    <link rel="stylesheet" href="/assets/css/accordion.min.css">
+    <link rel="stylesheet" href="/assets/css/accordion.css">
     <!-- script
     ================================================== -->
     <script src="/assets/js/modernizr.js"></script>
     <script src="/assets/js/pace.min.js"></script>
+    <script src="/assets/js/accordion.js"></script>
     <!-- favicons
     ================================================== -->
     <link rel="shortcut icon" href="/assets/images/eagle.ico" type="image/x-icon">
     <link rel="icon" href="/assets/images/eagle.ico" type="image/x-icon">
+    
+
     <script src="https://kit.fontawesome.com/c586b4df75.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133733565-2"></script>
@@ -73,7 +76,7 @@
             <li ><a  href="http://localhost:4000" title="Home" >Home</a></li>
             <li><a  href="http://localhost:4000#about" title="About">About</a></li>
             
-            <li><a  href="http://localhost:4000/project.html" title="Works"  class="now">Portfolio</a></li>
+            <li><a  href="http://localhost:4000/project.html" title="Works"  class="now">Works</a></li>
             <li><a  href="http://localhost:4000/blog/index.html" title="Blog" >Blog</a></li>
             
             
@@ -110,17 +113,18 @@
     <div class="row blog-content">
         <div class="col-full">
             <div class="blog-list block-1-2 block-tab-full">
+                <div class="accordion js-accordion">
                 
                 
                 <br>
                 <h4>C++</h4>
+                
                     
-                    <button class="accordion" style="padding-top: 0px!important">
-                        Crypto
-                    </button>
-                    <div class="panel"  id="#Crypto">
-                        <p>
-                            <p>Built with Diffie Hellman principles. Wanna get that James Bond feeling?</p>
+                    <div class="accordion__item js-accordion-item">
+                        <div class="accordion-header js-accordion-header">Crypto</div>
+                        <div class="accordion-body js-accordion-body">
+                            <div class="accordion-body__contents">
+                                <p>Built with Diffie Hellman principles. Wanna get that James Bond feeling?</p>
 
 <h5 id="about">About</h5>
 <p>The Crypto can be used to send information encrypted. Before you begin conversation, all you need is:-</p>
@@ -160,19 +164,21 @@
 <h5 id="licences">Licences</h5>
 <p>MIT License. Suggestions/Feedbacks welcomed.</p>
 
-                        </p>
-                    </div>
+                            </div>
+                        </div> <!-- end of accordion body -->
+                    </div><!-- end of accordion item -->
                     
+               
                 
                 <br>
                 <h4>Dialogflow</h4>
+                
                     
-                    <button class="accordion" style="padding-top: 0px!important">
-                        First Aid Man
-                    </button>
-                    <div class="panel"  id="#First Aid Man">
-                        <p>
-                            <p>Built by Dialogflow, it makes life-saving first aid information only a “Hey Google” away.</p>
+                    <div class="accordion__item js-accordion-item">
+                        <div class="accordion-header js-accordion-header">First Aid Man</div>
+                        <div class="accordion-body js-accordion-body">
+                            <div class="accordion-body__contents">
+                                <p>Built by Dialogflow, it makes life-saving first aid information only a “Hey Google” away.</p>
 
 <h5 id="first-aid-man">First Aid Man</h5>
 <p>UK charity St. John Ambulance estimates that 150,000 people could be dying without appropriate first aid treatment <em>every year</em>. Their survey found that 59% of the people would not be confident while providing First Aid. Even more shocking is the fact that 24% of the people would ignore the patient in need.</p>
@@ -218,19 +224,21 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
 <h5 id="made-by">Made By</h5>
 <p>You know it. Nirmal Khedkar (nirmalhk7)</p>
 
-                        </p>
-                    </div>
+                            </div>
+                        </div> <!-- end of accordion body -->
+                    </div><!-- end of accordion item -->
                     
+               
                 
                 <br>
                 <h4>Jekyll</h4>
+                
                     
-                    <button class="accordion" style="padding-top: 0px!important">
-                        nirmalhk7.github.io
-                    </button>
-                    <div class="panel"  id="#nirmalhk7.github.io">
-                        <p>
-                            <p>Previously a simple website, now powered with Jekyll.</p>
+                    <div class="accordion__item js-accordion-item">
+                        <div class="accordion-header js-accordion-header">nirmalhk7.github.io</div>
+                        <div class="accordion-body js-accordion-body">
+                            <div class="accordion-body__contents">
+                                <p>Previously a simple website, now powered with Jekyll.</p>
 
 <h5 id="nirmalhk7githubio">nirmalhk7.github.io</h5>
 <p>The redesigned website is live, and the design is expected to be forever. I will continue adding JS elements to make it more cooler and faster. Also, the blog is now in-house!</p>
@@ -251,10 +259,13 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
 <p>Nirmal Khedkar</p>
 
 
-                        </p>
-                    </div>
+                            </div>
+                        </div> <!-- end of accordion body -->
+                    </div><!-- end of accordion item -->
                     
+               
                 
+                 </div>
             </div><!-- end blog-list -->
         </div> <!-- end col-full -->
     </div> <!-- end blog-content -->
@@ -518,5 +529,65 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
     });
     </script>
 </body>
+    <script>
+        var accordion = (function(){
+  
+  var $accordion = $('.js-accordion');
+  var $accordion_header = $accordion.find('.js-accordion-header');
+  var $accordion_item = $('.js-accordion-item');
+ 
+  // default settings 
+  var settings = {
+    // animation speed
+    speed: 400,
+    
+    // close all other accordion items if true
+    oneOpen: false
+  };
+    
+  return {
+    // pass configurable object literal
+    init: function($settings) {
+      $accordion_header.on('click', function() {
+        accordion.toggle($(this));
+      });
+      
+      $.extend(settings, $settings); 
+      
+      // ensure only one accordion is active if oneOpen is true
+      if(settings.oneOpen && $('.js-accordion-item.active').length > 1) {
+        $('.js-accordion-item.active:not(:first)').removeClass('active');
+      }
+      
+      // reveal the active accordion bodies
+      $('.js-accordion-item.active').find('> .js-accordion-body').show();
+    },
+    toggle: function($this) {
+            
+      if(settings.oneOpen && $this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
+        $this.closest('.js-accordion')
+               .find('> .js-accordion-item') 
+               .removeClass('active')
+               .find('.js-accordion-body')
+               .slideUp()
+      }
+      
+      // show/hide the clicked accordion item
+      $this.closest('.js-accordion-item').toggleClass('active');
+      $this.next().stop().slideToggle(settings.speed);
+    }
+  }
+})();
 
+$(document).ready(function(){
+  accordion.init({ speed: 300, oneOpen: true });
+});</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $(function() {
+        $("#accordion").accordion();
+    });
+    </script>
 </html>

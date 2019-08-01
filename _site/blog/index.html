@@ -19,15 +19,18 @@
     <link rel="stylesheet" href="/assets/css/main.min.css">
     <link rel="stylesheet" href="/assets/css/flicker-animation.min.css">
     <link rel="stylesheet" href="/assets/css/minicards.min.css">
-    <link rel="stylesheet" href="/assets/css/accordion.min.css">
+    <link rel="stylesheet" href="/assets/css/accordion.css">
     <!-- script
     ================================================== -->
     <script src="/assets/js/modernizr.js"></script>
     <script src="/assets/js/pace.min.js"></script>
+    <script src="/assets/js/accordion.js"></script>
     <!-- favicons
     ================================================== -->
     <link rel="shortcut icon" href="/assets/images/eagle.ico" type="image/x-icon">
     <link rel="icon" href="/assets/images/eagle.ico" type="image/x-icon">
+    
+
     <script src="https://kit.fontawesome.com/c586b4df75.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133733565-2"></script>
@@ -73,7 +76,7 @@
             <li ><a  href="http://localhost:4000" title="Home" >Home</a></li>
             <li><a  href="http://localhost:4000#about" title="About">About</a></li>
             
-            <li><a  href="http://localhost:4000/project.html" title="Works" >Portfolio</a></li>
+            <li><a  href="http://localhost:4000/project.html" title="Works" >Works</a></li>
             <li><a  href="http://localhost:4000/blog/index.html" title="Blog"  class="now">Blog</a></li>
             
             
@@ -238,8 +241,8 @@
     <div class="row narrow section-intro has-bottom-sep">
         <div class="col-full">
             <blockquote>
-                <p>Being realistic is the most commonly traveled road to mediocrity.</p>
-                <cite>Will Smith</cite>
+                <p>It’s not enough to be against something. You have to be for something better.</p>
+                <cite>Tony Stark</cite>
             </blockquote>
         </div>
     </div>
@@ -489,5 +492,65 @@
     });
     </script>
 </body>
+    <script>
+        var accordion = (function(){
+  
+  var $accordion = $('.js-accordion');
+  var $accordion_header = $accordion.find('.js-accordion-header');
+  var $accordion_item = $('.js-accordion-item');
+ 
+  // default settings 
+  var settings = {
+    // animation speed
+    speed: 400,
+    
+    // close all other accordion items if true
+    oneOpen: false
+  };
+    
+  return {
+    // pass configurable object literal
+    init: function($settings) {
+      $accordion_header.on('click', function() {
+        accordion.toggle($(this));
+      });
+      
+      $.extend(settings, $settings); 
+      
+      // ensure only one accordion is active if oneOpen is true
+      if(settings.oneOpen && $('.js-accordion-item.active').length > 1) {
+        $('.js-accordion-item.active:not(:first)').removeClass('active');
+      }
+      
+      // reveal the active accordion bodies
+      $('.js-accordion-item.active').find('> .js-accordion-body').show();
+    },
+    toggle: function($this) {
+            
+      if(settings.oneOpen && $this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
+        $this.closest('.js-accordion')
+               .find('> .js-accordion-item') 
+               .removeClass('active')
+               .find('.js-accordion-body')
+               .slideUp()
+      }
+      
+      // show/hide the clicked accordion item
+      $this.closest('.js-accordion-item').toggleClass('active');
+      $this.next().stop().slideToggle(settings.speed);
+    }
+  }
+})();
 
+$(document).ready(function(){
+  accordion.init({ speed: 300, oneOpen: true });
+});</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $(function() {
+        $("#accordion").accordion();
+    });
+    </script>
 </html>

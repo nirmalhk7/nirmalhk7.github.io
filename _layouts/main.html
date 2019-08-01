@@ -130,6 +130,7 @@ title: Main
                     {{skill.name}}
                 </div>
                 {% endfor %}
+       
             </div>
             <br>
             <div id="profiles">
@@ -192,23 +193,24 @@ title: Main
                     <h3>Works</h3>
                     <h1>See My Latest Projects.</h1>
                     <p class="lead">Find my projects categorized <a href="{{ site.url }}/project.html">here</a>.
-                        
                     </p>
                 </div>
             </div>
         </div>
         <div class="col-six tab-full left">
-            {% for project in site.projects limit:5 %}
-            <button class="accordion" style="padding-top: 0px!important">
-                {{ project.name }}
-            </button>
-            <div class="panel">
-                <p> 
-                    <code>{{ project.medium}}</code>
-                    {{ project.excerpt }}Find more <a href="{{ site.url }}/project.html#{{ project.name }}">here</a>.
-                </p>
-            </div>
-            {% endfor %}
+            <div class="accordion js-accordion">
+                {% for project in site.projects limit:5 %}
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header">{{ project.name }}</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            <code>{{ project.medium}}</code>
+                            {{ project.excerpt }}Find more <a href="{{ site.url }}/project.html#{{ project.name }}">here</a>.
+                        </div>
+                    </div> <!-- end of accordion body -->
+                </div><!-- end of accordion item -->
+                {% endfor %}
+            </div><!-- end of accordion -->
         </div>
     </div>
 </section>

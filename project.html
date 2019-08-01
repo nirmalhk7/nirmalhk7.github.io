@@ -26,21 +26,25 @@ title: Projects
     <div class="row blog-content">
         <div class="col-full">
             <div class="blog-list block-1-2 block-tab-full">
+                <div class="accordion js-accordion">
                 {% assign groups = site.projects | group_by: "medium" | sort: "name" %}
                 {% for group in groups %}
                 <br>
                 <h4>{{ group.name }}</h4>
+                
                     {% for item in group.items %}
-                    <button class="accordion" style="padding-top: 0px!important">
-                        {{ item.name }}
-                    </button>
-                    <div class="panel"  id="#{{ item.name }}">
-                        <p>
-                            {{ item.content | markdownify }}
-                        </p>
-                    </div>
-                    {%endfor%}
+                    <div class="accordion__item js-accordion-item">
+                        <div class="accordion-header js-accordion-header">{{ item.name }}</div>
+                        <div class="accordion-body js-accordion-body">
+                            <div class="accordion-body__contents">
+                                {{ item.content | markdownify }}
+                            </div>
+                        </div> <!-- end of accordion body -->
+                    </div><!-- end of accordion item -->
+                    {% endfor %}
+               
                 {%endfor%}
+                 </div>
             </div><!-- end blog-list -->
         </div> <!-- end col-full -->
     </div> <!-- end blog-content -->
