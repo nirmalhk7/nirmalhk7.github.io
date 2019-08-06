@@ -9,3 +9,6 @@ paginate_path: "/blog/page:num/"
 collections:
   projects:
     output: true
+algolia:
+  application_id: 'RASJLX7IX5'
+  index_name: 'files'
