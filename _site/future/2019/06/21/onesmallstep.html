@@ -218,8 +218,8 @@
     <div class="row narrow section-intro has-bottom-sep">
         <div class="col-full">
             <blockquote>
-                <p>Being realistic is the most commonly traveled road to mediocrity.</p>
-                <cite>Will Smith</cite>
+                <p>If you want to be a winner, then compare yourself to the best and acknowledge that it will never happen without hard work.</p>
+                <cite>Jamie Dimon</cite>
             </blockquote>
         </div>
     </div>
@@ -238,30 +238,23 @@
     </div>
     <div class="row contact__main">
         <div class="col-eight tab-full contact__form">
-            <form id="contact_form">
-                <div class="form-field">
-                <input type='text' name='NAME:' id="contactName" class="full-width" placeholder="Name" required />
-                <label id="contactName-error" class="error" for="contactName">This field is required.</label>
-            </div>
-                <div class="form-field">
-                    <input name="contactEmail: " type="email" id="contactEmail" placeholder="Email" value="" required aria-required="true" class="full-width" />
-                    <label id="contactEmail-error" class="error" for="contactEmail">This field is required.</label>
-                </div>
-                    <input name="message" type="text" id="contactSubject" placeholder="Subject" value="" class="full-width"/>
+            <form action="https://getsimpleform.com/messages?form_api_token=162ff4fa2bb9c89f908b059c33b0a806" method="post">
 
-                
+                <input type='text' name='NAME:' class="full-width" placeholder="Name" />
                 <div class="form-field">
-                    <textarea name="content" id="contactMessage" placeholder="message" rows="10" cols="40" required="" aria-required="true" class="full-width"></textarea>
-                    <label id="contactMessage-error" class="error" for="contactMessage">This field is required.</label>
+                    <input name="contactEmail: " type="email" id="contactEmail" placeholder="Email" value="" required="" aria-required="true" class="full-width" />
                 </div>
-                <input type='submit' value='Submit' class="full-width btn submitbtn" id="submitx" />
-                
-            </form>
-            <div class="alert-box alert  hideit">
+                <input name="contactSubject: " type="text" id="contactSubject" placeholder="Subject" value="" class="full-width">
+                <div class="form-field">
+                    <textarea name="contactMessage: " id="contactMessage" placeholder="message" rows="10" cols="40" required="" aria-required="true" class="full-width"></textarea>
+                </div>
+                <input type='submit' value='Submit' class="submit full-width btn" />
+                <div class="alert-box alert  hideit">
                     <p class="alertbox"></p>
                     <i class="im im-x-mark alert-box__close"></i>
                 </div>
-            <!-- contact-success -->
+                <!-- contact-success -->
+            </form>
         </div>
         <div class="col-four tab-full contact__infos">
             <h4 class="h06">Email</h4>
@@ -277,7 +270,6 @@
         </div>
     </div>
 </section>
-
     <!-- footer
     ================================================== -->
     <footer>
