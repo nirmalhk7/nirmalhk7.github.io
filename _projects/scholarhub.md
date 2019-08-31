@@ -3,6 +3,8 @@ name: ScholarHub
 medium: Ruby on Rails
 ---
 
+Linkedin for Research Students.
+
 ##### ScholarHub
 
 **Project Name**: ScholarHub - Research And Collaboration Portal for NITs

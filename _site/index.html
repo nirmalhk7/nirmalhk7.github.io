@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="/assets/css/flicker-animation.min.css">
     <link rel="stylesheet" href="/assets/css/minicards.min.css">
     <link rel="stylesheet" href="/assets/css/accordion.css">
+
+    <link rel="stylesheet" href="/assets/css/heartbeat.css">
     <!-- script
     ================================================== -->
     <script src="/assets/js/modernizr.js"></script>
@@ -74,12 +76,14 @@
     <nav class="header-nav-wrap">
         <ul class="header-nav">
             <li ><a  href="http://localhost:4000" title="Home"  class="now">Home</a></li>
-            <li><a  href="http://localhost:4000#about" title="About">About</a></li>
+            <li><a class="smoothscroll" href="http://localhost:4000#about" title="About">About</a></li>
             
             
-            <li><a  href="/#works" title="Works">Works</a></li>
-            <li><a  href="/#blog" title="Blog">Blog</a></li>
+            <li><a class="smoothscroll" href="/#works" title="Works">Works</a></li>
+            <li><a class="smoothscroll" href="/#blog" title="Blog">Blog</a></li>
             
+            
+
             <li><a class="smoothscroll" href="#contact" title="Contact">Contact</a></li>
         </ul>
     </nav>
@@ -391,53 +395,62 @@
         <div class="col-six tab-full left">
             <div class="accordion js-accordion">
                 
-                <div class="accordion__item js-accordion-item">
-                    <div class="accordion-header js-accordion-header">Crypto</div>
-                    <div class="accordion-body js-accordion-body">
-                        <div class="accordion-body__contents">
-                            <code>C++</code>
-                            <p>Built with Diffie Hellman principles. Wanna get that James Bond feeling?</p>
-
-Find more <a href="http://localhost:4000/project.html#Crypto">here</a>.
-                        </div>
-                    </div> <!-- end of accordion body -->
-                </div><!-- end of accordion item -->
-                
-                <div class="accordion__item js-accordion-item">
-                    <div class="accordion-header js-accordion-header">First Aid Man</div>
-                    <div class="accordion-body js-accordion-body">
-                        <div class="accordion-body__contents">
-                            <code>Dialogflow</code>
-                            <p>Built by Dialogflow, it makes life-saving first aid information only a “Hey Google” away.</p>
-
-Find more <a href="http://localhost:4000/project.html#First Aid Man">here</a>.
-                        </div>
-                    </div> <!-- end of accordion body -->
-                </div><!-- end of accordion item -->
-                
-                <div class="accordion__item js-accordion-item">
-                    <div class="accordion-header js-accordion-header">nirmalhk7.github.io</div>
-                    <div class="accordion-body js-accordion-body">
-                        <div class="accordion-body__contents">
-                            <code>Jekyll</code>
-                            <p>Previously a simple website, now powered with Jekyll.</p>
-
-Find more <a href="http://localhost:4000/project.html#nirmalhk7.github.io">here</a>.
-                        </div>
-                    </div> <!-- end of accordion body -->
-                </div><!-- end of accordion item -->
                 
                 <div class="accordion__item js-accordion-item">
                     <div class="accordion-header js-accordion-header">ScholarHub</div>
                     <div class="accordion-body js-accordion-body">
                         <div class="accordion-body__contents">
-                            <code>Ruby on Rails</code>
-                            <h5 id="scholarhub">ScholarHub</h5>
+                            
+                            <p>Linkedin for Research Students.</p>
 
-Find more <a href="http://localhost:4000/project.html#ScholarHub">here</a>.
+
+                            Find more <a href="http://localhost:4000/project.html#ScholarHub">here</a>.&nbsp;&nbsp;&nbsp;<code>Ruby on Rails</code>
+                            
                         </div>
                     </div> <!-- end of accordion body -->
-                </div><!-- end of accordion item -->
+                </div><!-- end of accordion item -->    
+                
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header">nirmalhk7.github.io</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            
+                            <p>Previously a simple website, now powered with Jekyll.</p>
+
+
+                            Find more <a href="http://localhost:4000/project.html#nirmalhk7.github.io">here</a>.&nbsp;&nbsp;&nbsp;<code>Jekyll</code>
+                            
+                        </div>
+                    </div> <!-- end of accordion body -->
+                </div><!-- end of accordion item -->    
+                
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header">First Aid Man</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            
+                            <p>Built by Dialogflow, it makes life-saving first aid information only a “Hey Google” away.</p>
+
+
+                            Find more <a href="http://localhost:4000/project.html#First Aid Man">here</a>.&nbsp;&nbsp;&nbsp;<code>Dialogflow</code>
+                            
+                        </div>
+                    </div> <!-- end of accordion body -->
+                </div><!-- end of accordion item -->    
+                
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header">Crypto</div>
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            
+                            <p>Built with Diffie Hellman principles. Wanna get that James Bond feeling?</p>
+
+
+                            Find more <a href="http://localhost:4000/project.html#Crypto">here</a>.&nbsp;&nbsp;&nbsp;<code>C++</code>
+                            
+                        </div>
+                    </div> <!-- end of accordion body -->
+                </div><!-- end of accordion item -->    
                 
             </div><!-- end of accordion -->
         </div>
@@ -462,8 +475,8 @@ Find more <a href="http://localhost:4000/project.html#ScholarHub">here</a>.
     <div class="row narrow section-intro has-bottom-sep">
         <div class="col-full">
             <blockquote>
-                <p>It’s not enough to be against something. You have to be for something better.</p>
-                <cite>Tony Stark</cite>
+                <p>Being realistic is the most commonly traveled road to mediocrity.</p>
+                <cite>Will Smith</cite>
             </blockquote>
         </div>
     </div>
@@ -516,7 +529,10 @@ Find more <a href="http://localhost:4000/project.html#ScholarHub">here</a>.
 </section>
     <!-- footer
     ================================================== -->
-    <footer>
+    <style>
+
+</style>
+<footer>
     <div class="row flicker-3">
         <div class="col-full">
             <ul class="footer-social">
@@ -554,13 +570,13 @@ Find more <a href="http://localhost:4000/project.html#ScholarHub">here</a>.
     </div>
     <div class="row footer-bottom">
         <div class="col-twelve">
-            <div class="copyright flicker-3">
-                <span style="color: #3d3d3d">Made with <i class="im im-heart" style="font-size: 14px;"></i> by Nirmal Khedkar</span>
-                <span style="color: #3d3d3d">Last Updated: August 31, 2019</span>
+            <div class="copyright">
+                <span style="color: #3d3d3d">Made with <i class="im im-heart heartbeat" style="font-size: 14px;"></i> by Nirmal Khedkar</span>
+                <span style="color: #3d3d3d">Last Updated: September 01, 2019</span>
             </div>
-            <div class="copyright flicker-3">
-                <span style="color: #0d0d0d" id="justinmaller">Image Credits <a class="hidelink" href="#" style="color: #0d0d0d">Beast Dreams II</a> by Justin Maller</span>
-                <span style="color: #0d0d0d">Theme by <a class="hidelink" href="https://www.styleshout.com/" style="color: #0d0d0d">styleshout</a> (Copyright Hola 2017)</span>
+            <div class="copyright">
+                <span style="color: #1d1d1d" id="justinmaller">Image Credits <a class="hidelink" href="#" style="color: #1d1d1d">Beast Dreams II</a> by Justin Maller</span>
+                <span style="color: #1d1d1d">Theme by <a class="hidelink" href="https://www.styleshout.com/" style="color: #1d1d1d">styleshout</a> (Copyright Hola 2017)</span>
             </div>
             <div class="go-top">
                 <a class="smoothscroll" title="Back to Top" href="#top"><i class="im im-arrow-up" aria-hidden="true"></i></a>
@@ -570,7 +586,7 @@ Find more <a href="http://localhost:4000/project.html#ScholarHub">here</a>.
 </footer>
 <style>
 .hidelink {
-    color: #0d0d0d;
+    color: #1d1d1d;
 
 }
 </style>
