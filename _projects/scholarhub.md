@@ -1,12 +1,26 @@
+---
+name: ScholarHub
+medium: Ruby on Rails
+---
+
 ##### ScholarHub
 
 **Project Name**: ScholarHub - Research And Collaboration Portal for NITs
 
 **Built By**: [Abhishek Kumar](https://abhishekkumar2718.github.io) and Nirmal Khedkar
 
+**My Contributions**: All Frontend.
+
 **Accolades Recieved**: 5th place in NIT Conclave 2019, 2nd place overall.
 
-**Title Track**: InterNIT Communication
+**Project Name**: ScholarHub - Research And Collaboration Portal for NITs
+
+**Built By**: Abhishek Kumar and Nirmal Khedkar
+
+**Accolades Recieved**: 5th place in NIT Conclave 2019, 2nd place overall.
+
+**Title Track**: InterNIT Communication.
+
 
 
 **Login Instructions**
@@ -45,4 +59,7 @@ The idea behind ScholarHub is to promote research culture within NIT's by making
 
 ![Events](https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-34-12.png)
 ![Grants](https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-34-34.png)
+<<<<<<< HEAD
+![Grants Description](https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-34-46.png)
+=======
 ![Grants Description](https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-34-46.png)
