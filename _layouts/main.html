@@ -153,13 +153,13 @@ title: Main
             <br>
             <h3 style="text-align: center;margin-top: 1.8rem">Memberships</h3>
             <div class="row" style="margin-left:15px">
-                <ul>
+                <ul class="disc">
                     {% for membership in site.data.memberships %}
-                    <li>{{ membership.position }} - {{ membership.club }}</li>
+                    <li>{{ membership.position }} at {{ membership.club }}</li>
                     {% endfor %}
                 </ul>
             </div>
-            <a href="{{ site.url }}\assets\pdf\General_CV2.pdf" class="btn btn--primary full-width">Download My CV</a>
+            <a href="{{ site.url }}\assets\pdf\General_CV.pdf" class="btn btn--primary full-width">Download My CV</a>
             <a href="#contact" class="smoothscroll btn btn--stroke full-width">Want to Hire?</a>
         </div>
     </div> <!-- end about-content -->

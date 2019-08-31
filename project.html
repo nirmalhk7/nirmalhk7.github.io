@@ -27,24 +27,45 @@ title: Projects
         <div class="col-full">
             <div class="blog-list block-1-2 block-tab-full">
                 <div class="accordion js-accordion">
-                {% assign groups = site.projects | group_by: "medium" | sort: "name" %}
-                {% for group in groups %}
-                <br>
-                <h4>{{ group.name }}</h4>
-                
-                    {% for item in group.items %}
-                    <div class="accordion__item js-accordion-item">
-                        <div class="accordion-header js-accordion-header">{{ item.name }}</div>
-                        <div class="accordion-body js-accordion-body">
-                            <div class="accordion-body__contents">
-                                {{ item.content | markdownify }}
-                            </div>
-                        </div> <!-- end of accordion body -->
-                    </div><!-- end of accordion item -->
-                    {% endfor %}
-               
-                {%endfor%}
-                 </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Language/Framework</th>
+                                    <th>Project</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {% assign groups = site.projects | group_by: "medium" | sort: "name" %}
+                                {% for group in groups %}
+                                <tr>
+
+                                    <td>{{ group.name }}</td>
+                                    <td>
+                                        {% for item in group.items %}
+                                        <div class="accordion__item js-accordion-item">
+                                            <div class="accordion-header js-accordion-header">{{ item.name }}</div>
+                                            <div class="accordion-body js-accordion-body">
+                                                <div class="accordion-body__contents">
+                                                    {{ item.content | markdownify }}
+                                                </div>
+                                            </div> <!-- end of accordion body -->
+                                        </div><!-- end of accordion item -->
+                                
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                                {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    
+                    <br>
+                    <h4></h4>
+                    
+                </div>
             </div><!-- end blog-list -->
         </div> <!-- end col-full -->
     </div> <!-- end blog-content -->

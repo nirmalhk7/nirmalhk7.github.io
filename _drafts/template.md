@@ -3,7 +3,7 @@ layout: post
 title: fileTitle
 category: categoryTitle1 categoryTitle2
 tags: tags3 tags2 tags1
-img: onesmallstep_buzzaldrin.webp
+img: wheel-2000.jpg
 ---
 
 File excerpt.
