@@ -37,7 +37,7 @@ title: Projects
                             </thead>
                             <tbody>
 
-                                {% assign groups = site.projects %}
+                                {% assign groups = site.projects | group_by: "medium" | sort: "name" %}
                                 {% for group in groups %}
                                 <tr>
 

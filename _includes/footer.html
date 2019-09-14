@@ -5,7 +5,7 @@
     <div class="row flicker-3">
         <div class="col-full">
             <ul class="footer-social">
-                {% for socialprofile in site.data.socialprofiles %}
+                {% for socialprofile in site.data.profiles.social %}
                 <li>
                     <a class="{{ socialprofile.initial }}" href="{{ socialprofile.url }}">
                         <i class="{{ socialprofile.icon }}" aria-hidden="true"></i>

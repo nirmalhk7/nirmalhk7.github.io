@@ -147,7 +147,7 @@ title: Main
                 <div class="row" style="margin-left:15px">
                 <ul class="disc">
                     {% for membership in site.data.memberships %}
-                    <li>{{ membership.position }} at {{ membership.club }}</li>
+                    <li>{{ membership.position }} at <a href="{{membership.clubwebsite}}">{{ membership.club }}</a></li>
                     {% endfor %}
                 </ul>
                 </div>

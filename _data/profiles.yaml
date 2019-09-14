@@ -18,6 +18,12 @@ social:
   url: tw
   icon: im im-pinterest pi
   initial: pi
+
+- name: RSS
+  url: https://nirmalhk7.github.io/feed.xml
+  icon: im im-rss rs
+  initial: rs
+
 cv:
 - name: HackerRank
   url: https://www.hackerrank.com/nirmalhk7

@@ -10,8 +10,10 @@ The redesigned website is live, and the design is expected to be forever. I will
 ##### New Components
 The website uses components made by other developers, which I will acknowledge here:
 * The theme: Hola by Styleshout.
+* Wallpaper: Beast Dreams II By Justin Maller
 * Animations: from Animista
   * Flickering Footer
+  * Heartbeat
 * Form: Simple Form
 
 ##### Made By
