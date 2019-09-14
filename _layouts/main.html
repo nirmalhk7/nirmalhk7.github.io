@@ -76,16 +76,7 @@ title: Main
 
 #TeamIronMan #LoveYou3000
 -->
-    <ul class="home-social">
-        {% for socialprofile in site.data.socialprofiles %}
-        <li>
-            <a href="{{ socialprofile.url }}">
-                <i class="{{ socialprofile.icon }}" aria-hidden="true"></i>
-                <span>{{ socialprofile.name }}</span>
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
+    {% include socialaccounts.html %}
     <!-- end home-social -->
 </section>
 <section id="about" class="s-about target-section">
@@ -137,11 +128,11 @@ title: Main
                 {% endfor %}
                 {%endfor%}
             </div>
-            <br>
-            <div id="profiles">
-                <h3 style="text-align: center;margin-top: 1.8rem">Profiles</h3>
+            <div class="row">
+                <h5>Profiles</h5>
+                <hr style="border-color: #af2b2b;margin:10px!important">
                 <div class="row">
-                    {% for cvprofile in site.data.cvprofiles %}
+                    {% for cvprofile in site.data.profiles.cv %}
                     <a href="{{ cvprofile.url }}">
                         <div class="col-three minicard minicard-box">
                             {{ cvprofile.name }}
@@ -150,14 +141,16 @@ title: Main
                     {% endfor %}
                 </div>
             </div>
-            <br>
-            <h3 style="text-align: center;margin-top: 1.8rem">Memberships</h3>
-            <div class="row" style="margin-left:15px">
+            <div class="row">
+                <h5>Memberships</h5>
+                <hr style="border-color: #af2b2b;margin:10px!important">
+                <div class="row" style="margin-left:15px">
                 <ul class="disc">
                     {% for membership in site.data.memberships %}
                     <li>{{ membership.position }} at {{ membership.club }}</li>
                     {% endfor %}
                 </ul>
+                </div>
             </div>
             <a href="{{ site.url }}\assets\pdf\General_CV.pdf" class="btn btn--primary full-width">Download My CV</a>
             <a href="#contact" class="smoothscroll btn btn--stroke full-width">Want to Hire?</a>

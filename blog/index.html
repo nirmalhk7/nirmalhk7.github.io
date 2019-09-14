@@ -47,16 +47,7 @@ layout: default
             </div>
         </div>
     </div>
-    <ul class="home-social">
-        {% for socialprofile in site.data.socialprofiles %}
-        <li>
-            <a href="{{ socialprofile.url }}">
-                <i class="{{ socialprofile.icon }}" aria-hidden="true"></i>
-                <span>{{ socialprofile.name }}</span>
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
+    {% include socialaccounts.html %}
     <!-- end home-social -->
 </section>
 <!-- end page-header -->
