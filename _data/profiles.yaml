@@ -11,7 +11,7 @@ social:
 
 - name: Goodreads
   url: https://www.goodreads.com/user/show/93069537-nirmal
-  icon: fab fa-goodreads go
+  icon: im im-book go
   initial: go
 
 - name: Pinterest
