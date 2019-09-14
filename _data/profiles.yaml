@@ -1,0 +1,33 @@
+social:
+- name: LinkedIn
+  url: https://www.linkedin.com/in/nirmalhk7/
+  icon: im im-linkedin ln
+  initial: ln
+
+- name: GitHub
+  url: https://www.github.com/nirmalhk7
+  icon: im im-github gi
+  initial: gi
+
+- name: Goodreads
+  url: https://www.goodreads.com/user/show/93069537-nirmal
+  icon: fab fa-goodreads go
+  initial: go
+
+- name: Pinterest
+  url: tw
+  icon: im im-pinterest pi
+  initial: pi
+cv:
+- name: HackerRank
+  url: https://www.hackerrank.com/nirmalhk7
+
+- name: CodeChef
+  url: https://www.codechef.com/users/nirmalhk7
+
+- name: Kaggle
+  url: https://www.kaggle.com/nirmalhk7
+
+- name: StackOverflow
+  url: https://stackoverflow.com/users/10005612/nirmal-khedkar?tab=profile
+  

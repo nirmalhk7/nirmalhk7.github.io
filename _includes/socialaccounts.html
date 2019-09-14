@@ -1,0 +1,10 @@
+<ul class="home-social">
+        {% for socialprofile in site.data.profiles.social %}
+        <li>
+            <a href="{{ socialprofile.url }}">
+                <i class="{{ socialprofile.icon }}" aria-hidden="true"></i>
+                <span>{{ socialprofile.name }}</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
