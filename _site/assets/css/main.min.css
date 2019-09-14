@@ -133,15 +133,11 @@
 
 .go:hover {
     color: #553b08;
-    transform: scale(1.1);
+    transform: scale(2.1);
 }
 
 .pi:hover {
     color: #bd081c;
-    transform: scale(1.1);
-}
-.rs:hover {
-    color: #f26522;
     transform: scale(1.1);
 }
 
