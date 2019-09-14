@@ -8,7 +8,7 @@ title: Main
         <div class="row home-content__main">
             <h3>Hey!</h3>
             <h1>
-                I'm Nirmal Khedkar, <br>
+                I'm {{ site.name }}, <br>
                 student developer<br>
                 based in Surathkal, India.
             </h1>
@@ -91,7 +91,7 @@ title: Main
 <section id="about" class="s-about target-section">
     <div class="row narrow section-intro has-bottom-sep">
         <div class="col-full text-center">
-            <h3>Nirmal Khedkar</h3>
+            <h3>{{ site.name }}</h3>
             <h1>More About Me</h1>
             <p class="lead">I'm a student in National Institute of Technology Karnataka Surathkal doing a Bachelors in Information Technology.</p>
         </div>
@@ -204,7 +204,7 @@ title: Main
         </div>
         <div class="col-six tab-full left">
             <div class="accordion js-accordion">
-                {% assign sorted = (site.projects | sort: 'date') | reverse %}
+                {% assign sorted = site.projects %}
                 {% for project in sorted  limit:5 %}
                 <div class="accordion__item js-accordion-item">
                     <div class="accordion-header js-accordion-header">{{ project.name }}</div>
@@ -225,7 +225,7 @@ title: Main
 <section id="blog" class="s-works target-section">
     <div class="row narrow section-intro has-bottom-sep">
         <div class="col-full">
-            <h3>Spaceride</h3>
+            <h3>{{ site.blog }}</h3>
             <h1>Latest From The Blog.</h1>
             <p class="lead">I have strong views on topics like Finance, Technology, Future and Environment. Find me blogging about them <a href="blog/index.html">here</a>.</p>
         </div>

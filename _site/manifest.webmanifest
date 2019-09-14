@@ -1,0 +1,24 @@
+{"dir" : "ltr",
+    "lang" : "en",
+    "name" : "Nirmal Khedkar",
+    "scope" : "/",
+    "display" : "browser",
+    "start_url" : "https://nirmalhk7.github.io/",
+    "short_name" : "Nirmal Khedkar ",
+    "theme_color" : "transparent",
+    "description" : "Developer and student at NITK Surathkal",
+    "orientation" : "any",
+    "background_color" : "transparent",
+    "related_applications" : "",
+    "prefer_related_applications" : "false",
+    "generated" : "true",
+    "icons" : [
+        {
+            "src": "https://nirmalhk7.github.io/assets/images/eagle.ico",
+            "sizes": "225x225"
+        },
+        {
+            "src": "https://nirmalhk7.github.io/assets/images/eagle.ico",
+            "sizes": "225x225"
+        }
+    ]}

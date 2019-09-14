@@ -1,8 +1,10 @@
 name: Nirmal Khedkar
 title: Nirmal Khedkar
+email: nirmalhk7@gmail.com
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+blog: Spaceride
 
 paginate: 6
 paginate_path: "/blog/page:num/"
@@ -11,4 +13,5 @@ collections:
     output: true
 algolia:
   application_id: 'RASJLX7IX5'
-  index_name: 'files'
+  index_name: 'prod_name'
+  files_to_exclude: []

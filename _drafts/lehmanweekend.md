@@ -5,7 +5,6 @@ category: Finance
 tags: 2008 subprime-mortgage crash
 img: lehmanweekend.jpeg
 ---
-
 The 2008 Financial Crisis happened because big banks forgot to look carefully.
 
 The crash was caused by banks betting obscene money on CDO's and smart people who bet against CDO's.

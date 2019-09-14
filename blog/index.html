@@ -1,6 +1,5 @@
 ---
 layout: default
-title: Spaceride
 ---
 <!--
     ──────────────▐█████───────
@@ -25,17 +24,20 @@ title: Spaceride
     <div class="overlay"></div>
     <div class="home-content">
         <div class="row home-content__main">
-            <h3>Official Blog of Nirmal Khedkar</h3>
+            <h3>Official Blog of {{ site.name }}</h3>
             <h1 class="page-header__title">
                 <a href="#0" title="">
-                    {{ page.title }}
+                    {{ site.blog }}
                 </a>
             </h1>
+            
             <div class="page-header__info">
                 <div class="page-header__cat">
-                    Technology, Finance, Environment and Future. 
-                    <br>
-                    Plain and Simple.
+                    <div class="typewriter">
+                        Technology, Finance, Environment and Future. 
+                        <br>
+                        Plain and Simple.
+                    </div>
                 </div>
             </div>
             <div class="home-content__buttons">
@@ -65,7 +67,7 @@ title: Spaceride
         <div class="col-full">
             <div class="row narrow section-intro has-bottom-sep" style="padding-top: 5em">
                 <div class="col-full text-center">
-                    <h3>{{ page.title }}</h3>
+                    <h3>{{ site.blog }}</h3>
                     <h1>The Latest Posts</h1>
                     <p class="lead">
                         {% if paginator.total_pages > 1 %}
