@@ -2661,7 +2661,6 @@ html.no-csstransitions .home-content__main {
 }
 
 .item-folio__thumb a::after {
-    content: "...";
     font-family: georgia, serif;
     font-size: 3rem;
     display: block;

@@ -30,11 +30,10 @@ layout: default
                     {{ site.blog }}
                 </a>
             </h1>
-            
             <div class="page-header__info">
                 <div class="page-header__cat">
                     <div class="typewriter">
-                        Technology, Finance, Environment and Future. 
+                        Technology, Finance, Environment and Future.
                         <br>
                         Plain and Simple.
                     </div>
@@ -53,13 +52,41 @@ layout: default
 <!-- end page-header -->
 <!-- blog
     ================================================== -->
-<section class="blog-content-wrap" id="blog">
+<section class="s-works target-section" style="padding-top: 75px!important;padding-bottom: 75px!important;" id="blog">
+    <div class="row blog-content">
+        <div class="col-full">
+            <div class="blog-list block-1-2 block-tab-full">
+                <div class="row">
+                    {% assign post = site.posts.first %}
+                    {% assign content = post.content %}
+                    <div class="col-block">
+                        <img src="/assets/images/blog/{{ post.img }}" alt="">
+                    </div>
+                    <div class="col-block">
+                        <h3>Latest</h3>
+                        <h1 class="entry-title">
+                            
+                            <a href="{{ root_url }}{{ page.url }}">{{ page.title }}</a>
+                        </h1>
+                        {% if post.title %}
+                        <h1 class="entry-title">
+                            <a href="{{ root_url }}{{ post.url }}">{{ post.title }}</a>
+                        </h1>
+                        {% endif %}
+                        <div class="entry-content">{{ post.excerpt }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="blog-content-wrap">
     <div class="row blog-content">
         <div class="col-full">
             <div class="row narrow section-intro has-bottom-sep" style="padding-top: 5em">
                 <div class="col-full text-center">
                     <h3>{{ site.blog }}</h3>
-                    <h1>The Latest Posts</h1>
+                    <h1>All Posts</h1>
                     <p class="lead">
                         {% if paginator.total_pages > 1 %}
                         {{ paginator.page }} of {{ paginator.total_pages }}
@@ -73,35 +100,35 @@ layout: default
                 <div class="row masonry-wrap">
                     <div class="masonry">
                         {% for post in paginator.posts %}
-                            <div class="masonry__brick">
-                                <div class="item-folio">
-                                    <div class="item-folio__thumb">
-                                        <a href="{{ post.url }}" class="" title="{{ post.excerpt }}">
-                                            <img src="/assets/images/blog/{{ post.img }}" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="item-folio__text">
-                                        <h3 class="item-folio__title">
-                                            {{ post.title }}
-                                        </h3>
-                                        <p class="item-folio__cat">
-                                            {% if post %}
-                                            {% assign categories = post.categories %}
-                                            {% else %}
-                                            {% assign categories = page.categories %}
-                                            {% endif %}
-                                            {% for category in categories %}
-                                            <a href="#{{category}}">{{category}}</a>
-                                            {% unless forloop.last %}&nbsp;{% endunless %}
-                                            {% endfor %}
-                                        </p>
-                                    </div>
-                                    <div class="item-folio__caption">
-                                        <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
-                                    </div>
-                                </div> <!-- end item-folio -->
-                            </div>
-                                    <!--<article class="col-block">
+                        <div class="masonry__brick">
+                            <div class="item-folio">
+                                <div class="item-folio__thumb">
+                                    <a href="{{ post.url }}" class="" title="{{ post.excerpt }}">
+                                        <img src="/assets/images/blog/{{ post.img }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="item-folio__text">
+                                    <h3 class="item-folio__title">
+                                        {{ post.title }}
+                                    </h3>
+                                    <p class="item-folio__cat">
+                                        {% if post %}
+                                        {% assign categories = post.categories %}
+                                        {% else %}
+                                        {% assign categories = page.categories %}
+                                        {% endif %}
+                                        {% for category in categories %}
+                                        <a href="#{{category}}">{{category}}</a>
+                                        {% unless forloop.last %}&nbsp;{% endunless %}
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                                <div class="item-folio__caption">
+                                    <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
+                                </div>
+                            </div> <!-- end item-folio -->
+                        </div>
+                        <!--<article class="col-block">
                                 <div class="blog-date">
                                     <a href="blog-single.html">{{ page.date | date_to_string }}</a>
                                 </div>
