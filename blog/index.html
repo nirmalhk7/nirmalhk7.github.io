@@ -52,7 +52,7 @@ layout: default
 <!-- end page-header -->
 <!-- blog
     ================================================== -->
-<section class="s-works target-section" style="padding-top: 75px!important;padding-bottom: 75px!important;" id="blog">
+<section class="s-works inv target-section" style="" id="blog">
     <div class="row blog-content">
         <div class="col-full">
             <div class="blog-list block-1-2 block-tab-full">
@@ -63,17 +63,19 @@ layout: default
                         <img src="/assets/images/blog/{{ post.img }}" alt="">
                     </div>
                     <div class="col-block">
-                        <h3>Latest</h3>
+                        <h3 class="white-text">Latest on {{ site.blog }}</h3>
                         <h1 class="entry-title">
-                            
-                            <a href="{{ root_url }}{{ page.url }}">{{ page.title }}</a>
+                            <a class="white-text" href="{{ root_url }}{{ page.url }}">
+                                {{ page.title }}
+          
+                            </a>
                         </h1>
                         {% if post.title %}
                         <h1 class="entry-title">
-                            <a href="{{ root_url }}{{ post.url }}">{{ post.title }}</a>
+                            <a class="white-text title-inv" href="{{ root_url }}{{ post.url }}">{{ post.title }}</a>
                         </h1>
                         {% endif %}
-                        <div class="entry-content">{{ post.excerpt }}</div>
+                        <div class="entry-content white-text">{{ post.excerpt }}</div>
                     </div>
                 </div>
             </div>
