@@ -55,7 +55,7 @@ layout: default
 <section class="s-works inv target-section" style="" id="blog">
     <div class="row blog-content">
         <div class="col-full">
-            <div class="blog-list block-1-2 block-tab-full">
+            <div class="blog-list block-1-2 block-tab-full" style="margin-top: 0rem">
                 <div class="row">
                     {% assign post = site.posts.first %}
                     {% assign content = post.content %}
@@ -63,7 +63,7 @@ layout: default
                         <img src="/assets/images/blog/{{ post.img }}" alt="">
                     </div>
                     <div class="col-block">
-                        <h3 class="white-text">Latest on {{ site.blog }}</h3>
+                        <h3 class="inv-header">Latest on {{ site.blog }}</h3>
                         <h1 class="entry-title">
                             <a class="white-text" href="{{ root_url }}{{ page.url }}">
                                 {{ page.title }}
