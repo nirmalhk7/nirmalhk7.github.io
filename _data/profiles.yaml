@@ -20,9 +20,9 @@ social:
   initial: pi
 
 - name: RSS
-  url: https://nirmalhk7.github.io/feed.xml
-  icon: im im-rss rs
-  initial: rs
+  url: /feed.xml
+  icon: im im-rss srr
+  initial: srr
 
 cv:
 - name: HackerRank

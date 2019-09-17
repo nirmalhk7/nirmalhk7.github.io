@@ -4,6 +4,7 @@ email: nirmalhk7@gmail.com
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-feed
 blog: Spaceride
 
 paginate: 6

@@ -4,15 +4,7 @@
     padding-top: 75px!important;
     padding-bottom: 75px!important;
 }
-.inv-header{
-	font-family: "montserrat-semibold", sans-serif;
-    font-size: 2rem;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: .15rem;
-    margin-top: 0;
-    margin-bottom: 0;
-}
+
 .white-text{
 	color: white;
 }
@@ -25,9 +17,9 @@
 .title-inv{
 	-webkit-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
-	text-decoration: underline;
 }
 
 .title-inv:hover {
 	color: black;
+	
 }
