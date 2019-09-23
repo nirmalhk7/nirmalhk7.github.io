@@ -8,7 +8,7 @@
                 {% for socialprofile in site.data.profiles.social %}
                 <li>
                     <a class="{{ socialprofile.initial }}" href="{{ socialprofile.url }}">
-                        <i class="{{ socialprofile.icon }}" aria-hidden="true"></i>
+                        <i class="{{ socialprofile.icon }} {{ socialprofile.initial }}" aria-hidden="true"></i>
                         <span>{{ socialprofile.name }}</span>
                     </a>
                 </li>

@@ -1,4 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-17T00:04:56+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nirmal Khedkar</title><subtitle>My personal website!</subtitle><entry><title type="html">One Small Step</title><link href="http://localhost:4000/future/2019/06/21/onesmallstep.html" rel="alternate" type="text/html" title="One Small Step" /><published>2019-06-21T00:00:00+05:30</published><updated>2019-06-21T00:00:00+05:30</updated><id>http://localhost:4000/future/2019/06/21/onesmallstep</id><content type="html" xml:base="http://localhost:4000/future/2019/06/21/onesmallstep.html">&lt;p&gt;50 years since 1969! A review of the legacy and impact of Apollo 11.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-24T00:07:23+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nirmal Khedkar</title><subtitle>My personal website!</subtitle><entry><title type="html">Rourkela Journal</title><link href="http://localhost:4000/personal/2019/09/24/conclave.html" rel="alternate" type="text/html" title="Rourkela Journal" /><published>2019-09-24T00:00:00+05:30</published><updated>2019-09-24T00:00:00+05:30</updated><id>http://localhost:4000/personal/2019/09/24/conclave</id><content type="html" xml:base="http://localhost:4000/personal/2019/09/24/conclave.html">&lt;p&gt;My account of the week I spent for NIT Conclave Hackathon at NITRKL.&lt;/p&gt;
+
+&lt;p&gt;So one week from the &lt;code class=&quot;highlighter-rouge&quot;&gt;21st August&lt;/code&gt;, I was outside NITK to attend NIT Conclave in Rourkela. Me and 4 others of my College, managed to win overall 2nd position overall at the Conclave and 5th in the Hackathon. Here’s my experience.&lt;/p&gt;
+
+&lt;h6 id=&quot;our-submission&quot;&gt;Our Submission&lt;/h6&gt;
+&lt;p&gt;Oh, the app is a portal for research scholars which includes a collaboration, events and grants on one platform. Its called ScholarHub. Here’s a &lt;a href=&quot;http://localhost:4000/project.html&quot;&gt;link&lt;/a&gt; for more.&lt;/p&gt;
+
+&lt;h4 id=&quot;story&quot;&gt;Story&lt;/h4&gt;
+&lt;p&gt;It appeared to happen out of nowhere. By &lt;code class=&quot;highlighter-rouge&quot;&gt;18th&lt;/code&gt;, people began asking me whether I wanted to go for 2019’s Hackathon in Rourkela. I said yes.&lt;/p&gt;
+
+&lt;p&gt;But honestly I wasnt sure:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;I’ve never taken part in Hackathons, forget a 24hr one.&lt;/li&gt;
+  &lt;li&gt;I’ve never been more North of India than Gujarat.&lt;/li&gt;
+  &lt;li&gt;I typically dont travel a lot (although I’d love to), so it had been &lt;strong&gt;6 years&lt;/strong&gt; since I last travelled in an AC train. Dont ask me when did I last travel on Sleeper… I really dont remember.&lt;/li&gt;
+  &lt;li&gt;I had &lt;strong&gt;never&lt;/strong&gt; eaten on train pantry cars.&lt;/li&gt;
+  &lt;li&gt;I had &lt;strong&gt;never&lt;/strong&gt; travelled in a train for more than 8 hours (so I never had to manage &lt;em&gt;business&lt;/em&gt; on trains, IYKWIM xD).&lt;/li&gt;
+  &lt;li&gt;And more importantly, I had never travelled to an unknown place for as long as 7 days without my parents.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It was too many first’s for me. But it appeared to me that IRIS people were involved in my selection: so it was clear to me that the opportunity is too golden to back out. My understanding of NITK life is that IRIS people are the best and brightest developers on campus, and there’s no way I’m going to leave this chance to impress this group.&lt;/p&gt;
+
+&lt;h5 id=&quot;namma-bengaluru&quot;&gt;Namma Bengaluru&lt;/h5&gt;
+&lt;p&gt;Then things began happening lightning fast. I was paired with &lt;a href=&quot;https://abhishekkumar2718.github.io&quot;&gt;Abhishek Kumar&lt;/a&gt;. Before I knew it,  I was on a bus trip to (my favorite city) Bangalore. After reaching Bangalore at &lt;code class=&quot;highlighter-rouge&quot;&gt;5AM&lt;/code&gt;, we waited on Yeshwantpur Rlwy Station for 3 hours.&lt;/p&gt;
+
+&lt;p&gt;Bangalore is the best damn city in the whole wide world, period.&lt;/p&gt;
+
+&lt;h5 id=&quot;train-to-rourkela&quot;&gt;Train to Rourkela&lt;/h5&gt;
+&lt;p&gt;We got on the train at &lt;code class=&quot;highlighter-rouge&quot;&gt;8AM&lt;/code&gt;. First 12 hours were uneventful. We ate, slept, watched movies, ate, slept and repeated. Just waiting for 33 hours to finish.&lt;/p&gt;
+
+&lt;p&gt;I initially enjoyed the chaos of sleeper trains, but then I got bored too.&lt;/p&gt;
+
+&lt;h5 id=&quot;rourkela&quot;&gt;Rourkela&lt;/h5&gt;
+&lt;p&gt;We reached there at the &lt;code class=&quot;highlighter-rouge&quot;&gt;22nd&lt;/code&gt;. Rourkela is a hilly and beautiful place close to Orissa Jharkhand border. Small town, but NIT Rourkela is &lt;strong&gt;&lt;em&gt;huge&lt;/em&gt;&lt;/strong&gt;. Huge hostels and parks. We reached our room, had dinner at one of the 3 restaurants on campus, walked around at night, came back to the room and made a demo version of our app for the hackathon.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;23rd August, 7PM&lt;/code&gt;: Hackathon begins 2 hours late. All we lived on for the next 24 hours was so-so food and coffee. We worked upto 3am together, after which I slept (my head fell on the desk). Abhishek finished his part by then. When I woke up, Abhishek slept for 3 hours, so I finished my half of the work and we had a website ready within 12-15 hours of the Hackathon.&lt;/p&gt;
+
+&lt;p&gt;Some of our competitors were 4th years, so they managed to implement more sophisticated things like web-scraping and managed to come within top 3.&lt;/p&gt;
+
+&lt;p&gt;We came 5th.&lt;/p&gt;
+
+&lt;p&gt;In hindsight, we both think we would’ve definitely won first if it were a 15 hour hackathon.&lt;/p&gt;
+
+&lt;p&gt;After hackathon was wrapped up, we were asked to present our idea. There was a Startup Hunt event in which NITK had qualified for second round. We attended that, then dinner at a restaurant and sleep.&lt;/p&gt;
+
+&lt;p&gt;Result day, &lt;code class=&quot;highlighter-rouge&quot;&gt;25th August&lt;/code&gt;. We still had no idea of our return train tickets. Our plan was to enjoy the 25th morning, but we were asked to attend the events planned, so we did. Since I had friends in both NIT Rourkela and NIT Trichy, we all had lunch together.&lt;/p&gt;
+
+&lt;p&gt;By &lt;code class=&quot;highlighter-rouge&quot;&gt;7PM&lt;/code&gt;, our train tickets were confirmed: RC Seats on 9:30 train. We had to leave by &lt;code class=&quot;highlighter-rouge&quot;&gt;8:30PM&lt;/code&gt; no matter what.&lt;/p&gt;
+
+&lt;p&gt;We knew that although we had the best looking product, we wont be able to make into top 3.&lt;/p&gt;
+
+&lt;p&gt;Then they announced the overall results, which we lost all hope about, because we didnt make into top 3 in Hackathon. And they said, “Second Position goes to NIT Surathkal”. &lt;em&gt;Damn we made it!&lt;/em&gt;. I didnt even bother coming in better clothes: I was in my old trackpants for the awards event, because I wanted to save the only better one I had for flight travel, in case if we’d be travelling that way.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/blog/Conclave.jpeg&quot; alt=&quot;alt text&quot; title=&quot;Logo Title Text 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So with a feeling that last one week was definitely not a total waste and we defeated some 3rd and 4th years back there, we got on our train back to Surathkal.&lt;/p&gt;
+
+&lt;h5 id=&quot;stop-at-bengaluru&quot;&gt;Stop at Bengaluru&lt;/h5&gt;
+&lt;p&gt;We reached Bangalore, roamed in Cubbon Park, saw my old Bangalore home, got stuck in traffic, met my best friends in Bangalore, walked like hell and boarded a bus back to Surathkal. That day was a long day, but a very fun day.&lt;/p&gt;
+
+&lt;h6 id=&quot;final-conclusion&quot;&gt;Final Conclusion&lt;/h6&gt;
+&lt;p&gt;The hackathon was fun. I loved meeting my NIT friends. I enjoyed lunch with my Bangalore buddies. But I’ll sign off with something that I’d never seen before (in all its glory) and its something I think everybody should see:&lt;/p&gt;
+
+&lt;div class=&quot;video-container&quot;&gt;
+                &lt;iframe src=&quot;http://player.vimeo.com/video/359937237?title=0&amp;amp;byline=0&amp;amp;portrait=0&amp;amp;color=F64B39&quot; width=&quot;500&quot; height=&quot;281&quot; frameborder=&quot;0&quot; webkitallowfullscreen=&quot;&quot; mozallowfullscreen=&quot;&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt; 
+                &lt;/div&gt;
+
+&lt;p&gt;Greenery in India.&lt;/p&gt;
+
+&lt;p&gt;Despite considering myself pro-environment guy, I had never really seen what exactly do we risk endangering by driving gas-guzzling vehicles on our street. Now I had this scenery for 50 hours. Beautiful India.&lt;/p&gt;
+
+&lt;p&gt;Overall, amazing journey with amazing team to a beautiful place with more amazing people. Thankful to all my seniors who gave me this shot. It was definitely one of the most memorable time I’ve ever had, and Im pretty sure it wont be the last.&lt;/p&gt;</content><author><name></name></author><category term="Personal" /><category term="nit-conclave" /><category term="environment" /><category term="technology" /><category term="nirmal" /><summary type="html">My account of the week I spent for NIT Conclave Hackathon at NITRKL.</summary></entry><entry><title type="html">One Small Step</title><link href="http://localhost:4000/future/2019/06/21/onesmallstep.html" rel="alternate" type="text/html" title="One Small Step" /><published>2019-06-21T00:00:00+05:30</published><updated>2019-06-21T00:00:00+05:30</updated><id>http://localhost:4000/future/2019/06/21/onesmallstep</id><content type="html" xml:base="http://localhost:4000/future/2019/06/21/onesmallstep.html">&lt;p&gt;50 years since 1969! A review of the legacy and impact of Apollo 11.&lt;/p&gt;
 
 &lt;p&gt;I’m really an outer space guy. When I see any planet in sky, I stop whatever I’m doing and can’t help but stare at the planet thinking that what must life outside Earth look like. Sky really fires me up in this way.&lt;/p&gt;
 

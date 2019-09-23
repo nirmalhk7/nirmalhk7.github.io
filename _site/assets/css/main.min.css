@@ -116,6 +116,7 @@
 .gi .tw .ln .go .pi{
     transition-duration: 2s;
 }
+
 .tw:hover {
     color: #38A1F3 !important;
     transform: scale(1.1);
@@ -125,7 +126,11 @@
     color: #0077B5 !important;
     transform: scale(1.1);
 }
-
+/*RSS COLOR */
+.srr:hover {
+    transform: scale(1.1);
+    color:orange;
+}
 .gi:hover {
     color: #333;
     transform: scale(1.1);
@@ -133,7 +138,7 @@
 
 .go:hover {
     color: #553b08;
-    transform: scale(2.1);
+    transform: scale(1.1);
 }
 
 .pi:hover {
