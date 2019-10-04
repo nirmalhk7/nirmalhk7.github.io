@@ -1,10 +1,14 @@
 name: Nirmal Khedkar
 title: Nirmal Khedkar
+description: Developer and student at NITK Surathkal. I love building things.
+author: Nirmal Khedkar
 email: nirmalhk7@gmail.com
+google_site_verification: 5ksq7CY5sGyWbkAcl57jwyuGf7jPxDaNoKO0IBP0fqw
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-feed
+  - jekyll-seo-tag
 blog: Spaceride
 
 paginate: 6
@@ -16,3 +20,5 @@ algolia:
   application_id: 'RASJLX7IX5'
   index_name: 'prod_name'
   files_to_exclude: []
+
+github: [metadata]
