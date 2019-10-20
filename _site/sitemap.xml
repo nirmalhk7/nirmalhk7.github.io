@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/future/2019/06/21/onesmallstep.html</loc>
+<loc>http://localhost:4000/future/2019/06/21/onesmallstep</loc>
 <lastmod>2019-06-21T00:00:00+05:30</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/personal/2019/09/24/conclave.html</loc>
+<loc>http://localhost:4000/personal/2019/09/24/conclave</loc>
 <lastmod>2019-09-24T00:00:00+05:30</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/projects/clubnitk.html</loc>
+<loc>http://localhost:4000/projects/clubnitk</loc>
 </url>
 <url>
-<loc>http://localhost:4000/projects/crypto.html</loc>
+<loc>http://localhost:4000/projects/crypto</loc>
 </url>
 <url>
-<loc>http://localhost:4000/projects/firstaidman.html</loc>
+<loc>http://localhost:4000/projects/firstaidman</loc>
 </url>
 <url>
-<loc>http://localhost:4000/projects/nirmalhk7website.html</loc>
+<loc>http://localhost:4000/projects/nirmalhk7website</loc>
 </url>
 <url>
-<loc>http://localhost:4000/projects/scholarhub.html</loc>
+<loc>http://localhost:4000/projects/scholarhub</loc>
 </url>
 <url>
 <loc>http://localhost:4000/blog/</loc>
@@ -30,7 +30,7 @@
 <loc>http://localhost:4000/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/project.html</loc>
+<loc>http://localhost:4000/project</loc>
 </url>
 <url>
 <loc>http://localhost:4000/Hola10/blog-single.html</loc>
