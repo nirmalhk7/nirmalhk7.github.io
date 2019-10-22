@@ -113,39 +113,44 @@
     }
 }
 
-.gi .tw .ln .go .pi{
+.gi .tw .ln .go .pi .dev{
     transition-duration: 2s;
+    transform: scale(1.1);
 }
 
 .tw:hover {
     color: #38A1F3 !important;
-    transform: scale(1.1);
+    
 }
 
 .ln:hover {
     color: #0077B5 !important;
-    transform: scale(1.1);
+    
 }
 /*RSS COLOR */
 .srr:hover {
-    transform: scale(1.1);
+    
     color:orange;
 }
 .gi:hover {
     color: #333;
-    transform: scale(1.1);
+    
 }
 
 .go:hover {
     color: #553b08;
-    transform: scale(1.1);
+    
 }
 
 .pi:hover {
     color: #bd081c;
-    transform: scale(1.1);
+    
 }
 
+.dev:hover{
+    color:#857c7f;
+    
+}
 
 /* ===================================================================
  * # base style overrides - (_document-setup.scss)

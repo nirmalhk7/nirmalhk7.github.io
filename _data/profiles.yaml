@@ -1,29 +1,29 @@
 social:
 - name: LinkedIn
   url: https://www.linkedin.com/in/nirmalhk7/
-  icon: im im-linkedin
+  icon: fab fa-linkedin
   initial: ln
 
 - name: GitHub
   url: https://www.github.com/nirmalhk7
-  icon: im im-github
+  icon: fab fa-github
   initial: gi
 
 - name: Goodreads
   url: https://www.goodreads.com/user/show/93069537-nirmal
-  icon: im im-book
+  icon: fab fa-goodreads
   initial: go
-
-- name: Pinterest
-  url: tw
-  icon: im im-pinterest
-  initial: pi
 
 - name: RSS
   url: /feed.xml
-  icon: im im-rss
+  icon: fas fa-rss-square
   initial: srr
 
+- name: DEV
+  url: https://dev.to/nirmalhk7
+  icon: fab fa-dev
+  initial: dev
+  
 cv:
 - name: HackerRank
   url: https://www.hackerrank.com/nirmalhk7
