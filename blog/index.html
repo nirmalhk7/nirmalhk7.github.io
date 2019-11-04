@@ -98,7 +98,7 @@ title: Spaceride
                         <div class="masonry__brick">
                             <div class="item-folio">
                                 <div class="item-folio__thumb">
-                                    <a href="{{ post.url }}" class="" title="{{ post.excerpt }}">
+                                    <a href="{{ post.url }}" class="" title="{{ post.excerpt | remove: '<p>' | remove:'</p>' }}">
                                         <img src="/assets/images/blog/{{ post.img }}" alt="">
                                     </a>
                                 </div>
