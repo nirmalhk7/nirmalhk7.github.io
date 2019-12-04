@@ -9,7 +9,7 @@ title: Main
             <h3>Hey!</h3>
             <h1>
                 I'm {{ site.name }}, <br>
-                student developer<br>
+                developer and ML enthusiast<br>
                 based in Surathkal, India.
             </h1>
             <div class="home-content__buttons">
@@ -168,7 +168,7 @@ title: Main
         <div class="col-six tab-full right">
             <div class="narrow section-intro has-bottom-sep">
                 <div class="col-full">
-                    <h3>Works</h3>
+                    <h3>I Love Building Things</h3>
                     <h1>See My Latest Projects.</h1>
                     <p class="lead">Find my projects categorized <a href="{{ site.url }}/project">here</a>.
                     </p>
@@ -176,21 +176,9 @@ title: Main
             </div>
         </div>
         <div class="col-six tab-full left">
-            <div class="accordion js-accordion">
-                {% assign sorted = site.projects %}
-                {% for project in sorted  limit:5 %}
-                <div class="accordion__item js-accordion-item">
-                    <div class="accordion-header js-accordion-header">{{ project.name }}</div>
-                    <div class="accordion-body js-accordion-body">
-                        <div class="accordion-body__contents">
-                            
-                            {{ project.excerpt }}
-                            Find more <a href="{{ site.url }}/project#{{ project.name }}">here</a>.&nbsp;&nbsp;&nbsp;<code>{{ project.medium}}</code>
-                            
-                        </div>
-                    </div> <!-- end of accordion body -->
-                </div><!-- end of accordion item -->    
-                {% endfor %}
+            <div id="#projAPI" class="accordion js-accordion">
+                
+                
             </div><!-- end of accordion -->
         </div>
     </div>

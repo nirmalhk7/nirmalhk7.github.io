@@ -6,9 +6,6 @@
     ================================================== -->
     <meta charset="utf-8">
     <title>Nirmal Khedkar | Official Website</title>
-    <meta name="description" content="">
-    <meta name="author" content="Nirmal Khedkar">
-    <meta name="google-site-verification" content="5ksq7CY5sGyWbkAcl57jwyuGf7jPxDaNoKO0IBP0fqw" />
     <link rel='manifest' href='http://localhost:4000/manifest.webmanifest'>
     <!-- Begin Jekyll SEO tag v2.5.0 -->
 <meta name="generator" content="Jekyll v3.8.5" />
@@ -53,6 +50,22 @@
     <script src="https://kit.fontawesome.com/c586b4df75.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133733565-2"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.getJSON('https://api.github.com/users/nirmalhk7/repos', function (result) {
+                $('#projAPI').append("<div class='accordion__item js - accordion - item'>");
+                var tr;
+                for (var i = 0; i < result.length; i++) {
+
+                    $('#projAPI').append("<div class='accordion - header js - accordion - header'>" + result[i].name + "</div>");
+                    $('#projAPI').append("<div class='accordion - body js - accordion - body'><div class='accordion-body__contents'>" + result[i].description + "<code>" + result[i].language + "</code></div></div>");
+                }
+                $('#projAPI').append("</div>");
+            });
+        });
+    </script>
+    
     <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -121,7 +134,7 @@
             <h3>Hey!</h3>
             <h1>
                 I'm Nirmal Khedkar, <br>
-                student developer<br>
+                developer and ML enthusiast<br>
                 based in Surathkal, India.
             </h1>
             <div class="home-content__buttons">
@@ -362,7 +375,7 @@
         <div class="col-six tab-full right">
             <div class="narrow section-intro has-bottom-sep">
                 <div class="col-full">
-                    <h3>Works</h3>
+                    <h3>I Love Building Things</h3>
                     <h1>See My Latest Projects.</h1>
                     <p class="lead">Find my projects categorized <a href="http://localhost:4000/project">here</a>.
                     </p>
@@ -370,78 +383,8 @@
             </div>
         </div>
         <div class="col-six tab-full left">
-            <div class="accordion js-accordion">
+            <div id="#projAPI" class="accordion js-accordion">
                 
-                
-                <div class="accordion__item js-accordion-item">
-                    <div class="accordion-header js-accordion-header">ClubNITK</div>
-                    <div class="accordion-body js-accordion-body">
-                        <div class="accordion-body__contents">
-                            
-                            <p>Club Recruitment Portal for NITK. Under Development</p>
-
-
-                            Find more <a href="http://localhost:4000/project#ClubNITK">here</a>.&nbsp;&nbsp;&nbsp;<code>Ruby on Rails</code>
-                            
-                        </div>
-                    </div> <!-- end of accordion body -->
-                </div><!-- end of accordion item -->    
-                
-                <div class="accordion__item js-accordion-item">
-                    <div class="accordion-header js-accordion-header">Crypto</div>
-                    <div class="accordion-body js-accordion-body">
-                        <div class="accordion-body__contents">
-                            
-                            <p>Built with Diffie Hellman principles. Wanna get that James Bond feeling?</p>
-
-
-                            Find more <a href="http://localhost:4000/project#Crypto">here</a>.&nbsp;&nbsp;&nbsp;<code>C++</code>
-                            
-                        </div>
-                    </div> <!-- end of accordion body -->
-                </div><!-- end of accordion item -->    
-                
-                <div class="accordion__item js-accordion-item">
-                    <div class="accordion-header js-accordion-header">First Aid Man</div>
-                    <div class="accordion-body js-accordion-body">
-                        <div class="accordion-body__contents">
-                            
-                            <p>Built by Dialogflow, it makes life-saving first aid information only a “Hey Google” away.</p>
-
-
-                            Find more <a href="http://localhost:4000/project#First Aid Man">here</a>.&nbsp;&nbsp;&nbsp;<code>Dialogflow</code>
-                            
-                        </div>
-                    </div> <!-- end of accordion body -->
-                </div><!-- end of accordion item -->    
-                
-                <div class="accordion__item js-accordion-item">
-                    <div class="accordion-header js-accordion-header">nirmalhk7.github.io</div>
-                    <div class="accordion-body js-accordion-body">
-                        <div class="accordion-body__contents">
-                            
-                            <p>Previously a simple website, now powered with Jekyll.</p>
-
-
-                            Find more <a href="http://localhost:4000/project#nirmalhk7.github.io">here</a>.&nbsp;&nbsp;&nbsp;<code>Jekyll</code>
-                            
-                        </div>
-                    </div> <!-- end of accordion body -->
-                </div><!-- end of accordion item -->    
-                
-                <div class="accordion__item js-accordion-item">
-                    <div class="accordion-header js-accordion-header">ScholarHub</div>
-                    <div class="accordion-body js-accordion-body">
-                        <div class="accordion-body__contents">
-                            
-                            <p>Linkedin for Research Students.</p>
-
-
-                            Find more <a href="http://localhost:4000/project#ScholarHub">here</a>.&nbsp;&nbsp;&nbsp;<code>Ruby on Rails</code>
-                            
-                        </div>
-                    </div> <!-- end of accordion body -->
-                </div><!-- end of accordion item -->    
                 
             </div><!-- end of accordion -->
         </div>
@@ -456,7 +399,6 @@
         </div>
     </div>
 </section>
-
     
 
 
@@ -465,8 +407,8 @@
     <div class="row narrow section-intro has-bottom-sep">
         <div class="col-full">
             <blockquote>
-                <p>Sometimes it is the people who no one imagines anything of who do the things that no one can imagine.</p>
-                <cite>Alan Turing</cite>
+                <p>Talk is over-rated as a means of settling disputes.</p>
+                <cite>Tom Cruise</cite>
             </blockquote>
         </div>
     </div>
@@ -568,7 +510,7 @@
         <div class="col-twelve">
             <div class="copyright">
                 <span style="color: #3d3d3d">Made with <i class="im im-heart heartbeat" style="font-size: 14px;"></i> by Nirmal Khedkar</span>
-                <span style="color: #3d3d3d">Last Updated: November 20, 2019</span>
+                <span style="color: #3d3d3d">Last Updated: December 04, 2019</span>
             </div>
             <div class="copyright">
                 <span style="color: #1d1d1d" id="justinmaller">Image Credits <a class="hidelink" href="#" style="color: #1d1d1d">Beast Dreams II</a> by Justin Maller</span>
@@ -620,7 +562,9 @@
     
     <!-- Java Script
     ================================================== -->
-    <script src="/assets/js/jquery-3.2.1.min.js"></script>
+
+
+
     <script src="/assets/js/plugins.js"></script>
     <script src="/assets/js/main.js"></script>
     <script>
@@ -642,138 +586,68 @@
     }
     </script>
     <script>
-    $(document).ready(function() {
-        $('.error').hide();
-
-        $("#submitx").click(function() {
-            // validate and process form here
-            var name = $("#contactName").val();
-            var email = $("#contactEmail").val();
-            var body = $("#contactMessage").val();
-            $('.error').hide();
-            if (name == "") {
-                $("#contactName-error").show();
-                $("#contactName").focus();
-                return false;
-            }
-            if (email == "") {
-                $("#contactEmail-error").show();
-                $("#contactEmail").focus();
-                return false;
-            }
-            if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
-                $("#contactEmail-error").show();
-
-                $("#contactEmail-error").html("Invalid Email Address");
-                $("#contactEmail").focus();
-                return false;
-            }
-            if (body == "") {
-                $("#contactMessage-error").show();
-                $("#contactMessage").focus();
-                return false;
-            }
-
-        });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-
-        $('#submitx').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            var name = $("#contactName").val();
-            var email = $("#contactEmail").val();
-            var subj = $("#contactSubject").val();
-            var body = $("#contactMessage").val();
-
-            if (name != "" && email != "" && body != "") {
-                $.ajax({
-                    dataType: 'jsonp',
-                    url: "http://getsimpleform.com/messages/ajax?form_api_token=162ff4fa2bb9c89f908b059c33b0a806",
-                    data: {
-                        NAME: name,
-                        contactEmail: email,
-                        message: subj,
-                        content: body
-
-                    },
-                    success: function() {
-                        var name = $("#contactName").val();
-                        $('.alertbox').html("Hey " + name + "! Your message has been delivered.");
-                        $('.alert-box').removeClass("alert-box--error");
-                        $('.alert-box').addClass("alert-box--success");
-                        $('.alert').show();
-
-                    }
-                });
-            }
-            //End of submitx
-        });
-        //Endof Doc Ready
-    });
-    </script>
-        <script>
         var accordion = (function(){
   
-  var $accordion = $('.js-accordion');
-  var $accordion_header = $accordion.find('.js-accordion-header');
-  var $accordion_item = $('.js-accordion-item');
- 
-  // default settings 
-  var settings = {
-    // animation speed
-    speed: 400,
-    
-    // close all other accordion items if true
-    oneOpen: false
-  };
-    
-  return {
-    // pass configurable object literal
-    init: function($settings) {
-      $accordion_header.on('click', function() {
-        accordion.toggle($(this));
-      });
-      
-      $.extend(settings, $settings); 
-      
-      // ensure only one accordion is active if oneOpen is true
-      if(settings.oneOpen && $('.js-accordion-item.active').length > 1) {
-        $('.js-accordion-item.active:not(:first)').removeClass('active');
-      }
-      
-      // reveal the active accordion bodies
-      $('.js-accordion-item.active').find('> .js-accordion-body').show();
-    },
-    toggle: function($this) {
+        var $accordion = $('.js-accordion');
+        var $accordion_header = $accordion.find('.js-accordion-header');
+        var $accordion_item = $('.js-accordion-item');
+        
+        // default settings 
+        var settings = {
+            // animation speed
+            speed: 400,
             
-      if(settings.oneOpen && $this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
-        $this.closest('.js-accordion')
-               .find('> .js-accordion-item') 
-               .removeClass('active')
-               .find('.js-accordion-body')
-               .slideUp()
-      }
-      
-      // show/hide the clicked accordion item
-      $this.closest('.js-accordion-item').toggleClass('active');
-      $this.next().stop().slideToggle(settings.speed);
-    }
-  }
-})();
+            // close all other accordion items if true
+            oneOpen: false
+        };
+    
+        return {
+            // pass configurable object literal
+            init: function($settings) {
+            $accordion_header.on('click', function() {
+                accordion.toggle($(this));
+            });
+            
+            $.extend(settings, $settings); 
+            
+            // ensure only one accordion is active if oneOpen is true
+            if(settings.oneOpen && $('.js-accordion-item.active').length > 1) {
+                $('.js-accordion-item.active:not(:first)').removeClass('active');
+            }
+            
+            // reveal the active accordion bodies
+            $('.js-accordion-item.active').find('> .js-accordion-body').show();
+            },
+            toggle: function($this) {
+                    
+            if(settings.oneOpen && $this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
+                $this.closest('.js-accordion')
+                    .find('> .js-accordion-item') 
+                    .removeClass('active')
+                    .find('.js-accordion-body')
+                    .slideUp()
+            }
+            
+            // show/hide the clicked accordion item
+            $this.closest('.js-accordion-item').toggleClass('active');
+            $this.next().stop().slideToggle(settings.speed);
+            }
+        }
+        })();
 
-$(document).ready(function(){
-  accordion.init({ speed: 300, oneOpen: true });
-});</script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        $(document).ready(function(){
+        accordion.init({ speed: 300, oneOpen: true });
+        });
+    </script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
     $(function() {
         $("#accordion").accordion();
     });
     </script>
+
 </body>
 </html>

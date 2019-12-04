@@ -39,6 +39,41 @@ title: MO
     <script src="https://kit.fontawesome.com/c586b4df75.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133733565-2"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.getJSON('https://api.github.com/users/nirmalhk7/repos', function (result) {
+                $('#projAPI').append("<div class='accordion__item js - accordion - item'>");
+                var tr;
+                for (var i = 0; i < result.length; i++) {
+
+                    $('#projAPI').append("<div class='accordion - header js - accordion - header'>" + result[i].name + "</div>");
+                    $('#projAPI').append("<div class='accordion - body js - accordion - body'><div class='accordion-body__contents'>" + result[i].description + "<code>" + result[i].language + "</code></div></div>");
+                }
+                $('#projAPI').append("</div>");
+            });
+        });
+    </script>
+    {% if page.url != "/" %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.getJSON("https://api.github.com/users/nirmalhk7/repos", function (json) {
+
+                $('#jsonTable').append("<tbody>");
+                for (var counter = 0; counter < json.length; counter++) {
+                    $('#jsonTable').append("<tr><td>" + json[counter].language + "</td><td>" + json[counter].description + "</td><td>" + json[counter].language + "</td><td>" + json[counter].private + "</td></tr>");
+                    console.log(json[counter].name + " (" + json[counter].language + ") - " + json[counter.description]);
+                    $.getJSON("https://api.github.com/repos/nirmalhk7/" + json[counter].name + "/contents/README.md", function (jsx) {
+                        var decodedString = atob(jsx.content);
+                        console.log(decodedString);
+                    });
+                }
+                $('#repoAPI').append("</tbody>");
+            });
+        });
+
+    </script>
+    {% endif %}
     <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -120,7 +155,9 @@ title: MO
     
     <!-- Java Script
     ================================================== -->
-    <script src="/assets/js/jquery-3.2.1.min.js"></script>
+
+
+
     <script src="/assets/js/plugins.js"></script>
     <script src="/assets/js/main.js"></script>
     <script>
@@ -142,138 +179,68 @@ title: MO
     }
     </script>
     <script>
-    $(document).ready(function() {
-        $('.error').hide();
-
-        $("#submitx").click(function() {
-            // validate and process form here
-            var name = $("#contactName").val();
-            var email = $("#contactEmail").val();
-            var body = $("#contactMessage").val();
-            $('.error').hide();
-            if (name == "") {
-                $("#contactName-error").show();
-                $("#contactName").focus();
-                return false;
-            }
-            if (email == "") {
-                $("#contactEmail-error").show();
-                $("#contactEmail").focus();
-                return false;
-            }
-            if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
-                $("#contactEmail-error").show();
-
-                $("#contactEmail-error").html("Invalid Email Address");
-                $("#contactEmail").focus();
-                return false;
-            }
-            if (body == "") {
-                $("#contactMessage-error").show();
-                $("#contactMessage").focus();
-                return false;
-            }
-
-        });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-
-        $('#submitx').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            var name = $("#contactName").val();
-            var email = $("#contactEmail").val();
-            var subj = $("#contactSubject").val();
-            var body = $("#contactMessage").val();
-
-            if (name != "" && email != "" && body != "") {
-                $.ajax({
-                    dataType: 'jsonp',
-                    url: "http://getsimpleform.com/messages/ajax?form_api_token=162ff4fa2bb9c89f908b059c33b0a806",
-                    data: {
-                        NAME: name,
-                        contactEmail: email,
-                        message: subj,
-                        content: body
-
-                    },
-                    success: function() {
-                        var name = $("#contactName").val();
-                        $('.alertbox').html("Hey " + name + "! Your message has been delivered.");
-                        $('.alert-box').removeClass("alert-box--error");
-                        $('.alert-box').addClass("alert-box--success");
-                        $('.alert').show();
-
-                    }
-                });
-            }
-            //End of submitx
-        });
-        //Endof Doc Ready
-    });
-    </script>
-        <script>
         var accordion = (function(){
   
-  var $accordion = $('.js-accordion');
-  var $accordion_header = $accordion.find('.js-accordion-header');
-  var $accordion_item = $('.js-accordion-item');
- 
-  // default settings 
-  var settings = {
-    // animation speed
-    speed: 400,
-    
-    // close all other accordion items if true
-    oneOpen: false
-  };
-    
-  return {
-    // pass configurable object literal
-    init: function($settings) {
-      $accordion_header.on('click', function() {
-        accordion.toggle($(this));
-      });
-      
-      $.extend(settings, $settings); 
-      
-      // ensure only one accordion is active if oneOpen is true
-      if(settings.oneOpen && $('.js-accordion-item.active').length > 1) {
-        $('.js-accordion-item.active:not(:first)').removeClass('active');
-      }
-      
-      // reveal the active accordion bodies
-      $('.js-accordion-item.active').find('> .js-accordion-body').show();
-    },
-    toggle: function($this) {
+        var $accordion = $('.js-accordion');
+        var $accordion_header = $accordion.find('.js-accordion-header');
+        var $accordion_item = $('.js-accordion-item');
+        
+        // default settings 
+        var settings = {
+            // animation speed
+            speed: 400,
             
-      if(settings.oneOpen && $this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
-        $this.closest('.js-accordion')
-               .find('> .js-accordion-item') 
-               .removeClass('active')
-               .find('.js-accordion-body')
-               .slideUp()
-      }
-      
-      // show/hide the clicked accordion item
-      $this.closest('.js-accordion-item').toggleClass('active');
-      $this.next().stop().slideToggle(settings.speed);
-    }
-  }
-})();
+            // close all other accordion items if true
+            oneOpen: false
+        };
+    
+        return {
+            // pass configurable object literal
+            init: function($settings) {
+            $accordion_header.on('click', function() {
+                accordion.toggle($(this));
+            });
+            
+            $.extend(settings, $settings); 
+            
+            // ensure only one accordion is active if oneOpen is true
+            if(settings.oneOpen && $('.js-accordion-item.active').length > 1) {
+                $('.js-accordion-item.active:not(:first)').removeClass('active');
+            }
+            
+            // reveal the active accordion bodies
+            $('.js-accordion-item.active').find('> .js-accordion-body').show();
+            },
+            toggle: function($this) {
+                    
+            if(settings.oneOpen && $this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
+                $this.closest('.js-accordion')
+                    .find('> .js-accordion-item') 
+                    .removeClass('active')
+                    .find('.js-accordion-body')
+                    .slideUp()
+            }
+            
+            // show/hide the clicked accordion item
+            $this.closest('.js-accordion-item').toggleClass('active');
+            $this.next().stop().slideToggle(settings.speed);
+            }
+        }
+        })();
 
-$(document).ready(function(){
-  accordion.init({ speed: 300, oneOpen: true });
-});</script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        $(document).ready(function(){
+        accordion.init({ speed: 300, oneOpen: true });
+        });
+    </script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
     $(function() {
         $("#accordion").accordion();
     });
     </script>
+
 </body>
 </html>

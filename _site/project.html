@@ -6,9 +6,6 @@
     ================================================== -->
     <meta charset="utf-8">
     <title>Nirmal Khedkar | Projects</title>
-    <meta name="description" content="">
-    <meta name="author" content="Nirmal Khedkar">
-    <meta name="google-site-verification" content="5ksq7CY5sGyWbkAcl57jwyuGf7jPxDaNoKO0IBP0fqw" />
     <link rel='manifest' href='http://localhost:4000/manifest.webmanifest'>
     <!-- Begin Jekyll SEO tag v2.5.0 -->
 <meta name="generator" content="Jekyll v3.8.5" />
@@ -53,6 +50,41 @@
     <script src="https://kit.fontawesome.com/c586b4df75.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133733565-2"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.getJSON('https://api.github.com/users/nirmalhk7/repos', function (result) {
+                $('#projAPI').append("<div class='accordion__item js - accordion - item'>");
+                var tr;
+                for (var i = 0; i < result.length; i++) {
+
+                    $('#projAPI').append("<div class='accordion - header js - accordion - header'>" + result[i].name + "</div>");
+                    $('#projAPI').append("<div class='accordion - body js - accordion - body'><div class='accordion-body__contents'>" + result[i].description + "<code>" + result[i].language + "</code></div></div>");
+                }
+                $('#projAPI').append("</div>");
+            });
+        });
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.getJSON("https://api.github.com/users/nirmalhk7/repos", function (json) {
+
+                $('#jsonTable').append("<tbody>");
+                for (var counter = 0; counter < json.length; counter++) {
+                    $('#jsonTable').append("<tr><td>" + json[counter].language + "</td><td>" + json[counter].description + "</td><td>" + json[counter].language + "</td><td>" + json[counter].private + "</td></tr>");
+                    console.log(json[counter].name + " (" + json[counter].language + ") - " + json[counter.description]);
+                    $.getJSON("https://api.github.com/repos/nirmalhk7/" + json[counter].name + "/contents/README.md", function (jsx) {
+                        var decodedString = atob(jsx.content);
+                        console.log(decodedString);
+                    });
+                }
+                $('#repoAPI').append("</tbody>");
+            });
+        });
+
+    </script>
+    
     <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -140,295 +172,15 @@
             <div class="blog-list block-1-2 block-tab-full">
                 <div class="accordion js-accordion">
                     <div class="table-responsive">
-                        <table>
+                        <table id="#repoAPI">
                             <thead>
                                 <tr>
                                     <th>Language/Framework</th>
                                     <th>Project</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            
 
-                                
-                                
-                                <tr>
-
-                                    <td>C++</td>
-                                    <td>
-                                        
-                                        <div class="accordion__item js-accordion-item">
-                                            <div class="accordion-header js-accordion-header">Crypto</div>
-                                            <div class="accordion-body js-accordion-body">
-                                                <div class="accordion-body__contents">
-                                                    <p>Built with Diffie Hellman principles. Wanna get that James Bond feeling?</p>
-
-<h5 id="about">About</h5>
-<p>The Crypto can be used to send information encrypted. Before you begin conversation, all you need is:-</p>
-<ul>
-  <li>A Security Number and Security Passkey</li>
-  <li>Your partner’s Silver Key.</li>
-  <li>Your Silver Key.</li>
-</ul>
-
-<h5 id="keys">Keys?</h5>
-<p>On Cranberry (v3.01) edition, anybody who knew the names of the senders and reciever. This made it possible for a <em>third</em> person to find out your names, crack the encryption and read your messages! Now <strong>there’s no need of names!</strong>. Using Crypto will now require 3 keys to be exchanged, and voila! You can begin conversation with an encryption scheme <strong>that nobody can even guess!!</strong></p>
-
-<h5 id="how-to-use">How to Use</h5>
-<ol>
-  <li>Get a Security Number, Security Passkey and Silver Key generated.</li>
-  <li>Send these to your Partner.</li>
-  <li>She should directly enter these (she shouldnt generate another pair of Security Keys) in her program.</li>
-  <li>The Silver Key which she gets should be shared to you.</li>
-  <li>You enter these in your program.</li>
-  <li>Voila! Begin the conversation!</li>
-</ol>
-
-<h5 id="i-want-one">I want one!</h5>
-<p><a href="https://github.com/nirmalhk7/crypto/releases">Here you go!</a></p>
-
-<h5 id="inspiration">Inspiration</h5>
-<p>The Movie <em>The Imitation Game</em> ,based on Alan Turing’s life, played by Benedict Cumberbatch and Keira Knightley.</p>
-
-<p><img src="http://cdn-static.denofgeek.com/sites/denofgeek/files/styles/main_wide/public/7/89//imitation-game-poster.jpg?itok=J8A4ABiU" alt="alt text" title="The Imitation Game" /></p>
-
-<h5 id="direction-of-improvement">Direction of Improvement</h5>
-<p>I’ve not thought of any further improvements yet.</p>
-
-<h5 id="makers">Makers</h5>
-<p>Nirmal Khedkar (<a href="www.github.com/nirmalhk7">@nirmalhk7</a>) is the sole maker of this project.</p>
-
-<h5 id="licences">Licences</h5>
-<p>MIT License. Suggestions/Feedbacks welcomed.</p>
-
-                                                </div>
-                                            </div> <!-- end of accordion body -->
-                                        </div><!-- end of accordion item -->
-                                
-                                        
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-
-                                    <td>Dialogflow</td>
-                                    <td>
-                                        
-                                        <div class="accordion__item js-accordion-item">
-                                            <div class="accordion-header js-accordion-header">First Aid Man</div>
-                                            <div class="accordion-body js-accordion-body">
-                                                <div class="accordion-body__contents">
-                                                    <p>Built by Dialogflow, it makes life-saving first aid information only a “Hey Google” away.</p>
-
-<h5 id="first-aid-man">First Aid Man</h5>
-<p>UK charity St. John Ambulance estimates that 150,000 people could be dying without appropriate first aid treatment <em>every year</em>. Their survey found that 59% of the people would not be confident while providing First Aid. Even more shocking is the fact that 24% of the people would ignore the patient in need.</p>
-
-<p>The only way to approach this is to provide First Aid that is</p>
-<ol>
-  <li>Accessible</li>
-  <li>Easy to Understand</li>
-  <li>Does not leave the Good Samaritan in a confusion.</li>
-</ol>
-
-<p>Most people wouldnt be searching first aid on the web or downloading first aid apps on their smartphones. So I figured that the best way to aid people with first aid treatment procedures is to:</p>
-
-<h5 id="make-an-app-on-google-assistant">Make an app on Google Assistant!</h5>
-<p>The First Aid Man is a Google Assistant app providing the user with 22 different diseases of different severity (from unconsciousness to poisoning). This app makes first aid treatments only an <em>‘Okay Google’</em> away. Since there are some limitations in Dialogflow conversations, I’ve made use of GitHub.</p>
-
-<h5 id="how-this-is-better">How this is better</h5>
-<ol>
-  <li>If Google Assistant works on your device, you can use First Aid Man</li>
-  <li>The treatments are taken from the <a href="http://www.thebreakingnews.com/files/articles/band-aid-guide.pdf">Band Aid First Aid Guide</a>. So its very clear.</li>
-  <li>I’ve tried to make it the easiest for anyone to provide treatment, and I am open for any suggestions that make it even easier. I’ve put symptoms and pictures to make it easier to understand. 
-ex: There are three kinds of burns: first, second and third degree. Each burn has different treatment but not many would know the difference behind all the three, and they’d end up checking the treatment for each of them. So I’ve provided symptoms before the treatment screens.</li>
-  <li>People should be able to use this app regardless of their location. If they have network coverage, they should be able to use this app. This is also the reason why the webpages in this repo are very basic, intended to work anywhere anytime.</li>
-</ol>
-
-<h5 id="links">Links</h5>
-<ol>
-  <li><a href="https://nirmalhk7.github.io/firstaidman/bleeding.html">Bleeding- First Aid Man</a></li>
-  <li><a href="https://nirmalhk7.github.io/firstaidman/breathingproblems.html">Breathing Problems- First Aid Man</a></li>
-  <li><a href="https://nirmalhk7.github.io/firstaidman/burnsScalds.html">Burns and Scalds- First Aid Man</a></li>
-  <li><a href="https://nirmalhk7.github.io/firstaidman/bleeding.html">Chemical Burn- First Aid Man</a></li>
-  <li><a href="https://nirmalhk7.github.io/firstaidman/fracture.html">Fracture- First Aid Man</a></li>
-  <li><a href="https://nirmalhk7.github.io/firstaidman/frostbite.html">Frostbite- First Aid Man</a></li>
-  <li><a href="https://nirmalhk7.github.io/firstaidman/nonChemicalBurn.html">Non Chemical Burn- First Aid Man</a></li>
-  <li><a href="https://nirmalhk7.github.io/firstaidman/penetratingObjects.html">Penetrating Objects- First Aid Man</a></li>
-  <li><a href="https://nirmalhk7.github.io/firstaidman/poisoning.html">Poisoning- First Aid Man</a></li>
-  <li><a href="https://nirmalhk7.github.io/firstaidman/transporting.html">Transporting An Injured- First Aid Man</a></li>
-</ol>
-
-<h5 id="source">Source</h5>
-<p>I’ve used the treatments from the <a href="http://www.thebreakingnews.com/files/articles/band-aid-guide.pdf">Band Aid First Aid Guide</a>. So I’ve only put that info from that file into my app. I have exactly <strong>zero</strong> medical expertise so if anything is wrong here, all I can do is correct it.</p>
-
-<h5 id="made-by">Made By</h5>
-<p>You know it. Nirmal Khedkar (nirmalhk7)</p>
-
-                                                </div>
-                                            </div> <!-- end of accordion body -->
-                                        </div><!-- end of accordion item -->
-                                
-                                        
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-
-                                    <td>Jekyll</td>
-                                    <td>
-                                        
-                                        <div class="accordion__item js-accordion-item">
-                                            <div class="accordion-header js-accordion-header">nirmalhk7.github.io</div>
-                                            <div class="accordion-body js-accordion-body">
-                                                <div class="accordion-body__contents">
-                                                    <p>Previously a simple website, now powered with Jekyll.</p>
-
-<h5 id="nirmalhk7githubio">nirmalhk7.github.io</h5>
-<p>The redesigned website is live, and the design is expected to be forever. I will continue adding JS elements to make it more cooler and faster. Also, the blog is now in-house!</p>
-
-<h5 id="new-components">New Components</h5>
-<p>The website uses components made by other developers, which I will acknowledge here:</p>
-<ul>
-  <li>The theme: Hola by Styleshout.</li>
-  <li>Wallpaper: Beast Dreams II By Justin Maller</li>
-  <li>Animations: from Animista
-    <ul>
-      <li>Flickering Footer</li>
-      <li>Heartbeat</li>
-    </ul>
-  </li>
-  <li>Form: Simple Form</li>
-</ul>
-
-<h5 id="made-by">Made By</h5>
-<p>Nirmal Khedkar</p>
-
-
-                                                </div>
-                                            </div> <!-- end of accordion body -->
-                                        </div><!-- end of accordion item -->
-                                
-                                        
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-
-                                    <td>Ruby on Rails</td>
-                                    <td>
-                                        
-                                        <div class="accordion__item js-accordion-item">
-                                            <div class="accordion-header js-accordion-header">ClubNITK</div>
-                                            <div class="accordion-body js-accordion-body">
-                                                <div class="accordion-body__contents">
-                                                    <p>Club Recruitment Portal for NITK. Under Development</p>
-
-<h5 id="built-for-nitk">Built for NITK</h5>
-<p>Among all clubs in NITK, there are 6 clubs which are called “exclusive clubs”, i.e. one can join only one of these 6 clubs. These clubs are:</p>
-<ul>
-  <li>IEEE</li>
-  <li>ACM</li>
-  <li>IET</li>
-  <li>IE</li>
-  <li>ISTE</li>
-  <li>Rotoract</li>
-</ul>
-
-<p>Every year almost all of 800 people (annual intake of NITK) apply for clubs. They have to order the clubs by their priority: from most wanted to least.</p>
-
-<p>Since there is no transparent, bug-proof system existing, most people think they could tell different orders to different clubs to increase their likelihood of getting into any club. So club recruiters (3rd and 4th year students) have to spend a tonne of time to sort the final list out.</p>
-
-<p>This year (2019), recruitment was done by Google Sheets, which was better than last year (chaos) but still inefficient.</p>
-
-<h5 id="the-idea">The Idea</h5>
-<p><a href="https://abhishekkumar2718.github.io">Abhishek Kumar</a> suggested me this idea for NIT Conclave 2019 Hackathon. I spoke to my club (IET NITK) head, and he confirmed my views.</p>
-
-<p>Since we didnt do this in Conclave, I thought its best if I completed this project myself, also learning Ruby on Rails along the way.</p>
-
-                                                </div>
-                                            </div> <!-- end of accordion body -->
-                                        </div><!-- end of accordion item -->
-                                
-                                        
-                                        <div class="accordion__item js-accordion-item">
-                                            <div class="accordion-header js-accordion-header">ScholarHub</div>
-                                            <div class="accordion-body js-accordion-body">
-                                                <div class="accordion-body__contents">
-                                                    <p>Linkedin for Research Students.</p>
-
-<h5 id="scholarhub">ScholarHub</h5>
-
-<p><strong>Project Name</strong>: ScholarHub - Research And Collaboration Portal for NITs</p>
-
-<p><strong>Built By</strong>: <a href="https://abhishekkumar2718.github.io">Abhishek Kumar</a> and Nirmal Khedkar</p>
-
-<p><strong>My Contributions</strong>: All Frontend.</p>
-
-<p><strong>Accolades Recieved</strong>: 5th place in NIT Conclave 2019, 2nd place overall.</p>
-
-<p><strong>Project Name</strong>: ScholarHub - Research And Collaboration Portal for NITs</p>
-
-<p><strong>Built By</strong>: Abhishek Kumar and Nirmal Khedkar</p>
-
-<p><strong>Accolades Recieved</strong>: 5th place in NIT Conclave 2019, 2nd place overall.</p>
-
-<p><strong>Title Track</strong>: InterNIT Communication.</p>
-
-<p><strong>Login Instructions</strong></p>
-<ul>
-  <li><a href="https://shrouded-depths-90549.herokuapp.com">Find Project Link here</a></li>
-  <li>Log in with <em>abhishekkumar@gmail.com</em> and password <em>passwd</em>.</li>
-</ul>
-
-<h6 id="problem-statement">Problem Statement</h6>
-
-<p>Despite the Government’s stress for R&amp;D across various sectors within India, we felt the researchers lacked a uniform platform to enlighten themselves to interact with their fellow researchers and to look for grants issued by Goverment and Universities</p>
-
-<ul>
-  <li>We realized the future of engineering lies in interdiscplinary pursuits: Knowledge in mutliple fields is essential. There is no central repository of research papers written by NIT scholars which we felt was a requirement in this age.</li>
-  <li>Researchers when in need of a fellow researchers with a particular skillset have to resort to word of mouth. This restricts the pool of talent that can be accessed.</li>
-  <li>Researchers have to rely on word of mouth and suggestions to find out about applicable grants, which is often too late.</li>
-  <li>There is no central source of events and workshops of interest for NITs.</li>
-</ul>
-
-<h6 id="our-solution">Our Solution</h6>
-
-<p>The idea behind ScholarHub is to promote research culture within NIT’s by making information about funding, human resource development and provision of neccesary facilities at one central place.</p>
-
-<ul>
-  <li>This eliminates the need to go through another NIT’s research portal to find research papers.</li>
-  <li>We provide a list of fellow researchers who are in need of collaborators. We provide enough personal information and a way of communication to identify right partners.</li>
-  <li>We aggregrate information about upcoming events of interest across all NITs, enabling interested scholars to pursue more workshops.</li>
-  <li>We provide a list of upcoming grants and their essential information that institutions and governments offer.</li>
-</ul>
-
-<h6 id="images">Images</h6>
-
-<p><img src="https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-32-23.png" alt="Landing page" /></p>
-
-<p><img src="https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-32-33.png" alt="Login Page" /></p>
-
-<p><img src="https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-33-14.png" alt="Dashboard" /></p>
-
-<p><img src="https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-33-49.png" alt="Collaboration" /></p>
-
-<p><img src="https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-34-00.png" alt="Collaboration Request Detail" /></p>
-
-<p><img src="https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-34-12.png" alt="Events" />
-<img src="https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-34-34.png" alt="Grants" />
-«««&lt; HEAD
-<img src="https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-34-46.png" alt="Grants Description" />
-=======
-<img src="https://raw.githubusercontent.com/abhishekkumar2718/ScholarHub/master/Screenshot%20from%202019-08-25%2015-34-46.png" alt="Grants Description" /></p>
-
-                                                </div>
-                                            </div> <!-- end of accordion body -->
-                                        </div><!-- end of accordion item -->
-                                
-                                        
-                                    </td>
-                                </tr>
-                                
-                            </tbody>
                         </table>
                     </div>
                     
@@ -441,6 +193,7 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
         </div> <!-- end col-full -->
     </div> <!-- end blog-content -->
 </section>
+
     
 
 
@@ -449,8 +202,8 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
     <div class="row narrow section-intro has-bottom-sep">
         <div class="col-full">
             <blockquote>
-                <p>If you want to be a winner, then compare yourself to the best and acknowledge that it will never happen without hard work.</p>
-                <cite>Jamie Dimon</cite>
+                <p>Sometimes it is the people who no one imagines anything of who do the things that no one can imagine.</p>
+                <cite>Alan Turing</cite>
             </blockquote>
         </div>
     </div>
@@ -552,7 +305,7 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
         <div class="col-twelve">
             <div class="copyright">
                 <span style="color: #3d3d3d">Made with <i class="im im-heart heartbeat" style="font-size: 14px;"></i> by Nirmal Khedkar</span>
-                <span style="color: #3d3d3d">Last Updated: November 20, 2019</span>
+                <span style="color: #3d3d3d">Last Updated: December 04, 2019</span>
             </div>
             <div class="copyright">
                 <span style="color: #1d1d1d" id="justinmaller">Image Credits <a class="hidelink" href="#" style="color: #1d1d1d">Beast Dreams II</a> by Justin Maller</span>
@@ -604,7 +357,9 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
     
     <!-- Java Script
     ================================================== -->
-    <script src="/assets/js/jquery-3.2.1.min.js"></script>
+
+
+
     <script src="/assets/js/plugins.js"></script>
     <script src="/assets/js/main.js"></script>
     <script>
@@ -626,138 +381,68 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
     }
     </script>
     <script>
-    $(document).ready(function() {
-        $('.error').hide();
-
-        $("#submitx").click(function() {
-            // validate and process form here
-            var name = $("#contactName").val();
-            var email = $("#contactEmail").val();
-            var body = $("#contactMessage").val();
-            $('.error').hide();
-            if (name == "") {
-                $("#contactName-error").show();
-                $("#contactName").focus();
-                return false;
-            }
-            if (email == "") {
-                $("#contactEmail-error").show();
-                $("#contactEmail").focus();
-                return false;
-            }
-            if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
-                $("#contactEmail-error").show();
-
-                $("#contactEmail-error").html("Invalid Email Address");
-                $("#contactEmail").focus();
-                return false;
-            }
-            if (body == "") {
-                $("#contactMessage-error").show();
-                $("#contactMessage").focus();
-                return false;
-            }
-
-        });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-
-        $('#submitx').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            var name = $("#contactName").val();
-            var email = $("#contactEmail").val();
-            var subj = $("#contactSubject").val();
-            var body = $("#contactMessage").val();
-
-            if (name != "" && email != "" && body != "") {
-                $.ajax({
-                    dataType: 'jsonp',
-                    url: "http://getsimpleform.com/messages/ajax?form_api_token=162ff4fa2bb9c89f908b059c33b0a806",
-                    data: {
-                        NAME: name,
-                        contactEmail: email,
-                        message: subj,
-                        content: body
-
-                    },
-                    success: function() {
-                        var name = $("#contactName").val();
-                        $('.alertbox').html("Hey " + name + "! Your message has been delivered.");
-                        $('.alert-box').removeClass("alert-box--error");
-                        $('.alert-box').addClass("alert-box--success");
-                        $('.alert').show();
-
-                    }
-                });
-            }
-            //End of submitx
-        });
-        //Endof Doc Ready
-    });
-    </script>
-        <script>
         var accordion = (function(){
   
-  var $accordion = $('.js-accordion');
-  var $accordion_header = $accordion.find('.js-accordion-header');
-  var $accordion_item = $('.js-accordion-item');
- 
-  // default settings 
-  var settings = {
-    // animation speed
-    speed: 400,
-    
-    // close all other accordion items if true
-    oneOpen: false
-  };
-    
-  return {
-    // pass configurable object literal
-    init: function($settings) {
-      $accordion_header.on('click', function() {
-        accordion.toggle($(this));
-      });
-      
-      $.extend(settings, $settings); 
-      
-      // ensure only one accordion is active if oneOpen is true
-      if(settings.oneOpen && $('.js-accordion-item.active').length > 1) {
-        $('.js-accordion-item.active:not(:first)').removeClass('active');
-      }
-      
-      // reveal the active accordion bodies
-      $('.js-accordion-item.active').find('> .js-accordion-body').show();
-    },
-    toggle: function($this) {
+        var $accordion = $('.js-accordion');
+        var $accordion_header = $accordion.find('.js-accordion-header');
+        var $accordion_item = $('.js-accordion-item');
+        
+        // default settings 
+        var settings = {
+            // animation speed
+            speed: 400,
             
-      if(settings.oneOpen && $this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
-        $this.closest('.js-accordion')
-               .find('> .js-accordion-item') 
-               .removeClass('active')
-               .find('.js-accordion-body')
-               .slideUp()
-      }
-      
-      // show/hide the clicked accordion item
-      $this.closest('.js-accordion-item').toggleClass('active');
-      $this.next().stop().slideToggle(settings.speed);
-    }
-  }
-})();
+            // close all other accordion items if true
+            oneOpen: false
+        };
+    
+        return {
+            // pass configurable object literal
+            init: function($settings) {
+            $accordion_header.on('click', function() {
+                accordion.toggle($(this));
+            });
+            
+            $.extend(settings, $settings); 
+            
+            // ensure only one accordion is active if oneOpen is true
+            if(settings.oneOpen && $('.js-accordion-item.active').length > 1) {
+                $('.js-accordion-item.active:not(:first)').removeClass('active');
+            }
+            
+            // reveal the active accordion bodies
+            $('.js-accordion-item.active').find('> .js-accordion-body').show();
+            },
+            toggle: function($this) {
+                    
+            if(settings.oneOpen && $this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
+                $this.closest('.js-accordion')
+                    .find('> .js-accordion-item') 
+                    .removeClass('active')
+                    .find('.js-accordion-body')
+                    .slideUp()
+            }
+            
+            // show/hide the clicked accordion item
+            $this.closest('.js-accordion-item').toggleClass('active');
+            $this.next().stop().slideToggle(settings.speed);
+            }
+        }
+        })();
 
-$(document).ready(function(){
-  accordion.init({ speed: 300, oneOpen: true });
-});</script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        $(document).ready(function(){
+        accordion.init({ speed: 300, oneOpen: true });
+        });
+    </script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
     $(function() {
         $("#accordion").accordion();
     });
     </script>
+
 </body>
 </html>
