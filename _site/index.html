@@ -53,17 +53,22 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
         $(document).ready(function () {
-            $.getJSON('https://api.github.com/users/nirmalhk7/repos', function (result) {
-                $('#projAPI').append("<div class='accordion__item js - accordion - item'>");
-                var tr;
+            $.getJSON('https://api.github.com/users/nirmalhk7/repos?sort:updated', function (result) {
                 for (var i = 0; i < result.length; i++) {
 
-                    $('#projAPI').append("<div class='accordion - header js - accordion - header'>" + result[i].name + "</div>");
-                    $('#projAPI').append("<div class='accordion - body js - accordion - body'><div class='accordion-body__contents'>" + result[i].description + "<code>" + result[i].language + "</code></div></div>");
+                    $('.projAPI').append("<div class='accordion__item js - accordion - item'><div class='accordion - header js - accordion - header'>" + result[i].name + "</div>"+"<div class='accordion - body js - accordion - body'><div class='accordion-body__contents'>" + result[i].description + "<code>" + result[i].language + "</code></div></div></div>");
+
+                    
                 }
-                $('#projAPI').append("</div>");
             });
         });
+    </script>
+    <script>
+    $(document).ready(function () {
+        $('.projAPI').append("<b>WORK</b>");
+        $('.projAPI').append("<b>ING</b>");
+        console.log("WORKING")
+    });
     </script>
     
     <script>
@@ -383,8 +388,8 @@
             </div>
         </div>
         <div class="col-six tab-full left">
-            <div id="#projAPI" class="accordion js-accordion">
-                
+            <div id="#projAPI" class="projAPI accordion js-accordion">
+                <b>YEAH</b>
                 
             </div><!-- end of accordion -->
         </div>
@@ -407,8 +412,8 @@
     <div class="row narrow section-intro has-bottom-sep">
         <div class="col-full">
             <blockquote>
-                <p>Talk is over-rated as a means of settling disputes.</p>
-                <cite>Tom Cruise</cite>
+                <p>It’s not enough to be against something. You have to be for something better.</p>
+                <cite>Tony Stark</cite>
             </blockquote>
         </div>
     </div>
@@ -641,7 +646,7 @@
     </script>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
     $(function() {
