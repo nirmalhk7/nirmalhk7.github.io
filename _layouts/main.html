@@ -110,14 +110,13 @@ title: Main
             <div class="row">
                 {% assign gp = site.data.skills | group_by: "type" %}
                 {% for g in gp %}
-                <br>
-                <h5>{{ g.name }}</h5>
+                <h5 style="padding-top: 1em;">{{ g.name }}</h5>
                 <hr style="border-color: #af2b2b;margin:10px!important">
-                {% for item in g.items %}
-                <div class="col-three minicard minicard-box">
-                    {{item.name}}
-                </div>
-                {% endfor %}
+                    {% for item in g.items %}
+                    <div class="col-three minicard minicard-box">
+                        {{item.name}}
+                    </div>
+                    {% endfor %}
                 {%endfor%}
             </div>
 

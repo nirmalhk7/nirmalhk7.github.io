@@ -8,7 +8,7 @@ I'm from India, and I'm second year student at National Institute of Technology,
 
 ##### Academics
 I completed my 10th grade in Bangalore with **9.4 CGPA** and my 12th grade with
-87.9% . I currently study in **National Institute of Technology Karnataka** doing BTech in Information Technology and have <em>CGPA 7.3</em><small>(as of May 2019)</small>
+87.9% . I currently study in **National Institute of Technology Karnataka** doing BTech in Information Technology and have <em>{{site.getCGPA }}</em><small>(as of May 2019)</small>
 
 ##### Technical Things
-My projects are listed below and are mostly available on GitHub. I'm also a passionate competitive coder: find my profiles on reknowned platforms here
+My projects are listed below and are mostly available on GitHub. I also like to brush myself on my coding styles, find my profiles on coding websites here
