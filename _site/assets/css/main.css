@@ -110,7 +110,7 @@
     }
 }
 
-.gi .tw .ln .go .pi{
+.gi .tw .ln .go .pi .an{
     transition-duration: 2s;
 }
 .tw:hover {
@@ -137,7 +137,10 @@
     color: #bd081c;
     transform: scale(1.1);
 }
-
+.an:hover{
+    color:#000;
+    transform: scale(1.1);
+}
 
 /* ===================================================================
  * # base style overrides - (_document-setup.scss)

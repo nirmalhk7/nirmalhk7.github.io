@@ -9,6 +9,11 @@ social:
   icon: fab fa-github
   initial: gi
 
+- name: Angellist
+  url: https://angel.co/nirmalhk7
+  icon: fab fa-angellist
+  initial: an
+
 - name: Goodreads
   url: https://www.goodreads.com/user/show/93069537-nirmal
   icon: fab fa-goodreads
