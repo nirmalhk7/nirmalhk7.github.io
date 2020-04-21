@@ -17,17 +17,22 @@
   medium: Android
   desc: App to facilitate a college going student. Includes timetable, attendance logging and exam and holidays reminder.
   link:
+
 - name: AgriBazaar
   medium: NodeJS and React
   desc: E-Commerce website for farmers.
   link:
+
 - name: Shell Implementation
   medium: C
   desc: Basic Shell implementation.
   link:
+
 - name: Lexical Analyser using Flex
   medium: C,Lex,Flex
   desc: Basic Lexical Analyser for C language.
+  link:
+  
 - name: IET-NITK
   medium: Jekyll
   desc: Made a Jekyll website-cum-blog for my college club IET NITK.
