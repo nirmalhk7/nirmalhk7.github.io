@@ -1,22 +1,28 @@
-- name: Web Design
-  type: Frameworks & Libraries
-- name: C++/C
-  type: Languages
+
+
+
+
+languages:
+- name: C/C++
 - name: JAVA
-  type: Languages
 - name: Python
-  type: Languages
-- name: Solidity
-  type: Languages
+- name: Javascript
+
+frameworks_libraries:
 - name: Jekyll
-  type: Frameworks & Libraries
 - name: Ruby on Rails
-  type: Frameworks & Libraries
 - name: Android
-  type: Platforms & Libraries
 - name: Dialogflow
-  type: Platforms & Libraries
 - name: NodeJS
-  type: Platforms & Libraries
 - name: React
-  type: Frameworks & Libraries
+- name: React Native
+- name: MongoDB
+- name: Numpy
+- name: Pandas
+- name: Scikit-Learn
+- name: Ionic
+
+tools:
+- name: Jupyter-Notebook
+- name: Android Studio
+- name: RubyMine

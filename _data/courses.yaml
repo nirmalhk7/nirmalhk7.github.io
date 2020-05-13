@@ -1,0 +1,27 @@
+college:
+- Web Technologies
+- DSA
+- Computer Networking
+- Discrete Mathematics
+- Computer Organization
+- Operating Systems
+- Database Management
+
+online:
+- name: Frontend Development with React
+  provider: HKUST, Coursera
+  link: https://coursera.org/share/cbcbb4252b9ab8a394ed71573f0c5e70r
+- name: Server-side Development with NodeJS, Express and MongoDB
+  provider: Coursera
+  link: https://www.coursera.org/account/accomplishments/certificate/JXES9NLB2J5S
+- name: Introduction to Machine Learning
+  provider: Stanford University, Coursera
+# - name: Neural Networks and Deep Learning
+#   provider: Deeplearning.ai, Coursera
+#   link: xxyyzz
+# - name: Cross Platform Development with React Native
+#   provider: HKUST, Coursera
+#   link: xxyyzz
+- name: Logistic Regression with Python and Numpy
+  provider: Rhyme.com
+  link: https://coursera.org/share/cbcbb4252b9ab8a394ed71573f0c5e70
