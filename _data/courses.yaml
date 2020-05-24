@@ -10,10 +10,10 @@ college:
 online:
 - name: Frontend Development with React
   provider: HKUST, Coursera
-  link: https://coursera.org/share/cbcbb4252b9ab8a394ed71573f0c5e70r
+  link: https://www.coursera.org/account/accomplishments/verify/H9S3TQR7S6ZS?utm_source=link&utm_campaign=copybutton_certificate&utm_product=course
 - name: Server-side Development with NodeJS, Express and MongoDB
-  provider: Coursera
-  link: https://www.coursera.org/account/accomplishments/certificate/JXES9NLB2J5S
+  provider: HKUST, Coursera
+  link: https://www.coursera.org/account/accomplishments/verify/JXES9NLB2J5S?utm_source=link&utm_campaign=copybutton_certificate&utm_product=course
 - name: Introduction to Machine Learning
   provider: Stanford University, Coursera
 # - name: Neural Networks and Deep Learning
@@ -24,4 +24,7 @@ online:
 #   link: xxyyzz
 - name: Logistic Regression with Python and Numpy
   provider: Rhyme.com
-  link: https://coursera.org/share/cbcbb4252b9ab8a394ed71573f0c5e70
+  link: https://coursera.org/share/b75a7a52d7cda5595e92beab219e98e1
+- name: Neural Networks and Deep Learning
+  provider: deeplearning.ai, Coursera
+  link: https://www.coursera.org/account/accomplishments/verify/MCRCWRDWYUTT?utm_source=link&utm_campaign=copybutton_certificate&utm_product=course
