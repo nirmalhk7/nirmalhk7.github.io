@@ -55,6 +55,6 @@ def foobar
     puts "Hello world!"
 end
 ```
-[Click me!](http://test.com/ "Link to Test.com")
+[Click me!](https://test.com/ "Link to Test.com")
 [alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
 

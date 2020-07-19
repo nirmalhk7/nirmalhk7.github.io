@@ -29,7 +29,7 @@ The Movie _The Imitation Game_ ,based on Alan Turing's life, played by Benedict 
 
 ![alt text][logo]
 
-[logo]: http://cdn-static.denofgeek.com/sites/denofgeek/files/styles/main_wide/public/7/89//imitation-game-poster.jpg?itok=J8A4ABiU "The Imitation Game"
+[logo]: https://cdn-static.denofgeek.com/sites/denofgeek/files/styles/main_wide/public/7/89//imitation-game-poster.jpg?itok=J8A4ABiU "The Imitation Game"
 
 ##### Direction of Improvement
 I've not thought of any further improvements yet.
