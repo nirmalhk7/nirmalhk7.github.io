@@ -61,7 +61,7 @@ title: Spaceride
                         {% assign post = site.posts.first %}
                         {% assign content = post.content %}
                         <div class="col-block">
-                            <img src="/assets/images/blog/{{ post.img }}" alt="">
+                            <img src="/assets/images/blog/{{ post.img }}" alt="Post Image">
                         </div>
                         <div class="col-block">
                             <h3 class="inv-header" style="color:antiquewhite">Latest on {{ site.blog }}</h3>
@@ -99,7 +99,7 @@ title: Spaceride
                             <div class="item-folio">
                                 <div class="item-folio__thumb">
                                     <a href="{{ post.url }}" class="" title="{{ post.excerpt | remove: '<p>' | remove:'</p>' }}">
-                                        <img src="/assets/images/blog/{{ post.img }}" alt="">
+                                        <img src="/assets/images/blog/{{ post.img }}" alt="Blog">
                                     </a>
                                 </div>
                                 <div class="item-folio__text">
@@ -158,10 +158,10 @@ title: Spaceride
             <div class="blog-list block-1-2 block-tab-full">
                 {% for category in site.categories %}
                 <article class="col-block">
-                    <h2 class="h01"><a class="smoothscroll" id="{{ category[0] }}">{{ category[0] }}</a></h2>
+                    <h2 class="h01"><a title="{{ category[0] }}" class="smoothscroll" id="{{ category[0] }}">{{ category[0] }}</a></h2>
                     <ul>
                         {% for post in category[1] %}
-                        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+                        <li><a title="{{post.title}}" href="{{ post.url }}">{{ post.title }}</a></li>
                         {% endfor %}
                     </ul>
                 </article>

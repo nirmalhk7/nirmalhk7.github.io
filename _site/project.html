@@ -31,11 +31,14 @@
     <link rel="stylesheet" href="/assets/css/vendor.min.css">
     <link rel="stylesheet" href="/assets/css/main.min.css">
     <link rel="stylesheet" href="/assets/css/nirmalhk7.min.css">
+
+    <link rel="preload" href="/assets/css/fontawesome-free-5.11.2-web/webfonts/fa-brands-400.woff2" as="font"/>
+    <link rel="preload" href="/assets/css/fontawesome-free-5.11.2-web/webfonts/fa-solid-900.woff2" as="font"/>
     <!-- script
     ================================================== -->
-    <script src="/assets/js/modernizr.js"></script>
+    <script src="/assets/js/modernizr.min.js"></script>
     <script src="/assets/js/pace.min.js"></script>
-    <script src="/assets/js/accordion.js"></script>
+    <script src="/assets/js/accordion.min.js"></script>
     <!-- favicons
     ================================================== -->
     <link rel="shortcut icon" href="/assets/images/eagle.ico" type="image/x-icon">
@@ -109,7 +112,7 @@
     <div class="row page-header__content">
         <article class="col-full">
             <h1 class="page-header__title">
-                <a href="#0" title="">
+                <a href="#0" title="Projects">
                     Projects
                 </a>
             </h1>
@@ -409,7 +412,7 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
                                             <div class="accordion-header js-accordion-header">Silver-Scrappie</div>
                                             <div class="accordion-body js-accordion-body">
                                                 <div class="accordion-body__contents">
-                                                    <p>I’ve tried making something I’ve always been fascinated with: web scrapers. I’ve followed <a href="https://www.tutorialspoint.com/python_web_scraping/index.htm">this</a> , and I’m making a complete web scrapper which I’ve baptised as Silver-Scrappy because I just did.
+                                                    <p>I’ve tried making something I’ve always been fascinated with: web scrapers. I’ve followed <a href="https://www.tutorialspoint.com/python_web_scraping/index.htm">this tutorial for webscraping</a> , and I’m making a complete web scrapper which I’ve baptised as Silver-Scrappy because I just did.
 <a href="https://github.com/nirmalhk7/silver-scrappy">Link</a></p>
 
                                                 </div>
@@ -525,8 +528,8 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
     <div class="row narrow section-intro has-bottom-sep">
         <div class="col-full">
             <blockquote>
-                <p>Sometimes it is the people who no one imagines anything of who do the things that no one can imagine.</p>
-                <cite>Alan Turing</cite>
+                <p>Good players win. Great ones break records. Legends change the game.</p>
+                <cite>Anonymous Racer</cite>
             </blockquote>
         </div>
     </div>
@@ -688,8 +691,8 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
     <!-- Java Script
     ================================================== -->
     <script src="/assets/js/jquery-3.2.1.min.js"></script>
-    <script src="/assets/js/plugins.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/plugins.min.js"></script>
+    <script src="/assets/js/main.min.js"></script>
     <script>
     var acc = document.getElementsByClassName("accordion");
     var i;
@@ -834,9 +837,9 @@ ex: There are three kinds of burns: first, second and third degree. Each burn ha
 $(document).ready(function(){
   accordion.init({ speed: 300, oneOpen: true });
 });</script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script>
     $(function() {
         $("#accordion").accordion();
