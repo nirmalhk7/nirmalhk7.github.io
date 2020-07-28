@@ -22,7 +22,7 @@ let quoteList = [
         saidby: "Alan Turing"
     },
     {
-        content: "Good players win.Great ones break records.Legends change the game.",
+        content: "Good players win. Great ones break records. Legends change the game.",
         saidby: "Anonymous Racer"
     }
 ]
