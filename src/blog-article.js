@@ -80,6 +80,7 @@ const BlogTemplate = ({ data }) => {
     </>
   )
 }
+// 2616b224-2bf8-549d-a342-22543bcfa627
 export const postQuery = graphql`
 	query($pathSlug: String!) {
     markdownRemark(id: {glob: $pathSlug}) {

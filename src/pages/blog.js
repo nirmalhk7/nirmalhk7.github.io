@@ -54,8 +54,6 @@ const Blog = () => {
     }
     `
   )["allMarkdownRemark"]["edges"]
-
-  data= data
   data = squashBlogData(data)
   console.log("Blog",data);
   return (

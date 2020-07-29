@@ -4,6 +4,10 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
+import skills from "../../data/skills.yaml";
+import experience from "../../data/workexperiences.yaml";
+import courses from "../../data/courses.yaml";
+import clubs from "../../data/memberships.yaml";
 
 class IndexPage extends React.Component {
   render() {
@@ -37,12 +41,7 @@ class IndexPage extends React.Component {
           </div>
           <ul className="home-social">
 
-            <li>
-              <Link title="socialprofile" to="https://www.linkedin.com/in/nirmalhk7/">
-                <i className="fab fa-linkedin ln" aria-hidden="true"></i>
-                <span>LinkedIn</span>
-              </Link>
-            </li>
+
 
             <li>
               <Link title="socialprofile" to="https://www.github.com/nirmalhk7">
@@ -93,7 +92,6 @@ class IndexPage extends React.Component {
             <div className="col-six tab-full left">
               <div className="padding-bottom:1em"><h3 id="howdy">Howdy!</h3>
                 <p>I’m from India, and I’m second year student at National Institute of Technology, Karnataka. Programming, reading books, reading news, table tennis and <strong>making applications that eliminate iterative work</strong> is my hobby. I like to constantly challenge myself with problems. I also have a knack for finance and investment.</p>
-
                 <h5 id="academics">Academics</h5>
                 <p>I completed my 10th grade in Bangalore with <strong>9.4 CGPA</strong> and my 12th grade with
 87.9%. I currently study in <strong>National Institute of Technology Karnataka</strong> doing BTech in Information Technology and have <em>7.06</em> CGPA<small>(as of May 2019)</small></p>
@@ -105,7 +103,7 @@ class IndexPage extends React.Component {
                 <p>I strongly think that the best way to earn more is to read more about exactly how money works.
 As a student, I love to read about money, stock markets and financial incidents around the world.</p>
               </div>
-              <Link to="\assets\pdf\Resume.pdf" className="btn btn--primary full-width" style={{ marginTop: "1em" }}>Download My Resume</Link>
+              <Link to="Resume.pdf" className="btn btn--primary full-width" style={{ marginTop: "1em" }}>Download My Resume</Link>
               <Link to="#contact" className="smoothscroll btn btn--stroke full-width">Want to Hire?</Link>
             </div>
             <div className="col-six tab-full right">
@@ -113,99 +111,47 @@ As a student, I love to read about money, stock markets and financial incidents 
               <div className="row">
                 <h5 style={{ paddingTop: "0.5em" }}>Languages, Frameworks, Libraries and Tools</h5>
                 <hr style={{ borderColor: "#af2b2b", margin: "10px!important" }} />
-
-                <div className="col-three minicard minicard-box">
-                  C/C++
-            </div>
-                <div className="col-three minicard minicard-box">
-                  JAVA
-            </div>
-                <div className="col-three minicard minicard-box">
-                  Python
-            </div>
+                {skills.languages.map((element, index) =>
+                  <div key={index} className="col-three minicard">
+                    {element.name}
+                  </div>
+                )}
+                {skills.frameworks_libraries.map((element, index) =>
+                  <div key={index} className="col-three minicard">
+                    {element.name}
+                  </div>
+                )}
+                {skills.tools.map((element, index) =>
+                  <div key={index} className="col-three minicard">
+                    {element.name}
+                  </div>
+                )}
               </div>
               <div className="row">
                 <h5 style={{ paddingTop: "0.5em;" }}>Online Certification and Courses Taken</h5>
                 <hr style={{ borderColor: "#af2b2b", margin: "10px!important" }} />
-                {/* <ul className="disc">
-                
-<li>Frontend Development with React by HKUST, Coursera
-    
-        - (<Link href=https://www.coursera.org/account/accomplishments/verify/H9S3TQR7S6ZS?utm_source=link&utm_campaign=copybutton_certificate&utm_product=course>link</Link>)
-    
-</li>
-                
-<li>Server-side Development with NodeJS, Express and MongoDB by HKUST, Coursera
-    
-        - (<Link href=https://www.coursera.org/account/accomplishments/verify/JXES9NLB2J5S?utm_source=link&utm_campaign=copybutton_certificate&utm_product=course>link</Link>)
-    
-</li>
-                
-<li>Introduction to Machine Learning by Stanford University, Coursera
-    
-</li>
-                
-<li>Logistic Regression with Python and Numpy by Rhyme.com
-    
-        - (<Link href=https://coursera.org/share/b75a7a52d7cda5595e92beab219e98e1>link</Link>)
-    
-</li>
-                
-<li>Neural Networks and Deep Learning by deeplearning.ai, Coursera
-    
-        - (<Link href=https://www.coursera.org/account/accomplishments/verify/MCRCWRDWYUTT?utm_source=link&utm_campaign=copybutton_certificate&utm_product=course>link</Link>)
-    
-</li>
-                
-                </ul> */}
+                <ul className="disc">
+                  {courses.online.map((element, index) =>
+                    <li key={index}>{element.name} by {element.provider}
+                  - (<Link to={element.link}>link</Link>)
+                    </li>
+                  )}
+                </ul>
               </div>
               <div className="row">
                 <h5 style={{ paddingTop: "0.5em;" }}>College Courses Taken</h5>
                 <hr style={{ borderColor: "#af2b2b", margin: "10px!important" }} />
-                {/* <ul className="disc">
-                
-Web Technologies
-
-    , 
-
-                
-DSA
-
-    , 
-
-                
-Computer Networking
-
-    , 
-
-                
-Discrete Mathematics
-
-    , 
-
-                
-Computer Organization
-
-    , 
-
-                
-Operating Systems
-
-    , 
-
-                
-Database Management
-
-                
-                </ul> */}
+                <ul className="disc">
+                  {courses.college.map((element, index) => { return <x style={{ paddingRight: "0.5em" }} key={index}>{element}</x> })}
+                </ul>
               </div>
               <div className="row">
                 <h5>Memberships</h5>
                 <hr style={{ borderColor: "#af2b2b", margin: "5px!important" }} />
                 <ul className="disc">
-                  <li>Web Developer (upto Jan 2020) at <Link to="https://www.tedxnitksurathkal.in">TEDxNITKSurathkal</Link></li>
-                  <li>Web Developer at <Link to="https://iris.nitk.ac.in/hrms/">IRIS NITK</Link></li>
-                  <li>Webmaster and Executive Member at <Link to="https://iet-nitk.github.io/">IET NITK</Link></li>
+                  {clubs.map((element, index) =>
+                    <li key={index}>{element.position} at <Link to={element.clubwebsite}>{element.club}</Link></li>
+                  )}
                 </ul>
               </div>
             </div>
@@ -214,39 +160,25 @@ Database Management
             <div className="col-full text-center">
               <h3>My Work Experience.</h3>
             </div>
-
-            <div className="col-six tab-full left">
-              <div className="timeline">
-                <div className="timeline__block">
-                  <div className="timeline__bullet"></div>
-                  <div className="timeline__header">
-                    <p className="timeline__timeframe">May 2019 - Present</p>
-                    <h3>IRIS NITK</h3>
-                    <h5>Web Developer (Frontend Intern upto June 2019)</h5>
-                  </div>
-                  <div className="timeline__desc">
-                    <p>My job as a Frontend Intern was to aid the design migration of IRIS modules like Fee Payment/Finance Module and Admissions Module. As a fulltime member, I've made and maintained a UI/UX Guideline for IRIS Members to follow. I've also worked on backend improvements in Admissions Module.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-six tab-full left">
-              <div className="timeline">
-                <div className="timeline__block">
-                  <div className="timeline__bullet"></div>
-                  <div className="timeline__header">
-                    <p className="timeline__timeframe">Dec 2019 - Present</p>
-                    <h3>Twzzr</h3>
-                    <h5>Product Developer</h5>
-                  </div>
-                  <div className="timeline__desc">
-                    <p>My job as a Product Developer is to oversee the web and Android products of our startup and fit it according to the needs on the ground.</p>
+            {experience.map((element, index) =>
+              <div className="col-six tab-full left">
+                <div className="timeline">
+                  <div className="timeline__block">
+                    <div className="timeline__bullet"></div>
+                    <div className="timeline__header">
+                      <p className="timeline__timeframe">{element.timeframe}</p>
+                      <h3>{element.company}</h3>
+                      <h5>{element.post}</h5>
+                    </div>
+                    <div className="timeline__desc">
+                      <p>
+                        {element.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-
+            )}
             <div className="col-six tab-full right">
               <div className="timeline">
               </div>

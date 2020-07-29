@@ -1,0 +1,29 @@
+
+
+
+
+languages:
+- name: C/C++
+- name: JAVA
+- name: Python
+- name: Javascript
+
+frameworks_libraries:
+- name: Jekyll
+- name: Ruby on Rails
+- name: Android
+- name: Dialogflow
+- name: NodeJS
+- name: React
+- name: React Native
+- name: MongoDB
+- name: Numpy
+- name: Pandas
+- name: Scikit-Learn
+- name: Ionic
+- name: Gatsby
+
+tools:
+- name: Jupyter-Notebook
+- name: Android Studio
+- name: RubyMine

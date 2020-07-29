@@ -6,7 +6,7 @@ const Navbar = (props) => {
   let webPath= props.location!=null ? props.location.pathname : null
   return (
     <header className="s-header">
-      <Link to="site.url">
+      <Link to="/">
         <div className="header-logo" >
           nirmalhk7
       </div>
