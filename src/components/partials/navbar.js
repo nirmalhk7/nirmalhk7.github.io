@@ -4,7 +4,6 @@ import { Link } from "gatsby";
 const Navbar = (props) => {
   console.log("NAVBARR",props);
   let webPath= props.location!=null ? props.location.pathname : null
-  let activeClass;
   return (
     <header className="s-header">
       <Link to="site.url">

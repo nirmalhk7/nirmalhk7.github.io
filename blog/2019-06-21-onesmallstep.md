@@ -3,9 +3,10 @@ layout: post
 title: One Small Step
 category: Future
 tags: moon space technology
-img: onesmallstep_buzzaldrin.webp
+img: "./onesmallstep_buzzaldrin.webp"
+description: 50 years since 1969! A review of the legacy and impact of Apollo 11.
 ---
-50 years since 1969! A review of the legacy and impact of Apollo 11.
+
 
 I'm really an outer space guy. When I see any planet in sky, I stop whatever I'm doing and can't help but stare at the planet thinking that what must life outside Earth look like. Sky really fires me up in this way.
 

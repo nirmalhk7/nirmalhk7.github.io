@@ -3,7 +3,7 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { useStaticQuery, graphql } from "gatsby"
-import SocialMediaSideIcons from "../components/partials/social"
+// import SocialMediaSideIcons from "../components/partials/social"
 
 const squashBlogData = (data) => {
   let i;
@@ -18,7 +18,7 @@ const squashBlogData = (data) => {
       temp["description"] = data[i]["node"]["frontmatter"]["description"]
       temp["tags"] = data[i]["node"]["frontmatter"]["tags"]
       temp["category"] = data[i]["node"]["frontmatter"]["category"]
-      temp["image"] = data[i]["node"]["frontmatter"]["image"]
+      temp["image"] = data[i]["node"]["frontmatter"]["img"]
       temp["uploadDate"] = postDate
       temp["URL"] = "blog/" + postURL
       ans.push(temp)
@@ -27,37 +27,37 @@ const squashBlogData = (data) => {
   return ans.sort((a, b) => { return b.uploadDate - a.uploadDate })
 }
 const Blog = () => {
-  // let data = useStaticQuery(
-  //   graphql`
-  //   query {
-  //     allMarkdownRemark {
-  //       edges {
-  //         node {
-  //           wordCount {
-  //             words
-  //           }
-  //           frontmatter {
-  //             title,
-  //             description,
-  //             tags,
-  //             image,
-  //             category
-  //           }
-  //           parent {
-  //             ... on File {
-  //               name
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  //   `
-  // )["allMarkdownRemark"]["edges"]
+  let data = useStaticQuery(
+    graphql`
+    query {
+      allMarkdownRemark {
+        edges {
+          node {
+            wordCount {
+              words
+            }
+            frontmatter {
+              title,
+              description,
+              tags,
+              img,
+              category
+            }
+            parent {
+              ... on File {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+    `
+  )["allMarkdownRemark"]["edges"]
 
-  // data= data
-  // data = squashBlogData(data)
-  // console.log("Blog",data);
+  data= data
+  data = squashBlogData(data)
+  console.log("Blog",data);
   return (
     <Layout>
       <SEO title="Spaceride" />
@@ -86,7 +86,7 @@ const Blog = () => {
           </div>
         </div>
       </section>
-      {/* <section className="s-works inv target-section" id="blog">
+      <section className="s-works inv target-section" id="blog">
         <div className="row blog-content">
           <div className="col-full">
             <div className="blog-list block-1-2 block-tab-full" style={{ marginTop: "0rem" }}>
@@ -108,8 +108,8 @@ const Blog = () => {
             </div>
           </div>
         </div>
-      </section> */}
-      {/* <section className="blog-content-wrap">
+      </section>
+      <section className="blog-content-wrap">
         <div className="row blog-content">
           <div className="col-full">
             <div className="row narrow section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
@@ -174,8 +174,8 @@ const Blog = () => {
             </div>
           </div>
         </div>
-      </section> */}
-      {/* <section className="s-works target-section">
+      </section>
+      <section className="s-works target-section">
         <div className="row narrow section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
           <div className="col-full text-center">
             <h3>Browse by Category</h3>
@@ -197,7 +197,7 @@ const Blog = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
     </Layout>
   )
 }

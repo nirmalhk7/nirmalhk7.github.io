@@ -61,9 +61,9 @@ const BlogTemplate = ({ data }) => {
                   <a href="/categories/#Future">{data.frontmatter.category ? data.frontmatter.category : "Personal"}</a>
                 </span>
                 <span className="blog-content__tag-list">
-                  {data.frontmatter.tags.map((element,index) =>
+                  {/* {data.frontmatter.tags && data.frontmatter.tags.map((element,index) =>
                     <a key={index} href="#0">{element}</a>
-                  )}
+                  )} */}
                 </span>
               </p>
               <div className="blog-content__all">
@@ -80,24 +80,24 @@ const BlogTemplate = ({ data }) => {
     </>
   )
 }
-// export const postQuery = graphql`
-// 	query($pathSlug: String!) {
-//     markdownRemark(id: {glob: $pathSlug}) {
-//       html
-//       frontmatter {
-//         title
-//         tags
-//         image
-//         description
-//         category
-//       }
-//       parent {
-//         ... on File {
-//           name
-//         }
-//       }
-//     }
-// 	}
-// `;
+export const postQuery = graphql`
+	query($pathSlug: String!) {
+    markdownRemark(id: {glob: $pathSlug}) {
+      html
+      frontmatter {
+        title
+        tags
+        img
+        description
+        category
+      }
+      parent {
+        ... on File {
+          name
+        }
+      }
+    }
+	}
+`;
 
 export default BlogTemplate;
