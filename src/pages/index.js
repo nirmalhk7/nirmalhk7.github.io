@@ -8,9 +8,35 @@ import skills from "../../data/skills.yaml";
 import experience from "../../data/workexperiences.yaml";
 import courses from "../../data/courses.yaml";
 import clubs from "../../data/memberships.yaml";
+import SocialMediaIcons from "../components/partials/social"
 
 class IndexPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: [false, false, false, false, false]
+    }
+    this.handleClick=this.handleClick.bind(this);
+  }
+  handleClick = event =>{
+    event.preventDefault();
+    event.persist();
+    let clickedOn = parseInt(event.target.id.split('-')[1])
+    console.log("EVE",event.target.id,clickedOn);
+    let newState= this.state.isOpen
+    newState.forEach((element,index) => {
+      if(index===clickedOn){
+        newState[clickedOn]=!newState[clickedOn]
+      }else{
+        newState[index]=false
+      }
+    });
+    this.setState({
+      isOpen: newState
+    })
+  }
   render() {
+    let projects = this.props.data.allFile.nodes.slice(0, 5)
     return (
       <Layout location={this.props.location}>
         <SEO title="Home" />
@@ -39,46 +65,7 @@ class IndexPage extends React.Component {
               </div>
             </div>
           </div>
-          <ul className="home-social">
-
-
-
-            <li>
-              <Link title="socialprofile" to="https://www.github.com/nirmalhk7">
-                <i className="fab fa-github gi" aria-hidden="true"></i>
-                <span>GitHub</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link title="socialprofile" to="https://angel.co/nirmalhk7">
-                <i className="fab fa-angellist an" aria-hidden="true"></i>
-                <span>Angellist</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link title="socialprofile" to="https://www.goodreads.com/user/show/93069537-nirmal">
-                <i className="fab fa-goodreads go" aria-hidden="true"></i>
-                <span>Goodreads</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link title="socialprofile" to="/feed.xml">
-                <i className="fas fa-rss-square srr" aria-hidden="true"></i>
-                <span>RSS</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link title="socialprofile" to="https://dev.to/nirmalhk7">
-                <i className="fab fa-dev dev" aria-hidden="true"></i>
-                <span>DEV</span>
-              </Link>
-            </li>
-
-          </ul>
+          <SocialMediaIcons />
         </section>
         <section id="about" className="s-about target-section">
           <div className="row narrow section-intro has-bottom-sep">
@@ -161,7 +148,7 @@ As a student, I love to read about money, stock markets and financial incidents 
               <h3>My Work Experience.</h3>
             </div>
             {experience.map((element, index) =>
-              <div className="col-six tab-full left">
+              <div key={index} className="col-six tab-full left">
                 <div className="timeline">
                   <div className="timeline__block">
                     <div className="timeline__bullet"></div>
@@ -179,10 +166,6 @@ As a student, I love to read about money, stock markets and financial incidents 
                 </div>
               </div>
             )}
-            <div className="col-six tab-full right">
-              <div className="timeline">
-              </div>
-            </div>
           </div>
         </section>
         <section id="works" className="s-works target-section">
@@ -199,57 +182,18 @@ As a student, I love to read about money, stock markets and financial incidents 
             </div>
             <div className="col-six tab-full left">
               <div className="accordion js-accordion">
-
-
-                <div className="accordion__item js-accordion-item">
-                  <div className="accordion-header js-accordion-header">Silver-Scrappie</div>
-                  <div className="accordion-body js-accordion-body">
-                    <div className="accordion-body__contents">
-                      <p>I’ve tried making something I’ve always been fascinated with: web scrapers. I’ve followed <Link to="https://www.tutorialspoint.com/python_web_scraping/index.htm">this tutorial for webscraping</Link> , and I’m making a complete web scrapper which I’ve baptised as Silver-Scrappy because I just did.
-<Link to="https://github.com/nirmalhk7/silver-scrappy">Link</Link></p>
-                      <Link to="/project#Silver-Scrappie">Find more here</Link>.&nbsp;&nbsp;&nbsp;<code>Python</code>
+                {projects && projects.map((element, index) =>
+                  <div key={index} id={"accordion-"+index} onClick={this.handleClick} className={`accordion__item js-accordion-item ${this.state.isOpen[index] ? 'active': ''}`}>
+                    <div id={"accordionheader-"+index} className="accordion-header js-accordion-header">{element.childMarkdownRemark.frontmatter.name}</div>
+                    <div id={"accordionbody-"+index} className="accordion-body js-accordion-body" style={{ display: `${this.state.isOpen[index] ? 'block': 'none'}` }}>
+                      <div className="accordion-body__contents">
+                        <p>{element.childMarkdownRemark.excerpt}</p>
+                        <Link to="/project#Silver-Scrappie">Find more here</Link>.&nbsp;&nbsp;&nbsp;
+                        <code>{element.childMarkdownRemark.frontmatter.medium}</code>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="accordion__item js-accordion-item">
-                  <div className="accordion-header js-accordion-header">AgriBazaar</div>
-                  <div className="accordion-body js-accordion-body">
-                    <div className="accordion-body__contents">
-
-                      <p>E-Commerce website for farmers.
-<Link to="https://github.com/nirmalhk7/farmer-Market">Link</Link></p>
-                      <Link to="/project#AgriBazaar">Find more here</Link>.&nbsp;&nbsp;&nbsp;<code>NodeJS, React</code>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="accordion__item js-accordion-item">
-                  <div className="accordion-header js-accordion-header">CollegeGO</div>
-                  <div className="accordion-body js-accordion-body">
-                    <div className="accordion-body__contents">
-                      <p>App to facilitate a college going student. Includes timetable, attendance logging and exam and holidays reminder.</p>
-                      <Link to="/project#CollegeGO">Find more here</Link>.&nbsp;&nbsp;&nbsp;<code>Android</code>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion__item js-accordion-item">
-                  <div className="accordion-header js-accordion-header">Crypto</div>
-                  <div className="accordion-body js-accordion-body">
-                    <div className="accordion-body__contents">
-                      <p>Built with Diffie Hellman principles. Wanna get that James Bond feeling?</p>
-                      <Link to="/project#Crypto">Find more here</Link>.&nbsp;&nbsp;&nbsp;<code>C++</code>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion__item js-accordion-item">
-                  <div className="accordion-header js-accordion-header">First Aid Man</div>
-                  <div className="accordion-body js-accordion-body">
-                    <div className="accordion-body__contents">
-                      <p>Built by Dialogflow, it makes life-saving first aid information only a “Hey Google” away.</p>
-                      <Link to="/project#First Aid Man">Find more here</Link>.&nbsp;&nbsp;&nbsp;<code>Dialogflow</code>
-                    </div>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
@@ -267,5 +211,24 @@ As a student, I love to read about money, stock markets and financial incidents 
     )
   }
 }
+
+export const postQuery = graphql`
+	query x {
+    allFile(filter: {sourceInstanceName: {eq: "projects"}}, sort: {order: DESC, fields: birthTime}) {
+      nodes {
+        sourceInstanceName
+        childMarkdownRemark {
+          frontmatter {
+            name
+            medium
+          }
+          html
+          excerpt
+        }
+        birthtime
+      }
+    }
+	}
+`;
 
 export default IndexPage

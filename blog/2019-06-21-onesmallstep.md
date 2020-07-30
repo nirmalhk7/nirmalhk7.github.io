@@ -1,5 +1,4 @@
 ---
-layout: post
 title: One Small Step
 category: Future
 tags: moon space technology
