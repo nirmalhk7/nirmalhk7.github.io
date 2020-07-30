@@ -16,11 +16,11 @@ const ContactForm = () => {
           <form action="https://getsimpleform.com/messages?form_api_token=162ff4fa2bb9c89f908b059c33b0a806" method="post">
             <input type='text' name='NAME:' className="full-width" placeholder="Name" />
             <div className="form-field">
-              <input name="contactEmail: " type="email" id="contactEmail" placeholder="Email" value="" required="" aria-required="true" className="full-width" />
+              <input name="contactEmail: " type="email" id="contactEmail" placeholder="Email" required="" aria-required="true" className="full-width" />
             </div>
-            <input name="contactSubject: " type="text" id="contactSubject" placeholder="Subject" value="" className="full-width" />
+            <input name="contactSubject: " type="text" id="contactSubject" placeholder="Subject" className="full-width" />
             <div className="form-field">
-              <textarea name="contactMessage: " id="contactMessage" placeholder="message" rows="10" cols="40" required="" aria-required="true" className="full-width" />
+              <textarea name="contactMessage: " id="contactMessage" placeholder="Message" rows="10" cols="40" required="" aria-required="true" className="full-width" />
             </div>
             <input type='submit' value='Submit' className="submit full-width btn" />
             <div className="alert-box alert  hideit">

@@ -2052,7 +2052,6 @@
         z-index: 1;
     }
     .item-folio__thumb a::after {
-        content: "...";
         font-family: georgia, serif;
         font-size: 3rem;
         display: block;

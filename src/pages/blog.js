@@ -2,7 +2,7 @@ import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 // import SocialMediaSideIcons from "../components/partials/social"
 
 const squashBlogData = (data) => {
@@ -55,7 +55,7 @@ const Blog = () => {
     `
   )["allMarkdownRemark"]["edges"]
   data = squashBlogData(data)
-  console.log("Blog",data);
+  console.log("Blog", data);
   return (
     <Layout>
       <SEO title="Spaceride" />
@@ -65,7 +65,7 @@ const Blog = () => {
           <div className="row home-content__main">
             <h3>Official Blog of Nirmal Khedkar</h3>
             <h1 className="page-header__title">
-              <a href="#0" title="">
+              <a href="/blog" title="">
                 Spaceride
                 </a>
             </h1>
@@ -90,7 +90,7 @@ const Blog = () => {
             <div className="blog-list block-1-2 block-tab-full" style={{ marginTop: "0rem" }}>
               <div className="row">
                 <div className="col-block">
-                 <img src="./../../assets/images/blog/nitrourkela.jpg" alt="Post Image" />
+                  <img src={data[0].image} alt="" />
                 </div>
                 <div className="col-block">
                   <h3 className="inv-header" style={{ color: "antiquewhite" }}>Latest on Spaceride</h3>
@@ -122,51 +122,25 @@ const Blog = () => {
             <div className="blog-list block-1-2 block-tab-full">
               <div className="row masonry-wrap">
                 <div className="masonry">
-
-                  <div className="masonry__brick">
-                    <div className="item-folio">
-                      <div className="item-folio__thumb">
-                        <a href="/personal/2019/09/24/conclave" className="" title="My account of the week I spent for NIT Conclave Hackathon at NITRKL.
-
-">
-                          <img src="/assets/images/blog/nitrourkela.jpg" alt="Blog" />
-                        </a>
-                      </div>
-                      <div className="item-folio__text">
-                        <h3 className="item-folio__title">
-                          Rourkela Journal
-                                    </h3>
-                        <p className="item-folio__cat">
-                          <a href="#Personal">Personal</a>
-                        </p>
-                      </div>
-                      <div className="item-folio__caption">
-                        <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
+                  {data.map((element, index) =>
+                    <div className="masonry__brick">
+                      <div className="item-folio">
+                        <div className="item-folio__thumb">
+                          <Link to={element.URL} className="" title="My account of the week I spent for NIT Conclave Hackathon at NITRKL.">
+                            <img src={element.image} alt={element.title} />
+                          </Link>
+                        </div>
+                        <div className="item-folio__text">
+                          <h3 className="item-folio__title">
+                            {element.title}
+                          </h3>
+                          <p className="item-folio__cat">
+                            <a href={"#"+element.category}>{element.category}</a>
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-
-                  <div className="masonry__brick">
-                    <div className="item-folio">
-                      <div className="item-folio__thumb">
-                        <a href="/future/2019/06/21/onesmallstep" className="" title="50 years since 1969! A review of the legacy and impact of Apollo 11.
-">
-                          <img src="/assets/images/blog/onesmallstep_buzzaldrin.webp" alt="Blog" />
-                        </a>
-                      </div>
-                      <div className="item-folio__text">
-                        <h3 className="item-folio__title">
-                          One Small Step
-                                    </h3>
-                        <p className="item-folio__cat">
-                          <a href="#Future">Future</a>
-                        </p>
-                      </div>
-                      <div className="item-folio__caption">
-                        <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
-                      </div>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -182,11 +156,11 @@ const Blog = () => {
         <div className="row blog-content">
           <div className="col-full">
             <div className="blog-list block-1-2 block-tab-full">
-              {data.map((a,i) =>
+              {data.map((a, i) =>
                 <article index={i} className="col-block">
-                  <h2 className="h01"><a title="Future" className="smoothscroll" id="Future"></a>{a.category}</h2>
+                  <h2 className="h01">{a.category}</h2>
                   <ul>
-                    {data.filter((e)=> e.category==a.category) && data.filter((e)=> e.category==a.category).map((element, index) =>
+                    {data.filter((e) => e.category === a.category) && data.filter((e) => e.category === a.category).map((element, index) =>
                       <li key={index}><a title={element.title} href={element.URL}>{element.title}</a></li>
                     )}
                   </ul>

@@ -36,7 +36,7 @@ const BlogTemplate = ({ data }) => {
         </div>
         <div className="row blog-content">
           <div className="col-full blog-content__main">
-            <img src={data.frontmatter.image}/>
+            <img alt="" src={data.frontmatter.image}/>
             <div className="blogpost" dangerouslySetInnerHTML={{ __html: data.html }} />
             <div className="blog-content__pagenav">
               <p className="boxfont">Spread the love</p>
