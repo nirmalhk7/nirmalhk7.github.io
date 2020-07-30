@@ -16,19 +16,18 @@ class IndexPage extends React.Component {
     this.state = {
       isOpen: [false, false, false, false, false]
     }
-    this.handleClick=this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
-  handleClick = event =>{
+  handleClick = event => {
     event.preventDefault();
     event.persist();
     let clickedOn = parseInt(event.target.id.split('-')[1])
-    console.log("EVE",event.target.id,clickedOn);
-    let newState= this.state.isOpen
-    newState.forEach((element,index) => {
-      if(index===clickedOn){
-        newState[clickedOn]=!newState[clickedOn]
-      }else{
-        newState[index]=false
+    let newState = this.state.isOpen
+    newState.forEach((element, index) => {
+      if (index === clickedOn) {
+        newState[clickedOn] = !newState[clickedOn]
+      } else {
+        newState[index] = false
       }
     });
     this.setState({
@@ -98,20 +97,13 @@ As a student, I love to read about money, stock markets and financial incidents 
               <div className="row">
                 <h5 style={{ paddingTop: "0.5em" }}>Languages, Frameworks, Libraries and Tools</h5>
                 <hr style={{ borderColor: "#af2b2b", margin: "10px!important" }} />
-                {skills.languages.map((element, index) =>
-                  <div key={index} className="col-three minicard">
-                    {element.name}
-                  </div>
-                )}
-                {skills.frameworks_libraries.map((element, index) =>
-                  <div key={index} className="col-three minicard">
-                    {element.name}
-                  </div>
-                )}
-                {skills.tools.map((element, index) =>
-                  <div key={index} className="col-three minicard">
-                    {element.name}
-                  </div>
+                {Object.values(skills).map(type => {
+                  return type.map((element, index) =>
+                    <div key={index} className="col-three minicard">
+                      {element.name}
+                    </div>
+                  )
+                }
                 )}
               </div>
               <div className="row">
@@ -183,9 +175,9 @@ As a student, I love to read about money, stock markets and financial incidents 
             <div className="col-six tab-full left">
               <div className="accordion js-accordion">
                 {projects && projects.map((element, index) =>
-                  <div key={index} id={"accordion-"+index} onClick={this.handleClick} className={`accordion__item js-accordion-item ${this.state.isOpen[index] ? 'active': ''}`}>
-                    <div id={"accordionheader-"+index} className="accordion-header js-accordion-header">{element.childMarkdownRemark.frontmatter.name}</div>
-                    <div id={"accordionbody-"+index} className="accordion-body js-accordion-body" style={{ display: `${this.state.isOpen[index] ? 'block': 'none'}` }}>
+                  <div key={index} id={"accordion-" + index} onClick={this.handleClick} className={`accordion__item js-accordion-item ${this.state.isOpen[index] ? 'active' : ''}`}>
+                    <div id={"accordionheader-" + index} className="accordion-header js-accordion-header">{element.childMarkdownRemark.frontmatter.name}</div>
+                    <div id={"accordionbody-" + index} className="accordion-body js-accordion-body" style={{ display: `${this.state.isOpen[index] ? 'block' : 'none'}` }}>
                       <div className="accordion-body__contents">
                         <p>{element.childMarkdownRemark.excerpt}</p>
                         <Link to="/project#Silver-Scrappie">Find more here</Link>.&nbsp;&nbsp;&nbsp;
@@ -222,7 +214,6 @@ export const postQuery = graphql`
             name
             medium
           }
-          html
           excerpt
         }
         birthtime

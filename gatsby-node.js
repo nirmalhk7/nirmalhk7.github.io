@@ -28,38 +28,40 @@ exports.createPages = ({ graphql, actions }) => {
             graphql(
                 `
 					query {
-						allMarkdownRemark  {
-							edges {
-								node {
-                                    parent {
-                                        ... on File {
-                                            name
-                                        }
+                        allFile(filter: {sourceInstanceName: {eq: "pages-markdown"}}) {
+                            edges {
+                                node {
+                                    name
+                                    childMarkdownRemark {
+                                        id
                                     }
-                                    id
-								}
-							}
-						}
+                                }
+                            }
+                        }
 					}
                 `
 
             ).then(result => {
-                const posts = result.data.allMarkdownRemark.edges;
-
+                // console.log(results.data);
+                const posts = result.data.allFile.edges;
                 posts.forEach(({ node }) => {
-                    console.log(node.parent.name)
-                    const postName = node.parent.name.split('-').slice(3, node.parent.name.length).join("-");
+                    console.log(node.name)
+                    const postName = node.name.split('-').slice(3, node.name.length).join("-");
+                    let postDate = node.name.split('-').slice(0,3).join("-");
+                    postDate= new Date(Date.parse(postDate))
                     const path = "blog/" + postName;
-                    console.log("Adding page", node.id)
-
-                    createPage({
-                        path,
-                        component: blogPostTemplate,
-                        context: {
-                            pathSlug: node.id
-                        }
-                    });
-                    resolve();
+                    if(postDate<=new Date())
+                    {
+                        console.log("Adding Page", node.childMarkdownRemark.id)
+                        createPage({
+                            path,
+                            component: blogPostTemplate,
+                            context: {
+                                pathSlug: node.childMarkdownRemark.id
+                            }
+                        });
+                        resolve();
+                    }
                 });
             })
         );

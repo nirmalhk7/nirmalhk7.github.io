@@ -14,6 +14,7 @@ import Footer from "./partials/footer"
 import ContactForm from "./partials/contactme"
 import RandomQuote from "./partials/quote"
 import $ from 'jquery'
+import WebFont from 'webfontloader';
 
 class Layout extends React.Component {
   componentDidMount() {

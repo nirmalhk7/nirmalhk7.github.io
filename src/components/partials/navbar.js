@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "gatsby";
 
 const Navbar = (props) => {
-  console.log("NAVBARR",props);
   let webPath= props.location!=null ? props.location.pathname : null
   return (
     <header className="s-header">

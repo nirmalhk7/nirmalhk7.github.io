@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Official Website of Nirmal Khedkar`,
+    title: `Nirmal Khedkar`,
     description: `Product Developer, ML Enthusiast, learner and motorsport enthusiast: Hi, I'm Nirmal Khedkar.`,
     author: `Nirmal Khedkar`,
   },

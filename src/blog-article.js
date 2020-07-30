@@ -7,7 +7,6 @@ import { graphql } from "gatsby";
 import moment from "moment";
 
 const BlogTemplate = ({ data }) => {
-  console.log("DRT", data)
   data = data.markdownRemark
   let postDate = data.parent.name.split('-').slice(0, 3).join("-")
   return (

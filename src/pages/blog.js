@@ -5,57 +5,36 @@ import SEO from "../components/seo"
 import { useStaticQuery, graphql, Link } from "gatsby"
 // import SocialMediaSideIcons from "../components/partials/social"
 
-const squashBlogData = (data) => {
-  let i;
-  let ans = []
-  for (i in data) {
-    let temp = {}
-    let postDate = new Date(data[i]["node"]["parent"]["name"].split('-').slice(0, 3).join("-")).getTime()
-    let postURL = data[i]["node"]["parent"]["name"].split('-').slice(3, data[i]["node"]["parent"]["name"].length).join("-")
-    if (postDate <= new Date().getTime()) {
-      temp["wordCount"] = data[i]["node"]["wordCount"]["words"]
-      temp["title"] = data[i]["node"]["frontmatter"]["title"]
-      temp["description"] = data[i]["node"]["frontmatter"]["description"]
-      temp["tags"] = data[i]["node"]["frontmatter"]["tags"]
-      temp["category"] = data[i]["node"]["frontmatter"]["category"]
-      temp["image"] = data[i]["node"]["frontmatter"]["img"]
-      temp["uploadDate"] = postDate
-      temp["URL"] = "blog/" + postURL
-      ans.push(temp)
-    }
-  }
-  return ans.sort((a, b) => { return b.uploadDate - a.uploadDate })
-}
 const Blog = () => {
   let data = useStaticQuery(
     graphql`
     query {
-      allMarkdownRemark {
+      allFile(filter: {sourceInstanceName: {eq: "pages-markdown"}}) {
         edges {
           node {
-            wordCount {
-              words
-            }
-            frontmatter {
-              title,
-              description,
-              tags,
-              img,
-              category
-            }
-            parent {
-              ... on File {
-                name
+            childMarkdownRemark {
+              frontmatter {
+                title
+                tags
+                img
+                description
+                category
               }
             }
+            name
           }
         }
       }
     }
     `
-  )["allMarkdownRemark"]["edges"]
-  data = squashBlogData(data)
-  console.log("Blog", data);
+  )
+  const getDatefromFilename = (name) => {
+    let d = new Date(name.split("-").slice(0, 3).join("-"))
+    return d
+  }
+  data = data.allFile.edges
+  data = data.sort((a, b) => { return getDatefromFilename(b.node.name) - getDatefromFilename(a.node.name) })
+  
   return (
     <Layout>
       <SEO title="Spaceride" />
@@ -67,7 +46,7 @@ const Blog = () => {
             <h1 className="page-header__title">
               <a href="/blog" title="">
                 Spaceride
-                </a>
+              </a>
             </h1>
             <div className="page-header__info">
               <div className="page-header__cat">
@@ -90,15 +69,15 @@ const Blog = () => {
             <div className="blog-list block-1-2 block-tab-full" style={{ marginTop: "0rem" }}>
               <div className="row">
                 <div className="col-block">
-                  <img src={data[0].image} alt="" />
+                  <img src={data[0].node.childMarkdownRemark.frontmatter.img} alt="" />
                 </div>
                 <div className="col-block">
                   <h3 className="inv-header" style={{ color: "antiquewhite" }}>Latest on Spaceride</h3>
                   <h1 className="entry-title">
-                    <a className="white-text title-inv" href={data[0].URL}>{data[0].title}</a>
+                    <Link className="white-text title-inv" to={'/blog/' + data[0].node.name.split("-").slice(3, data[0].node.name.length)}>{data[0].node.childMarkdownRemark.frontmatter.title}</Link>
                   </h1>
                   <div className="entry-content white-text"><p>
-                    {data[0].description}
+                    {data[0].node.childMarkdownRemark.frontmatter.description}
                   </p>
                   </div>
                 </div>
@@ -123,19 +102,20 @@ const Blog = () => {
               <div className="row masonry-wrap">
                 <div className="masonry">
                   {data.map((element, index) =>
-                    <div className="masonry__brick">
+                    <div key={index} className="masonry__brick">
                       <div className="item-folio">
                         <div className="item-folio__thumb">
-                          <Link to={element.URL} className="" title="My account of the week I spent for NIT Conclave Hackathon at NITRKL.">
-                            <img src={element.image} alt={element.title} />
+                          <Link to={'/blog/' + element.node.name.split("-").slice(3, element.node.name.length)} className=""
+                            title={element.node.childMarkdownRemark.frontmatter.description}>
+                            <img src={element.node.childMarkdownRemark.frontmatter.img} alt={element.node.childMarkdownRemark.frontmatter.title} />
                           </Link>
                         </div>
                         <div className="item-folio__text">
                           <h3 className="item-folio__title">
-                            {element.title}
+                            {element.node.childMarkdownRemark.frontmatter.title}
                           </h3>
                           <p className="item-folio__cat">
-                            <a href={"#"+element.category}>{element.category}</a>
+                            <a href={"#" + element.node.childMarkdownRemark.frontmatter.category}>{element.node.childMarkdownRemark.frontmatter.category}</a>
                           </p>
                         </div>
                       </div>
@@ -156,16 +136,25 @@ const Blog = () => {
         <div className="row blog-content">
           <div className="col-full">
             <div className="blog-list block-1-2 block-tab-full">
-              {data.map((a, i) =>
-                <article index={i} className="col-block">
-                  <h2 className="h01">{a.category}</h2>
-                  <ul>
-                    {data.filter((e) => e.category === a.category) && data.filter((e) => e.category === a.category).map((element, index) =>
-                      <li key={index}><a title={element.title} href={element.URL}>{element.title}</a></li>
-                    )}
-                  </ul>
-                </article>
-              )}
+              {data.map((a, i) => {
+                let category= a.node.childMarkdownRemark.frontmatter.category
+                let xfilter= data.filter((e) => e.node.childMarkdownRemark.frontmatter.category === category)
+                return (
+                  <article key={i} className="col-block">
+                    <h2 className="h01">{category}</h2>
+                    <ul>
+                      {xfilter && xfilter.map((element, index) =>
+                        {
+                          let title= element.node.childMarkdownRemark.frontmatter.title
+                          let url= '/blog/' + element.node.name.split("-").slice(3, element.node.name.length);
+                          return (
+                            <li key={index}><Link title={title} to={url}>{title}</Link></li>
+                          );
+                        })}
+                    </ul>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
