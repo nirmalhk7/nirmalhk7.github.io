@@ -1,5 +1,4 @@
 module.exports = {
-  pathPrefix: "nirmalhk7.github.io",
   siteMetadata: {
     title: `Official Website of Nirmal Khedkar`,
     description: `Product Developer, ML Enthusiast, learner and motorsport enthusiast: Hi, I'm Nirmal Khedkar.`,
