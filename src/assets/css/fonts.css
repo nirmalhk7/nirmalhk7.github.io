@@ -8,7 +8,10 @@
  * libre baskerville
 ================================================================================ */
 
-@font-face {
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* @font-face {
     font-family: "librebaskerville-regular";
     src: url("../fonts/librebaskerville/librebaskerville-regular-webfont.woff2") format("woff2"), url("../fonts/librebaskerville/librebaskerville-regular-webfont.woff") format("woff");
     font-style: normal;
@@ -34,7 +37,7 @@
  * montserrat
 ================================================================================ */
 
-@font-face {
+/* @font-face {
     font-family: "montserrat-black";
     src: url("../fonts/montserrat/montserrat-black-webfont.woff2") format("woff2"), url("../fonts/montserrat/montserrat-black-webfont.woff") format("woff");
     font-style: normal;
@@ -95,4 +98,4 @@
     src: url("../fonts/montserrat/montserrat-thin-webfont.woff2") format("woff2"), url("../fonts/montserrat/montserrat-thin-webfont.woff") format("woff");
     font-style: normal;
     font-weight: normal;
-}
+} */ */
