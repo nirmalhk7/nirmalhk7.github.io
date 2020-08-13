@@ -1,44 +1,33 @@
-import React from "react"
+import React from "react";
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import Img from "gatsby-image";
+import { useStaticQuery, graphql, Link } from "gatsby";
 // import SocialMediaSideIcons from "../components/partials/social"
 
-const Blog = () => {
-  let data = useStaticQuery(
-    graphql`
-    query {
-      allFile(filter: {sourceInstanceName: {eq: "pages-markdown"}}) {
-        edges {
-          node {
-            childMarkdownRemark {
-              frontmatter {
-                title
-                tags
-                img
-                description
-                category
-              }
-            }
-            name
-          }
-        }
-      }
-    }
-    `
-  )
+const Blog = (props) => {
+  let blogItems = props.data && props.data.allFile.edges;
   const getDatefromFilename = (name) => {
-    let d = new Date(name.split("-").slice(0, 3).join("-"))
-    return d
-  }
-  data = data.allFile.edges
-  data = data.sort((a, b) => { return getDatefromFilename(b.node.name) - getDatefromFilename(a.node.name) })
-  
+    let d = new Date(name.split("-").slice(0, 3).join("-"));
+    return d;
+  };
+  blogItems = blogItems.sort((a, b) => {
+    return getDatefromFilename(b.node.relativeDirectory) - getDatefromFilename(a.node.relativeDirectory);
+  });
+  console.log(blogItems);
+  let latestBlogFile = blogItems[0].node.relativeDirectory;
+  let latestBlogAddress = latestBlogFile.split("-").slice(3, latestBlogFile.length).join("-");
   return (
     <Layout>
       <SEO title="Spaceride" />
-      <section className="blog-wallpaper s-home page-hero target-section parallax" data-parallax="scroll" data-natural-width="3000" data-natural-height="2000" data-position-y="center">
+      <section
+        className="blog-wallpaper s-home page-hero target-section parallax"
+        data-parallax="scroll"
+        data-natural-width="3000"
+        data-natural-height="2000"
+        data-position-y="center"
+      >
         <div className="overlay"></div>
         <div className="home-content">
           <div className="row home-content__main">
@@ -50,15 +39,13 @@ const Blog = () => {
             </h1>
             <div className="page-header__info">
               <div className="page-header__cat">
-                <div className="typewriter">
-                  Technology, Finance, Environment and Future.
-                </div>
+                <div className="typewriter">Technology, Finance, Environment and Future.</div>
               </div>
             </div>
             <div className="home-content__buttons">
               <a href="#blog" className="smoothscroll btn btn--stroke">
                 Liftoff!
-                </a>
+              </a>
             </div>
           </div>
         </div>
@@ -69,16 +56,17 @@ const Blog = () => {
             <div className="blog-list block-1-2 block-tab-full" style={{ marginTop: "0rem" }}>
               <div className="row">
                 <div className="col-block">
-                  <img src={data[0].node.childMarkdownRemark.frontmatter.img} alt="" />
+                  <Img fluid={blogItems[0].node.childMarkdownRemark.frontmatter.img.childImageSharp.fluid} />
                 </div>
                 <div className="col-block">
-                  <h3 className="inv-header" style={{ color: "antiquewhite" }}>Latest on Spaceride</h3>
+                  <h3 className="inv-header" style={{ color: "antiquewhite" }}></h3>
                   <h1 className="entry-title">
-                    <Link className="white-text title-inv" to={'/blog/' + data[0].node.name.split("-").slice(3, data[0].node.name.length)}>{data[0].node.childMarkdownRemark.frontmatter.title}</Link>
+                    <Link className="white-text title-inv" to={"/blog/" + latestBlogAddress}>
+                      {blogItems[0].node.childMarkdownRemark.frontmatter.title}
+                    </Link>
                   </h1>
-                  <div className="entry-content white-text"><p>
-                    {data[0].node.childMarkdownRemark.frontmatter.description}
-                  </p>
+                  <div className="entry-content white-text">
+                    <p>{blogItems[0].node.childMarkdownRemark.frontmatter.description}</p>
                   </div>
                 </div>
               </div>
@@ -93,34 +81,41 @@ const Blog = () => {
               <div className="col-full text-center">
                 <h3>Spaceride</h3>
                 <h1>All Posts</h1>
-                <p className="lead">
-                </p>
-
+                <p className="lead"></p>
               </div>
             </div>
             <div className="blog-list block-1-2 block-tab-full">
               <div className="row masonry-wrap">
                 <div className="masonry">
-                  {data.map((element, index) =>
-                    <div key={index} className="masonry__brick">
-                      <div className="item-folio">
-                        <div className="item-folio__thumb">
-                          <Link to={'/blog/' + element.node.name.split("-").slice(3, element.node.name.length)} className=""
-                            title={element.node.childMarkdownRemark.frontmatter.description}>
-                            <img src={element.node.childMarkdownRemark.frontmatter.img} alt={element.node.childMarkdownRemark.frontmatter.title} />
-                          </Link>
-                        </div>
-                        <div className="item-folio__text">
-                          <h3 className="item-folio__title">
-                            {element.node.childMarkdownRemark.frontmatter.title}
-                          </h3>
-                          <p className="item-folio__cat">
-                            <a href={"#" + element.node.childMarkdownRemark.frontmatter.category}>{element.node.childMarkdownRemark.frontmatter.category}</a>
-                          </p>
+                  {blogItems.map((element, index) => {
+                    let filename = element.node.relativeDirectory;
+                    let address = filename.split("-").slice(3, filename.length).join("-");
+                    let postDate = filename.split("-").slice(0, 3).join("-");
+                    console.log("X", filename, address, postDate);
+                    return (
+                      <div key={index} className="masonry__brick">
+                        <div className="item-folio">
+                          <div className="item-folio__thumb">
+                            <Link
+                              to={"/blog/" + address}
+                              className=""
+                              title={element.node.childMarkdownRemark.frontmatter.description}
+                            >
+                              <Img fluid={element.node.childMarkdownRemark.frontmatter.img.childImageSharp.fluid} />
+                            </Link>
+                          </div>
+                          <div className="item-folio__text">
+                            <h3 className="item-folio__title">{element.node.childMarkdownRemark.frontmatter.title}</h3>
+                            <p className="item-folio__cat">
+                              <a href={"#" + element.node.childMarkdownRemark.frontmatter.category}>
+                                {element.node.childMarkdownRemark.frontmatter.category}
+                              </a>
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -136,19 +131,23 @@ const Blog = () => {
         <div className="row blog-content">
           <div className="col-full">
             <div className="blog-list block-1-2 block-tab-full">
-              {data.map((a, i) => {
-                let category= a.node.childMarkdownRemark.frontmatter.category
-                let xfilter= data.filter((e) => e.node.childMarkdownRemark.frontmatter.category === category)
+              {blogItems.map((a, i) => {
+                let category = a.node.childMarkdownRemark.frontmatter.category;
+                let xfilter = blogItems.filter((e) => e.node.childMarkdownRemark.frontmatter.category === category);
                 return (
                   <article key={i} className="col-block">
                     <h2 className="h01">{category}</h2>
                     <ul>
-                      {xfilter && xfilter.map((element, index) =>
-                        {
-                          let title= element.node.childMarkdownRemark.frontmatter.title
-                          let url= '/blog/' + element.node.name.split("-").slice(3, element.node.name.length);
+                      {xfilter &&
+                        xfilter.map((element, index) => {
+                          let title = element.node.childMarkdownRemark.frontmatter.title;
+                          let url = "/blog/";
                           return (
-                            <li key={index}><Link title={title} to={url}>{title}</Link></li>
+                            <li key={index}>
+                              <Link title={title} to={url}>
+                                {title}
+                              </Link>
+                            </li>
                           );
                         })}
                     </ul>
@@ -160,7 +159,37 @@ const Blog = () => {
         </div>
       </section>
     </Layout>
-  )
-}
-
-export default Blog
+  );
+};
+export const postQuery = graphql`
+  query {
+    allFile(filter: { sourceInstanceName: { eq: "pages-markdown" }, ext: { eq: ".md" } }) {
+      edges {
+        node {
+          relativeDirectory
+          childMarkdownRemark {
+            id
+            frontmatter {
+              title
+              tags
+              description
+              category
+              img {
+                childImageSharp {
+                  fluid {
+                    base64
+                    aspectRatio
+                    src
+                    srcSet
+                    sizes
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+export default Blog;

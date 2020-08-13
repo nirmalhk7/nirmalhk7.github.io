@@ -7,6 +7,7 @@ module.exports = {
   plugins: [
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -21,10 +22,5 @@ module.exports = {
         path: `${__dirname}/projects/`,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
-    'gatsby-transformer-remark',
-    `gatsby-plugin-react-helmet`,
   ],
-}
+};

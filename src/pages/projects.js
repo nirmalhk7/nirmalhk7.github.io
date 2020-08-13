@@ -1,24 +1,44 @@
-import React from "react"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import React from "react";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 class Projects extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      isOpen: []
+    this.state = {
+      isOpen: [],
+      openIndex: 0,
+      hasClicked: false,
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  componentWillReceiveProps(props) {
+    this.setState({ isOpen: new Array(this.props.data.allFile.nodes.length).fill(false) });
+  }
+  handleClick = (event) => {
+    event.preventDefault();
+    event.persist();
+    if (this.state.openIndex === parseInt(event.target.id.split("-")[1])) {
+      this.setState({
+        hasClicked: false,
+        openIndex: 0,
+      });
+    } else {
+      this.setState({
+        hasClicked: true,
+        openIndex: parseInt(event.target.id.split("-")[1]),
+      });
     }
-  }
-  componentWillReceiveProps(props){
-    this.setState({isOpen:new Array(this.props.data.allFile.nodes.length).fill(false)})
-  }
+  };
+
   render() {
-    let data = this.props.data.allFile.nodes
+    let data = this.props.data.allFile.nodes;
+    let projectIndex = 0;
     return (
       <>
         <Layout>
           <SEO title="Projects" />
-          <section class="page-header page-hero parallax" style={{ backgroundImage: "url(/assets/images/blog-bg-01.jpg)" }}>
+          <section class="page-header page-hero parallax projects-img">
             <div class="row page-header__content">
               <article class="col-full">
                 <h1 class="page-header__title">
@@ -27,9 +47,7 @@ class Projects extends React.Component {
                   </a>
                 </h1>
                 <div class="page-header__info">
-                  <div class="page-header__cat">
-                    Project Catalogue of Nirmal Khedkar
-                  </div>
+                  <div class="page-header__cat">Project Catalogue of Nirmal Khedkar</div>
                 </div>
                 <p>I love building stuff.</p>
               </article>
@@ -50,36 +68,49 @@ class Projects extends React.Component {
                           </tr>
                         </thead>
                         <tbody>
-                          {/* {data.map((a, i) =>
-                <article index={i} className="col-block">
-                  <h2 className="h01">{a.category}</h2>
-                  <ul>
-                    {data.filter((e) => e.category === a.category) && data.filter((e) => e.category === a.category).map((element, index) =>
-                      <li key={index}><a title={element.title} href={element.URL}>{element.title}</a></li>
-                    )}
-                  </ul>
-                </article>
-              )} */}
-                          {data.map((a, i) =>
-                            {
-                              let xd=data.filter((e) => e.childMarkdownRemark.frontmatter.medium === a.childMarkdownRemark.frontmatter.medium);
-                              let medium=a.childMarkdownRemark.frontmatter.medium;
-                              return(
+                          {data.map((a, i) => {
+                            let xd = data.filter(
+                              (e) =>
+                                e.childMarkdownRemark.frontmatter.medium === a.childMarkdownRemark.frontmatter.medium
+                            );
+                            let medium = a.childMarkdownRemark.frontmatter.medium;
+                            return (
                               <tr>
                                 <td>{medium}</td>
                                 <td>
-                                  {xd && xd.map((element,index)=>
-                                    <div key={medium+"-"+index} className="accordion__item js-accordion-item">
-                                      <div className="accordion-header js-accordion-header">
-                                        {element.childMarkdownRemark.frontmatter.name}
-                                      </div>
-                                      <div className="accordion-body js-accordion-body">
-                                        <div className="accordion-body__contents" dangerouslySetInnerHTML={{__html: element.childMarkdownRemark.html}}>
-
+                                  {xd &&
+                                    xd.map((element, index) => (
+                                      <div
+                                        id={"accordion-" + projectIndex}
+                                        key={medium + "-" + index}
+                                        onClick={this.handleClick}
+                                        className={`accordion__item js-accordion-item ${
+                                          this.state.hasClicked && projectIndex === this.state.openIndex ? "active" : ""
+                                        }`}
+                                      >
+                                        <div
+                                          id={"accordionheader-" + projectIndex}
+                                          className="accordion-header js-accordion-header"
+                                        >
+                                          {element.childMarkdownRemark.frontmatter.name}
+                                        </div>
+                                        <div
+                                          className="accordion-body js-accordion-body"
+                                          style={{
+                                            display:
+                                              this.state.hasClicked && this.state.openIndex === projectIndex
+                                                ? "block"
+                                                : "none",
+                                          }}
+                                        >
+                                          <div
+                                            value={(projectIndex += 1)}
+                                            className="accordion-body__contents"
+                                            dangerouslySetInnerHTML={{ __html: element.childMarkdownRemark.html }}
+                                          ></div>
                                         </div>
                                       </div>
-                                    </div>
-                                  )}
+                                    ))}
                                   {/* {xd && xd.map((element, index) =>
                                     <div className="accordion__item js-accordion-item">
                                       <div className="accordion-header js-accordion-header">{element.childMarkdownRemark.frontmatter.name}</div>
@@ -90,8 +121,8 @@ class Projects extends React.Component {
                                   )} */}
                                 </td>
                               </tr>
-                            )}
-                          )}
+                            );
+                          })}
                         </tbody>
                       </table>
                     </div>
@@ -107,10 +138,9 @@ class Projects extends React.Component {
   }
 }
 
-
 export const postQuery = graphql`
-	query projects {
-    allFile(filter: {sourceInstanceName: {eq: "projects"}}, sort: {order: DESC, fields: birthTime}) {
+  query projects {
+    allFile(filter: { sourceInstanceName: { eq: "projects" } }, sort: { order: DESC, fields: birthTime }) {
       nodes {
         sourceInstanceName
         childMarkdownRemark {
@@ -123,7 +153,7 @@ export const postQuery = graphql`
         birthtime
       }
     }
-	}
+  }
 `;
 
-export default Projects
+export default Projects;

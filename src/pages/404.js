@@ -1,12 +1,12 @@
-import React from "react"
+import React from "react";
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 const NotFoundPage = () => (
   <Layout>
     <SEO title="404: Not found" />
-    <section className="page-header page-hero parallax" style={{ backgroundImage: "url(assets/images/blog-bg-01.jpg)" }}>
+    <section className="page-header page-hero parallax not-found">
       <div className="row page-header__content">
         <article className="col-full">
           <h1 className="page-header__title">
@@ -15,9 +15,7 @@ const NotFoundPage = () => (
             </a>
           </h1>
           <div className="page-header__info">
-            <div className="page-header__cat">
-              Page Not Found
-                </div>
+            <div className="page-header__cat">Page Not Found</div>
           </div>
         </article>
       </div>
@@ -33,6 +31,6 @@ const NotFoundPage = () => (
       </div>
     </section>
   </Layout>
-)
+);
 
-export default NotFoundPage
+export default NotFoundPage;

@@ -7,7 +7,8 @@
   "dependencies": {
     "cross-fetch": "^3.0.5",
     "gatsby": "^2.23.12",
-    "gatsby-image": "^2.4.9",
+    "gatsby-image": "^2.4.16",
+    "gatsby-plugin-feed": "^2.5.11",
     "gatsby-plugin-manifest": "^2.4.14",
     "gatsby-plugin-offline": "^3.2.13",
     "gatsby-plugin-react-helmet": "^3.3.6",
@@ -24,6 +25,8 @@
   },
   "devDependencies": {
     "gh-pages": "^3.1.0",
+    "husky": "4.2.5",
+    "lint-staged": "10.2.11",
     "prettier": "2.0.5"
   },
   "keywords": [
@@ -46,5 +49,10 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx prettier --print-width 120 --write **/*.{js,html,css}"
+    }
   }
 }
