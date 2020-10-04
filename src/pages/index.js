@@ -154,7 +154,7 @@ class IndexPage extends React.Component {
                   {courses.college.map((element, index) => {
                     return (
                       <X style={{ paddingRight: "0.5em" }} key={index}>
-                        {element}
+                        {index + 1 !== courses.college.length ? element + ", " : element + "."}
                       </X>
                     );
                   })}

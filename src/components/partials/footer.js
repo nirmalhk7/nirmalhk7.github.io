@@ -1,5 +1,32 @@
 import React from "react";
 
+export class ScrollToTop extends React.Component {
+  componentDidMount() {
+    var mybutton = document.getElementById("myBtn");
+    window.onscroll = function () {
+      scrollFn();
+    };
+    function scrollFn() {
+      if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+  }
+  render() {
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+    return (
+      <button onclick={topFunction()} id="myBtn" title="Go to top">
+        <i class="fa fa-long-arrow-alt-up" style={{ color: "white" }}></i>
+      </button>
+    );
+  }
+}
+
 const Footer = () => {
   return (
     <footer>

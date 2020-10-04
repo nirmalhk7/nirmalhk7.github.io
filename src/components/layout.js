@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 // import { useStaticQuery, graphql } from "gatsby"
 
 import Navbar from "./partials/navbar";
-import Footer from "./partials/footer";
+import Footer, { ScrollToTop } from "./partials/footer";
 import ContactForm from "./partials/contactme";
 import RandomQuote from "./partials/quote";
 import $ from "jquery";
@@ -109,6 +109,7 @@ class Layout extends React.Component {
         <RandomQuote />
         <ContactForm />
         <Footer />
+        <ScrollToTop />
       </>
     );
   }

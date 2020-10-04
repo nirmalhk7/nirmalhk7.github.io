@@ -17,7 +17,10 @@ const BlogTemplate = ({ data }) => {
       <article className="blog-single has-bottom-sep">
         <div
           className="page-header page-header--single page-hero parallax"
-          style={{ backgroundImage: `url(${data.frontmatter.img.childImageSharp.original.src})` }}
+          style={{
+            backgroundImage: `url(${data.frontmatter.img.childImageSharp.original.src})`,
+            backgroundSize: "cover",
+          }}
         >
           <div className="row page-header__content narrow">
             <article className="col-full">
@@ -41,7 +44,7 @@ const BlogTemplate = ({ data }) => {
           <div className="col-full blog-content__main">
             <div className="blogpost" dangerouslySetInnerHTML={{ __html: data.html }} />
             <div className="blog-content__pagenav">
-              <p className="boxfont">Spread the love</p>
+              <p className="boxfont text-uppercase">SPREAD THE LOVE</p>
               <a
                 href="https://www.facebook.com/sharer.php?u=https://nirmalhk7.github.io//future/2019/06/21/onesmallstep&title=One Small Step"
                 className="share"
@@ -117,3 +120,16 @@ export const postQuery = graphql`
 `;
 
 export default BlogTemplate;
+
+// {
+//   allFile(filter: {extension: {eq: "md"}, sourceInstanceName: {eq: "pages-markdown"}}) {
+//     nodes {
+//       extension
+//       childMarkdownRemark {
+//         frontmatter {
+//           tags
+//         }
+//       }
+//     }
+//   }
+// }
