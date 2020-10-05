@@ -1,9 +1,9 @@
-import { faAngellist, faDev, faGithub, faGoodreads, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faAngellist, faDev, faGithub, faGoodreads, faLinkedin, faPinterest } from "@fortawesome/free-brands-svg-icons";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 // TODO fix colors of social icons
-let social = [
+export let social = [
   {
     name: "GitHub",
     link: "https://www.github.com/nirmalhk7",
@@ -13,6 +13,7 @@ let social = [
     name: "LinkedIn",
     link: "https://www.linkedin.com/in/nirmalhk7",
     class: faLinkedin,
+    underBlog: true
   },
   {
     name: "Angellist",
@@ -34,6 +35,11 @@ let social = [
     link: "https://dev.to/nirmalhk7",
     class: faDev,
   },
+  {
+    name: "Pinterest",
+    class: faPinterest,
+    shareLink: "http://pinterest.com/pin/create/bookmarklet/?url=http://www.islandcompany.com/<?= $product->url; ?>&is_video=false&description=<?= $product->meta_description; ?>"
+  }
 ];
 const SocialMediaIcons = () => {
   return (

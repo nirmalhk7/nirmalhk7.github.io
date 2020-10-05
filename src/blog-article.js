@@ -6,7 +6,13 @@ import SEO from "./components/seo";
 import { graphql } from "gatsby";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram, faLinkedin, faPinterest, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import {
+  faInstagram,
+  faLinkedin,
+  faPinterest,
+  faTwitter,
+  faFacebook,
+} from "@fortawesome/free-brands-svg-icons";
 
 const BlogTemplate = ({ data }) => {
   data = data.file;
@@ -15,7 +21,7 @@ const BlogTemplate = ({ data }) => {
   return (
     <>
       <Navbar />
-      <SEO title="Blog Template" />
+      <SEO title={data.frontmatter.title} />
       <article className="blog-single has-bottom-sep">
         <div
           className="page-header page-header--single page-hero parallax"
@@ -28,7 +34,11 @@ const BlogTemplate = ({ data }) => {
             <article className="col-full">
               <div className="page-header__info">
                 <div className="page-header__cat">
-                  <a href="/categories/#Future">{data.frontmatter.category ? data.frontmatter.category : "Personal"}</a>
+                  <a href="/categories/#Future">
+                    {data.frontmatter.category
+                      ? data.frontmatter.category
+                      : "Personal"}
+                  </a>
                 </div>
               </div>
               <h1 className="page-header__title">
@@ -37,41 +47,53 @@ const BlogTemplate = ({ data }) => {
                 </a>
               </h1>
               <ul className="page-header__meta">
-                <li className="date">{moment(postDate, "YYYY-MM-DD").format("MMMM DD, YYYY")}</li>
+                <li className="date">
+                  {moment(postDate, "YYYY-MM-DD").format("MMMM DD, YYYY")} by
+                  Nirmal Khedkar
+                </li>
               </ul>
             </article>
           </div>
         </div>
         <div className="row blog-content">
           <div className="col-full blog-content__main">
-            <div className="blogpost" dangerouslySetInnerHTML={{ __html: data.html }} />
+            <div
+              className="blogpost"
+              dangerouslySetInnerHTML={{ __html: data.html }}
+            />
             <div className="blog-content__pagenav">
-              <p className="boxfont text-uppercase">SPREAD THE LOVE</p>
-              <a
-                href="https://www.facebook.com/sharer.php?u=https://nirmalhk7.github.io//future/2019/06/21/onesmallstep&title=One Small Step"
-                className="share"
-              >
-                <i className="im im-facebook" aria-hidden="true"></i>
+              <h6 className="boxfont text-uppercase" style={{ marginTop: 0 }}>
+                Spread the Love
+              </h6>
+              <a href="https://www.facebook.com/sharer.php?u=https://nirmalhk7.github.io//future/2019/06/21/onesmallstep&title=One Small Step">
+                <FontAwesomeIcon icon={faFacebook} className="blog-social" />
               </a>
               <a
                 href="https://twitter.com/share?text=One Small Step- Nirmal Khedkar&url=https://http://localhost:4000//future/2019/06/21/onesmallstep
     "
-                className="share"
               >
-                <FontAwesomeIcon icon={faTwitter} />
+                {/*TODO Social Media Icons under Blog page.*/}
+                <FontAwesomeIcon icon={faTwitter} className="blog-social" />
               </a>
-              <a href="#0" className="share">
-                <FontAwesomeIcon icon={faInstagram} />
+              <a href="#0">
+                <FontAwesomeIcon icon={faInstagram} className="blog-social" />
               </a>
-              <a href="#0" className="share">
-                <FontAwesomeIcon icon={faPinterest} />
+              <a href="#0">
+                <FontAwesomeIcon icon={faPinterest} className="blog-social" />
               </a>
-              <a href="#0" className="share">
-                <FontAwesomeIcon icon={faLinkedin} />
+              <a href="#0">
+                <FontAwesomeIcon icon={faLinkedin} className="blog-social" />
               </a>
-              <p className="blog-content__tags" style={{ marginTop: "3rem!important" }}>
+              <p
+                className="blog-content__tags"
+                style={{ marginTop: "3rem!important" }}
+              >
                 <span>
-                  <a href="/categories/#Future">{data.frontmatter.category ? data.frontmatter.category : "Personal"}</a>
+                  <a href="/categories/#Future">
+                    {data.frontmatter.category
+                      ? data.frontmatter.category
+                      : "Personal"}
+                  </a>
                 </span>
                 <span className="blog-content__tag-list">
                   {data.frontmatter.tags &&
