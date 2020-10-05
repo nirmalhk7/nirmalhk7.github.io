@@ -5,6 +5,8 @@ import Footer from "./components/partials/footer";
 import SEO from "./components/seo";
 import { graphql } from "gatsby";
 import moment from "moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram, faLinkedin, faPinterest, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 const BlogTemplate = ({ data }) => {
   data = data.file;
@@ -56,16 +58,16 @@ const BlogTemplate = ({ data }) => {
     "
                 className="share"
               >
-                <i className="fab fa-twitter" aria-hidden="true"></i>
+                <FontAwesomeIcon icon={faTwitter} />
               </a>
               <a href="#0" className="share">
-                <i className="fab fa-instagram" aria-hidden="true"></i>
+                <FontAwesomeIcon icon={faInstagram} />
               </a>
               <a href="#0" className="share">
-                <i className="fab fa-pinterest" aria-hidden="true"></i>
+                <FontAwesomeIcon icon={faPinterest} />
               </a>
               <a href="#0" className="share">
-                <i className="fab fa-linkedin" aria-hidden="true"></i>
+                <FontAwesomeIcon icon={faLinkedin} />
               </a>
               <p className="blog-content__tags" style={{ marginTop: "3rem!important" }}>
                 <span>
@@ -120,16 +122,3 @@ export const postQuery = graphql`
 `;
 
 export default BlogTemplate;
-
-// {
-//   allFile(filter: {extension: {eq: "md"}, sourceInstanceName: {eq: "pages-markdown"}}) {
-//     nodes {
-//       extension
-//       childMarkdownRemark {
-//         frontmatter {
-//           tags
-//         }
-//       }
-//     }
-//   }
-// }

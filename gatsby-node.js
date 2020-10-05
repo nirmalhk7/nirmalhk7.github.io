@@ -1,25 +1,7 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
-
-// query {
-//     markdownRemark(id: {glob: "81982f8e-6f99-53b1-9ce1-bf74b6f61bce"}) {
-//       html
-//       frontmatter {
-//         title
-//         tags
-//       }
-//     }
-//   }
-
 const path = require("path");
-
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
+const moment = require("moment");
+exports.createPages = ({ page, graphql, actions }, { paths }) => {
+  const { createPage, deletePage } = actions;
   return new Promise((resolve, reject) => {
     const blogPostTemplate = path.resolve("src/blog-article.js");
     // Query for markdown nodes to use in creating pages.
@@ -41,16 +23,15 @@ exports.createPages = ({ graphql, actions }) => {
           }
         `
       ).then((result) => {
-        // console.log(results.data);
+        // TODO Add route for PDF
         const posts = result.data.allFile.edges;
         posts.forEach(({ node }) => {
-          console.log(node.relativeDirectory);
           const postName = node.relativeDirectory.split("-").slice(3, node.relativeDirectory.length).join("-");
           let postDate = node.relativeDirectory.split("-").slice(0, 3).join("-");
           postDate = new Date(Date.parse(postDate));
           const path = "blog/" + postName;
           if (postDate <= new Date()) {
-            console.log("Adding Page", node.childMarkdownRemark.id);
+            console.log("Generating route for", postName);
             createPage({
               path,
               component: blogPostTemplate,

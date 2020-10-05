@@ -314,19 +314,18 @@
 }
 
 
-#myBtn {
+.go-top {
   display: none;
   position: fixed;
   bottom: 0px;
   margin: 0px;
   right: 0px;
-  z-index: 99;
+  z-index: 600;
   background-color: black;
   color: white;
+  border: 0px;
   cursor: pointer;
   padding: 15px;
-}
-
-#myBtn:hover {
-  background-color: #555;
+  width: 30px;
+  height: 30px;
 }

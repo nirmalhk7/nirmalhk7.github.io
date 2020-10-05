@@ -1,3 +1,6 @@
+import { faAngellist, faDev, faGithub, faGoodreads, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faRss, faLongArrowAltUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 export class ScrollToTop extends React.Component {
@@ -16,12 +19,13 @@ export class ScrollToTop extends React.Component {
   }
   render() {
     function topFunction() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
+      // document.body.scrollTop = 0;
+      // document.documentElement.scrollTop = 0;
     }
+    // TODO fix ScrollToTop Icon
     return (
-      <button onclick={topFunction()} id="myBtn" title="Go to top">
-        <i class="fa fa-long-arrow-alt-up" style={{ color: "white" }}></i>
+      <button onClick={topFunction()} className="go-top" id="myBtn" title="Go to top">
+        <FontAwesomeIcon icon={faLongArrowAltUp} size="lg" />
       </button>
     );
   }
@@ -35,42 +39,42 @@ const Footer = () => {
           <ul className="footer-social">
             <li>
               <a className="ln" href="https://www.linkedin.com/in/nirmalhk7/">
-                <i className="fab fa-linkedin ln" aria-hidden="true"></i>
+                <FontAwesomeIcon icon={faLinkedin} />
                 <span>LinkedIn</span>
               </a>
             </li>
 
             <li>
               <a className="gi" href="https://www.github.com/nirmalhk7">
-                <i className="fab fa-github gi" aria-hidden="true"></i>
+                <FontAwesomeIcon icon={faGithub} />
                 <span>GitHub</span>
               </a>
             </li>
 
             <li>
               <a className="an" href="https://angel.co/nirmalhk7">
-                <i className="fab fa-angellist an" aria-hidden="true"></i>
+                <FontAwesomeIcon icon={faAngellist} />
                 <span>Angellist</span>
               </a>
             </li>
 
             <li>
               <a className="go" href="https://www.goodreads.com/user/show/93069537-nirmal">
-                <i className="fab fa-goodreads go" aria-hidden="true"></i>
+                <FontAwesomeIcon icon={faGoodreads} />
                 <span>Goodreads</span>
               </a>
             </li>
 
             <li>
               <a className="srr" href="/feed.xml">
-                <i className="fas fa-rss-square srr" aria-hidden="true"></i>
+                <FontAwesomeIcon icon={faRss} />
                 <span>RSS</span>
               </a>
             </li>
 
             <li>
               <a className="dev" href="https://dev.to/nirmalhk7">
-                <i className="fab fa-dev dev" aria-hidden="true"></i>
+                <FontAwesomeIcon icon={faDev} />
                 <span>DEV</span>
               </a>
             </li>

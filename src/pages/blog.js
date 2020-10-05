@@ -15,7 +15,6 @@ const Blog = (props) => {
   blogItems = blogItems.sort((a, b) => {
     return getDatefromFilename(b.node.relativeDirectory) - getDatefromFilename(a.node.relativeDirectory);
   });
-  console.log(blogItems);
   let latestBlogFile = blogItems[0].node.relativeDirectory;
   let latestBlogAddress = latestBlogFile.split("-").slice(3, latestBlogFile.length).join("-");
   return (
@@ -91,30 +90,32 @@ const Blog = (props) => {
                     let filename = element.node.relativeDirectory;
                     let address = filename.split("-").slice(3, filename.length).join("-");
                     let postDate = filename.split("-").slice(0, 3).join("-");
-                    console.log("X", filename, address, postDate);
-                    return (
-                      <div key={index} className="masonry__brick">
-                        <div className="item-folio">
-                          <div className="item-folio__thumb">
-                            <Link
-                              to={"/blog/" + address}
-                              className=""
-                              title={element.node.childMarkdownRemark.frontmatter.description}
-                            >
-                              <Img fluid={element.node.childMarkdownRemark.frontmatter.img.childImageSharp.fluid} />
-                            </Link>
-                          </div>
-                          <div className="item-folio__text">
-                            <h3 className="item-folio__title">{element.node.childMarkdownRemark.frontmatter.title}</h3>
-                            <p className="item-folio__cat">
-                              <a href={"#" + element.node.childMarkdownRemark.frontmatter.category}>
-                                {element.node.childMarkdownRemark.frontmatter.category}
-                              </a>
-                            </p>
+                    if (new Date(Date.parse(postDate)) <= new Date())
+                      return (
+                        <div key={index} className="masonry__brick">
+                          <div className="item-folio">
+                            <div className="item-folio__thumb">
+                              <Link
+                                to={"/blog/" + address}
+                                className=""
+                                title={element.node.childMarkdownRemark.frontmatter.description}
+                              >
+                                <Img fluid={element.node.childMarkdownRemark.frontmatter.img.childImageSharp.fluid} />
+                              </Link>
+                            </div>
+                            <div className="item-folio__text">
+                              <h3 className="item-folio__title">
+                                {element.node.childMarkdownRemark.frontmatter.title}
+                              </h3>
+                              <p className="item-folio__cat">
+                                <a href={"#" + element.node.childMarkdownRemark.frontmatter.category}>
+                                  {element.node.childMarkdownRemark.frontmatter.category}
+                                </a>
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    );
+                      );
                   })}
                 </div>
               </div>
@@ -142,13 +143,19 @@ const Blog = (props) => {
                         xfilter.map((element, index) => {
                           let title = element.node.childMarkdownRemark.frontmatter.title;
                           let url = "/blog/";
-                          return (
-                            <li key={index}>
-                              <Link title={title} to={url}>
-                                {title}
-                              </Link>
-                            </li>
-                          );
+                          // TODO Filter by Date
+                          let filename = element.node.relativeDirectory;
+                          let address = filename.split("-").slice(3, filename.length).join("-");
+                          let postDate = filename.split("-").slice(0, 3).join("-");
+
+                          if (new Date(Date.parse(postDate)) <= new Date())
+                            return (
+                              <li key={index}>
+                                <Link title={title} to={url}>
+                                  {title}
+                                </Link>
+                              </li>
+                            );
                         })}
                     </ul>
                   </article>

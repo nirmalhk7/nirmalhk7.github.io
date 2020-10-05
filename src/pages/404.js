@@ -6,6 +6,7 @@ import SEO from "../components/seo";
 const NotFoundPage = () => (
   <Layout>
     <SEO title="404: Not found" />
+    {/*TODO load Image*/}
     <section className="page-header page-hero parallax not-found">
       <div className="row page-header__content">
         <article className="col-full">

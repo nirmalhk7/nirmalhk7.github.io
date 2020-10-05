@@ -16,6 +16,7 @@ const Navbar = (props) => {
     }
   };
   let webPath = props.location != null ? props.location.pathname : null;
+  // TODO Scrollspy for Navbar
   return (
     <header className="s-header">
       <Link to="/">

@@ -38,28 +38,29 @@ class Projects extends React.Component {
       <>
         <Layout>
           <SEO title="Projects" />
-          <section class="page-header page-hero parallax projects-img">
-            <div class="row page-header__content">
-              <article class="col-full">
-                <h1 class="page-header__title">
+          {/*TODO Fix Projects background*/}
+          <section className="page-header page-hero parallax projects-img">
+            <div className="row page-header__content">
+              <article className="col-full">
+                <h1 className="page-header__title">
                   <a href="#0" title="Projects">
                     Projects
                   </a>
                 </h1>
-                <div class="page-header__info">
-                  <div class="page-header__cat">Project Catalogue of Nirmal Khedkar</div>
+                <div className="page-header__info">
+                  <div className="page-header__cat">Project Catalogue of Nirmal Khedkar</div>
                 </div>
                 <p>I love building stuff.</p>
               </article>
             </div>
           </section>
 
-          <section class="blog-content-wrap" id="blog">
-            <div class="row blog-content">
-              <div class="col-full">
-                <div class="blog-list block-1-2 block-tab-full">
-                  <div class="accordion js-accordion">
-                    <div class="table-responsive">
+          <section className="blog-content-wrap" id="blog">
+            <div className="row blog-content">
+              <div className="col-full">
+                <div className="blog-list block-1-2 block-tab-full">
+                  <div className="accordion js-accordion">
+                    <div className="table-responsive">
                       <table>
                         <thead>
                           <tr>

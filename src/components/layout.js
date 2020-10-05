@@ -114,21 +114,6 @@ class Layout extends React.Component {
     );
   }
 }
-// const Layout = ({ children }) => {
-//   // const data = useStaticQuery(graphql`
-//   //   query SiteTitleQuery {
-//   //     site {
-//   //       siteMetadata {
-//   //         title
-//   //       }
-//   //     }
-//   //   }
-//   // `)
-
-//   return (
-
-//   )
-// }
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
