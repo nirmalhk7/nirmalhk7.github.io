@@ -76,7 +76,7 @@ class Projects extends React.Component {
                             );
                             let medium = a.childMarkdownRemark.frontmatter.medium;
                             return (
-                              <tr>
+                              <tr key={"x"+i}>
                                 <td>{medium}</td>
                                 <td>
                                   {xd &&

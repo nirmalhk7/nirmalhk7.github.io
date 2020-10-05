@@ -1,11 +1,5 @@
-import {
-  faAngellist,
-  faDev,
-  faGithub,
-  faGoodreads,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
-import { faRss, faLongArrowAltUp } from "@fortawesome/free-solid-svg-icons";
+import { faAngellist, faDev, faGithub, faGoodreads, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faRss, faLongArrowAltUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { social } from "./social";
@@ -17,10 +11,7 @@ export class ScrollToTop extends React.Component {
       scrollFn();
     };
     function scrollFn() {
-      if (
-        document.body.scrollTop > 40 ||
-        document.documentElement.scrollTop > 20
-      ) {
+      if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 20) {
         mybutton.style.display = "block";
       } else {
         mybutton.style.display = "none";
@@ -29,18 +20,14 @@ export class ScrollToTop extends React.Component {
   }
   render() {
     function topFunction() {
+      // TODO fix ScrollToTop Movement
       // document.body.scrollTop = 0;
       // document.documentElement.scrollTop = 0;
+      
     }
-    // TODO fix ScrollToTop Icon
     return (
-      <button
-        onClick={topFunction()}
-        className="go-top"
-        id="myBtn"
-        title="Go to top"
-      >
-        <FontAwesomeIcon icon={faLongArrowAltUp} size="lg" />
+      <button onClick={topFunction()} className="go-top" id="myBtn" title="Go to top">
+        <FontAwesomeIcon icon={faLongArrowAltUp} size="lg" style={{width:"100%",height:"100%"}} />
       </button>
     );
   }
@@ -53,15 +40,15 @@ const Footer = () => {
         <div className="col-full">
           <ul className="footer-social">
             {social.map((element, index) => {
-              if(element.link)
-              return (
-                <li key={index}>
-                  <a className="ln" href={element.link}>
-                    <FontAwesomeIcon icon={element.class} />
-                    <span>{element.name}</span>
-                  </a>
-                </li>
-              );
+              if (element.link)
+                return (
+                  <li key={index}>
+                    <a className="ln" href={element.link}>
+                      <FontAwesomeIcon icon={element.class} />
+                      <span>{element.name}</span>
+                    </a>
+                  </li>
+                );
             })}
           </ul>
         </div>
@@ -70,16 +57,9 @@ const Footer = () => {
         <div className="col-twelve">
           <div className="copyright">
             <span style={{ color: "#3d3d3d" }}>
-              Made with{" "}
-              <i
-                className="fa fa-heart heartbeat"
-                style={{ fontSize: "14px" }}
-              ></i>{" "}
-              by Nirmal Khedkar
+              Made with <FontAwesomeIcon icon={faHeart}/> by Nirmal Khedkar
             </span>
-            <span style={{ color: "#3d3d3d" }}>
-              Last Updated: July 20, 2020
-            </span>
+            <span style={{ color: "#3d3d3d" }}>Last Updated: July 20, 2020</span>
           </div>
           <div className="copyright">
             <span style={{ color: "#1d1d1d" }} id="justinmaller">
@@ -91,20 +71,11 @@ const Footer = () => {
             </span>
             <span style={{ color: "#1d1d1d" }}>
               Theme by{" "}
-              <a
-                className="hidelink"
-                href="https://www.styleshout.com/"
-                style={{ color: "#1d1d1d" }}
-              >
+              <a className="hidelink" href="https://www.styleshout.com/" style={{ color: "#1d1d1d" }}>
                 styleshout
               </a>{" "}
               (Copyright Hola 2017)
             </span>
-          </div>
-          <div className="go-top">
-            <a className="smoothscroll" title="Back to Top" href="#top">
-              <i className="im im-arrow-up" aria-hidden="true"></i>&nbsp;
-            </a>
           </div>
         </div>
       </div>

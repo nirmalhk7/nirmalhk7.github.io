@@ -2,19 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 
 const Navbar = (props) => {
-  let getNavLink = (name) => {
-    let clx = "";
-    let lx = props.location;
-    let tx = "";
-    if (lx) {
-      if (lx.pathname === "/" && name === "Home") {
-        clx = "smoothscroll";
-        tx = "#" + name;
-      } else if (lx.pathname === "/") {
-        clx = "smoothscroll";
-      }
-    }
-  };
+
   let webPath = props.location != null ? props.location.pathname : null;
   // TODO Scrollspy for Navbar
   return (
@@ -38,10 +26,8 @@ const Navbar = (props) => {
               About
             </Link>
           </li>
-          {/* <li><Link to="/project" title="Works">Works</Link></li>
-          <li><Link to="/blog" title="Blog">Blog</Link></li> */}
           <li>
-            <Link className="smoothscroll" to={webPath === "/" ? `#works` : "/projects"} title="Projects">
+            <Link className="smoothscroll" to={webPath === "/" ? `#projects` : "/projects"} title="Projects">
               Projects
             </Link>
           </li>

@@ -48,14 +48,14 @@ const BlogTemplate = ({ data }) => {
               </h1>
               <ul className="page-header__meta">
                 <li className="date">
-                  {moment(postDate, "YYYY-MM-DD").format("MMMM DD, YYYY")} by
-                  Nirmal Khedkar
+                  {moment(postDate, "YYYY-MM-DD").format("MMMM DD, YYYY")} by &nbsp;
+                  <b>Nirmal Khedkar</b>
                 </li>
               </ul>
             </article>
           </div>
         </div>
-        <div className="row blog-content">
+        <div className="row blog-content" style={{paddingBottom:"72px"}}>
           <div className="col-full blog-content__main">
             <div
               className="blogpost"
@@ -65,18 +65,14 @@ const BlogTemplate = ({ data }) => {
               <h6 className="boxfont text-uppercase" style={{ marginTop: 0 }}>
                 Spread the Love
               </h6>
-              <a href="https://www.facebook.com/sharer.php?u=https://nirmalhk7.github.io//future/2019/06/21/onesmallstep&title=One Small Step">
+              <a href={`https://www.facebook.com/sharer.php?u=${document.location.href}&title=Check out this blog: 'One Small Step' by Nirmal Khedkar`}>
                 <FontAwesomeIcon icon={faFacebook} className="blog-social" />
               </a>
               <a
-                href="https://twitter.com/share?text=One Small Step- Nirmal Khedkar&url=https://http://localhost:4000//future/2019/06/21/onesmallstep
-    "
+                href={`https://twitter.com/share?text=Check out this blog: 'One Small Step' by Nirmal Khedkar&url=${document.location.href}
+    `}
               >
-                {/*TODO Social Media Icons under Blog page.*/}
                 <FontAwesomeIcon icon={faTwitter} className="blog-social" />
-              </a>
-              <a href="#0">
-                <FontAwesomeIcon icon={faInstagram} className="blog-social" />
               </a>
               <a href="#0">
                 <FontAwesomeIcon icon={faPinterest} className="blog-social" />
@@ -110,6 +106,20 @@ const BlogTemplate = ({ data }) => {
                 </a>
               </div>
             </div>
+            {/* TODO Next Previous Blog <div class="blog-content__nav">
+              <div class="blog-content__prev">
+                <a href="#0" rel="prev">
+                  <span>Previous Post</span>
+                  Tips on Minimalist Design
+                </a>
+              </div>
+              <div class="blog-content__next">
+                <a href="#0" rel="next">
+                  <span>Next Post</span>
+                  Less Is More
+                </a>
+              </div>
+            </div> */}
           </div>
         </div>
       </article>

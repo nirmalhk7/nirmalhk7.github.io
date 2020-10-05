@@ -13,7 +13,7 @@ export let social = [
     name: "LinkedIn",
     link: "https://www.linkedin.com/in/nirmalhk7",
     class: faLinkedin,
-    underBlog: true
+    underBlog: true,
   },
   {
     name: "Angellist",
@@ -38,8 +38,9 @@ export let social = [
   {
     name: "Pinterest",
     class: faPinterest,
-    shareLink: "http://pinterest.com/pin/create/bookmarklet/?url=http://www.islandcompany.com/<?= $product->url; ?>&is_video=false&description=<?= $product->meta_description; ?>"
-  }
+    shareLink:
+      "http://pinterest.com/pin/create/bookmarklet/?url=http://www.islandcompany.com/<?= $product->url; ?>&is_video=false&description=<?= $product->meta_description; ?>",
+  },
 ];
 const SocialMediaIcons = () => {
   return (

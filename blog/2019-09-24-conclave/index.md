@@ -57,7 +57,7 @@ We knew that although we had the best looking product, we wont be able to make i
 
 Then they announced the overall results, which we lost all hope about, because we didnt make into top 3 in Hackathon. And they said, "Second Position goes to NIT Surathkal". *Damn we made it!*. I didnt even bother coming in better clothes: I was in my old trackpants for the awards event, because I wanted to save the only better one I had for flight travel, in case if we'd be travelling that way.
 
-![alt text](/assets/images/blog/Conclave.jpeg "Logo Title Text 1")
+![alt text](Conclave.jpeg "Logo Title Text 1")
 
 So with a feeling that last one week was definitely not a total waste and we defeated some 3rd and 4th years back there, we got on our train back to Surathkal.
 
