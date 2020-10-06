@@ -1,5 +1,6 @@
 import { faCalculator, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Axios from "axios";
 import React from "react";
 
 class ContactForm extends React.Component {
@@ -18,6 +19,7 @@ class ContactForm extends React.Component {
     event.preventDefault();
     this.setState({ [event.target.id]: event.target.value });
   }
+
   render() {
     return (
       <section id="contact" className="s-contact target-section fadeIn">
@@ -83,6 +85,7 @@ class ContactForm extends React.Component {
                   !this.state.email || !this.state.subject || !this.state.name
                 }
                 className="submit full-width btn"
+                style={{cursor:`${!this.state.email || !this.state.subject || !this.state.name ? "not-allowed": "default"}`}}
               />
               {this.state.response ? (
                 <>

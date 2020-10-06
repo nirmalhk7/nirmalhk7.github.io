@@ -1,5 +1,6 @@
 const path = require("path");
 const moment = require("moment");
+
 exports.createPages = ({ page, graphql, actions }, { paths }) => {
   const { createPage, deletePage } = actions;
   return new Promise((resolve, reject) => {
@@ -30,7 +31,7 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
           let postDate = node.relativeDirectory.split("-").slice(0, 3).join("-");
           postDate = new Date(Date.parse(postDate));
           const path = "blog/" + postName;
-          if (postDate <= new Date()) {
+          if (postDate <= new Date() || process.env.NODE_ENV==="development") {
             console.log("Generating route for", postName);
             createPage({
               path,

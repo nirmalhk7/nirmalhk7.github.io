@@ -30,7 +30,7 @@ const Blog = (props) => {
         <div className="overlay"></div>
         <div className="home-content">
           <div className="row home-content__main">
-            <h3>Official Blog of Nirmal Khedkar</h3>
+  <h3>Official Blog of Nirmal Khedkar</h3>
             <h1 className="page-header__title">
               <a href="/blog" title="">
                 Spaceride
