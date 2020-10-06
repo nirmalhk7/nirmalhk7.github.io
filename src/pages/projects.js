@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import {graphql } from "gatsby";
+import { graphql } from "gatsby";
 
 class Projects extends React.Component {
   constructor(props) {
@@ -77,7 +77,7 @@ class Projects extends React.Component {
                             );
                             let medium = a.childMarkdownRemark.frontmatter.medium;
                             return (
-                              <tr key={"x"+i}>
+                              <tr key={"x" + i}>
                                 <td>{medium}</td>
                                 <td>
                                   {xd &&

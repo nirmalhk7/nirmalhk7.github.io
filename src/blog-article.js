@@ -6,13 +6,7 @@ import SEO from "./components/seo";
 import { graphql } from "gatsby";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faInstagram,
-  faLinkedin,
-  faPinterest,
-  faTwitter,
-  faFacebook,
-} from "@fortawesome/free-brands-svg-icons";
+import { faInstagram, faLinkedin, faPinterest, faTwitter, faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 const BlogTemplate = ({ data }) => {
   data = data.file;
@@ -34,11 +28,7 @@ const BlogTemplate = ({ data }) => {
             <article className="col-full">
               <div className="page-header__info">
                 <div className="page-header__cat">
-                  <a href="/categories/#Future">
-                    {data.frontmatter.category
-                      ? data.frontmatter.category
-                      : "Personal"}
-                  </a>
+                  <a href="/categories/#Future">{data.frontmatter.category ? data.frontmatter.category : "Personal"}</a>
                 </div>
               </div>
               <h1 className="page-header__title">
@@ -55,22 +45,20 @@ const BlogTemplate = ({ data }) => {
             </article>
           </div>
         </div>
-        <div className="row blog-content" style={{paddingBottom:"72px"}}>
+        <div className="row blog-content" style={{ paddingBottom: "72px" }}>
           <div className="col-full blog-content__main">
-            <div
-              className="blogpost"
-              dangerouslySetInnerHTML={{ __html: data.html }}
-            />
+            <div className="blogpost" dangerouslySetInnerHTML={{ __html: data.html }} />
             <div className="blog-content__pagenav">
               <h6 className="boxfont text-uppercase" style={{ marginTop: 0 }}>
                 Spread the Love
               </h6>
-              <a href={`https://www.facebook.com/sharer.php?u=${document.location.href}&title=Check out this blog: 'One Small Step' by Nirmal Khedkar`}>
+              <a
+                href={`todo`}
+              >
                 <FontAwesomeIcon icon={faFacebook} className="blog-social" />
               </a>
               <a
-                href={`https://twitter.com/share?text=Check out this blog: 'One Small Step' by Nirmal Khedkar&url=${document.location.href}
-    `}
+                href={`todo`}
               >
                 <FontAwesomeIcon icon={faTwitter} className="blog-social" />
               </a>
@@ -80,16 +68,9 @@ const BlogTemplate = ({ data }) => {
               <a href="#0">
                 <FontAwesomeIcon icon={faLinkedin} className="blog-social" />
               </a>
-              <p
-                className="blog-content__tags"
-                style={{ marginTop: "3rem!important" }}
-              >
+              <p className="blog-content__tags" style={{ marginTop: "3rem!important" }}>
                 <span>
-                  <a href="/categories/#Future">
-                    {data.frontmatter.category
-                      ? data.frontmatter.category
-                      : "Personal"}
-                  </a>
+                  <a href="/categories/#Future">{data.frontmatter.category ? data.frontmatter.category : "Personal"}</a>
                 </span>
                 <span className="blog-content__tag-list">
                   {data.frontmatter.tags &&

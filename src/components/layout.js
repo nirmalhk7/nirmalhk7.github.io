@@ -115,7 +115,7 @@ class Layout extends React.Component {
   }
 }
 
-export const isProduction = process.env.NODE_ENV === "development"
+export const isProduction = process.env.NODE_ENV === "development";
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };

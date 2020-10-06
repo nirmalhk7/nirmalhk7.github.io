@@ -10,8 +10,8 @@ import courses from "../../data/courses.yaml";
 import clubs from "../../data/memberships.yaml";
 import SocialMediaIcons from "../components/partials/social";
 import X from "../helper/Non-Tagged";
-import Resume from "../../pdf/Resume.pdf";
-
+import Resume from "../assets/pdf/Resume.pdf";
+import { graphql } from 'gatsby'
 const Jumbotron = (props) => (
   <section
     id="home"

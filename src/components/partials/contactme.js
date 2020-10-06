@@ -81,20 +81,17 @@ class ContactForm extends React.Component {
               <input
                 type="submit"
                 value="Submit"
-                disabled={
-                  !this.state.email || !this.state.subject || !this.state.name
-                }
+                disabled={!this.state.email || !this.state.subject || !this.state.name}
                 className="submit full-width btn"
-                style={{cursor:`${!this.state.email || !this.state.subject || !this.state.name ? "not-allowed": "default"}`}}
+                style={{
+                  cursor: `${!this.state.email || !this.state.subject || !this.state.name ? "not-allowed" : "default"}`,
+                }}
               />
               {this.state.response ? (
                 <>
                   <div class="alert-box alert-box--info hideit">
                     <p>Info Message. Your Message Goes Here.</p>
-                    <FontAwesomeIcon
-                      icon={faTimes}
-                      className="alert-box__close"
-                    />
+                    <FontAwesomeIcon icon={faTimes} className="alert-box__close" />
                   </div>
                 </>
               ) : (
@@ -112,8 +109,7 @@ class ContactForm extends React.Component {
             <h4 className="h06">Address</h4>
             <p>
               Block 5,
-              <br /> National Institute of Technology Karnataka Surathkal
-              Hostel,
+              <br /> National Institute of Technology Karnataka Surathkal Hostel,
               <br /> NITK Surathkal,
               <br /> Karnataka- 575025, India
             </p>

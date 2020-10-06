@@ -23,11 +23,10 @@ export class ScrollToTop extends React.Component {
       // TODO fix ScrollToTop Movement
       // document.body.scrollTop = 0;
       // document.documentElement.scrollTop = 0;
-      
     }
     return (
       <button onClick={topFunction()} className="go-top" id="myBtn" title="Go to top">
-        <FontAwesomeIcon icon={faLongArrowAltUp} size="lg" style={{width:"100%",height:"100%"}} />
+        <FontAwesomeIcon icon={faLongArrowAltUp} size="lg" style={{ width: "100%", height: "100%" }} />
       </button>
     );
   }
@@ -57,7 +56,7 @@ const Footer = () => {
         <div className="col-twelve">
           <div className="copyright">
             <span style={{ color: "#3d3d3d" }}>
-              Made with <FontAwesomeIcon icon={faHeart}/> by Nirmal Khedkar
+              Made with <FontAwesomeIcon icon={faHeart} /> by Nirmal Khedkar
             </span>
             <span style={{ color: "#3d3d3d" }}>Last Updated: July 20, 2020</span>
           </div>
