@@ -66,7 +66,9 @@ const BlogTemplate = ({ data }) => {
               </a>
               <p className="blog-content__tags" style={{ marginTop: "3rem!important" }}>
                 <span>
-                  <a href="/categories/#Future">{data.frontmatter.category ? data.frontmatter.category : "Personal"}</a>
+                  <a href={`/blog/#${data.frontmatter.category}`}>
+                    {data.frontmatter.category ? data.frontmatter.category : "Personal"}
+                  </a>
                 </span>
                 <span className="blog-content__tag-list">
                   {data.frontmatter.tags.map((element, index) => (

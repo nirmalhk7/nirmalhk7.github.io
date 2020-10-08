@@ -15,6 +15,9 @@ const Blog = (props) => {
   blogItems = blogItems.sort((a, b) => {
     return getDatefromFilename(b.node.relativeDirectory) - getDatefromFilename(a.node.relativeDirectory);
   });
+  blogItems = blogItems.filter(
+    (x) => new Date(Date.parse(x.node.relativeDirectory.split("-").slice(0, 3).join("-"))) <= new Date()
+  );
   let latestBlogFile = blogItems[0].node.relativeDirectory;
   let latestBlogAddress = latestBlogFile.split("-").slice(3, latestBlogFile.length).join("-");
   return (
@@ -137,7 +140,9 @@ const Blog = (props) => {
                 let xfilter = blogItems.filter((e) => e.node.childMarkdownRemark.frontmatter.category === category);
                 return (
                   <article key={i} className="col-block">
-                    <h2 className="h01">{category}</h2>
+                    <h2 id={category} className="h01">
+                      {category}
+                    </h2>
                     <ul>
                       {xfilter &&
                         xfilter.map((element, index) => {
