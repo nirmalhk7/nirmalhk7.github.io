@@ -22,7 +22,7 @@ class ContactForm extends React.Component {
 
   render() {
     return (
-      <section id="contact" className="s-contact target-section fadeIn">
+      <section id="contact" className="s-contact target-section fadeIn parallax">
         <div className="overlay"></div>
         <div className="row narrow section-intro">
           <div className="col-full">

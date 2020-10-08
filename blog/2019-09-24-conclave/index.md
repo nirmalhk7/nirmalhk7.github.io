@@ -1,7 +1,7 @@
 ---
 title: Rourkela Journal
 category: Personal
-tags: nit-conclave environment technology nirmal
+tags: ["hackathon","environment","technology","nirmal"]
 img: "./nitrourkela.jpg"
 description: My account of the week I spent for NIT Conclave Hackathon at NITRKL.
 ---

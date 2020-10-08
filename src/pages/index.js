@@ -144,7 +144,7 @@ const AboutMe = (props) => (
           <ul className="disc">
             {clubs.map((element, index) => (
               <li key={index}>
-                {element.position} at <Link to={element.clubwebsite}>{element.club}</Link>
+                {element.position} at <a href={element.clubwebsite}>{element.club}</a>
               </li>
             ))}
           </ul>
@@ -225,15 +225,15 @@ class IndexPage extends React.Component {
         <SEO title="Home" />
         <Jumbotron />
         <AboutMe />
-        <section id="works" className="s-works target-section">
+        <section id="projects" className="s-works target-section">
           <div className="row">
             <div className="col-six tab-full right">
               <div className="narrow section-intro has-bottom-sep">
                 <div className="col-full">
-                  <h3>Works</h3>
+                  <h3>Projects</h3>
                   <h1>See My Latest Projects.</h1>
                   <p className="lead">
-                    Find my projects <Link to="/project">categorized here</Link>.
+                    Find my projects <Link to="/projects">categorized here</Link>.
                   </p>
                 </div>
               </div>

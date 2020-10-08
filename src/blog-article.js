@@ -87,20 +87,6 @@ const BlogTemplate = ({ data }) => {
                 </a>
               </div>
             </div>
-            {/* TODO Next Previous Blog <div class="blog-content__nav">
-              <div class="blog-content__prev">
-                <a href="#0" rel="prev">
-                  <span>Previous Post</span>
-                  Tips on Minimalist Design
-                </a>
-              </div>
-              <div class="blog-content__next">
-                <a href="#0" rel="next">
-                  <span>Next Post</span>
-                  Less Is More
-                </a>
-              </div>
-            </div> */}
           </div>
         </div>
       </article>

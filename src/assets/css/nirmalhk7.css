@@ -84,7 +84,7 @@
   /* Adjust as needed */
   animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
-.now {
+.now>a {
   color: #af2b2b !important;
 }
 /* The typing effect */

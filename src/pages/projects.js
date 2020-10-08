@@ -56,7 +56,7 @@ class Projects extends React.Component {
             </div>
           </section>
 
-          <section className="blog-content-wrap" id="blog">
+          <section className="blog-content-wrap">
             <div className="row blog-content">
               <div className="col-full">
                 <div className="blog-list block-1-2 block-tab-full">
