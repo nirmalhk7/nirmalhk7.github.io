@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import Scrollspy from "react-scrollspy";
 
 const Navbar = (props) => {
-  let pathName = document.location.pathname.split("/")[1];
+  let pathName = props.location && props.location.pathname;
   let navbarList = ["Home", "About", "Projects", "Blog", "Contact"];
   return (
     <header className="s-header">
@@ -18,9 +18,19 @@ const Navbar = (props) => {
           offset={-100}
         >
           {navbarList.map((element, index) => {
+            let hrx;
+            if(element ==="Contact"|| element==="About" || element=="Home"){
+              hrx = "#"+element.toLowerCase()
+              if(element=="About" || element==="Home"){
+                hrx= "/"+hrx
+              }
+            } else {
+              hrx="/"+element.toLowerCase();
+            }
+            
             return (
               <li key={index}>
-                <a href={element==="Home"? "/":"/"+element.toLowerCase()} title={element}>
+                <a href={hrx} title={element}>
                   {element}
                 </a>
               </li>

@@ -52,14 +52,10 @@ const BlogTemplate = ({ data }) => {
               <h6 className="boxfont text-uppercase" style={{ marginTop: 0 }}>
                 Spread the Love
               </h6>
-              <a
-                href={`todo`}
-              >
+              <a href={`todo`}>
                 <FontAwesomeIcon icon={faFacebook} className="blog-social" />
               </a>
-              <a
-                href={`todo`}
-              >
+              <a href={`todo`}>
                 <FontAwesomeIcon icon={faTwitter} className="blog-social" />
               </a>
               <a href="#0">
@@ -73,12 +69,11 @@ const BlogTemplate = ({ data }) => {
                   <a href="/categories/#Future">{data.frontmatter.category ? data.frontmatter.category : "Personal"}</a>
                 </span>
                 <span className="blog-content__tag-list">
-                  {data.frontmatter.tags &&
-                    data.frontmatter.tags.split(" ").map((element, index) => (
-                      <a key={index} href="#0">
-                        {element}
-                      </a>
-                    ))}
+                  {data.frontmatter.tags.map((element, index) => (
+                    <a key={index} href="#0">
+                      {element}
+                    </a>
+                  ))}
                 </span>
               </p>
               <div className="blog-content__all">
