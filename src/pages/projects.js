@@ -19,6 +19,7 @@ class Projects extends React.Component {
   handleClick = (event) => {
     event.preventDefault();
     event.persist();
+    console.log(event.target.id, event.target.value);
     if (this.state.openIndex === parseInt(event.target.id.split("-")[1])) {
       this.setState({
         hasClicked: false,
@@ -30,6 +31,7 @@ class Projects extends React.Component {
         openIndex: parseInt(event.target.id.split("-")[1]),
       });
     }
+    console.log(event.target.id, event.target.value);
   };
 
   render() {
@@ -113,14 +115,6 @@ class Projects extends React.Component {
                                         </div>
                                       </div>
                                     ))}
-                                  {/* {xd && xd.map((element, index) =>
-                                    <div className="accordion__item js-accordion-item">
-                                      <div className="accordion-header js-accordion-header">{element.childMarkdownRemark.frontmatter.name}</div>
-                                      <div className="accordion-body js-accordion-body">
-                                        <div className="accordion-body__contents" dangerouslySetInnerHTML={{ __html: element.childMarkdownRemark.html}} >
-                                        </div>
-                                    </div>
-                                  )} */}
                                 </td>
                               </tr>
                             );

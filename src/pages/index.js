@@ -9,7 +9,6 @@ import experience from "../../data/workexperiences.yaml";
 import courses from "../../data/courses.yaml";
 import clubs from "../../data/memberships.yaml";
 import SocialMediaIcons from "../components/partials/social";
-import X from "../helper/Non-Tagged";
 import Resume from "../assets/pdf/Resume.pdf";
 import { graphql } from "gatsby";
 const Jumbotron = (props) => (
@@ -49,6 +48,8 @@ const Jumbotron = (props) => (
     <SocialMediaIcons />
   </section>
 );
+
+export const None = (props) => <>{props.children}</>;
 
 const AboutMe = (props) => (
   <section id="about" className="s-about target-section">
@@ -128,15 +129,11 @@ const AboutMe = (props) => (
         <div className="row">
           <h5 style={{ paddingTop: "0.5em" }}>College Courses Taken</h5>
           <hr style={{ borderColor: "#af2b2b", margin: "10px!important" }} />
-          <ul className="disc">
-            {courses.college.map((element, index) => {
-              return (
-                <X style={{ paddingRight: "0.5em" }} key={index}>
-                  {index + 1 !== courses.college.length ? element + ", " : element + "."}
-                </X>
-              );
-            })}
-          </ul>
+          <div className="disc">
+            {courses.college.map((element, index) => (
+              <None key={index}>{index + 1 !== courses.college.length ? element + ", " : element + "."}</None>
+            ))}
+          </div>
         </div>
         <div className="row">
           <h5>Memberships</h5>
@@ -144,7 +141,10 @@ const AboutMe = (props) => (
           <ul className="disc">
             {clubs.map((element, index) => (
               <li key={index}>
-                {element.position} at <a href={element.clubwebsite}>{element.club}</a>
+                {element.position} at{" "}
+                <a key={index} href={element.clubwebsite}>
+                  {element.club}
+                </a>
               </li>
             ))}
           </ul>

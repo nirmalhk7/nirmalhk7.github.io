@@ -17,6 +17,9 @@ import $ from "jquery";
 
 class Layout extends React.Component {
   componentDidMount() {
+    window.onload = function () {
+      this.window.scrollTo(0, 0);
+    };
     window.onbeforeunload = function () {
       this.window.scrollTo(0, 0);
     };
