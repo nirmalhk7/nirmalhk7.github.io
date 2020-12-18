@@ -31,7 +31,6 @@ class Projects extends React.Component {
         openIndex: parseInt(event.target.id.split("-")[1]),
       });
     }
-    console.log(event.target.id, event.target.value);
   };
 
   render() {

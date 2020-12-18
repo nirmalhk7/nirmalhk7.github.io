@@ -77,7 +77,6 @@ const MasonPanel = ({ blogItems }) => {
                         <div className="item-folio__text">
                           <h3 className="item-folio__title">
                             {element.node.childMarkdownRemark.frontmatter.title}
-                            {element.node.draft === true ? <code style={{ color: "black" }}>Draft</code> : <></>}
                           </h3>
                           <p className="item-folio__cat">
                             <strong style={{ color: "#862121" }}>
@@ -113,10 +112,6 @@ const BlogByCategory = ({ blogItems }) => {
             {blogItems.map((a, i) => {
               let category = a.node.childMarkdownRemark.frontmatter.category;
               let xfilter = blogItems.filter((e) => e.node.childMarkdownRemark.frontmatter.category === category);
-              if (xfilter in hashFilters) return <></>;
-              hashFilters[xfilter] = true;
-
-              console.log(xfilter, i, category);
               return (
                 <article key={i} className="col-block">
                   <h2 id={category} className="h01">
@@ -128,7 +123,6 @@ const BlogByCategory = ({ blogItems }) => {
                         let title = element.node.childMarkdownRemark.frontmatter.title;
                         let filename = element.node.relativeDirectory;
                         let address = filename.split("-").slice(3, filename.length).join("-");
-                        console.log(filename, (index + 1) * 100 * (i + 1));
                         return (
                           <li key={(index + 1) * 100 * (i + 1)}>
                             <Link title={title} to={"/blog/" + address}>
@@ -159,12 +153,7 @@ const Blog = (props) => {
   });
   blogItems = blogItems.filter((x) => {
     let fileDate = new Date(Date.parse(x.node.relativeDirectory.split("-").slice(0, 3).join("-")));
-    if (fileDate <= new Date() || process.env.NODE_ENV === "development") {
-      if (process.env.NODE_ENV === "development" && fileDate > new Date()) {
-        x.node.draft = true;
-      } else {
-        x.node.draft = false;
-      }
+    if (fileDate <= new Date() && fileDate!=='Invalid Date') {
       return true;
     }
   });
