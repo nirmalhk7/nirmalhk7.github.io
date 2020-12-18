@@ -31,7 +31,7 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
           let postDate = node.relativeDirectory.split("-").slice(0, 3).join("-");
           postDate = new Date(Date.parse(postDate));
           const path = "blog/" + postName;
-          if (postDate <= new Date() || process.env.NODE_ENV === "development") {
+          if (postDate <= new Date() && postDate !=='Invalid Date') {
             console.log("Generating route for", postName);
             createPage({
               path,

@@ -1,6 +1,5 @@
 import { faCalculator, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Axios from "axios";
 import React from "react";
 
 class ContactForm extends React.Component {
