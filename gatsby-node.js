@@ -1,5 +1,4 @@
 const path = require("path");
-const moment = require("moment");
 
 exports.createPages = ({ page, graphql, actions }, { paths }) => {
   const { createPage, deletePage } = actions;
@@ -9,15 +8,54 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
     resolve(
       graphql(
         `
-          {
-            allFile(filter: { sourceInstanceName: { eq: "pages-markdown" }, ext: { eq: ".md" } }) {
+          query MyQuery {
+            allFile(
+              filter: { sourceInstanceName: { eq: "blog" }, ext: { eq: ".md" } }
+            ) {
               edges {
                 node {
-                  name
+                  relativeDirectory
                   childMarkdownRemark {
-                    id
+                    html
+                    frontmatter {
+                      title
+                      tags
+                      draft
+                      description
+                      date(formatString: "MMMM DD, YYYY")
+                      category
+                      img {
+                        childImageSharp {
+                          original {
+                            src
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                next {
+                  childMarkdownRemark {
+                    frontmatter {
+                      title
+                      draft
+                      description
+                      category
+                      date(formatString: "MMMM ")
+                    }
                   }
                   relativeDirectory
+                }
+                previous {
+                  relativeDirectory
+                  childMarkdownRemark {
+                    frontmatter {
+                      date(formatString: "MMMM DD, YYYY")
+                      description
+                      category
+                      title
+                    }
+                  }
                 }
               }
             }
@@ -25,24 +63,18 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
         `
       ).then((result) => {
         // TODO Add route for PDF
-        const posts = result.data.allFile.edges;
-        posts.forEach(({ node }) => {
-          const postName = node.relativeDirectory.split("-").slice(3, node.relativeDirectory.length).join("-");
-          let postDate = node.relativeDirectory.split("-").slice(0, 3).join("-");
-          postDate = new Date(Date.parse(postDate));
-          const path = "blog/" + postName;
-          if (postDate <= new Date() && postDate !=='Invalid Date') {
-            console.log("Generating route for", postName);
-            createPage({
-              path,
-              component: blogPostTemplate,
-              context: {
-                pathSlug: node.childMarkdownRemark.id,
-              },
-            });
-            resolve();
-          }
-        });
+        result.data.allFile.edges.map(post=>{
+          console.log("Blog","Endpoint for",post.node.childMarkdownRemark.frontmatter.title)
+          createPage({
+            path: "blog/"+post.node.relativeDirectory,
+            component: blogPostTemplate,
+            context: {
+              previous: post.previous,
+              next: post.next,
+              current: post.node
+            } 
+          })
+        })
       })
     );
   });

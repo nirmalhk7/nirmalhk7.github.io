@@ -8,27 +8,46 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 
 const LatestBlogItem = ({ item }) => {
   let latestBlogFile = item.relativeDirectory;
-  let latestBlogAddress = latestBlogFile.split("-").slice(3, latestBlogFile.length).join("-");
+  let latestBlogAddress = latestBlogFile
+    .split("-")
+    .slice(3, latestBlogFile.length)
+    .join("-");
   return (
     <>
       <section className="s-works inv target-section" id="blog">
         <div className="row blog-content">
           <div className="col-full">
-            <div className="blog-list block-1-2 block-tab-full" style={{ marginTop: "0rem" }}>
+            <div
+              className="blog-list block-1-2 block-tab-full"
+              style={{ marginTop: "0rem" }}
+            >
               <div className="row">
                 <div className="col-block">
                   <Img
-                    fluid={item.childMarkdownRemark.frontmatter.img.childImageSharp.fluid}
+                    fluid={
+                      item.childMarkdownRemark.frontmatter.img.childImageSharp
+                        .fluid
+                    }
                     style={{ maxHeight: "350px" }}
                   />
                 </div>
                 <div className="col-block">
-                  <h3 className="inv-header" style={{ color: "antiquewhite" }}></h3>
+                  <h3
+                    className="inv-header"
+                    style={{ color: "antiquewhite" }}
+                  ></h3>
                   <h1 className="entry-title">
-                    <Link className="white-text title-inv" to={"/blog/" + latestBlogAddress}>
+                    <Link
+                      className="white-text title-inv"
+                      to={"/blog/" + latestBlogAddress}
+                    >
                       {item.childMarkdownRemark.frontmatter.title}
                       &nbsp;&nbsp;
-                      {item.draft === true ? <code style={{ color: "black" }}>Draft</code> : <></>}
+                      {item.draft === true ? (
+                        <code style={{ color: "black" }}>Draft</code>
+                      ) : (
+                        <></>
+                      )}
                     </Link>
                   </h1>
                   <div className="entry-content white-text">
@@ -49,7 +68,10 @@ const MasonPanel = ({ blogItems }) => {
     <section className="blog-content-wrap">
       <div className="row blog-content">
         <div className="col-full">
-          <div className="row narrow section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
+          <div
+            className="row narrow section-intro has-bottom-sep"
+            style={{ paddingTop: "5em" }}
+          >
             <div className="col-full text-center">
               <h3>Spaceride</h3>
               <h1>All Posts</h1>
@@ -59,28 +81,33 @@ const MasonPanel = ({ blogItems }) => {
           <div className="blog-list block-1-2 block-tab-full">
             <div className="row masonry-wrap">
               <div className="masonry">
-                {blogItems.map((element, index) => {
-                  let filename = element.node.relativeDirectory;
-                  let address = filename.split("-").slice(3, filename.length).join("-");
+                {blogItems.map((e, i) => {
                   return (
-                    <div key={index} className="masonry__brick">
+                    <div key={i} className="masonry__brick">
                       <div className="item-folio">
                         <div className="item-folio__thumb">
                           <Link
-                            to={"/blog/" + address}
+                            to={"/blog/" + e.relativeDirectory}
                             className=""
-                            title={element.node.childMarkdownRemark.frontmatter.description}
+                            title={
+                              e.childMarkdownRemark.frontmatter.description
+                            }
                           >
-                            <Img fluid={element.node.childMarkdownRemark.frontmatter.img.childImageSharp.fluid} />
+                            <Img
+                              fluid={
+                                e.childMarkdownRemark.frontmatter.img
+                                  .childImageSharp.fluid
+                              }
+                            />
                           </Link>
                         </div>
                         <div className="item-folio__text">
                           <h3 className="item-folio__title">
-                            {element.node.childMarkdownRemark.frontmatter.title}
+                            {e.childMarkdownRemark.frontmatter.title}
                           </h3>
                           <p className="item-folio__cat">
                             <strong style={{ color: "#862121" }}>
-                              {element.node.childMarkdownRemark.frontmatter.category}
+                              {e.childMarkdownRemark.frontmatter.category}
                             </strong>
                           </p>
                         </div>
@@ -101,7 +128,10 @@ const BlogByCategory = ({ blogItems }) => {
   let hashFilters = {};
   return (
     <section className="s-works target-section">
-      <div className="row narrow section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
+      <div
+        className="row narrow section-intro has-bottom-sep"
+        style={{ paddingTop: "5em" }}
+      >
         <div className="col-full text-center">
           <h3>Browse by Category</h3>
         </div>
@@ -110,27 +140,28 @@ const BlogByCategory = ({ blogItems }) => {
         <div className="col-full">
           <div className="blog-list block-1-2 block-tab-full">
             {blogItems.map((a, i) => {
-              let category = a.node.childMarkdownRemark.frontmatter.category;
-              let xfilter = blogItems.filter((e) => e.node.childMarkdownRemark.frontmatter.category === category);
+              let xfilter = blogItems.filter(
+                (e) => e.childMarkdownRemark.frontmatter.category === a.childMarkdownRemark.frontmatter.category
+              );
               return (
                 <article key={i} className="col-block">
-                  <h2 id={category} className="h01">
-                    {category}
+                  <h2 id={a.childMarkdownRemark.frontmatter.category} className="h01">
+                    {a.childMarkdownRemark.frontmatter.category}
                   </h2>
                   <ul>
-                    {xfilter &&
-                      xfilter.map((element, index) => {
-                        let title = element.node.childMarkdownRemark.frontmatter.title;
-                        let filename = element.node.relativeDirectory;
-                        let address = filename.split("-").slice(3, filename.length).join("-");
-                        return (
-                          <li key={(index + 1) * 100 * (i + 1)}>
-                            <Link title={title} to={"/blog/" + address}>
-                              {title}
-                            </Link>
-                          </li>
-                        );
-                      })}
+                    {xfilter.map((element, index) => (
+                        <li key={(index + 1) * 100 * (i + 1)}>
+                          <Link
+                            title={
+                              element.childMarkdownRemark.frontmatter
+                                .description
+                            }
+                            to={"/blog/" + element.relativeDirectory}
+                          >
+                            {element.childMarkdownRemark.frontmatter.title}
+                          </Link>
+                        </li>
+                      ))}
                   </ul>
                 </article>
               );
@@ -142,22 +173,7 @@ const BlogByCategory = ({ blogItems }) => {
   );
 };
 
-const Blog = (props) => {
-  let blogItems = props.data && props.data.allFile.edges;
-  const getDatefromFilename = (name) => {
-    let d = new Date(name.split("-").slice(0, 3).join("-"));
-    return d;
-  };
-  blogItems = blogItems.sort((a, b) => {
-    return getDatefromFilename(b.node.relativeDirectory) - getDatefromFilename(a.node.relativeDirectory);
-  });
-  blogItems = blogItems.filter((x) => {
-    let fileDate = new Date(Date.parse(x.node.relativeDirectory.split("-").slice(0, 3).join("-")));
-    if (fileDate <= new Date() && fileDate!=='Invalid Date') {
-      return true;
-    }
-  });
-
+const Blog = ({ data }) => {
   return (
     <Layout>
       <SEO title="Spaceride" />
@@ -179,7 +195,9 @@ const Blog = (props) => {
             </h1>
             <div className="page-header__info">
               <div className="page-header__cat">
-                <div className="typewriter">Technology, Finance, Environment and Future.</div>
+                <div className="typewriter">
+                  Technology, Finance, Environment and Future.
+                </div>
               </div>
             </div>
             <div className="home-content__buttons">
@@ -190,34 +208,38 @@ const Blog = (props) => {
           </div>
         </div>
       </section>
-      <LatestBlogItem item={blogItems[0].node} />
-      <MasonPanel blogItems={blogItems} />
-      <BlogByCategory blogItems={blogItems} />
+      <LatestBlogItem item={data.allFile.nodes[0]} />
+      <MasonPanel blogItems={data.allFile.nodes} />
+      <BlogByCategory blogItems={data.allFile.nodes} />
     </Layout>
   );
 };
 export const postQuery = graphql`
   query {
-    allFile(filter: { sourceInstanceName: { eq: "pages-markdown" }, ext: { eq: ".md" } }) {
-      edges {
-        node {
-          relativeDirectory
-          childMarkdownRemark {
-            id
-            frontmatter {
-              title
-              tags
-              description
-              category
-              img {
-                childImageSharp {
-                  fluid {
-                    base64
-                    aspectRatio
-                    src
-                    srcSet
-                    sizes
-                  }
+    allFile(
+      filter: {
+        sourceInstanceName: { eq: "blog" }
+        ext: { eq: ".md" }
+        childMarkdownRemark: { frontmatter: { draft: { ne: true } } }
+      }
+      sort: { fields: childMarkdownRemark___frontmatter___date, order: DESC }
+    ) {
+      nodes {
+        relativeDirectory
+        childMarkdownRemark {
+          frontmatter {
+            title
+            date(formatString: "MMMM DD,YYYY")
+            category
+            description
+            img {
+              childImageSharp {
+                fluid {
+                  base64
+                  aspectRatio
+                  src
+                  srcSet
+                  sizes
                 }
               }
             }
