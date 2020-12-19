@@ -9,9 +9,7 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
       graphql(
         `
           query MyQuery {
-            allFile(
-              filter: { sourceInstanceName: { eq: "blog" }, ext: { eq: ".md" } }
-            ) {
+            allFile(filter: { sourceInstanceName: { eq: "blog" }, ext: { eq: ".md" } }) {
               edges {
                 node {
                   relativeDirectory
@@ -62,19 +60,18 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
           }
         `
       ).then((result) => {
-        // TODO Add route for PDF
-        result.data.allFile.edges.map(post=>{
-          console.log("Blog","Endpoint for",post.node.childMarkdownRemark.frontmatter.title)
+        result.data.allFile.edges.map((post) => {
+          console.log("Blog", "Endpoint for", post.node.childMarkdownRemark.frontmatter.title);
           createPage({
-            path: "blog/"+post.node.relativeDirectory,
+            path: "blog/" + post.node.relativeDirectory,
             component: blogPostTemplate,
             context: {
               previous: post.previous,
               next: post.next,
-              current: post.node
-            } 
-          })
-        })
+              current: post.node,
+            },
+          });
+        });
       })
     );
   });

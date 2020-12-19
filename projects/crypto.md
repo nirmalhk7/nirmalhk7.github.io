@@ -1,6 +1,6 @@
 ---
-name: Crypto
-medium: C++
+title: Crypto
+tags: ['C++']
 ---
 Built with Diffie Hellman principles. Wanna get that James Bond feeling?
 

@@ -6,12 +6,7 @@ import SEO from "./components/seo";
 import { graphql, Link } from "gatsby";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLinkedin,
-  faPinterest,
-  faTwitter,
-  faFacebook,
-} from "@fortawesome/free-brands-svg-icons";
+import { faLinkedin, faPinterest, faTwitter, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -28,9 +23,7 @@ const BlogTemplate = ({ pageContext }) => {
   return (
     <>
       <Layout>
-        <SEO
-          title={pageContext.current.childMarkdownRemark.frontmatter.title}
-        />
+        <SEO title={pageContext.current.childMarkdownRemark.frontmatter.title} />
         <article className="blog-single has-bottom-sep">
           <div
             className="page-header page-header--single page-hero parallax"
@@ -43,12 +36,7 @@ const BlogTemplate = ({ pageContext }) => {
               <article className="col-full">
                 <div className="page-header__info">
                   <div className="page-header__cat">
-                    <CategoryList
-                      categories={
-                        pageContext.current.childMarkdownRemark.frontmatter
-                          .category
-                      }
-                    />
+                    <CategoryList categories={pageContext.current.childMarkdownRemark.frontmatter.category} />
                   </div>
                 </div>
                 <h1 className="page-header__title">
@@ -59,7 +47,7 @@ const BlogTemplate = ({ pageContext }) => {
                 <ul className="page-header__meta">
                   <li className="date">
                     <b>Nirmal Khedkar</b> on
-                    {" "+pageContext.current.childMarkdownRemark.frontmatter.date}
+                    {" " + pageContext.current.childMarkdownRemark.frontmatter.date}
                   </li>
                 </ul>
               </article>
@@ -89,49 +77,30 @@ const BlogTemplate = ({ pageContext }) => {
                 <a href="#0">
                   <FontAwesomeIcon icon={faLinkedin} className="blog-social" />
                 </a>
-                <p
-                  className="blog-content__tags"
-                  style={{ marginTop: "3rem!important" }}
-                >
+                <p className="blog-content__tags" style={{ marginTop: "3rem!important" }}>
                   <span>
-                    <CategoryList
-                      categories={
-                        pageContext.current.childMarkdownRemark.frontmatter
-                          .category
-                      }
-                    />
+                    <CategoryList categories={pageContext.current.childMarkdownRemark.frontmatter.category} />
                   </span>
                   <span className="blog-content__tag-list">
-                    {pageContext.current.childMarkdownRemark.frontmatter.tags.map(
-                      (element, index) => (
-                        <a key={index} href="#0">
-                          {element}
-                        </a>
-                      )
-                    )}
+                    {pageContext.current.childMarkdownRemark.frontmatter.tags.map((element, index) => (
+                      <a key={index} href="#0">
+                        {element}
+                      </a>
+                    ))}
                   </span>
                 </p>
                 <div class="blog-content__nav">
                   {pageContext.previous ? (
                     <div class="blog-content__prev">
-                      <Link
-                        to={"/blog/" + pageContext.previous.relativeDirectory}
-                        rel="prev"
-                      >
+                      <Link to={"/blog/" + pageContext.previous.relativeDirectory} rel="prev">
                         <span>Previous Post</span>
-                        {
-                          pageContext.previous.childMarkdownRemark.frontmatter
-                            .title
-                        }
+                        {pageContext.previous.childMarkdownRemark.frontmatter.title}
                       </Link>
                     </div>
                   ) : null}
                   {pageContext.next ? (
                     <div class="blog-content__next">
-                      <Link
-                        to={"/blog/" + pageContext.next.relativeDirectory}
-                        rel="next"
-                      >
+                      <Link to={"/blog/" + pageContext.next.relativeDirectory} rel="next">
                         <span>Next Post</span>
                         {pageContext.next.childMarkdownRemark.frontmatter.title}
                       </Link>

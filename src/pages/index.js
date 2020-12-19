@@ -285,8 +285,8 @@ export const postQuery = graphql`
         sourceInstanceName
         childMarkdownRemark {
           frontmatter {
-            name
-            medium
+            title
+            tags
           }
           excerpt
         }

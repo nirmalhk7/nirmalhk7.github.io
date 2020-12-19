@@ -1,6 +1,6 @@
 ---
-name: First Aid Man
-medium: Dialogflow
+title: First Aid Man
+tags: ['Dialogflow']
 ---
 Built by Dialogflow, it makes life-saving first aid information only a "Hey Google" away.
 

@@ -1,6 +1,6 @@
 ---
-name: FOSS- Mifos Initiative
-medium: Android
+title: FOSS- Mifos Initiative
+tags: ["Android"]
 ---
 Find my contributions to Mifos Initiative here:
 - [mobile-wallet/644](https://github.com/openMF/mobile-wallet/pull/644)

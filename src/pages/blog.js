@@ -8,46 +8,27 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 
 const LatestBlogItem = ({ item }) => {
   let latestBlogFile = item.relativeDirectory;
-  let latestBlogAddress = latestBlogFile
-    .split("-")
-    .slice(3, latestBlogFile.length)
-    .join("-");
+  let latestBlogAddress = latestBlogFile.split("-").slice(3, latestBlogFile.length).join("-");
   return (
     <>
       <section className="s-works inv target-section" id="blog">
         <div className="row blog-content">
           <div className="col-full">
-            <div
-              className="blog-list block-1-2 block-tab-full"
-              style={{ marginTop: "0rem" }}
-            >
+            <div className="blog-list block-1-2 block-tab-full" style={{ marginTop: "0rem" }}>
               <div className="row">
                 <div className="col-block">
                   <Img
-                    fluid={
-                      item.childMarkdownRemark.frontmatter.img.childImageSharp
-                        .fluid
-                    }
+                    fluid={item.childMarkdownRemark.frontmatter.img.childImageSharp.fluid}
                     style={{ maxHeight: "350px" }}
                   />
                 </div>
                 <div className="col-block">
-                  <h3
-                    className="inv-header"
-                    style={{ color: "antiquewhite" }}
-                  ></h3>
+                  <h3 className="inv-header" style={{ color: "antiquewhite" }}></h3>
                   <h1 className="entry-title">
-                    <Link
-                      className="white-text title-inv"
-                      to={"/blog/" + latestBlogAddress}
-                    >
+                    <Link className="white-text title-inv" to={"/blog/" + latestBlogAddress}>
                       {item.childMarkdownRemark.frontmatter.title}
                       &nbsp;&nbsp;
-                      {item.draft === true ? (
-                        <code style={{ color: "black" }}>Draft</code>
-                      ) : (
-                        <></>
-                      )}
+                      {item.draft === true ? <code style={{ color: "black" }}>Draft</code> : <></>}
                     </Link>
                   </h1>
                   <div className="entry-content white-text">
@@ -68,10 +49,7 @@ const MasonPanel = ({ blogItems }) => {
     <section className="blog-content-wrap">
       <div className="row blog-content">
         <div className="col-full">
-          <div
-            className="row narrow section-intro has-bottom-sep"
-            style={{ paddingTop: "5em" }}
-          >
+          <div className="row narrow section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
             <div className="col-full text-center">
               <h3>Spaceride</h3>
               <h1>All Posts</h1>
@@ -89,26 +67,15 @@ const MasonPanel = ({ blogItems }) => {
                           <Link
                             to={"/blog/" + e.relativeDirectory}
                             className=""
-                            title={
-                              e.childMarkdownRemark.frontmatter.description
-                            }
+                            title={e.childMarkdownRemark.frontmatter.description}
                           >
-                            <Img
-                              fluid={
-                                e.childMarkdownRemark.frontmatter.img
-                                  .childImageSharp.fluid
-                              }
-                            />
+                            <Img fluid={e.childMarkdownRemark.frontmatter.img.childImageSharp.fluid} />
                           </Link>
                         </div>
                         <div className="item-folio__text">
-                          <h3 className="item-folio__title">
-                            {e.childMarkdownRemark.frontmatter.title}
-                          </h3>
+                          <h3 className="item-folio__title">{e.childMarkdownRemark.frontmatter.title}</h3>
                           <p className="item-folio__cat">
-                            <strong style={{ color: "#862121" }}>
-                              {e.childMarkdownRemark.frontmatter.category}
-                            </strong>
+                            <strong style={{ color: "#862121" }}>{e.childMarkdownRemark.frontmatter.category}</strong>
                           </p>
                         </div>
                       </div>
@@ -128,10 +95,7 @@ const BlogByCategory = ({ blogItems }) => {
   let hashFilters = {};
   return (
     <section className="s-works target-section">
-      <div
-        className="row narrow section-intro has-bottom-sep"
-        style={{ paddingTop: "5em" }}
-      >
+      <div className="row narrow section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
         <div className="col-full text-center">
           <h3>Browse by Category</h3>
         </div>
@@ -150,18 +114,15 @@ const BlogByCategory = ({ blogItems }) => {
                   </h2>
                   <ul>
                     {xfilter.map((element, index) => (
-                        <li key={(index + 1) * 100 * (i + 1)}>
-                          <Link
-                            title={
-                              element.childMarkdownRemark.frontmatter
-                                .description
-                            }
-                            to={"/blog/" + element.relativeDirectory}
-                          >
-                            {element.childMarkdownRemark.frontmatter.title}
-                          </Link>
-                        </li>
-                      ))}
+                      <li key={(index + 1) * 100 * (i + 1)}>
+                        <Link
+                          title={element.childMarkdownRemark.frontmatter.description}
+                          to={"/blog/" + element.relativeDirectory}
+                        >
+                          {element.childMarkdownRemark.frontmatter.title}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </article>
               );
@@ -195,9 +156,7 @@ const Blog = ({ data }) => {
             </h1>
             <div className="page-header__info">
               <div className="page-header__cat">
-                <div className="typewriter">
-                  Technology, Finance, Environment and Future.
-                </div>
+                <div className="typewriter">Technology, Finance, Environment and Future.</div>
               </div>
             </div>
             <div className="home-content__buttons">

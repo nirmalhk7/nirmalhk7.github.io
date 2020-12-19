@@ -7,7 +7,7 @@ export const CategoryList = ({ categories }) => (
         <a key={i} href={"/blog#" + c}>
           {c}
         </a>
-        {categories.length!==i+1?", ":null}
+        {categories.length !== i + 1 ? ", " : null}
       </>
     ))}
   </>

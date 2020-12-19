@@ -1,6 +1,6 @@
 ---
-name: ScholarHub
-medium: Ruby on Rails
+title: ScholarHub
+tags: ["Ruby on Rails"]
 ---
 
 Linkedin for Research Students.

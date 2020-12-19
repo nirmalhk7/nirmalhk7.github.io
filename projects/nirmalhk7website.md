@@ -1,6 +1,6 @@
 ---
-name: nirmalhk7.github.io
-medium: Jekyll
+title: nirmalhk7.github.io
+tags: ['Jekyll']
 ---
 Previously a simple website, now powered with Jekyll.
 
