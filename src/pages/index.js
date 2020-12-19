@@ -220,6 +220,7 @@ class IndexPage extends React.Component {
   };
   render() {
     let projects = this.props.data.allFile.nodes.slice(0, 5);
+    console.log(process);
     return (
       <Layout location={this.props.location}>
         <SEO title="Home" />
@@ -250,7 +251,7 @@ class IndexPage extends React.Component {
                       className={`accordion__item js-accordion-item ${this.state.isOpen[index] ? "active" : ""}`}
                     >
                       <div id={"accordionheader-" + index} className="accordion-header js-accordion-header">
-                        {element.childMarkdownRemark.frontmatter.name}
+                        {element.childMarkdownRemark.frontmatter.title}
                       </div>
                       <div
                         id={"accordionbody-" + index}
@@ -263,7 +264,7 @@ class IndexPage extends React.Component {
                           <p>{element.childMarkdownRemark.excerpt}</p>
                           <Link to="/project#Silver-Scrappie">Find more here</Link>
                           .&nbsp;&nbsp;&nbsp;
-                          <code>{element.childMarkdownRemark.frontmatter.medium}</code>
+                          <code>{element.childMarkdownRemark.frontmatter.tags[0]}</code>
                         </div>
                       </div>
                     </div>
