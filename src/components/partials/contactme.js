@@ -88,7 +88,7 @@ class ContactForm extends React.Component {
               />
               {this.state.response ? (
                 <>
-                  <div class="alert-box alert-box--info hideit">
+                  <div className="alert-box alert-box--info hideit">
                     <p>Info Message. Your Message Goes Here.</p>
                     <FontAwesomeIcon icon={faTimes} className="alert-box__close" />
                   </div>

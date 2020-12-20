@@ -2,6 +2,7 @@
   "name": "nirmalhk7-gitlab",
   "private": true,
   "description": "Official Website of Nirmal Khedkar",
+  "url": "nirmalhk7.tech",
   "version": "0.1.0",
   "author": "Nirmal Khedkar <nirmalhk7@gmail.com>",
   "dependencies": {
@@ -50,6 +51,7 @@
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "gatsby develop",
+    "start:draft": "GATSBY_DRAFT=true gatsby develop",
     "serve": "gatsby serve",
     "packages:update": "npm update --save-dev && npm update --save",
     "clean": "gatsby clean",

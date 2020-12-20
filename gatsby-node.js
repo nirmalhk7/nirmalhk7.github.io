@@ -5,11 +5,22 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
   return new Promise((resolve, reject) => {
     const blogPostTemplate = path.resolve("src/blog-article.js");
     // Query for markdown nodes to use in creating pages.
+    if (process.env.DRAFT.toLowerCase() === "true") {
+      console.log("Draft mode ENABLED");
+    }
     resolve(
       graphql(
         `
           query MyQuery {
-            allFile(filter: { sourceInstanceName: { eq: "blog" }, ext: { eq: ".md" } }) {
+            blog: allFile(
+              filter: {
+                sourceInstanceName: { eq: "blog" }
+                ext: { eq: ".md" }
+                ${
+                  process.env.DRAFT.toLowerCase() === "true" ? "": "childMarkdownRemark: { frontmatter: { draft: { ne: true } } }"
+                }
+              }
+            ) {
               edges {
                 node {
                   relativeDirectory
@@ -57,11 +68,21 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
                 }
               }
             }
+            siteDetails: site {
+              siteMetadata {
+                url
+                author
+              }
+            }
           }
         `
       ).then((result) => {
-        result.data.allFile.edges.map((post) => {
-          console.log("Blog", "Endpoint for", post.node.childMarkdownRemark.frontmatter.title);
+        result.data.blog.edges.map((post) => {
+          console.log(
+            "Blog",
+            "Endpoint for",
+            post.node.childMarkdownRemark.frontmatter.title
+          );
           createPage({
             path: "blog/" + post.node.relativeDirectory,
             component: blogPostTemplate,
@@ -69,10 +90,19 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
               previous: post.previous,
               next: post.next,
               current: post.node,
+              siteDetails: result.data.siteDetails.siteMetadata,
             },
           });
         });
       })
+      // .then(()=>{
+      //   const Resume= path.resolve("Resume.pdf")
+      //   console.log("Resume","Endpoint for Resume")
+      //   createPage({
+      //     path:"resume",
+      //     component: Resume
+      //   })
+      // })
     );
   });
 };

@@ -208,4 +208,3 @@ export const postQuery = graphql`
     }
   }
 `;
-export default Blog;

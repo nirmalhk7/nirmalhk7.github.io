@@ -6,7 +6,14 @@ import SEO from "./components/seo";
 import { graphql, Link } from "gatsby";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin, faPinterest, faTwitter, faFacebook } from "@fortawesome/free-brands-svg-icons";
+import {
+  faLinkedin,
+  faPinterest,
+  faTwitter,
+  faFacebook,
+  faWhatsapp,
+  faTelegram,
+} from "@fortawesome/free-brands-svg-icons";
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -19,11 +26,20 @@ import {
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Layout from "./components/layout";
 import { CategoryList } from "./helper/category";
-const BlogTemplate = ({ pageContext }) => {
+const BlogTemplate = ({ location, pageContext }) => {
+  const shareProps = {
+    url: pageContext.siteDetails.url + location.pathname,
+    title:
+      pageContext.current.childMarkdownRemark.frontmatter.title +
+      " by " +
+      pageContext.siteDetails.author,
+  };
   return (
     <>
       <Layout>
-        <SEO title={pageContext.current.childMarkdownRemark.frontmatter.title} />
+        <SEO
+          title={pageContext.current.childMarkdownRemark.frontmatter.title}
+        />
         <article className="blog-single has-bottom-sep">
           <div
             className="page-header page-header--single page-hero parallax"
@@ -36,7 +52,12 @@ const BlogTemplate = ({ pageContext }) => {
               <article className="col-full">
                 <div className="page-header__info">
                   <div className="page-header__cat">
-                    <CategoryList categories={pageContext.current.childMarkdownRemark.frontmatter.category} />
+                    <CategoryList
+                      categories={
+                        pageContext.current.childMarkdownRemark.frontmatter
+                          .category
+                      }
+                    />
                   </div>
                 </div>
                 <h1 className="page-header__title">
@@ -47,7 +68,8 @@ const BlogTemplate = ({ pageContext }) => {
                 <ul className="page-header__meta">
                   <li className="date">
                     <b>Nirmal Khedkar</b> on
-                    {" " + pageContext.current.childMarkdownRemark.frontmatter.date}
+                    {" " +
+                      pageContext.current.childMarkdownRemark.frontmatter.date}
                   </li>
                 </ul>
               </article>
@@ -62,45 +84,123 @@ const BlogTemplate = ({ pageContext }) => {
                 }}
               />
               <div className="blog-content__pagenav">
-                <h6 className="boxfont text-uppercase" style={{ marginTop: 0 }}>
-                  Spread the Love
-                </h6>
-                <a href={`todo`}>
-                  <FontAwesomeIcon icon={faFacebook} className="blog-social" />
-                </a>
-                <a href={`todo`}>
-                  <FontAwesomeIcon icon={faTwitter} className="blog-social" />
-                </a>
-                <a href="#0">
-                  <FontAwesomeIcon icon={faPinterest} className="blog-social" />
-                </a>
-                <a href="#0">
-                  <FontAwesomeIcon icon={faLinkedin} className="blog-social" />
-                </a>
-                <p className="blog-content__tags" style={{ marginTop: "3rem!important" }}>
+                <h6 className="boxfont text-uppercase mt-0">Share the article</h6>
+                <TwitterShareButton
+                  hashtags={
+                    pageContext.current.childMarkdownRemark.frontmatter.category
+                  }
+                  {...shareProps}
+                >
+                  <FontAwesomeIcon
+                    icon={faTwitter}
+                    className="blog-social anchor-color"
+                  />
+                </TwitterShareButton>
+                <LinkedinShareButton
+                  summary={
+                    pageContext.current.childMarkdownRemark.frontmatter.title
+                  }
+                  source={window.location.href}
+                  {...shareProps}
+                >
+                  <FontAwesomeIcon
+                    icon={faLinkedin}
+                    className="blog-social anchor-color"
+                  />
+                </LinkedinShareButton>
+                <FacebookShareButton
+                  quote={
+                    pageContext.current.childMarkdownRemark.frontmatter.title +
+                    " by Nirmal Khedkar"
+                  }
+                  hashtag={
+                    "#" +
+                    pageContext.current.childMarkdownRemark.frontmatter.category
+                  }
+                  {...shareProps}
+                >
+                  <FontAwesomeIcon
+                    icon={faFacebook}
+                    className="blog-social anchor-color"
+                  />
+                </FacebookShareButton>
+                <PinterestShareButton {...shareProps}>
+                  <FontAwesomeIcon
+                    icon={faPinterest}
+                    className="blog-social anchor-color"
+                  />
+                </PinterestShareButton>
+                <WhatsappShareButton {...shareProps}>
+                  <FontAwesomeIcon
+                    icon={faWhatsapp}
+                    className="blog-social anchor-color"
+                  />
+                </WhatsappShareButton>
+                <TelegramShareButton
+                  title={
+                    pageContext.current.childMarkdownRemark.frontmatter.title +
+                    " by Nirmal Khedkar"
+                  }
+                  {...shareProps}
+                >
+                  <FontAwesomeIcon
+                    icon={faTelegram}
+                    className="blog-social anchor-color"
+                  />
+                </TelegramShareButton>
+                <EmailShareButton
+                  subject="Check out this blog on nirmalhk7.tech"
+                  body="I found this interesting blog article that you might like:"
+                  {...shareProps}
+                >
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    className="blog-social anchor-color"
+                  />
+                </EmailShareButton>
+                <p
+                  className="blog-content__tags"
+                  style={{ marginTop: "3rem!important" }}
+                >
                   <span>
-                    <CategoryList categories={pageContext.current.childMarkdownRemark.frontmatter.category} />
+                    <CategoryList
+                      categories={
+                        pageContext.current.childMarkdownRemark.frontmatter
+                          .category
+                      }
+                    />
                   </span>
                   <span className="blog-content__tag-list">
-                    {pageContext.current.childMarkdownRemark.frontmatter.tags.map((element, index) => (
-                      <a key={index} href="#0">
-                        {element}
-                      </a>
-                    ))}
+                    {pageContext.current.childMarkdownRemark.frontmatter.tags.map(
+                      (element, index) => (
+                        <a key={index} href="#0">
+                          {element}
+                        </a>
+                      )
+                    )}
                   </span>
                 </p>
-                <div class="blog-content__nav">
+                <div className="blog-content__nav">
                   {pageContext.previous ? (
-                    <div class="blog-content__prev">
-                      <Link to={"/blog/" + pageContext.previous.relativeDirectory} rel="prev">
+                    <div className="blog-content__prev">
+                      <Link
+                        to={"/blog/" + pageContext.previous.relativeDirectory}
+                        rel="prev"
+                      >
                         <span>Previous Post</span>
-                        {pageContext.previous.childMarkdownRemark.frontmatter.title}
+                        {
+                          pageContext.previous.childMarkdownRemark.frontmatter
+                            .title
+                        }
                       </Link>
                     </div>
                   ) : null}
                   {pageContext.next ? (
-                    <div class="blog-content__next">
-                      <Link to={"/blog/" + pageContext.next.relativeDirectory} rel="next">
+                    <div className="blog-content__next">
+                      <Link
+                        to={"/blog/" + pageContext.next.relativeDirectory}
+                        rel="next"
+                      >
                         <span>Next Post</span>
                         {pageContext.next.childMarkdownRemark.frontmatter.title}
                       </Link>
@@ -120,29 +220,5 @@ const BlogTemplate = ({ pageContext }) => {
     </>
   );
 };
-// 5ddb4f0e-b206-5442-90ff-32f99a5218cc
-// export const postQuery = graphql`
-//   query($pathSlug: String!) {
-//     file(childMarkdownRemark: { id: { eq: $pathSlug } }) {
-//       childMarkdownRemark {
-//         frontmatter {
-//           img {
-//             childImageSharp {
-//               original {
-//                 src
-//               }
-//             }
-//           }
-//           description
-//           category
-//           title
-//           tags
-//         }
-//         html
-//       }
-//       relativeDirectory
-//     }
-//   }
-// `;
 
 export default BlogTemplate;
