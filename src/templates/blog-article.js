@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from "./components/partials/navbar";
-import RandomQuote from "./components/partials/quote";
-import Footer from "./components/partials/footer";
-import SEO from "./components/seo";
+import Navbar from "../components/partials/navbar";
+import RandomQuote from "../components/partials/quote";
+import Footer from "../components/partials/footer";
+import SEO from "../components/seo";
 import { graphql, Link } from "gatsby";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,8 +24,8 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import Layout from "./components/layout";
-import { CategoryList } from "./helper/category";
+import Layout from "../components/layout";
+import { CategoryList } from "../helper/category";
 const BlogTemplate = ({ location, pageContext }) => {
   const shareProps = {
     url: pageContext.siteDetails.url + location.pathname,

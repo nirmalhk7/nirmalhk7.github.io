@@ -1,26 +1,26 @@
 const path = require("path");
-const fs= require('fs')
-const getEnvVariables = (env)=>{
-  console.log(env,"mode");
-  let inp=fs.readFileSync(`.env.${env}`,{encoding:'utf-8'})
-  let arr=inp.split("\n");
-  arr.forEach(element => {
-      let ans=element.split("=")[1]
-      if(ans==='true'){
-        ans=true
-      } else if(ans==='false'){
-        ans=false
-      }
-      process.env[element.split("=")[0]]=ans
+const fs = require("fs");
+const getEnvVariables = (env) => {
+  console.log(env, "mode");
+  let inp = fs.readFileSync(`.env.${env}`, { encoding: "utf-8" });
+  let arr = inp.split("\n");
+  arr.forEach((element) => {
+    let ans = element.split("=")[1];
+    if (ans === "true") {
+      ans = true;
+    } else if (ans === "false") {
+      ans = false;
+    }
+    process.env[element.split("=")[0]] = ans;
   });
-}
+};
 exports.createPages = ({ page, graphql, actions }, { paths }) => {
   const { createPage, deletePage } = actions;
   getEnvVariables(process.env.NODE_ENV);
   return new Promise((resolve, reject) => {
     const blogPostTemplate = path.resolve("src/blog-article.js");
-    if(process.env.DRAFT===false){
-      console.log("Draft mode DISABLED")
+    if (process.env.DRAFT === false) {
+      console.log("Draft mode DISABLED");
     } else if (process.env.DRAFT.toLowerCase() === true) {
       console.log("Draft mode ENABLED");
     }
@@ -92,11 +92,7 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
         `
       ).then((result) => {
         result.data.blog.edges.map((post) => {
-          console.log(
-            "Blog",
-            "Endpoint for",
-            post.node.childMarkdownRemark.frontmatter.title
-          );
+          console.log("Blog", "Endpoint for", post.node.childMarkdownRemark.frontmatter.title);
           createPage({
             path: "blog/" + post.node.relativeDirectory,
             component: blogPostTemplate,

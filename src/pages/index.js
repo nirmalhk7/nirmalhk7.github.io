@@ -220,7 +220,7 @@ class IndexPage extends React.Component {
   };
   render() {
     let projects = this.props.data.allFile.nodes.slice(0, 5);
-    console.log(process.env.DRAFT,process.env)
+    console.log(process.env.DRAFT, process.env);
     return (
       <Layout location={this.props.location}>
         <SEO title="Home" />
