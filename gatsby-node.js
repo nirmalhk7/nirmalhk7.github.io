@@ -1,11 +1,27 @@
 const path = require("path");
-
+const fs= require('fs')
+const getEnvVariables = (env)=>{
+  console.log(env,"mode");
+  let inp=fs.readFileSync(`.env.${env}`,{encoding:'utf-8'})
+  let arr=inp.split("\n");
+  arr.forEach(element => {
+      let ans=element.split("=")[1]
+      if(ans==='true'){
+        ans=true
+      } else if(ans==='false'){
+        ans=false
+      }
+      process.env[element.split("=")[0]]=ans
+  });
+}
 exports.createPages = ({ page, graphql, actions }, { paths }) => {
   const { createPage, deletePage } = actions;
+  getEnvVariables(process.env.NODE_ENV);
   return new Promise((resolve, reject) => {
     const blogPostTemplate = path.resolve("src/blog-article.js");
-    // Query for markdown nodes to use in creating pages.
-    if (process.env.DRAFT.toLowerCase() === "true") {
+    if(process.env.DRAFT===false){
+      console.log("Draft mode DISABLED")
+    } else if (process.env.DRAFT.toLowerCase() === true) {
       console.log("Draft mode ENABLED");
     }
     resolve(
@@ -16,9 +32,7 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
               filter: {
                 sourceInstanceName: { eq: "blog" }
                 ext: { eq: ".md" }
-                ${
-                  process.env.DRAFT.toLowerCase() === "true" ? "": "childMarkdownRemark: { frontmatter: { draft: { ne: true } } }"
-                }
+                childMarkdownRemark: { frontmatter: { draft: { in: [null,false,${process.env.DRAFT}] } } }
               }
             ) {
               edges {

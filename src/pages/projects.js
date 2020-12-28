@@ -37,7 +37,7 @@ class Projects extends React.Component {
       <>
         <Layout>
           <SEO title="Projects" />
-          <section className="page-header page-hero parallax projects-img">
+          <section className="page-header page-hero parallax" id="projects-header">
             <div className="row page-header__content">
               <article className="col-full">
                 <h1 className="page-header__title">

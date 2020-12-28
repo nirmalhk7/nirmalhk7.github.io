@@ -4,7 +4,7 @@ category: ['Personal']
 tags: ["book-review"]
 img: "./silver.jpg"
 description: A review of the best WW-era Indian story I've ever read 
-draft: True
+draft: true
 date: "2020-10-15"
 ---
 
