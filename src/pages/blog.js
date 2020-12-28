@@ -138,8 +138,6 @@ const Blog = ({ data }) => {
   return (
     <Layout>
       <SEO title="Spaceride" />
-
-      {console.log("PRX", process.env, process.env.DRAFT, process.env.NODE_ENV)}
       <section
         className="s-home page-hero target-section parallax"
         data-parallax="scroll"

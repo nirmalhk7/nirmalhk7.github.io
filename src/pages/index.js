@@ -27,7 +27,7 @@ const Jumbotron = (props) => (
         <h1>
           I'm Nirmal Khedkar, <br />
           product developer
-          <br />
+          {"\n"}
           based in Surathkal, India.
         </h1>
         <div className="home-content__buttons">
@@ -116,7 +116,7 @@ const AboutMe = (props) => (
           )}
         </div>
         <div className="row">
-          <h5 style={{ paddingTop: "0.5em" }}>Online Certification and Courses Taken</h5>
+          <h5>Online Certification and Courses Taken</h5>
           <hr style={{ borderColor: "#af2b2b", margin: "10px!important" }} />
           <ul className="disc">
             {courses.online.map((element, index) => (
@@ -127,7 +127,7 @@ const AboutMe = (props) => (
           </ul>
         </div>
         <div className="row">
-          <h5 style={{ paddingTop: "0.5em" }}>College Courses Taken</h5>
+          <h5>College Courses Taken</h5>
           <hr style={{ borderColor: "#af2b2b", margin: "10px!important" }} />
           <div className="disc">
             {courses.college.map((element, index) => (
@@ -220,7 +220,6 @@ class IndexPage extends React.Component {
   };
   render() {
     let projects = this.props.data.allFile.nodes.slice(0, 5);
-    console.log(process.env.DRAFT, process.env);
     return (
       <Layout location={this.props.location}>
         <SEO title="Home" />

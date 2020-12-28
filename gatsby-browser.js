@@ -8,3 +8,4 @@
 
 import "./src/assets/css/all.css";
 import "./src/assets/scss/main.scss";
+import "bootstrap-grid-only-css/dist/css/bootstrap-grid.min.css"

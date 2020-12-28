@@ -18,7 +18,6 @@ class Projects extends React.Component {
   handleClick = (event) => {
     event.preventDefault();
     event.persist();
-    console.log(event.target.id, event.target.value);
     if (this.state.openIndex === parseInt(event.target.id.split("-")[1])) {
       this.setState({
         hasClicked: false,
