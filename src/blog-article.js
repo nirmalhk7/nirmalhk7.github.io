@@ -82,7 +82,7 @@ const BlogTemplate = ({ location, pageContext }) => {
                 </TwitterShareButton>
                 <LinkedinShareButton
                   summary={pageContext.current.childMarkdownRemark.frontmatter.title}
-                  source={window.location.href}
+                  source={location.href}
                   {...shareProps}
                 >
                   <FontAwesomeIcon icon={faLinkedin} className="blog-social anchor-color" />
