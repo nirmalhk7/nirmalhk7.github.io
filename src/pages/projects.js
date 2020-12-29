@@ -55,9 +55,9 @@ class Projects extends React.Component {
             </div>
           </section>
 
-          <section className="blog-content-wrap">
-            <div className="row blog-content">
-              <div className="col-full">
+          <section className="blog-content-wrap bootstrap-wrapper">
+            <div className="container blog-content">
+              <div className="">
                 <div className="blog-list block-1-2 block-tab-full">
                   <div className="accordion js-accordion">
                     {this.props.data.allFile.group.map((e1, i1) => (
