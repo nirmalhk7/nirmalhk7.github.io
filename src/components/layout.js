@@ -106,9 +106,7 @@ class Layout extends React.Component {
       <>
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <Navbar location={this.props.location} />
-        <div>
-          <main>{children}</main>
-        </div>
+        <main>{children}</main>
         <RandomQuote />
         <ContactForm />
         <Footer />

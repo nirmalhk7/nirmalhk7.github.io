@@ -35,7 +35,7 @@ const BlogTemplate = ({ location, pageContext }) => {
     <>
       <Layout>
         <SEO title={pageContext.current.childMarkdownRemark.frontmatter.title} />
-        <article className="blog-single has-bottom-sep">
+        <article className="blog-single has-bottom-sep bootstrap-wrapper">
           <div
             className="page-header page-header--single page-hero parallax"
             style={{
@@ -43,8 +43,8 @@ const BlogTemplate = ({ location, pageContext }) => {
               backgroundSize: "cover",
             }}
           >
-            <div className="row page-header__content narrow">
-              <article className="col-full">
+            <div className="m-auto page-header__content narrow">
+              <article>
                 <div className="page-header__info">
                   <div className="page-header__cat">
                     <CategoryList categories={pageContext.current.childMarkdownRemark.frontmatter.category} />
@@ -64,7 +64,7 @@ const BlogTemplate = ({ location, pageContext }) => {
               </article>
             </div>
           </div>
-          <div className="row blog-content" style={{ paddingBottom: "72px" }}>
+          <div className="container" style={{ paddingBottom: "72px", paddingTop:"5em" }}>
             <div className="col-full blog-content__main">
               <div
                 className="blogpost"

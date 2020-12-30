@@ -9,7 +9,7 @@ class Projects extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      openIndex: 0,
+      openIndex: -1,
       hasClicked: false,
     };
     this.handleClick = this.handleClick.bind(this);

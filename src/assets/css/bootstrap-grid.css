@@ -19,6 +19,10 @@ html {
  -ms-overflow-style: scrollbar;
 }
 
+
+.vh-100{
+  height: 100vh;
+}
 *,
 *::before,
 *::after {
@@ -136,6 +140,10 @@ html {
  .bootstrap-wrapper .hidden-print {
    display: none !important;
  }
+}
+
+.m-auto {
+  margin:auto;
 }
 
 .bootstrap-wrapper .container {
