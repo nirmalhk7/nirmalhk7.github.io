@@ -22,10 +22,7 @@ class ContactForm extends React.Component {
   render() {
     return (
       <div className="bootstrap-wrapper">
-        <section
-          id="contact"
-          className="s-contact target-section fadeIn parallax"
-        >
+        <section id="contact" className="s-contact target-section fadeIn parallax">
           <div className="overlay"></div>
           <div className="narrow section-intro m-auto">
             <div className="col-full">
@@ -34,7 +31,7 @@ class ContactForm extends React.Component {
               <p className="lead">I'll reach you out as soon as I can.</p>
             </div>
           </div>
-          <div className="container" style={{maxWidth:'1000px'}}>
+          <div className="container" style={{ maxWidth: "1000px" }}>
             <div className="row">
               <div className="col-8 tab-full contact__form">
                 <form
@@ -85,19 +82,11 @@ class ContactForm extends React.Component {
                   <input
                     type="submit"
                     value="Submit"
-                    disabled={
-                      !this.state.email ||
-                      !this.state.subject ||
-                      !this.state.name
-                    }
+                    disabled={!this.state.email || !this.state.subject || !this.state.name}
                     className="submit full-width btn"
                     style={{
                       cursor: `${
-                        !this.state.email ||
-                        !this.state.subject ||
-                        !this.state.name
-                          ? "not-allowed"
-                          : "default"
+                        !this.state.email || !this.state.subject || !this.state.name ? "not-allowed" : "default"
                       }`,
                     }}
                   />
@@ -105,10 +94,7 @@ class ContactForm extends React.Component {
                     <>
                       <div className="alert-box alert-box--info hideit">
                         <p>Info Message. Your Message Goes Here.</p>
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          className="alert-box__close"
-                        />
+                        <FontAwesomeIcon icon={faTimes} className="alert-box__close" />
                       </div>
                     </>
                   ) : (
@@ -126,8 +112,7 @@ class ContactForm extends React.Component {
                 <h4 className="h06 text-white">Address</h4>
                 <p>
                   Block 5,
-                  <br /> National Institute of Technology Karnataka Surathkal
-                  Hostel,
+                  <br /> National Institute of Technology Karnataka Surathkal Hostel,
                   <br /> NITK Surathkal,
                   <br /> Karnataka- 575025, India
                 </p>

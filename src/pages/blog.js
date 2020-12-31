@@ -50,9 +50,9 @@ const MasonPanel = ({ blogItems }) => {
   return (
     <section className="blog-content-wrap bootstrap-wrapper">
       <div className="container">
-        <div className=" blog-content" style={{ justifyContent: "center" }}>
-          <div className="row section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
-            <div className="col-12 text-center">
+        <div className=" blog-content m-auto" style={{ justifyContent: "center" }}>
+          <div className="section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
+            <div className="text-center">
               <h3>Spaceride</h3>
               <h1>All Posts</h1>
             </div>
@@ -93,42 +93,39 @@ const MasonPanel = ({ blogItems }) => {
 };
 
 const BlogByCategory = ({ blogItems }) => {
-  let hashFilters = {};
   return (
-    <section className="s-works target-section">
-      <div className="row narrow section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
-        <div className="col-full text-center">
+    <section className="s-works target-section bootstrap-wrapper">
+      <div className="m-auto narrow section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
+        <div className="m-auto text-center">
           <h3>Browse by Category</h3>
         </div>
       </div>
-      <div className="row blog-content">
-        <div className="col-full">
-          <div className="blog-list block-1-2 block-tab-full">
-            {blogItems.map((a, i) => {
-              let xfilter = blogItems.filter(
-                (e) => e.childMarkdownRemark.frontmatter.category === a.childMarkdownRemark.frontmatter.category
-              );
-              return (
-                <article key={i} className="col-block">
-                  <h2 id={a.childMarkdownRemark.frontmatter.category} className="h01">
-                    {a.childMarkdownRemark.frontmatter.category}
-                  </h2>
-                  <ul>
-                    {xfilter.map((element, index) => (
-                      <li key={(index + 1) * 100 * (i + 1)}>
-                        <Link
-                          title={element.childMarkdownRemark.frontmatter.description}
-                          to={"/blog/" + element.relativeDirectory}
-                        >
-                          {element.childMarkdownRemark.frontmatter.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              );
-            })}
-          </div>
+      <div className="container blog-content">
+        <div className="row">
+          {blogItems.map((a, i) => {
+            let xfilter = blogItems.filter(
+              (e) => e.childMarkdownRemark.frontmatter.category === a.childMarkdownRemark.frontmatter.category
+            );
+            return (
+              <article key={i} className="col-6">
+                <h2 id={a.childMarkdownRemark.frontmatter.category} className="h01">
+                  {a.childMarkdownRemark.frontmatter.category}
+                </h2>
+                <ul>
+                  {xfilter.map((element, index) => (
+                    <li key={(index + 1) * 100 * (i + 1)}>
+                      <Link
+                        title={element.childMarkdownRemark.frontmatter.description}
+                        to={"/blog/" + element.relativeDirectory}
+                      >
+                        {element.childMarkdownRemark.frontmatter.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -140,7 +137,7 @@ const Blog = ({ data }) => {
     <Layout>
       <SEO title="Spaceride" />
       <section
-        className="s-home page-hero target-section parallax"
+        className="s-home page-hero target-section parallax bootstrap-wrapper"
         data-parallax="scroll"
         data-natural-width="3000"
         id="blog-header"
@@ -149,7 +146,7 @@ const Blog = ({ data }) => {
       >
         <div className="overlay"></div>
         <div className="home-content">
-          <div className="row home-content__main">
+          <div className="container home-content__main">
             <h3>Official Blog of Nirmal Khedkar</h3>
             <h1 className="page-header__title">
               <a href="/blog" title="">
@@ -169,6 +166,7 @@ const Blog = ({ data }) => {
           </div>
         </div>
       </section>
+
       <LatestBlogItem item={data.allFile.nodes[0]} />
       <MasonPanel blogItems={data.allFile.nodes} />
       <BlogByCategory blogItems={data.allFile.nodes} />

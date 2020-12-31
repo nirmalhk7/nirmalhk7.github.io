@@ -64,7 +64,7 @@ const BlogTemplate = ({ location, pageContext }) => {
               </article>
             </div>
           </div>
-          <div className="container" style={{ paddingBottom: "72px", paddingTop:"5em" }}>
+          <div className="container" style={{ paddingBottom: "72px", paddingTop: "5em" }}>
             <div className="col-full blog-content__main">
               <div
                 className="blogpost"

@@ -36,8 +36,8 @@ class Projects extends React.Component {
       <>
         <Layout>
           <SEO title="Projects" />
-          <section className="page-header page-hero parallax" id="projects-header">
-            <div className="row page-header__content">
+          <section className="page-header page-hero parallax bootstrap-wrapper" id="projects-header">
+            <div className="container page-header__content">
               <article className="col-full">
                 <h1 className="page-header__title">
                   <a href="#0" title="Projects">
@@ -47,7 +47,7 @@ class Projects extends React.Component {
                 <div className="page-header__info">
                   <div className="page-header__cat">Projects Catalogue of Nirmal Khedkar</div>
                 </div>
-                <p>
+                <p className="narrow">
                   I'm a fullstack and hybrid product developer, currently understanding how ML models are deployed on
                   cloud platforms. I love building stuff! <FontAwesomeIcon icon={faWrench} className="ml-2" />{" "}
                 </p>
