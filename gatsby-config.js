@@ -5,6 +5,7 @@ module.exports = {
     description: `Product Developer, ML Enthusiast, learner and motorsport enthusiast: Hi, I'm Nirmal Khedkar.`,
     author: `Nirmal Khedkar`,
     url: `nirmalhk7.tech`,
+    blogName: `Spaceride`,
   },
   plugins: [
     `gatsby-transformer-sharp`,
