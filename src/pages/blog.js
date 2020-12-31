@@ -7,14 +7,12 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 // import SocialMediaSideIcons from "../components/partials/social"
 
 const LatestBlogItem = ({ item }) => {
-  let latestBlogFile = item.relativeDirectory;
-  let latestBlogAddress = latestBlogFile.split("-").slice(3, latestBlogFile.length).join("-");
   return (
     <>
       <section className="s-works inv target-section bootstrap-wrapper" id="blog-first">
         <div className="container blog-content">
           <Link
-            to={"/blog/" + latestBlogAddress}
+            to={"/blog/" + item.relativeDirectory}
             className="blog-list block-1-2 block-tab-full"
             style={{ marginTop: "0rem" }}
           >
@@ -48,9 +46,9 @@ const LatestBlogItem = ({ item }) => {
 
 const MasonPanel = ({ blogItems }) => {
   return (
-    <section className="blog-content-wrap bootstrap-wrapper">
-      <div className="container">
-        <div className=" blog-content m-auto" style={{ justifyContent: "center" }}>
+    <section className="blog-content-wrap">
+      <div className="">
+        <div className="blog-content m-auto" style={{ maxWidth: "1500px" }}>
           <div className="section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
             <div className="text-center">
               <h3>Spaceride</h3>
@@ -58,7 +56,7 @@ const MasonPanel = ({ blogItems }) => {
             </div>
           </div>
           <div className="blog-list block-1-2 block-tab-full">
-            <div className="row masonry-wrap">
+            <div className="row">
               <div className="masonry">
                 {blogItems.map((e, i) => {
                   return (
@@ -149,9 +147,9 @@ const Blog = ({ data }) => {
           <div className="container home-content__main">
             <h3>Official Blog of Nirmal Khedkar</h3>
             <h1 className="page-header__title">
-              <a href="/blog" title="">
+              <Link to="/blog" title="">
                 Spaceride
-              </a>
+              </Link>
             </h1>
             <div className="page-header__info">
               <div className="page-header__cat">
@@ -159,14 +157,13 @@ const Blog = ({ data }) => {
               </div>
             </div>
             <div className="home-content__buttons">
-              <a href="#blog" className="smoothscroll btn btn--stroke">
+              <a href="#blog-first" className="smoothscroll btn btn--stroke">
                 Liftoff!
               </a>
             </div>
           </div>
         </div>
       </section>
-
       <LatestBlogItem item={data.allFile.nodes[0]} />
       <MasonPanel blogItems={data.allFile.nodes} />
       <BlogByCategory blogItems={data.allFile.nodes} />

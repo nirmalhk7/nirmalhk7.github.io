@@ -10,23 +10,34 @@ college:
 - Software Engineering
 
 online:
-- name: Frontend Development with React
-  provider: HKUST, Coursera
-  link: https://www.coursera.org/account/accomplishments/verify/H9S3TQR7S6ZS?utm_source=link&utm_campaign=copybutton_certificate&utm_product=course
+- name: "Google Cloud Platform Fundamentals: Core Infrastructure"
+  provider: Google, Coursera
+  link: https://www.coursera.org/account/accomplishments/verify/8WYMGMN3TE5H
+- name: Engineering Data in Google
+  provider: Google, Qwiklabs
+  link: https://google.qwiklabs.com/public_profiles/3b21b101-4794-443d-adf2-15f59f6568d7
+- name: "Google Cloud Platform Big Data and Machine Learning Fundamentals"
+  provider: Google, Coursera
+  link: https://www.coursera.org/account/accomplishments/verify/NLCCTW85H4PW
+
+# - name: Frontend Development with React
+#   provider: HKUST, Coursera
+#   link: https://www.coursera.org/account/accomplishments/verify/H9S3TQR7S6ZS
 - name: Server-side Development with NodeJS, Express and MongoDB
   provider: HKUST, Coursera
-  link: https://www.coursera.org/account/accomplishments/verify/JXES9NLB2J5S?utm_source=link&utm_campaign=copybutton_certificate&utm_product=course
+  link: https://www.coursera.org/account/accomplishments/verify/JXES9NLB2J5S
+
 - name: Introduction to Machine Learning
   provider: Stanford University, Coursera
-# - name: Neural Networks and Deep Learning
-#   provider: Deeplearning.ai, Coursera
-#   link: xxyyzz
-# - name: Cross Platform Development with React Native
-#   provider: HKUST, Coursera
-#   link: xxyyzz
-- name: Logistic Regression with Python and Numpy
-  provider: Rhyme.com
-  link: https://coursera.org/share/b75a7a52d7cda5595e92beab219e98e1
+# - name: Logistic Regression with Python and Numpy
+#   provider: Rhyme.com
+#   link: https://coursera.org/share/b75a7a52d7cda5595e92beab219e98e1
 - name: Neural Networks and Deep Learning
   provider: deeplearning.ai, Coursera
-  link: https://www.coursera.org/account/accomplishments/verify/MCRCWRDWYUTT?utm_source=link&utm_campaign=copybutton_certificate&utm_product=course
+  link: https://www.coursera.org/account/accomplishments/verify/MCRCWRDWYUTT
+# - name: Structuring Machine Learning Projects
+#   provider: Deeplearning.ai, Coursera
+#   link: https://www.coursera.org/account/accomplishments/verify/7WEXCG63C5ZV
+# - name: 'Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization'
+#   link: https://www.coursera.org/account/accomplishments/verify/KMDLM57LYUZP
+#   provider: Deeplearning.ai, Coursera

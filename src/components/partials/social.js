@@ -35,12 +35,6 @@ export let social = [
     link: "https://dev.to/nirmalhk7",
     class: faDev,
   },
-  {
-    name: "Pinterest",
-    class: faPinterest,
-    shareLink:
-      "http://pinterest.com/pin/create/bookmarklet/?url=http://www.islandcompany.com/<?= $product->url; ?>&is_video=false&description=<?= $product->meta_description; ?>",
-  },
 ];
 const SocialMediaIcons = () => {
   return (

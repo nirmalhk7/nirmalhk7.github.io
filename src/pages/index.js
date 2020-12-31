@@ -11,6 +11,7 @@ import clubs from "../../data/memberships.yaml";
 import SocialMediaIcons from "../components/partials/social";
 import Resume from "../assets/pdf/Resume.pdf";
 import { graphql } from "gatsby";
+
 const Jumbotron = (props) => (
   <section
     id="home"
@@ -50,7 +51,98 @@ const Jumbotron = (props) => (
   </section>
 );
 
-export const None = (props) => <>{props.children}</>;
+const OnlineCertification = ({ courses }) => (
+  <>
+    <h5>Online Certification and Courses Taken</h5>
+    <hr style={{ borderColor: "#af2b2b" }} />
+    <div className="row">
+      <ul className="disc">
+        {courses.online.map((element, index) => (
+          <li key={index}>
+            {element.name} by {element.provider}- (<a href={element.link}>link</a>)
+          </li>
+        ))}
+      </ul>
+    </div>
+  </>
+);
+
+const Memberships = ({ clubs }) => (
+  <>
+    <h5>Memberships</h5>
+    <hr style={{ borderColor: "#af2b2b" }} />
+    <div className="row">
+      <ul className="disc">
+        {clubs.map((element, index) => (
+          <li key={index}>
+            {element.position} at{" "}
+            <a key={index} href={element.clubwebsite}>
+              {element.club}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </>
+);
+const LanguageLibraries = ({ skills }) => (
+  <>
+    <h5 style={{ paddingTop: "0.5em" }}>Languages, Frameworks, Libraries and Tools</h5>
+    <hr style={{ borderColor: "#af2b2b" }} />
+    <div className="row">
+      {Object.values(skills).map((type) =>
+        type.map((element, index) => (
+          <div key={index} className="col-lg-2 col-md-3 col-sm-6 minicard">
+            {element.name}
+          </div>
+        ))
+      )}
+    </div>
+  </>
+);
+
+const CollegeCourses = ({ courses }) => (
+  <>
+    <h5>College Courses Taken</h5>
+    <hr style={{ borderColor: "#af2b2b" }} />
+    <div className="row">
+      <div className="disc">
+        {courses.college.map((element, index) => (
+          <React.Fragment key={index}>
+            {index + 1 !== courses.college.length ? element + ", " : element + "."}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  </>
+);
+
+const WorkExperience = ({ experience }) => (
+  <div className="container about-content about-content--timeline">
+    <div className="col text-center">
+      <h3>My Work Experience.</h3>
+    </div>
+    <div className="row">
+      {experience.map((element, index) => (
+        <div key={index} className="col tab-full left">
+          <div className="timeline">
+            <div className="timeline__block">
+              <div className="timeline__bullet"></div>
+              <div className="timeline__header">
+                <p className="timeline__timeframe">{element.timeframe}</p>
+                <h3>{element.company}</h3>
+                <h5>{element.post}</h5>
+              </div>
+              <div className="timeline__desc">
+                <p>{element.description}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const AboutMe = (props) => (
   <section id="about" className="s-about bootstrap-wrapper">
@@ -109,78 +201,14 @@ const AboutMe = (props) => (
         </div>
         <div className="col tab-full right">
           <h3 className="text-center">I've got some skills.</h3>
-          <h5 style={{ paddingTop: "0.5em" }}>Languages, Frameworks, Libraries and Tools</h5>
-          <hr style={{ borderColor: "#af2b2b" }} />
-          <div className="row">
-            {Object.values(skills).map((type) =>
-              type.map((element, index) => (
-                <div key={index} className="col-lg-2 col-md-3 col-sm-6 minicard">
-                  {element.name}
-                </div>
-              ))
-            )}
-          </div>
-          <h5>Online Certification and Courses Taken</h5>
-          <hr style={{ borderColor: "#af2b2b" }} />
-          <div className="row">
-            <ul className="disc">
-              {courses.online.map((element, index) => (
-                <li key={index}>
-                  {element.name} by {element.provider}- (<a href={element.link}>link</a>)
-                </li>
-              ))}
-            </ul>
-          </div>
-          <h5>College Courses Taken</h5>
-          <hr style={{ borderColor: "#af2b2b" }} />
-          <div className="row">
-            <div className="disc">
-              {courses.college.map((element, index) => (
-                <None key={index}>{index + 1 !== courses.college.length ? element + ", " : element + "."}</None>
-              ))}
-            </div>
-          </div>
-          <h5>Memberships</h5>
-          <hr style={{ borderColor: "#af2b2b" }} />
-          <div className="row">
-            <ul className="disc">
-              {clubs.map((element, index) => (
-                <li key={index}>
-                  {element.position} at{" "}
-                  <a key={index} href={element.clubwebsite}>
-                    {element.club}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <LanguageLibraries skills={skills} />
+          <OnlineCertification courses={courses} />
+          <CollegeCourses courses={courses} />
+          <Memberships clubs={clubs} />
         </div>
       </div>
     </div>
-    <div className="container about-content about-content--timeline">
-      <div className="col text-center">
-        <h3>My Work Experience.</h3>
-      </div>
-      <div className="row">
-        {experience.map((element, index) => (
-          <div key={index} className="col tab-full left">
-            <div className="timeline">
-              <div className="timeline__block">
-                <div className="timeline__bullet"></div>
-                <div className="timeline__header">
-                  <p className="timeline__timeframe">{element.timeframe}</p>
-                  <h3>{element.company}</h3>
-                  <h5>{element.post}</h5>
-                </div>
-                <div className="timeline__desc">
-                  <p>{element.description}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <WorkExperience experience={experience} />
   </section>
 );
 
