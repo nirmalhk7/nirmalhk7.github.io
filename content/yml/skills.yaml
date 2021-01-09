@@ -1,0 +1,27 @@
+
+
+
+
+languages:
+- C/C++
+- JAVA
+- Python
+- Javascript
+frameworks_libraries:
+- Jekyll
+- Ruby on Rails
+- Android
+- Dialogflow
+- NodeJS
+- React
+- React Native
+- MongoDB
+- Numpy
+- Pandas
+- Scikit-Learn
+- Ionic
+- Gatsby
+tools:
+- Jupyter-Notebook
+- Android Studio
+- RubyMine

@@ -43,8 +43,8 @@ const BlogTemplate = ({ location, pageContext }) => {
               backgroundSize: "cover",
             }}
           >
-            <div className="row page-header__content narrow">
-              <article className="col-full">
+            <div className="m-auto page-header__content narrow">
+              <article className="col-12">
                 <div className="page-header__info">
                   <div className="page-header__cat">
                     <CategoryList categories={pageContext.current.childMarkdownRemark.frontmatter.category} />
@@ -64,8 +64,8 @@ const BlogTemplate = ({ location, pageContext }) => {
               </article>
             </div>
           </div>
-          <div className="row blog-content" style={{ paddingBottom: "72px" }}>
-            <div className="col-full blog-content__main">
+          <div className="row blog-content m-auto" style={{ paddingBottom: "72px" }}>
+            <div className="col-12 blog-content__main">
               <div
                 className="blogpost"
                 dangerouslySetInnerHTML={{

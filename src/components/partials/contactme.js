@@ -33,7 +33,7 @@ class ContactForm extends React.Component {
           </div>
           <div className="container" style={{ maxWidth: "1000px" }}>
             <div className="row">
-              <div className="col-8 tab-full contact__form">
+              <div className="col-lg-8 col-md-8 col-sm-12 tab-full contact__form">
                 <form
                   action="https://getsimpleform.com/messages?form_api_token=162ff4fa2bb9c89f908b059c33b0a806"
                   method="post"
@@ -102,7 +102,7 @@ class ContactForm extends React.Component {
                   )}
                 </form>
               </div>
-              <div className="col-4 tab-full contact__infos">
+              <div className="col-lg-4 col-md-4 col-sm-12 tab-full contact__infos">
                 <h4 className="h06 text-white">Email</h4>
                 <p>
                   nirmalhk7@gmail.com

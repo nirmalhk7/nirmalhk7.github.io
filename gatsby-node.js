@@ -18,7 +18,7 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
   const { createPage, deletePage } = actions;
   getEnvVariables(process.env.NODE_ENV);
   return new Promise((resolve, reject) => {
-    const blogPostTemplate = path.resolve("src/blog-article.js");
+    const blogPostTemplate = path.resolve("src/templates/blog-article.js");
     if (process.env.DRAFT === false) {
       console.log("Draft mode DISABLED");
     } else if (process.env.DRAFT.toLowerCase() === true) {
@@ -105,14 +105,6 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
           });
         });
       })
-      // .then(()=>{
-      //   const Resume= path.resolve("Resume.pdf")
-      //   console.log("Resume","Endpoint for Resume")
-      //   createPage({
-      //     path:"resume",
-      //     component: Resume
-      //   })
-      // })
     );
   });
 };
