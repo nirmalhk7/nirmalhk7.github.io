@@ -43,6 +43,7 @@ const Footer = () => {
                 return (
                   <li key={index}>
                     <a className="ln" href={element.link}>
+                      {/* TODO Increase Icon size in Mobile view */}
                       <FontAwesomeIcon icon={element.class} />
                       <span>{element.name}</span>
                     </a>
