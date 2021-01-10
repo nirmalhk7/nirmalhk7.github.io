@@ -92,22 +92,21 @@ module.exports = {
               });
             },
             query: `
-              {
-                allFile(filter: {sourceInstanceName: {eq: "blog"}, extension: {eq: "md"}}) {
-                  nodes {
-                    relativeDirectory
-                    childrenMarkdownRemark {
-                      html
-                      frontmatter {
-                        title
-                        description
-                        date(formatString: "MMMM DD,YYYY")
-                        category
-                        img {
-                          childImageSharp {
-                            original {
-                              src
-                            }
+            {
+              allFile(filter: {sourceInstanceName: {eq: "blog"}, extension: {eq: "md"}, childMarkdownRemark: {frontmatter: {draft: {ne: true}}}}) {
+                nodes {
+                  relativeDirectory
+                  childMarkdownRemark {
+                    html
+                    frontmatter {
+                      title
+                      description
+                      date(formatString: "MMMM DD,YYYY")
+                      category
+                      img {
+                        childImageSharp {
+                          original {
+                            src
                           }
                         }
                       }
@@ -115,6 +114,7 @@ module.exports = {
                   }
                 }
               }
+            }
             `,
             output: "/rss.xml",
             title: "Your Site's RSS Feed",
