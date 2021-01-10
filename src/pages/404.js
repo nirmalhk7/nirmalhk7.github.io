@@ -5,10 +5,10 @@ import SEO from "../components/seo";
 
 const NotFoundPage = () => (
   <Layout>
-    <SEO title="404: Not found" />
+    <SEO title="404: Not Found" />
     <section className="page-header page-hero parallax notfound-img">
-      <div className="row page-header__content">
-        <article className="col-full">
+      <div className="page-header__content bootstrap-wrapper m-auto">
+        <article className="container">
           <h1 className="page-header__title">
             <a href="#0" title="404 Not Found">
               404
@@ -21,8 +21,8 @@ const NotFoundPage = () => (
       </div>
     </section>
     <section className="blog-content-wrap">
-      <div className="row blog-content">
-        <div className="col-full">
+      <div className="row blog-content m-auto">
+        <div className="col-12">
           <h6 style={{ textAlign: "center" }}>Lost your way? Search what you need here.</h6>
           <div className="blog-list block-1-2 block-tab-full">
             <input className="full-width" type="text" placeholder="Search Here" id="sampleInput" />

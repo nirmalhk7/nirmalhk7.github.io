@@ -58,5 +58,81 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `tomato`,
+        // Disable the loading spinner.
+        showSpinner: false,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                url
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allFile } }) => {
+              return allFile.nodes.map((node) => {
+                return Object.assign({}, node.childMarkdownRemark.frontmatter, {
+                  url: site.siteMetadata.url + "/blog/" + node.relativeDirectory,
+                  content: [{ "content:encoded": node.childMarkdownRemark.html }],
+                });
+              });
+            },
+            query: `
+              {
+                allFile(filter: {sourceInstanceName: {eq: "blog"}, extension: {eq: "md"}}) {
+                  nodes {
+                    relativeDirectory
+                    childrenMarkdownRemark {
+                      html
+                      frontmatter {
+                        title
+                        description
+                        date(formatString: "MMMM DD,YYYY")
+                        category
+                        img {
+                          childImageSharp {
+                            original {
+                              src
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "Your Site's RSS Feed",
+          },
+        ],
+      },
+    },
+    // Keep this at the END of all CSS stuff
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        printRejected: true, // Print removed selectors and processed file names
+        // develop: true, // Enable while using `gatsby develop`
+        // tailwind: true, // Enable tailwindcss support
+        // whitelist: ['whitelist'], // Don't remove this selector
+        // ignore: ['/ignored.css', 'prismjs/', 'docsearch.js/'], // Ignore files/folders
+        // purgeOnly : ['components/', '/main.css', 'bootstrap/'], // Purge only these files/folders
+      },
+    },
   ],
 };

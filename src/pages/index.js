@@ -256,7 +256,7 @@ class IndexPage extends React.Component {
     });
   };
   render() {
-    let projects = this.props.data.allFile.nodes.slice(0, 5);
+    let projects = this.props.data.projects.nodes.slice(0, 5);
     return (
       <Layout location={this.props.location}>
         <SEO title="Home" />
@@ -319,7 +319,11 @@ class IndexPage extends React.Component {
 
 export const postQuery = graphql`
   query x {
-    allFile(filter: { sourceInstanceName: { eq: "projects" } }, sort: { order: DESC, fields: birthTime }) {
+    projects: allFile(
+      filter: { sourceInstanceName: { eq: "projects" } }
+      sort: { order: DESC, fields: birthTime }
+      limit: 5
+    ) {
       nodes {
         sourceInstanceName
         childMarkdownRemark {
@@ -332,7 +336,7 @@ export const postQuery = graphql`
         birthtime
       }
     }
-    site {
+    site: site {
       siteMetadata {
         blogName
       }
