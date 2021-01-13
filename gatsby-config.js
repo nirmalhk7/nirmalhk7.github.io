@@ -6,6 +6,7 @@ module.exports = {
     author: `Nirmal Khedkar`,
     url: `nirmalhk7.tech`,
     blogName: `Spaceride`,
+    email: "nirmalhk7@gmail.com",
   },
   plugins: [
     `gatsby-transformer-sharp`,
@@ -87,7 +88,7 @@ module.exports = {
               return allFile.nodes.map((node) => {
                 return Object.assign({}, node.childMarkdownRemark.frontmatter, {
                   url: site.siteMetadata.url + "/blog/" + node.relativeDirectory,
-                  content: [{ "content:encoded": node.childMarkdownRemark.html }],
+                  html: node.childMarkdownRemark.html,
                 });
               });
             },
@@ -117,7 +118,7 @@ module.exports = {
             }
             `,
             output: "/rss.xml",
-            title: "Your Site's RSS Feed",
+            title: "nirmalhk7.tech RSS Feed",
           },
         ],
       },

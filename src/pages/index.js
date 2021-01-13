@@ -256,7 +256,7 @@ class IndexPage extends React.Component {
     });
   };
   render() {
-    let projects = this.props.data.projects.nodes.slice(0, 5);
+    let projects = this.props.data && this.props.data.projects.nodes.slice(0, 5);
     return (
       <Layout location={this.props.location}>
         <SEO title="Home" />
@@ -311,12 +311,13 @@ class IndexPage extends React.Component {
             </div>
           </div>
         </section>
-        <Blog name={this.props.data.site.siteMetadata.blogName} />
+        <Blog name={this.props.data && this.props.data.site.siteMetadata.blogName} />
       </Layout>
     );
   }
 }
 
+export default IndexPage;
 export const postQuery = graphql`
   query x {
     projects: allFile(
@@ -343,5 +344,3 @@ export const postQuery = graphql`
     }
   }
 `;
-
-export default IndexPage;
