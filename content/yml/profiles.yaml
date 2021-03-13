@@ -1,44 +1,36 @@
-social:
 - name: LinkedIn
   url: https://www.linkedin.com/in/nirmalhk7/
   icon: fab fa-linkedin
   initial: ln
-
 - name: GitHub
   url: https://www.github.com/nirmalhk7
   icon: fab fa-github
   initial: gi
-
 - name: Angellist
   url: https://angel.co/nirmalhk7
   icon: fab fa-angellist
   initial: an
-
 - name: Goodreads
   url: https://www.goodreads.com/user/show/93069537-nirmal
   icon: fab fa-goodreads
   initial: go
-
 - name: RSS
   url: /feed.xml
   icon: fas fa-rss-square
   initial: srr
-
 - name: DEV
   url: https://dev.to/nirmalhk7
   icon: fab fa-dev
   initial: dev
-  
-cv:
 - name: HackerRank
   url: https://www.hackerrank.com/nirmalhk7
-
+  type: cv
 - name: Kaggle
   url: https://www.kaggle.com/nirmalhk7
-
+  type: cv
 - name: InterviewBit
   url: https://www.interviewbit.com/profile/thenirmalhk7
-
+  type: cv
 - name: StackOverflow
   url: https://stackoverflow.com/users/10005612/nirmal-khedkar?tab=profile
-  
+  type: cv

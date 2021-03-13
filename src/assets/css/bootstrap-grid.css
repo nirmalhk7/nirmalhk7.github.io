@@ -30,10 +30,64 @@ html {
          box-sizing: inherit;
 }
 
-.bootstrap-wrapper {
- /**
-* Bootstrap overrides
-*/
+.bootstrap-wrapper .text-left {
+  text-align: left !important;
+}
+
+.bootstrap-wrapper .text-right {
+  text-align: right !important;
+}
+
+.bootstrap-wrapper .text-center {
+  text-align: center !important;
+}
+
+@media (min-width: 576px) {
+  .bootstrap-wrapper .text-sm-left {
+    text-align: left !important;
+  }
+  .bootstrap-wrapper .text-sm-right {
+    text-align: right !important;
+  }
+  .bootstrap-wrapper .text-sm-center {
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .bootstrap-wrapper .text-md-left {
+    text-align: left !important;
+  }
+  .bootstrap-wrapper .text-md-right {
+    text-align: right !important;
+  }
+  .bootstrap-wrapper .text-md-center {
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .bootstrap-wrapper .text-lg-left {
+    text-align: left !important;
+  }
+  .bootstrap-wrapper .text-lg-right {
+    text-align: right !important;
+  }
+  .bootstrap-wrapper .text-lg-center {
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bootstrap-wrapper .text-xl-left {
+    text-align: left !important;
+  }
+  .bootstrap-wrapper .text-xl-right {
+    text-align: right !important;
+  }
+  .bootstrap-wrapper .text-xl-center {
+    text-align: center !important;
+  }
 }
 
 .bootstrap-wrapper .clearfix::after {

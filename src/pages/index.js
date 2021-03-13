@@ -4,10 +4,10 @@ import { Link, withPrefix } from "gatsby";
 import Layout from "../components/layout";
 // import Image from "../components/image"
 import SEO from "../components/seo";
-import experience from "../../content/yml/workexperiences.yaml";
-import courses from "../../content/yml/courses.yaml";
-import clubs from "../../content/yml/memberships.yaml";
-import skills from "../../content/yml/skills.yaml";
+// import experience from "../../content/yml/workexperiences.yaml";
+// import courses from "../../content/yml/courses.yaml";
+// import clubs from "../../content/yml/memberships.yaml";
+// import skills from "../../content/yml/skills.yaml";
 import SocialMediaIcons from "../components/partials/social";
 import Resume from "../../static/Resume.pdf";
 import { graphql } from "gatsby";
@@ -51,66 +51,6 @@ const Jumbotron = (props) => (
   </section>
 );
 
-const OnlineCertification = ({ courses }) => (
-  <>
-    <h5>Online Certification and Courses Taken</h5>
-    <hr style={{ borderColor: "#af2b2b" }} />
-    <div className="row m-0">
-      <ul className="disc">
-        {courses.online.map((element, index) => (
-          <li key={index}>
-            {element.name} by {element.provider}- (<a href={element.link}>link</a>)
-          </li>
-        ))}
-      </ul>
-    </div>
-  </>
-);
-
-const Memberships = ({ clubs }) => (
-  <>
-    <h5>Memberships</h5>
-    <hr style={{ borderColor: "#af2b2b" }} />
-    <div className="row m-0">
-      <ul className="disc">
-        {clubs.map((element, index) => (
-          <li key={index}>
-            {element.position} at{" "}
-            <a key={index} href={element.clubwebsite}>
-              {element.club}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </>
-);
-const LanguageLibraries = ({ skills }) => (
-  <>
-    <h5 style={{ paddingTop: "0.5em" }}>Languages, Frameworks, Libraries and Tools</h5>
-    <hr style={{ borderColor: "#af2b2b" }} />
-    <div className="row">
-      {Object.values(skills).map((e) => e.map((f) => <div className="col-3 minicard">{f}</div>))}
-    </div>
-  </>
-);
-
-const CollegeCourses = ({ courses }) => (
-  <>
-    <h5>College Courses Taken</h5>
-    <hr style={{ borderColor: "#af2b2b" }} />
-    <div className="row mr-0 ml-0">
-      <div className="disc">
-        {courses.college.map((element, index) => (
-          <React.Fragment key={index}>
-            {index + 1 !== courses.college.length ? element + ", " : element + "."}
-          </React.Fragment>
-        ))}
-      </div>
-    </div>
-  </>
-);
-
 const WorkExperience = ({ experience }) => (
   <div className="container about-content about-content--timeline">
     <div className="col text-center">
@@ -138,7 +78,14 @@ const WorkExperience = ({ experience }) => (
   </div>
 );
 
-const AboutMe = (props) => (
+const AboutMe = ({
+  experience,
+  clubs,
+  online,
+  college,
+  languages,
+  framework_libraries,
+}) => (
   <section id="about" className="s-about bootstrap-wrapper">
     <div className="w-100 text-center">
       <div className="narrow section-intro has-bottom-sep m-auto">
@@ -146,8 +93,9 @@ const AboutMe = (props) => (
           <h3>Nirmal Khedkar</h3>
           <h1>More About Me</h1>
           <p className="lead">
-            I'm a student in National Institute of Technology Karnataka Surathkal doing a Bachelors in Information
-            Technology constantly looking for new and interesting challenges.
+            I'm a student in National Institute of Technology Karnataka
+            Surathkal doing a Bachelors in Information Technology constantly
+            looking for new and interesting challenges.
           </p>
         </div>
       </div>
@@ -159,31 +107,39 @@ const AboutMe = (props) => (
           <div className="padding-bottom:1em">
             <h3 id="howdy">Howdy!</h3>
             <p>
-              I’m from India, and I’m second year student at National Institute of Technology, Karnataka. Programming,
-              reading books, reading news, table tennis and{" "}
-              <strong>making applications that eliminate iterative work</strong> is my hobby. I like to constantly
-              challenge myself with problems. I also have a knack for finance and investment.
+              I’m from India, and I’m second year student at National Institute
+              of Technology, Karnataka. Programming, reading books, reading
+              news, table tennis and{" "}
+              <strong>making applications that eliminate iterative work</strong>{" "}
+              is my hobby. I like to constantly challenge myself with problems.
+              I also have a knack for finance and investment.
             </p>
             <h5 id="academics">Academics</h5>
             <p>
-              I completed my 10th grade in Bangalore with <strong>9.4 CGPA</strong> and my 12th grade with 87.9%. I
-              currently study in <strong>National Institute of Technology Karnataka</strong> doing BTech in Information
-              Technology and have <em>7.06</em> CGPA
+              I completed my 10th grade in Bangalore with{" "}
+              <strong>9.4 CGPA</strong> and my 12th grade with 87.9%. I
+              currently study in{" "}
+              <strong>National Institute of Technology Karnataka</strong> doing
+              BTech in Information Technology and have <em>7.06</em> CGPA
               <small>(as of May 2019)</small>
             </p>
 
-            <h5 id="technical-projects-and-activities">Technical Projects and Activities</h5>
+            <h5 id="technical-projects-and-activities">
+              Technical Projects and Activities
+            </h5>
             <p>
-              My projects are listed below. Most of them are open-sourced on GitHub. I’ve worked on several MERN Stack
-              based, Native Android and Ruby on Rails projects. I’m also member Web Developer of IRIS NITK, which is
-              NITK’s student-run university management portal. I’m also passionate about Machine Learning and its
-              applications.
+              My projects are listed below. Most of them are open-sourced on
+              GitHub. I’ve worked on several MERN Stack based, Native Android
+              and Ruby on Rails projects. I’m also member Web Developer of IRIS
+              NITK, which is NITK’s student-run university management portal.
+              I’m also passionate about Machine Learning and its applications.
             </p>
 
             <h5 id="finance">Finance</h5>
             <p>
-              I strongly think that the best way to earn more is to read more about exactly how money works. As a
-              student, I love to read about money, stock markets and financial incidents around the world.
+              I strongly think that the best way to earn more is to read more
+              about exactly how money works. As a student, I love to read about
+              money, stock markets and financial incidents around the world.
             </p>
           </div>
 
@@ -196,16 +152,70 @@ const AboutMe = (props) => (
           >
             Download My Resume
           </a>
-          <Link to="#contact" className="smoothscroll btn btn--stroke full-width">
+          <Link
+            to="#contact"
+            className="smoothscroll btn btn--stroke full-width"
+          >
             Want to Hire?
           </Link>
         </div>
         <div className="col-lg-6 col-md-6 col-sm-12">
           <h3 className="text-center">I've got some skills.</h3>
-          <LanguageLibraries skills={skills} />
-          <OnlineCertification courses={courses} />
-          <CollegeCourses courses={courses} />
-          <Memberships clubs={clubs} />
+          <h5 style={{ paddingTop: "0.5em" }}>
+            Languages, Frameworks, Libraries and Tools
+          </h5>
+          <hr style={{ borderColor: "#af2b2b" }} />
+          <div className="row">
+            {framework_libraries.map((e, i) => (
+              <div key={i} className="col-3 minicard">
+                {e}
+              </div>
+            ))}
+            {languages.map((e, i) => (
+              <div key={i} className="col-3 minicard">
+                {e}
+              </div>
+            ))}
+          </div>
+          <h5>Online Certification and Courses Taken</h5>
+          <hr style={{ borderColor: "#af2b2b" }} />
+          <div className="row m-0">
+            <ul className="disc">
+              {online.map((element, index) => (
+                <li key={index}>
+                  {element.name} by {element.provider}- (
+                  <a href={element.link}>link</a>)
+                </li>
+              ))}
+            </ul>
+          </div>
+          <h5>College Courses Taken</h5>
+          <hr style={{ borderColor: "#af2b2b" }} />
+          <div className="row mr-0 ml-0">
+            <div className="disc">
+              {college.map((element, index) => (
+                <React.Fragment key={index}>
+                  {index + 1 !== college.length
+                    ? element.name + ", "
+                    : element.name + "."}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+          <h5>Memberships</h5>
+          <hr style={{ borderColor: "#af2b2b" }} />
+          <div className="row m-0">
+            <ul className="disc">
+              {clubs.map((element, index) => (
+                <li key={index}>
+                  {element.position} at{" "}
+                  <a key={index} href={element.clubwebsite}>
+                    {element.club}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -220,7 +230,8 @@ const Blog = ({ name }) => (
         <h3>{name}</h3>
         <h1>Latest From The Blog.</h1>
         <p className="lead">
-          I have strong views on topics like Finance, Technology, Future and Environment. Find me{" "}
+          I have strong views on topics like Finance, Technology, Future and
+          Environment. Find me{" "}
           <Link title="blog link" to="/blog">
             blogging about them here
           </Link>
@@ -256,13 +267,32 @@ class IndexPage extends React.Component {
     });
   };
   render() {
-    let projects = this.props.data && this.props.data.projects.nodes.slice(0, 5);
+    const {
+      projects,
+      workexperience,
+      online_courses,
+      college_courses,
+      membership,
+      ymlYaml,
+      site,
+    } = this.props.data;
     return (
       <Layout location={this.props.location}>
         <SEO title="Home" />
         <Jumbotron />
-        <AboutMe />
-        <section id="projects" className="s-works target-section bootstrap-wrapper">
+        <AboutMe
+          workexperience={workexperience.nodes}
+          framework_libraries={ymlYaml.frameworks_libraries}
+          languages={ymlYaml.languages}
+          clubs={membership.nodes}
+          online={online_courses.nodes}
+          college={college_courses.nodes}
+          experience={workexperience.nodes}
+        />
+        <section
+          id="projects"
+          className="s-works target-section bootstrap-wrapper"
+        >
           <div className="container">
             <div className="row">
               <div className="col-lg-6 col-md-6 col-sm-12 tab-full right">
@@ -271,7 +301,8 @@ class IndexPage extends React.Component {
                     <h3>Projects</h3>
                     <h1>See My Latest Projects.</h1>
                     <p className="lead">
-                      Find my projects <Link to="/projects">categorized here</Link>.
+                      Find my projects{" "}
+                      <Link to="/projects">categorized here</Link>.
                     </p>
                   </div>
                 </div>
@@ -279,39 +310,49 @@ class IndexPage extends React.Component {
               <div className="col-lg-6 col-md-6 col-sm-12 tab-full left">
                 <div className="accordion js-accordion">
                   {/*TODO Fix this projects part*/}
-                  {projects &&
-                    projects.map((element, index) => (
+                  {projects.nodes.map((element, index) => (
+                    <div
+                      key={index}
+                      id={"accordion-" + index}
+                      onClick={this.handleClick}
+                      className={`accordion__item js-accordion-item ${
+                        this.state.isOpen[index] ? "active" : ""
+                      }`}
+                    >
                       <div
-                        key={index}
-                        id={"accordion-" + index}
-                        onClick={this.handleClick}
-                        className={`accordion__item js-accordion-item ${this.state.isOpen[index] ? "active" : ""}`}
+                        id={"accordionheader-" + index}
+                        className="accordion-header js-accordion-header"
                       >
-                        <div id={"accordionheader-" + index} className="accordion-header js-accordion-header">
-                          {element.childMarkdownRemark.frontmatter.title}
-                        </div>
-                        <div
-                          id={"accordionbody-" + index}
-                          className="accordion-body js-accordion-body"
-                          style={{
-                            display: `${this.state.isOpen[index] ? "block" : "none"}`,
-                          }}
-                        >
-                          <div className="accordion-body__contents">
-                            <p>{element.childMarkdownRemark.excerpt}</p>
-                            <Link to="/project#Silver-Scrapper">Find more here</Link>
-                            .&nbsp;&nbsp;&nbsp;
-                            <code>{element.childMarkdownRemark.frontmatter.tags[0]}</code>
-                          </div>
+                        {element.childMarkdownRemark.frontmatter.title}
+                      </div>
+                      <div
+                        id={"accordionbody-" + index}
+                        className="accordion-body js-accordion-body"
+                        style={{
+                          display: `${
+                            this.state.isOpen[index] ? "block" : "none"
+                          }`,
+                        }}
+                      >
+                        <div className="accordion-body__contents">
+                          <p>{element.childMarkdownRemark.excerpt}</p>
+                          <Link to="/project#Silver-Scrapper">
+                            Find more here
+                          </Link>
+                          .&nbsp;&nbsp;&nbsp;
+                          <code>
+                            {element.childMarkdownRemark.frontmatter.tags[0]}
+                          </code>
                         </div>
                       </div>
-                    ))}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <Blog name={this.props.data && this.props.data.site.siteMetadata.blogName} />
+        <Blog name={site.siteMetadata.blogName} />
       </Layout>
     );
   }
@@ -341,6 +382,46 @@ export const postQuery = graphql`
       siteMetadata {
         blogName
       }
+    }
+    workexperience: allWorkexperiencesYaml {
+      nodes {
+        timeframe
+        post
+        company
+        description
+      }
+    }
+    membership: allMembershipsYaml {
+      nodes {
+        club
+        clubwebsite
+        position
+      }
+    }
+    online_courses: allCoursesYaml(filter: { provider: { ne: null } }) {
+      nodes {
+        name
+        link
+        provider
+      }
+    }
+    college_courses: allCoursesYaml(filter: { provider: { eq: null } }) {
+      nodes {
+        name
+        link
+      }
+    }
+    cv: allProfilesYaml(filter: { type: { eq: "cv" } }) {
+      nodes {
+        name
+        url
+        icon
+        initial
+      }
+    }
+    ymlYaml {
+      frameworks_libraries
+      languages
     }
   }
 `;

@@ -2,7 +2,7 @@
 title: One Small Step
 category: ['Future']
 tags: ["moon","space","technology"]
-img: "./onesmallstep_buzzaldrin.webp"
+img: onesmallstep.jpg
 description: 50 years since 1969! A review of the legacy and impact of Apollo 11.
 date: "2019-06-21"
 ---

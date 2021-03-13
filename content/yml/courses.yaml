@@ -1,15 +1,12 @@
-college:
-- Web Technologies
-- DSA
-- Computer Networking
-- Discrete Mathematics
-- Computer Organization
-- Operating Systems
-- Database Management
-- Parallel Computing
-- Software Engineering
-
-online:
+- name: Web Technologies
+- name: DSA
+- name: Computer Networking
+- name: Discrete Mathematics
+- name: Computer Organization
+- name: Operating Systems
+- name: Database Management
+- name: Parallel Computing
+- name: Software Engineering
 - name: "Google Cloud Platform Fundamentals: Core Infrastructure"
   provider: Google, Coursera
   link: https://www.coursera.org/account/accomplishments/verify/8WYMGMN3TE5H
