@@ -272,7 +272,6 @@ class IndexPage extends React.Component {
               </div>
               <div className="col-lg-6 col-md-6 col-sm-12 tab-full left">
                 <div className="accordion js-accordion">
-                  {/*TODO Fix this projects part*/}
                   {projects.nodes.map((element, index) => (
                     <div
                       key={index}

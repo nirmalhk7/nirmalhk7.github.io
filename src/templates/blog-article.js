@@ -1,10 +1,8 @@
 import React from "react";
-import Navbar from "../components/partials/navbar";
-import RandomQuote from "../components/partials/quote";
-import Footer from "../components/partials/footer";
 import SEO from "../components/seo";
 import { graphql, Link } from "gatsby";
 import moment from "moment";
+import { Disqus } from "gatsby-plugin-disqus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
@@ -27,14 +25,20 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../components/layout";
 import { CategoryList } from "../helper/category";
 const BlogTemplate = ({ location, pageContext }) => {
+  const pageTitle =
+    pageContext.current.childMarkdownRemark.frontmatter.title +
+    " by " +
+    pageContext.siteDetails.author;
   const shareProps = {
     url: pageContext.siteDetails.url + location.pathname,
-    title: pageContext.current.childMarkdownRemark.frontmatter.title + " by " + pageContext.siteDetails.author,
+    title: pageTitle,
   };
   return (
     <>
-      <Layout location={this.props.location}>
-        <SEO title={pageContext.current.childMarkdownRemark.frontmatter.title} />
+      <Layout location={location}>
+        <SEO
+          title={pageContext.current.childMarkdownRemark.frontmatter.title}
+        />
         <article className="blog-single has-bottom-sep">
           <div
             className="page-header page-header--single page-hero parallax"
@@ -47,7 +51,12 @@ const BlogTemplate = ({ location, pageContext }) => {
               <article className="col-12">
                 <div className="page-header__info">
                   <div className="page-header__cat">
-                    <CategoryList categories={pageContext.current.childMarkdownRemark.frontmatter.category} />
+                    <CategoryList
+                      categories={
+                        pageContext.current.childMarkdownRemark.frontmatter
+                          .category
+                      }
+                    />
                   </div>
                 </div>
                 <h1 className="page-header__title">
@@ -58,13 +67,17 @@ const BlogTemplate = ({ location, pageContext }) => {
                 <ul className="page-header__meta">
                   <li className="date">
                     <b>Nirmal Khedkar</b> on
-                    {" " + pageContext.current.childMarkdownRemark.frontmatter.date}
+                    {" " +
+                      pageContext.current.childMarkdownRemark.frontmatter.date}
                   </li>
                 </ul>
               </article>
             </div>
           </div>
-          <div className="row blog-content m-auto" style={{ paddingBottom: "72px" }}>
+          <div
+            className="row blog-content m-auto"
+            style={{ paddingBottom: "72px" }}
+          >
             <div className="col-12 blog-content__main">
               <div
                 className="blogpost"
@@ -74,70 +87,125 @@ const BlogTemplate = ({ location, pageContext }) => {
                 }}
               />
               <div className="blog-content__pagenav">
-                <h6 className="boxfont text-uppercase mt-0">Share the article</h6>
+                <h6 className="boxfont text-uppercase mt-0">
+                  Share the article
+                </h6>
                 <TwitterShareButton
-                  hashtags={pageContext.current.childMarkdownRemark.frontmatter.category}
+                  hashtags={
+                    pageContext.current.childMarkdownRemark.frontmatter.category
+                  }
                   {...shareProps}
                 >
-                  <FontAwesomeIcon icon={faTwitter} className="blog-social anchor-color" />
+                  <FontAwesomeIcon
+                    icon={faTwitter}
+                    className="blog-social anchor-color"
+                  />
                 </TwitterShareButton>
                 <LinkedinShareButton
-                  summary={pageContext.current.childMarkdownRemark.frontmatter.title}
+                  summary={
+                    pageContext.current.childMarkdownRemark.frontmatter.title
+                  }
                   source={location.href}
                   {...shareProps}
                 >
-                  <FontAwesomeIcon icon={faLinkedin} className="blog-social anchor-color" />
+                  <FontAwesomeIcon
+                    icon={faLinkedin}
+                    className="blog-social anchor-color"
+                  />
                 </LinkedinShareButton>
                 <FacebookShareButton
-                  quote={pageContext.current.childMarkdownRemark.frontmatter.title + " by Nirmal Khedkar"}
-                  hashtag={"#" + pageContext.current.childMarkdownRemark.frontmatter.category}
+                  quote={
+                    pageContext.current.childMarkdownRemark.frontmatter.title +
+                    " by Nirmal Khedkar"
+                  }
+                  hashtag={
+                    "#" +
+                    pageContext.current.childMarkdownRemark.frontmatter.category
+                  }
                   {...shareProps}
                 >
-                  <FontAwesomeIcon icon={faFacebook} className="blog-social anchor-color" />
+                  <FontAwesomeIcon
+                    icon={faFacebook}
+                    className="blog-social anchor-color"
+                  />
                 </FacebookShareButton>
                 <PinterestShareButton {...shareProps}>
-                  <FontAwesomeIcon icon={faPinterest} className="blog-social anchor-color" />
+                  <FontAwesomeIcon
+                    icon={faPinterest}
+                    className="blog-social anchor-color"
+                  />
                 </PinterestShareButton>
                 <WhatsappShareButton {...shareProps}>
-                  <FontAwesomeIcon icon={faWhatsapp} className="blog-social anchor-color" />
+                  <FontAwesomeIcon
+                    icon={faWhatsapp}
+                    className="blog-social anchor-color"
+                  />
                 </WhatsappShareButton>
                 <TelegramShareButton
-                  title={pageContext.current.childMarkdownRemark.frontmatter.title + " by Nirmal Khedkar"}
+                  title={
+                    pageContext.current.childMarkdownRemark.frontmatter.title +
+                    " by Nirmal Khedkar"
+                  }
                   {...shareProps}
                 >
-                  <FontAwesomeIcon icon={faTelegram} className="blog-social anchor-color" />
+                  <FontAwesomeIcon
+                    icon={faTelegram}
+                    className="blog-social anchor-color"
+                  />
                 </TelegramShareButton>
                 <EmailShareButton
                   subject="Check out this blog on nirmalhk7.tech"
                   body="I found this interesting blog article that you might like:"
                   {...shareProps}
                 >
-                  <FontAwesomeIcon icon={faEnvelope} className="blog-social anchor-color" />
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    className="blog-social anchor-color"
+                  />
                 </EmailShareButton>
-                <p className="blog-content__tags" style={{ marginTop: "3rem!important" }}>
+                <p
+                  className="blog-content__tags"
+                  style={{ marginTop: "3rem!important" }}
+                >
                   <span>
-                    <CategoryList categories={pageContext.current.childMarkdownRemark.frontmatter.category} />
+                    <CategoryList
+                      categories={
+                        pageContext.current.childMarkdownRemark.frontmatter
+                          .category
+                      }
+                    />
                   </span>
                   <span className="blog-content__tag-list">
-                    {pageContext.current.childMarkdownRemark.frontmatter.tags.map((element, index) => (
-                      <a key={index} href="#0">
-                        {element}
-                      </a>
-                    ))}
+                    {pageContext.current.childMarkdownRemark.frontmatter.tags.map(
+                      (element, index) => (
+                        <a key={index} href="#0">
+                          {element}
+                        </a>
+                      )
+                    )}
                   </span>
                 </p>
                 <div className="blog-content__nav">
                   {pageContext.previous ? (
                     <div className="blog-content__prev">
-                      <Link to={"/blog/" + pageContext.previous.relativeDirectory} rel="prev">
+                      <Link
+                        to={"/blog/" + pageContext.previous.relativeDirectory}
+                        rel="prev"
+                      >
                         <span>Previous Post</span>
-                        {pageContext.previous.childMarkdownRemark.frontmatter.title}
+                        {
+                          pageContext.previous.childMarkdownRemark.frontmatter
+                            .title
+                        }
                       </Link>
                     </div>
                   ) : null}
                   {pageContext.next ? (
                     <div className="blog-content__next">
-                      <Link to={"/blog/" + pageContext.next.relativeDirectory} rel="next">
+                      <Link
+                        to={"/blog/" + pageContext.next.relativeDirectory}
+                        rel="next"
+                      >
                         <span>Next Post</span>
                         {pageContext.next.childMarkdownRemark.frontmatter.title}
                       </Link>
@@ -149,6 +217,14 @@ const BlogTemplate = ({ location, pageContext }) => {
                     View All Posts
                   </a>
                 </div>
+                <hr />
+                <Disqus
+                  config={{
+                    url: location.href,
+                    identifier: location.href,
+                    title: pageTitle,
+                  }}
+                />
               </div>
             </div>
           </div>

@@ -135,9 +135,9 @@ const BlogByCategory = ({ blogItems }) => {
   );
 };
 
-const Blog = ({ data }) => {
+const Blog = ({ location, data }) => {
   return (
-    <Layout location={this.props.location}>
+    <Layout location={location}>
       <SEO title={data.site.siteMetadata.blogName} />
       <section
         className="s-home page-hero target-section parallax bootstrap-wrapper"
