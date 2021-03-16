@@ -34,7 +34,7 @@ class Projects extends React.Component {
   render() {
     return (
       <>
-        <Layout>
+        <Layout location={this.props.location}>
           <SEO title="Projects" />
           <section className="page-header page-hero parallax bootstrap-wrapper" id="projects-header">
             <div className="container page-header__content">

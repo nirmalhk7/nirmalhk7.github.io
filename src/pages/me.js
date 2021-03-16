@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import React, { useState } from "react";
 import "../assets/css/card.css";
 import { social } from "../components/partials/social";
+import { graphql } from 'gatsby'
 
 const BusinessCard = ({ data }) => {
   const [flipped, flippedControl] = useState(false);

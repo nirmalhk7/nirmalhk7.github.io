@@ -4,7 +4,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 
 const NotFoundPage = () => (
-  <Layout>
+  <Layout location={this.props.location}>
     <SEO title="404: Not Found" />
     <section className="page-header page-hero parallax notfound-img">
       <div className="page-header__content bootstrap-wrapper m-auto">
