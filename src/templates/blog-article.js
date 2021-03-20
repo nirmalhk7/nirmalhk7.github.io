@@ -148,13 +148,13 @@ const BlogTemplate = ({ location, pageContext }) => {
                 </a>
               </div>
               <hr />
-              {/* <Disqus
+              <Disqus
                 config={{
                   url: location.href,
                   identifier: location.href,
                   title: pageTitle,
                 }}
-              /> */}
+              />
             </div>
           </div>
         </div>
