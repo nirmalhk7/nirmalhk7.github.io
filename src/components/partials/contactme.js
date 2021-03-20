@@ -107,7 +107,7 @@ class ContactForm extends React.Component {
                 <p>
                   nirmalhk7@gmail.com
                   <br />
-                  nirmalhk7@programmer.net
+                  hello@nirmalhk7.tech
                 </p>
                 <h4 className="h06 text-white">Address</h4>
                 <p>

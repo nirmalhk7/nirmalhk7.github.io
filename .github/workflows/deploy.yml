@@ -28,7 +28,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install NPM Packages
         run: npm install
-
+      - name: Set up git
+        run: |
+          git config --global user.email "nirmalhk7@gmail.com"
+          git config --global user.name "NirmalHK7"
       # Runs a set of commands using the runners shell
       - name: Build and run script
         run: npm run deploy
