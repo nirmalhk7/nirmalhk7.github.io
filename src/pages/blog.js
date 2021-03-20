@@ -2,15 +2,26 @@ import React from "react";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import Img from "gatsby-image";
-import { useStaticQuery, graphql, Link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import SocialMediaIcons from "../components/partials/social";
 // import SocialMediaSideIcons from "../components/partials/social"
 
 const LatestBlogItem = ({ item }) => {
+  let srx = item.childMarkdownRemark.frontmatter.img;
+  if (srx.childImageSharp !== null) {
+    srx = {
+      src: srx.childImageSharp.fixed.srcWebp,
+      srcSet: srx.childImageSharp.fixed.srcSetWebp,
+    };
+  } else {
+    srx = { src: srx.publicURL, srcSet: null };
+  }
   return (
     <>
-      <section className="s-works inv target-section bootstrap-wrapper" id="blog-first">
+      <section
+        className="s-works inv target-section bootstrap-wrapper"
+        id="blog-first"
+      >
         <div className="container blog-content">
           <Link
             to={"/blog/" + item.relativeDirectory}
@@ -20,19 +31,20 @@ const LatestBlogItem = ({ item }) => {
             <div className="row">
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <img
-                  src={item.childMarkdownRemark.frontmatter.img.childImageSharp.fixed.srcWebp}
-                  srcSet={item.childMarkdownRemark.frontmatter.img.childImageSharp.fixed.srcSetWebp}
+                  src={srx.src}
+                  srcSet={srx.srcSet}
                   style={{ maxHeight: "400px" }}
                 />
               </div>
-              {
-                //TODO allign leftwards }
-              }
               <div className="col-lg-6 col-md-6 col-sm-12  text-md-right">
                 <h1 className="entry-title text-white text-underline">
                   {item.childMarkdownRemark.frontmatter.title}
                   &nbsp;&nbsp;
-                  {item.draft === true ? <code style={{ color: "black" }}>Draft</code> : <></>}
+                  {item.draft === true ? (
+                    <code style={{ color: "black" }}>Draft</code>
+                  ) : (
+                    <></>
+                  )}
                 </h1>
                 <div className="entry-content text-white">
                   <p>{item.childMarkdownRemark.frontmatter.description}</p>
@@ -51,7 +63,10 @@ const MasonPanel = ({ sitename, blogItems }) => {
     <section className="blog-content-wrap">
       <div className="">
         <div className="blog-content m-auto" style={{ maxWidth: "1500px" }}>
-          <div className="section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
+          <div
+            className="section-intro has-bottom-sep"
+            style={{ paddingTop: "5em" }}
+          >
             <div className="text-center">
               <h3>{sitename}</h3>
               <h1>All Posts</h1>
@@ -61,6 +76,16 @@ const MasonPanel = ({ sitename, blogItems }) => {
             <div className="row">
               <div className="masonry">
                 {blogItems.map((e, i) => {
+                    let srx = e.childMarkdownRemark.frontmatter.img;
+                    if (srx.childImageSharp !== null) {
+                      srx = {
+                        src: srx.childImageSharp.fixed.srcWebp,
+                        srcSet: srx.childImageSharp.fixed.srcSetWebp,
+                      };
+                    } else {
+                      srx = { src: srx.publicURL, srcSet: null };
+                    }
+
                   return (
                     <div key={i} className="masonry__brick">
                       <div className="item-folio">
@@ -68,18 +93,21 @@ const MasonPanel = ({ sitename, blogItems }) => {
                           <Link
                             to={"/blog/" + e.relativeDirectory}
                             className=""
-                            title={e.childMarkdownRemark.frontmatter.description}
+                            title={
+                              e.childMarkdownRemark.frontmatter.description
+                            }
                           >
-                            <img
-                              src={e.childMarkdownRemark.frontmatter.img.childImageSharp.fixed.srcWebp}
-                              srcSet={e.childMarkdownRemark.frontmatter.img.childImageSharp.fixed.srcSetWebp}
-                            />
+                            <img src={srx.src} srcSet={srx.srcSet} />
                           </Link>
                         </div>
                         <div className="item-folio__text">
-                          <h3 className="item-folio__title">{e.childMarkdownRemark.frontmatter.title}</h3>
+                          <h3 className="item-folio__title">
+                            {e.childMarkdownRemark.frontmatter.title}
+                          </h3>
                           <p className="item-folio__cat">
-                            <strong style={{ color: "#862121" }}>{e.childMarkdownRemark.frontmatter.category}</strong>
+                            <strong style={{ color: "#862121" }}>
+                              {e.childMarkdownRemark.frontmatter.category}
+                            </strong>
                           </p>
                         </div>
                       </div>
@@ -98,7 +126,10 @@ const MasonPanel = ({ sitename, blogItems }) => {
 const BlogByCategory = ({ blogItems }) => {
   return (
     <section className="s-works target-section bootstrap-wrapper">
-      <div className="m-auto narrow section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
+      <div
+        className="m-auto narrow section-intro has-bottom-sep"
+        style={{ paddingTop: "5em" }}
+      >
         <div className="m-auto text-center">
           <h3>Browse by Category</h3>
         </div>
@@ -107,18 +138,25 @@ const BlogByCategory = ({ blogItems }) => {
         <div className="row">
           {blogItems.map((a, i) => {
             let xfilter = blogItems.filter(
-              (e) => e.childMarkdownRemark.frontmatter.category === a.childMarkdownRemark.frontmatter.category
+              (e) =>
+                e.childMarkdownRemark.frontmatter.category ===
+                a.childMarkdownRemark.frontmatter.category
             );
             return (
               <article key={i} className="col-lg-6 col-sm-12">
-                <h2 id={a.childMarkdownRemark.frontmatter.category} className="h01">
+                <h2
+                  id={a.childMarkdownRemark.frontmatter.category}
+                  className="h01"
+                >
                   {a.childMarkdownRemark.frontmatter.category}
                 </h2>
                 <ul>
                   {xfilter.map((element, index) => (
                     <li key={(index + 1) * 100 * (i + 1)}>
                       <Link
-                        title={element.childMarkdownRemark.frontmatter.description}
+                        title={
+                          element.childMarkdownRemark.frontmatter.description
+                        }
                         to={"/blog/" + element.relativeDirectory}
                       >
                         {element.childMarkdownRemark.frontmatter.title}
@@ -150,14 +188,16 @@ const Blog = ({ location, data }) => {
         <div className="overlay"></div>
         <div className="home-content">
           <div className="container home-content__main">
-            <h3>Official Blog of Nirmal Khedkar</h3>
+            <h3 className="ital-hover">Official Blog of Nirmal Khedkar</h3>
             <h1 className="page-header__title">
               <Link to="/blog" title="">
                 {data.site.siteMetadata.blogName}
               </Link>
             </h1>
             <div className="page-header__info">
-              <div className="page-header__cat">Technology, Finance, Environment and the Future.</div>
+              <div className="page-header__cat">
+                Technology, Finance, Environment and the Future.
+              </div>
             </div>
             <div className="home-content__buttons">
               <a href="#blog-first" className="smoothscroll btn btn--stroke">
@@ -169,7 +209,10 @@ const Blog = ({ location, data }) => {
         <SocialMediaIcons />
       </section>
       <LatestBlogItem item={data.allFile.nodes[0]} />
-      <MasonPanel sitename={data.site.siteMetadata.blogName} blogItems={data.allFile.nodes} />
+      <MasonPanel
+        sitename={data.site.siteMetadata.blogName}
+        blogItems={data.allFile.nodes}
+      />
       <BlogByCategory blogItems={data.allFile.nodes} />
     </Layout>
   );
@@ -199,6 +242,7 @@ export const postQuery = graphql`
                   srcSetWebp
                 }
               }
+              publicURL
             }
           }
         }

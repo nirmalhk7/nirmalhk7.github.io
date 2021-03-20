@@ -63,17 +63,17 @@ const Footer = () => {
           </div>
           <div className="copyright">
             <span style={{ color: "#1d1d1d" }} id="justinmaller">
-              Image Credits{" "}
+              Image Credits &nbsp;
               <a className="hidelink" href="/" style={{ color: "#1d1d1d" }}>
                 Beast Dreams II
-              </a>{" "}
-              by Justin Maller
+              </a>
+              &nbsp; by Justin Maller
             </span>
             <span style={{ color: "#1d1d1d" }}>
-              Theme by{" "}
+              Theme by &nbsp;
               <a className="hidelink" href="https://www.styleshout.com/" style={{ color: "#1d1d1d" }}>
                 styleshout
-              </a>{" "}
+              </a>
               (Copyright Hola 2017)
             </span>
           </div>

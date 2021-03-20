@@ -41,7 +41,7 @@ const SocialMediaIcons = () => {
     <ul className="home-social">
       {social.map((element, index) => (
         <li key={index}>
-          <a title={`icon-${element.name} socialprofile`} href="#">
+          <a title={element.name} href={element.link}>
             <FontAwesomeIcon icon={element.class} />
             <span>{element.name}</span>
           </a>

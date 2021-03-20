@@ -36,7 +36,10 @@ class Projects extends React.Component {
       <>
         <Layout location={this.props.location}>
           <SEO title="Projects" />
-          <section className="page-header page-hero parallax bootstrap-wrapper" id="projects-header">
+          <section
+            className="page-header page-hero parallax bootstrap-wrapper"
+            id="projects-header"
+          >
             <div className="container page-header__content">
               <article className="col-full">
                 <h1 className="page-header__title">
@@ -45,11 +48,15 @@ class Projects extends React.Component {
                   </a>
                 </h1>
                 <div className="page-header__info">
-                  <div className="page-header__cat">Projects Catalogue of Nirmal Khedkar</div>
+                  <div className="page-header__cat">
+                    Projects Catalogue of Nirmal Khedkar
+                  </div>
                 </div>
                 <p className="narrow">
-                  I'm a fullstack and hybrid product developer, currently understanding how ML models are deployed on
-                  cloud platforms. I love building stuff! <FontAwesomeIcon icon={faWrench} className="ml-2" />{" "}
+                  I'm a fullstack and hybrid product developer, currently
+                  understanding how ML models are deployed on cloud platforms. I
+                  love building stuff!{" "}
+                  <FontAwesomeIcon icon={faWrench} className="ml-2" />
                 </p>
               </article>
             </div>
@@ -60,39 +67,50 @@ class Projects extends React.Component {
               <div className="">
                 <div className="blog-list block-1-2 block-tab-full">
                   <div className="accordion js-accordion">
-                    {this.props.data.allFile.group.map((e1, i1) => (
-                      <React.Fragment key={i1}>
-                        <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
-                        {e1.edges.map((e2, i2) => (
-                          <div
-                            id={"accordion-" + i1 + i2}
-                            key={i1 + "-" + i2}
-                            onClick={this.handleClick}
-                            className={`accordion__item js-accordion-item ${
-                              this.state.hasClicked && i1 * 10 + i2 === this.state.openIndex ? "active" : ""
-                            }`}
-                          >
-                            <div id={"accordionheader-" + i1 + i2} className="accordion-header js-accordion-header">
-                              {e2.node.childMarkdownRemark.frontmatter.title}
-                            </div>
+                    <div className="row">
+                      {this.props.data.allFile.group.map((e1, i1) => (
+                        <div className="col-lg-6 col-md-12" key={i1}>
+                          <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
+                          {e1.edges.map((e2, i2) => (
                             <div
-                              className="accordion-body js-accordion-body"
-                              style={{
-                                display:
-                                  this.state.hasClicked && this.state.openIndex === i1 * 10 + i2 ? "block" : "none",
-                              }}
+                              id={"accordion-" + i1 + i2}
+                              key={i1 + "-" + i2}
+                              onClick={this.handleClick}
+                              className={`accordion__item js-accordion-item ${
+                                this.state.hasClicked &&
+                                i1 * 10 + i2 === this.state.openIndex
+                                  ? "active"
+                                  : ""
+                              }`}
                             >
                               <div
-                                className="accordion-body__contents"
-                                dangerouslySetInnerHTML={{
-                                  __html: e2.node.childMarkdownRemark.html,
+                                id={"accordionheader-" + i1 + i2}
+                                className="accordion-header js-accordion-header"
+                              >
+                                {e2.node.childMarkdownRemark.frontmatter.title}
+                              </div>
+                              <div
+                                className="accordion-body js-accordion-body"
+                                style={{
+                                  display:
+                                    this.state.hasClicked &&
+                                    this.state.openIndex === i1 * 10 + i2
+                                      ? "block"
+                                      : "none",
                                 }}
-                              />
+                              >
+                                <div
+                                  className="accordion-body__contents"
+                                  dangerouslySetInnerHTML={{
+                                    __html: e2.node.childMarkdownRemark.html,
+                                  }}
+                                />
+                              </div>
                             </div>
-                          </div>
-                        ))}
-                      </React.Fragment>
-                    ))}
+                          ))}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -106,7 +124,10 @@ class Projects extends React.Component {
 
 export const postQuery = graphql`
   query projects {
-    allFile(filter: { sourceInstanceName: { eq: "projects" } }, sort: { order: DESC, fields: birthTime }) {
+    allFile(
+      filter: { sourceInstanceName: { eq: "projects" } }
+      sort: { order: DESC, fields: birthTime }
+    ) {
       group(field: childMarkdownRemark___frontmatter___tags) {
         edges {
           node {

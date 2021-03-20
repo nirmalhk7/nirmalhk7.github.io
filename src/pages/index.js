@@ -24,7 +24,7 @@ const Jumbotron = (props) => (
     <div className="overlay"></div>
     <div className="home-content bootstrap-wrapper">
       <div className="container home-content__main">
-        <h3>Hey!</h3>
+        <h3 className="ital-hover">Hey!</h3>
         <h1>
           I'm Nirmal Khedkar, <br />
           product developer
@@ -100,7 +100,7 @@ const AboutMe = ({ experience, clubs, online, college, languages, framework_libr
             <h3 id="howdy">Howdy!</h3>
             <p>
               I’m from India, and I’m second year student at National Institute of Technology, Karnataka. Programming,
-              reading books, reading news, table tennis and{" "}
+              reading books, reading news, table tennis and
               <strong>making applications that eliminate iterative work</strong> is my hobby. I like to constantly
               challenge myself with problems. I also have a knack for finance and investment.
             </p>
@@ -184,7 +184,7 @@ const AboutMe = ({ experience, clubs, online, college, languages, framework_libr
             <ul className="disc">
               {clubs.map((element, index) => (
                 <li key={index}>
-                  {element.position} at{" "}
+                  {element.position} at
                   <a key={index} href={element.clubwebsite}>
                     {element.club}
                   </a>
@@ -206,7 +206,7 @@ const Blog = ({ name }) => (
         <h3>{name}</h3>
         <h1>Latest From The Blog.</h1>
         <p className="lead">
-          I have strong views on topics like Finance, Technology, Future and Environment. Find me{" "}
+          I have strong views on topics like Finance, Technology, Future and Environment. Find me
           <Link title="blog link" to="/blog">
             blogging about them here
           </Link>

@@ -168,6 +168,20 @@
   transition: all 0.3s ease-in-out;
 }
 
+.ital-hover{
+  -moz-transition: all 1s;
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+
+.ital-hover:hover {
+  -webkit-transform: skewX(-20deg);
+  -moz-transform: skewX(-20deg);
+  -o-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+}
+
 .title-inv {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
