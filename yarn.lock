@@ -972,28 +972,28 @@
   resolved "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.32.tgz"
   integrity sha512-ux2EDjKMpcdHBVLi/eWZynnPxs0BtFVXJkgHIxXRl+9ZFaHPvYamAfCzeeQFqHRjuJtX90wVnMRaMQAAlctz3w==
 
-"@fortawesome/fontawesome-svg-core@^1.2.32":
+"@fortawesome/fontawesome-svg-core@1.2.32":
   version "1.2.32"
   resolved "https://registry.npmjs.org/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.32.tgz"
   integrity sha512-XjqyeLCsR/c/usUpdWcOdVtWFVjPbDFBTQkn2fQRrWhhUoxriQohO2RWDxLyUM8XpD+Zzg5xwJ8gqTYGDLeGaQ==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.32"
 
-"@fortawesome/free-brands-svg-icons@^5.15.1":
+"@fortawesome/free-brands-svg-icons@5.15.1":
   version "5.15.1"
   resolved "https://registry.npmjs.org/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.15.1.tgz"
   integrity sha512-pkTZIWn7iuliCCgV+huDfZmZb2UjslalXGDA2PcqOVUYJmYL11y6ooFiMJkJvUZu+xgAc1gZgQe+Px12mZF0CA==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.32"
 
-"@fortawesome/free-solid-svg-icons@^5.15.1":
+"@fortawesome/free-solid-svg-icons@5.15.1":
   version "5.15.1"
   resolved "https://registry.npmjs.org/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.15.1.tgz"
   integrity sha512-EFMuKtzRMNbvjab/SvJBaOOpaqJfdSap/Nl6hst7CgrJxwfORR1drdTV6q1Ib/JVzq4xObdTDcT6sqTaXMqfdg==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.32"
 
-"@fortawesome/react-fontawesome@^0.1.13":
+"@fortawesome/react-fontawesome@0.1.14":
   version "0.1.14"
   resolved "https://registry.npmjs.org/@fortawesome/react-fontawesome/-/react-fontawesome-0.1.14.tgz"
   integrity sha512-4wqNb0gRLVaBm/h+lGe8UfPPivcbuJ6ecI4hIgW0LjI7kzpYB9FkN0L9apbVzg+lsBdcTf0AlBtODjcSX5mmKA==
@@ -2961,12 +2961,12 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap-grid-only-css@^4.1.3:
+bootstrap-grid-only-css@4.1.3:
   version "4.1.3"
   resolved "https://registry.npmjs.org/bootstrap-grid-only-css/-/bootstrap-grid-only-css-4.1.3.tgz"
   integrity sha512-rUu4Xk6BYmsmXY6Y32+UN2+G3z9oKrx7xWYS7s7IdEnKlh2BSxlyY6TMujJOJtIKwLgO655j9ndbpH2lKz5TDA==
 
-bootstrap@^4.5.3:
+bootstrap@4.5.3:
   version "4.5.3"
   resolved "https://registry.npmjs.org/bootstrap/-/bootstrap-4.5.3.tgz"
   integrity sha512-o9ppKQioXGqhw8Z7mah6KdTYpNQY//tipnkxppWhPbiSWdD+1raYsnhwEZjkTHYbGee4cVQ0Rx65EhOY/HNLcQ==
@@ -4115,7 +4115,7 @@ create-require@^1.1.0:
   resolved "https://registry.npmjs.org/create-require/-/create-require-1.1.1.tgz"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
 
-cross-fetch@3.0.6, cross-fetch@^3.0.6:
+cross-fetch@3.0.6:
   version "3.0.6"
   resolved "https://registry.npmjs.org/cross-fetch/-/cross-fetch-3.0.6.tgz"
   integrity sha512-KBPUbqgFjzWlVcURG+Svp9TlhA5uliYtiNx/0r8nv0pdypeQCRJ9IaSIc3q/x3q8t3F75cHuwxVql1HFGHCNJQ==
@@ -6289,7 +6289,7 @@ gatsby-graphiql-explorer@^0.9.0:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-gatsby-image@^2.6.0:
+gatsby-image@2.9.0:
   version "2.9.0"
   resolved "https://registry.npmjs.org/gatsby-image/-/gatsby-image-2.9.0.tgz"
   integrity sha512-PZu8PhjQwL6anlCYlm8bVVCypMYqoMT6knHZS8UVotSy1+DbKorDVOtFFEq936oelEjuV+bBx9KuLOh7MpH8Qw==
@@ -6328,12 +6328,12 @@ gatsby-page-utils@^0.7.0:
     lodash "^4.17.20"
     micromatch "^4.0.2"
 
-gatsby-plugin-disqus@^1.2.2:
+gatsby-plugin-disqus@1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/gatsby-plugin-disqus/-/gatsby-plugin-disqus-1.2.2.tgz"
   integrity sha512-RWiU8Jtg94kVphjBnxqnF+0txyJ3eZN/9vw/VlMgz0mor1FwULkiiiOyNXAJxbX6tFqYmypnmfa+edQWX/rMpQ==
 
-gatsby-plugin-feed@^2.11.0:
+gatsby-plugin-feed@2.11.0:
   version "2.11.0"
   resolved "https://registry.npmjs.org/gatsby-plugin-feed/-/gatsby-plugin-feed-2.11.0.tgz"
   integrity sha512-VRHMMqyUg3mgRLypdsXtHrpWnapp+LT1c0CpDgLVbhMIs78/FPZKQQ1o/zF0TLsu/P8CLQInHKzcJSPxKMnfGQ==
@@ -6346,7 +6346,7 @@ gatsby-plugin-feed@^2.11.0:
     lodash.merge "^4.6.2"
     rss "^1.2.2"
 
-gatsby-plugin-google-gtag@^2.5.0:
+gatsby-plugin-google-gtag@2.6.0:
   version "2.6.0"
   resolved "https://registry.npmjs.org/gatsby-plugin-google-gtag/-/gatsby-plugin-google-gtag-2.6.0.tgz"
   integrity sha512-bH7BW/u6JdmlerLg2LRi+rC84ZhGS/NWEo6mvdDUGoppNoKfhN+6ybO4RnkjP0PFfyeFdV53XkjmwnoN9bFXIQ==
@@ -6354,7 +6354,7 @@ gatsby-plugin-google-gtag@^2.5.0:
     "@babel/runtime" "^7.12.5"
     minimatch "^3.0.4"
 
-gatsby-plugin-manifest@^2.7.0:
+gatsby-plugin-manifest@2.10.0:
   version "2.10.0"
   resolved "https://registry.npmjs.org/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.10.0.tgz"
   integrity sha512-usX07buWEjQiuDzs++UJQd3tUkoB7nAPQvK99K1qskLzBSCSasSbymAEqF27LSs4Q6agysKxZA2QE68JWYMQWw==
@@ -6365,7 +6365,7 @@ gatsby-plugin-manifest@^2.7.0:
     semver "^7.3.2"
     sharp "^0.27.0"
 
-gatsby-plugin-nprogress@^2.8.0:
+gatsby-plugin-nprogress@2.8.0:
   version "2.8.0"
   resolved "https://registry.npmjs.org/gatsby-plugin-nprogress/-/gatsby-plugin-nprogress-2.8.0.tgz"
   integrity sha512-fjyNI9ihCKuj8+mkR/aRbekXabjwQULpV2ekFLbO/yIITkdsfGxgkHVnz9//z2CkHTfaH3/RZeT5z+eIo4eJhQ==
@@ -6373,7 +6373,7 @@ gatsby-plugin-nprogress@^2.8.0:
     "@babel/runtime" "^7.12.5"
     nprogress "^0.2.0"
 
-gatsby-plugin-offline@^3.5.0:
+gatsby-plugin-offline@3.8.0:
   version "3.8.0"
   resolved "https://registry.npmjs.org/gatsby-plugin-offline/-/gatsby-plugin-offline-3.8.0.tgz"
   integrity sha512-kSNZ07XETuy1vMsLJ3yXt2tfDYyuKTW0ij+9sRbmIO5VMhgKGx6XzPBJMaU2pH7kjWi0X29zOmofGORYFgC9Xg==
@@ -6400,7 +6400,7 @@ gatsby-plugin-page-creator@^2.8.0:
     globby "^11.0.1"
     lodash "^4.17.20"
 
-gatsby-plugin-purgecss@^5.0.0:
+gatsby-plugin-purgecss@5.0.0:
   version "5.0.0"
   resolved "https://registry.npmjs.org/gatsby-plugin-purgecss/-/gatsby-plugin-purgecss-5.0.0.tgz"
   integrity sha512-vzBQSBfZuzmm6+P5qedw+LCgtQm0HRzdDUjytdCwgYCBRuxUjxSkHAFBpemSXqkklfWxs6jcLjRuElVqSDLT1w==
@@ -6409,14 +6409,14 @@ gatsby-plugin-purgecss@^5.0.0:
     loader-utils "^2.0.0"
     purgecss "^2.1.0"
 
-gatsby-plugin-react-helmet@^3.5.0:
+gatsby-plugin-react-helmet@3.8.0:
   version "3.8.0"
   resolved "https://registry.npmjs.org/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.8.0.tgz"
   integrity sha512-N3foQUlaA7S7hRHpUtM30eYfhaE/wfC5xJhZ2UJCeos/rRDA6RHEp4IGI+VIs6+4T4ClS9pM9jwg8TfcqNlAiQ==
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-gatsby-plugin-sass@^2.6.0:
+gatsby-plugin-sass@2.8.0:
   version "2.8.0"
   resolved "https://registry.npmjs.org/gatsby-plugin-sass/-/gatsby-plugin-sass-2.8.0.tgz"
   integrity sha512-lUEM5f4bPr6+m8cgB0uq6YBSbqIUxk8tfIthGmsFVbAulnrGBswMRSynyNSAE5APWmUGqwp9GuATDdsV+B5BVg==
@@ -6424,7 +6424,7 @@ gatsby-plugin-sass@^2.6.0:
     "@babel/runtime" "^7.12.5"
     sass-loader "^7.3.1"
 
-gatsby-plugin-sharp@^2.9.1:
+gatsby-plugin-sharp@2.12.0:
   version "2.12.0"
   resolved "https://registry.npmjs.org/gatsby-plugin-sharp/-/gatsby-plugin-sharp-2.12.0.tgz"
   integrity sha512-I9O9tPWT5noEhOJnqEeaQ4E9rfKSIKH+cN+xvmJcRPJP4HKcXQqs1NH/tbhKrNvuNyIQK+f8xGiXKeFVvQDcUA==
@@ -6540,7 +6540,7 @@ gatsby-recipes@^0.7.0:
     xstate "^4.9.1"
     yoga-layout-prebuilt "^1.9.6"
 
-gatsby-remark-images@^3.6.0:
+gatsby-remark-images@3.9.0:
   version "3.9.0"
   resolved "https://registry.npmjs.org/gatsby-remark-images/-/gatsby-remark-images-3.9.0.tgz"
   integrity sha512-x5zSPIFWKrSETdhMCZWNAh+AFlOkCGqXyCB1dMb1x2hfXV+3IOMe3eKJDZvNkbZfKMGUVSEboI/uk8+/xdGjPg==
@@ -6557,7 +6557,7 @@ gatsby-remark-images@^3.6.0:
     unist-util-select "^1.5.0"
     unist-util-visit-parents "^2.1.2"
 
-gatsby-source-filesystem@^2.6.1:
+gatsby-source-filesystem@2.9.0:
   version "2.9.0"
   resolved "https://registry.npmjs.org/gatsby-source-filesystem/-/gatsby-source-filesystem-2.9.0.tgz"
   integrity sha512-aKsb5GnnYwhAzCJZ9ChMWZqd1QhN6VGCEX3UAM/XuG6LSoqLmWyPUXo687n2ULpNPZfwb0X+HZRYzUhkje1UZA==
@@ -6596,7 +6596,7 @@ gatsby-telemetry@^1.8.0:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
-gatsby-transformer-remark@^2.11.1:
+gatsby-transformer-remark@2.14.0:
   version "2.14.0"
   resolved "https://registry.npmjs.org/gatsby-transformer-remark/-/gatsby-transformer-remark-2.14.0.tgz"
   integrity sha512-GYtJjDRVdXbvp3BqQ4wObiSu+1We05aV5B+ifOVX1sxNXLKOUOw14tkEb6Uij6pJ3mNe3azHTkChqTe0LboYPA==
@@ -6623,7 +6623,7 @@ gatsby-transformer-remark@^2.11.1:
     unist-util-select "^1.5.0"
     unist-util-visit "^1.4.1"
 
-gatsby-transformer-sharp@^2.7.0:
+gatsby-transformer-sharp@2.10.0:
   version "2.10.0"
   resolved "https://registry.npmjs.org/gatsby-transformer-sharp/-/gatsby-transformer-sharp-2.10.0.tgz"
   integrity sha512-x9dE0Mja5NRiLO+VI7FLY14apvzIkVjAS7BjB6n4ja67k+PN1tE2eOhXwtpNObVDzJxFYoOhVtmDvkizIuRH9Q==
@@ -6636,7 +6636,7 @@ gatsby-transformer-sharp@^2.7.0:
     semver "^7.3.4"
     sharp "^0.27.0"
 
-gatsby-transformer-yaml@^3.0.0:
+gatsby-transformer-yaml@3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/gatsby-transformer-yaml/-/gatsby-transformer-yaml-3.0.0.tgz"
   integrity sha512-KQYnY25gub6hIa7l65MnfGmr4j4R3oJmteSM1cdZIbmTCF+OJzXGvcqpSw1GrRPn3G5PTQE6vG6/PrXMek/mTg==
@@ -6646,7 +6646,7 @@ gatsby-transformer-yaml@^3.0.0:
     lodash "^4.17.20"
     unist-util-select "^1.5.0"
 
-gatsby@^2.27.4:
+gatsby@2.30.1:
   version "2.30.1"
   resolved "https://registry.npmjs.org/gatsby/-/gatsby-2.30.1.tgz"
   integrity sha512-elDugMhCsBHdo46WAiyoWs7AL3uQyO9R+rqf8J0mj3ToNzi4Fl+3cu2fs+EvAahpLJ5pQqRhXL/cPXtW4rNbug==
@@ -6911,7 +6911,7 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-gh-pages@^3.1.0:
+gh-pages@3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/gh-pages/-/gh-pages-3.1.0.tgz"
   integrity sha512-3b1rly9kuf3/dXsT8+ZxP0UhNLOo1CItj+3e31yUVcaph/yDsJ9RzD7JOw5o5zpBTJVQLlJAASNkUfepi9fe2w==
@@ -8665,7 +8665,7 @@ jpeg-js@^0.4.0:
   resolved "https://registry.npmjs.org/jpeg-js/-/jpeg-js-0.4.2.tgz"
   integrity sha512-+az2gi/hvex7eLTMTlbRLOhH6P6WFdk2ITI8HJsaH2VqYO0I594zXSYEP+tf4FW+8Cy68ScDXoAsQdyQanv3sw==
 
-jquery@^3.5.1:
+jquery@3.5.1:
   version "3.5.1"
   resolved "https://registry.npmjs.org/jquery/-/jquery-3.5.1.tgz"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
@@ -9732,7 +9732,7 @@ mkdirp@^1.0.4:
   resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-moment@^2.27.0, moment@^2.29.1:
+moment@2.29.1, moment@^2.27.0:
   version "2.29.1"
   resolved "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
   integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
@@ -9969,7 +9969,7 @@ node-releases@^1.1.69:
   resolved "https://registry.npmjs.org/node-releases/-/node-releases-1.1.69.tgz"
   integrity sha512-DGIjo79VDEyAnRlfSqYTsy+yoHd2IOjJiKUozD2MV2D85Vso6Bug56mb9tT/fY5Urt0iqk01H7x+llAruDR2zA==
 
-node-sass@^4.14.1:
+node-sass@4.14.1:
   version "4.14.1"
   resolved "https://registry.npmjs.org/node-sass/-/node-sass-4.14.1.tgz"
   integrity sha512-sjCuOlvGyCJS40R8BscF5vhVlQjNN069NtQ1gSxyK1u9iqvn6tf7O1R4GNowVZfiZUCRt5MmMs1xd+4V/7Yr0g==
@@ -11515,7 +11515,7 @@ prompts@^2.3.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.5.10, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@15.7.2, prop-types@^15.5.10, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -11782,7 +11782,7 @@ react-dev-utils@^4.2.3:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^16.14.0:
+react-dom@16.14.0:
   version "16.14.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-16.14.0.tgz"
   integrity sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==
@@ -11802,7 +11802,7 @@ react-fast-compare@^3.1.1:
   resolved "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-3.2.0.tgz"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
 
-react-helmet@^6.1.0:
+react-helmet@6.1.0:
   version "6.1.0"
   resolved "https://registry.npmjs.org/react-helmet/-/react-helmet-6.1.0.tgz"
   integrity sha512-4uMzEY9nlDlgxr61NL3XbKRy1hEkXmKNXhjbAIOVw5vcFrsdYbH2FEwcNyWvWinl103nXgzYNlns9ca+8kFiWw==
@@ -11851,12 +11851,12 @@ react-refresh@^0.8.3:
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.8.3.tgz"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
-react-scrollspy-nav@^1.2.4:
+react-scrollspy-nav@1.2.4:
   version "1.2.4"
   resolved "https://registry.npmjs.org/react-scrollspy-nav/-/react-scrollspy-nav-1.2.4.tgz"
   integrity sha512-brTLeR08DnYgULVZATYSzfpc6VBwCKKsi8EtJpdzhid/MBZ1htqpuw0NcGTyyZa/ii0g3SzMxAFWJDuUPD84oA==
 
-react-scrollspy@^3.4.3:
+react-scrollspy@3.4.3:
   version "3.4.3"
   resolved "https://registry.npmjs.org/react-scrollspy/-/react-scrollspy-3.4.3.tgz"
   integrity sha512-c2QZpMPWxm1HF71h1EqaxBldx2zLYO0aZ24Bcuo2mUWF79T+F6qOtr7XJCzUDm99NOwhVKQD01a7A8VC6c90CQ==
@@ -11865,7 +11865,7 @@ react-scrollspy@^3.4.3:
     classnames "^2.2.5"
     prop-types "^15.5.10"
 
-react-share@^4.3.1:
+react-share@4.3.1:
   version "4.3.1"
   resolved "https://registry.npmjs.org/react-share/-/react-share-4.3.1.tgz"
   integrity sha512-ikh0y8NKxhU7dQBXh1Jccd1ANLb9WNYaSonln33yLyNYo2HTBRp9D6HkTsFlgX/2J9GPsGLqhzzpDNiVKx3WVA==
@@ -11878,7 +11878,7 @@ react-side-effect@^2.1.0:
   resolved "https://registry.npmjs.org/react-side-effect/-/react-side-effect-2.1.1.tgz"
   integrity sha512-2FoTQzRNTncBVtnzxFOk2mCpcfxQpenBMbk5kSVBg5UcPqV9fRbgY2zhb7GTWWOlpFmAxhClBDlIq8Rsubz1yQ==
 
-react-tag-cloud@^1.3.2:
+react-tag-cloud@1.3.2:
   version "1.3.2"
   resolved "https://registry.npmjs.org/react-tag-cloud/-/react-tag-cloud-1.3.2.tgz"
   integrity sha512-/83foAJ8ciLOA4oQyXVdsanuqOUKWzYNIgLyLVj5QKqclRlkvRu4D7ezcNbugRVNeUA4mLb/7e8zYGIVEXD4SQ==
@@ -11886,7 +11886,7 @@ react-tag-cloud@^1.3.2:
     d3-cloud "^1.2.5"
     react-measure "^2.2.4"
 
-react@^16.14.0:
+react@16.14.0:
   version "16.14.0"
   resolved "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
   integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
@@ -14696,7 +14696,7 @@ web-namespaces@^1.0.0, web-namespaces@^1.1.2:
   resolved "https://registry.npmjs.org/web-namespaces/-/web-namespaces-1.1.4.tgz"
   integrity sha512-wYxSGajtmoP4WxfejAPIr4l0fVh+jeMXZb08wNc0tMg6xsfZXj3cECqIK0G7ZAqUq0PP8WlMDtaOGVBTAWztNw==
 
-webfontloader@^1.6.28:
+webfontloader@1.6.28:
   version "1.6.28"
   resolved "https://registry.npmjs.org/webfontloader/-/webfontloader-1.6.28.tgz"
   integrity sha1-23hhKSU8tujq5UwvsF+HCvZnW64=
