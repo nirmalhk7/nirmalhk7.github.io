@@ -206,7 +206,7 @@ const Blog = ({ name }) => (
         <h3>{name}</h3>
         <h1>Latest From The Blog.</h1>
         <p className="lead">
-          I have strong views on topics like Finance, Technology, Future and Environment. Find me
+          I have strong views on topics like Finance, Technology, Future and Environment. Find me&nbsp;
           <Link title="blog link" to="/blog">
             blogging about them here
           </Link>

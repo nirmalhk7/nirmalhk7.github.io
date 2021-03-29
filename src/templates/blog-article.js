@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SEO from "../components/seo";
 import { graphql, Link } from "gatsby";
 import moment from "moment";
@@ -30,6 +30,10 @@ const BlogTemplate = ({ location, pageContext }) => {
     url: pageContext.siteDetails.url + location.pathname,
     title: pageTitle,
   };
+  useEffect(()=>{
+    const disqus=document.getElementById("disqus_thread")
+    disqus.remove()
+  },[])
   return (
     <Layout location={location}>
       <SEO title={pageContext.current.childMarkdownRemark.frontmatter.title} />
