@@ -169,7 +169,7 @@ const Blog = ({ location, data }) => {
             </div>
             <div className="home-content__buttons">
               <a href="#blog-first" className="smoothscroll btn btn--stroke">
-                Liftoff!
+                Explore
               </a>
             </div>
           </div>

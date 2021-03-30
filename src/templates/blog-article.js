@@ -30,10 +30,6 @@ const BlogTemplate = ({ location, pageContext }) => {
     url: pageContext.siteDetails.url + location.pathname,
     title: pageTitle,
   };
-  useEffect(()=>{
-    const disqus=document.getElementById("disqus_thread")
-    disqus.remove()
-  },[])
   return (
     <Layout location={location}>
       <SEO title={pageContext.current.childMarkdownRemark.frontmatter.title} />

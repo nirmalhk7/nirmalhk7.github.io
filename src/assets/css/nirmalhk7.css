@@ -168,6 +168,8 @@
   transition: all 0.3s ease-in-out;
 }
 
+iframe[src*="ads-iframe"] { display: none; }
+
 .ital-hover{
   -moz-transition: all 1s;
   -webkit-transition: all 1s;
