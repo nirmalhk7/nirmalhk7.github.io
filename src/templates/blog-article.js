@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SEO from "../components/seo";
-import { graphql, Link } from "gatsby";
-import moment from "moment";
-import { Disqus } from "gatsby-plugin-disqus";
+import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
@@ -24,6 +22,7 @@ import {
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../components/layout";
 import { CategoryList } from "../helper/category";
+import Commento from "../components/commento";
 const BlogTemplate = ({ location, pageContext }) => {
   const pageTitle = pageContext.current.childMarkdownRemark.frontmatter.title + " by " + pageContext.siteDetails.author;
   const shareProps = {
@@ -148,13 +147,8 @@ const BlogTemplate = ({ location, pageContext }) => {
                 </a>
               </div>
               <hr />
-              <Disqus
-                config={{
-                  url: location.href,
-                  identifier: location.href,
-                  title: pageTitle,
-                }}
-              />
+
+              <Commento id={location.href} />
             </div>
           </div>
         </div>
