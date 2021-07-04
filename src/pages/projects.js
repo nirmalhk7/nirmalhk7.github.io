@@ -11,6 +11,7 @@ class Projects extends React.Component {
     this.state = {
       openIndex: -1,
       hasClicked: false,
+      routeKey: new URLSearchParams(props.location.search).get("id")
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -18,7 +19,8 @@ class Projects extends React.Component {
   handleClick = (event) => {
     event.preventDefault();
     event.persist();
-    if (this.state.openIndex === parseInt(event.target.id.split("-")[1])) {
+    const key=event.target.id.split("@")[1]
+    if (this.state.openIndex === key && this.state.hasClicked) {
       this.setState({
         hasClicked: false,
         openIndex: -1,
@@ -26,11 +28,18 @@ class Projects extends React.Component {
     } else {
       this.setState({
         hasClicked: true,
-        openIndex: parseInt(event.target.id.split("-")[1]),
+        openIndex: key,
       });
     }
   };
-
+  componentDidMount(){
+    if(this.state.openIndex===-1 && this.state.routeKey){
+      this.setState({
+        openIndex: this.state.routeKey,
+        hasClicked: true
+      })
+    }
+  }
   render() {
     return (
       <>
@@ -48,8 +57,7 @@ class Projects extends React.Component {
                   <div className="page-header__cat">Projects Catalogue of Nirmal Khedkar</div>
                 </div>
                 <p className="narrow">
-                  I'm a fullstack and hybrid product developer, currently understanding how ML models are deployed on
-                  cloud platforms. I love building stuff! <FontAwesomeIcon icon={faWrench} className="ml-2" />
+                  I'm a fullstack and hybrid product developer, currently understanding and exploring cloud platforms. I love building stuff! <FontAwesomeIcon icon={faWrench} className="ml-2" />
                 </p>
               </article>
             </div>
@@ -57,7 +65,6 @@ class Projects extends React.Component {
 
           <section className="blog-content-wrap bootstrap-wrapper">
             <div className="container blog-content">
-              <div className="">
                 <div className="blog-list block-1-2 block-tab-full">
                   <div className="accordion js-accordion">
                     <div className="row">
@@ -66,21 +73,21 @@ class Projects extends React.Component {
                           <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
                           {e1.edges.map((e2, i2) => (
                             <div
-                              id={"accordion-" + i1 + i2}
-                              key={i1 + "-" + i2}
+                              id={"acc@"+e2.node.id}
+                              key={i2}
                               onClick={this.handleClick}
                               className={`accordion__item js-accordion-item ${
-                                this.state.hasClicked && i1 * 10 + i2 === this.state.openIndex ? "active" : ""
+                                this.state.hasClicked && e2.node.id === this.state.openIndex ? "active" : ""
                               }`}
                             >
-                              <div id={"accordionheader-" + i1 + i2} className="accordion-header js-accordion-header">
+                              <div id={"header@"+e2.node.id} className="accordion-header js-accordion-header">
                                 {e2.node.childMarkdownRemark.frontmatter.title}
                               </div>
                               <div
                                 className="accordion-body js-accordion-body"
                                 style={{
                                   display:
-                                    this.state.hasClicked && this.state.openIndex === i1 * 10 + i2 ? "block" : "none",
+                                    this.state.hasClicked && this.state.openIndex === e2.node.id ? "block" : "none",
                                 }}
                               >
                                 <div
@@ -97,7 +104,7 @@ class Projects extends React.Component {
                     </div>
                   </div>
                 </div>
-              </div>
+           
             </div>
           </section>
         </Layout>
@@ -112,6 +119,7 @@ export const postQuery = graphql`
       group(field: childMarkdownRemark___frontmatter___tags) {
         edges {
           node {
+            id
             childMarkdownRemark {
               frontmatter {
                 title

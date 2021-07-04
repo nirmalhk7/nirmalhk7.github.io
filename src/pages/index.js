@@ -291,7 +291,7 @@ class IndexPage extends React.Component {
                       >
                         <div className="accordion-body__contents">
                           <p>{element.childMarkdownRemark.excerpt}</p>
-                          <Link to="/project#Silver-Scrapper">Find more here</Link>
+                          <Link to={`/projects?id=${element.id}`}>Find more here</Link>
                           .&nbsp;&nbsp;&nbsp;
                           <code>{element.childMarkdownRemark.frontmatter.tags[0]}</code>
                         </div>
@@ -318,7 +318,7 @@ export const postQuery = graphql`
       limit: 5
     ) {
       nodes {
-        sourceInstanceName
+        id
         childMarkdownRemark {
           frontmatter {
             title
