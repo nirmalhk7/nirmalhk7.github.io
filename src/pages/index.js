@@ -90,7 +90,7 @@ const AboutMe = ({ experience, clubs, online, college, languages, frameworkLibra
     <div className="container about-content">
       <div className="row">
         <div className="col-lg-6 col-md-6 col-sm-12">
-          <div className="padding-bottom:1em">
+          <div>
             <h3 id="howdy">Howdy!</h3>
             <p>
               I’m from India, and I’m final year student at National Institute of Technology, Karnataka. Programming,
@@ -127,7 +127,6 @@ const AboutMe = ({ experience, clubs, online, college, languages, frameworkLibra
             rel="noreferrer"
             style={{ marginTop: "1em" }} target="_blank"
           >
-          
             Download My Resume
           </a>
           <Link className="smoothscroll btn btn--stroke full-width" to="#contact">
@@ -136,7 +135,7 @@ const AboutMe = ({ experience, clubs, online, college, languages, frameworkLibra
         </div>
         <div className="col-lg-6 col-md-6 col-sm-12">
           <h3 className="text-center">I've got some skills.</h3>
-          <h5 style={{ paddingTop: "0.5em" }}>Languages, Frameworks, Libraries and Tools</h5>
+          <h5 style={{ paddingTop: "0.5em" }}>Familiar Languages, Frameworks, Libraries and Tools</h5>
           <hr style={{ borderColor: "#af2b2b" }} />
           <div className="row">
             {[...frameworkLibraries, ...languages].map((element, index) => (

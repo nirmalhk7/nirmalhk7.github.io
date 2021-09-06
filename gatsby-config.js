@@ -157,6 +157,14 @@ module.exports = {
         // Any additional eslint-webpack-plugin options below
         // ...
       },
-    }
+    },
+    {
+			resolve: 'gatsby-plugin-pdf',
+			options: {
+				paths: ['/blog'],
+        allPages: false,
+				outputPath: '/static',
+			},
+		},
   ],
 };

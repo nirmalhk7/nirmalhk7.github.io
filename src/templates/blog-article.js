@@ -23,6 +23,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../components/layout";
 import { CategoryList } from "../helper/category";
 import Commento from "../components/commento";
+
 const BlogTemplate = ({ location, pageContext }) => {
   const pageTitle = `${pageContext.current.childMarkdownRemark.frontmatter.title  } by ${  pageContext.siteDetails.author}`;
   const shareProps = {
