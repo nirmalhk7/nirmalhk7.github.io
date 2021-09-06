@@ -1,18 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "gatsby";
 import React, { useState } from "react";
 import "../assets/css/card.css";
 import { social } from "../components/partials/social";
-import { graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 
 const BusinessCard = ({ data }) => {
   const [flipped, flippedControl] = useState(false);
   return (
     <div className="bcard">
-      <div class="container">
-        <div class={"card " + (flipped ? "flipped" : "")} onClick={() => flippedControl(!flipped)}>
-          <figure class="front">
-            <div class="caption">
+      <div className="container">
+        <div className={`card ${  flipped ? "flipped" : ""}`} onClick={() => flippedControl(!flipped)}>
+          <figure className="front">
+            <div className="caption">
               <h2>
                 {data.site.siteMetadata.title.split(" ")[0]} <span>{data.site.siteMetadata.title.split(" ")[1]}</span>
               </h2>
@@ -20,12 +19,12 @@ const BusinessCard = ({ data }) => {
             </div>
           </figure>
 
-          <figure class="back">
-            <div class="caption">
-              <div style={{ margin: "0.5em" }} className="text-right">
+          <figure className="back">
+            <div className="caption">
+              <div className="text-right" style={{ margin: "0.5em" }}>
                 {social.map((element, index) => (
-                  <a href={element.link}>
-                    <FontAwesomeIcon className="text-white" style={{ marginRight: "0.5em" }} icon={element.class} />
+                  <a href={element.link} key={index}>
+                    <FontAwesomeIcon className="text-white" icon={element.class} style={{ marginRight: "0.5em" }} />
                   </a>
                 ))}
               </div>

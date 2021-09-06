@@ -1,27 +1,29 @@
 {
-  "parser": "babel-eslint", // uses babel-eslint transforms
-  "settings": {
-    "react": {
-      "version": "detect" // detect react version
-    }
-  },
-  "globals": {
-    "document": "readonly",
-    "window": "readonly"
-},
-  "env": {
-    "node": true // defines things like process.env when generating through node
-  },
-  
-  "extends": [
-    "eslint:recommended", // use recommended configs
-    "plugin:sonarjs/recommended",
+  "ignorePatterns": [
+    "webpack/*",
+    "functions/*",
+    "scripts/*",
+    "public/*",
+    "src/**/*.config.js",
+    "src/serviceWorker.js"
 
-    "plugin:react/recommended"
   ],
+  "parser": "babel-eslint",
+  "extends": [
+    // Common Twzzr ESLint extensions.
+    "eslint:recommended",
+    "plugin:sonarjs/recommended"
+
+    // ,"plugin:jsx-a11y/recommended"
+  ],
+  "plugins": ["react", "filenames", "folders", "write-good-comments"],
   "rules": {
+    // Common Twzzr Rules
     "arrow-parens": "error",
     "camelcase": "warn",
+    "filenames/match-exported": ["error", "camel"],
+    "filenames/match-regex": "error",
+    "folders/match-regex": [2, "^[a-z]+(?:[A-Z][a-z]+)*$", "/src/"],
     "id-length": "warn",
     "jsx-quotes": "error",
     "no-confusing-arrow": "warn",
@@ -47,9 +49,13 @@
     "prefer-spread": "error",
     "prefer-template": "error",
     "semi": "error",
+    "prettier/prettier": "off",
     "no-useless-return": "error",
     "sort-vars": "warn",
+    "write-good-comments/write-good-comments": "warn",
+    "lines-between-class-members":"warn",
 
+    // Common Twzzr Rules: Frontend
     "react/boolean-prop-naming": "error",
     "react/jsx-no-useless-fragment": "error",
     "react/jsx-sort-props": "error",
@@ -59,11 +65,13 @@
     "react/require-render-return": "error",
     "react/sort-comp": "warn",
     "react/self-closing-comp": "error", 
-    
-    // "no-anonymous-exports-page-templates": "warn",
-    // "limited-exports-page-templates": "warn",
+    "react/prop-types":"off", // Work to enable this
+
+    // Repair configuration
+    "no-undef":"off",
+    "no-unused-vars":"off",
     "sonarjs/no-duplicated-branches":"off", // Work to enable this
-"react/no-unescaped-entities":"off",
-    "react/prop-types": "off"
+    "sonarjs/cognitive-complexity": "off" // Work to enable this
+    
   }
- }
+}

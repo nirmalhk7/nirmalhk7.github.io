@@ -1,4 +1,4 @@
-import { faCalculator, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
@@ -22,8 +22,8 @@ class ContactForm extends React.Component {
   render() {
     return (
       <div className="bootstrap-wrapper">
-        <section id="contact" className="s-contact target-section fadeIn parallax">
-          <div className="overlay"></div>
+        <section className="s-contact target-section fadeIn parallax" id="contact">
+          <div className="overlay" />
           <div className="narrow section-intro m-auto">
             <div className="col-full">
               <h3>Contact Me</h3>
@@ -39,67 +39,65 @@ class ContactForm extends React.Component {
                   method="post"
                 >
                   <input
-                    type="text"
-                    name="NAME:"
-                    id="name"
-                    onChange={this.onChange}
                     className="full-width"
+                    id="name"
+                    name="NAME:"
+                    onChange={this.onChange}
                     placeholder="Name"
+                    type="text"
                   />
                   <div className="form-field">
                     <input
-                      name="contactEmail: "
-                      type="email"
+                      aria-required="true"
+                      className="full-width"
                       id="email"
+                      name="contactEmail: "
                       onChange={this.onChange}
                       placeholder="Email"
                       required=""
-                      aria-required="true"
-                      className="full-width"
+                      type="email"
                     />
                   </div>
                   <input
-                    name="contactSubject: "
-                    type="text"
+                    className="full-width"
                     id="subject"
+                    name="contactSubject: "
                     onChange={this.onChange}
                     placeholder="Subject"
-                    className="full-width"
+                    type="text"
                   />
                   <div className="form-field">
                     <textarea
-                      name="contactMessage: "
-                      id="message"
-                      placeholder="Message"
-                      rows="10"
-                      onChange={this.onChange}
-                      cols="40"
-                      required=""
                       aria-required="true"
                       className="full-width"
+                      cols="40"
+                      id="message"
+                      name="contactMessage: "
+                      onChange={this.onChange}
+                      placeholder="Message"
+                      required=""
+                      rows="10"
                     />
                   </div>
                   <input
-                    type="submit"
-                    value="Submit"
-                    disabled={!this.state.email || !this.state.subject || !this.state.name}
                     className="submit full-width btn"
+                    disabled={!this.state.email || !this.state.subject || !this.state.name}
                     style={{
                       cursor: `${
                         !this.state.email || !this.state.subject || !this.state.name ? "not-allowed" : "default"
                       }`,
                     }}
+                    type="submit"
+                    value="Submit"
                   />
                   {this.state.response ? (
-                    <>
-                      <div className="alert-box alert-box--info hideit">
+                    <div className="alert-box alert-box--info hideit">
                         <p>Info Message. Your Message Goes Here.</p>
-                        <FontAwesomeIcon icon={faTimes} className="alert-box__close" />
+                        <FontAwesomeIcon className="alert-box__close" icon={faTimes} />
                       </div>
-                    </>
-                  ) : (
-                    <></>
-                  )}
+                  ) : 
+                    null
+                  }
                 </form>
               </div>
               <div className="col-lg-4 col-md-4 col-sm-12 tab-full contact__infos">

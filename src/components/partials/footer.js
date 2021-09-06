@@ -1,12 +1,11 @@
-import { faAngellist, faDev, faGithub, faGoodreads, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faRss, faLongArrowAltUp, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faLongArrowAltUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { social } from "./social";
 
 export class ScrollToTop extends React.Component {
   componentDidMount() {
-    var mybutton = document.getElementById("myBtn");
+    const mybutton = document.getElementById("myBtn");
     window.onscroll = function () {
       scrollFn();
     };
@@ -25,7 +24,7 @@ export class ScrollToTop extends React.Component {
       // document.documentElement.scrollTop = 0;
     }
     return (
-      <button onClick={topFunction()} className="go-top" id="myBtn" title="Go to top">
+      <button className="go-top" id="myBtn" onClick={topFunction()} title="Go to top">
         <FontAwesomeIcon icon={faLongArrowAltUp} size="lg" style={{ width: "100%", height: "100%" }} />
       </button>
     );
@@ -41,8 +40,9 @@ const Footer = () => {
             {social.map((element, index) => {
               if (element.link)
                 return (
+                  
                   <li key={index}>
-                    <a className="ln" href={element.link}>
+                    <a className="ln" href={element.link} target="blank">
                       {/* TODO Increase Icon size in Mobile view */}
                       <FontAwesomeIcon icon={element.class} />
                       <span>{element.name}</span>
@@ -62,7 +62,7 @@ const Footer = () => {
             <span style={{ color: "#3d3d3d" }}>Last Updated: July 20, 2020</span>
           </div>
           <div className="copyright">
-            <span style={{ color: "#1d1d1d" }} id="justinmaller">
+            <span id="justinmaller" style={{ color: "#1d1d1d" }}>
               Image Credits &nbsp;
               <a className="hidelink" href="/" style={{ color: "#1d1d1d" }}>
                 Beast Dreams II

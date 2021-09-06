@@ -2,10 +2,10 @@ import React from "react";
 
 export const CategoryList = ({ categories }) => (
   <>
-    {categories.map((c, i) => (
-      <React.Fragment key={i}>
-        <a href={"/blog#" + c}>{c}</a>
-        {categories.length !== i + 1 ? ", " : null}
+    {categories.map((category, index) => (
+      <React.Fragment key={index}>
+        <a href={`/blog#${  category}`}>{category}</a>
+        {categories.length !== index + 1 ? ", " : null}
       </React.Fragment>
     ))}
   </>

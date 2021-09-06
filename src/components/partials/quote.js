@@ -1,6 +1,6 @@
 import React from "react";
 
-let quoteList = [
+const quoteList = [
   {
     content: "Being realistic is the most commonly traveled road to mediocrity.",
     saidby: "Will Smith",
@@ -28,7 +28,7 @@ let quoteList = [
   },
 ];
 const RandomQuote = () => {
-  let quote = quoteList[Math.floor(Math.random() * quoteList.length)];
+  const quote = quoteList[Math.floor(Math.random() * quoteList.length)];
   return (
     <section className="s-blog target-section">
       <div className="narrow section-intro has-bottom-sep m-auto">

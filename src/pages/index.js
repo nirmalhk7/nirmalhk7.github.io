@@ -1,27 +1,21 @@
 import React from "react";
-import { Link, withPrefix } from "gatsby";
+import { Link, withPrefix,graphql } from "gatsby";
 // import data from '../../public/static/data.json'
 import Layout from "../components/layout";
 // import Image from "../components/image"
-import SEO from "../components/seo";
-// import experience from "../../content/yml/workexperiences.yaml";
-// import courses from "../../content/yml/courses.yaml";
-// import clubs from "../../content/yml/memberships.yaml";
-// import skills from "../../content/yml/skills.yaml";
+import SearchEnggOp from "../components/seo";
 import SocialMediaIcons from "../components/partials/social";
-import Resume from "../../static/Resume.pdf";
-import { graphql } from "gatsby";
 
-const Jumbotron = (props) => (
+const Jumbotron = () => (
   <section
-    id="home"
     className="s-home page-hero target-section parallax"
-    data-parallax="scroll"
-    data-natural-width="3000"
     data-natural-height="2000"
+    data-natural-width="3000"
+    data-parallax="scroll"
     data-position-y="center"
+    id="home"
   >
-    <div className="overlay"></div>
+    <div className="overlay" />
     <div className="home-content bootstrap-wrapper">
       <div className="container home-content__main">
         <h3 className="ital-hover">Hey!</h3>
@@ -33,15 +27,15 @@ const Jumbotron = (props) => (
           Surathkal, India.
         </h1>
         <div className="home-content__buttons">
-          <Link to="#projects" className="smoothscroll btn btn--stroke">
+          <Link className="smoothscroll btn btn--stroke" to="#projects">
             Latest Projects
           </Link>
-          <Link to="#about" className="smoothscroll btn btn--stroke">
+          <Link className="smoothscroll btn btn--stroke" to="#about">
             More About Me
           </Link>
         </div>
         <div className="home-content__scroll">
-          <Link to="#about" className="scroll-link smoothscroll">
+          <Link className="scroll-link smoothscroll" to="#about">
             <span>Scroll Down</span>
           </Link>
         </div>
@@ -58,10 +52,10 @@ const WorkExperience = ({ experience }) => (
     </div>
     <div className="row">
       {experience.map((element, index) => (
-        <div key={index} className="col-lg-6 col-md-6 col-sm-12 left">
+        <div className="col-lg-6 col-md-6 col-sm-12 left" key={index}>
           <div className="timeline">
             <div className="timeline__block">
-              <div className="timeline__bullet"></div>
+              <div className="timeline__bullet" />
               <div className="timeline__header">
                 <p className="timeline__timeframe">{element.timeframe}</p>
                 <h3>{element.company}</h3>
@@ -78,8 +72,8 @@ const WorkExperience = ({ experience }) => (
   </div>
 );
 
-const AboutMe = ({ experience, clubs, online, college, languages, framework_libraries }) => (
-  <section id="about" className="s-about bootstrap-wrapper">
+const AboutMe = ({ experience, clubs, online, college, languages, frameworkLibraries }) => (
+  <section className="s-about bootstrap-wrapper" id="about">
     <div className="w-100 text-center">
       <div className="narrow section-intro has-bottom-sep m-auto">
         <div className="col-12 text-center">
@@ -99,7 +93,7 @@ const AboutMe = ({ experience, clubs, online, college, languages, framework_libr
           <div className="padding-bottom:1em">
             <h3 id="howdy">Howdy!</h3>
             <p>
-              I’m from India, and I’m second year student at National Institute of Technology, Karnataka. Programming,
+              I’m from India, and I’m final year student at National Institute of Technology, Karnataka. Programming,
               reading books, reading news, table tennis and
               <strong>making applications that eliminate iterative work</strong> is my hobby. I like to constantly
               challenge myself with problems. I also have a knack for finance and investment.
@@ -128,15 +122,15 @@ const AboutMe = ({ experience, clubs, online, college, languages, framework_libr
           </div>
 
           <a
-            rel="noopener noreferrer"
             className="btn btn--primary full-width"
-            style={{ marginTop: "1em" }}
             href={withPrefix("./Resume.pdf")}
-            target="_blank"
+            rel="noreferrer"
+            style={{ marginTop: "1em" }} target="_blank"
           >
+          
             Download My Resume
           </a>
-          <Link to="#contact" className="smoothscroll btn btn--stroke full-width">
+          <Link className="smoothscroll btn btn--stroke full-width" to="#contact">
             Want to Hire?
           </Link>
         </div>
@@ -145,14 +139,9 @@ const AboutMe = ({ experience, clubs, online, college, languages, framework_libr
           <h5 style={{ paddingTop: "0.5em" }}>Languages, Frameworks, Libraries and Tools</h5>
           <hr style={{ borderColor: "#af2b2b" }} />
           <div className="row">
-            {framework_libraries.map((e, i) => (
-              <div key={i} className="col-3 minicard">
-                {e}
-              </div>
-            ))}
-            {languages.map((e, i) => (
-              <div key={i} className="col-3 minicard">
-                {e}
+            {[...frameworkLibraries, ...languages].map((element, index) => (
+              <div className="col-3 minicard" key={index}>
+                {element}
               </div>
             ))}
           </div>
@@ -173,7 +162,7 @@ const AboutMe = ({ experience, clubs, online, college, languages, framework_libr
             <div className="disc">
               {college.map((element, index) => (
                 <React.Fragment key={index}>
-                  {index + 1 !== college.length ? element.name + ", " : element.name + "."}
+                  {index + 1 !== college.length ? `${element.name  }, ` : `${element.name  }.`}
                 </React.Fragment>
               ))}
             </div>
@@ -185,7 +174,7 @@ const AboutMe = ({ experience, clubs, online, college, languages, framework_libr
               {clubs.map((element, index) => (
                 <li key={index}>
                   {element.position} at
-                  <a key={index} href={element.clubwebsite}>
+                  <a href={element.clubwebsite} key={index}>
                     {element.club}
                   </a>
                 </li>
@@ -200,7 +189,7 @@ const AboutMe = ({ experience, clubs, online, college, languages, framework_libr
 );
 
 const Blog = ({ name }) => (
-  <section id="blog" className="s-works target-section bootstrap-wrapper">
+  <section className="s-works target-section bootstrap-wrapper" id="blog">
     <div className="narrow section-intro has-bottom-sep m-auto">
       <div className="col-12">
         <h3>{name}</h3>
@@ -228,8 +217,8 @@ class IndexPage extends React.Component {
   handleClick = (event) => {
     event.preventDefault();
     event.persist();
-    let clickedOn = parseInt(event.target.id.split("-")[1]);
-    let newState = this.state.isOpen;
+    const clickedOn = parseInt(event.target.id.split("-")[1]);
+    const newState = this.state.isOpen;
     newState.forEach((element, index) => {
       if (index === clickedOn) {
         newState[clickedOn] = !newState[clickedOn];
@@ -242,21 +231,22 @@ class IndexPage extends React.Component {
     });
   };
   render() {
-    const { projects, workexperience, online_courses, college_courses, membership, ymlYaml, site } = this.props.data;
+    const { projects, workexperience, onlineCourses, collegeCourses, membership, ymlYaml, site } = this.props.data;
     return (
       <Layout location={this.props.location}>
-        <SEO title="Home" />
-        <Jumbotron />
+        <SearchEnggOp title="Home" />
+        <Jumbotron  />
         <AboutMe
-          workexperience={workexperience.nodes}
-          framework_libraries={ymlYaml.frameworks_libraries}
-          languages={ymlYaml.languages}
           clubs={membership.nodes}
-          online={online_courses.nodes}
-          college={college_courses.nodes}
+          college={collegeCourses.nodes}
           experience={workexperience.nodes}
+          frameworkLibraries={ymlYaml.frameworks_libraries}
+          languages={ymlYaml.languages}
+          online={onlineCourses.nodes}
+          workexperience={workexperience.nodes}
         />
-        <section id="projects" className="s-works target-section bootstrap-wrapper">
+        
+        <section className="s-works target-section bootstrap-wrapper" id="projects">
           <div className="container">
             <div className="row">
               <div className="col-lg-6 col-md-6 col-sm-12 tab-full right">
@@ -274,17 +264,17 @@ class IndexPage extends React.Component {
                 <div className="accordion js-accordion">
                   {projects.nodes.map((element, index) => (
                     <div
-                      key={index}
-                      id={"accordion-" + index}
-                      onClick={this.handleClick}
                       className={`accordion__item js-accordion-item ${this.state.isOpen[index] ? "active" : ""}`}
+                      id={`accordion-${  index}`}
+                      key={index}
+                      onClick={this.handleClick}
                     >
-                      <div id={"accordionheader-" + index} className="accordion-header js-accordion-header">
+                      <div className="accordion-header js-accordion-header" id={`accordionheader-${  index}`}>
                         {element.childMarkdownRemark.frontmatter.title}
                       </div>
                       <div
-                        id={"accordionbody-" + index}
                         className="accordion-body js-accordion-body"
+                        id={`accordionbody-${  index}`}
                         style={{
                           display: `${this.state.isOpen[index] ? "block" : "none"}`,
                         }}
@@ -326,7 +316,7 @@ export const postQuery = graphql`
           }
           excerpt
         }
-        birthtime
+        birthTime
       }
     }
     site: site {
@@ -349,14 +339,14 @@ export const postQuery = graphql`
         position
       }
     }
-    online_courses: allCoursesYaml(filter: { provider: { ne: null } }) {
+    onlineCourses: allCoursesYaml(filter: { provider: { ne: null } }) {
       nodes {
         name
         link
         provider
       }
     }
-    college_courses: allCoursesYaml(filter: { provider: { eq: null } }) {
+    collegeCourses: allCoursesYaml(filter: { provider: { eq: null } }) {
       nodes {
         name
         link

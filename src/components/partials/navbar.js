@@ -2,9 +2,8 @@ import React from "react";
 import { Link } from "gatsby";
 import Scrollspy from "react-scrollspy";
 
-const Navbar = (props) => {
-  let pathName = props.location && props.location.pathname;
-  let navbarList = ["Home", "About", "Projects", "Blog", "Contact"];
+const Navbar = () => {
+  const navbarList = ["Home", "About", "Projects", "Blog", "Contact"];
   return (
     <header className="s-header">
       <Link to="/">
@@ -12,25 +11,25 @@ const Navbar = (props) => {
       </Link>
       <nav className="header-nav-wrap">
         <Scrollspy
-          items={navbarList.map((element) => element.toLowerCase())}
-          currentClassName="now"
           className="header-nav"
+          currentClassName="now"
+          items={navbarList.map((element) => element.toLowerCase())}
           offset={-100}
         >
           {navbarList.map((element, index) => {
             let hrx;
-            if (element === "Contact" || element === "About" || element == "Home") {
-              hrx = "#" + element.toLowerCase();
-              if (element == "About" || element === "Home") {
-                hrx = "/" + hrx;
+            if (element === "Contact" || element === "About" || element === "Home") {
+              hrx = `#${  element.toLowerCase()}`;
+              if (element === "About" || element === "Home") {
+                hrx = `/${  hrx}`;
               }
             } else {
-              hrx = "/" + element.toLowerCase();
+              hrx = `/${  element.toLowerCase()}`;
             }
 
             return (
               <li key={index}>
-                <Link to={hrx} title={element}>
+                <Link title={element} to={hrx}>
                   {element}
                 </Link>
               </li>

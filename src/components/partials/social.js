@@ -1,9 +1,9 @@
-import { faAngellist, faDev, faGithub, faGoodreads, faLinkedin, faPinterest } from "@fortawesome/free-brands-svg-icons";
+import { faAngellist, faDev, faGithub, faGoodreads, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 // TODO fix colors of social icons
-export let social = [
+export const social = [
   {
     name: "GitHub",
     link: "https://www.github.com/nirmalhk7",
@@ -41,7 +41,7 @@ const SocialMediaIcons = () => {
     <ul className="home-social">
       {social.map((element, index) => (
         <li key={index}>
-          <a title={element.name} href={element.link}>
+          <a href={element.link} title={element.name}>
             <FontAwesomeIcon icon={element.class} />
             <span>{element.name}</span>
           </a>

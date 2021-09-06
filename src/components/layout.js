@@ -1,19 +1,11 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react";
 import PropTypes from "prop-types";
-// import { useStaticQuery, graphql } from "gatsby"
 
 import Navbar from "./partials/navbar";
 import Footer, { ScrollToTop } from "./partials/footer";
 import ContactForm from "./partials/contactme";
 import RandomQuote from "./partials/quote";
-import $ from "jquery";
+import jquery from "jquery";
 
 class Layout extends React.Component {
   componentDidMount() {
@@ -23,16 +15,16 @@ class Layout extends React.Component {
     window.onbeforeunload = function () {
       this.window.scrollTo(0, 0);
     };
-    var cfg = {
+    const cfg = {
         scrollDuration: 800, // smoothscroll duration
         mailChimpURL: "", // mailchimp url
       },
-      $WIN = $(window);
+      jqueryWIN = jquery(window);
 
-    var toggleButton = $(".header-menu-toggle"),
-      nav = $(".header-nav-wrap");
+    const toggleButton = jquery(".header-menu-toggle");
+    const nav = jquery(".header-nav-wrap");
 
-    toggleButton.on("click", function (event) {
+    toggleButton.on("click", (event) => {
       event.preventDefault();
 
       toggleButton.toggleClass("is-clicked");
@@ -41,45 +33,45 @@ class Layout extends React.Component {
 
     if (toggleButton.is(":visible")) nav.addClass("mobile");
 
-    $WIN.on("resize", function () {
+    jqueryWIN.on("resize", () => {
       if (toggleButton.is(":visible")) nav.addClass("mobile");
       else nav.removeClass("mobile");
     });
 
-    nav.find("a").on("click", function () {
+    nav.find("a").on("click", () => {
       if (nav.hasClass("mobile")) {
         toggleButton.toggleClass("is-clicked");
         nav.slideToggle();
       }
     });
 
-    $(".smoothscroll").on("click", function (e) {
-      var target = this.hash,
-        $target = $(target);
+    jquery(".smoothscroll").on("click", function (event) {
+      const target = this.hash;
+      const jquerytarget = jquery(target);
 
-      e.preventDefault();
-      e.stopPropagation();
+      event.preventDefault();
+      event.stopPropagation();
 
-      $("html, body")
+      jquery("html, body")
         .stop()
         .animate(
           {
-            scrollTop: $target.offset().top,
+            scrollTop: jquerytarget.offset().top,
           },
           cfg.scrollDuration,
           "swing",
-          function () {
+          () => {
             window.location.hash = target;
           }
         );
     });
 
-    var hero = $(".page-hero"),
-      hdr = $("header"),
-      triggerHeight = hero.outerHeight() - 170;
+    const hero = jquery(".page-hero");
+    const hdr = jquery("header");
+    const triggerHeight = hero.outerHeight() - 170;
 
-    $WIN.on("scroll", function () {
-      var loc = $WIN.scrollTop();
+    jqueryWIN.on("scroll", () => {
+      const loc = jqueryWIN.scrollTop();
 
       if (loc > triggerHeight) {
         hdr.addClass("sticky");
@@ -101,7 +93,7 @@ class Layout extends React.Component {
     });
   }
   render() {
-    let children = this.props.children;
+    const children = this.props.children;
     return (
       <>
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
