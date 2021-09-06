@@ -251,11 +251,6 @@ textarea {
   -webkit-appearance: none;
 }
 
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-
 details,
 menu {
   display: block;
