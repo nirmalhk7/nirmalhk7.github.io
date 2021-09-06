@@ -51,6 +51,7 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
+Hola10
 
 # gatsby files
 .cache/

@@ -1,3 +1,57 @@
+@import "../scss/constants";
+
+// Color Pallete
+
+@debug $theme-colors;
+@each $name, $hex in $theme-colors {
+  @debug $name;
+  .bg-#{$name} {
+    background-color: $hex;
+    @if $name=="white" or $name=="gray"{
+      color: map-get($map: $theme-colors, $key: "black")!important
+    } @else {
+      color: map-get($map: $theme-colors, $key: "white")!important
+    }
+  }
+  .text-#{$name} {
+    color: $hex
+  }
+  .bg-gradient-#{$name} {
+    background: $hex;
+    background: -moz-linear-gradient(51deg, $hex 0%, scale-color($hex,$blue: 10%, $green: 15%) 55%, scale-color($hex,$blue: 30%, $green: 45%) 97%);
+    background: -webkit-linear-gradient(51deg, $hex 0%, scale-color($hex,$blue: 10%, $green: 15%) 55%, scale-color($hex,$blue: 30%, $green: 45%) 97%);
+    background: linear-gradient(51deg, $hex 0%, scale-color($hex,$blue: 10%, $green: 15%) 55%, scale-color($hex,$blue: 30%, $green: 45%) 97%);
+    @if $name=="white"{
+      color: map-get($map: $theme-colors, $key: "black")
+    } @else {
+      color: map-get($map: $theme-colors, $key: "white")
+    }
+  }
+
+  .btn-outline-#{$name}, button.btn-outline-#{$name} {
+    background: transparent !important;
+    border: 0.3rem solid $hex;
+    color: $hex;
+  }
+  .btn-outline-#{$name}:hover, button.btn-outline-#{$name}:hover {
+      background-color: $accent-color;
+  }
+  .btn-outline-fill-#{$name}:hover, button.btn-outline-#{$name}:hover {
+     background: #FFFFFF !important;
+     border: 0;
+  }
+
+
+  .btn.btn-#{$name}, button.btn-#{$name}, input[type="submit"].btn-#{$name}, input[type="reset"].btn-#{$name}, input[type="button"].btn-#{$name} {
+    background: $hex;
+    border-color: $hex;
+    color: #FFFFFF;
+}
+  .btn.btn-#{$name}:hover, button.btn-#{$name}:hover, input[type="submit"].btn-#{$name}:hover, input[type="reset"].btn-#{$name}:hover, input[type="button"].btn-#{$name}:hover, .btn.btn-#{$name}:focus, button.btn-#{$name}:focus, input[type="submit"].btn-#{$name}:focus, input[type="reset"].btn-#{$name}:focus, input[type="button"].btn-#{$name}:focus {
+      background: $hex;
+      border-color: $hex;
+  }
+}
 /* Accordion ==================================================  */
 
 .accordion {
@@ -60,17 +114,17 @@
 }
 
 .accordion__item.active .accordion-header {
-  background: #862121;
+  background: $accent-color;
   color: white;
 }
 
 .anchor-color{
-  color: #862121;
+  color: $accent-color;
 }
 
 
 .accordion__item .accordion__item .accordion-header {
-  background: #f1f1f1;
+  background: $color-gray;
   color: black;
 }
 
@@ -89,9 +143,7 @@
   /* Adjust as needed */
   animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
-.now>a {
-  color: #af2b2b !important;
-}
+
 /* The typing effect */
 
 @keyframes typing {
@@ -132,15 +184,6 @@
   animation: text-shadow-drop-center 0.6s both;
 }
 
-@-webkit-keyframes text-shadow-drop-center {
-  0% {
-    text-shadow: 0 0 0 transparent;
-  }
-  100% {
-    text-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
-  }
-}
-
 @keyframes text-shadow-drop-center {
   0% {
     text-shadow: 0 0 0 transparent;
@@ -152,12 +195,26 @@
 
 /* Inverted CSS ============================================== */
 
-.inv {
-  background-color: #862121 !important;
-  position: relative;
-  padding-top: 75px !important;
-  padding-bottom: 75px !important;
-}
+// .inv {
+//   // background: $accent-color ;
+//   // background: -moz-linear-gradient(132deg, $accent-color 0%, rgba(255,152,63,1) 56%, rgba(255,176,107,1) 98%);
+//   // background: -webkit-linear-gradient(132deg, $accent-color 0%, rgba(255,152,63,1) 56%, rgba(255,176,107,1) 98%);
+//   // background: linear-gradient(132deg, $accent-color 0%, rgba(255,152,63,1) 56%, rgba(255,176,107,1) 98%);
+
+
+//   position: relative;
+// }
+
+
+
+// .inv h1, .inv h3,.inv p, .inv a  {
+//   color: white!important;
+// }
+// .inv a{
+//   text-decoration: underline;
+// }
+
+
 
 .white-text {
   color: white;
@@ -199,15 +256,6 @@ iframe[src*="ads-iframe"] { display: none; }
   animation: color-change-2x 10s linear infinite alternate both;
 }
 
-@-webkit-keyframes color-change-2x {
-  0% {
-    background: #19dcea;
-  }
-  100% {
-    background: #b22cff;
-  }
-}
-
 @keyframes color-change-2x {
   0% {
     background: #19dcea;
@@ -217,139 +265,6 @@ iframe[src*="ads-iframe"] { display: none; }
   }
 }
 
-/* Flicker Animation ============================================== */
-
-.flicker-3 {
-  -webkit-animation: flicker-3 2.5s linear infinite both;
-  animation: flicker-3 2.5s linear infinite both;
-}
-
-@-webkit-keyframes flicker-3 {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  32.98% {
-    opacity: 1;
-  }
-  33% {
-    opacity: 0;
-  }
-  34% {
-    opacity: 0;
-  }
-  34.02% {
-    opacity: 1;
-  }
-  34.98% {
-    opacity: 1;
-  }
-  35% {
-    opacity: 0;
-  }
-  35.9% {
-    opacity: 0;
-  }
-  35.92% {
-    opacity: 1;
-  }
-  38.98% {
-    opacity: 1;
-  }
-  39% {
-    opacity: 0;
-  }
-  39.8% {
-    opacity: 0;
-  }
-  39.82% {
-    opacity: 1;
-  }
-  83.98% {
-    opacity: 1;
-  }
-  84% {
-    opacity: 0;
-  }
-  84.9% {
-    opacity: 0;
-  }
-  84.92% {
-    opacity: 1;
-  }
-}
-
-@keyframes flicker-3 {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  32.98% {
-    opacity: 1;
-  }
-  33% {
-    opacity: 0;
-  }
-  34% {
-    opacity: 0;
-  }
-  34.02% {
-    opacity: 1;
-  }
-  34.98% {
-    opacity: 1;
-  }
-  35% {
-    opacity: 0;
-  }
-  35.9% {
-    opacity: 0;
-  }
-  35.92% {
-    opacity: 1;
-  }
-  38.98% {
-    opacity: 1;
-  }
-  39% {
-    opacity: 0;
-  }
-  39.8% {
-    opacity: 0;
-  }
-  39.82% {
-    opacity: 1;
-  }
-  83.98% {
-    opacity: 1;
-  }
-  84% {
-    opacity: 0;
-  }
-  84.9% {
-    opacity: 0;
-  }
-  84.92% {
-    opacity: 1;
-  }
-}
-
-
-.go-top {
-  display: none;
-  position: fixed;
-  bottom: 0px;
-  margin: 0px;
-  right: 0px;
-  z-index: 600;
-  background-color: black;
-  color: white;
-  border: 0px;
-  cursor: pointer;
-  padding: 15px;
-  width: 30px;
-  height: 30px;
-}
 
 /*****************/
 .mr-0{

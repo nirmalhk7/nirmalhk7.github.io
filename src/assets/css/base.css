@@ -154,11 +154,7 @@ img {
   border-style: none;
 }
 
-.parallax {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+
 svg:not(:root) {
   overflow: hidden;
 }
@@ -249,11 +245,6 @@ textarea {
 [type="search"]::-webkit-search-cancel-button,
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
-}
-
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
 }
 
 details,
@@ -668,9 +659,7 @@ textarea {
   border: none;
 }
 
-.full-width {
-  width: 100%;
-}
+
 
 .text-center {
   text-align: center;

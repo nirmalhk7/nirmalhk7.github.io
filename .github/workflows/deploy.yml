@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install NPM Packages
-        run: npm install
+        run: npm install -f
       - name: Build script
         run: npm run build
       - name: Pass on build directory

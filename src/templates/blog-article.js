@@ -1,5 +1,5 @@
 import React from "react";
-import SEO from "../components/seo";
+import SearchEnggOp from "../components/seo";
 import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -23,15 +23,16 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../components/layout";
 import { CategoryList } from "../helper/category";
 import Commento from "../components/commento";
+
 const BlogTemplate = ({ location, pageContext }) => {
-  const pageTitle = pageContext.current.childMarkdownRemark.frontmatter.title + " by " + pageContext.siteDetails.author;
+  const pageTitle = `${pageContext.current.childMarkdownRemark.frontmatter.title  } by ${  pageContext.siteDetails.author}`;
   const shareProps = {
     url: pageContext.siteDetails.url + location.pathname,
     title: pageTitle,
   };
   return (
     <Layout location={location}>
-      <SEO title={pageContext.current.childMarkdownRemark.frontmatter.title} />
+      <SearchEnggOp title={pageContext.current.childMarkdownRemark.frontmatter.title} />
       <article className="blog-single has-bottom-sep">
         <div
           className="page-header page-header--single page-hero parallax"
@@ -55,7 +56,7 @@ const BlogTemplate = ({ location, pageContext }) => {
               <ul className="page-header__meta">
                 <li className="date">
                   <b>Nirmal Khedkar</b> on
-                  {" " + pageContext.current.childMarkdownRemark.frontmatter.date}
+                  {` ${  pageContext.current.childMarkdownRemark.frontmatter.date}`}
                 </li>
               </ul>
             </article>
@@ -65,10 +66,10 @@ const BlogTemplate = ({ location, pageContext }) => {
           <div className="col-12 blog-content__main">
             <div
               className="blogpost"
-              style={{ marginTop: "2em" }}
               dangerouslySetInnerHTML={{
                 __html: pageContext.current.childMarkdownRemark.html,
               }}
+              style={{ marginTop: "2em" }}
             />
             <div className="blog-content__pagenav">
               <h6 className="boxfont text-uppercase mt-0">Share the article</h6>
@@ -76,40 +77,40 @@ const BlogTemplate = ({ location, pageContext }) => {
                 hashtags={pageContext.current.childMarkdownRemark.frontmatter.category}
                 {...shareProps}
               >
-                <FontAwesomeIcon icon={faTwitter} className="blog-social anchor-color" />
+                <FontAwesomeIcon className="blog-social anchor-color" icon={faTwitter} />
               </TwitterShareButton>
               <LinkedinShareButton
-                summary={pageContext.current.childMarkdownRemark.frontmatter.title}
                 source={location.href}
+                summary={pageContext.current.childMarkdownRemark.frontmatter.title}
                 {...shareProps}
               >
-                <FontAwesomeIcon icon={faLinkedin} className="blog-social anchor-color" />
+                <FontAwesomeIcon className="blog-social anchor-color" icon={faLinkedin} />
               </LinkedinShareButton>
               <FacebookShareButton
-                quote={pageContext.current.childMarkdownRemark.frontmatter.title + " by Nirmal Khedkar"}
-                hashtag={"#" + pageContext.current.childMarkdownRemark.frontmatter.category}
+                hashtag={`#${  pageContext.current.childMarkdownRemark.frontmatter.category}`}
+                quote={`${pageContext.current.childMarkdownRemark.frontmatter.title  } by Nirmal Khedkar`}
                 {...shareProps}
               >
-                <FontAwesomeIcon icon={faFacebook} className="blog-social anchor-color" />
+                <FontAwesomeIcon className="blog-social anchor-color" icon={faFacebook} />
               </FacebookShareButton>
               <PinterestShareButton {...shareProps}>
-                <FontAwesomeIcon icon={faPinterest} className="blog-social anchor-color" />
+                <FontAwesomeIcon className="blog-social anchor-color" icon={faPinterest} />
               </PinterestShareButton>
               <WhatsappShareButton {...shareProps}>
-                <FontAwesomeIcon icon={faWhatsapp} className="blog-social anchor-color" />
+                <FontAwesomeIcon className="blog-social anchor-color" icon={faWhatsapp} />
               </WhatsappShareButton>
               <TelegramShareButton
-                title={pageContext.current.childMarkdownRemark.frontmatter.title + " by Nirmal Khedkar"}
+                title={`${pageContext.current.childMarkdownRemark.frontmatter.title  } by Nirmal Khedkar`}
                 {...shareProps}
               >
-                <FontAwesomeIcon icon={faTelegram} className="blog-social anchor-color" />
+                <FontAwesomeIcon className="blog-social anchor-color" icon={faTelegram} />
               </TelegramShareButton>
               <EmailShareButton
-                subject="Check out this blog on nirmalhk7.tech"
                 body="I found this interesting blog article that you might like:"
+                subject="Check out this blog on nirmalhk7.tech"
                 {...shareProps}
               >
-                <FontAwesomeIcon icon={faEnvelope} className="blog-social anchor-color" />
+                <FontAwesomeIcon className="blog-social anchor-color" icon={faEnvelope} />
               </EmailShareButton>
               <p className="blog-content__tags" style={{ marginTop: "3rem!important" }}>
                 <span>
@@ -117,7 +118,7 @@ const BlogTemplate = ({ location, pageContext }) => {
                 </span>
                 <span className="blog-content__tag-list">
                   {pageContext.current.childMarkdownRemark.frontmatter.tags.map((element, index) => (
-                    <a key={index} href="#0">
+                    <a href="#0" key={index}>
                       {element}
                     </a>
                   ))}
@@ -126,7 +127,7 @@ const BlogTemplate = ({ location, pageContext }) => {
               <div className="blog-content__nav">
                 {pageContext.previous ? (
                   <div className="blog-content__prev">
-                    <Link to={"/blog/" + pageContext.previous.relativeDirectory} rel="prev">
+                    <Link rel="prev" to={`/blog/${  pageContext.previous.relativeDirectory}`}>
                       <span>Previous Post</span>
                       {pageContext.previous.childMarkdownRemark.frontmatter.title}
                     </Link>
@@ -134,7 +135,7 @@ const BlogTemplate = ({ location, pageContext }) => {
                 ) : null}
                 {pageContext.next ? (
                   <div className="blog-content__next">
-                    <Link to={"/blog/" + pageContext.next.relativeDirectory} rel="next">
+                    <Link rel="next" to={`/blog/${  pageContext.next.relativeDirectory}`}>
                       <span>Next Post</span>
                       {pageContext.next.childMarkdownRemark.frontmatter.title}
                     </Link>
@@ -142,7 +143,7 @@ const BlogTemplate = ({ location, pageContext }) => {
                 ) : null}
               </div>
               <div className="blog-content__all">
-                <a href="/blog" className="btn btn--primary">
+                <a className="btn btn--primary" href="/blog">
                   View All Posts
                 </a>
               </div>

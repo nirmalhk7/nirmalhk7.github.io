@@ -7,21 +7,20 @@ languages:
 - JAVA
 - Python
 - Javascript
+- GraphQL
+- MySQL
+- MongoDB
 frameworks_libraries:
+- SpringBoot
+- Angular
 - Jekyll
 - Ruby on Rails
 - Android
 - Dialogflow
-- NodeJS
 - React
 - React Native
-- MongoDB
 - Numpy
 - Pandas
 - Scikit-Learn
 - Ionic
 - Gatsby
-tools:
-- Jupyter-Notebook
-- Android Studio
-- RubyMine

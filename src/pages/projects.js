@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/layout";
-import SEO from "../components/seo";
+import SearchEnggOp from "../components/seo";
 import { graphql } from "gatsby";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,10 +16,18 @@ class Projects extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount(){
+    if(this.state.openIndex===-1 && this.state.routeKey){
+      this.setState({
+        openIndex: this.state.routeKey,
+        hasClicked: true
+      });
+    }
+  }
   handleClick = (event) => {
     event.preventDefault();
     event.persist();
-    const key=event.target.id.split("@")[1]
+    const key=event.target.id.split("@")[1];
     if (this.state.openIndex === key && this.state.hasClicked) {
       this.setState({
         hasClicked: false,
@@ -32,22 +40,14 @@ class Projects extends React.Component {
       });
     }
   };
-  componentDidMount(){
-    if(this.state.openIndex===-1 && this.state.routeKey){
-      this.setState({
-        openIndex: this.state.routeKey,
-        hasClicked: true
-      })
-    }
-  }
+
   render() {
     return (
-      <>
-        <Layout location={this.props.location}>
-          <SEO title="Projects" />
+      <Layout location={this.props.location}>
+          <SearchEnggOp title="Projects" />
           <section className="page-header page-hero parallax bootstrap-wrapper" id="projects-header">
             <div className="container page-header__content">
-              <article className="col-full">
+              <article className="">
                 <h1 className="page-header__title">
                   <a href="#0" title="Projects">
                     Projects
@@ -57,7 +57,7 @@ class Projects extends React.Component {
                   <div className="page-header__cat">Projects Catalogue of Nirmal Khedkar</div>
                 </div>
                 <p className="narrow">
-                  I'm a fullstack and hybrid product developer, currently understanding and exploring cloud platforms. I love building stuff! <FontAwesomeIcon icon={faWrench} className="ml-2" />
+                  I&apos;m a fullstack and hybrid product developer, currently understanding and exploring cloud platforms. I love building stuff! <FontAwesomeIcon className="ml-2" icon={faWrench} />
                 </p>
               </article>
             </div>
@@ -73,14 +73,14 @@ class Projects extends React.Component {
                           <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
                           {e1.edges.map((e2, i2) => (
                             <div
-                              id={"acc@"+e2.node.id}
-                              key={i2}
-                              onClick={this.handleClick}
                               className={`accordion__item js-accordion-item ${
                                 this.state.hasClicked && e2.node.id === this.state.openIndex ? "active" : ""
                               }`}
+                              id={`acc@${e2.node.id}`}
+                              key={i2}
+                              onClick={this.handleClick}
                             >
-                              <div id={"header@"+e2.node.id} className="accordion-header js-accordion-header">
+                              <div className="accordion-header js-accordion-header" id={`header@${e2.node.id}`}>
                                 {e2.node.childMarkdownRemark.frontmatter.title}
                               </div>
                               <div
@@ -108,7 +108,6 @@ class Projects extends React.Component {
             </div>
           </section>
         </Layout>
-      </>
     );
   }
 }
