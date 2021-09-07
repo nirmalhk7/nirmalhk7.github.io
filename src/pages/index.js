@@ -87,8 +87,7 @@ const PersonalInfo = () => (
       I completed my 10th grade in Bangalore with <strong>9.4 CGPA</strong> and
       my 12th grade with 87.9%. I currently study in{" "}
       <strong>National Institute of Technology Karnataka</strong> doing BTech in
-      Information Technology and have <em>7.06</em> CGPA
-      <small>(as of May 2019)</small>
+      Information Technology.
     </p>
 
     <h5 id="technical-projects-and-activities">
@@ -201,7 +200,7 @@ const Projects = ({ projects, isOpen, handleClick }) => (
 const MySkills = ({ frameworksLibraries, languages }) => (
   <>
     <h5 style={{ paddingTop: "0.5em" }}>
-      Familiar Languages, Frameworks, Libraries and Tools
+      Familiar Languages, Frameworks and Libraries
     </h5>
     <hr style={{ borderColor: "#af2b2b" }} />
     <div className="row" style={{ marginBottom: "5em" }}>
