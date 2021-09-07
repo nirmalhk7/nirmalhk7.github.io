@@ -1,3 +1,5 @@
+@import "../scss/constants";
+
 /* Accordion ==================================================  */
 
 .accordion {
@@ -60,12 +62,12 @@
 }
 
 .accordion__item.active .accordion-header {
-  background: #862121;
+  background: $accent-color;
   color: white;
 }
 
 .anchor-color{
-  color: #862121;
+  color: $accent-color;
 }
 
 
@@ -142,7 +144,15 @@
 /* Inverted CSS ============================================== */
 
 .inv {
-  background-color: #862121 ;
+  // background: $accent-color ;
+  // background: -moz-linear-gradient(132deg, $accent-color 0%, rgba(255,152,63,1) 56%, rgba(255,176,107,1) 98%);
+  // background: -webkit-linear-gradient(132deg, $accent-color 0%, rgba(255,152,63,1) 56%, rgba(255,176,107,1) 98%);
+  // background: linear-gradient(132deg, $accent-color 0%, rgba(255,152,63,1) 56%, rgba(255,176,107,1) 98%);
+
+  background: $accent-color;
+  background: -moz-linear-gradient(51deg, $accent-color 0%, scale-color($accent-color,$blue: 10%, $green: 15%) 55%, scale-color($accent-color,$blue: 30%, $green: 45%) 97%);
+  background: -webkit-linear-gradient(51deg, $accent-color 0%, scale-color($accent-color,$blue: 10%, $green: 15%) 55%, scale-color($accent-color,$blue: 30%, $green: 45%) 97%);
+  background: linear-gradient(51deg, $accent-color 0%, scale-color($accent-color,$blue: 10%, $green: 15%) 55%, scale-color($accent-color,$blue: 30%, $green: 45%) 97%);
   position: relative;
 }
 

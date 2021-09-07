@@ -1,3 +1,5 @@
+@import "../scss/constants";
+
 /* =================================================================== 
  *
  *  Hola v1.0 Main Stylesheet
@@ -146,7 +148,7 @@
  * ## links - (_document-setup.scss) 
  * ------------------------------------------------------------------- */
     a {
-        color: #862121;
+        color: $accent-color;
         -webkit-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
     }
@@ -337,8 +339,8 @@
         border: solid rgba(0, 0, 0, 0.1);
         border-width: 1px 0 0;
         clear: both;
-        margin: 2.4rem 0 1.5rem;
         height: 0;
+        border-color: $accent-color;
     }
     /* ------------------------------------------------------------------- 
  * ## Lists - (_document-setup.scss)  
@@ -373,7 +375,7 @@
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: #862121;
+        background: $accent-color;
         position: absolute;
         left: -17px;
         top: 11px;
@@ -381,7 +383,7 @@
     }
     dt {
         margin: 0;
-        color: #862121;
+        color: $accent-color;
     }
     dd {
         margin: 0 0 0 2rem;
@@ -470,7 +472,7 @@
         display: none;
     }
     .pace .pace-progress {
-        background: #862121;
+        background: $accent-color;
         position: fixed;
         z-index: 900;
         top: 0;
@@ -508,7 +510,7 @@
         margin-left: -30px;
         margin-top: -30px;
         padding: 0;
-        background-color: #862121;
+        background-color: $accent-color;
         border-radius: 100%;
         -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
         animation: sk-scaleout 1.0s infinite ease-in-out;
@@ -679,8 +681,8 @@
         color: #FFFFFF;
     }
     .btn.btn--primary:hover, button.btn--primary:hover, input[type="submit"].btn--primary:hover, input[type="reset"].btn--primary:hover, input[type="button"].btn--primary:hover, .btn.btn--primary:focus, button.btn--primary:focus, input[type="submit"].btn--primary:focus, input[type="reset"].btn--primary:focus, input[type="button"].btn--primary:focus {
-        background: #862121;
-        border-color: #862121;
+        background: $accent-color;
+        border-color: $accent-color;
     }
     /* button modifiers
  * ------------------------------------------------- */
@@ -702,8 +704,8 @@
         color: #000000;
     }
     .btn--stroke:hover, button.btn--stroke:hover {
-        border: 0.3rem solid #862121;
-        color: #862121;
+        border: 0.3rem solid $accent-color;
+        color: $accent-color;
     }
     .btn--pill, button.btn--pill {
         padding-left: 3rem !important;
@@ -885,7 +887,7 @@
         color: #151515;
     }
     .stats-tabs li a:hover {
-        color: #862121;
+        color: $accent-color;
     }
     .stats-tabs li a em {
         display: block;
@@ -1057,10 +1059,10 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
         font-size: 1.5rem;
-        color: #862121;
+        color: $accent-color;
     }
     .blog-list .blog-date a {
-        color: #862121;
+        color: $accent-color;
     }
     .blog-list .blog-date a:hover, .blog-list .blog-date a:focus, .blog-list .blog-date a:active {
         color: #000000;
@@ -1078,7 +1080,7 @@
         color: #000000;
     }
     .blog-list .blog-cat a:hover, .blog-list .blog-cat a:focus, .blog-list .blog-cat a:active {
-        color: #862121;
+        color: $accent-color;
     }
     .blog-list .blog-cat a::after {
         content: ", ";
@@ -1135,7 +1137,7 @@
         background: -moz-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
         background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
         background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-        filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#cc000000', GradientType=0);
+  
     }
     .s-home .overlay {
         position: absolute;
@@ -1164,7 +1166,7 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-size: 1.8rem;
-        color: #862121;
+        color: $accent-color;
         text-transform: uppercase;
         letter-spacing: .5rem;
         position: relative;
@@ -1177,7 +1179,7 @@
         content: "";
         width: 60px;
         height: 2px;
-        background-color: #862121;
+        background-color: $accent-color;
         margin-top: -1.5px;
         position: absolute;
         left: 0;
@@ -1632,7 +1634,6 @@
         background: -moz-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
         background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
         background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-        filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#cc000000', GradientType=0);
     }
     .item-folio__thumb a {
         display: block;
@@ -2122,7 +2123,7 @@
         color: #FFFFFF;
     }
     .stats__col--highlight .stats__count::after {
-        background-color: #862121;
+        background-color: $accent-color;
     }
     .stats__col--highlight h4 {
         color: rgba(255, 255, 255, 0.4);
@@ -2276,7 +2277,7 @@
         color: rgba(255, 255, 255, 0.2);
     }
     footer a, footer a:visited {
-        color: #862121;
+        color: $accent-color;
     }
     footer a:hover, footer a:focus {
         color: #FFFFFF;

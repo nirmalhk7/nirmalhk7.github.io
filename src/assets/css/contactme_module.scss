@@ -1,4 +1,6 @@
-   /* ===================================================================
+@import "../scss/constants";
+
+/* ===================================================================
  * # contact - (_site-layout.scss)
  *
  * ------------------------------------------------------------------- */
@@ -50,7 +52,7 @@
     padding: 0 2rem;
     margin: 0;
     color: #FFFFFF;
-    background: #862121;
+    background: $accent-color;
 }
 .s-contact .form-field label::after {
     content: "";
@@ -60,7 +62,7 @@
     margin-top: -6px;
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-right: 5px solid #862121;
+    border-right: 5px solid $accent-color;
 }
 .contact__form {
     padding-right: 40px;
@@ -77,8 +79,8 @@
 }
 .contact__form button {
     margin-top: 4.2rem;
-    background-color: #862121;
-    border-color: #862121;
+    background-color: $accent-color;
+    border-color: $accent-color;
 }
     /* ------------------------------------------------------------------- 
  * responsive:

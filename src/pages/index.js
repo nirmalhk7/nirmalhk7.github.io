@@ -203,7 +203,7 @@ const MySkills = ({ frameworksLibraries, languages }) => (
     <h5 style={{ paddingTop: "0.5em" }}>
       Familiar Languages, Frameworks and Libraries
     </h5>
-    <hr style={{ borderColor: "#af2b2b" }} />
+    <hr />
     <div className="row" style={{ marginBottom: "5em" }}>
       {[...frameworksLibraries, ...languages].map((element, index) => (
         <div className="col-3 minicard" key={index}>
@@ -218,7 +218,7 @@ const OnlineCourses = ({ onlineCourses }) => (
   <>
     {" "}
     <h5>Online Certification and Courses Taken</h5>
-    <hr style={{ borderColor: "#af2b2b" }} />
+    <hr />
     <div className="row m-0">
       <ul className="disc">
         {onlineCourses.nodes.map((element, index) => (
@@ -235,7 +235,7 @@ const OnlineCourses = ({ onlineCourses }) => (
 const Memberships = ({ membership }) => (
   <>
     <h5>Memberships</h5>
-    <hr style={{ borderColor: "#af2b2b" }} />
+    <hr />
     <div className="row m-0">
       <ul className="disc">
         {membership.nodes.map((element, index) => (
@@ -253,7 +253,7 @@ const Memberships = ({ membership }) => (
 const CollegeCourses = ({ collegeCourses }) => (
   <>
     <h5>Prominent College Courses Taken</h5>
-    <hr style={{ borderColor: "#af2b2b" }} />
+    <hr />
     <div className="row mr-0 ml-0">
       <div className="disc">
         {collegeCourses.nodes.map((element, index) => (
