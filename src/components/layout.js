@@ -96,7 +96,6 @@ class Layout extends React.Component {
     const children = this.props.children;
     return (
       <>
-        {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <Navbar location={this.props.location} />
         <main>{children}</main>
         <RandomQuote />

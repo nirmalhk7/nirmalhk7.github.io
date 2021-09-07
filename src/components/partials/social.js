@@ -2,6 +2,8 @@ import { faAngellist, faDev, faGithub, faGoodreads, faLinkedin } from "@fortawes
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import "../../assets/css/social_module.css";
+
 // TODO fix colors of social icons
 export const social = [
   {
