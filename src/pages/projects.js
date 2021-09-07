@@ -47,7 +47,7 @@ class Projects extends React.Component {
           <SearchEnggOp title="Projects" />
           <section className="page-header page-hero parallax bootstrap-wrapper" id="projects-header">
             <div className="container page-header__content">
-              <article className="col-full">
+              <article className="">
                 <h1 className="page-header__title">
                   <a href="#0" title="Projects">
                     Projects

@@ -22,10 +22,10 @@ class ContactForm extends React.Component {
   render() {
     return (
       <div className="bootstrap-wrapper">
-        <section className="s-contact target-section fadeIn parallax" id="contact">
+        <section className="s-contact parallax" id="contact">
           <div className="overlay" />
           <div className="narrow section-intro m-auto">
-            <div className="col-full">
+            <div className="">
               <h3>Contact Me</h3>
               <h1>Say Hi!</h1>
               <p className="lead">I'll reach you out as soon as I can.</p>

@@ -17,7 +17,7 @@ const LatestBlogItem = ({ item }) => {
     srx = { src: srx.publicURL, srcSet: null };
   }
   return (
-    <section className="s-works inv target-section bootstrap-wrapper" id="blog-first">
+    <section className="s-works inv  bootstrap-wrapper" id="blog-first">
         <div className="container blog-content">
           <Link
             className="blog-list block-1-2 block-tab-full"
@@ -103,7 +103,7 @@ const MasonPanel = ({ sitename, blogItems }) => {
 
 const BlogByCategory = ({ blogItems }) => {
   return (
-    <section className="s-works target-section bootstrap-wrapper">
+    <section className="s-works  bootstrap-wrapper">
       <div className="m-auto narrow section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
         <div className="m-auto text-center">
           <h3>Browse by Category</h3>
@@ -146,7 +146,7 @@ const Blog = ({ location, data }) => {
     <Layout location={location}>
       <SearchEnggOp title={data.site.siteMetadata.blogName} />
       <section
-        className="s-home page-hero target-section parallax bootstrap-wrapper"
+        className="s-home page-hero  parallax bootstrap-wrapper"
         data-natural-height="2000"
         data-natural-width="3000"
         data-parallax="scroll"

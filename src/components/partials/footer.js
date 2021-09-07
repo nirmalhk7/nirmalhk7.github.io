@@ -2,6 +2,7 @@ import { faLongArrowAltUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { social } from "./social";
+import "../../assets/css/footer.module.css";
 
 export class ScrollToTop extends React.Component {
   componentDidMount() {
@@ -35,7 +36,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="row flicker-3">
-        <div className="col-full">
+        <div className="">
           <ul className="footer-social">
             {social.map((element, index) => {
               if (element.link)

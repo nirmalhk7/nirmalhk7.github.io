@@ -30,7 +30,7 @@ const quoteList = [
 const RandomQuote = () => {
   const quote = quoteList[Math.floor(Math.random() * quoteList.length)];
   return (
-    <section className="s-blog target-section">
+    <section className="s-blog ">
       <div className="narrow section-intro has-bottom-sep m-auto">
         <div className="row">
           <blockquote>

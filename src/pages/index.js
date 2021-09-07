@@ -8,7 +8,7 @@ import SocialMediaIcons from "../components/partials/social";
 
 const Jumbotron = () => (
   <section
-    className="s-home page-hero target-section parallax"
+    className="s-home page-hero  parallax"
     data-natural-height="2000"
     data-natural-width="3000"
     data-parallax="scroll"
@@ -188,7 +188,7 @@ const AboutMe = ({ experience, clubs, online, college, languages, frameworkLibra
 );
 
 const Blog = ({ name }) => (
-  <section className="s-works target-section bootstrap-wrapper" id="blog">
+  <section className="s-works  bootstrap-wrapper" id="blog">
     <div className="narrow section-intro has-bottom-sep m-auto">
       <div className="col-12">
         <h3>{name}</h3>
@@ -245,12 +245,12 @@ class IndexPage extends React.Component {
           workexperience={workexperience.nodes}
         />
         
-        <section className="s-works target-section bootstrap-wrapper" id="projects">
+        <section className="s-works  bootstrap-wrapper" id="projects">
           <div className="container">
             <div className="row">
               <div className="col-lg-6 col-md-6 col-sm-12 tab-full right">
                 <div className="narrow section-intro has-bottom-sep">
-                  <div className="col-full">
+                  <div className="">
                     <h3>Projects</h3>
                     <h1>See My Latest Projects.</h1>
                     <p className="lead">
