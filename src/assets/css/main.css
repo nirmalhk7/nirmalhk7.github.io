@@ -57,8 +57,7 @@
  *
  * ------------------------------------------------------------------- */
 
-@import url("iconic/css/iconmonstr-iconic-font.min.css");
-@import url("fonts.min.css");
+
 
 #blog-header {
     background-image: url("../images/pitlane.jpg");

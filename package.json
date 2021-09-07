@@ -75,7 +75,7 @@
     "serve": "gatsby serve",
     "packages:update": "npm update --save-dev && npm update --save",
     "clean": "gatsby clean",
-    "deploy": "gatsby build && gh-pages -d public",
+    "lint": "eslint . --fix",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repositgory": {
