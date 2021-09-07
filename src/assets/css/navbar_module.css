@@ -102,7 +102,8 @@
     }
     .header-nav-wrap .header-nav li a {
         padding: 18px 0;
-        line-height: 18px;
+        line-height: 18px
+        ;
     }
     .header-menu-toggle {
         display: block;
