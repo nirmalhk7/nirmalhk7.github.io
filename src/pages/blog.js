@@ -17,31 +17,41 @@ const LatestBlogItem = ({ item }) => {
     srx = { src: srx.publicURL, srcSet: null };
   }
   return (
-    <section className="s-works inv  bootstrap-wrapper" id="blog-first">
-        <div className="container blog-content">
-          <Link
-            className="blog-list block-1-2 block-tab-full"
-            style={{ marginTop: "0rem" }}
-            to={`/blog/${  item.relativeDirectory}`}
-          >
-            <div className="row">
-              <div className="col-lg-6 col-md-6 col-sm-12">
-                <img src={srx.src} srcSet={srx.srcSet} style={{ maxHeight: "400px" }} />
-              </div>
-              <div className="col-lg-6 col-md-6 col-sm-12  text-md-right">
-                <h1 className="entry-title text-white text-underline">
-                  {item.childMarkdownRemark.frontmatter.title}
-                  &nbsp;&nbsp;
-                  {item.draft === true ? <code style={{ color: "black" }}>Draft</code> : null}
-                </h1>
-                <div className="entry-content text-white">
-                  <p>{item.childMarkdownRemark.frontmatter.description}</p>
-                </div>
+    <section
+      className="s-works inv  bootstrap-wrapper"
+      id="blog-first"
+      style={{
+        textDecoration:"none",
+        paddingTop:"2em",
+        paddingBottom:"2em"
+      }}
+    >
+      <div className="container blog-content">
+        <Link
+          className="blog-list block-1-2 block-tab-full"
+          style={{ marginTop: "0rem" }}
+          to={`/blog/${item.relativeDirectory}`}
+        >
+          <div className="row">
+            <div className="col-lg-6 col-md-6 col-sm-12">
+              <img
+                src={srx.src}
+                srcSet={srx.srcSet}
+                style={{ width:"70%", height:"auto" }}
+              />
+            </div>
+            <div className="col-lg-6 col-md-6 col-sm-12  text-md-right">
+              <h1 className="entry-title"  style={{textDecoration:"none"}}>
+                {item.childMarkdownRemark.frontmatter.title}
+              </h1>
+              <div className="entry-content"  style={{textDecoration:"none"}}>
+                <p>{item.childMarkdownRemark.frontmatter.description}</p>
               </div>
             </div>
-          </Link>
-        </div>
-      </section>
+          </div>
+        </Link>
+      </div>
+    </section>
   );
 };
 
@@ -50,7 +60,10 @@ const MasonPanel = ({ sitename, blogItems }) => {
     <section className="blog-content-wrap">
       <div className="">
         <div className="blog-content m-auto" style={{ maxWidth: "1500px" }}>
-          <div className="section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
+          <div
+            className="section-intro has-bottom-sep"
+            style={{ paddingTop: "5em" }}
+          >
             <div className="text-center">
               <h3>{sitename}</h3>
               <h1>All Posts</h1>
@@ -76,16 +89,23 @@ const MasonPanel = ({ sitename, blogItems }) => {
                         <div className="item-folio__thumb">
                           <Link
                             className=""
-                            title={element.childMarkdownRemark.frontmatter.description}
-                            to={`/blog/${  element.relativeDirectory}`}
+                            title={
+                              element.childMarkdownRemark.frontmatter
+                                .description
+                            }
+                            to={`/blog/${element.relativeDirectory}`}
                           >
                             <img src={srx.src} srcSet={srx.srcSet} />
                           </Link>
                         </div>
                         <div className="item-folio__text">
-                          <h3 className="item-folio__title">{element.childMarkdownRemark.frontmatter.title}</h3>
+                          <h3 className="item-folio__title">
+                            {element.childMarkdownRemark.frontmatter.title}
+                          </h3>
                           <p className="item-folio__cat">
-                            <strong style={{ color: "#862121" }}>{element.childMarkdownRemark.frontmatter.category}</strong>
+                            <strong style={{ color: "#862121" }}>
+                              {element.childMarkdownRemark.frontmatter.category}
+                            </strong>
                           </p>
                         </div>
                       </div>
@@ -104,7 +124,10 @@ const MasonPanel = ({ sitename, blogItems }) => {
 const BlogByCategory = ({ blogItems }) => {
   return (
     <section className="s-works  bootstrap-wrapper">
-      <div className="m-auto narrow section-intro has-bottom-sep" style={{ paddingTop: "5em" }}>
+      <div
+        className="m-auto narrow section-intro has-bottom-sep"
+        style={{ paddingTop: "5em" }}
+      >
         <div className="m-auto text-center">
           <h3>Browse by Category</h3>
         </div>
@@ -113,19 +136,26 @@ const BlogByCategory = ({ blogItems }) => {
         <div className="row">
           {blogItems.map((blog, index) => {
             const xfilter = blogItems.filter(
-              (element) => element.childMarkdownRemark.frontmatter.category === blog.childMarkdownRemark.frontmatter.category
+              (element) =>
+                element.childMarkdownRemark.frontmatter.category ===
+                blog.childMarkdownRemark.frontmatter.category
             );
             return (
               <article className="col-lg-6 col-sm-12" key={index}>
-                <h2 className="h01" id={blog.childMarkdownRemark.frontmatter.category}>
+                <h2
+                  className="h01"
+                  id={blog.childMarkdownRemark.frontmatter.category}
+                >
                   {blog.childMarkdownRemark.frontmatter.category}
                 </h2>
                 <ul>
                   {xfilter.map((element, index) => (
                     <li key={(index + 1) * 100 * (index + 1)}>
                       <Link
-                        title={element.childMarkdownRemark.frontmatter.description}
-                        to={`/blog/${  element.relativeDirectory}`}
+                        title={
+                          element.childMarkdownRemark.frontmatter.description
+                        }
+                        to={`/blog/${element.relativeDirectory}`}
                       >
                         {element.childMarkdownRemark.frontmatter.title}
                       </Link>
@@ -163,7 +193,9 @@ const Blog = ({ location, data }) => {
               </Link>
             </h1>
             <div className="page-header__info">
-              <div className="page-header__cat">Technology, Finance, Environment and the Future.</div>
+              <div className="page-header__cat">
+                Technology, Finance, Environment and the Future.
+              </div>
             </div>
             <div className="home-content__buttons">
               <blog className="smoothscroll btn btn--stroke" href="#blog-first">
@@ -175,7 +207,10 @@ const Blog = ({ location, data }) => {
         <SocialMediaIcons />
       </section>
       <LatestBlogItem item={data.allFile.nodes[0]} />
-      <MasonPanel blogItems={data.allFile.nodes} sitename={data.site.siteMetadata.blogName} />
+      <MasonPanel
+        blogItems={data.allFile.nodes}
+        sitename={data.site.siteMetadata.blogName}
+      />
       <BlogByCategory blogItems={data.allFile.nodes} />
     </Layout>
   );

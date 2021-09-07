@@ -142,11 +142,20 @@
 /* Inverted CSS ============================================== */
 
 .inv {
-  background-color: #862121 !important;
+  background-color: #862121 ;
   position: relative;
-  padding-top: 75px !important;
-  padding-bottom: 75px !important;
 }
+
+
+
+.inv h1, .inv h3,.inv p, .inv a  {
+  color: white!important;
+}
+.inv a{
+  text-decoration: underline;
+}
+
+
 
 .white-text {
   color: white;

@@ -71,6 +71,7 @@ const WorkExperience = ({ experience }) => (
     </div>
   </div>
 );
+
 const PersonalInfo = () => (
   <div>
     <h3 id="howdy">Howdy!</h3>
@@ -120,11 +121,11 @@ const HireMe = () => (
 );
 
 const Blog = ({ name }) => (
-  <section className="s-works  bootstrap-wrapper" id="blog">
+  <section className="s-works inv  bootstrap-wrapper" id="blog">
     <div className="narrow section-intro has-bottom-sep m-auto">
       <div className="col-12">
         <h3>{name}</h3>
-        <h1>Latest From The Blog.</h1>
+        <h1>Latest From The Blog</h1>
         <p className="lead">
           I have strong views on topics like Finance, Technology, Future and
           Environment. Find me&nbsp;
