@@ -59,14 +59,14 @@
  *
  * ------------------------------------------------------------------- */
 
-
+$home-wallpaper-cutoff: 1100px;
 
 #blog-header {
     background-image: url("../images/pitlane.jpg");
     background-size: cover;
 }
 
-@media only screen and (min-width: 1300px) {
+@media only screen and (min-width: $home-wallpaper-cutoff) {
     #home {
         background-image: url("../images/BeachNK_1.jpg");
         background-size: cover;
@@ -79,13 +79,26 @@
 #notfound {
     background-image:url('../images/f1car.jpg');
 }
-
-@media only screen and (max-width: 1300px) {
+.header-image{
+    display:none;
+    // borderRadius: "50%",
+    // padding: "1rem",
+    // width: "50%",
+    // height: "auto",
+    // display: "block",
+    // marginLeft: "auto",
+    // marginRight: "auto",
+}
+@media only screen and (max-width: $home-wallpaper-cutoff) {
     #home {
-        background-image: url("../images/TreesNK_1.jpg");
-        background-size: cover;
+        background-image: url("../images/MilkyWay.jpg");
+            background-size: cover;
+    }
+    .header-image{
+        display:block;
     }
 }
+
 
 /*1220px needed*/
 
@@ -99,7 +112,6 @@
     @media only screen and (min-width: 1024px) {
         #contact {
             background-image: url("../images/contact-bg.jpg");
-            /* background-image: url("../images/contact-bg.jpg"); */
             background-size: cover;
         }
     }
@@ -696,11 +708,6 @@
         line-height: calc(6rem - .6rem) !important;
     }
 
-    .btn--pill, button.btn--pill {
-        padding-left: 3rem !important;
-        padding-right: 3rem !important;
-        border-radius: 1000px !important;
-    }
     button::-moz-focus-inner, input::-moz-focus-inner {
         border: 0;
         padding: 0;
@@ -1352,7 +1359,7 @@
             right: 30px;
         }
     }
-    @media only screen and (max-width: 1000px) {
+    @media only screen and (max-width: 1600px) {
         .home-content h1 {
             font-size: 4.8rem;
         }
@@ -1493,6 +1500,9 @@
         position: absolute;
         left: 2rem;
         top: .3rem;
+    }
+    .timeline__bullet[first="0"] {
+        background: map-get($map: $theme-colors, $key: "accent");
     }
     .timeline__header .timeline__timeframe {
         font-size: 1.4rem;

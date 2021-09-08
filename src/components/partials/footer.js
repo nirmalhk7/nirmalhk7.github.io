@@ -43,7 +43,7 @@ const Footer = () => {
                 return (
                   
                   <li key={index}>
-                    <a className="ln" href={element.link} target="blank">
+                    <a className="ln text-decoration-none" href={element.link} target="blank">
                       {/* TODO Increase Icon size in Mobile view */}
                       <FontAwesomeIcon icon={element.class} />
                       <span>{element.name}</span>
@@ -63,19 +63,19 @@ const Footer = () => {
             <span style={{ color: "#3d3d3d" }}>Last Updated: July 20, 2020</span>
           </div>
           <div className="copyright">
-            <span id="justinmaller" style={{ color: "#1d1d1d" }}>
+            <span id="justinmaller" style={{ color: "#3d3d3d" }}>
               Image Credits &nbsp;
-              <a className="hidelink" href="/" style={{ color: "#1d1d1d" }}>
+              <a className="hidelink" href="/" style={{ color: "#3d3d3d" }}>
                 Beast Dreams II
               </a>
               &nbsp; by Justin Maller
             </span>
-            <span style={{ color: "#1d1d1d" }}>
+            <span style={{ color: "#3d3d3d" }}>
               Theme by &nbsp;
-              <a className="hidelink" href="https://www.styleshout.com/" style={{ color: "#1d1d1d" }}>
+              <a className="hidelink" href="https://www.styleshout.com/" style={{ color: "#3d3d3d" }}>
                 styleshout
               </a>
-              (Copyright Hola 2017)
+              &nbsp;(Copyright Hola 2017)
             </span>
           </div>
         </div>

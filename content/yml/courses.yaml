@@ -1,12 +1,10 @@
 - name: Web Technologies
 - name: DSA
 - name: Computer Networking
-- name: Discrete Mathematics
-- name: Computer Organization
 - name: Operating Systems
 - name: Database Management
-- name: Parallel Computing
 - name: Software Engineering
+- name: Cryptography and Blockchain Technology
 - name: "Google Cloud Platform Fundamentals: Core Infrastructure"
   provider: Google, Coursera
   link: https://www.coursera.org/account/accomplishments/verify/8WYMGMN3TE5H

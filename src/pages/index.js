@@ -35,7 +35,10 @@ const Jumbotron = () => (
           </Link>
         </div>
         <div className="home-content__scroll">
-          <Link className="scroll-link smoothscroll" to="#about">
+          <Link
+            className="scroll-link smoothscroll text-decoration-none"
+            to="#about"
+          >
             <span>Scroll Down</span>
           </Link>
         </div>
@@ -55,7 +58,7 @@ const WorkExperience = ({ experience }) => (
         <div className="col-lg-6 col-md-6 col-sm-12 left" key={index}>
           <div className="timeline">
             <div className="timeline__block">
-              <div className="timeline__bullet" />
+              <div className="timeline__bullet" first={index} />
               <div className="timeline__header">
                 <p className="timeline__timeframe">{element.timeframe}</p>
                 <h3>{element.company}</h3>
@@ -114,7 +117,10 @@ const HireMe = () => (
     >
       Download My Resume
     </a>
-    <Link className="smoothscroll btn btn-outline-accent full-width text-decoration-none" to="#contact">
+    <Link
+      className="smoothscroll btn btn-outline-accent full-width text-decoration-none"
+      to="#contact"
+    >
       Want to Hire?
     </Link>
   </>
@@ -129,7 +135,7 @@ const Blog = ({ name }) => (
         <p className="lead">
           I have strong views on topics like Finance, Technology, Future and
           Environment. Find me&nbsp;
-          <Link className="text-white" title={name}  to="/blog">
+          <Link className="text-white" title={name} to="/blog">
             blogging about them here
           </Link>
           .
@@ -330,6 +336,19 @@ class IndexPage extends React.Component {
                 <PersonalInfo />
               </div>
               <div className="col-lg-6 col-md-6 col-sm-12">
+                <img
+                  className="header-image"
+                  src="https://avatars.githubusercontent.com/u/25480443"
+                  style={{
+                    borderRadius: "70%",
+                    padding: "1rem",
+                    width: "70%",
+                    height: "auto",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                />
+
                 <h3 className="text-center">I've got some skills.</h3>
                 <MySkills
                   frameworksLibraries={ymlYaml.frameworks_libraries}

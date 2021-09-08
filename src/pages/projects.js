@@ -57,7 +57,7 @@ class Projects extends React.Component {
                   <div className="page-header__cat">Projects Catalogue of Nirmal Khedkar</div>
                 </div>
                 <p className="narrow">
-                  I&apos;m a fullstack and hybrid product developer, currently understanding and exploring cloud platforms. I love building stuff! <FontAwesomeIcon className="ml-2" icon={faWrench} />
+                  I&apos;m a fullstack and hybrid product developer, currently understanding and exploring cloud platforms. I love building stuff! <FontAwesomeIcon className="ml-2 text-accent" icon={faWrench} />
                 </p>
               </article>
             </div>
