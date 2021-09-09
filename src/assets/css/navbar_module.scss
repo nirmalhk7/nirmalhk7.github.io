@@ -60,6 +60,12 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     z-index: 501;
+
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.header-logo:hover {
+  color: map-get($map: $theme-colors, $key: "accent");
 }
 .header-logo a {
     display: block;
@@ -143,7 +149,7 @@
 .header-nav li.current a {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    color: $accent-color;
+    color: map-get($map: $theme-colors, $key: "accent");
 }
     /* -------------------------------------------------------------------
  * make sure the menu is visible on larger screens
@@ -154,7 +160,7 @@
     }
 }
 .now>a {
-    color: $accent-color !important;
+    color: map-get($map: $theme-colors, $key: "accent") !important;
   }
 
       /* ------------------------------------------------------------------- 

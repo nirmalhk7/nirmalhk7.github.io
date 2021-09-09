@@ -172,9 +172,10 @@ const Projects = ({ projects, isOpen, handleClick }) => (
                 onClick={handleClick}
               >
                 <div
-                  className="accordion-header js-accordion-header"
+                  className="accordion-header bg-gray js-accordion-header"
                   id={`accordionheader-${index}`}
                 >
+                  
                   {element.childMarkdownRemark.frontmatter.title}
                 </div>
                 <div

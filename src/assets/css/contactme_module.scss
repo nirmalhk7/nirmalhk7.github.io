@@ -52,7 +52,7 @@
     padding: 0 2rem;
     margin: 0;
     color: #FFFFFF;
-    background: $accent-color;
+    background: map-get($map: $theme-colors, $key: "accent");
 }
 .s-contact .form-field label::after {
     content: "";
@@ -62,7 +62,7 @@
     margin-top: -6px;
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-right: 5px solid $accent-color;
+    border-right: 5px solid map-get($map: $theme-colors, $key: "accent");
 }
 .contact__form {
     padding-right: 40px;
@@ -79,8 +79,8 @@
 }
 .contact__form button {
     margin-top: 4.2rem;
-    background-color: $accent-color;
-    border-color: $accent-color;
+    background-color: map-get($map: $theme-colors, $key: "accent");
+    border-color: map-get($map: $theme-colors, $key: "accent");
 }
     /* ------------------------------------------------------------------- 
  * responsive:

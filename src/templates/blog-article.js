@@ -127,7 +127,7 @@ const BlogTemplate = ({ location, pageContext }) => {
               <div className="blog-content__nav">
                 {pageContext.previous ? (
                   <div className="blog-content__prev">
-                    <Link rel="prev" to={`/blog/${  pageContext.previous.relativeDirectory}`}>
+                    <Link className="text-decoration-none" rel="prev" to={`/blog/${  pageContext.previous.relativeDirectory}`}>
                       <span>Previous Post</span>
                       {pageContext.previous.childMarkdownRemark.frontmatter.title}
                     </Link>

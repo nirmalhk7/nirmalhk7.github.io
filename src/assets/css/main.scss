@@ -156,11 +156,22 @@ $home-wallpaper-cutoff: 1100px;
         margin: 0;
         padding: 0;
     }
+    p, b, i, strong, h1, h2, h3, h4, h5, cite {
+        &::selection {
+            color: map-get($map: $theme-colors, $key: "white");
+            background: map-get($map: $theme-colors, $key: "accent");
+        }
+      
+        &::-moz-selection {
+            color: map-get($map: $theme-colors, $key: "white");
+            background: map-get($map: $theme-colors, $key: "accent");
+        }
+      }
     /* ------------------------------------------------------------------- 
  * ## links - (_document-setup.scss) 
  * ------------------------------------------------------------------- */
     a {
-        color: $accent-color;
+        color: map-get($map: $theme-colors, $key: "accent");
         
         -webkit-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
@@ -276,12 +287,12 @@ $home-wallpaper-cutoff: 1100px;
         font-size: 10rem;
         line-height: 0px;
         margin: 0;
-        color: rgba(0, 0, 0, 0.15);
         font-family: arial, sans-serif;
         position: absolute;
         top: 3.6rem;
         left: 0;
-    }
+        color: map-get($map: $theme-colors, $key: "accent");
+      }
     blockquote p {
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
@@ -357,7 +368,7 @@ $home-wallpaper-cutoff: 1100px;
         border-width: 1px 0 0;
         clear: both;
         height: 0;
-        border-color: $accent-color;
+        border-color: map-get($map: $theme-colors, $key: "accent");
     }
     /* ------------------------------------------------------------------- 
  * ## Lists - (_document-setup.scss)  
@@ -392,7 +403,7 @@ $home-wallpaper-cutoff: 1100px;
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: $accent-color;
+        background: map-get($map: $theme-colors, $key: "accent");
         position: absolute;
         left: -17px;
         top: 11px;
@@ -400,7 +411,7 @@ $home-wallpaper-cutoff: 1100px;
     }
     dt {
         margin: 0;
-        color: $accent-color;
+        color: map-get($map: $theme-colors, $key: "accent");
     }
     dd {
         margin: 0 0 0 2rem;
@@ -489,7 +500,7 @@ $home-wallpaper-cutoff: 1100px;
         display: none;
     }
     .pace .pace-progress {
-        background: $accent-color;
+        background: map-get($map: $theme-colors, $key: "accent");
         position: fixed;
         z-index: 900;
         top: 0;
@@ -527,7 +538,7 @@ $home-wallpaper-cutoff: 1100px;
         margin-left: -30px;
         margin-top: -30px;
         padding: 0;
-        background-color: $accent-color;
+        background-color: map-get($map: $theme-colors, $key: "accent");
         border-radius: 100%;
         -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
         animation: sk-scaleout 1.0s infinite ease-in-out;
@@ -883,7 +894,7 @@ $home-wallpaper-cutoff: 1100px;
         color: #151515;
     }
     .stats-tabs li a:hover {
-        color: $accent-color;
+        color: map-get($map: $theme-colors, $key: "accent");
     }
     .stats-tabs li a em {
         display: block;
@@ -1055,10 +1066,10 @@ $home-wallpaper-cutoff: 1100px;
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
         font-size: 1.5rem;
-        color: $accent-color;
+        color: map-get($map: $theme-colors, $key: "accent");
     }
     .blog-list .blog-date a {
-        color: $accent-color;
+        color: map-get($map: $theme-colors, $key: "accent");
     }
     .blog-list .blog-date a:hover, .blog-list .blog-date a:focus, .blog-list .blog-date a:active {
         color: #000000;
@@ -1076,7 +1087,7 @@ $home-wallpaper-cutoff: 1100px;
         color: #000000;
     }
     .blog-list .blog-cat a:hover, .blog-list .blog-cat a:focus, .blog-list .blog-cat a:active {
-        color: $accent-color;
+        color: map-get($map: $theme-colors, $key: "accent");
     }
     .blog-list .blog-cat a::after {
         content: ", ";
@@ -1162,7 +1173,7 @@ $home-wallpaper-cutoff: 1100px;
         font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-size: 1.8rem;
-        color: $accent-color;
+        color: map-get($map: $theme-colors, $key: "accent");
         text-transform: uppercase;
         letter-spacing: .5rem;
         position: relative;
@@ -1175,7 +1186,7 @@ $home-wallpaper-cutoff: 1100px;
         content: "";
         width: 60px;
         height: 2px;
-        background-color: $accent-color;
+        background-color: map-get($map: $theme-colors, $key: "accent");
         margin-top: -1.5px;
         position: absolute;
         left: 0;
@@ -2120,7 +2131,7 @@ $home-wallpaper-cutoff: 1100px;
         color: #FFFFFF;
     }
     .stats__col--highlight .stats__count::after {
-        background-color: $accent-color;
+        background-color: map-get($map: $theme-colors, $key: "accent");
     }
     .stats__col--highlight h4 {
         color: rgba(255, 255, 255, 0.4);
@@ -2274,7 +2285,7 @@ $home-wallpaper-cutoff: 1100px;
         color: rgba(255, 255, 255, 0.2);
     }
     footer a, footer a:visited {
-        color: $accent-color;
+        color: map-get($map: $theme-colors, $key: "accent");
     }
     footer a:hover, footer a:focus {
         color: #FFFFFF;

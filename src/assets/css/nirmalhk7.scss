@@ -4,9 +4,8 @@
 
 @debug $theme-colors;
 @each $name, $hex in $theme-colors {
-  @debug $name;
   .bg-#{$name} {
-    background-color: $hex;
+    background: $hex;
     @if $name=="white" or $name=="gray"{
       color: map-get($map: $theme-colors, $key: "black")!important
     } @else {
@@ -34,7 +33,7 @@
     color: $hex;
   }
   .btn-outline-#{$name}:hover, button.btn-outline-#{$name}:hover {
-      background-color: $accent-color;
+      background-color: map-get($map: $theme-colors, $key: "accent");
   }
   .btn-outline-fill-#{$name}:hover, button.btn-outline-#{$name}:hover {
      background: #FFFFFF !important;
@@ -63,16 +62,10 @@
   border-radius: 5px;
 }
 
-.accordion-header,
-.accordion-body {
-  background: white;
-}
-
 .accordion-header {
   padding: 1.5em 1.5em;
-  background: map-get($map: $theme-colors, $key: "gray");
+  // background: map-get($map: $theme-colors, $key: "gray");
   text-transform: uppercase;
-  color: #444;
   cursor: pointer;
   font-family: "montserrat-semibold", sans-serif;
   font-size: 1.2rem;
@@ -80,21 +73,14 @@
   transition: all 0.3s;
 }
 
-.accordion-header:hover {
-  // background: map-get($map: $theme-colors, $key: "gray");
-  background: scale-color(map-get($map: $theme-colors, $key: "gray"),$red: -20%, $blue: -20%, $green: -20%);
-  position: relative;
-  z-index: 5;
-}
-
 .accordion-body {
-  background: #fcfcfc;
-  color: #3f3c3c;
+  background: map-get($map: $theme-colors, $key: "white");
   display: none;
 }
 
 .accordion-body__contents {
   padding: 1.5em 1.5em;
+  background: map-get($map: $theme-colors, $key: "white");
 }
 
 .accordion__item.active:last-child .accordion-header {
@@ -107,6 +93,7 @@
 
 .accordion__item > .accordion-header:after {
   content: "\002b";
+  color: map-get($map: $theme-colors, $key: "accent");
   font-size: 1.2em;
   float: right;
   position: relative;
@@ -116,15 +103,16 @@
 
 .accordion__item.active > .accordion-header:after {
   content: "\2212";
+  color: map-get($map: $theme-colors, $key: "white");
 }
 
 .accordion__item.active .accordion-header {
-  background: $accent-color;
-  color: white;
+  background: map-get($map: $theme-colors, $key: "accent");
+  color: white!important;
 }
 
 .anchor-color{
-  color: $accent-color;
+  color: map-get($map: $theme-colors, $key: "accent");
 }
 
 
@@ -201,10 +189,10 @@
 /* Inverted CSS ============================================== */
 
 // .inv {
-//   // background: $accent-color ;
-//   // background: -moz-linear-gradient(132deg, $accent-color 0%, rgba(255,152,63,1) 56%, rgba(255,176,107,1) 98%);
-//   // background: -webkit-linear-gradient(132deg, $accent-color 0%, rgba(255,152,63,1) 56%, rgba(255,176,107,1) 98%);
-//   // background: linear-gradient(132deg, $accent-color 0%, rgba(255,152,63,1) 56%, rgba(255,176,107,1) 98%);
+//   // background: map-get($map: $theme-colors, $key: "accent") ;
+//   // background: -moz-linear-gradient(132deg, map-get($map: $theme-colors, $key: "accent") 0%, rgba(255,152,63,1) 56%, rgba(255,176,107,1) 98%);
+//   // background: -webkit-linear-gradient(132deg, map-get($map: $theme-colors, $key: "accent") 0%, rgba(255,152,63,1) 56%, rgba(255,176,107,1) 98%);
+//   // background: linear-gradient(132deg, map-get($map: $theme-colors, $key: "accent") 0%, rgba(255,152,63,1) 56%, rgba(255,176,107,1) 98%);
 
 
 //   position: relative;
