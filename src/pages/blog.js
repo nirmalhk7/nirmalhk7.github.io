@@ -35,6 +35,7 @@ const LatestBlogItem = ({ item }) => {
           <div className="row">
             <div className="col-lg-6 col-md-6 col-sm-12">
               <img
+                alt="Latest Blog"
                 src={srx.src}
                 srcSet={srx.srcSet}
                 style={{ width:"70%", height:"auto" }}
@@ -96,7 +97,7 @@ const MasonPanel = ({ sitename, blogItems }) => {
                             }
                             to={`/blog/${element.relativeDirectory}`}
                           >
-                            <img src={srx.src} srcSet={srx.srcSet} />
+                            <img alt={element.childMarkdownRemark.frontmatter.title} src={srx.src} srcSet={srx.srcSet} />
                           </Link>
                         </div>
                         <div className="item-folio__text">

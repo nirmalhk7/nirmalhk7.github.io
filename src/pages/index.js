@@ -169,17 +169,20 @@ const Projects = ({ projects, isOpen, handleClick }) => (
                 }`}
                 id={`accordion-${index}`}
                 key={index}
-                onClick={handleClick}
               >
                 <div
                   className="accordion-header bg-gray js-accordion-header"
                   id={`accordionheader-${index}`}
+                  onClick={handleClick}
+                  onKeyDown={handleClick}
+                  role="button"
+                  tabIndex={0}
                 >
                   
                   {element.childMarkdownRemark.frontmatter.title}
                 </div>
                 <div
-                  className="accordion-body js-accordion-body"
+                  className="accordion-body js-accordion-body bg-white"
                   id={`accordionbody-${index}`}
                   style={{
                     display: `${isOpen[index] ? "block" : "none"}`,
@@ -286,6 +289,7 @@ class IndexPage extends React.Component {
   handleClick = (event) => {
     event.preventDefault();
     event.persist();
+    console.log(event.target.id);
     const clickedOn = parseInt(event.target.id.split("-")[1]);
     const newState = this.state.isOpen;
     newState.forEach((element, index) => {
@@ -338,6 +342,7 @@ class IndexPage extends React.Component {
               </div>
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <img
+                  alt="Nirmal Khedkar"
                   className="header-image"
                   src="https://avatars.githubusercontent.com/u/25480443"
                   style={{

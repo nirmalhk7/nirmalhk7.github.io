@@ -19,13 +19,17 @@ const Navbar = () => {
         >
           {navbarList.map((element, index) => {
             let hrx;
-            if (element === "Contact" || element === "About" || element === "Home") {
-              hrx = `#${  element.toLowerCase()}`;
+            if (
+              element === "Contact" ||
+              element === "About" ||
+              element === "Home"
+            ) {
+              hrx = `#${element.toLowerCase()}`;
               if (element === "About" || element === "Home") {
-                hrx = `/${  hrx}`;
+                hrx = `/${hrx}`;
               }
             } else {
-              hrx = `/${  element.toLowerCase()}`;
+              hrx = `/${element.toLowerCase()}`;
             }
 
             return (

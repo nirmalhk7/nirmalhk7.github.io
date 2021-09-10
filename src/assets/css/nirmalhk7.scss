@@ -74,13 +74,8 @@
 }
 
 .accordion-body {
-  background: map-get($map: $theme-colors, $key: "white");
   display: none;
-}
-
-.accordion-body__contents {
   padding: 1.5em 1.5em;
-  background: map-get($map: $theme-colors, $key: "white");
 }
 
 .accordion__item.active:last-child .accordion-header {
