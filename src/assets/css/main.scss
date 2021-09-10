@@ -1242,8 +1242,8 @@ $home-wallpaper-cutoff: 1100px;
         padding-right: 2rem;
     }
     .home-content__scroll a::after {
-        border-bottom: 2px solid #922424;
-        border-right: 2px solid #922424;
+        border-bottom: 2px solid map-get($map: $theme-colors, $key: "accent");
+        border-right: 2px solid map-get($map: $theme-colors, $key: "accent");
         content: '';
         display: block;
         height: 8px;

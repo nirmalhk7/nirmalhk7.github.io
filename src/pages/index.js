@@ -51,7 +51,7 @@ const Jumbotron = () => (
 const WorkExperience = ({ experience }) => (
   <div className="container about-content about-content--timeline">
     <div className="col text-center">
-      <h3>My Work Experience.</h3>
+      <h3>My Work Experience</h3>
     </div>
     <div className="row">
       {experience.map((element, index) => (
@@ -153,7 +153,7 @@ const Projects = ({ projects, isOpen, handleClick }) => (
           <div className="narrow section-intro has-bottom-sep">
             <div className="">
               <h3 className="text-accent">Projects</h3>
-              <h1>See My Latest Projects.</h1>
+              <h1>See My Latest Projects</h1>
               <p className="lead">
                 Find my projects <Link to="/projects">categorized here</Link>.
               </p>
@@ -355,7 +355,6 @@ class IndexPage extends React.Component {
                   }}
                 />
 
-                <h3 className="text-center">I've got some skills.</h3>
                 <MySkills
                   frameworksLibraries={ymlYaml.frameworks_libraries}
                   languages={ymlYaml.languages}
