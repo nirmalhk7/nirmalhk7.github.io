@@ -13,7 +13,7 @@
     "autoprefixer": "10.3.4",
     "cross-fetch": "3.1.4",
     "eslint-plugin-react": "7.25.1",
-    "gatsby": "3.13.0",
+    "gatsby": "3.13.1",
     "gatsby-image": "3.11.0",
     "gatsby-plugin-feed": "3.13.0",
     "gatsby-plugin-google-gtag": "3.13.0",
