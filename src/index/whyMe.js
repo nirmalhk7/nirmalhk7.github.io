@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 export const MySkills = ({ frameworksLibraries, languages }) => (
   <>
     <h5 style={{ paddingTop: "0.5em" }}>
@@ -58,11 +59,11 @@ export const CollegeCourses = ({ collegeCourses }) => (
       <div className="disc">
         {collegeCourses.map((element, index) => (
           // eslint-disable-next-line react/jsx-no-undef
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             {index + 1 !== collegeCourses.length
               ? `${element.name}, `
               : `${element.name}.`}
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
     </div>

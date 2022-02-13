@@ -21,9 +21,9 @@ const LatestBlogItem = ({ item }) => {
       className="bg-gradient-accent bootstrap-wrapper"
       id="blog-first"
       style={{
-        textDecoration:"none",
-        paddingTop:"2em",
-        paddingBottom:"2em"
+        textDecoration: "none",
+        paddingTop: "2em",
+        paddingBottom: "2em",
       }}
     >
       <div className="container blog-content">
@@ -32,25 +32,36 @@ const LatestBlogItem = ({ item }) => {
           style={{ marginTop: "0rem" }}
           to={`/blog/${item.relativeDirectory}`}
         > */}
-          <div className="row">
-            <div className="col-lg-6 col-md-6 col-sm-12">
-              <img
-                alt="Latest Blog"
-                src={srx.src}
-                srcSet={srx.srcSet}
-                style={{ width:"70%", height:"auto" }}
-              />
-            </div>
-            <div className="col-lg-6 col-md-6 col-sm-12  text-md-right">
-              <h1 className="entry-title text-white text-decoration-none"  style={{textDecoration:"none"}}>
-                {item.childMarkdownRemark.frontmatter.title}
-              </h1>
-              <div className="entry-content text-white text-decoration-none"  style={{textDecoration:"none"}}>
-                <p>{item.childMarkdownRemark.frontmatter.description}</p>
-              </div>
-              <Link className="btn btn-outline-white btn-outline-fill-white " to={`/blog/${item.relativeDirectory}`}>Read More</Link>
-            </div>
+        <div className="row">
+          <div className="col-lg-6 col-md-6 col-sm-12">
+            <img
+              alt="Latest Blog"
+              src={srx.src}
+              srcSet={srx.srcSet}
+              style={{ width: "70%", height: "auto" }}
+            />
           </div>
+          <div className="col-lg-6 col-md-6 col-sm-12  text-md-right">
+            <h1
+              className="entry-title text-white text-decoration-none"
+              style={{ textDecoration: "none" }}
+            >
+              {item.childMarkdownRemark.frontmatter.title}
+            </h1>
+            <div
+              className="entry-content text-white text-decoration-none"
+              style={{ textDecoration: "none" }}
+            >
+              <p>{item.childMarkdownRemark.frontmatter.description}</p>
+            </div>
+            <Link
+              className="btn btn-outline-white btn-outline-fill-white "
+              to={`/blog/${item.relativeDirectory}`}
+            >
+              Read More
+            </Link>
+          </div>
+        </div>
         {/* </Link> */}
       </div>
     </section>
@@ -63,7 +74,7 @@ const MasonPanel = ({ sitename, blogItems }) => {
       <div className="">
         <div className="blog-content m-auto" style={{ maxWidth: "1500px" }}>
           <div
-            className="section-intro has-bottom-sep"
+            className="section_intro has-bottom-sep"
             style={{ paddingTop: "5em" }}
           >
             <div className="text-center">
@@ -97,7 +108,13 @@ const MasonPanel = ({ sitename, blogItems }) => {
                             }
                             to={`/blog/${element.relativeDirectory}`}
                           >
-                            <img alt={element.childMarkdownRemark.frontmatter.title} src={srx.src} srcSet={srx.srcSet} />
+                            <img
+                              alt={
+                                element.childMarkdownRemark.frontmatter.title
+                              }
+                              src={srx.src}
+                              srcSet={srx.srcSet}
+                            />
                           </Link>
                         </div>
                         <div className="item-folio__text">
@@ -127,7 +144,7 @@ const BlogByCategory = ({ blogItems }) => {
   return (
     <section className="bg-gray  bootstrap-wrapper">
       <div
-        className="m-auto narrow section-intro has-bottom-sep"
+        className="m-auto narrow section_intro has-bottom-sep"
         style={{ paddingTop: "5em" }}
       >
         <div className="m-auto text-center">
@@ -200,7 +217,10 @@ const Blog = ({ location, data }) => {
               </div>
             </div>
             <div className="home-content__buttons">
-              <blog className="smoothscroll btn btn-outline-white" href="#blog-first">
+              <blog
+                className="smoothscroll btn btn-outline-white"
+                href="#blog-first"
+              >
                 Explore
               </blog>
             </div>

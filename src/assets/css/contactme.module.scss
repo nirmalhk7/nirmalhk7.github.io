@@ -1,10 +1,6 @@
 @import "../scss/constants";
 
-/* ===================================================================
- * # contact - (_site-layout.scss)
- *
- * ------------------------------------------------------------------- */
- .s-contact {
+ .section_contact {
     background-color: #151515;
     background-repeat: no-repeat;
     background-position: center, center;
@@ -13,7 +9,7 @@
     color: rgba(255, 255, 255, 0.5);
     position: relative;
 }
-.s-contact .overlay {
+.section_contact .overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -22,24 +18,24 @@
     opacity: .75;
     background-color: #070606;
 }
-.s-contact .section-intro h1 {
+.section_contact .section_intro h1 {
     color: #FFFFFF;
 }
-.s-contact .section-intro p {
+.section_contact .section_intro p {
     color: rgba(255, 255, 255, 0.5);
 }
-.s-contact .section-intro.has-bottom-sep::after {
+.section_contact .section_intro.has-bottom-sep::after {
     background-color: rgba(255, 255, 255, 0.1);
 }
-.s-contact .form-field {
+.section_contact .form-field {
     position: relative;
 }
-.s-contact .form-field:after {
+.section_contact .form-field:after {
     content: "";
     display: table;
     clear: both;
 }
-.s-contact .form-field label {
+.section_contact .form-field label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: 1.1rem;
@@ -54,7 +50,7 @@
     color: #FFFFFF;
     background: map-get($map: $theme-colors, $key: "accent");
 }
-.s-contact .form-field label::after {
+.section_contact .form-field label::after {
     content: "";
     position: absolute;
     left: -5px;

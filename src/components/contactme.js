@@ -1,7 +1,7 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import "./../assets/css/contactme.module.scss";
+import styles from "./../assets/css/contactme.module.scss";
 
 class ContactForm extends React.Component {
   constructor(props) {
@@ -23,9 +23,9 @@ class ContactForm extends React.Component {
   render() {
     return (
       <div className="bootstrap-wrapper">
-        <section className="s-contact parallax" id="contact">
-          <div className="overlay" />
-          <div className="narrow section-intro m-auto">
+        <section className={`${styles.section_contact} parallax`} id="contact">
+          <div className={styles.overlay} />
+          <div className={`${styles.section_intro} narrow m-auto`}>
             <div className="">
               <h3 className="text-accent">Contact Me</h3>
               <h1>Say Hi!</h1>
@@ -34,11 +34,10 @@ class ContactForm extends React.Component {
           </div>
           <div className="container" style={{ maxWidth: "1000px" }}>
             <div className="row">
-              <div className="col-lg-8 col-md-8 col-sm-12 tab-full contact__form">
-                <form
-                  action="https://getsimpleform.com/messages?form_api_token=162ff4fa2bb9c89f908b059c33b0a806"
-                  method="post"
-                >
+              <div
+                className={`col-lg-8 col-md-8 col-sm-12 tab-full ${styles.contact__form}`}
+              >
+                <form method="post">
                   <input
                     className="full-width"
                     id="name"
@@ -82,10 +81,18 @@ class ContactForm extends React.Component {
                   </div>
                   <input
                     className="submit full-width btn"
-                    disabled={!this.state.email || !this.state.subject || !this.state.name}
+                    disabled={
+                      !this.state.email ||
+                      !this.state.subject ||
+                      !this.state.name
+                    }
                     style={{
                       cursor: `${
-                        !this.state.email || !this.state.subject || !this.state.name ? "not-allowed" : "default"
+                        !this.state.email ||
+                        !this.state.subject ||
+                        !this.state.name
+                          ? "not-allowed"
+                          : "default"
                       }`,
                     }}
                     type="submit"
@@ -93,12 +100,13 @@ class ContactForm extends React.Component {
                   />
                   {this.state.response ? (
                     <div className="alert-box alert-box--info hideit">
-                        <p>Info Message. Your Message Goes Here.</p>
-                        <FontAwesomeIcon className="alert-box__close" icon={faTimes} />
-                      </div>
-                  ) : 
-                    null
-                  }
+                      <p>Info Message. Your Message Goes Here.</p>
+                      <FontAwesomeIcon
+                        className="alert-box__close"
+                        icon={faTimes}
+                      />
+                    </div>
+                  ) : null}
                 </form>
               </div>
               <div className="col-lg-4 col-md-4 col-sm-12 tab-full contact__infos">
@@ -111,7 +119,8 @@ class ContactForm extends React.Component {
                 <h4 className="h06 text-white">Address</h4>
                 <p>
                   Block 5,
-                  <br /> National Institute of Technology Karnataka Surathkal Hostel,
+                  <br /> National Institute of Technology Karnataka Surathkal
+                  Hostel,
                   <br /> NITK Surathkal,
                   <br /> Karnataka- 575025, India
                 </p>

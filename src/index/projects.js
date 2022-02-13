@@ -5,7 +5,7 @@ const Projects = ({ projects, isOpen, handleClick }) => (
     <div className="container">
       <div className="row">
         <div className="col-lg-6 col-md-6 col-sm-12 tab-full right">
-          <div className="narrow section-intro has-bottom-sep">
+          <div className="narrow section_intro has-bottom-sep">
             <div className="">
               <h3 className="text-accent">Projects</h3>
               <h1>See My Latest Projects</h1>

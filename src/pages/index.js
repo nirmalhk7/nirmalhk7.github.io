@@ -1,11 +1,17 @@
-import React from "react"; 
+import React from "react";
 import Link from "../components/link";
 // import data from '../../public/static/data.json'
 import Layout from "../components/layout";
 // import Image from "../components/image"
 import SearchEnggOp from "../components/seo";
 import SocialMediaIcons from "../components/social";
-import { WorkExperience, CollegeCourses, OnlineCourses, Memberships, MySkills } from "../index/whyMe";
+import {
+  WorkExperience,
+  CollegeCourses,
+  OnlineCourses,
+  Memberships,
+  MySkills,
+} from "../index/whyMe";
 import HireMe from "../index/hireme";
 import Projects from "../index/projects";
 import Blog from "../index/blog";
@@ -13,31 +19,31 @@ import Blog from "../index/blog";
 export async function getStaticProps(context) {
   return {
     props: {
-      data : {
+      data: {
         projects: [],
-        workexperience: [],
-        onlineCourses: [],
-        collegeCourses: [],
-        membership:[]
+        workexperience: require("../../content/yml/workexperiences.yaml"),
+        onlineCourses: require("../../content/yml/courses.yaml"),
+        collegeCourses: require("../../content/yml/courses.yaml"),
+        membership: require("../../content/yml/memberships.yaml"),
       },
       skills: {
-        frameworksLibraries:[],
-        languages: []
-      }
+        frameworksLibraries: [],
+        languages: [],
+      },
     }, // will be passed to the page component as props
   };
 }
 
 const Jumbotron = () => (
   <section
-    className="s-home page-hero  parallax"
+    className="w-full bg-cover h-screen relative bg-no-repeat bg-fixed bg-center  table bg-transparent bg-beach page-hero | s-home  parallax"
     data-natural-height="2000"
     data-natural-width="3000"
     data-parallax="scroll"
     data-position-y="center"
     id="home"
   >
-    <div className="overlay" />
+    <div className="absolute t-0 left-0 w-full h-full bg-black | overlay" />
     <div className="home-content bootstrap-wrapper">
       <div className="container home-content__main">
         <h3 className="ital-hover">Hey!</h3>
@@ -69,8 +75,6 @@ const Jumbotron = () => (
     <SocialMediaIcons />
   </section>
 );
-
-
 
 const PersonalInfo = () => (
   <div>
@@ -135,12 +139,9 @@ class IndexPage extends React.Component {
       workexperience,
       onlineCourses,
       collegeCourses,
-      membership
+      membership,
     } = this.props.data;
-    const {
-      languages,
-      frameworksLibraries
-    } = this.props.skills;
+    const { languages, frameworksLibraries } = this.props.skills;
     return (
       <Layout location={this.props.location}>
         <SearchEnggOp
@@ -148,13 +149,41 @@ class IndexPage extends React.Component {
           title="Home"
         />
         <Jumbotron />
-        <section className="s-about bootstrap-wrapper" id="about">
+        <section
+          className="pt-8 pb-6 bg-white relative | s-about bootstrap-wrapper"
+          id="about"
+        >
           <div className="w-100 text-center">
-            <div className="narrow section-intro has-bottom-sep m-auto">
+            <div className="max-w-screen-md	text-center relative | section_intro has-bottom-sep m-auto">
               <div className="col-12 text-center">
-                <h3 className="text-accent">Nirmal Khedkar</h3>
-                <h1>More About Me</h1>
-                <p className="lead">
+                <h3
+                  className="font-blocky font-semibold text-3xl uppercase mb-0 mt-0 text-accent"
+                  style={{
+                    fontFamily: "Montserrat, sans-serif",
+                    fontSize: "2rem",
+                    fontWeight: 600,
+                    letterSpacing: ".15rem",
+                    marginBottom: 0,
+                    marginTop: 0,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Nirmal Khedkar
+                </h3>
+                <h1 style={{
+                  fontFamily: "Libre Baskerville, serif",
+                  fontSize: "4.8rem",
+                  fontWeight: 700,
+                  lineHeight: 1.375,
+                  marginTop: 0
+                }}>More About Me</h1>
+                <p className="lead" style={{
+                  fontFamily: "Montserrat, sans-serif",
+                  fontWeight: 400,
+                  fontSize: "2rem",
+                  lineHeight: 1.8,
+                  marginBottom: "3.6rem"
+                }}>
                   I'm a student in National Institute of Technology Karnataka
                   Surathkal doing a Bachelors in Technology (Information
                   Technology) constantly looking for new and interesting
@@ -210,7 +239,7 @@ class IndexPage extends React.Component {
           projects={projects}
         />
         <Blog />
-      </Layout>
+      </Layout >
     );
   }
 }

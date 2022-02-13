@@ -23,9 +23,16 @@ const NotFoundPage = ({ location }) => (
     <section className="blog-content-wrap">
       <div className="row blog-content m-auto">
         <div className="col-12">
-          <h6 style={{ textAlign: "center" }}>Lost your way? Search what you need here.</h6>
+          <h6 style={{ textAlign: "center" }}>
+            Lost your way? Search what you need here.
+          </h6>
           <div className="blog-list block-1-2 block-tab-full">
-            <input className="full-width" id="sampleInput" placeholder="Search Here" type="text" />
+            <input
+              className="full-width"
+              id="sampleInput"
+              placeholder="Search Here"
+              type="text"
+            />
           </div>
         </div>
       </div>

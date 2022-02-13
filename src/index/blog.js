@@ -2,7 +2,7 @@ import Link from "../components/link";
 
 const Blog = ({ name }) => (
   <section className="bg-gradient-accent  bootstrap-wrapper" id="blog">
-    <div className="narrow section-intro has-bottom-sep m-auto">
+    <div className="narrow section_intro has-bottom-sep m-auto">
       <div className="col-12">
         <h3 className="text-white">{name}</h3>
         <h1 className="text-white">Latest From The Blog</h1>

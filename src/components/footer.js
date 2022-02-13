@@ -2,7 +2,7 @@ import { faLongArrowAltUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { social } from "./social";
-import "../assets/css/footer.module.css";
+import styles from "../assets/css/footer.module.css";
 
 export class ScrollToTop extends React.Component {
   componentDidMount() {
@@ -11,7 +11,10 @@ export class ScrollToTop extends React.Component {
       scrollFn();
     };
     function scrollFn() {
-      if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 20) {
+      if (
+        document.body.scrollTop > 40 ||
+        document.documentElement.scrollTop > 20
+      ) {
         mybutton.style.display = "block";
       } else {
         mybutton.style.display = "none";
@@ -25,8 +28,17 @@ export class ScrollToTop extends React.Component {
       // document.documentElement.scrollTop = 0;
     }
     return (
-      <button className="go-top" id="myBtn" onClick={topFunction()} title="Go to top">
-        <FontAwesomeIcon icon={faLongArrowAltUp} size="lg" style={{ width: "100%", height: "100%" }} />
+      <button
+        className={styles.go_top}
+        id="myBtn"
+        onClick={topFunction()}
+        title="Go to top"
+      >
+        <FontAwesomeIcon
+          icon={faLongArrowAltUp}
+          size="lg"
+          style={{ width: "100%", height: "100%" }}
+        />
       </button>
     );
   }
@@ -35,15 +47,18 @@ export class ScrollToTop extends React.Component {
 const Footer = () => {
   return (
     <footer>
-      <div className="row flicker-3">
+      <div className={`row ${styles.flicker_3}`}>
         <div className="">
-          <ul className="footer-social">
+          <ul className={styles.footer_social}>
             {social.map((element, index) => {
               if (element.link)
                 return (
-                  
                   <li key={index}>
-                    <a className="ln text-decoration-none" href={element.link} target="blank">
+                    <a
+                      className="text-decoration-none"
+                      href={element.link}
+                      target="blank"
+                    >
                       {/* TODO Increase Icon size in Mobile view */}
                       <FontAwesomeIcon icon={element.class} />
                       <span>{element.name}</span>
@@ -60,7 +75,9 @@ const Footer = () => {
             <span style={{ color: "#3d3d3d" }}>
               Made with <FontAwesomeIcon icon={faHeart} /> by Nirmal Khedkar
             </span>
-            <span style={{ color: "#3d3d3d" }}>Last Updated: July 20, 2020</span>
+            <span style={{ color: "#3d3d3d" }}>
+              Last Updated: July 20, 2020
+            </span>
           </div>
           <div className="copyright">
             <span id="justinmaller" style={{ color: "#3d3d3d" }}>
@@ -72,7 +89,11 @@ const Footer = () => {
             </span>
             <span style={{ color: "#3d3d3d" }}>
               Theme by &nbsp;
-              <a className="hidelink" href="https://www.styleshout.com/" style={{ color: "#3d3d3d" }}>
+              <a
+                className="hidelink"
+                href="https://www.styleshout.com/"
+                style={{ color: "#3d3d3d" }}
+              >
                 styleshout
               </a>
               &nbsp;(Copyright Hola 2017)

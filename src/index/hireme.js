@@ -19,4 +19,4 @@ const HireMe = () => (
     </Link>
   </>
 );
-export default HireMe
+export default HireMe;

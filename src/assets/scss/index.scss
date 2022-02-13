@@ -1,11 +1,6 @@
 @import "../scss/constants";
 
 
-.parallax {
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
 
       /* ===================================================================
  * # common and reusable theme styles  - (_common-styles.scss)
@@ -21,18 +16,15 @@
     /* ------------------------------------------------------------------- 
  * ## section intro - (_common-styles.scss)
  * ------------------------------------------------------------------- */
- .section-intro {
-    text-align: center;
-    position: relative;
-}
-.section-intro h1 {
+
+.section_intro h1 {
     font-family: "Libre Baskerville", serif;
     font-size: 4.8rem;
     font-weight: 700;
     line-height: 1.375;
     margin-top: 0;
 }
-.section-intro h3 {
+.section_intro h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: 2rem;
@@ -41,11 +33,11 @@
     margin-top: 0;
     margin-bottom: 0;
 }
-.section-intro.has-bottom-sep {
+.section_intro.has-bottom-sep {
     padding-bottom: 1.5rem;
     position: relative;
 }
-.section-intro.has-bottom-sep::after {
+.section_intro.has-bottom-sep::after {
     display: inline-block;
     height: 1px;
     width: 240px;
@@ -54,29 +46,29 @@
 }
 /* ------------------------------------------------------------------- 
 * responsive:
-* section-intro
+* section_intro
 * ------------------------------------------------------------------- */
 @media only screen and (max-width: 800px) {
-    .section-intro h1 {
+    .section_intro h1 {
         font-size: 4.2rem;
     }
-    .section-intro h3 {
+    .section_intro h3 {
         font-size: 1.8rem;
     }
 }
 @media only screen and (max-width: 600px) {
-    .section-intro h1 {
+    .section_intro h1 {
         font-size: 3.6rem;
     }
-    .section-intro h3 {
+    .section_intro h3 {
         font-size: 1.7rem;
     }
 }
 @media only screen and (max-width: 400px) {
-    .section-intro h1 {
+    .section_intro h1 {
         font-size: 3.3rem;
     }
-    .section-intro h3 {
+    .section_intro h3 {
         font-size: 1.6rem;
     }
 }

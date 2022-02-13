@@ -90,11 +90,11 @@ class Projects extends React.Component {
                           key={i2}
                         >
                           <div
-                         className="accordion-header js-accordion-header"
-                         id={`header@${e2.node.id}`}
-                          onClick={this.handleClick}
-                          onKeyDown={this.handleClick}
-                          role="button"
+                            className="accordion-header js-accordion-header"
+                            id={`header@${e2.node.id}`}
+                            onClick={this.handleClick}
+                            onKeyDown={this.handleClick}
+                            role="button"
                             tabIndex={0}
                           >
                             {e2.node.childMarkdownRemark.frontmatter.title}
