@@ -2,9 +2,9 @@ import React from "react";
 
 import Layout from "../components/layout";
 import SearchEnggOp from "../components/seo";
-import { graphql, Link } from "gatsby";
 import SocialMediaIcons from "../components/partials/social";
 // import SocialMediaSideIcons from "../components/partials/social"
+import Link from "../components/partials/link";
 
 const LatestBlogItem = ({ item }) => {
   let srx = item.childMarkdownRemark.frontmatter.img;
@@ -208,52 +208,14 @@ const Blog = ({ location, data }) => {
         </div>
         <SocialMediaIcons />
       </section>
-      <LatestBlogItem item={data.allFile.nodes[0]} />
+      <LatestBlogItem item={data.allFile[0]} />
       <MasonPanel
-        blogItems={data.allFile.nodes}
+        blogItems={data.allFile}
         sitename={data.site.siteMetadata.blogName}
       />
-      <BlogByCategory blogItems={data.allFile.nodes} />
+      <BlogByCategory blogItems={data.allFile} />
     </Layout>
   );
 };
-export const postQuery = graphql`
-  {
-    allFile(
-      filter: {
-        sourceInstanceName: { eq: "blog" }
-        ext: { eq: ".md" }
-        childMarkdownRemark: { frontmatter: { draft: { in: [null, false] } } }
-      }
-      sort: { fields: childMarkdownRemark___frontmatter___date, order: DESC }
-    ) {
-      nodes {
-        relativeDirectory
-        childMarkdownRemark {
-          frontmatter {
-            title
-            date(formatString: "MMMM DD,YYYY")
-            category
-            description
-            img {
-              childImageSharp {
-                fixed {
-                  srcWebp
-                  srcSetWebp
-                }
-              }
-              publicURL
-            }
-          }
-        }
-      }
-    }
-    site {
-      siteMetadata {
-        blogName
-      }
-    }
-  }
-`;
 
 export default Blog;

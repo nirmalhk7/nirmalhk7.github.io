@@ -53,9 +53,6 @@ typings/
 
 Hola10
 
-# gatsby files
-.cache/
-public
 
 # Mac files
 .DS_Store
@@ -66,3 +63,4 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+.next

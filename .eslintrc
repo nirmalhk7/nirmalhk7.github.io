@@ -50,7 +50,7 @@
     "semi": "error",
     "no-useless-return": "error",
     "sort-vars": "warn",
-
+    "no-unused-vars":"off",
     "react/boolean-prop-naming": "error",
     "react/jsx-no-useless-fragment": "error",
     "react/jsx-sort-props": "error",
@@ -60,7 +60,7 @@
     "react/require-render-return": "error",
     "react/sort-comp": "warn",
     "react/self-closing-comp": "error", 
-    
+    "react/react-in-jsx-scope": "off",
     // "no-anonymous-exports-page-templates": "warn",
     // "limited-exports-page-templates": "warn",
     "sonarjs/no-duplicated-branches":"off", // Work to enable this

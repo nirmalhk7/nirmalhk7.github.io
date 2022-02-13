@@ -1,6 +1,6 @@
 import React from "react";
 import SearchEnggOp from "../components/seo";
-import { Link } from "gatsby";
+import Link from "../components/partials/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,

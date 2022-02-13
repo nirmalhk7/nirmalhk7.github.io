@@ -1,10 +1,32 @@
-import React from "react";
-import { Link, withPrefix, graphql } from "gatsby";
+import React from "react"; 
+import Link from "../components/link";
 // import data from '../../public/static/data.json'
 import Layout from "../components/layout";
 // import Image from "../components/image"
 import SearchEnggOp from "../components/seo";
-import SocialMediaIcons from "../components/partials/social";
+import SocialMediaIcons from "../components/social";
+import { WorkExperience, CollegeCourses, OnlineCourses, Memberships, MySkills } from "../index/whyMe";
+import HireMe from "../index/hireme";
+import Projects from "../index/projects";
+import Blog from "../index/blog";
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      data : {
+        projects: [],
+        workexperience: [],
+        onlineCourses: [],
+        collegeCourses: [],
+        membership:[]
+      },
+      skills: {
+        frameworksLibraries:[],
+        languages: []
+      }
+    }, // will be passed to the page component as props
+  };
+}
 
 const Jumbotron = () => (
   <section
@@ -48,32 +70,7 @@ const Jumbotron = () => (
   </section>
 );
 
-const WorkExperience = ({ experience }) => (
-  <div className="container about-content about-content--timeline">
-    <div className="col text-center">
-      <h3>My Work Experience</h3>
-    </div>
-    <div className="row">
-      {experience.map((element, index) => (
-        <div className="col-lg-6 col-md-6 col-sm-12 left" key={index}>
-          <div className="timeline">
-            <div className="timeline__block">
-              <div className="timeline__bullet" first={index} />
-              <div className="timeline__header">
-                <p className="timeline__timeframe">{element.timeframe}</p>
-                <h3>{element.company}</h3>
-                <h5>{element.post}</h5>
-              </div>
-              <div className="timeline__desc">
-                <p>{element.description}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+
 
 const PersonalInfo = () => (
   <div>
@@ -105,177 +102,6 @@ const PersonalInfo = () => (
       Machine Learning and its applications.
     </p>
   </div>
-);
-const HireMe = () => (
-  <>
-    <a
-      className="btn btn-accent full-width text-decoration-none"
-      href={withPrefix("./Resume.pdf")}
-      rel="noreferrer"
-      style={{ marginTop: "1em" }}
-      target="_blank"
-    >
-      Download My Resume
-    </a>
-    <Link
-      className="smoothscroll btn btn-outline-accent full-width text-decoration-none"
-      to="#contact"
-    >
-      Want to Hire?
-    </Link>
-  </>
-);
-
-const Blog = ({ name }) => (
-  <section className="bg-gradient-accent  bootstrap-wrapper" id="blog">
-    <div className="narrow section-intro has-bottom-sep m-auto">
-      <div className="col-12">
-        <h3 className="text-white">{name}</h3>
-        <h1 className="text-white">Latest From The Blog</h1>
-        <p className="lead">
-          I have strong views on topics like Finance, Technology, Future and
-          Environment. Find me&nbsp;
-          <Link className="text-white" title={name} to="/blog">
-            blogging about them here
-          </Link>
-          .
-        </p>
-      </div>
-    </div>
-  </section>
-);
-
-const Projects = ({ projects, isOpen, handleClick }) => (
-  <section className="bg-gray bootstrap-wrapper" id="projects">
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-6 col-md-6 col-sm-12 tab-full right">
-          <div className="narrow section-intro has-bottom-sep">
-            <div className="">
-              <h3 className="text-accent">Projects</h3>
-              <h1>See My Latest Projects</h1>
-              <p className="lead">
-                Find my projects <Link to="/projects">categorized here</Link>.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-6 col-md-6 col-sm-12 tab-full left">
-          <div className="accordion js-accordion">
-            {projects.nodes.map((element, index) => (
-              <div
-                className={`accordion__item js-accordion-item ${
-                  isOpen[index] ? "active" : ""
-                }`}
-                id={`accordion-${index}`}
-                key={index}
-              >
-                <div
-                  className="accordion-header bg-gray js-accordion-header"
-                  id={`accordionheader-${index}`}
-                  onClick={handleClick}
-                  onKeyDown={handleClick}
-                  role="button"
-                  tabIndex={0}
-                >
-                  
-                  {element.childMarkdownRemark.frontmatter.title}
-                </div>
-                <div
-                  className="accordion-body js-accordion-body bg-white"
-                  id={`accordionbody-${index}`}
-                  style={{
-                    display: `${isOpen[index] ? "block" : "none"}`,
-                  }}
-                >
-                  <div className="accordion-body__contents">
-                    <p>{element.childMarkdownRemark.excerpt}</p>
-                    <Link to={`/projects?id=${element.id}`}>
-                      Find more here
-                    </Link>
-                    .&nbsp;&nbsp;&nbsp;
-                    <code>
-                      {element.childMarkdownRemark.frontmatter.tags[0]}
-                    </code>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const MySkills = ({ frameworksLibraries, languages }) => (
-  <>
-    <h5 style={{ paddingTop: "0.5em" }}>
-      Familiar Languages, Frameworks and Libraries
-    </h5>
-    <hr />
-    <div className="row" style={{ marginBottom: "5em" }}>
-      {[...frameworksLibraries, ...languages].map((element, index) => (
-        <div className="col-3 minicard" key={index}>
-          {element}
-        </div>
-      ))}
-    </div>
-  </>
-);
-
-const OnlineCourses = ({ onlineCourses }) => (
-  <>
-    {" "}
-    <h5>Online Certification and Courses Taken</h5>
-    <hr />
-    <div className="row m-0">
-      <ul className="disc">
-        {onlineCourses.nodes.map((element, index) => (
-          <li key={index}>
-            {element.name} by {element.provider}- (
-            <a href={element.link}>link</a>)
-          </li>
-        ))}
-      </ul>
-    </div>
-  </>
-);
-
-const Memberships = ({ membership }) => (
-  <>
-    <h5>Memberships</h5>
-    <hr />
-    <div className="row m-0">
-      <ul className="disc">
-        {membership.nodes.map((element, index) => (
-          <li key={index}>
-            {element.position} at&nbsp;
-            <a href={element.clubwebsite} key={index}>
-              {element.club}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </>
-);
-const CollegeCourses = ({ collegeCourses }) => (
-  <>
-    <h5>Prominent College Courses Taken</h5>
-    <hr />
-    <div className="row mr-0 ml-0">
-      <div className="disc">
-        {collegeCourses.nodes.map((element, index) => (
-          <React.Fragment key={index}>
-            {index + 1 !== collegeCourses.nodes.length
-              ? `${element.name}, `
-              : `${element.name}.`}
-          </React.Fragment>
-        ))}
-      </div>
-    </div>
-  </>
 );
 
 class IndexPage extends React.Component {
@@ -309,10 +135,12 @@ class IndexPage extends React.Component {
       workexperience,
       onlineCourses,
       collegeCourses,
-      membership,
-      ymlYaml,
-      site,
+      membership
     } = this.props.data;
+    const {
+      languages,
+      frameworksLibraries
+    } = this.props.skills;
     return (
       <Layout location={this.props.location}>
         <SearchEnggOp
@@ -356,8 +184,8 @@ class IndexPage extends React.Component {
                 />
 
                 <MySkills
-                  frameworksLibraries={ymlYaml.frameworks_libraries}
-                  languages={ymlYaml.languages}
+                  frameworksLibraries={frameworksLibraries}
+                  languages={languages}
                 />
                 <HireMe />
               </div>
@@ -374,83 +202,17 @@ class IndexPage extends React.Component {
               </div>
             </div>
           </div>
-          <WorkExperience experience={workexperience.nodes} />
+          <WorkExperience experience={workexperience} />
         </section>
         <Projects
           handleClick={this.handleClick}
           isOpen={this.state.isOpen}
           projects={projects}
         />
-        <Blog name={site.siteMetadata.blogName} />
+        <Blog />
       </Layout>
     );
   }
 }
 
 export default IndexPage;
-export const postQuery = graphql`
-  query x {
-    projects: allFile(
-      filter: { sourceInstanceName: { eq: "projects" } }
-      sort: { order: DESC, fields: birthTime }
-      limit: 5
-    ) {
-      nodes {
-        id
-        childMarkdownRemark {
-          frontmatter {
-            title
-            tags
-          }
-          excerpt
-        }
-        birthTime
-      }
-    }
-    site: site {
-      siteMetadata {
-        blogName
-      }
-    }
-    workexperience: allWorkexperiencesYaml {
-      nodes {
-        timeframe
-        post
-        company
-        description
-      }
-    }
-    membership: allMembershipsYaml {
-      nodes {
-        club
-        clubwebsite
-        position
-      }
-    }
-    onlineCourses: allCoursesYaml(filter: { provider: { ne: null } }) {
-      nodes {
-        name
-        link
-        provider
-      }
-    }
-    collegeCourses: allCoursesYaml(filter: { provider: { eq: null } }) {
-      nodes {
-        name
-        link
-      }
-    }
-    cv: allProfilesYaml(filter: { type: { eq: "cv" } }) {
-      nodes {
-        name
-        url
-        icon
-        initial
-      }
-    }
-    ymlYaml {
-      frameworks_libraries
-      languages
-    }
-  }
-`;

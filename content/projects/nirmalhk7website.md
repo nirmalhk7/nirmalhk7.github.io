@@ -1,6 +1,6 @@
 ---
 title: nirmalhk7.github.io
-tags: ['Gatsby']
+tags: ['NextJS']
 ---
 
 This very website, that is.

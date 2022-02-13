@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "../components/layout";
 import SearchEnggOp from "../components/seo";
-import { graphql } from "gatsby";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -130,30 +129,5 @@ class Projects extends React.Component {
     );
   }
 }
-
-export const postQuery = graphql`
-  query projects {
-    allFile(
-      filter: { sourceInstanceName: { eq: "projects" } }
-      sort: { order: DESC, fields: birthTime }
-    ) {
-      group(field: childMarkdownRemark___frontmatter___tags) {
-        edges {
-          node {
-            id
-            childMarkdownRemark {
-              frontmatter {
-                title
-                tags
-              }
-              html
-            }
-          }
-        }
-        fieldValue
-      }
-    }
-  }
-`;
 
 export default Projects;
