@@ -22,7 +22,7 @@ class ContactForm extends React.Component {
 
   render() {
     return (
-      <div className="bootstrap-wrapper">
+      <div className="">
         <section className={`${styles.section_contact} parallax`} id="contact">
           <div className={styles.overlay} />
           <div className={`${styles.section_intro} narrow m-auto`}>
@@ -32,10 +32,10 @@ class ContactForm extends React.Component {
               <p className="lead">I'll reach out to you as soon as I can.</p>
             </div>
           </div>
-          <div className="container" style={{ maxWidth: "1000px" }}>
-            <div className="row">
+          <div className="container mx-auto" style={{ maxWidth: "1000px" }}>
+            <div className="grid grid-cols-2 sm:grid-cols-1">
               <div
-                className={`col-lg-8 col-md-8 col-sm-12 tab-full ${styles.contact__form}`}
+                className={`col-span-2 sm:col-span-1 w-full ${styles.contact__form}`}
               >
                 <form method="post">
                   <input
@@ -109,7 +109,7 @@ class ContactForm extends React.Component {
                   ) : null}
                 </form>
               </div>
-              <div className="col-lg-4 col-md-4 col-sm-12 tab-full contact__infos">
+              <div className="w-full contact__infos">
                 <h4 className="h06 text-white">Email</h4>
                 <p>
                   nirmalhk7@gmail.com

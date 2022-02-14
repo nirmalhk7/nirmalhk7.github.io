@@ -43,9 +43,9 @@ const Jumbotron = () => (
     data-position-y="center"
     id="home"
   >
-    <div className="absolute t-0 left-0 w-full h-full bg-black | overlay" />
-    <div className="home-content bootstrap-wrapper">
-      <div className="container home-content__main">
+    <div className="h-full left-0 opacity-50 absolute top-0 w-full bg-black | overlay" />
+    <div className="home-content">
+      <div className="container mx-auto content-center  home-content__main">
         <h3 className="ital-hover">Hey!</h3>
         <h1>
           I'm Nirmal Khedkar, <br />
@@ -78,7 +78,7 @@ const Jumbotron = () => (
 
 const PersonalInfo = () => (
   <div>
-    <h3 id="howdy">Greetings!</h3>
+    <h3>Greetings!</h3>
     <p>
       I’m from India, and I’m final year student at National Institute of
       Technology, Karnataka. Programming, reading books, reading news, table
@@ -149,41 +149,29 @@ class IndexPage extends React.Component {
           title="Home"
         />
         <Jumbotron />
-        <section
-          className="pt-8 pb-6 bg-white relative | s-about bootstrap-wrapper"
-          id="about"
-        >
+        <section className="pt-8 pb-6 bg-white relative | s-about" id="about">
           <div className="w-100 text-center">
-            <div className="max-w-screen-md	text-center relative | section_intro has-bottom-sep m-auto">
-              <div className="col-12 text-center">
+            <div className="max-w-screen-md	text-center relative container-md pb-6 | narrow section_intro m-auto">
+              <div className="text-center">
                 <h3
-                  className="font-blocky font-semibold text-3xl uppercase mb-0 mt-0 text-accent"
-                  style={{
-                    fontFamily: "Montserrat, sans-serif",
-                    fontSize: "2rem",
-                    fontWeight: 600,
-                    letterSpacing: ".15rem",
-                    marginBottom: 0,
-                    marginTop: 0,
-                    textTransform: "uppercase",
-                  }}
+                  className="font-blocky font-semibold text-3xl uppercase tracking-[.15rem] mb-0 mt-0 text-accent w-full"
                 >
                   Nirmal Khedkar
                 </h3>
-                <h1 style={{
-                  fontFamily: "Libre Baskerville, serif",
-                  fontSize: "4.8rem",
-                  fontWeight: 700,
-                  lineHeight: 1.375,
-                  marginTop: 0
-                }}>More About Me</h1>
-                <p className="lead" style={{
-                  fontFamily: "Montserrat, sans-serif",
-                  fontWeight: 400,
-                  fontSize: "2rem",
-                  lineHeight: 1.8,
-                  marginBottom: "3.6rem"
-                }}>
+                <h1
+                  style={{
+                    fontFamily: "Libre Baskerville, serif",
+                    fontSize: "4.8rem",
+                    fontWeight: 700,
+                    lineHeight: 1.375,
+                    marginTop: 0,
+                  }}
+                >
+                  More About Me
+                </h1>
+                <p
+                  className="font-normal text-3xl mb-16 font-blocky leading-7"
+                >
                   I'm a student in National Institute of Technology Karnataka
                   Surathkal doing a Bachelors in Technology (Information
                   Technology) constantly looking for new and interesting
@@ -192,16 +180,16 @@ class IndexPage extends React.Component {
               </div>
             </div>
           </div>
-          <div className="container about-content">
-            <div className="row">
-              <div className="col-lg-6 col-md-6 col-sm-12">
+          <div className="container mx-auto about-content">
+            <div className="grid grid-cols-2">
+              <div>
                 <PersonalInfo />
               </div>
-              <div className="col-lg-6 col-md-6 col-sm-12">
+              <div>
                 <img
                   alt="Nirmal Khedkar"
                   className="header-image"
-                  src="https://avatars.githubusercontent.com/u/25480443"
+                  // src="https://avatars.githubusercontent.com/u/25480443"
                   style={{
                     borderRadius: "70%",
                     padding: "1rem",
@@ -220,12 +208,12 @@ class IndexPage extends React.Component {
               </div>
             </div>
           </div>
-          <div className="container about-content">
-            <div className="row">
-              <div className="col-lg-6 col-md-6 col-sm-12">
+          <div className="container mx-auto about-content">
+            <div className="grid grid-cols-2 gap-10">
+              <div>
                 <OnlineCourses onlineCourses={onlineCourses} />
               </div>
-              <div className="col-lg-6 col-md-6 col-sm-12">
+              <div>
                 <CollegeCourses collegeCourses={collegeCourses} />
                 <Memberships membership={membership} />
               </div>
@@ -239,7 +227,7 @@ class IndexPage extends React.Component {
           projects={projects}
         />
         <Blog />
-      </Layout >
+      </Layout>
     );
   }
 }

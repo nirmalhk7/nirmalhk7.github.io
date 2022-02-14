@@ -5,9 +5,9 @@ export const MySkills = ({ frameworksLibraries, languages }) => (
       Familiar Languages, Frameworks and Libraries
     </h5>
     <hr />
-    <div className="row" style={{ marginBottom: "5em" }}>
+    <div className="grid grid-cols-4" style={{ marginBottom: "5em" }}>
       {[...frameworksLibraries, ...languages].map((element, index) => (
-        <div className="col-3 minicard" key={index}>
+        <div className="minicard" key={index}>
           {element}
         </div>
       ))}
@@ -71,13 +71,13 @@ export const CollegeCourses = ({ collegeCourses }) => (
 );
 
 export const WorkExperience = ({ experience }) => (
-  <div className="container about-content about-content--timeline">
+  <div className="container mx-auto about-content about-content--timeline">
     <div className="col text-center">
       <h3>My Work Experience</h3>
     </div>
-    <div className="row">
+    <div className="grid grid-cols-2">
       {experience.map((element, index) => (
-        <div className="col-lg-6 col-md-6 col-sm-12 left" key={index}>
+        <div className="left" key={index}>
           <div className="timeline">
             <div className="timeline__block">
               <div className="timeline__bullet" first={index} />

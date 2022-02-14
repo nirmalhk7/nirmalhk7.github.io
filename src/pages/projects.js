@@ -14,7 +14,6 @@ class Projects extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
-
   componentDidMount() {
     if (this.state.openIndex === -1 && this.state.routeKey) {
       this.setState({
@@ -45,10 +44,10 @@ class Projects extends React.Component {
       <Layout location={this.props.location}>
         <SearchEnggOp title="Projects" />
         <section
-          className="page-header page-hero parallax bootstrap-wrapper"
+          className="page-header page-hero parallax"
           id="projects-header"
         >
-          <div className="container page-header__content">
+          <div className="container mx-auto page-header__content">
             <article className="">
               <h1 className="page-header__title">
                 <a href="#0" title="Projects">
@@ -70,9 +69,9 @@ class Projects extends React.Component {
           </div>
         </section>
 
-        <section className="blog-content-wrap bootstrap-wrapper">
-          <div className="container blog-content">
-            <div className="blog-list block-1-2 block-tab-full">
+        <section className="blog-content-wrap">
+          <div className="container mx-auto blog-content">
+            <div className="blog-list block-1-2 block-w-full">
               <div className="accordion js-accordion">
                 <div className="row">
                   {this.props.data.allFile.group.map((e1, i1) => (

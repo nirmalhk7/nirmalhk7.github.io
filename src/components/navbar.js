@@ -1,16 +1,20 @@
 import React from "react";
 import Scrollspy from "react-scrollspy";
-import "../assets/css/navbar.module.scss";
+import styles from "../assets/css/navbar.module.scss";
 import Link from "./link";
 
 const Navbar = () => {
   const navbarList = ["Home", "About", "Projects", "Blog", "Contact"];
   return (
-    <header className="w-100 bg-transparent z-50 absolute top-0" id="tw-header">
+    <header className="w-full h-navbar bg-transparent z-40 absolute top-0" id="tw-header">
       <Link to="/">
         <div
-          className="inline-block absolute uppercase left-2 tracking-widest font-bold font-blocky text-white"
+          className="inline-block absolute font-bold text-white uppercase font-blocky | header-logo"
           id="tw-header-logo"
+          style={{
+            margin:"9px 0 0 0",
+            width:"80px"
+          }}
         >
           nirmalhk7
         </div>

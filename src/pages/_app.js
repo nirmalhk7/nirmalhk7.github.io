@@ -1,4 +1,7 @@
 import "../assets/css/tailwind.css";
+import "../assets/css/animation.css";
+
+import "../assets/css/nirmalhk7.css";
 // import "../assets/css/base.css";
 // import "../assets/css/main.scss";
 // import "../assets/css/nirmalhk7.scss";

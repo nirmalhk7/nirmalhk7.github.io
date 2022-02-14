@@ -18,7 +18,7 @@ const LatestBlogItem = ({ item }) => {
   }
   return (
     <section
-      className="bg-gradient-accent bootstrap-wrapper"
+      className="bg-gradient-accent"
       id="blog-first"
       style={{
         textDecoration: "none",
@@ -28,7 +28,7 @@ const LatestBlogItem = ({ item }) => {
     >
       <div className="container blog-content">
         {/* <Link
-          className="blog-list block-1-2 block-tab-full"
+          className="blog-list block-1-2 block-w-full"
           style={{ marginTop: "0rem" }}
           to={`/blog/${item.relativeDirectory}`}
         > */}
@@ -82,7 +82,7 @@ const MasonPanel = ({ sitename, blogItems }) => {
               <h1>All Posts</h1>
             </div>
           </div>
-          <div className="blog-list block-1-2 block-tab-full">
+          <div className="blog-list block-1-2 block-w-full">
             <div className="row">
               <div className="masonry">
                 {blogItems.map((element, index) => {
@@ -142,7 +142,7 @@ const MasonPanel = ({ sitename, blogItems }) => {
 
 const BlogByCategory = ({ blogItems }) => {
   return (
-    <section className="bg-gray  bootstrap-wrapper">
+    <section className="bg-gray ">
       <div
         className="m-auto narrow section_intro has-bottom-sep"
         style={{ paddingTop: "5em" }}
@@ -151,7 +151,7 @@ const BlogByCategory = ({ blogItems }) => {
           <h3>Browse by Category</h3>
         </div>
       </div>
-      <div className="container blog-content">
+      <div className="container mx-auto blog-content">
         <div className="row">
           {blogItems.map((blog, index) => {
             const xfilter = blogItems.filter(
@@ -195,7 +195,7 @@ const Blog = ({ location, data }) => {
     <Layout location={location}>
       <SearchEnggOp title={data.site.siteMetadata.blogName} />
       <section
-        className="s-home page-hero  parallax bootstrap-wrapper"
+        className="s-home page-hero  parallax"
         data-natural-height="2000"
         data-natural-width="3000"
         data-parallax="scroll"
@@ -204,7 +204,7 @@ const Blog = ({ location, data }) => {
       >
         <div className="overlay" />
         <div className="home-content">
-          <div className="container home-content__main">
+          <div className="container mx-auto home-content__main">
             <h3 className="ital-hover">Official Blog of Nirmal Khedkar</h3>
             <h1 className="page-header__title">
               <Link title="" to="/blog">

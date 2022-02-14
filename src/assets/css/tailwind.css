@@ -1,3 +1,519 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        font-family: sans-serif;
+        line-height: 1.15;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        @aply m-0;
+    }
+
+    article,
+    aside,
+    footer,
+    header,
+    nav,
+    section {
+        @apply block;
+    }
+
+    section {
+        padding-top: 10rem;
+        padding-bottom: 10rem;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+    }
+
+    figcaption,
+    figure,
+    main {
+        @apply block;
+    }
+
+    figure {
+        margin: 1em 40px;
+    }
+
+    hr {
+        @apply box-content h-0 overflow-visible clear-both border-accent;
+    }
+
+    pre {
+        font-family: monospace, monospace;
+        font-size: 1em;
+    }
+
+    a {
+        background-color: transparent;
+        -webkit-text-decoration-skip: objects;
+    }
+
+    a:active,
+    a:hover {
+        outline-width: 0;
+    }
+
+    abbr[title] {
+        border-bottom: none;
+        text-decoration: underline;
+        text-decoration: underline dotted;
+    }
+
+    b,
+    strong {
+        font-weight: inherit;
+    }
+
+    b,
+    strong {
+        font-weight: bolder;
+    }
+
+    code,
+    kbd,
+    samp {
+        font-family: monospace, monospace;
+        font-size: 1em;
+    }
+
+    dfn {
+        font-style: italic;
+    }
+
+    mark {
+        background-color: #ff0;
+        @apply text-black;
+    }
+
+    small {
+        font-size: 80%;
+    }
+
+    sub,
+    sup {
+        @apply relative align-baseline;
+        font-size: 75%;
+        line-height: 0;
+
+    }
+
+    sub {
+        bottom: -0.25em;
+    }
+
+    sup {
+        top: -0.5em;
+    }
+
+    audio,
+    video {
+        @apply inline-block;
+    }
+
+    audio:not([controls]) {
+        @apply hidden h-0;
+    }
+
+    img {
+        @apply border-none;
+    }
+
+
+    svg:not(:root) {
+        overflow: hidden;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+        @apply m-0;
+        font-family: sans-serif;
+        font-size: 100%;
+        line-height: 1.15;
+    }
+
+    button,
+    input {
+        @apply overflow-visible;
+    }
+
+    button,
+    select {
+        @apply normal-case;
+    }
+
+    button,
+    html [type="button"],
+    [type="reset"],
+    [type="submit"] {
+        -webkit-appearance: button;
+    }
+
+    button::-moz-focus-inner,
+    [type="button"]::-moz-focus-inner,
+    [type="reset"]::-moz-focus-inner,
+    [type="submit"]::-moz-focus-inner {
+        @apply border-none p-0;
+    }
+
+    button:-moz-focusring,
+    [type="button"]:-moz-focusring,
+    [type="reset"]:-moz-focusring,
+    [type="submit"]:-moz-focusring {
+        outline: 1px dotted ButtonText;
+    }
+
+    fieldset {
+        border: 1px solid #c0c0c0;
+        margin: 0 2px;
+        padding: 0.35em 0.625em 0.75em;
+    }
+
+    legend {
+        @apply box-border table max-w-full p-0 whitespace-normal;
+        color: inherit;
+
+    }
+
+    progress {
+        @apply inline-block align-baseline;
+    }
+
+    textarea {
+        @apply overflow-auto;
+    }
+
+    [type="checkbox"],
+    [type="radio"] {
+        @apply box-border p-0;
+    }
+
+    [type="number"]::-webkit-inner-spin-button,
+    [type="number"]::-webkit-outer-spin-button {
+        @apply h-auto;
+    }
+
+    [type="search"] {
+        -webkit-appearance: textfield;
+        outline-offset: -2px;
+    }
+
+    [type="search"]::-webkit-search-cancel-button,
+    [type="search"]::-webkit-search-decoration {
+        -webkit-appearance: none;
+    }
+
+    details,
+    menu {
+        @apply block;
+    }
+
+    summary {
+        display: list-item;
+    }
+
+    canvas {
+        @apply inline-block;
+    }
+
+    template {
+        @apply hidden;
+    }
+
+    [hidden] {
+        @apply hidden;
+    }
+
+    /* ===================================================================
+   * # basic/base setup styles - (_basic.scss)
+   *
+   * ------------------------------------------------------------------- */
+
+    html {
+        font-size: 62.5%;
+        @apply box-border;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+    }
+
+    body {
+        @apply font-normal leading-none;
+        -webkit-overflow-scrolling: touch;
+        word-wrap: break-word;
+        text-rendering: optimizeLegibility;
+        -webkit-text-size-adjust: none;
+    }
+
+    body,
+    input,
+    button {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* ------------------------------------------------------------------- 
+   * ## Media - (_basic.scss)
+   * ------------------------------------------------------------------- */
+
+    img,
+    video {
+        @apply max-w-full h-auto;
+    }
+
+    /* ------------------------------------------------------------------- 
+   * ## Typography resets - (_basic.scss)
+   * ------------------------------------------------------------------- */
+
+    div,
+    dl,
+    dt,
+    dd,
+    ul,
+    ol,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    pre,
+    form,
+    p,
+    blockquote,
+    th,
+    td {
+        @apply m-0 p-0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply text-black;
+        -webkit-font-smoothing: auto;
+        -webkit-font-smoothing: antialiased;
+        -webkit-font-variant-ligatures: common-ligatures;
+        -moz-font-variant-ligatures: common-ligatures;
+        font-variant-ligatures: common-ligatures;
+        text-rendering: optimizeLegibility;
+    }
+
+    em,
+    i {
+        @apply italic;
+        line-height: inherit;
+    }
+
+    strong,
+    b {
+        font-weight: bold;
+        line-height: inherit;
+    }
+
+    small {
+        font-size: 60%;
+        line-height: inherit;
+    }
+
+    ol,
+    ul {
+        list-style: none;
+    }
+
+    li {
+        @apply block;
+    }
+
+
+    /* ------------------------------------------------------------------- 
+   * ## links - (_basic.scss)
+   * ------------------------------------------------------------------- */
+
+    a {
+        text-decoration: none;
+        line-height: inherit;
+    }
+
+    a img {
+        border: none;
+    }
+
+    /* ------------------------------------------------------------------- 
+   * ## inputs - (_basic.scss)
+   * ------------------------------------------------------------------- */
+
+    fieldset {
+        margin: 0;
+        padding: 0;
+    }
+
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="text"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="password"],
+    textarea {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+    }
+
+    html {
+        font-size: 10px;
+    }
+
+    @media only screen and (max-width: 400px) {
+        html {
+            font-size: 9.375px;
+        }
+    }
+
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #0a0809;
+        font-family: "Libre Baskerville", serif;
+        font-weight: 400;
+        font-size: 1.6rem;
+        line-height: 1.875;
+        color: #5f5f5f;
+        margin: 0;
+        padding: 0;
+    }
+
+    p::selection, b::selection, i::selection, strong::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, cite::selection {
+        color: "white";
+        background: "accent";
+    }
+
+    p::-moz-selection, b::-moz-selection, i::-moz-selection, strong::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, cite::-moz-selection {
+        color: "white";
+        background: "accent";
+    }
+
+
+    /* ------------------------------------------------------------------- 
+* ## links - (_document-setup.scss) 
+* ------------------------------------------------------------------- */
+    a {
+        @apply text-accent;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        text-decoration: underline;
+    }
+
+    a:hover, a:focus, a:active {
+        color: #191A3F;
+    }
+
+    a:focus {
+        outline: none;
+    }
+
+    nav a, h1 a {
+        text-decoration: none;
+    }
+
+
+    /** Blockquote **/
+    blockquote {
+        @apply pl-16 relative;
+        margin: 3.9rem 0;
+    }
+
+    blockquote:before {
+        @apply m-0 absolute left-0 text-accent;
+        content: "\201C";
+        line-height: 0px;
+        font-size: 10rem;
+        font-family: arial, sans-serif;
+        top: 3.6rem;
+    }
+
+    blockquote p {
+        @apply font-normal p-0 text-4xl text-black;
+        font-family: 'Montserrat', sans-serif;
+        line-height: 1.857;
+    }
+
+    blockquote cite {
+        @apply block font-normal text-2xl not-italic leading-normal;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    blockquote cite:before {
+        content: "\2014 \0020";
+    }
+
+    blockquote cite a, blockquote cite a:visited {
+        @apply text-gray;
+        border: none;
+    }
+
+    /* ===================================================================
+ * # footer - (_site-layout.scss)
+ *
+ * ------------------------------------------------------------------- */
+    footer {
+        @apply bg-black font-normal text-sm text-center;
+        font-family: 'Montserrat', sans-serif;
+        padding: 6.6rem 0 4.2rem;
+        color: rgba(255, 255, 255, 0.2);
+    }
+
+    footer a, footer a:visited {
+        @apply text-accent
+    }
+
+    footer a:hover, footer a:focus {
+        @apply text-white
+    }
+
+    .footer-logo {
+        @apply inline-block;
+    }
+
+    .footer-site-logo {
+        @apply block w-32;
+    }
+
+
+    @media only screen and (max-width: 400px) {
+        .footer-site-logo {
+            width: 100px;
+        }
+
+        .footer_social li {
+            margin-right: 1.2rem;
+        }
+
+        .footer_social li svg {
+            font-size: 2.2rem;
+        }
+    }
+}

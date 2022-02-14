@@ -1,0 +1,455 @@
+#page_1 {
+    position: relative;
+    overflow: hidden;
+    margin: 56px 0px 102px 72px;
+    padding: 0px;
+    border: none;
+    width: 744px;
+}
+
+#page_1 #p1dimg1 {
+    position: absolute;
+    top: 146px;
+    left: 0px;
+    z-index: -1;
+    width: 672px;
+    height: 577px;
+}
+
+#page_1 #p1dimg1 #p1img1 {
+    width: 672px;
+    height: 577px;
+}
+
+#page_2 {
+    position: relative;
+    overflow: hidden;
+    margin: 58px 0px 630px 72px;
+    padding: 0px;
+    border: none;
+    width: 744px;
+}
+
+.ft0 {
+    font: 28px "Arial";
+    line-height: 32px;
+}
+
+.ft1 {
+    font: 15px "Arial";
+    line-height: 17px;
+}
+
+.ft2 {
+    font: 15px "Arial";
+    color: #0000ff;
+    margin-left: 5px;
+    line-height: 17px;
+}
+
+.ft3 {
+    font: 15px "Arial";
+    color: #0000ff;
+    line-height: 17px;
+}
+
+.ft4 {
+    font: 14px "Arial";
+    line-height: 16px;
+}
+
+.ft5 {
+    font: 15px "Arial";
+    margin-left: 5px;
+    line-height: 17px;
+}
+
+.ft6 {
+    font: 1px "Arial";
+    line-height: 1px;
+}
+
+.ft7 {
+    font: 15px "Arial";
+    margin-left: 4px;
+    line-height: 17px;
+}
+
+.ft8 {
+    font: 15px "Arial";
+    margin-left: 6px;
+    line-height: 17px;
+}
+
+.ft9 {
+    font: 1px "Arial";
+    line-height: 4px;
+}
+
+.ft10 {
+    font: 13px "Arial";
+    line-height: 16px;
+}
+
+.p0 {
+    text-align: left;
+    padding-left: 184px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.p1 {
+    text-align: left;
+    padding-left: 275px;
+    margin-top: 12px;
+    margin-bottom: 0px;
+}
+
+.p2 {
+    text-align: left;
+    padding-left: 144px;
+    margin-top: 2px;
+    margin-bottom: 0px;
+}
+
+.p3 {
+    text-align: left;
+    padding-left: 174px;
+    margin-top: 6px;
+    margin-bottom: 0px;
+}
+
+.p4 {
+    text-align: left;
+    margin-top: 24px;
+    margin-bottom: 0px;
+}
+
+.p5 {
+    text-align: left;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    white-space: nowrap;
+}
+
+.p6 {
+    text-align: right;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    white-space: nowrap;
+}
+
+.p7 {
+    text-align: left;
+    margin-top: 19px;
+    margin-bottom: 0px;
+}
+
+.p8 {
+    text-align: left;
+    margin-top: 18px;
+    margin-bottom: 0px;
+}
+
+.p9 {
+    text-align: left;
+    padding-left: 22px;
+    padding-right: 72px;
+    margin-top: 7px;
+    margin-bottom: 0px;
+}
+
+.p10 {
+    text-align: left;
+    padding-left: 22px;
+    padding-right: 72px;
+    margin-top: 2px;
+    margin-bottom: 0px;
+}
+
+.p11 {
+    text-align: left;
+    padding-left: 22px;
+    margin-top: 7px;
+    margin-bottom: 0px;
+}
+
+.p12 {
+    text-align: left;
+    padding-left: 22px;
+    padding-right: 72px;
+    margin-top: 1px;
+    margin-bottom: 0px;
+}
+
+.p13 {
+    text-align: left;
+    margin-top: 22px;
+    margin-bottom: 0px;
+}
+
+.p14 {
+    text-align: left;
+    padding-left: 22px;
+    padding-right: 72px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+
+.p15 {
+    text-align: left;
+    padding-left: 22px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    white-space: nowrap;
+}
+
+.p16 {
+    text-align: right;
+    padding-right: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    white-space: nowrap;
+}
+
+.td0 {
+    padding: 0px;
+    margin: 0px;
+    width: 501px;
+    vertical-align: bottom;
+}
+
+.td1 {
+    padding: 0px;
+    margin: 0px;
+    width: 149px;
+    vertical-align: bottom;
+}
+
+.td2 {
+    padding: 0px;
+    margin: 0px;
+    width: 161px;
+    vertical-align: bottom;
+}
+
+.td3 {
+    padding: 0px;
+    margin: 0px;
+    width: 463px;
+    vertical-align: bottom;
+}
+
+.td4 {
+    padding: 0px;
+    margin: 0px;
+    width: 580px;
+    vertical-align: bottom;
+}
+
+.td5 {
+    padding: 0px;
+    margin: 0px;
+    width: 65px;
+    vertical-align: bottom;
+}
+
+.td6 {
+    padding: 0px;
+    margin: 0px;
+    width: 527px;
+    vertical-align: bottom;
+}
+
+.td7 {
+    padding: 0px;
+    margin: 0px;
+    width: 118px;
+    vertical-align: bottom;
+}
+
+.td8 {
+    padding: 0px;
+    margin: 0px;
+    width: 578px;
+    vertical-align: bottom;
+}
+
+.td9 {
+    padding: 0px;
+    margin: 0px;
+    width: 67px;
+    vertical-align: bottom;
+}
+
+.td10 {
+    padding: 0px;
+    margin: 0px;
+    width: 540px;
+    vertical-align: bottom;
+}
+
+.td11 {
+    padding: 0px;
+    margin: 0px;
+    width: 105px;
+    vertical-align: bottom;
+}
+
+.td12 {
+    padding: 0px;
+    margin: 0px;
+    width: 493px;
+    vertical-align: bottom;
+}
+
+.td13 {
+    padding: 0px;
+    margin: 0px;
+    width: 152px;
+    vertical-align: bottom;
+}
+
+.td14 {
+    padding: 0px;
+    margin: 0px;
+    width: 544px;
+    vertical-align: bottom;
+}
+
+.td15 {
+    padding: 0px;
+    margin: 0px;
+    width: 128px;
+    vertical-align: bottom;
+}
+
+.td16 {
+    border-bottom: #000000 1px solid;
+    padding: 0px;
+    margin: 0px;
+    width: 544px;
+    vertical-align: bottom;
+}
+
+.td17 {
+    border-bottom: #000000 1px solid;
+    padding: 0px;
+    margin: 0px;
+    width: 128px;
+    vertical-align: bottom;
+}
+
+.td18 {
+    padding: 0px;
+    margin: 0px;
+    width: 521px;
+    vertical-align: bottom;
+}
+
+.td19 {
+    padding: 0px;
+    margin: 0px;
+    width: 124px;
+    vertical-align: bottom;
+}
+
+.td20 {
+    padding: 0px;
+    margin: 0px;
+    width: 510px;
+    vertical-align: bottom;
+}
+
+.td21 {
+    padding: 0px;
+    margin: 0px;
+    width: 135px;
+    vertical-align: bottom;
+}
+
+.tr0 {
+    height: 19px;
+}
+
+.tr1 {
+    height: 17px;
+}
+
+.tr2 {
+    height: 20px;
+}
+
+.tr3 {
+    height: 18px;
+}
+
+.tr4 {
+    height: 24px;
+}
+
+.tr5 {
+    height: 38px;
+}
+
+.tr6 {
+    height: 4px;
+}
+
+.tr7 {
+    height: 23px;
+}
+
+.t0 {
+    width: 650px;
+    margin-left: 22px;
+    margin-top: 7px;
+    font: 15px "Arial";
+}
+
+.t1 {
+    width: 624px;
+    margin-left: 22px;
+    margin-top: 9px;
+    font: 15px "Arial";
+}
+
+.t2 {
+    width: 645px;
+    margin-left: 22px;
+    margin-top: 7px;
+    font: 15px "Arial";
+}
+
+.t3 {
+    width: 645px;
+    margin-left: 22px;
+    margin-top: 11px;
+    font: 15px "Arial";
+}
+
+.t4 {
+    width: 645px;
+    margin-left: 22px;
+    margin-top: 8px;
+    font: 15px "Arial";
+}
+
+.t5 {
+    width: 645px;
+    margin-left: 22px;
+    margin-top: 10px;
+    font: 14px "Arial";
+}
+
+.t6 {
+    width: 672px;
+    font: 15px "Arial";
+}
+
+.t7 {
+    width: 645px;
+    margin-left: 22px;
+    margin-top: 12px;
+    font: 15px "Arial";
+}

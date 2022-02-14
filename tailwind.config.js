@@ -3,26 +3,35 @@ module.exports = {
     "src/**/*.{js,tsx,ts,jsx}"
   ],
   theme: {
+    screens: {
+      "xs":"0px",
+      "sm":"576px",
+      "md": "768px",
+      "lg": "992px",
+      "xl": "1200px",
+      "xxl": "1400px"
+    },
     colors: {
       "white": "#ffffff",
       "accent": "#FF7B08",
+      "accentLight": "#ffb652",
       "gray": "#f1f1f1",
-      "black": "#00000",
+      "black": "#000000",
     },
+
     extend: {
       backgroundImage: {
         "beach": "url('/images/BeachNK_1.jpg')"
       },
-      fontFamily:{
-        "blocky": ["Montserrat"],
-        'serif': ["georgia","Libre Baskerville","librebaskerville-bold","arial"],
-        "sans-serif":["arial","Montserrat","montserrat-light","montserrat-regular","montserrat-bold","montserrat-semibold"],
-        "monospace":["Consolas", "Andale Mono", "Courier", "Courier New","Menlo", "Bitstream Vera Sans Mono", "DejaVu Sans Mono", "Monaco"]
-      },
+      fontFamily: {
+        "blocky": ["Montserrat","sans-serif"],
+        "heading": ["Libre Baskerville","serif"],
+     },
       letterSpacing: {
-        widest: "0.25rem"
+        widest: "0.25rem",
+        blocky: "0.15rem"
       },
-      height:{
+      height: {
         navbar: '72px'
       }
     },

@@ -74,9 +74,9 @@ class Layout extends React.Component {
       const loc = jqueryWIN.scrollTop();
 
       if (loc > triggerHeight) {
-        hdr.addClass("sticky");
+        hdr.addClass("fixed top-0 bg-black opacity-0 invisible z-50");
       } else {
-        hdr.removeClass("sticky");
+        hdr.removeClass("fixed top-0 bg-black opacity-0 invisible z-50");
       }
 
       if (loc > triggerHeight + 20) {
@@ -86,9 +86,10 @@ class Layout extends React.Component {
       }
 
       if (loc > triggerHeight + 150) {
-        hdr.addClass("scrolling");
+        // bg-black opacity-0 fixed top-0 z-50
+        hdr.addClass("1");
       } else {
-        hdr.removeClass("scrolling");
+        hdr.removeClass("1");
       }
     });
   }

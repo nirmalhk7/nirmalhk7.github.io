@@ -135,57 +135,7 @@ $home-wallpaper-cutoff: 1100px;
  * # base style overrides - (_document-setup.scss)
  *
  * ------------------------------------------------------------------- */
-    html {
-        font-size: 10px;
-    }
-    @media only screen and (max-width: 400px) {
-        html {
-            font-size: 9.375px;
-        }
-    }
-    html, body {
-        height: 100%;
-    }
-    body {
-        background: #0a0809;
-        font-family: "Libre Baskerville", serif;
-        font-weight: 400;
-        font-size: 1.6rem;
-        line-height: 1.875;
-        color: #5f5f5f;
-        margin: 0;
-        padding: 0;
-    }
-    p, b, i, strong, h1, h2, h3, h4, h5, cite {
-        &::selection {
-            color: map-get($map: $theme-colors, $key: "white");
-            background: map-get($map: $theme-colors, $key: "accent");
-        }
-      
-        &::-moz-selection {
-            color: map-get($map: $theme-colors, $key: "white");
-            background: map-get($map: $theme-colors, $key: "accent");
-        }
-      }
-    /* ------------------------------------------------------------------- 
- * ## links - (_document-setup.scss) 
- * ------------------------------------------------------------------- */
-    a {
-        color: map-get($map: $theme-colors, $key: "accent");
-        
-        -webkit-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
-        text-decoration:underline;
-    }
-    a:hover, a:focus, a:active {
-        color: #191A3F;
-    }
-    a:focus {
-        outline: none;
-    }
-    nav a, h1 a{
-        text-decoration: none;
-    }
+    
     /* ===================================================================
  * # typography & general theme styles - (_document-setup.scss) 
  * 
@@ -277,45 +227,7 @@ $home-wallpaper-cutoff: 1100px;
         font-size: 1.2rem;
         line-height: inherit;
     }
-    blockquote {
-        margin: 3.9rem 0;
-        padding-left: 4.5rem;
-        position: relative;
-    }
-    blockquote:before {
-        content: "\201C";
-        font-size: 10rem;
-        line-height: 0px;
-        margin: 0;
-        font-family: arial, sans-serif;
-        position: absolute;
-        top: 3.6rem;
-        left: 0;
-        color: map-get($map: $theme-colors, $key: "accent");
-      }
-    blockquote p {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 400;
-        padding: 0;
-        font-size: 2.1rem;
-        line-height: 1.857;
-        color: #0D0A0B;
-    }
-    blockquote cite {
-        display: block;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 400;
-        font-size: 1.4rem;
-        font-style: normal;
-        line-height: 1.5;
-    }
-    blockquote cite:before {
-        content: "\2014 \0020";
-    }
-    blockquote cite a, blockquote cite a:visited {
-        color: #6c6c6c;
-        border: none;
-    }
+    
     abbr {
         font-family: "Libre Baskerville", serif;
         font-variant: small-caps;
@@ -362,13 +274,6 @@ $home-wallpaper-cutoff: 1100px;
     mark {
         background: #ffd900;
         color: #000000;
-    }
-    hr {
-        border: solid rgba(0, 0, 0, 0.1);
-        border-width: 1px 0 0;
-        clear: both;
-        height: 0;
-        border-color: map-get($map: $theme-colors, $key: "accent");
     }
     /* ------------------------------------------------------------------- 
  * ## Lists - (_document-setup.scss)  
@@ -2271,45 +2176,7 @@ $home-wallpaper-cutoff: 1100px;
         }
     }
 
-    /* ===================================================================
- * # footer - (_site-layout.scss)
- *
- * ------------------------------------------------------------------- */
-    footer {
-        background-color: black;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        padding: 6.6rem 0 4.2rem;
-        text-align: center;
-        color: rgba(255, 255, 255, 0.2);
-    }
-    footer a, footer a:visited {
-        color: map-get($map: $theme-colors, $key: "accent");
-    }
-    footer a:hover, footer a:focus {
-        color: #FFFFFF;
-    }
-    .footer-logo {
-        display: inline-block;
-    }
-    .footer-site-logo {
-        display: block;
-        width: 130px;
-    }
 
-  
-    @media only screen and (max-width: 400px) {
-        .footer-site-logo {
-            width: 100px;
-        }
-        .footer_social li {
-            margin-right: 1.2rem;
-        }
-        .footer_social li svg {
-            font-size: 2.2rem;
-        }
-    }
     /* ===================================================================
  * # blog styles - (_blog.scss)
  *

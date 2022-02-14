@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import { faLongArrowAltUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -47,7 +48,7 @@ export class ScrollToTop extends React.Component {
 const Footer = () => {
   return (
     <footer>
-      <div className={`row ${styles.flicker_3}`}>
+      <div className={`row ${false ? styles.flicker_3 : ''}`}>
         <div className="">
           <ul className={styles.footer_social}>
             {social.map((element, index) => {
@@ -70,7 +71,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="row footer-bottom">
-        <div className="col-twelve">
+        <div className="w-full">
           <div className="copyright">
             <span style={{ color: "#3d3d3d" }}>
               Made with <FontAwesomeIcon icon={faHeart} /> by Nirmal Khedkar
