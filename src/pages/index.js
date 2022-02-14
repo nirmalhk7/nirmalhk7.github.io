@@ -15,8 +15,14 @@ import {
 import HireMe from "../index/hireme";
 import Projects from "../index/projects";
 import Blog from "../index/blog";
+import matter from 'gray-matter';
+import Image from 'next/image';
+
 
 export async function getStaticProps(context) {
+  const fs=require('fs');
+  const matter= require('m')
+  // ==
   return {
     props: {
       data: {
