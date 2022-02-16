@@ -456,13 +456,13 @@
     }
 
     blockquote p {
-        @apply font-normal p-0 text-4xl text-black;
+        @apply font-normal p-0 text-black;
         font-family: 'Montserrat', sans-serif;
         line-height: 1.857;
     }
 
     blockquote cite {
-        @apply block font-normal text-2xl not-italic leading-normal;
+        @apply block font-normal not-italic leading-normal text-h6;
         font-family: 'Montserrat', sans-serif;
     }
 
@@ -480,7 +480,7 @@
  *
  * ------------------------------------------------------------------- */
     footer {
-        @apply bg-black font-normal text-sm text-center;
+        @apply bg-black font-normal text-center;
         font-family: 'Montserrat', sans-serif;
         padding: 6.6rem 0 4.2rem;
         color: rgba(255, 255, 255, 0.2);

@@ -15,18 +15,13 @@ import {
 import HireMe from "../index/hireme";
 import Projects from "../index/projects";
 import Blog from "../index/blog";
-import matter from 'gray-matter';
-import Image from 'next/image';
-
+import { projects } from "../actions";
 
 export async function getStaticProps(context) {
-  const fs=require('fs');
-  const matter= require('m')
-  // ==
   return {
     props: {
       data: {
-        projects: [],
+        projects: projects(true),
         workexperience: require("../../content/yml/workexperiences.yaml"),
         onlineCourses: require("../../content/yml/courses.yaml"),
         collegeCourses: require("../../content/yml/courses.yaml"),
@@ -125,7 +120,6 @@ class IndexPage extends React.Component {
   handleClick = (event) => {
     event.preventDefault();
     event.persist();
-    console.log(event.target.id);
     const clickedOn = parseInt(event.target.id.split("-")[1]);
     const newState = this.state.isOpen;
     newState.forEach((element, index) => {
@@ -159,9 +153,7 @@ class IndexPage extends React.Component {
           <div className="w-100 text-center">
             <div className="max-w-screen-md	text-center relative container-md pb-6 | narrow section_intro m-auto">
               <div className="text-center">
-                <h3
-                  className="font-blocky font-semibold text-3xl uppercase tracking-[.15rem] mb-0 mt-0 text-accent w-full"
-                >
+                <h3 className="font-blocky font-semibold text-h3 uppercase tracking-[.15rem] mb-0 mt-0 text-accent w-full">
                   Nirmal Khedkar
                 </h3>
                 <h1
@@ -175,9 +167,7 @@ class IndexPage extends React.Component {
                 >
                   More About Me
                 </h1>
-                <p
-                  className="font-normal text-3xl mb-16 font-blocky leading-7"
-                >
+                <p className="font-normal text-h4 mb-16 font-blocky leading-7">
                   I'm a student in National Institute of Technology Karnataka
                   Surathkal doing a Bachelors in Technology (Information
                   Technology) constantly looking for new and interesting

@@ -108,9 +108,9 @@ module.exports = {
           {
             serialize: ({ query: { site, allFile } }) => {
               return allFile.nodes.map((node) => {
-                return Object.assign({}, node.childMarkdownRemark.frontmatter, {
+                return Object.assign({}, node.frontmatter, {
                   url: site.siteMetadata.url + "/blog/" + node.relativeDirectory,
-                  html: node.childMarkdownRemark.html,
+                  html: node.html,
                 });
               });
             },

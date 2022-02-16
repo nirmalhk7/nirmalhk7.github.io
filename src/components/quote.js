@@ -35,7 +35,7 @@ const RandomQuote = () => {
   const quote = quoteList[Math.floor(Math.random() * quoteList.length)];
   return (
     <section className="bg-white">
-      <div className="narrow m-auto text-center pb-6 relative | section_intro has-bottom-sep">
+      <div className="narrow m-auto text-center text-h4 pb-6 relative | section_intro has-bottom-sep">
         <div className="">
           <blockquote>
             <p>{quote.content}</p>

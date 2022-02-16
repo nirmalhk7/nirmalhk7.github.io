@@ -6,14 +6,17 @@ import Link from "./link";
 const Navbar = () => {
   const navbarList = ["Home", "About", "Projects", "Blog", "Contact"];
   return (
-    <header className="w-full h-navbar bg-transparent z-40 absolute top-0" id="tw-header">
+    <header
+      className="w-full h-navbar bg-transparent z-40 absolute top-0"
+      id="tw-header"
+    >
       <Link to="/">
         <div
           className="inline-block absolute font-bold text-white uppercase font-blocky | header-logo"
           id="tw-header-logo"
           style={{
-            margin:"9px 0 0 0",
-            width:"80px"
+            margin: "9px 0 0 0",
+            width: "80px",
           }}
         >
           nirmalhk7

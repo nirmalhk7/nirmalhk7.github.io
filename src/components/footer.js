@@ -48,7 +48,7 @@ export class ScrollToTop extends React.Component {
 const Footer = () => {
   return (
     <footer>
-      <div className={`row ${false ? styles.flicker_3 : ''}`}>
+      <div className={`row ${false ? styles.flicker_3 : ""}`}>
         <div className="">
           <ul className={styles.footer_social}>
             {social.map((element, index) => {

@@ -96,7 +96,7 @@ class Projects extends React.Component {
                             role="button"
                             tabIndex={0}
                           >
-                            {e2.node.childMarkdownRemark.frontmatter.title}
+                            {e2.node.frontmatter.title}
                           </div>
                           <div
                             className="accordion-body js-accordion-body bg-gray"
@@ -111,7 +111,7 @@ class Projects extends React.Component {
                             <div
                               className="accordion-body__contents"
                               dangerouslySetInnerHTML={{
-                                __html: e2.node.childMarkdownRemark.html,
+                                __html: e2.node.html,
                               }}
                             />
                           </div>

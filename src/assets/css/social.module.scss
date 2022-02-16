@@ -28,13 +28,13 @@
     transition: all 0.5s ease-in-out;
 }
 .home-social i {
-    @apply text-3xl right-0;
+    @apply right-0;
     -webkit-transform: scale(0.7);
     -ms-transform: scale(0.7);
     transform: scale(0.7);
 }
 .home-social span {
-    @apply text-accent text-xl opacity-0 invisible;
+    @apply text-accent opacity-0 invisible;
     right: 3.6rem;
     -webkit-transform: scale(0);
     -ms-transform: scale(0);
