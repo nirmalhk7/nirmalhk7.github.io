@@ -7,25 +7,20 @@ const Navbar = () => {
   const navbarList = ["Home", "About", "Projects", "Blog", "Contact"];
   return (
     <header
-      className="w-full h-navbar bg-transparent z-40 absolute top-0"
+      className="font-blocky font-bold text-navbar uppercase   w-full h-navbar bg-transparent z-40 absolute top-0"
       id="tw-header"
     >
       <Link to="/">
         <div
-          className="inline-block absolute font-bold text-white uppercase font-blocky | header-logo"
-          id="tw-header-logo"
-          style={{
-            margin: "9px 0 0 0",
-            width: "80px",
-          }}
+          className="left-20 inline-block text-white m-0 p-0 absolute"
         >
           nirmalhk7
         </div>
       </Link>
-      <nav className="font-blocky font-bold tracking-widest absolute header-nav-wrap">
+      <nav className="absolute right-20">
         <Scrollspy
-          className="inline-block list-none m-0 h-navbar header-nav"
-          currentClassName="now"
+          className="inline-block h-16 m-0 list-none text-white "
+          currentClassName="text-accent"
           items={navbarList.map((element) => element.toLowerCase())}
           offset={-100}
         >
@@ -45,9 +40,9 @@ const Navbar = () => {
             }
 
             return (
-              <li className="inline-block pl-0 mr-8" key={index}>
+              <li className="text-white  inline-block pl-0 mr-8" key={index}>
                 <Link
-                  className="block h-navbar text-white"
+                  className=""
                   title={element}
                   to={hrx}
                 >

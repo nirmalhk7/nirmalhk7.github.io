@@ -8,7 +8,7 @@ const NotFoundPage = ({ location }) => (
     <SearchEnggOp title="404: Not Found" />
     <section className="page-header page-hero parallax notfound-img">
       <div className="page-header__content m-auto">
-        <article className="container mx-auto">
+        <article className="sm:container mx-auto">
           <h1 className="page-header__title">
             <a href="#0" title="404 Not Found">
               404

@@ -16,6 +16,7 @@ module.exports = {
       "accent": "#FF7B08",
       "accentLight": "#ffb652",
       "gray": "#f1f1f1",
+      "darkgray": "#7d7d7d",
       "black": "#000000",
     },
     fontSize: {
@@ -45,11 +46,20 @@ module.exports = {
       'h6': ['1.4rem', {
         lineHeight: '2.4rem',
         letterSpacing: '.16rem'
+      }],
+
+      'navbar': ['1.0rem', {
+        letterSpacing: '.25rem',
+        lineHeight: '7.2rem',
       }]
     },
     extend: {
+
+      boxShadow: {
+        'workexp': '0 0 0 9px #e9e9e9',
+      },
       backgroundImage: {
-        "beach": "url('/images/BeachNK_1.jpg')"
+        "beac": "url('/images/BeachNK_1.jpg')"
       },
       fontFamily: {
         "blocky": ["Montserrat", "sans-serif"],

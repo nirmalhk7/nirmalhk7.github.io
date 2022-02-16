@@ -24,7 +24,7 @@ class ContactForm extends React.Component {
     return (
       <div className="">
         <section className={`${styles.section_contact} parallax`} id="contact">
-          <div className={styles.overlay} />
+          {/* <div className={styles.overlay} /> */}
           <div className={`${styles.section_intro} narrow m-auto`}>
             <div className="">
               <h3 className="text-accent">Contact Me</h3>
@@ -32,14 +32,14 @@ class ContactForm extends React.Component {
               <p className="lead">I'll reach out to you as soon as I can.</p>
             </div>
           </div>
-          <div className="container mx-auto" style={{ maxWidth: "1000px" }}>
+          <div className="sm:container mx-auto" style={{ maxWidth: "1000px" }}>
             <div className="grid grid-cols-2 sm:grid-cols-1">
               <div
-                className={`col-span-2 sm:col-span-1 w-full ${styles.contact__form}`}
+                className={`w-full`}
               >
                 <form method="post">
                   <input
-                    className="full-width"
+                    className="full-width "
                     id="name"
                     name="NAME:"
                     onChange={this.onChange}
@@ -49,7 +49,7 @@ class ContactForm extends React.Component {
                   <div className="form-field">
                     <input
                       aria-required="true"
-                      className="full-width"
+                      className="full-width "
                       id="email"
                       name="contactEmail: "
                       onChange={this.onChange}

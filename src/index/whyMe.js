@@ -71,18 +71,18 @@ export const CollegeCourses = ({ collegeCourses }) => (
 );
 
 export const WorkExperience = ({ experience }) => (
-  <div className="container mx-auto about-content about-content--timeline">
+  <div className="sm:container mx-auto about-content">
     <div className="col text-center">
-      <h3>My Work Experience</h3>
+      <h3 className="text-h3">My Work Experience</h3>
     </div>
     <div className="grid grid-cols-2">
       {experience.map((element, index) => (
-        <div className="left" key={index}>
-          <div className="timeline">
-            <div className="timeline__block">
-              <div className="timeline__bullet" first={index} />
+        <div key={index}>
+          <div className="relative before:content-[''] before:block before:h-full before:absolute before:top-0 before:w-px before:bg-gray">
+            <div className="pl-32 timeline__block">
+              <div className={`bg-${index===0?'accent':'black'} h-6 -ml-3 left-0 absolute w-6 rounded-full shadow-workexp | timeline__bullet`} />
               <div className="timeline__header">
-                <p className="timeline__timeframe">{element.timeframe}</p>
+                <p className="text-darkgray font-bold font-blocky leading-normal mb-4 uppercase text-h6">{element.timeframe}</p>
                 <h3>{element.company}</h3>
                 <h5>{element.post}</h5>
               </div>

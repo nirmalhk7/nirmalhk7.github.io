@@ -18,10 +18,13 @@ import Blog from "../index/blog";
 import { projects } from "../actions";
 
 export async function getStaticProps(context) {
+  const pjs=await projects(true);
+  // eslint-disable-next-line no-undef
+  // t=await Promise.all(t);
   return {
     props: {
       data: {
-        projects: projects(true),
+        projects: pjs,
         workexperience: require("../../content/yml/workexperiences.yaml"),
         onlineCourses: require("../../content/yml/courses.yaml"),
         collegeCourses: require("../../content/yml/courses.yaml"),
@@ -46,7 +49,7 @@ const Jumbotron = () => (
   >
     <div className="h-full left-0 opacity-50 absolute top-0 w-full bg-black | overlay" />
     <div className="home-content">
-      <div className="container mx-auto content-center  home-content__main">
+      <div className="sm:container mx-auto content-center  home-content__main">
         <h3 className="ital-hover">Hey!</h3>
         <h1>
           I'm Nirmal Khedkar, <br />
@@ -151,7 +154,7 @@ class IndexPage extends React.Component {
         <Jumbotron />
         <section className="pt-8 pb-6 bg-white relative | s-about" id="about">
           <div className="w-100 text-center">
-            <div className="max-w-screen-md	text-center relative container-md pb-6 | narrow section_intro m-auto">
+            <div className="max-w-screen-md	text-center relative sm:container-md pb-6 | narrow section_intro m-auto">
               <div className="text-center">
                 <h3 className="font-blocky font-semibold text-h3 uppercase tracking-[.15rem] mb-0 mt-0 text-accent w-full">
                   Nirmal Khedkar
@@ -176,7 +179,7 @@ class IndexPage extends React.Component {
               </div>
             </div>
           </div>
-          <div className="container mx-auto about-content">
+          <div className="sm:container mx-auto about-content">
             <div className="grid grid-cols-2">
               <div>
                 <PersonalInfo />
@@ -204,7 +207,7 @@ class IndexPage extends React.Component {
               </div>
             </div>
           </div>
-          <div className="container mx-auto about-content">
+          <div className="sm:container mx-auto about-content">
             <div className="grid grid-cols-2 gap-10">
               <div>
                 <OnlineCourses onlineCourses={onlineCourses} />

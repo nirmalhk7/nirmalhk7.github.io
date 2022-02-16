@@ -47,7 +47,7 @@ class Projects extends React.Component {
           className="page-header page-hero parallax"
           id="projects-header"
         >
-          <div className="container mx-auto page-header__content">
+          <div className="sm:container mx-auto page-header__content">
             <article className="">
               <h1 className="page-header__title">
                 <a href="#0" title="Projects">
@@ -70,7 +70,7 @@ class Projects extends React.Component {
         </section>
 
         <section className="blog-content-wrap">
-          <div className="container mx-auto blog-content">
+          <div className="sm:container mx-auto blog-content">
             <div className="blog-list block-1-2 block-w-full">
               <div className="accordion js-accordion">
                 <div className="row">

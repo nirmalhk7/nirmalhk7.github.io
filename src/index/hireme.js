@@ -3,7 +3,7 @@ import Link from "../components/link";
 const HireMe = () => (
   <>
     <a
-      className="btn btn-accent full-width text-decoration-none"
+      className="w-full font-blocky uppercase"
       href={"./Resume.pdf"}
       rel="noreferrer"
       style={{ marginTop: "1em" }}

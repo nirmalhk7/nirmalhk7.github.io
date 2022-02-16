@@ -26,7 +26,7 @@ const LatestBlogItem = ({ item }) => {
         paddingBottom: "2em",
       }}
     >
-      <div className="container blog-content">
+      <div className="sm:container blog-content">
         {/* <Link
           className="blog-list block-1-2 block-w-full"
           style={{ marginTop: "0rem" }}
@@ -146,7 +146,7 @@ const BlogByCategory = ({ blogItems }) => {
           <h3>Browse by Category</h3>
         </div>
       </div>
-      <div className="container mx-auto blog-content">
+      <div className="sm:container mx-auto blog-content">
         <div className="row">
           {blogItems.map((blog, index) => {
             const xfilter = blogItems.filter(
@@ -193,7 +193,7 @@ const Blog = ({ location, data }) => {
       >
         <div className="overlay" />
         <div className="home-content">
-          <div className="container mx-auto home-content__main">
+          <div className="sm:container mx-auto home-content__main">
             <h3 className="ital-hover">Official Blog of Nirmal Khedkar</h3>
             <h1 className="page-header__title">
               <Link title="" to="/blog">

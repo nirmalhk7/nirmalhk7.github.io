@@ -2,7 +2,7 @@ import Link from "../components/link";
 
 const Projects = ({ projects, isOpen, handleClick }) => (
   <section className="bg-gray" id="projects">
-    <div className="container mx-auto">
+    <div className="sm:container mx-auto">
       <div className="grid lg:grid-cols-2 sm:grid-cols-1">
         <div className="">
           <div className="pb-6 relative">
@@ -10,7 +10,7 @@ const Projects = ({ projects, isOpen, handleClick }) => (
               <h3 className="font-blocky text-h3 font-semibold mb-0 mt-0 uppercase text-accent">
                 Projects
               </h3>
-              <h1 className="text-6xl font-bold leading-snug mt-0">
+              <h1 className="text-h1 font-bold leading-snug mt-0">
                 See My Latest Projects
               </h1>
               <p className="lead">
