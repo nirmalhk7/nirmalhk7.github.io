@@ -15,19 +15,21 @@ import {
 import HireMe from "../index/hireme";
 import Projects from "../index/projects";
 import Blog from "../index/blog";
-import { projects } from "../actions";
+import { ProjectsService } from "../services/projects";
 
 export async function getStaticProps(context) {
-  const pjs=await projects(true);
-  // eslint-disable-next-line no-undef
-  // t=await Promise.all(t);
+  const projectsService = new ProjectsService();
+  const pjs = await projectsService.brief();
+  const courses=require("../../content/yml/courses.yaml");
+  
+
   return {
     props: {
       data: {
         projects: pjs,
         workexperience: require("../../content/yml/workexperiences.yaml"),
-        onlineCourses: require("../../content/yml/courses.yaml"),
-        collegeCourses: require("../../content/yml/courses.yaml"),
+        onlineCourses: courses.filter((course)=> course.provider),
+        collegeCourses: courses.filter((course)=> !course.provider),
         membership: require("../../content/yml/memberships.yaml"),
       },
       skills: {
@@ -50,19 +52,27 @@ const Jumbotron = () => (
     <div className="h-full left-0 opacity-50 absolute top-0 w-full bg-black | overlay" />
     <div className="home-content">
       <div className="sm:container mx-auto content-center  home-content__main">
-        <h3 className="ital-hover">Hey!</h3>
-        <h1>
+        <h3 className="ital-hover before:block before:h-0 before:left-0 before:mt-0 before:absolute before:w-16 before:content-[''] text-accent font-blocky text-navbar uppercase font-bold">
+          Hey!
+        </h3>
+        <h1 className="text-white">
           I'm Nirmal Khedkar, <br />
           product developer
           {"\n"}
           based in <br />
           Surathkal, India.
         </h1>
-        <div className="home-content__buttons">
-          <Link className="smoothscroll  btn btn-outline-white" to="#projects">
+        <div className="font-blocky font-bold text-navbar uppercase home-content__buttons">
+          <Link
+            className="smoothscroll px-12 text-white  btn bg-transparent no-underline  leading-[4.8rem] border-solid border-2 border-white"
+            to="#projects"
+          >
             Latest Projects
           </Link>
-          <Link className="smoothscroll  btn btn-outline-white" to="#about">
+          <Link
+            className="smoothscroll px-12 text-white btn bg-transparent no-underline border-solid border-2 border-white"
+            to="#about"
+          >
             More About Me
           </Link>
         </div>
@@ -156,7 +166,7 @@ class IndexPage extends React.Component {
           <div className="w-100 text-center">
             <div className="max-w-screen-md	text-center relative sm:container-md pb-6 | narrow section_intro m-auto">
               <div className="text-center">
-                <h3 className="font-blocky font-semibold text-h3 uppercase tracking-[.15rem] mb-0 mt-0 text-accent w-full">
+                <h3 className="font-blocky font-semibold uppercase tracking-[.15rem] mb-0 mt-0 text-accent w-full">
                   Nirmal Khedkar
                 </h3>
                 <h1

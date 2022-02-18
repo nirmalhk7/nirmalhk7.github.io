@@ -4,13 +4,23 @@ import SearchEnggOp from "../components/seo";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+export async function getStaticProps(context) {
+  return {
+    props: {
+      projects: [],
+      
+    }, // will be passed to the page component as props
+  };
+}
+
+
 class Projects extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       openIndex: -1,
       hasClicked: false,
-      routeKey: new URLSearchParams(props.location.search).get("id"),
+      // routeKey: new URLSearchParams(props.location.search).get("id"),
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -74,17 +84,16 @@ class Projects extends React.Component {
             <div className="blog-list block-1-2 block-w-full">
               <div className="accordion js-accordion">
                 <div className="row">
-                  {this.props.data.allFile.group.map((e1, i1) => (
+                  {this.props.projects.map((e1, i1) => (
                     <div className="col-lg-6 col-md-12" key={i1}>
                       <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
                       {e1.edges.map((e2, i2) => (
                         <div
-                          className={`accordion__item js-accordion-item ${
-                            this.state.hasClicked &&
+                          className={`accordion__item js-accordion-item ${this.state.hasClicked &&
                             e2.node.id === this.state.openIndex
-                              ? "active"
-                              : ""
-                          }`}
+                            ? "active"
+                            : ""
+                            }`}
                           id={`acc@${e2.node.id}`}
                           key={i2}
                         >
@@ -103,7 +112,7 @@ class Projects extends React.Component {
                             style={{
                               display:
                                 this.state.hasClicked &&
-                                this.state.openIndex === e2.node.id
+                                  this.state.openIndex === e2.node.id
                                   ? "block"
                                   : "none",
                             }}

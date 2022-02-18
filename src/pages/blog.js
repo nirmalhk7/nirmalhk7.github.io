@@ -2,9 +2,8 @@ import React from "react";
 
 import Layout from "../components/layout";
 import SearchEnggOp from "../components/seo";
-import SocialMediaIcons from "../components/partials/social";
-// import SocialMediaSideIcons from "../components/partials/social"
-import Link from "../components/partials/link";
+import SocialMediaIcons from "../components/social";
+import Link from "../components/link";
 
 const LatestBlogItem = ({ item }) => {
   let srx = item.frontmatter.img;
@@ -182,7 +181,7 @@ const BlogByCategory = ({ blogItems }) => {
 const Blog = ({ location, data }) => {
   return (
     <Layout location={location}>
-      <SearchEnggOp title={data.site.siteMetadata.blogName} />
+      <SearchEnggOp title={"Eclipse"} />
       <section
         className="s-home page-hero  parallax"
         data-natural-height="2000"
@@ -197,7 +196,7 @@ const Blog = ({ location, data }) => {
             <h3 className="ital-hover">Official Blog of Nirmal Khedkar</h3>
             <h1 className="page-header__title">
               <Link title="" to="/blog">
-                {data.site.siteMetadata.blogName}
+                Eclipse
               </Link>
             </h1>
             <div className="page-header__info">

@@ -93,6 +93,17 @@
         font-size: 1em;
     }
 
+    code {
+        @apply bg-gray border-darkgray;
+        font-size: 1.4rem;
+        margin: 0 .2rem;
+        padding: .3rem .6rem;
+        white-space: nowrap;
+        background: 'white';
+        border: 1px solid #E1E1E1;
+        border-radius: 3px;
+    }
+
     dfn {
         font-style: italic;
     }
@@ -322,6 +333,30 @@
         -moz-font-variant-ligatures: common-ligatures;
         font-variant-ligatures: common-ligatures;
         text-rendering: optimizeLegibility;
+    }
+
+    h1 {
+        @apply text-h1
+    }
+
+    h2 {
+        @apply text-h2
+    }
+
+    h3 {
+        @apply text-h3
+    }
+
+    h4 {
+        @apply text-h4
+    }
+
+    h5 {
+        @apply text-h5
+    }
+
+    h6 {
+        @apply text-h6
     }
 
     em,

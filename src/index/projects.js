@@ -7,10 +7,10 @@ const Projects = ({ projects, isOpen, handleClick }) => (
         <div className="">
           <div className="pb-6 relative">
             <div className=" text-center">
-              <h3 className="font-blocky text-h3 font-semibold mb-0 mt-0 uppercase text-accent">
+              <h3 className="font-blocky font-semibold mb-0 mt-0 uppercase text-accent">
                 Projects
               </h3>
-              <h1 className="text-h1 font-bold leading-snug mt-0">
+              <h1 className="font-bold leading-snug mt-0">
                 See My Latest Projects
               </h1>
               <p className="lead">
@@ -31,8 +31,11 @@ const Projects = ({ projects, isOpen, handleClick }) => (
                   className={`uppercase cursor-pointer text-mini 
                   transition p-5 font-blocky font-semibold 
                   after:content-['+'] after:text-accent after:float-right 
-                  after:relative after:font-bold after:text-base ${isOpen[index] ? "bg-accent text-white after:text-white" : ""
-                    }`}
+                  after:relative after:font-bold after:text-base ${
+                    isOpen[index]
+                      ? "bg-accent after:content-['-'] after:font-bold  text-white after:text-white"
+                      : ""
+                  }`}
                   id={`accordionheader-${index}`}
                   onClick={handleClick}
                   onKeyDown={handleClick}

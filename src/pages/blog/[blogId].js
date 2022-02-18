@@ -18,6 +18,7 @@ import {
   TelegramShareButton,
   TwitterShareButton,
   WhatsappShareButton,
+  
 } from "react-share";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../components/layout";

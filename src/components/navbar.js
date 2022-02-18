@@ -11,9 +11,7 @@ const Navbar = () => {
       id="tw-header"
     >
       <Link to="/">
-        <div
-          className="left-20 inline-block text-white m-0 p-0 absolute"
-        >
+        <div className="left-20 inline-block text-white m-0 p-0 absolute">
           nirmalhk7
         </div>
       </Link>
@@ -41,11 +39,7 @@ const Navbar = () => {
 
             return (
               <li className="text-white  inline-block pl-0 mr-8" key={index}>
-                <Link
-                  className=""
-                  title={element}
-                  to={hrx}
-                >
+                <Link className="" title={element} to={hrx}>
                   {element}
                 </Link>
               </li>

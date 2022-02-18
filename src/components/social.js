@@ -44,14 +44,17 @@ export const social = [
     class: faDev,
   },
 ];
+
 const SocialMediaIcons = () => {
   return (
-    <ul className="home-social">
+    <ul className="bottom-0 font-bold list-none m-0 pb-64 absolute font-blocky right-16">
       {social.map((element, index) => (
         <li key={index}>
-          <a href={element.link} title={element.name}>
+          <a className="text-white" href={element.link} title={element.name}>
             <FontAwesomeIcon icon={element.class} />
-            <span>{element.name}</span>
+            <span className="text-accent text-xl leading-10 opacity-0 absolute top-0 invisible right-14">
+              {element.name}
+            </span>
           </a>
         </li>
       ))}
