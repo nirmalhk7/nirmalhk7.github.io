@@ -3,11 +3,12 @@ import Layout from "../components/layout";
 import SearchEnggOp from "../components/seo";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ProjectsService } from "../services/projects";
+import Router from 'next/router'
+import { ProjectsService } from "../services/projectService";
 
 export async function getStaticProps(context) {
   const projectsService = new ProjectsService();
-  const projects = await projectsService.detailed();
+  const projects = await projectsService.detailed().then(()=>projectsService.groupBy("tags"));
   return {
     props: {
       projects ,
@@ -30,7 +31,7 @@ class Projects extends React.Component {
   componentDidMount() {
     if (this.state.openIndex === -1 && this.state.routeKey) {
       this.setState({
-        openIndex: this.state.routeKey,
+        openIndex: parseInt(this.state.routeKey),
         hasClicked: true,
       });
     }
@@ -47,7 +48,7 @@ class Projects extends React.Component {
     } else {
       this.setState({
         hasClicked: true,
-        openIndex: key,
+        openIndex: parseInt(key),
       });
     }
   };
@@ -86,37 +87,45 @@ class Projects extends React.Component {
           <div className="sm:container mx-auto blog-content">
             <div className="blog-list block-1-2 block-w-full">
               <div className="accordion js-accordion">
-                <div className="row">
+                <div className="grid grid-cols-2 gap-4">
                   
-                  {this.props.projects.map((e1, i1) => (
-                    <div className="col-lg-6 col-md-12" key={i1}>
-                      <h6 id={e1.fieldValue}>{i1}{e1.fieldValue}</h6>
-                      {e1.edges && e1.edges.map((e2, i2) => (
+                  {typeof(this.props.projects)==='object' && Object.keys(this.props.projects).map((projectField) => (
+                    <div className="mb-10" key={projectField}>
+                      <h6 className="font-blocky font-bold uppercase" id={projectField}>{projectField}</h6>
+                      {this.props.projects[projectField].map((element) => (
                         <div
                           className={`accordion__item js-accordion-item ${this.state.hasClicked &&
-                            e2.node.id === this.state.openIndex
+                            element.index === this.state.openIndex
                             ? "active"
                             : ""
                             }`}
-                          id={`acc@${e2.node.id}`}
-                          key={i2}
+                          id={`acc@${element.index}`}
+                          key={element.index}
                         >
                           <div
-                            className="accordion-header js-accordion-header"
-                            id={`header@${e2.node.id}`}
-                            onClick={this.handleClick}
+                            className={`uppercase cursor-pointer text-mini 
+                            transition p-5 font-blocky font-semibold 
+                            ${element.detailedPage ? "after:content-['→']":"after:content-['+']"} after:text-accent after:float-right 
+                            after:relative after:font-bold after:text-base  ${
+                              this.state.hasClicked &&
+                                  this.state.openIndex === element.index
+                                ? "bg-accent after:content-['-'] after:font-bold  text-white after:text-white"
+                                : ""
+                            }`}
+                            id={`header@${element.index}`}
+                            onClick={element.detailedPage ? this.handleClick: false}
                             onKeyDown={this.handleClick}
                             role="button"
                             tabIndex={0}
                           >
-                            {e2.node.frontmatter.title}
+                            {element.frontmatter.title}
                           </div>
                           <div
-                            className="accordion-body js-accordion-body bg-gray"
+                            className="hidden bg-gray p-5 | js-accordion-body"
                             style={{
                               display:
                                 this.state.hasClicked &&
-                                  this.state.openIndex === e2.node.id
+                                  this.state.openIndex === element.index
                                   ? "block"
                                   : "none",
                             }}
@@ -124,7 +133,7 @@ class Projects extends React.Component {
                             <div
                               className="accordion-body__contents"
                               dangerouslySetInnerHTML={{
-                                __html: e2.node.html,
+                                __html: element.content,
                               }}
                             />
                           </div>
