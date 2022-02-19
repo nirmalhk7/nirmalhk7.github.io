@@ -29,12 +29,12 @@ class ContactForm extends React.Component {
             <div className=" text-center">
               <h3 className="text-accent font-blocky  not-italic leading-tight font-semibold uppercase">Contact Me</h3>
               <h1>Say Hi!</h1>
-              <p className="lead">I'll reach out to you as soon as I can.</p>
+              <p className="font-blocky">I'll reach out to you as soon as I can.</p>
             </div>
           </div>
-          <div className="sm:container mx-auto" style={{ maxWidth: "1000px" }}>
-            <div className="grid grid-cols-2 sm:grid-cols-1">
-              <div className={`w-full`}>
+          <div className="container mx-auto" style={{ maxWidth: "1000px" }}>
+            <div className="grid lg:grid-cols-3 sm:grid-cols-1">
+              <div className={`col-span-2`}>
                 <form method="post">
                   <input
                     className="bg-transparent border border-solid text-white mb-4"
@@ -108,7 +108,7 @@ class ContactForm extends React.Component {
                 </form>
               </div>
               <div className="w-full contact__infos">
-                <h4 className="h06 text-white">Email</h4>
+                <h4 className=" text-white font-blocky uppercase text-navbar font-bold ">Email</h4>
                 <p>
                   nirmalhk7@gmail.com
                   <br />

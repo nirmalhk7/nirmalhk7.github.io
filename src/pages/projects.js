@@ -3,11 +3,14 @@ import Layout from "../components/layout";
 import SearchEnggOp from "../components/seo";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ProjectsService } from "../services/projects";
 
 export async function getStaticProps(context) {
+  const projectsService = new ProjectsService();
+  const projects = await projectsService.detailed();
   return {
     props: {
-      projects: [],
+      projects ,
       
     }, // will be passed to the page component as props
   };
@@ -79,15 +82,16 @@ class Projects extends React.Component {
           </div>
         </section>
 
-        <section className="blog-content-wrap">
+        <section className="bg-white">
           <div className="sm:container mx-auto blog-content">
             <div className="blog-list block-1-2 block-w-full">
               <div className="accordion js-accordion">
                 <div className="row">
+                  
                   {this.props.projects.map((e1, i1) => (
                     <div className="col-lg-6 col-md-12" key={i1}>
-                      <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
-                      {e1.edges.map((e2, i2) => (
+                      <h6 id={e1.fieldValue}>{i1}{e1.fieldValue}</h6>
+                      {e1.edges && e1.edges.map((e2, i2) => (
                         <div
                           className={`accordion__item js-accordion-item ${this.state.hasClicked &&
                             e2.node.id === this.state.openIndex

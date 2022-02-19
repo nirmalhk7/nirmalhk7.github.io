@@ -74,22 +74,24 @@ class Layout extends React.Component {
       const loc = jqueryWIN.scrollTop();
 
       if (loc > triggerHeight) {
-        hdr.addClass("fixed top-0 bg-black opacity-0 invisible z-50");
+        hdr.addClass("1");
       } else {
-        hdr.removeClass("fixed top-0 bg-black opacity-0 invisible z-50");
+        hdr.removeClass("1");
       }
 
       if (loc > triggerHeight + 20) {
-        hdr.addClass("offset");
+        hdr.addClass("2");
       } else {
-        hdr.removeClass("offset");
+        hdr.removeClass("2");
       }
 
       if (loc > triggerHeight + 150) {
         // bg-black opacity-0 fixed top-0 z-50
-        hdr.addClass("1");
+        hdr.removeClass("bg-transparent absolute");
+        hdr.addClass("bg-black fixed");
       } else {
-        hdr.removeClass("1");
+        hdr.removeClass("bg-black fixed");
+        hdr.addClass("bg-transparent absolute");
       }
     });
   }

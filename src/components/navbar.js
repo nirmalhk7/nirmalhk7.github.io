@@ -7,7 +7,7 @@ const Navbar = () => {
   const navbarList = ["Home", "About", "Projects", "Blog", "Contact"];
   return (
     <header
-      className="font-blocky font-bold text-navbar uppercase   w-full h-navbar bg-transparent z-40 absolute top-0"
+      className="font-blocky font-bold text-navbar uppercase  w-full h-navbar bg-transparent z-40 absolute top-0"
       id="tw-header"
     >
       <Link to="/">
@@ -47,9 +47,9 @@ const Navbar = () => {
           })}
         </Scrollspy>
       </nav>
-      <Link className="header-menu-toggle" to="#0">
+      {/* <Link className="header-menu-toggle" to="#0">
         <span>Menu</span>
-      </Link>
+      </Link> */}
     </header>
   );
 };

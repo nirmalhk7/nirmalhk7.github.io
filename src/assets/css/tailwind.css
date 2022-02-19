@@ -32,10 +32,11 @@
     p {
         @apply selection:bg-accent selection:text-white
     }
+
     h1, h2, h3, h4, h5, h6 {
         @apply selection:text-accent
-
     }
+
     h1 {
         font-size: 2em;
         margin: 0.67em 0;
@@ -352,7 +353,7 @@
     }
 
     h5 {
-        @apply text-h5
+        @apply text-h5 mb-6 mt-16
     }
 
     h6 {
@@ -479,6 +480,10 @@
 
     nav a, h1 a {
         text-decoration: none;
+    }
+
+    nav a {
+        @apply text-white
     }
 
 

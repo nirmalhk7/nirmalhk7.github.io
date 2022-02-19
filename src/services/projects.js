@@ -6,7 +6,7 @@ import remark2react from 'remark-react';
 const fs = require("fs");
 const matter = require("gray-matter");
 const fetch = require("node-fetch");
-
+const { groupBy }= require("lodash");
 export class ProjectsService {
   _result;
   _directory = `content/projects`;
@@ -23,12 +23,19 @@ export class ProjectsService {
     });
   };
 
-  _output = async (flags) => {
+  _output = async (sortByKey="modifiedTime", groupByKey=null) => {
     // eslint-disable-next-line no-undef
-    return (await Promise.all(this._result))
-      .filter(Boolean)
-      .sort((first, second) => first.modifiedTime > second.modifiedTime);
+    this._result= (await Promise.all(this._result))
+      .filter(Boolean);
+    if(sortByKey){
+      this._result= this._result.sort((first, second) => first[sortByKey] > second[sortByKey]);
+    }
+    if(groupBy){
+      this._result= groupBy(this._result,(item)=>item[groupByKey]);
+    }
+    return this._result;
   };
+
 
   brief = async () => {
     this._result = this._getFileMetadata().map(async ({ modifiedTime, birthTime, info }, index) => {
@@ -46,7 +53,7 @@ export class ProjectsService {
     return this._output();
   };
 
-  detailed = () => {
+  detailed = (sortByKey="modifiedTime", groupByKey=null) => {
     this._result = this._getFileMetadata().map(
       async ({ info, birthTime, modifiedTime }, index) => {
         const { excerpt, data } = info;

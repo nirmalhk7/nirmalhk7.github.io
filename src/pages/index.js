@@ -162,7 +162,7 @@ class IndexPage extends React.Component {
           title="Home"
         />
         <Jumbotron />
-        <section className="pt-8 pb-6 bg-white relative | s-about" id="about">
+        <section className=" pt-36	 pb-36 bg-white relative | s-about" id="about">
           <div className="w-100 text-center">
             <div className="max-w-screen-md	text-center relative sm:container-md pb-6 | narrow section_intro m-auto">
               <div className="text-center">
