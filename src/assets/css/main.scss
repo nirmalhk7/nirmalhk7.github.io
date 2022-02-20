@@ -1,4 +1,4 @@
-@import "../scss/constants";
+@import "./constants";
 
 /* =================================================================== 
  *
@@ -62,22 +62,22 @@
 $home-wallpaper-cutoff: 1100px;
 
 #blog-header {
-    background-image: url("../images/pitlane.jpg");
+    background-image: url("/images/pitlane.jpg");
     background-size: cover;
 }
 
 @media only screen and (min-width: $home-wallpaper-cutoff) {
     #home {
-        background-image: url("../images/BeachNK_1.jpg");
+        background-image: url("/images/BeachNK_1.jpg");
         background-size: cover;
     }
 }
 
 #projects-header {
-    background-image:url('../images/nasa-earth.jpg')
+    background-image:url('/images/nasa-earth.jpg')
 }
 #notfound {
-    background-image:url('../images/f1car.jpg');
+    background-image:url('/images/f1car.jpg');
 }
 .header-image{
     display:none;
@@ -91,7 +91,7 @@ $home-wallpaper-cutoff: 1100px;
 }
 @media only screen and (max-width: $home-wallpaper-cutoff) {
     #home {
-        background-image: url("../images/MilkyWay.jpg");
+        background-image: url("/images/MilkyWay.jpg");
             background-size: cover;
     }
     .header-image{
@@ -111,13 +111,13 @@ $home-wallpaper-cutoff: 1100px;
     }
     @media only screen and (min-width: 1024px) {
         #contact {
-            background-image: url("../images/contact-bg.jpg");
+            background-image: url("/images/contact-bg.jpg");
             background-size: cover;
         }
     }
     @media only screen and (max-width: 1024px) {
         #contact {
-            background-image: url("../images/MilkyWay.jpg");
+            background-image: url("/images/MilkyWay.jpg");
             background-size: cover;
         }
     }
@@ -1728,8 +1728,8 @@ $home-wallpaper-cutoff: 1100px;
  * ------------------------------------------------------------------- */
     .s-testimonials {
         background-color: #0D0A0B;
-        /* background-image: url("../images/"); */
-        /* background-image: url("../images/testimonial-bg.jpg"); */
+        /* background-image: url("/images/"); */
+        /* background-image: url("/images/testimonial-bg.jpg"); */
         background-repeat: no-repeat;
         background-position: center, center;
         padding-top: 9.6rem;
@@ -2017,7 +2017,7 @@ $home-wallpaper-cutoff: 1100px;
         position: relative;
     }
     .stats__col--highlight {
-        background: #111111 url("../images/count-bg.jpg");
+        background: #111111 url("/images/count-bg.jpg");
         background-size: 175px 175px;
         position: relative;
     }
