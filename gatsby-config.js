@@ -21,6 +21,8 @@ module.exports = {
     email: "nirmalhk7@gmail.com",
   },
   plugins: [
+
+    'gatsby-plugin-postcss',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

@@ -13,4 +13,6 @@ import "./src/assets/css/vendor.scss";
 
 import "./src/assets/css/bootstrap-grid.css";
 import "./src/assets/scss/custom.scss";
+
+import "./src/assets/css/tailwind.css";
 import "./src/assets/scss/index.scss";

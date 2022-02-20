@@ -1,8 +1,7 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import "./../../assets/css/contactme_module.scss";
-
+const styles={};
 class ContactForm extends React.Component {
   constructor(props) {
     super(props);
@@ -22,25 +21,22 @@ class ContactForm extends React.Component {
 
   render() {
     return (
-      <div className="bootstrap-wrapper">
-        <section className="s-contact parallax" id="contact">
-          <div className="overlay" />
-          <div className="narrow section-intro m-auto">
-            <div className="">
-              <h3 className="text-accent">Contact Me</h3>
+      <div className="">
+        <section className={`${styles.section_contact} parallax`} id="contact">
+          {/* <div className={styles.overlay} /> */}
+          <div className={`${styles.section_intro} narrow m-auto`}>
+            <div className=" text-center">
+              <h3 className="text-accent font-blocky  not-italic leading-tight font-semibold uppercase">Contact Me</h3>
               <h1>Say Hi!</h1>
-              <p className="lead">I'll reach out to you as soon as I can.</p>
+              <p className="font-blocky">I'll reach out to you as soon as I can.</p>
             </div>
           </div>
-          <div className="container" style={{ maxWidth: "1000px" }}>
-            <div className="row">
-              <div className="col-lg-8 col-md-8 col-sm-12 tab-full contact__form">
-                <form
-                  action="https://getsimpleform.com/messages?form_api_token=162ff4fa2bb9c89f908b059c33b0a806"
-                  method="post"
-                >
+          <div className="container mx-auto" style={{ maxWidth: "1000px" }}>
+            <div className="grid lg:grid-cols-3 sm:grid-cols-1">
+              <div className={`col-span-2`}>
+                <form method="post">
                   <input
-                    className="full-width"
+                    className="bg-transparent border border-solid text-white mb-4"
                     id="name"
                     name="NAME:"
                     onChange={this.onChange}
@@ -50,7 +46,7 @@ class ContactForm extends React.Component {
                   <div className="form-field">
                     <input
                       aria-required="true"
-                      className="full-width"
+                      className="full-width "
                       id="email"
                       name="contactEmail: "
                       onChange={this.onChange}
@@ -82,10 +78,18 @@ class ContactForm extends React.Component {
                   </div>
                   <input
                     className="submit full-width btn"
-                    disabled={!this.state.email || !this.state.subject || !this.state.name}
+                    disabled={
+                      !this.state.email ||
+                      !this.state.subject ||
+                      !this.state.name
+                    }
                     style={{
                       cursor: `${
-                        !this.state.email || !this.state.subject || !this.state.name ? "not-allowed" : "default"
+                        !this.state.email ||
+                        !this.state.subject ||
+                        !this.state.name
+                          ? "not-allowed"
+                          : "default"
                       }`,
                     }}
                     type="submit"
@@ -93,16 +97,17 @@ class ContactForm extends React.Component {
                   />
                   {this.state.response ? (
                     <div className="alert-box alert-box--info hideit">
-                        <p>Info Message. Your Message Goes Here.</p>
-                        <FontAwesomeIcon className="alert-box__close" icon={faTimes} />
-                      </div>
-                  ) : 
-                    null
-                  }
+                      <p>Info Message. Your Message Goes Here.</p>
+                      <FontAwesomeIcon
+                        className="alert-box__close"
+                        icon={faTimes}
+                      />
+                    </div>
+                  ) : null}
                 </form>
               </div>
-              <div className="col-lg-4 col-md-4 col-sm-12 tab-full contact__infos">
-                <h4 className="h06 text-white">Email</h4>
+              <div className="w-full contact__infos">
+                <h4 className=" text-white font-blocky uppercase text-navbar font-bold ">Email</h4>
                 <p>
                   nirmalhk7@gmail.com
                   <br />
@@ -111,7 +116,8 @@ class ContactForm extends React.Component {
                 <h4 className="h06 text-white">Address</h4>
                 <p>
                   Block 5,
-                  <br /> National Institute of Technology Karnataka Surathkal Hostel,
+                  <br /> National Institute of Technology Karnataka Surathkal
+                  Hostel,
                   <br /> NITK Surathkal,
                   <br /> Karnataka- 575025, India
                 </p>

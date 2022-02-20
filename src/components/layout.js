@@ -9,6 +9,7 @@ import jquery from "jquery";
 
 class Layout extends React.Component {
   componentDidMount() {
+  
     window.onload = function () {
       this.window.scrollTo(0, 0);
     };
@@ -74,21 +75,24 @@ class Layout extends React.Component {
       const loc = jqueryWIN.scrollTop();
 
       if (loc > triggerHeight) {
-        hdr.addClass("sticky");
+        hdr.addClass("1");
       } else {
-        hdr.removeClass("sticky");
+        hdr.removeClass("1");
       }
 
       if (loc > triggerHeight + 20) {
-        hdr.addClass("offset");
+        hdr.addClass("2");
       } else {
-        hdr.removeClass("offset");
+        hdr.removeClass("2");
       }
 
       if (loc > triggerHeight + 150) {
-        hdr.addClass("scrolling");
+        // bg-black opacity-0 fixed top-0 z-50
+        hdr.removeClass("bg-transparent absolute");
+        hdr.addClass("bg-black fixed");
       } else {
-        hdr.removeClass("scrolling");
+        hdr.removeClass("bg-black fixed");
+        hdr.addClass("bg-transparent absolute");
       }
     });
   }

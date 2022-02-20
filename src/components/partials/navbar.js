@@ -1,19 +1,23 @@
-import React from "react";
-import { Link } from "gatsby";
-import Scrollspy from "react-scrollspy";
-import "./../../assets/css/navbar_module.scss";
 
+import React from "react";
+import Scrollspy from "react-scrollspy";
+import { Link } from "gatsby";
 const Navbar = () => {
   const navbarList = ["Home", "About", "Projects", "Blog", "Contact"];
   return (
-    <header className="s-header">
+    <header
+      className="font-blocky font-bold text-navbar uppercase  w-full h-navbar bg-transparent z-40 absolute top-0"
+      id="tw-header"
+    >
       <Link to="/">
-        <div className="header-logo">nirmalhk7</div>
+        <div className="left-20 inline-block text-white m-0 p-0 absolute">
+          nirmalhk7
+        </div>
       </Link>
-      <nav className="header-nav-wrap">
+      <nav className="absolute right-20">
         <Scrollspy
-          className="header-nav"
-          currentClassName="now"
+          className="inline-block h-16 m-0 list-none text-white "
+          currentClassName="text-accent"
           items={navbarList.map((element) => element.toLowerCase())}
           offset={-100}
         >
@@ -33,8 +37,8 @@ const Navbar = () => {
             }
 
             return (
-              <li key={index}>
-                <Link title={element} to={hrx}>
+              <li className="text-white  inline-block pl-0 mr-8" key={index}>
+                <Link className="" title={element} to={hrx}>
                   {element}
                 </Link>
               </li>
@@ -42,9 +46,9 @@ const Navbar = () => {
           })}
         </Scrollspy>
       </nav>
-      <Link className="header-menu-toggle" to="#0">
+      {/* <Link className="header-menu-toggle" to="#0">
         <span>Menu</span>
-      </Link>
+      </Link> */}
     </header>
   );
 };
