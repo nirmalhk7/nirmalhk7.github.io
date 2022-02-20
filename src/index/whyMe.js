@@ -71,7 +71,7 @@ export const CollegeCourses = ({ collegeCourses }) => (
 );
 
 export const WorkExperience = ({ experience }) => (
-  <div className="sm:container mx-auto about-content">
+  <div className="sm:container mx-auto ">
     <div className="col text-center  my-14">
       <h3 className="text-h3 font-blocky">My Work Experience</h3>
     </div>

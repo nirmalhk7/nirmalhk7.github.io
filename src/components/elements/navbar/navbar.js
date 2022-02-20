@@ -1,4 +1,3 @@
-
 import React from "react";
 import Scrollspy from "react-scrollspy";
 import { Link } from "gatsby";

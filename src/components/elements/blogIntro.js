@@ -1,9 +1,8 @@
-import Link from "../components/link";
-
+import { Link } from "gatsby";
 const Blog = ({ name }) => (
   <section className="bg-gradient-to-r from-accent to-accentLight" id="blog">
     <div className="narrow mx-auto text-center  pb-6 relative">
-      <div className="col-12">
+      <div className="w-full">
         <h3 className="m-0 p-0 font-blocky  not-italic leading-tight text-white font-semibold mb-0 mt-0 uppercase">
           Pitlane Chat
         </h3>

@@ -4,46 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { social } from "../social/social";
 
-const styles={};
-export class ScrollToTop extends React.Component {
-  componentDidMount() {
-    const mybutton = document.getElementById("myBtn");
-    window.onscroll = function () {
-      scrollFn();
-    };
-    function scrollFn() {
-      if (
-        document.body.scrollTop > 40 ||
-        document.documentElement.scrollTop > 20
-      ) {
-        mybutton.style.display = "block";
-      } else {
-        mybutton.style.display = "none";
-      }
-    }
-  }
-  render() {
-    function topFunction() {
-      // TODO fix ScrollToTop Movement
-      // document.body.scrollTop = 0;
-      // document.documentElement.scrollTop = 0;
-    }
-    return (
-      <button
-        className={styles.go_top}
-        id="myBtn"
-        onClick={topFunction()}
-        title="Go to top"
-      >
-        <FontAwesomeIcon
-          icon={faLongArrowAltUp}
-          size="lg"
-          style={{ width: "100%", height: "100%" }}
-        />
-      </button>
-    );
-  }
-}
+const styles = {};
 
 const Footer = () => {
   return (

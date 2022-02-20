@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/layout";
+import Layout from "../components/layouts/main";
 import SearchEnggOp from "../components/seo";
 import { graphql } from "gatsby";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
@@ -46,7 +46,7 @@ class Projects extends React.Component {
       <Layout location={this.props.location}>
         <SearchEnggOp title="Projects" />
         <section
-          className="page-header page-hero parallax bootstrap-wrapper"
+          className="page-header page-hero parallax "
           id="projects-header"
         >
           <div className="container page-header__content">
@@ -71,13 +71,13 @@ class Projects extends React.Component {
           </div>
         </section>
 
-        <section className="blog-content-wrap bootstrap-wrapper">
+        <section className="blog-content-wrap ">
           <div className="container blog-content">
             <div className="blog-list block-1-2 block-tab-full">
               <div className="accordion js-accordion">
-                <div className="row">
+                <div className="grid grid-cols-2 md:grid-cols-1">
                   {this.props.data.allFile.group.map((e1, i1) => (
-                    <div className="col-lg-6 col-md-12" key={i1}>
+                    <div className="" key={i1}>
                       <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
                       {e1.edges.map((e2, i2) => (
                         <div
@@ -91,11 +91,11 @@ class Projects extends React.Component {
                           key={i2}
                         >
                           <div
-                         className="accordion-header js-accordion-header"
-                         id={`header@${e2.node.id}`}
-                          onClick={this.handleClick}
-                          onKeyDown={this.handleClick}
-                          role="button"
+                            className="accordion-header js-accordion-header"
+                            id={`header@${e2.node.id}`}
+                            onClick={this.handleClick}
+                            onKeyDown={this.handleClick}
+                            role="button"
                             tabIndex={0}
                           >
                             {e2.node.childMarkdownRemark.frontmatter.title}
