@@ -17,7 +17,7 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
   const { createPage, deletePage } = actions;
   getEnvVariables(process.env.NODE_ENV);
   return new Promise((resolve, reject) => {
-    const blogPostTemplate = path.resolve("src/templates/blog-article.js");
+    const blogPostTemplate = path.resolve("src/components/templates/blog-article.js");
 
     resolve(
       graphql(

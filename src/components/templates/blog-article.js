@@ -1,5 +1,5 @@
 import React from "react";
-import SearchEnggOp from "../components/seo";
+import SearchEnggOp from "../seo";
 import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,9 +20,9 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import Layout from "../components/layout";
-import { CategoryList } from "../helper/category";
-import Commento from "../components/commento";
+import Layout from "../layout";
+import { CategoryList } from "../../helper/category";
+import Commento from "../commento";
 
 const BlogTemplate = ({ location, pageContext }) => {
   const pageTitle = `${pageContext.current.childMarkdownRemark.frontmatter.title  } by ${  pageContext.siteDetails.author}`;

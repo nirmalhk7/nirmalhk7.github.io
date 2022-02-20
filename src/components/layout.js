@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Navbar from "./partials/navbar";
-import Footer, { ScrollToTop } from "./partials/footer";
-import ContactForm from "./partials/contactme";
-import RandomQuote from "./partials/quote";
+import Navbar from "./elements/navbar/navbar";
+import Footer, { ScrollToTop } from "./elements/footer/footer";
+import ContactForm from "./elements/contactme/contactme";
+import RandomQuote from "./elements/randomQuote/quote";
 import jquery from "jquery";
 
 class Layout extends React.Component {

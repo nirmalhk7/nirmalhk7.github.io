@@ -2,7 +2,7 @@
 import { faLongArrowAltUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { social } from "./social";
+import { social } from "../social/social";
 
 const styles={};
 export class ScrollToTop extends React.Component {

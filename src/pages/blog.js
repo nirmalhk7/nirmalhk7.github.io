@@ -3,7 +3,7 @@ import React from "react";
 import Layout from "../components/layout";
 import SearchEnggOp from "../components/seo";
 import { graphql, Link } from "gatsby";
-import SocialMediaIcons from "../components/partials/social";
+import SocialMediaIcons from "../components/elements/social/social";
 // import SocialMediaSideIcons from "../components/partials/social"
 
 const LatestBlogItem = ({ item }) => {

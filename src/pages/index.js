@@ -4,7 +4,7 @@ import { Link, withPrefix, graphql } from "gatsby";
 import Layout from "../components/layout";
 // import Image from "../components/image"
 import SearchEnggOp from "../components/seo";
-import SocialMediaIcons from "../components/partials/social";
+import SocialMediaIcons from "../components/elements/social/social";
 
 const Jumbotron = () => (
   <section
