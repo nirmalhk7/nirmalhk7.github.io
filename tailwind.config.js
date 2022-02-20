@@ -47,7 +47,9 @@ module.exports = {
         lineHeight: '2.4rem',
         letterSpacing: '.16rem'
       }],
-
+      "lead": ["2rem",{
+        lineHeight: "3.6rem"
+      }],
       'navbar': ['1.0rem', {
         letterSpacing: '.25rem',
         lineHeight: '7.2rem',

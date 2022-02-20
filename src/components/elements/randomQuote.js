@@ -31,6 +31,7 @@ const quoteList = [
     saidby: "Anonymous Racer",
   },
 ];
+
 const RandomQuote = () => {
   const quote = quoteList[Math.floor(Math.random() * quoteList.length)];
   return (

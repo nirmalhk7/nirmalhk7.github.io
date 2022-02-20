@@ -1,9 +1,9 @@
-import Link from "../components/link";
+import { Link } from "gatsby";
 
 const Projects = ({ projects, isOpen, handleClick }) => (
   <section className="bg-gray" id="projects">
     <div className="sm:container mx-auto">
-      <div className="grid lg:grid-cols-2 sm:grid-cols-1">
+      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
         <div className="">
           <div className="pb-6 relative">
             <div className=" text-center">
@@ -19,7 +19,7 @@ const Projects = ({ projects, isOpen, handleClick }) => (
             </div>
           </div>
         </div>
-        <div className="col-lg-6 col-md-6 col-sm-12 w-full left">
+        <div className="w-full left">
           <div className="rounded my-auto mx-0 js-accordion">
             {projects.map((element, index) => (
               <div

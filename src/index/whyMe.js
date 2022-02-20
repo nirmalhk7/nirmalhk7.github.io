@@ -20,7 +20,7 @@ export const OnlineCourses = ({ onlineCourses }) => (
     {" "}
     <h5>Online Certification and Courses Taken</h5>
     <hr />
-    <div className="row m-0">
+    <div className=" m-0">
       <ul className="disc">
         {onlineCourses.map((element, index) => (
           <li key={index}>
@@ -37,7 +37,7 @@ export const Memberships = ({ membership }) => (
   <>
     <h5>Memberships</h5>
     <hr />
-    <div className="row m-0">
+    <div className=" m-0">
       <ul className="disc">
         {membership.map((element, index) => (
           <li key={index}>
@@ -55,10 +55,9 @@ export const CollegeCourses = ({ collegeCourses }) => (
   <>
     <h5>Prominent College Courses Taken</h5>
     <hr />
-    <div className="row mr-0 ml-0">
+    <div className=" mr-0 ml-0">
       <div className="disc">
         {collegeCourses.map((element, index) => (
-          // eslint-disable-next-line react/jsx-no-undef
           <Fragment key={index}>
             {index + 1 !== collegeCourses.length
               ? `${element.name}, `
@@ -71,7 +70,7 @@ export const CollegeCourses = ({ collegeCourses }) => (
 );
 
 export const WorkExperience = ({ experience }) => (
-  <div className="sm:container mx-auto about-content">
+  <div className="sm:container mx-auto ">
     <div className="col text-center  my-14">
       <h3 className="text-h3 font-blocky">My Work Experience</h3>
     </div>

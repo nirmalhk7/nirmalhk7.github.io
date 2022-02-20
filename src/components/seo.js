@@ -68,7 +68,7 @@ function SearchEnggOp({ description, lang, meta, title }) {
       ].concat(meta)}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
-     />
+    />
   );
 }
 

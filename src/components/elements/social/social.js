@@ -1,4 +1,10 @@
-import { faAngellist, faDev, faGithub, faGoodreads, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import {
+  faAngellist,
+  faDev,
+  faGithub,
+  faGoodreads,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -40,12 +46,14 @@ export const social = [
 ];
 const SocialMediaIcons = () => {
   return (
-    <ul className="home-social">
+    <ul className="font-bold m-0 pb-64 absolute bottom-0 right-16 font-blocky list-none	after:block after:h-64 after:w-px after:bg-white after:bottom-0 after:content-['']">
       {social.map((element, index) => (
-        <li key={index}>
-          <a href={element.link} title={element.name}>
+        <li key={index} className="relative h-16">
+          <a href={element.link} title={element.name} className="text-white">
             <FontAwesomeIcon icon={element.class} />
-            <span>{element.name}</span>
+            <span className="absolute top-0 leading-10 text-xl opacity-0 invisible text-accent right-14">
+              {element.name}
+            </span>
           </a>
         </li>
       ))}

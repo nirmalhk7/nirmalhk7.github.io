@@ -79,23 +79,10 @@ $home-wallpaper-cutoff: 1100px;
 #notfound {
     background-image:url('../images/f1car.jpg');
 }
-.header-image{
-    display:none;
-    // borderRadius: "50%",
-    // padding: "1rem",
-    // width: "50%",
-    // height: "auto",
-    // display: "block",
-    // marginLeft: "auto",
-    // marginRight: "auto",
-}
 @media only screen and (max-width: $home-wallpaper-cutoff) {
     #home {
         background-image: url("../images/MilkyWay.jpg");
             background-size: cover;
-    }
-    .header-image{
-        display:block;
     }
 }
 
@@ -1459,25 +1446,7 @@ $home-wallpaper-cutoff: 1100px;
             display: none;
         }
     }
-    /* ===================================================================
- * # about - (_site-layout.scss)
- *
- * ------------------------------------------------------------------- */
-    .s-about {
-        padding-top: 15rem;
-        padding-bottom: 9rem;
-        background-color: #FFFFFF;
-        position: relative;
-    }
-    .about-content {
-        margin-bottom: 3rem;
-    }
-    .about-content .left {
-        padding-right: 40px;
-    }
-    .about-content .right {
-        padding-left: 40px;
-    }
+
     /* ------------------------------------------------------------------- 
  * ## timeline - (_site-layout.scss) 
  * ------------------------------------------------------------------- */
@@ -1540,61 +1509,7 @@ $home-wallpaper-cutoff: 1100px;
  * responsive:
  * about
  * ------------------------------------------------------------------- */
-    @media only screen and (max-width: 1000px) {
-        .about-content .left {
-            padding-right: 30px;
-        }
-        .about-content .right {
-            padding-left: 30px;
-        }
-    }
-    @media only screen and (max-width: 900px) {
-        .about-content .left {
-            padding-right: 20px;
-        }
-        .about-content .right {
-            padding-left: 20px;
-        }
-    }
-    @media only screen and (max-width: 800px) {
-        .about-content {
-            max-width: 600px;
-        }
-        .about-content .left {
-            padding-right: 15px;
-        }
-        .about-content .right {
-            padding-left: 15px;
-        }
-        .about-content .right .timeline {
-            margin-top: 0;
-        }
-        .about-content .left>h3, .about-content .right>h3 {
-            text-align: center;
-        }
-    }
-    @media only screen and (max-width: 600px) {
-        .about-content .left {
-            padding-right: 10px;
-        }
-        .about-content .right {
-            padding-left: 10px;
-        }
-        .timeline__block {
-            padding-left: 6rem;
-        }
-    }
-    @media only screen and (max-width: 400px) {
-        .about-content .left {
-            padding-right: 0;
-        }
-        .about-content .right {
-            padding-left: 0;
-        }
-        .timeline__block {
-            padding-left: 5.5rem;
-        }
-    }
+
     /* ===================================================================
  * # works - (_site-layout.scss)
  *

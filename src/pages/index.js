@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withPrefix, graphql } from "gatsby";
 // import data from '../../public/static/data.json'
-import Layout from "../components/layout";
+import Layout from "../components/layouts/main";
 // import Image from "../components/image"
 import SearchEnggOp from "../components/seo";
 import SocialMediaIcons from "../components/elements/social/social";
@@ -16,8 +16,8 @@ const Jumbotron = () => (
     id="home"
   >
     <div className="overlay" />
-    <div className="home-content bootstrap-wrapper">
-      <div className="container home-content__main">
+    <div className="home-content ">
+      <div className="container mx-auto home-content__main">
         <h3 className="ital-hover">Hey!</h3>
         <h1>
           I'm Nirmal Khedkar, <br />
@@ -49,13 +49,13 @@ const Jumbotron = () => (
 );
 
 const WorkExperience = ({ experience }) => (
-  <div className="container about-content about-content--timeline">
+  <div className="container mx-auto  --timeline">
     <div className="col text-center">
       <h3>My Work Experience</h3>
     </div>
-    <div className="row">
+    <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
       {experience.map((element, index) => (
-        <div className="col-lg-6 col-md-6 col-sm-12 left" key={index}>
+        <div className=" left" key={index}>
           <div className="timeline">
             <div className="timeline__block">
               <div className="timeline__bullet" first={index} />
@@ -127,9 +127,9 @@ const HireMe = () => (
 );
 
 const Blog = ({ name }) => (
-  <section className="bg-gradient-accent  bootstrap-wrapper" id="blog">
+  <section className="bg-gradient-accent  " id="blog">
     <div className="narrow section-intro has-bottom-sep m-auto">
-      <div className="col-12">
+      <div className="w-full">
         <h3 className="text-white">{name}</h3>
         <h1 className="text-white">Latest From The Blog</h1>
         <p className="lead">
@@ -146,10 +146,10 @@ const Blog = ({ name }) => (
 );
 
 const Projects = ({ projects, isOpen, handleClick }) => (
-  <section className="bg-gray bootstrap-wrapper" id="projects">
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-6 col-md-6 col-sm-12 tab-full right">
+  <section className="bg-gray " id="projects">
+    <div className="container mx-auto">
+      <div className="grid grid-cols-2 sm:grid-cols-1">
+        <div className="tab-full right">
           <div className="narrow section-intro has-bottom-sep">
             <div className="">
               <h3 className="text-accent">Projects</h3>
@@ -160,7 +160,7 @@ const Projects = ({ projects, isOpen, handleClick }) => (
             </div>
           </div>
         </div>
-        <div className="col-lg-6 col-md-6 col-sm-12 tab-full left">
+        <div className="tab-full left">
           <div className="accordion js-accordion">
             {projects.nodes.map((element, index) => (
               <div
@@ -178,7 +178,6 @@ const Projects = ({ projects, isOpen, handleClick }) => (
                   role="button"
                   tabIndex={0}
                 >
-                  
                   {element.childMarkdownRemark.frontmatter.title}
                 </div>
                 <div
@@ -214,9 +213,12 @@ const MySkills = ({ frameworksLibraries, languages }) => (
       Familiar Languages, Frameworks and Libraries
     </h5>
     <hr />
-    <div className="row" style={{ marginBottom: "5em" }}>
+    <div
+      className="grid grid-cols-4 sm:grid-cols-3"
+      style={{ marginBottom: "5em" }}
+    >
       {[...frameworksLibraries, ...languages].map((element, index) => (
-        <div className="col-3 minicard" key={index}>
+        <div className="minicard" key={index}>
           {element}
         </div>
       ))}
@@ -229,7 +231,7 @@ const OnlineCourses = ({ onlineCourses }) => (
     {" "}
     <h5>Online Certification and Courses Taken</h5>
     <hr />
-    <div className="row m-0">
+    <div className="m-0">
       <ul className="disc">
         {onlineCourses.nodes.map((element, index) => (
           <li key={index}>
@@ -246,7 +248,7 @@ const Memberships = ({ membership }) => (
   <>
     <h5>Memberships</h5>
     <hr />
-    <div className="row m-0">
+    <div className="m-0">
       <ul className="disc">
         {membership.nodes.map((element, index) => (
           <li key={index}>
@@ -264,7 +266,7 @@ const CollegeCourses = ({ collegeCourses }) => (
   <>
     <h5>Prominent College Courses Taken</h5>
     <hr />
-    <div className="row mr-0 ml-0">
+    <div className="mr-0 ml-0">
       <div className="disc">
         {collegeCourses.nodes.map((element, index) => (
           <React.Fragment key={index}>
@@ -320,13 +322,13 @@ class IndexPage extends React.Component {
           title="Home"
         />
         <Jumbotron />
-        <section className="s-about bootstrap-wrapper" id="about">
+        <section className="pt-56 pb-32 bg-white relative " id="about">
           <div className="w-100 text-center">
             <div className="narrow section-intro has-bottom-sep m-auto">
-              <div className="col-12 text-center">
+              <div className="w-full text-center">
                 <h3 className="text-accent">Nirmal Khedkar</h3>
                 <h1>More About Me</h1>
-                <p className="lead">
+                <p className="font-lead font-blocky mb-16">
                   I'm a student in National Institute of Technology Karnataka
                   Surathkal doing a Bachelors in Technology (Information
                   Technology) constantly looking for new and interesting
@@ -335,15 +337,15 @@ class IndexPage extends React.Component {
               </div>
             </div>
           </div>
-          <div className="container about-content">
-            <div className="row">
-              <div className="col-lg-6 col-md-6 col-sm-12">
+          <div className="container mx-auto ">
+            <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+              <div className>
                 <PersonalInfo />
               </div>
-              <div className="col-lg-6 col-md-6 col-sm-12">
+              <div className>
                 <img
                   alt="Nirmal Khedkar"
-                  className="header-image"
+                  className="hidden sm:block"
                   src="https://avatars.githubusercontent.com/u/25480443"
                   style={{
                     borderRadius: "70%",
@@ -359,16 +361,30 @@ class IndexPage extends React.Component {
                   frameworksLibraries={ymlYaml.frameworks_libraries}
                   languages={ymlYaml.languages}
                 />
-                <HireMe />
+                <a
+                  className="w-full font-blocky uppercase"
+                  href={"./Resume.pdf"}
+                  rel="noreferrer"
+                  style={{ marginTop: "1em" }}
+                  target="_blank"
+                >
+                  Download My Resume
+                </a>
+                <Link
+                  className="smoothscroll w-full font-blocky uppercase"
+                  to="#contact"
+                >
+                  Want to Hire?
+                </Link>
               </div>
             </div>
           </div>
-          <div className="container about-content">
-            <div className="row">
-              <div className="col-lg-6 col-md-6 col-sm-12">
+          <div className="container mx-auto ">
+            <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+              <div className>
                 <OnlineCourses onlineCourses={onlineCourses} />
               </div>
-              <div className="col-lg-6 col-md-6 col-sm-12">
+              <div className>
                 <CollegeCourses collegeCourses={collegeCourses} />
                 <Memberships membership={membership} />
               </div>
