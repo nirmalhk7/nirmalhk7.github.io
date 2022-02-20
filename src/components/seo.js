@@ -1,10 +1,13 @@
 import Head from "next/head";
+import { useEffect } from "react";
+import jquery from "jquery";
 import config from "../config";
 
-export default function SEO({ description, title }) {
+export default function SEO({ description, title, children }) {
   const siteTitle = config.title;
 
   return (
+    <>
     <Head>
       <title>{`${title} | ${siteTitle}`}</title>
       <meta content={description} name="description" />
@@ -17,5 +20,8 @@ export default function SEO({ description, title }) {
       <meta content={title} property="twitter:title" />
       <meta content={description} property="twitter:description" />
     </Head>
+    {children}
+    </>
+
   );
 }

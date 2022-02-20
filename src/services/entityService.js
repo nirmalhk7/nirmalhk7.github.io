@@ -1,7 +1,7 @@
 const fs = require("fs");
 const matter = require("gray-matter");
 const fetch = require("node-fetch");
-const { groupBy }= require("lodash");
+const { groupBy, sortBy, orderBy }= require("lodash");
 
 export class EntityService {
     _result;
@@ -17,4 +17,22 @@ export class EntityService {
           };
         });
       };
+
+      _postCleanup=()=>{
+        return this._result;
+      }
+
+      _output = (sortByKey = "modifiedTime") => {
+        // eslint-disable-next-line no-undef
+        this._result = this._result.filter(Boolean);
+        if (sortByKey) {
+          this._result = orderBy(this._result,(e)=>e.frontmatter[sortByKey],"desc");
+        }
+        return  this._postCleanup();
+      }
+
+      groupBy = (groupByKey) => {
+        this._result = groupBy(this._result, (item) => item["frontmatter"][groupByKey]);
+        return this._result;
+      }
 }

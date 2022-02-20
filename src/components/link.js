@@ -7,7 +7,7 @@ function XLink({ title, to, query, children, className }) {
   }
   return (
     <Link href={{ pathname: to, query }}>
-      <a className={className}>{children}</a>
+      <a className={className} title={title}>{children}</a>
     </Link>
   );
 }

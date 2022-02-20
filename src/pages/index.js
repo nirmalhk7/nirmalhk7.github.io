@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "../components/link";
 // import data from '../../public/static/data.json'
-import Layout from "../components/layout";
 // import Image from "../components/image"
 import SearchEnggOp from "../components/seo";
 import SocialMediaIcons from "../components/social";
@@ -15,13 +14,12 @@ import {
 import HireMe from "../index/hireme";
 import Projects from "../index/projects";
 import Blog from "../index/blog";
-import { ProjectsService } from "../services/projects";
+import { ProjectsService } from "../services/projectService";
 
 export async function getStaticProps(context) {
   const projectsService = new ProjectsService();
   const pjs = await projectsService.brief();
   const courses=require("../../content/yml/courses.yaml");
-  
 
   return {
     props: {
@@ -156,11 +154,7 @@ class IndexPage extends React.Component {
     } = this.props.data;
     const { languages, frameworksLibraries } = this.props.skills;
     return (
-      <Layout location={this.props.location}>
-        <SearchEnggOp
-          description="Welcome to Nirmal Khedkar's Official Website"
-          title="Home"
-        />
+      <>
         <Jumbotron />
         <section className=" pt-36	 pb-36 bg-white relative | s-about" id="about">
           <div className="w-100 text-center">
@@ -236,7 +230,7 @@ class IndexPage extends React.Component {
           projects={projects}
         />
         <Blog />
-      </Layout>
+      </>
     );
   }
 }

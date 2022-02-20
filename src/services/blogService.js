@@ -1,48 +1,53 @@
+import update from "lodash/update";
+import { EntityService } from "./entityService";
+
 /* eslint-disable sonarjs/no-duplicate-string */
 const fs = require("fs");
 const matter = require("gray-matter");
 const fetch = require("node-fetch");
 
-export class BlogsService {
+export class BlogsService extends EntityService {
   _result;
-  _directory = `content/blog`;
+
+  constructor() {
+    super();
+    this._directory = `content/blog`;
+  }
 
   _getFileMetadata = () => {
     return fs.readdirSync(this._directory).map((filepath) => {
-      const file = `${this._directory}/${filepath}/index.md`;
+      filepath = `${this._directory}/${filepath}/index.md`;
       const { mtimeMs, atimeMs, ctimeMs, birthtimeMs } = fs.statSync(filepath);
       return {
         birthTime: birthtimeMs,
         modifiedTime: Math.max([mtimeMs, atimeMs, ctimeMs]),
-        info: matter(fs.readFileSync(file, "utf-8")),
+        info: matter(fs.readFileSync(filepath, "utf-8")),
       };
     });
   };
 
-  _output = async (flags) => {
-    // eslint-disable-next-line no-undef
-    return (await Promise.all(this._result))
-      .filter(Boolean)
-      .sort((first, second) => first.modifiedTime > second.modifiedTime);
-  };
+  _postCleanup =()=>{
+    this._result.map(e=>update(e,"frontmatter.img",(element)=>`/images/blog${element}`))
+    
+    console.log(this._result)
+    return this._result;
+  }
 
-  brief = () => {
+  brief = (includeDraft=false) => {
     this._result = this._getFileMetadata().map(
       ({ info, birthTime, modifiedTime }, index) => {
         const { excerpt, data } = info;
-        return (
-          data.special && {
-            birthTime,
-            modifiedTime,
+        return  {
             excerpt,
-            frontmatter: data,
+            frontmatter: {...data, birthTime, modifiedTime},
             index,
           }
-        );
+        ;
       }
     );
-    return this._output();
+    return this._output("date");
   };
+
 
   detailed = () => {
     this._result = this._getFileMetadata().map(

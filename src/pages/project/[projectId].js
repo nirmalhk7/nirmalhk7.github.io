@@ -1,6 +1,5 @@
 import React from "react";
-import SearchEnggOp from "../components/seo";
-import Link from "../components/partials/link";
+import Link from "../../components/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
@@ -21,47 +20,54 @@ import {
   
 } from "react-share";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import Layout from "../components/layout";
-import { CategoryList } from "../helper/category";
-import Commento from "../components/commento";
+import Commento from "../../components/commento";
+import { ProjectsService } from "../../services/projectService";
 
-const BlogTemplate = ({ location, pageContext }) => {
-  const pageTitle = `${pageContext.current.frontmatter.title} by ${pageContext.siteDetails.author}`;
+
+export async function getStaticPaths() {
+  const fs=require("fs");
+  const projectService= new ProjectsService();
+  
+  return {
+    paths:  fs.readdirSync(projectService._directory).map((e)=>`/project/${e.split(".md")[0]}`) ,
+    fallback: true
+  };
+}
+
+export async function getStaticProps(context) {
+  const projectsService = new ProjectsService();
+ const project = await projectsService.single(context.params.projectId);
+  return {
+    props: {
+      project,
+      location: {}
+    }
+  };
+}
+
+
+const ProjectTemplate = ({ location, project }) => {
   const shareProps = {
-    url: pageContext.siteDetails.url + location.pathname,
-    title: pageTitle,
+    title:444 ,
   };
   return (
-    <Layout location={location}>
-      <SearchEnggOp title={pageContext.current.frontmatter.title} />
-      <article className="blog-single has-bottom-sep">
+    <article className="blog-single has-bottom-sep">
         <div
           className="page-header page-header--single page-hero parallax"
           style={{
-            backgroundImage: `url(${pageContext.current.frontmatter.img.childImageSharp.original.src})`,
-            backgroundSize: "cover",
+         backgroundSize: "cover",
           }}
         >
           <div className="m-auto page-header__content narrow">
             <article className="col-12">
               <div className="page-header__info">
-                <div className="page-header__cat">
-                  <CategoryList
-                    categories={pageContext.current.frontmatter.category}
-                  />
-                </div>
+                <div className="page-header__cat" />
               </div>
               <h1 className="page-header__title">
                 <a href="#0" title="">
-                  {pageContext.current.frontmatter.title}
+                  {project.frontmatter.title}
                 </a>
               </h1>
-              <ul className="page-header__meta">
-                <li className="date">
-                  <b>Nirmal Khedkar</b> on
-                  {` ${pageContext.current.frontmatter.date}`}
-                </li>
-              </ul>
             </article>
           </div>
         </div>
@@ -73,14 +79,14 @@ const BlogTemplate = ({ location, pageContext }) => {
             <div
               className="blogpost"
               dangerouslySetInnerHTML={{
-                __html: pageContext.current.html,
+                __html: project.html,
               }}
               style={{ marginTop: "2em" }}
             />
             <div className="blog-content__pagenav">
               <h6 className="boxfont text-uppercase mt-0">Share the article</h6>
               <TwitterShareButton
-                hashtags={pageContext.current.frontmatter.category}
+                hashtags={project.frontmatter.category}
                 {...shareProps}
               >
                 <FontAwesomeIcon
@@ -90,7 +96,7 @@ const BlogTemplate = ({ location, pageContext }) => {
               </TwitterShareButton>
               <LinkedinShareButton
                 source={location.href}
-                summary={pageContext.current.frontmatter.title}
+                summary={project.frontmatter.title}
                 {...shareProps}
               >
                 <FontAwesomeIcon
@@ -99,8 +105,8 @@ const BlogTemplate = ({ location, pageContext }) => {
                 />
               </LinkedinShareButton>
               <FacebookShareButton
-                hashtag={`#${pageContext.current.frontmatter.category}`}
-                quote={`${pageContext.current.frontmatter.title} by Nirmal Khedkar`}
+                hashtag={`#${project.frontmatter.category}`}
+                quote={`${project.frontmatter.title} by Nirmal Khedkar`}
                 {...shareProps}
               >
                 <FontAwesomeIcon
@@ -121,7 +127,7 @@ const BlogTemplate = ({ location, pageContext }) => {
                 />
               </WhatsappShareButton>
               <TelegramShareButton
-                title={`${pageContext.current.frontmatter.title} by Nirmal Khedkar`}
+                title={`${project.frontmatter.title} by Nirmal Khedkar`}
                 {...shareProps}
               >
                 <FontAwesomeIcon
@@ -143,13 +149,8 @@ const BlogTemplate = ({ location, pageContext }) => {
                 className="blog-content__tags"
                 style={{ marginTop: "3rem!important" }}
               >
-                <span>
-                  <CategoryList
-                    categories={pageContext.current.frontmatter.category}
-                  />
-                </span>
                 <span className="blog-content__tag-list">
-                  {pageContext.current.frontmatter.tags.map(
+                  {project.frontmatter.tags.map(
                     (element, index) => (
                       <a href="#0" key={index}>
                         {element}
@@ -158,31 +159,6 @@ const BlogTemplate = ({ location, pageContext }) => {
                   )}
                 </span>
               </p>
-              <div className="blog-content__nav">
-                {pageContext.previous ? (
-                  <div className="blog-content__prev">
-                    <Link
-                      className="text-decoration-none"
-                      rel="prev"
-                      to={`/blog/${pageContext.previous.relativeDirectory}`}
-                    >
-                      <span>Previous Post</span>
-                      {pageContext.previous.frontmatter.title}
-                    </Link>
-                  </div>
-                ) : null}
-                {pageContext.next ? (
-                  <div className="blog-content__next">
-                    <Link
-                      rel="next"
-                      to={`/blog/${pageContext.next.relativeDirectory}`}
-                    >
-                      <span>Next Post</span>
-                      {pageContext.next.frontmatter.title}
-                    </Link>
-                  </div>
-                ) : null}
-              </div>
               <div className="blog-content__all">
                 <a className="btn btn--primary" href="/blog">
                   View All Posts
@@ -195,8 +171,7 @@ const BlogTemplate = ({ location, pageContext }) => {
           </div>
         </div>
       </article>
-    </Layout>
   );
 };
 
-export default BlogTemplate;
+export default ProjectTemplate;

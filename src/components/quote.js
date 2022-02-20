@@ -1,4 +1,5 @@
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
 const quoteList = [
   {
@@ -32,13 +33,19 @@ const quoteList = [
   },
 ];
 const RandomQuote = () => {
+  const [bgColor, setBgColor]=useState("bg-white")
+  const router = useRouter()
+  // Make sure we're in the browser
+  useEffect(()=>{
+    console.log(router)
+  },[router])
   const quote = quoteList[Math.floor(Math.random() * quoteList.length)];
   return (
     <section className="bg-white">
       <div className="narrow m-auto text-center text-h4 pb-6 relative | section_intro has-bottom-sep">
         <div className="">
           <blockquote>
-            <p>{quote.content}</p>
+            <p>{quote.content} </p>
             <cite>{quote.saidby}</cite>
           </blockquote>
         </div>

@@ -1,6 +1,4 @@
 import React from "react";
-import Layout from "../components/layout";
-import SearchEnggOp from "../components/seo";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Router from 'next/router'
@@ -8,12 +6,11 @@ import { ProjectsService } from "../services/projectService";
 
 export async function getStaticProps(context) {
   const projectsService = new ProjectsService();
-  const projects = await projectsService.detailed().then(()=>projectsService.groupBy("tags"));
+  const projects = await projectsService.detailed().then(() => projectsService.groupBy("tags"));
   return {
     props: {
-      projects ,
-      
-    }, // will be passed to the page component as props
+      projects
+    }
   };
 }
 
@@ -55,12 +52,12 @@ class Projects extends React.Component {
 
   render() {
     return (
-      <Layout location={this.props.location}>
-        <SearchEnggOp title="Projects" />
+      <>
         <section
           className="page-header page-hero parallax"
           id="projects-header"
         >
+
           <div className="sm:container mx-auto page-header__content">
             <article className="">
               <h1 className="page-header__title">
@@ -88,8 +85,8 @@ class Projects extends React.Component {
             <div className="blog-list block-1-2 block-w-full">
               <div className="accordion js-accordion">
                 <div className="grid grid-cols-2 gap-4">
-                  
-                  {typeof(this.props.projects)==='object' && Object.keys(this.props.projects).map((projectField) => (
+
+                  {typeof (this.props.projects) === 'object' && Object.keys(this.props.projects).map((projectField) => (
                     <div className="mb-10" key={projectField}>
                       <h6 className="font-blocky font-bold uppercase" id={projectField}>{projectField}</h6>
                       {this.props.projects[projectField].map((element) => (
@@ -105,15 +102,14 @@ class Projects extends React.Component {
                           <div
                             className={`uppercase cursor-pointer text-mini 
                             transition p-5 font-blocky font-semibold 
-                            ${element.detailedPage ? "after:content-['→']":"after:content-['+']"} after:text-accent after:float-right 
-                            after:relative after:font-bold after:text-base  ${
-                              this.state.hasClicked &&
-                                  this.state.openIndex === element.index
+                            ${element.detailedPage ? "after:content-['→']" : "after:content-['+']"} after:text-accent after:float-right 
+                            after:relative after:font-bold after:text-base  ${this.state.hasClicked &&
+                                this.state.openIndex === element.index
                                 ? "bg-accent after:content-['-'] after:font-bold  text-white after:text-white"
                                 : ""
-                            }`}
+                              }`}
                             id={`header@${element.index}`}
-                            onClick={element.detailedPage ? this.handleClick: false}
+                            onClick={element.detailedPage ? false : this.handleClick}
                             onKeyDown={this.handleClick}
                             role="button"
                             tabIndex={0}
@@ -146,7 +142,7 @@ class Projects extends React.Component {
             </div>
           </div>
         </section>
-      </Layout>
+      </>
     );
   }
 }

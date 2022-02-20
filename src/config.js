@@ -1,5 +1,5 @@
 export default {
-  title: "Starter Blog",
+  title: "Nirmal Khedkar",
   author: {
     name: "Lee Robinson",
     summary: "who loves Next.js.",

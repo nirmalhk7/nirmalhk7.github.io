@@ -21,9 +21,19 @@ import {
   
 } from "react-share";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import Layout from "../components/layout";
 import { CategoryList } from "../helper/category";
 import Commento from "../components/commento";
+import { BlogsService } from "../../services/blogService";
+
+export async function getStaticPaths() {
+  const fs=require("fs");
+  const blogService= new BlogsService();
+  
+  return {
+    paths:  fs.readdirSync(blogService._directory).map((e)=>`/blog/${e}`) ,
+    fallback: true
+  };
+}
 
 const BlogTemplate = ({ location, pageContext }) => {
   const pageTitle = `${pageContext.current.frontmatter.title} by ${pageContext.siteDetails.author}`;
@@ -32,8 +42,6 @@ const BlogTemplate = ({ location, pageContext }) => {
     title: pageTitle,
   };
   return (
-    <Layout location={location}>
-      <SearchEnggOp title={pageContext.current.frontmatter.title} />
       <article className="blog-single has-bottom-sep">
         <div
           className="page-header page-header--single page-hero parallax"
@@ -195,7 +203,6 @@ const BlogTemplate = ({ location, pageContext }) => {
           </div>
         </div>
       </article>
-    </Layout>
   );
 };
 

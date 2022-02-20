@@ -1,11 +1,8 @@
 import React from "react";
 
-import Layout from "../components/layout";
-import SearchEnggOp from "../components/seo";
 
 const NotFoundPage = ({ location }) => (
-  <Layout location={location}>
-    <SearchEnggOp title="404: Not Found" />
+  <>
     <section className="page-header page-hero parallax notfound-img">
       <div className="page-header__content m-auto">
         <article className="sm:container mx-auto">
@@ -37,7 +34,7 @@ const NotFoundPage = ({ location }) => (
         </div>
       </div>
     </section>
-  </Layout>
+  </>
 );
 
 export default NotFoundPage;
