@@ -464,9 +464,7 @@ $home-wallpaper-cutoff: 1100px;
     /* ------------------------------------------------------------------- 
  * ## Spacing - (_document-setup.scss)  
  * ------------------------------------------------------------------- */
-    button, .btn {
-        margin-bottom: 1.2rem;
-    }
+
     fieldset {
         margin-bottom: 1.5rem;
     }
@@ -661,55 +659,6 @@ $home-wallpaper-cutoff: 1100px;
  * # buttons - (_buttons.scss)
  *
  * ------------------------------------------------------------------- */
-    .btn, button, input[type="submit"], input[type="reset"], input[type="button"] {
-        display: inline-block;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        letter-spacing: .3rem;
-        height: 5.4rem;
-        line-height: calc(5.4rem - .6rem);
-        padding: 0 3rem;
-        margin: 0 .3rem 1.2rem 0;
-        color: #151515;
-        text-decoration: none;
-        cursor: pointer;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
-        background-color: #c5c5c5;
-        border: .3rem solid #c5c5c5;
-    }
-    .btn:hover, button:hover, input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, .btn:focus, button:focus, input[type="submit"]:focus, input[type="reset"]:focus, input[type="button"]:focus {
-        background-color: #b8b8b8;
-        border-color: #b8b8b8;
-        color: #000000;
-        outline: 0;
-    }
-    /* button primary
- * ------------------------------------------------- */
-
-    /* button modifiers
- * ------------------------------------------------- */
-    .btn.full-width, button.full-width {
-        width: 100%;
-        margin-right: 0;
-    }
-    .btn--medium, button.btn--medium {
-        height: 5.7rem !important;
-        line-height: calc(5.7rem - .6rem) !important;
-    }
-    .btn--large, button.btn--large {
-        height: 6rem !important;
-        line-height: calc(6rem - .6rem) !important;
-    }
-
-    button::-moz-focus-inner, input::-moz-focus-inner {
-        border: 0;
-        padding: 0;
-    }
     /* =================================================================== 
  * # additional components - (_others.scss)
  *
@@ -1197,20 +1146,6 @@ $home-wallpaper-cutoff: 1100px;
         bottom: 2.1rem;
         text-align: center;
     }
-    .home-content__buttons .btn {
-        display: block;
-        width: 210px;
-        border-color: #FFFFFF;
-        color: #FFFFFF;
-        margin: 1.5rem 0 0 0;
-        letter-spacing: .25rem;
-        -webkit-transition: all 0.5s ease-in-out;
-        transition: all 0.5s ease-in-out;
-    }
-    .home-content__buttons .btn:hover, .home-content__buttons .btn:focus {
-        background: #FFFFFF !important;
-        color: #000000;
-    }
     .home-content__scroll {
         position: absolute;
         left: .6rem;
@@ -1369,10 +1304,6 @@ $home-wallpaper-cutoff: 1100px;
             position: static;
             text-align: left;
         }
-        .home-content__buttons .btn {
-            display: inline-block;
-            margin-right: .9rem;
-        }
     }
     @media only screen and (max-width: 800px) {
         .home-content h3 {
@@ -1438,9 +1369,6 @@ $home-wallpaper-cutoff: 1100px;
             width: auto;
             margin-left: 25px;
             margin-right: 25px;
-        }
-        .home-content__buttons .btn {
-            width: 100%;
         }
         .home-social {
             display: none;
@@ -2354,13 +2282,6 @@ $home-wallpaper-cutoff: 1100px;
         max-width: 600px;
         padding-top: 3.6rem;
     }
-    .blog-entries-nav .btn {
-        margin-right: 3rem;
-        min-width: 150px;
-    }
-    .blog-entries-nav .btn:last-child {
-        margin-right: 0;
-    }
     .blog-entries-nav .im {
         font-size: 1.3rem;
         line-height: 1;
@@ -2434,20 +2355,10 @@ $home-wallpaper-cutoff: 1100px;
             padding-right: 10px;
         }
     }
-    @media only screen and (max-width: 500px) {
-        .blog-entries-nav .btn {
-            margin-right: 0;
-            min-width: none;
-            width: 100%;
-        }
-    }
     @media only screen and (max-width: 400px) {
         .blog-content__main {
             padding-left: 0;
             padding-right: 0;
-        }
-        .blog-content__all .btn {
-            width: 100%;
         }
     }
     /* -------------------------------------------------------------------

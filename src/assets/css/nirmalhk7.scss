@@ -27,30 +27,7 @@
     }
   }
 
-  .btn-outline-#{$name}, button.btn-outline-#{$name} {
-    background: transparent !important;
-    border: 0.3rem solid $hex;
-    color: $hex;
-  }
-  .btn-outline-#{$name}:hover, button.btn-outline-#{$name}:hover {
-      background-color: map-get($map: $theme-colors, $key: "accent");
-  }
-  .btn-outline-fill-#{$name}:hover, button.btn-outline-#{$name}:hover {
-     background: #FFFFFF !important;
-     border: 0;
-  }
-
-
-  .btn.btn-#{$name}, button.btn-#{$name}, input[type="submit"].btn-#{$name}, input[type="reset"].btn-#{$name}, input[type="button"].btn-#{$name} {
-    background: $hex;
-    border-color: $hex;
-    color: #FFFFFF;
-}
-  .btn.btn-#{$name}:hover, button.btn-#{$name}:hover, input[type="submit"].btn-#{$name}:hover, input[type="reset"].btn-#{$name}:hover, input[type="button"].btn-#{$name}:hover, .btn.btn-#{$name}:focus, button.btn-#{$name}:focus, input[type="submit"].btn-#{$name}:focus, input[type="reset"].btn-#{$name}:focus, input[type="button"].btn-#{$name}:focus {
-      background: $hex;
-      border-color: $hex;
-  }
-}
+ }
 
 .text-decoration-none {
   text-decoration: none;

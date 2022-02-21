@@ -5,6 +5,8 @@ import Layout from "../components/layouts/main";
 // import Image from "../components/image"
 import SearchEnggOp from "../components/seo";
 import SocialMediaIcons from "../components/elements/social/social";
+import WorkExperience from "../components/elements/workExperience";
+import { MySkills } from "../components/elements/mySkills";
 
 const Jumbotron = () => (
   <section
@@ -26,11 +28,17 @@ const Jumbotron = () => (
           based in <br />
           Surathkal, India.
         </h1>
-        <div className="home-content__buttons">
-          <Link className="smoothscroll  btn btn-outline-white" to="#projects">
+        <div className="grid gap-4 absolute right-0 text-center bottom-8  text-button font-blocky uppercase font-bold">
+          <Link
+            className="smoothscroll text-white border-4 border-white no-underline block  px-5"
+            to="#projects"
+          >
             Latest Projects
           </Link>
-          <Link className="smoothscroll  btn btn-outline-white" to="#about">
+          <Link
+            className="smoothscroll text-white border-4 border-white no-underline block   "
+            to="#about"
+          >
             More About Me
           </Link>
         </div>
@@ -46,33 +54,6 @@ const Jumbotron = () => (
     </div>
     <SocialMediaIcons />
   </section>
-);
-
-const WorkExperience = ({ experience }) => (
-  <div className="container mx-auto  --timeline">
-    <div className="col text-center">
-      <h3>My Work Experience</h3>
-    </div>
-    <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
-      {experience.map((element, index) => (
-        <div className=" left" key={index}>
-          <div className="timeline">
-            <div className="timeline__block">
-              <div className="timeline__bullet" first={index} />
-              <div className="timeline__header">
-                <p className="timeline__timeframe">{element.timeframe}</p>
-                <h3>{element.company}</h3>
-                <h5>{element.post}</h5>
-              </div>
-              <div className="timeline__desc">
-                <p>{element.description}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
 );
 
 const PersonalInfo = () => (
@@ -105,25 +86,6 @@ const PersonalInfo = () => (
       Machine Learning and its applications.
     </p>
   </div>
-);
-const HireMe = () => (
-  <>
-    <a
-      className="btn btn-accent full-width text-decoration-none"
-      href={withPrefix("./Resume.pdf")}
-      rel="noreferrer"
-      style={{ marginTop: "1em" }}
-      target="_blank"
-    >
-      Download My Resume
-    </a>
-    <Link
-      className="smoothscroll btn btn-outline-accent full-width text-decoration-none"
-      to="#contact"
-    >
-      Want to Hire?
-    </Link>
-  </>
 );
 
 const Blog = ({ name }) => (
@@ -205,25 +167,6 @@ const Projects = ({ projects, isOpen, handleClick }) => (
       </div>
     </div>
   </section>
-);
-
-const MySkills = ({ frameworksLibraries, languages }) => (
-  <>
-    <h5 style={{ paddingTop: "0.5em" }}>
-      Familiar Languages, Frameworks and Libraries
-    </h5>
-    <hr />
-    <div
-      className="grid grid-cols-4 sm:grid-cols-3"
-      style={{ marginBottom: "5em" }}
-    >
-      {[...frameworksLibraries, ...languages].map((element, index) => (
-        <div className="minicard" key={index}>
-          {element}
-        </div>
-      ))}
-    </div>
-  </>
 );
 
 const OnlineCourses = ({ onlineCourses }) => (
@@ -361,21 +304,22 @@ class IndexPage extends React.Component {
                   frameworksLibraries={ymlYaml.frameworks_libraries}
                   languages={ymlYaml.languages}
                 />
-                <a
-                  className="w-full font-blocky uppercase"
-                  href={"./Resume.pdf"}
-                  rel="noreferrer"
-                  style={{ marginTop: "1em" }}
-                  target="_blank"
-                >
-                  Download My Resume
-                </a>
-                <Link
-                  className="smoothscroll w-full font-blocky uppercase"
-                  to="#contact"
-                >
-                  Want to Hire?
-                </Link>
+                <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
+                  <a
+                    className="bg-accent border-4 border-accent  no-underline w-full"
+                    href={"./Resume.pdf"}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Download My Resume
+                  </a>
+                  <Link
+                    className="smoothscroll border-4 no-underline border-accent  text-accent w-full"
+                    to="#contact"
+                  >
+                    Want to Hire?
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

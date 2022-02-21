@@ -34,7 +34,7 @@ const Blog = ({ location, data }) => {
                 Technology, Finance, Environment and the Future.
               </div>
             </div>
-            <div className="home-content__buttons">
+            <div className="absolute right-0 text-center bottom-8">
               <blog
                 className="smoothscroll btn btn-outline-white"
                 href="#blog-first"

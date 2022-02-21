@@ -50,6 +50,11 @@ module.exports = {
       "lead": ["2rem",{
         lineHeight: "3.6rem"
       }],
+      "button": ["1.2rem",{
+        lineHeight: "4.8rem",
+        letterSpacing: '.3rem'
+
+      }],
       'navbar': ['1.0rem', {
         letterSpacing: '.25rem',
         lineHeight: '7.2rem',

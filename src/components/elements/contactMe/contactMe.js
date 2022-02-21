@@ -36,7 +36,7 @@ class ContactForm extends React.Component {
             </div>
           </div>
           <div className="container mx-auto" style={{ maxWidth: "1000px" }}>
-            <div className="grid lg:grid-cols-3 sm:grid-cols-1">
+            <div className="grid grid-cols-3 sm:grid-cols-1">
               <div className={`col-span-2`}>
                 <form method="post">
                   <input
@@ -81,7 +81,7 @@ class ContactForm extends React.Component {
                     />
                   </div>
                   <input
-                    className="submit full-width btn"
+                    className="submit full-width bg-gray text-button font-blocky uppercase font-bold"
                     disabled={
                       !this.state.email ||
                       !this.state.subject ||
