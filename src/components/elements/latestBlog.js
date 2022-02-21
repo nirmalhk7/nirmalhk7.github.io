@@ -22,7 +22,7 @@ const LatestBlogItem = ({ item }) => {
         paddingBottom: "2em",
       }}
     >
-      <div className="sm:container blog-content">
+      <div className="sm:container max-w-screen-lg">
         {/* <Link
             className="blog-list block-1-2 block-w-full"
             style={{ marginTop: "0rem" }}

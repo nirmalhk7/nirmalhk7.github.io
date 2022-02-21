@@ -4,7 +4,7 @@ const MasonPanel = ({ sitename, blogItems }) => {
   return (
     <section className="bg-gray">
       <div className="">
-        <div className="blog-content m-auto" style={{ maxWidth: "1500px" }}>
+        <div className="max-w-screen-lg m-auto" style={{ maxWidth: "1500px" }}>
           <div
             className="section_intro has-bottom-sep"
             style={{ paddingTop: "5em" }}

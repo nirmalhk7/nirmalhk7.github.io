@@ -22,7 +22,7 @@ class ContactForm extends React.Component {
   render() {
     return (
       <div className="">
-        <section className={`${styles.section_contact} parallax`} id="contact">
+        <section className={`${styles.section_contact} bg-fixed bg-center bg-no-repeat`} id="contact">
           {/* <div className={styles.overlay} /> */}
           <div className={`${styles.section_intro} narrow m-auto`}>
             <div className=" text-center">
@@ -50,7 +50,7 @@ class ContactForm extends React.Component {
                   <div className="form-field">
                     <input
                       aria-required="true"
-                      className="full-width "
+                      className="w-full "
                       id="email"
                       name="contactEmail: "
                       onChange={this.onChange}
@@ -60,7 +60,7 @@ class ContactForm extends React.Component {
                     />
                   </div>
                   <input
-                    className="full-width"
+                    className="w-full"
                     id="subject"
                     name="contactSubject: "
                     onChange={this.onChange}
@@ -70,7 +70,7 @@ class ContactForm extends React.Component {
                   <div className="form-field">
                     <textarea
                       aria-required="true"
-                      className="full-width"
+                      className="w-full"
                       cols="40"
                       id="message"
                       name="contactMessage: "
@@ -81,7 +81,7 @@ class ContactForm extends React.Component {
                     />
                   </div>
                   <input
-                    className="submit full-width bg-gray text-button font-blocky uppercase font-bold"
+                    className="submit w-full bg-gray text-button font-blocky uppercase font-bold"
                     disabled={
                       !this.state.email ||
                       !this.state.subject ||

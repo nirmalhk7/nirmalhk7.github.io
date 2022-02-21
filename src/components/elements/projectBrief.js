@@ -13,7 +13,7 @@ const Projects = ({ projects, isOpen, handleClick }) => (
               <h1 className="font-bold leading-snug mt-0">
                 See My Latest Projects
               </h1>
-              <p className="lead">
+              <p className="font-lead font-blocky mb-16">
                 Find my projects <Link to="/projects">categorized here</Link>.
               </p>
             </div>

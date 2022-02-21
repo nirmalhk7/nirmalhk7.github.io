@@ -13,7 +13,7 @@ const Blog = ({ location, data }) => {
     <Layout location={location}>
       <SearchEnggOp title={data.site.siteMetadata.blogName} />
       <section
-        className="s-home page-hero  parallax "
+        className="s-home page-hero  bg-fixed bg-center bg-no-repeat "
         data-natural-height="2000"
         data-natural-width="3000"
         data-parallax="scroll"

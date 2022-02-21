@@ -50,7 +50,7 @@ const Footer = () => {
               &nbsp; by Justin Maller
             </span>
             <span style={{ color: "#3d3d3d" }}>
-              Theme by &nbsp;
+              Website theme heavily modified from &nbsp;
               <a
                 className="hidelink"
                 href="https://www.styleshout.com/"

@@ -46,7 +46,7 @@ class Projects extends React.Component {
       <Layout location={this.props.location}>
         <SearchEnggOp title="Projects" />
         <section
-          className="page-header page-hero parallax "
+          className="page-header page-hero bg-fixed bg-center bg-no-repeat "
           id="projects-header"
         >
           <div className="container page-header__content">
@@ -71,10 +71,10 @@ class Projects extends React.Component {
           </div>
         </section>
 
-        <section className="blog-content-wrap ">
-          <div className="container blog-content">
+        <section className="bg-white pt-16 pb-48 ">
+          <div className="container max-w-screen-lg">
             <div className="blog-list block-1-2 block-tab-full">
-              <div className="accordion js-accordion">
+              <div className="my-0 mx-auto rounded js-accordion">
                 <div className="grid grid-cols-2 md:grid-cols-1">
                   {this.props.data.allFile.group.map((e1, i1) => (
                     <div className="" key={i1}>

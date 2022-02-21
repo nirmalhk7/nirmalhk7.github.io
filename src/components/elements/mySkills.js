@@ -8,7 +8,7 @@ export const MySkills = ({ frameworksLibraries, languages }) => (
     <hr />
     <div className="grid grid-cols-4" style={{ marginBottom: "5em" }}>
       {[...frameworksLibraries, ...languages].map((element, index) => (
-        <div className="minicard" key={index}>
+        <div className="p-2 text-center text-base text-black uppercase font-blocky" key={index}>
           {element}
         </div>
       ))}

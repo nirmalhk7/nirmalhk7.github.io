@@ -11,7 +11,7 @@ import { MySkills } from "../components/elements/mySkills";
 
 const Jumbotron = () => (
   <section
-    className="s-home page-hero  parallax"
+    className="s-home page-hero  bg-fixed bg-center bg-no-repeat"
     data-natural-height="2000"
     data-natural-width="3000"
     data-parallax="scroll"
@@ -95,7 +95,7 @@ const Blogx = ({ name }) => (
       <div className="w-full">
         <h3 className="text-white">{name}</h3>
         <h1 className="text-white font-heading">Latest From The Blog</h1>
-        <p className="lead">
+        <p className="font-lead font-blocky mb-16">
           I have strong views on topics like Finance, Technology, Future and
           Environment. Find me&nbsp;
           <Link className="text-white" title={name} to="/blog">
@@ -109,32 +109,41 @@ const Blogx = ({ name }) => (
 );
 
 const Projects = ({ projects, isOpen, handleClick }) => (
-  <section className="bg-gray " id="projects">
-    <div className="container mx-auto">
+  <section className="bg-gray" id="projects">
+    <div className="sm:container mx-auto">
       <div className="grid grid-cols-2 sm:grid-cols-1">
-        <div className="tab-full right">
-          <div className="narrow section-intro has-bottom-sep">
-            <div className="">
-              <h3 className="text-accent">Projects</h3>
-              <h1>See My Latest Projects</h1>
+        <div className="">
+          <div className="pb-6 relative">
+            <div className=" text-center">
+              <h3 className="font-blocky font-semibold mb-0 mt-0 uppercase text-accent">
+                Projects
+              </h3>
+              <h1 className="font-bold leading-snug mt-0">
+                See My Latest Projects
+              </h1>
               <p className="lead">
                 Find my projects <Link to="/projects">categorized here</Link>.
               </p>
             </div>
           </div>
         </div>
-        <div className="tab-full left">
-          <div className="accordion js-accordion">
+        <div className="col-lg-6 col-md-6 col-sm-12 w-full left">
+          <div className="rounded my-auto mx-0 js-accordion">
             {projects.nodes.map((element, index) => (
               <div
-                className={`accordion__item js-accordion-item ${
-                  isOpen[index] ? "active" : ""
-                }`}
+                className={`accordion__item js-accordion-item`}
                 id={`accordion-${index}`}
                 key={index}
               >
                 <div
-                  className="accordion-header bg-gray js-accordion-header"
+                  className={`uppercase cursor-pointer text-mini 
+                  transition p-5 font-blocky font-semibold 
+                  after:content-['+'] after:text-accent after:float-right 
+                  after:relative after:font-bold after:text-base ${
+                    isOpen[index]
+                      ? "bg-accent after:content-['-'] after:font-bold  text-white after:text-white"
+                      : ""
+                  }`}
                   id={`accordionheader-${index}`}
                   onClick={handleClick}
                   onKeyDown={handleClick}
@@ -144,21 +153,19 @@ const Projects = ({ projects, isOpen, handleClick }) => (
                   {element.childMarkdownRemark.frontmatter.title}
                 </div>
                 <div
-                  className="accordion-body js-accordion-body bg-white"
+                  className="hidden bg-white | js-accordion-body"
                   id={`accordionbody-${index}`}
                   style={{
                     display: `${isOpen[index] ? "block" : "none"}`,
                   }}
                 >
-                  <div className="accordion-body__contents">
-                    <p>{element.childMarkdownRemark.excerpt}</p>
+                  <div className="p-5">
+                    <p>{element.excerpt}</p>
                     <Link to={`/projects?id=${element.id}`}>
                       Find more here
                     </Link>
                     .&nbsp;&nbsp;&nbsp;
-                    <code>
-                      {element.childMarkdownRemark.frontmatter.tags[0]}
-                    </code>
+                    <code>{element.childMarkdownRemark.frontmatter.tags[0]}</code>
                   </div>
                 </div>
               </div>

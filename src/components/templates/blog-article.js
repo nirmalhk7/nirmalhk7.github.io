@@ -37,7 +37,7 @@ const BlogTemplate = ({ location, pageContext }) => {
       />
       <article className="blog-single has-bottom-sep">
         <div
-          className="page-header page-header--single page-hero parallax"
+          className="page-header page-header--single page-hero bg-fixed bg-center bg-no-repeat"
           style={{
             backgroundImage: `url(${pageContext.current.childMarkdownRemark.frontmatter.img.childImageSharp.original.src})`,
             backgroundSize: "cover",
@@ -69,7 +69,7 @@ const BlogTemplate = ({ location, pageContext }) => {
             </article>
           </div>
         </div>
-        <div className=" blog-content m-auto" style={{ paddingBottom: "72px" }}>
+        <div className=" max-w-screen-lg m-auto" style={{ paddingBottom: "72px" }}>
           <div className="w-full blog-content__main">
             <div
               className="blogpost"
@@ -87,7 +87,7 @@ const BlogTemplate = ({ location, pageContext }) => {
                 {...shareProps}
               >
                 <FontAwesomeIcon
-                  className="blog-social anchor-color"
+                  className="mr-2 text-accent"
                   icon={faTwitter}
                 />
               </TwitterShareButton>
@@ -99,7 +99,7 @@ const BlogTemplate = ({ location, pageContext }) => {
                 {...shareProps}
               >
                 <FontAwesomeIcon
-                  className="blog-social anchor-color"
+                  className="mr-2 text-accent"
                   icon={faLinkedin}
                 />
               </LinkedinShareButton>
@@ -109,19 +109,19 @@ const BlogTemplate = ({ location, pageContext }) => {
                 {...shareProps}
               >
                 <FontAwesomeIcon
-                  className="blog-social anchor-color"
+                  className="mr-2 text-accent"
                   icon={faFacebook}
                 />
               </FacebookShareButton>
               <PinterestShareButton {...shareProps}>
                 <FontAwesomeIcon
-                  className="blog-social anchor-color"
+                  className="mr-2 text-accent"
                   icon={faPinterest}
                 />
               </PinterestShareButton>
               <WhatsappShareButton {...shareProps}>
                 <FontAwesomeIcon
-                  className="blog-social anchor-color"
+                  className="mr-2 text-accent"
                   icon={faWhatsapp}
                 />
               </WhatsappShareButton>
@@ -130,7 +130,7 @@ const BlogTemplate = ({ location, pageContext }) => {
                 {...shareProps}
               >
                 <FontAwesomeIcon
-                  className="blog-social anchor-color"
+                  className="mr-2 text-accent"
                   icon={faTelegram}
                 />
               </TelegramShareButton>
@@ -140,7 +140,7 @@ const BlogTemplate = ({ location, pageContext }) => {
                 {...shareProps}
               >
                 <FontAwesomeIcon
-                  className="blog-social anchor-color"
+                  className="mr-2 text-accent"
                   icon={faEnvelope}
                 />
               </EmailShareButton>

@@ -1,19 +1,11 @@
-@import "../scss/constants";
+@import "./constants";
 
-
-.parallax {
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
 
       /* ===================================================================
  * # common and reusable theme styles  - (_common-styles.scss)
  *
  * ------------------------------------------------------------------- */
- .wide {
-    max-width: 1400px;
-}
+
 .narrow {
     max-width: 800px;
 }
@@ -81,21 +73,7 @@
     }
 }
 
-p.lead {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 2rem;
-    line-height: 1.8;
-    margin-bottom: 3.6rem;
-} 
-@media only screen and (max-width: 800px) {
-    p.lead {
-        font-size: 1.8rem;
-    }
-}
-.full-width {
-    width: 100%;
-  }
+
 
 
 /*  Blog Page Header ============================= */
@@ -300,26 +278,11 @@ p.lead {
 .page-header__meta span, .page-header__meta a {
     color: #FFFFFF;
 }
-.page-header__btn {
-    border-color: #FFFFFF !important;
-    color: #FFFFFF;
-    letter-spacing: .25rem;
-}
-.page-header__btn:hover, .page-header__btn:focus {
-    background: #FFFFFF !important;
-    color: #000000;
-}
+
     /* -------------------------------------------------------------------
  * ## blog content - _blog.scss
  * ------------------------------------------------------------------- */
- .blog-content-wrap {
-    background-color: #FFFFFF;
-    padding-top: 4.2rem;
-    padding-bottom: 12rem;
-}
-.blog-content {
-    max-width: 1000px;
-}
+
 .blog-content__main {
     padding-left: 6rem;
     padding-right: 6rem;
