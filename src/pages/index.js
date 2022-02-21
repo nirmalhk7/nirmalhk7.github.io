@@ -3,7 +3,8 @@ import { Link, withPrefix, graphql } from "gatsby";
 // import data from '../../public/static/data.json'
 import Layout from "../components/layouts/main";
 // import Image from "../components/image"
-import SearchEnggOp from "../components/seo";
+import Blog from "../components/elements/blogIntro";
+import SearchEnggOp from "../components/elements/seo";
 import SocialMediaIcons from "../components/elements/social/social";
 import WorkExperience from "../components/elements/workExperience";
 import { MySkills } from "../components/elements/mySkills";
@@ -88,12 +89,12 @@ const PersonalInfo = () => (
   </div>
 );
 
-const Blog = ({ name }) => (
+const Blogx = ({ name }) => (
   <section className="bg-gradient-accent  " id="blog">
     <div className="narrow section-intro has-bottom-sep m-auto">
       <div className="w-full">
         <h3 className="text-white">{name}</h3>
-        <h1 className="text-white">Latest From The Blog</h1>
+        <h1 className="text-white font-heading">Latest From The Blog</h1>
         <p className="lead">
           I have strong views on topics like Finance, Technology, Future and
           Environment. Find me&nbsp;
@@ -306,7 +307,7 @@ class IndexPage extends React.Component {
                 />
                 <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
                   <a
-                    className="bg-accent border-4 border-accent  no-underline w-full"
+                    className="bg-accent border-4 border-accent text-white  no-underline w-full"
                     href={"./Resume.pdf"}
                     rel="noreferrer"
                     target="_blank"

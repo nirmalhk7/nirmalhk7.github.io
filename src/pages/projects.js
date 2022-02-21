@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/layouts/main";
-import SearchEnggOp from "../components/seo";
+import SearchEnggOp from "../components/elements/seo";
 import { graphql } from "gatsby";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

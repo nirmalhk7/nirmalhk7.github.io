@@ -1,5 +1,5 @@
 import React from "react";
-import SearchEnggOp from "../seo";
+import SearchEnggOp from "../elements/seo";
 import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

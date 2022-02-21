@@ -17,6 +17,7 @@ const MasonPanel = ({ sitename, blogItems }) => {
           <div className="blog-list block-1-2 block-w-full">
             <div className="columns-4">
               {blogItems.map((element, index) => {
+                element = element.childMarkdownRemark;
                 let srx = element.frontmatter.img;
                 // if (srx.childImageSharp !== null) {
                 //   srx = {

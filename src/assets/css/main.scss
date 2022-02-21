@@ -89,7 +89,6 @@ $home-wallpaper-cutoff: 1100px;
 
 /*1220px needed*/
 
-@media only screen and (min-width: 0px) {
     /*From 0 to 320px display nothing*/
     @media only screen and (max-width: 320px) {
         #home {
@@ -124,11 +123,6 @@ $home-wallpaper-cutoff: 1100px;
  * ------------------------------------------------------------------- */
     html {
         font-size: 10px;
-    }
-    @media only screen and (max-width: 400px) {
-        html {
-            font-size: 9.375px;
-        }
     }
     html, body {
         height: 100%;
@@ -189,20 +183,9 @@ $home-wallpaper-cutoff: 1100px;
         margin-top: 6rem;
         margin-bottom: 1.8rem;
     }
-    @media only screen and (max-width: 600px) {
-        h1, .h01, h2, .h02, h3, .h03, h4, .h04 {
-            margin-top: 5.1rem;
-        }
-    }
     h5, .h05, h6, .h06 {
         margin-top: 4.2rem;
         margin-bottom: 1.5rem;
-    }
-    @media only screen and (max-width: 600px) {
-        h5, .h05, h6, .h06 {
-            margin-top: 3.6rem;
-            margin-bottom: 0.9rem;
-        }
     }
     h1, .h01 {
         font-family: 'Montserrat', sans-serif;
@@ -210,12 +193,6 @@ $home-wallpaper-cutoff: 1100px;
         font-size: 3.6rem;
         line-height: 1.25;
         letter-spacing: -.1rem;
-    }
-    @media only screen and (max-width: 600px) {
-        h1, .h01 {
-            font-size: 3.3rem;
-            letter-spacing: -.07rem;
-        }
     }
     h2, .h02 {
         font-size: 3rem;
@@ -1035,27 +1012,6 @@ $home-wallpaper-cutoff: 1100px;
  * responsive:
  * blog-list
  * ------------------------------------------------------------------- */
-    @media only screen and (max-width: 1200px) {
-        .blog-list article:nth-child(2n+1) {
-            padding-right: 40px;
-        }
-        .blog-list article:nth-child(2n+2) {
-            padding-left: 40px;
-        }
-    }
-    @media only screen and (max-width: 800px) {
-        .blog-list article:nth-child(n) {
-            padding: 0 15px;
-        }
-    }
-    @media only screen and (max-width: 600px) {
-        .blog-list article:nth-child(n) {
-            padding: 0;
-        }
-        .blog-list h2 {
-            font-size: 2.7rem;
-        }
-    }
 
 
     /* ===================================================================
@@ -1270,28 +1226,7 @@ $home-wallpaper-cutoff: 1100px;
  * responsive:
  * home
  * ------------------------------------------------------------------- */
-    @media only screen and (max-width: 1500px) {
-        .home-content h1 {
-            font-size: 5.2rem;
-        }
-        .home-content__main {
-            max-width: 1000px;
-        }
-    }
-    @media only screen and (max-width: 1200px) {
-        .home-content h1 {
-            font-size: 5rem;
-        }
-        .home-content br {
-            display: none;
-        }
-        .home-content__main {
-            max-width: 800px;
-        }
-        .home-content__buttons {
-            right: 30px;
-        }
-    }
+
     @media only screen and (max-width: 1600px) {
         .home-content h1 {
             font-size: 4.8rem;
@@ -1303,43 +1238,6 @@ $home-wallpaper-cutoff: 1100px;
         .home-content__buttons {
             position: static;
             text-align: left;
-        }
-    }
-    @media only screen and (max-width: 800px) {
-        .home-content h3 {
-            font-size: 1.6rem;
-            padding-left: 50px;
-            margin-left: -10px;
-        }
-        .home-content h3::before {
-            width: 40px;
-        }
-        .home-content h1 {
-            font-size: 4.4rem;
-        }
-        .home-content__main {
-            max-width: 500px;
-        }
-    }
-    @media only screen and (max-width: 600px) {
-        .home-content {
-            padding-bottom: 15rem;
-        }
-        .home-content h1 {
-            font-size: 4.2rem;
-        }
-        .home-content__main {
-            max-width: 380px;
-            padding: 0;
-        }
-        .home-content__scroll {
-            bottom: -9rem;
-        }
-        .home-social {
-            padding-bottom: 10.8rem;
-        }
-        .home-social::after {
-            height: 10.2rem;
         }
     }
     @media only screen and (max-width: 500px) {
@@ -1359,6 +1257,9 @@ $home-wallpaper-cutoff: 1100px;
         }
     }
     @media only screen and (max-width: 400px) {
+        .masonry-wrap {
+            width: auto;
+        }
         .home-content {
             vertical-align: middle;
         }
@@ -1372,6 +1273,22 @@ $home-wallpaper-cutoff: 1100px;
         }
         .home-social {
             display: none;
+        }
+        html {
+            font-size: 9.375px;
+        }
+        .blog-content__main {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .footer-site-logo {
+            width: 100px;
+        }
+        .footer-social li {
+            margin-right: 1.2rem;
+        }
+        .footer-social li svg {
+            font-size: 2.2rem;
         }
     }
 
@@ -1632,6 +1549,12 @@ $home-wallpaper-cutoff: 1100px;
         .masonry .grid-sizer, .masonry__brick {
             width: 400px;
         }
+        .home-content h1 {
+            font-size: 5.2rem;
+        }
+        .home-content__main {
+            max-width: 1000px;
+        }
     }
     @media only screen and (max-width: 1300px) {
         .masonry-wrap {
@@ -1648,16 +1571,6 @@ $home-wallpaper-cutoff: 1100px;
         }
         .masonry .grid-sizer, .masonry__brick {
             width: 50%;
-        }
-    }
-    @media only screen and (max-width: 600px) {
-        .masonry .grid-sizer, .masonry__brick {
-            width: 100%;
-        }
-    }
-    @media only screen and (max-width: 400px) {
-        .masonry-wrap {
-            width: auto;
         }
     }
     /* ===================================================================
@@ -1825,11 +1738,70 @@ $home-wallpaper-cutoff: 1100px;
  * testimonials
  * ------------------------------------------------------------------- */
     @media only screen and (max-width: 1200px) {
+        .stats__count {
+            font-size: 5.8rem;
+        }
+        .stats h4 {
+            font-size: 1.6rem;
+        }
         .testimonials-header h1 {
             font-size: 3.8rem;
         }
+        .home-content h1 {
+            font-size: 5rem;
+        }
+        .home-content br {
+            display: none;
+        }
+        .home-content__main {
+            max-width: 800px;
+        }
+        .home-content__buttons {
+            right: 30px;
+        }
+        .blog-list article:nth-child(2n+1) {
+            padding-right: 40px;
+        }
+        .blog-list article:nth-child(2n+2) {
+            padding-left: 40px;
+        }
+        .blog-content {
+            max-width: 900px;
+        }
+        .blog-content__main {
+            padding-left: 5rem;
+            padding-right: 5rem;
+        }
+        .blog-content__main img {
+            max-width: 900px;
+            margin: 3rem 0 3rem -5rem;
+        }
     }
     @media only screen and (max-width: 1000px) {
+        .blog-content {
+            max-width: 800px;
+        }
+        .blog-content__main {
+            padding-left: 4rem;
+            padding-right: 4rem;
+        }
+        .blog-content__main img {
+            max-width: 800px;
+            margin: 3rem 0 3rem -4rem;
+        }
+        .blog-content__prev, .blog-content__next {
+            width: 100%;
+            float: none;
+            padding: 0;
+            text-align: left;
+            margin-bottom: 1.8rem;
+        }
+        .stats__count {
+            font-size: 5rem;
+        }
+        .stats h4 {
+            font-size: 1.4rem;
+        }
         .testimonials__slide {
             padding-left: 11rem;
         }
@@ -1842,8 +1814,54 @@ $home-wallpaper-cutoff: 1100px;
         .testimonials-header h1 {
             font-size: 3rem;
         }
+        .home-content h3 {
+            font-size: 1.6rem;
+            padding-left: 50px;
+            margin-left: -10px;
+        }
+        .home-content h3::before {
+            width: 40px;
+        }
+        .home-content h1 {
+            font-size: 4.4rem;
+        }
+        .home-content__main {
+            max-width: 500px;
+        }
+        .blog-list article:nth-child(n) {
+            padding: 0 15px;
+        }
+        #comments form button {
+            width: 100%;
+        }
+        .blog-content__nav {
+            padding-right: 0;
+        }
+        .blog-content__all {
+            position: static;
+            text-align: left;
+            width: auto;
+            margin-top: 1.8rem;
+        }
+        .stats__count {
+            font-size: 7.2rem;
+        }
+        .stats h4 {
+            font-size: 1.8rem;
+        }
     }
     @media only screen and (max-width: 600px) {
+        h1, .h01 {
+            font-size: 3.3rem;
+            letter-spacing: -.07rem;
+        }
+        h5, .h05, h6, .h06 {
+            margin-top: 3.6rem;
+            margin-bottom: 0.9rem;
+        }
+        h1, .h01, h2, .h02, h3, .h03, h4, .h04 {
+            margin-top: 5.1rem;
+        }
         .testimonials {
             margin-top: 3rem;
         }
@@ -1872,6 +1890,57 @@ $home-wallpaper-cutoff: 1100px;
         .testimonials__avatar {
             left: 50%;
             margin-left: -3rem;
+        }
+        .masonry .grid-sizer, .masonry__brick {
+            width: 100%;
+        }
+        .home-content {
+            padding-bottom: 15rem;
+        }
+        .home-content h1 {
+            font-size: 4.2rem;
+        }
+        .home-content__main {
+            max-width: 380px;
+            padding: 0;
+        }
+        .home-content__scroll {
+            bottom: -9rem;
+        }
+        .home-social {
+            padding-bottom: 10.8rem;
+        }
+        .home-social::after {
+            height: 10.2rem;
+        }
+        .blog-list article:nth-child(n) {
+            padding: 0;
+        }
+        .blog-list h2 {
+            font-size: 2.7rem;
+        }
+        #comments h3 {
+            text-align: center;
+        }
+        .commentlist>.comment {
+            padding-left: 0;
+        }
+        .commentlist .comment__avatar {
+            display: none;
+        }
+        .blog-content__prev, .blog-content__next, .blog-content__all {
+            text-align: center;
+        }
+        .blog-content__main {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .s-stats {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+        }
+        .stats__col {
+            padding: 4.8rem 2rem 4.2rem;
         }
     }
 
@@ -1983,39 +2052,7 @@ $home-wallpaper-cutoff: 1100px;
  * responsive:
  * stats
  * ------------------------------------------------------------------- */
-    @media only screen and (max-width: 1200px) {
-        .stats__count {
-            font-size: 5.8rem;
-        }
-        .stats h4 {
-            font-size: 1.6rem;
-        }
-    }
-    @media only screen and (max-width: 1000px) {
-        .stats__count {
-            font-size: 5rem;
-        }
-        .stats h4 {
-            font-size: 1.4rem;
-        }
-    }
-    @media only screen and (max-width: 800px) {
-        .stats__count {
-            font-size: 7.2rem;
-        }
-        .stats h4 {
-            font-size: 1.8rem;
-        }
-    }
-    @media only screen and (max-width: 600px) {
-        .s-stats {
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-        }
-        .stats__col {
-            padding: 4.8rem 2rem 4.2rem;
-        }
-    }
+
  
     .contact__main {
         max-width: 900px;
@@ -2141,18 +2178,6 @@ $home-wallpaper-cutoff: 1100px;
         width: 130px;
     }
 
-  
-    @media only screen and (max-width: 400px) {
-        .footer-site-logo {
-            width: 100px;
-        }
-        .footer-social li {
-            margin-right: 1.2rem;
-        }
-        .footer-social li svg {
-            font-size: 2.2rem;
-        }
-    }
     /* ===================================================================
  * # blog styles - (_blog.scss)
  *
@@ -2292,39 +2317,7 @@ $home-wallpaper-cutoff: 1100px;
  * responsive:
  * blog content
  * ------------------------------------------------------------------- */
-    @media only screen and (max-width: 1200px) {
-        .blog-content {
-            max-width: 900px;
-        }
-        .blog-content__main {
-            padding-left: 5rem;
-            padding-right: 5rem;
-        }
-        .blog-content__main img {
-            max-width: 900px;
-            margin: 3rem 0 3rem -5rem;
-        }
-    }
-    @media only screen and (max-width: 1000px) {
-        .blog-content {
-            max-width: 800px;
-        }
-        .blog-content__main {
-            padding-left: 4rem;
-            padding-right: 4rem;
-        }
-        .blog-content__main img {
-            max-width: 800px;
-            margin: 3rem 0 3rem -4rem;
-        }
-        .blog-content__prev, .blog-content__next {
-            width: 100%;
-            float: none;
-            padding: 0;
-            text-align: left;
-            margin-bottom: 1.8rem;
-        }
-    }
+
     @media only screen and (max-width: 900px) {
         .blog-content__main {
             padding-left: 15px;
@@ -2333,32 +2326,6 @@ $home-wallpaper-cutoff: 1100px;
         .blog-content__main img {
             max-width: 100%;
             margin: 3rem 0 3rem;
-        }
-    }
-    @media only screen and (max-width: 800px) {
-        .blog-content__nav {
-            padding-right: 0;
-        }
-        .blog-content__all {
-            position: static;
-            text-align: left;
-            width: auto;
-            margin-top: 1.8rem;
-        }
-    }
-    @media only screen and (max-width: 600px) {
-        .blog-content__prev, .blog-content__next, .blog-content__all {
-            text-align: center;
-        }
-        .blog-content__main {
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-    }
-    @media only screen and (max-width: 400px) {
-        .blog-content__main {
-            padding-left: 0;
-            padding-right: 0;
         }
     }
     /* -------------------------------------------------------------------
@@ -2457,20 +2424,3 @@ $home-wallpaper-cutoff: 1100px;
  * responsive:
  * comments
  * ------------------------------------------------------------------- */
-    @media only screen and (max-width: 800px) {
-        #comments form button {
-            width: 100%;
-        }
-    }
-    @media only screen and (max-width: 600px) {
-        #comments h3 {
-            text-align: center;
-        }
-        .commentlist>.comment {
-            padding-left: 0;
-        }
-        .commentlist .comment__avatar {
-            display: none;
-        }
-    }
-}

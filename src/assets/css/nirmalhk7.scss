@@ -1,37 +1,6 @@
 @import "../scss/constants";
 
-// Color Pallete
 
-@debug $theme-colors;
-@each $name, $hex in $theme-colors {
-  .bg-#{$name} {
-    background: $hex;
-    @if $name=="white" or $name=="gray"{
-      color: map-get($map: $theme-colors, $key: "black")!important
-    } @else {
-      color: map-get($map: $theme-colors, $key: "white")!important
-    }
-  }
-  .text-#{$name} {
-    color: $hex
-  }
-  .bg-gradient-#{$name} {
-    background: $hex;
-    background: -moz-linear-gradient(51deg, $hex 0%, scale-color($hex,$blue: 10%, $green: 15%) 55%, scale-color($hex,$blue: 30%, $green: 45%) 97%);
-    background: -webkit-linear-gradient(51deg, $hex 0%, scale-color($hex,$blue: 10%, $green: 15%) 55%, scale-color($hex,$blue: 30%, $green: 45%) 97%);
-    background: linear-gradient(51deg, $hex 0%, scale-color($hex,$blue: 10%, $green: 15%) 55%, scale-color($hex,$blue: 30%, $green: 45%) 97%);
-    @if $name=="white"{
-      color: map-get($map: $theme-colors, $key: "black")
-    } @else {
-      color: map-get($map: $theme-colors, $key: "white")
-    }
-  }
-
- }
-
-.text-decoration-none {
-  text-decoration: none;
-}
 /* Accordion ==================================================  */
 
 .accordion {
