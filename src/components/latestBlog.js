@@ -1,15 +1,7 @@
 import { Link } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 const LatestBlogItem = ({ item }) => {
-    let srx = item.childMarkdownRemark.frontmatter.img;
-    if (srx.childImageSharp !== null) {
-      srx = {
-        src: srx.childImageSharp.fixed.srcWebp,
-        srcSet: srx.childImageSharp.fixed.srcSetWebp,
-      };
-    } else {
-      srx = { src: srx.publicURL, srcSet: null };
-    }
     return (
       <section
         className="bg-gradient-accent bootstrap-wrapper"
@@ -28,12 +20,9 @@ const LatestBlogItem = ({ item }) => {
           > */}
             <div className="row">
               <div className="col-lg-6 col-md-6 col-sm-12">
-                <img
-                  alt="Latest Blog"
-                  src={srx.src}
-                  srcSet={srx.srcSet}
-                  style={{ width:"70%", height:"auto" }}
-                />
+              <GatsbyImage alt={item.relativeDirectory} image={getImage(item.childMarkdownRemark.frontmatter.img)}/>
+                              
+                
               </div>
               <div className="col-lg-6 col-md-6 col-sm-12  text-md-right">
                 <h1 className="entry-title text-white text-decoration-none"  style={{textDecoration:"none"}}>

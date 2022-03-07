@@ -5,6 +5,7 @@ import Layout from "../layouts/main";
 // import Image from "../components/image"
 import SearchEnggOp from "../components/seo";
 import SocialMediaIcons from "../components/social";
+import { StaticImage } from "gatsby-plugin-image";
 
 const Jumbotron = () => (
   <section
@@ -341,19 +342,8 @@ class IndexPage extends React.Component {
                 <PersonalInfo />
               </div>
               <div className="col-lg-6 col-md-6 col-sm-12">
-                <img
-                  alt="Nirmal Khedkar"
-                  className="header-image"
-                  src="https://avatars.githubusercontent.com/u/25480443"
-                  style={{
-                    borderRadius: "70%",
-                    padding: "1rem",
-                    width: "70%",
-                    height: "auto",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                  }}
-                />
+                <StaticImage alt="Nirmal Khedkar" className="header-image"
+                   imgStyle={{borderRadius: "70%",}} placeholder="blurred" src="../assets/images/profile.png"/>
 
                 <MySkills
                   frameworksLibraries={ymlYaml.frameworks_libraries}

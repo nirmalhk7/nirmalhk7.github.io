@@ -40,17 +40,17 @@ const Blog = ({ location, data }) => {
               </div>
             </div>
             <div className="home-content__buttons">
-              <blog className="smoothscroll btn btn-outline-white" href="#blog-first">
+              <a className="smoothscroll btn btn-outline-white" href="#blog-first">
                 Explore
-              </blog>
+              </a>
             </div>
           </div>
         </div>
         <SocialMediaIcons />
       </section>
-      <LatestBlogItem item={data.allFile.nodes[0]} />
+      <LatestBlogItem item={data.blogs.nodes[0]} />
       <MasonPanel
-        blogItems={data.allFile.nodes}
+        blogItems={data.blogs.nodes}
         sitename={data.site.siteMetadata.blogName}
       />
     </Layout>
@@ -58,7 +58,7 @@ const Blog = ({ location, data }) => {
 };
 export const potQuery = graphql`
   query xyz {
-    abc: allFile(
+    blogs: allFile(
       filter: {
         sourceInstanceName: { eq: "blog" }
         ext: { eq: ".md" }
@@ -74,12 +74,8 @@ export const potQuery = graphql`
             description
             img {
               childImageSharp {
-                fixed {
-                  srcWebp
-                  srcSetWebp
-                }
+                gatsbyImageData(width:400, placeholder: BLURRED)
               }
-              publicURL
             }
           }
         }

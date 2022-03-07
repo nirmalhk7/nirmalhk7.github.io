@@ -11,9 +11,12 @@ module.exports = {
     email: "nirmalhk7@gmail.com",
   },
   plugins: [
-    `gatsby-transformer-sharp`,
+
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     `gatsby-transformer-yaml`,
+    
     {
       resolve: `gatsby-source-filesystem`,
       options: {

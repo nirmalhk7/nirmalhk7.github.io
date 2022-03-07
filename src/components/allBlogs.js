@@ -1,4 +1,5 @@
 import { Link } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 const MasonPanel = ({ sitename, blogItems }) => {
     return (
@@ -18,16 +19,6 @@ const MasonPanel = ({ sitename, blogItems }) => {
               <div className="row">
                 <div className="masonry">
                   {blogItems.map((element, index) => {
-                    let srx = element.childMarkdownRemark.frontmatter.img;
-                    if (srx.childImageSharp !== null) {
-                      srx = {
-                        src: srx.childImageSharp.fixed.srcWebp,
-                        srcSet: srx.childImageSharp.fixed.srcSetWebp,
-                      };
-                    } else {
-                      srx = { src: srx.publicURL, srcSet: null };
-                    }
-  
                     return (
                       <div className="masonry__brick" key={index}>
                         <div className="item-folio">
@@ -40,8 +31,8 @@ const MasonPanel = ({ sitename, blogItems }) => {
                               }
                               to={`/blog/${element.relativeDirectory}`}
                             >
-                              <img alt={element.childMarkdownRemark.frontmatter.title} src={srx.src} srcSet={srx.srcSet} />
-                            </Link>
+                              <GatsbyImage alt={element.relativeDirectory} image={getImage(element.childMarkdownRemark.frontmatter.img)}/>
+                               </Link>
                           </div>
                           <div className="item-folio__text">
                             <h3 className="item-folio__title">

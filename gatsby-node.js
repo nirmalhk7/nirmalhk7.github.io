@@ -13,9 +13,32 @@ const getEnvVariables = (env) => {
     process.env[element.split("=")[0]] = ans;
   });
 };
+
+const downloadImage = (url,location) => {
+  var https = require("https"),
+    Stream = require("stream").Transform,
+    fs = require("fs");
+
+  https
+    .request(url, function (response) {
+      var data = new Stream();
+
+      response.on("data", function (chunk) {
+        data.push(chunk);
+      });
+
+      response.on("end", function () {
+        fs.writeFileSync(location, data.read());
+      });
+    })
+    .end();
+    console.log("Downloaded image",url)
+};
+
 exports.createPages = ({ page, graphql, actions }, { paths }) => {
   const { createPage, deletePage } = actions;
   getEnvVariables(process.env.NODE_ENV);
+  downloadImage("https://avatars.githubusercontent.com/u/25480443","src/assets/images/profile.png")
   return new Promise((resolve, reject) => {
     const blogPostTemplate = path.resolve("src/templates/blog-article.js");
 
