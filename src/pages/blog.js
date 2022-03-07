@@ -6,48 +6,29 @@ import { graphql, Link } from "gatsby";
 import SocialMediaIcons from "../components/social";
 import LatestBlogItem from "../components/latestBlog";
 import MasonPanel from "../components/allBlogs";
+import { MegaJumbotron } from "../components/jumbotron";
 // import SocialMediaSideIcons from "../components/social"
 
-
-
-
-
 const Blog = ({ location, data }) => {
-  if(!data) return null;
+  if (!data) return null;
   return (
     <Layout location={location}>
       <SearchEnggOp title={data.site.siteMetadata.blogName} />
-      <section
-        className="s-home page-hero  parallax bootstrap-wrapper"
-        data-natural-height="2000"
-        data-natural-width="3000"
-        data-parallax="scroll"
-        data-position-y="center"
+      <MegaJumbotron
+        buttonsSection={
+          <Link className="smoothscroll btn btn-outline-white" to="#blog-first">
+            Explore
+          </Link>
+        }
+        header={data.site.siteMetadata.blogName}
         id="blog-header"
-      >
-        <div className="overlay" />
-        <div className="home-content">
-          <div className="container home-content__main">
-            <h3 className="ital-hover">Official Blog of Nirmal Khedkar</h3>
-            <h1 className="page-header__title">
-              <Link title="" to="/blog">
-                {data.site.siteMetadata.blogName}
-              </Link>
-            </h1>
-            <div className="page-header__info">
-              <div className="page-header__cat">
-                Technology, Finance, Environment and the Future.
-              </div>
-            </div>
-            <div className="home-content__buttons">
-              <a className="smoothscroll btn btn-outline-white" href="#blog-first">
-                Explore
-              </a>
-            </div>
+        infoSection={
+          <div className="page-header__cat">
+            Technology, Finance, Environment and the Future.
           </div>
-        </div>
-        <SocialMediaIcons />
-      </section>
+        }
+        miniHeader="Official Blog of Nirmal Khedkar"
+      />
       <LatestBlogItem item={data.blogs.nodes[0]} />
       <MasonPanel
         blogItems={data.blogs.nodes}
@@ -59,10 +40,7 @@ const Blog = ({ location, data }) => {
 export const potQuery = graphql`
   query xyz {
     blogs: allFile(
-      filter: {
-        sourceInstanceName: { eq: "blog" }
-        ext: { eq: ".md" }
-     }
+      filter: { sourceInstanceName: { eq: "blog" }, ext: { eq: ".md" } }
     ) {
       nodes {
         relativeDirectory
@@ -74,7 +52,7 @@ export const potQuery = graphql`
             description
             img {
               childImageSharp {
-                gatsbyImageData(width:400, placeholder: BLURRED)
+                gatsbyImageData(width: 400, placeholder: BLURRED)
               }
             }
           }

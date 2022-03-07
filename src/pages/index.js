@@ -4,50 +4,8 @@ import { Link, withPrefix, graphql } from "gatsby";
 import Layout from "../layouts/main";
 // import Image from "../components/image"
 import SearchEnggOp from "../components/seo";
-import SocialMediaIcons from "../components/social";
 import { StaticImage } from "gatsby-plugin-image";
-
-const Jumbotron = () => (
-  <section
-    className="s-home page-hero  parallax"
-    data-natural-height="2000"
-    data-natural-width="3000"
-    data-parallax="scroll"
-    data-position-y="center"
-    id="home"
-  >
-    <div className="overlay" />
-    <div className="home-content bootstrap-wrapper">
-      <div className="container home-content__main">
-        <h3 className="ital-hover">Hey!</h3>
-        <h1>
-          I'm Nirmal Khedkar, <br />
-          product developer
-          {"\n"}
-          based in <br />
-          Surathkal, India.
-        </h1>
-        <div className="home-content__buttons">
-          <Link className="smoothscroll  btn btn-outline-white" to="#projects">
-            Latest Projects
-          </Link>
-          <Link className="smoothscroll  btn btn-outline-white" to="#about">
-            More About Me
-          </Link>
-        </div>
-        <div className="home-content__scroll">
-          <Link
-            className="scroll-link smoothscroll text-decoration-none"
-            to="#about"
-          >
-            <span>Scroll Down</span>
-          </Link>
-        </div>
-      </div>
-    </div>
-    <SocialMediaIcons />
-  </section>
-);
+import { MegaJumbotron } from "../components/jumbotron";
 
 const WorkExperience = ({ experience }) => (
   <div className="container about-content about-content--timeline">
@@ -179,7 +137,6 @@ const Projects = ({ projects, isOpen, handleClick }) => (
                   role="button"
                   tabIndex={0}
                 >
-                  
                   {element.childMarkdownRemark.frontmatter.title}
                 </div>
                 <div
@@ -320,7 +277,40 @@ class IndexPage extends React.Component {
           description="Welcome to Nirmal Khedkar's Official Website"
           title="Home"
         />
-        <Jumbotron />
+        <MegaJumbotron
+          buttonsSection={
+            <>
+              <Link
+                className="smoothscroll  btn btn-outline-white"
+                to="#projects"
+              >
+                Latest Projects
+              </Link>
+              <Link className="smoothscroll  btn btn-outline-white" to="#about">
+                More About Me
+              </Link>
+            </>
+          }
+          header={
+            <>
+              I'm Nirmal Khedkar, <br />
+              product developer
+              {"\n"}
+              based in <br />
+              Surathkal, India.
+            </>
+          }
+          id="home"
+          miniHeader="Hey!"
+          scrollSection={
+            <Link
+              className="scroll-link smoothscroll text-decoration-none"
+              to="#about"
+            >
+              <span>Scroll Down</span>
+            </Link>
+          }
+        />
         <section className="s-about bootstrap-wrapper" id="about">
           <div className="w-100 text-center">
             <div className="narrow section-intro has-bottom-sep m-auto">
@@ -342,8 +332,13 @@ class IndexPage extends React.Component {
                 <PersonalInfo />
               </div>
               <div className="col-lg-6 col-md-6 col-sm-12">
-                <StaticImage alt="Nirmal Khedkar" className="header-image"
-                   imgStyle={{borderRadius: "70%",}} placeholder="blurred" src="../assets/images/profile.png"/>
+                <StaticImage
+                  alt="Nirmal Khedkar"
+                  className="header-image"
+                  imgStyle={{ borderRadius: "70%" }}
+                  placeholder="blurred"
+                  src="../assets/images/profile.png"
+                />
 
                 <MySkills
                   frameworksLibraries={ymlYaml.frameworks_libraries}
