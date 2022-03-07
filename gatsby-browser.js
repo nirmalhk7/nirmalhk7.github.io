@@ -12,5 +12,5 @@ import "./src/assets/css/nirmalhk7.scss";
 import "./src/assets/css/vendor.scss";
 
 import "./src/assets/css/bootstrap-grid.css";
-import "./src/assets/scss/custom.scss";
-import "./src/assets/scss/index.scss";
+import "./src/assets/css/custom.scss";
+import "./src/assets/css/index.scss";

@@ -5,6 +5,7 @@ tags: ["hackathon","environment","technology","nirmal"]
 img: "./nitrourkela.jpg"
 description: My account of the week I spent for NIT Conclave Hackathon at NITRKL.
 date: "2019-09-24"
+draft: false
 ---
 
 So one week from the `21st August`, I was outside NITK to attend NIT Conclave in Rourkela. Me and 4 others of my College, managed to win overall 2nd position overall at the Conclave and 5th in the Hackathon. Here's my experience. 

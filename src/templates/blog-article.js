@@ -20,8 +20,8 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import Layout from "../components/layout";
-import { CategoryList } from "../helper/category";
+import Layout from "../layouts/main";
+import { CategoryList } from "../components/category";
 import Commento from "../components/commento";
 
 const BlogTemplate = ({ location, pageContext }) => {

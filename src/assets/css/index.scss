@@ -1,0 +1,330 @@
+@import "constants";
+
+
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+      /* ===================================================================
+ * # common and reusable theme styles  - (_common-styles.scss)
+ *
+ * ------------------------------------------------------------------- */
+ .wide {
+    max-width: 1400px;
+}
+.narrow {
+    max-width: 800px;
+}
+
+    /* ------------------------------------------------------------------- 
+ * ## section intro - (_common-styles.scss)
+ * ------------------------------------------------------------------- */
+ .section-intro {
+    text-align: center;
+    position: relative;
+}
+.section-intro h1 {
+    font-family: "Libre Baskerville", serif;
+    font-size: 4.8rem;
+    font-weight: 700;
+    line-height: 1.375;
+    margin-top: 0;
+}
+.section-intro h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: .15rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.section-intro.has-bottom-sep {
+    padding-bottom: 1.5rem;
+    position: relative;
+}
+.section-intro.has-bottom-sep::after {
+    display: inline-block;
+    height: 1px;
+    width: 240px;
+    background-color: rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+/* ------------------------------------------------------------------- 
+* responsive:
+* section-intro
+* ------------------------------------------------------------------- */
+@media only screen and (max-width: 800px) {
+    .section-intro h1 {
+        font-size: 4.2rem;
+    }
+    .section-intro h3 {
+        font-size: 1.8rem;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .section-intro h1 {
+        font-size: 3.6rem;
+    }
+    .section-intro h3 {
+        font-size: 1.7rem;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .section-intro h1 {
+        font-size: 3.3rem;
+    }
+    .section-intro h3 {
+        font-size: 1.6rem;
+    }
+}
+
+p.lead {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1.8;
+    margin-bottom: 3.6rem;
+} 
+@media only screen and (max-width: 800px) {
+    p.lead {
+        font-size: 1.8rem;
+    }
+}
+.full-width {
+    width: 100%;
+  }
+
+
+/*  Blog Page Header ============================= */
+.page-header {
+    background-color: #0D0A0B;
+    background-repeat: no-repeat;
+    background-position: center, center;
+    padding-top: 20.4rem;
+    padding-bottom: 7.2rem;
+    position: relative;
+    color: rgba(255, 255, 255, 0.5);
+    min-height: 50.4rem;
+}
+.page-header--single {
+    padding-top: 22.8rem;
+    padding-bottom: 7.2rem;
+    text-align: center;
+}
+.page-header::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .75;
+    background-color: #0D0A0B;
+}
+.page-header::after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+    background: -moz-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+@media only screen and (max-width: 800px) {
+    .page-header--single {
+        padding-top: 18rem;
+    }
+    .page-header__title {
+        font-size: 5.4rem;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .page-header {
+        padding-top: 18rem;
+    }
+    .page-header__content p {
+        padding-right: 0;
+    }
+    .page-header__title {
+        font-size: 4.8rem;
+    }
+}
+.page-header__content {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1.8;
+    position: relative;
+    max-width: 900px;
+    z-index: 2;
+}
+.page-header__content p {
+    padding-right: 3rem;
+}
+.page-header__title {
+    color: #FFFFFF;
+    position: relative;
+    font-family: "librebaskerville-bold", serif;
+    font-size: 6.6rem;
+    line-height: 1.227;
+    margin-top: 0;
+    margin-bottom: 3.6rem;
+}
+.page-header__title a {
+    color: #FFFFFF;
+}
+.page-header__info {
+    margin-bottom: 1.2rem;
+}
+.page-header__info .div:last-child {
+    margin-right: 0;
+}
+    /* ------------------------------------------------------------------- 
+ * responsive:
+ * blog page header
+ * ------------------------------------------------------------------- */
+ @media only screen and (max-width: 1200px) {
+    .page-header__content {
+        max-width: 800px;
+        font-size: 1.7rem;
+    }
+    .page-header__cat {
+        font-size: 1.3rem;
+    }
+    .page-header__title {
+        font-size: 6rem;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .page-header__content {
+        max-width: 700px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .page-header__title {
+        font-size: 4.2rem;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .page-header__content {
+        font-size: 1.6rem;
+        line-height: 1.875;
+    }
+    .page-header__title {
+        font-size: 3.8rem;
+    }
+}
+
+    /* -------------------------------------------------------------------
+ * ## blog page header
+ * ------------------------------------------------------------------- */
+
+
+
+ .page-header__cat, .page-header__date {
+    display: inline-block;
+    margin-right: 2rem;
+    margin-bottom: .3rem;
+}
+.page-header__cat {
+    font-size: 1.4rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: .16rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700
+}
+.page-header__cat a {
+    color: rgba(255, 255, 255, 0.8);
+}
+.page-header__cat a:hover, .page-header__cat a:focus, .page-header__cat a:active {
+    color: white;
+}
+.page-header__cat a::after {
+    content: ", ";
+}
+.page-header__cat a:last-child::after {
+    display: none;
+}
+.page-header__date {
+    font-family: "montserrat-light", sans-serif;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+.page-header__date a {
+    color: rgba(255, 255, 255, 0.4);
+}
+.page-header__date a:hover, .page-header__date a:focus, .page-header__date a:active {
+    color: white;
+}
+
+.page-header__meta {
+    list-style: none;
+    margin-left: 0;
+    padding-top: 2.4rem;
+    font-size: 1.6rem;
+    position: relative;
+}
+.page-header__meta::before {
+    display: block;
+    content: "";
+    height: 1px;
+    width: 100px;
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -50px;
+}
+.page-header__meta li {
+    display: inline-block;
+    padding-left: 0;
+    margin-right: 2rem;
+}
+.page-header__meta li::last-child {
+    margin-right: 0;
+}
+.page-header__meta span, .page-header__meta a {
+    color: #FFFFFF;
+}
+.page-header__btn {
+    border-color: #FFFFFF !important;
+    color: #FFFFFF;
+    letter-spacing: .25rem;
+}
+.page-header__btn:hover, .page-header__btn:focus {
+    background: #FFFFFF !important;
+    color: #000000;
+}
+    /* -------------------------------------------------------------------
+ * ## blog content - _blog.scss
+ * ------------------------------------------------------------------- */
+ .blog-content-wrap {
+    background-color: #FFFFFF;
+    padding-top: 4.2rem;
+    padding-bottom: 12rem;
+}
+.blog-content {
+    max-width: 1000px;
+}
+.blog-content__main {
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+.blog-content__main img {
+    max-width: 1000px;
+    margin: 3rem 0 3rem -6rem;
+}

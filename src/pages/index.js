@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, withPrefix, graphql } from "gatsby";
 // import data from '../../public/static/data.json'
-import Layout from "../components/layout";
+import Layout from "../layouts/main";
 // import Image from "../components/image"
 import SearchEnggOp from "../components/seo";
-import SocialMediaIcons from "../components/partials/social";
+import SocialMediaIcons from "../components/social";
 
 const Jumbotron = () => (
   <section
