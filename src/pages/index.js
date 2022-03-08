@@ -425,14 +425,7 @@ export const postQuery = graphql`
         link
       }
     }
-    cv: allProfilesYaml(filter: { type: { eq: "cv" } }) {
-      nodes {
-        name
-        url
-        icon
-        initial
-      }
-    }
+
     ymlYaml {
       frameworks_libraries
       languages

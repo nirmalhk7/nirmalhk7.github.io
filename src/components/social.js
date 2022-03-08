@@ -1,54 +1,72 @@
-import { faAngellist, faDev, faGithub, faGoodreads, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faRss } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngellist,
+  faDev,
+  faGithub,
+  faGoodreads,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope, faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import "../assets/css/social_module.scss";
 
 // TODO fix colors of social icons
-export const social = [
-  {
-    name: "GitHub",
-    link: "https://www.github.com/nirmalhk7",
-    class: faGithub,
-  },
-  {
-    name: "LinkedIn",
-    link: "https://www.linkedin.com/in/nirmalhk7",
-    class: faLinkedin,
-    underBlog: true,
-  },
-  {
-    name: "Angellist",
-    link: "https://angel.co/nirmalhk7",
-    class: faAngellist,
-  },
-  {
-    name: "Goodreads",
-    link: "https://www.goodreads.com/user/show/93069537-nirmal",
-    class: faGoodreads,
-  },
-  {
-    name: "RSS",
-    link: "/feed.xml",
-    class: faRss,
-  },
-  {
-    name: "DEV",
-    link: "https://dev.to/nirmalhk7",
-    class: faDev,
-  },
-];
+export const social = () => {
+  const socialInfo = useStaticQuery(graphql`
+    {
+      cv: allProfilesYaml {
+        nodes {
+          name
+          url
+        }
+      }
+    }
+  `).cv.nodes;
+  socialInfo.map((element) => {
+    switch (element.name) {
+      case "GitHub":
+        element.icon = faGithub;
+        break;
+      case "LinkedIn":
+        element.icon = faLinkedin;
+        element.underBlog = true;
+        break;
+      case "Angellist":
+        element.icon = faAngellist;
+        break;
+      case "Goodreads":
+        element.icon = faGoodreads;
+        break;
+      case "RSS":
+        element.icon = faRss;
+        break;
+      case "Email":
+        element.icon = faEnvelope;
+        break;
+      case "DEV":
+        element.icon = faDev;
+        break;
+    }
+  });
+  return socialInfo;
+};
+
 const SocialMediaIcons = () => {
   return (
     <ul className="home-social">
-      {social.map((element, index) => (
-        <li key={index}>
-          <a href={element.link} title={element.name}>
-            <FontAwesomeIcon icon={element.class} />
-            <span>{element.name}</span>
-          </a>
-        </li>
-      ))}
+      {social().map((element) => {
+        if (element.icon)
+          return (
+            <li key={element.name}>
+              {console.log(social())}
+              <a href={element.url} title={element.name}>
+                <FontAwesomeIcon icon={element.icon} />
+                <span>{element.name}</span>
+              </a>
+            </li>
+          );
+      })}
     </ul>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"; // Helper to add scripts to our page
+import {useLocation} from "@reach/router";
 const insertScript = (src, id, parentElement) => {
   const script = window.document.createElement("script");
   script.async = true;
@@ -13,7 +14,9 @@ const removeScript = (id, parentElement) => {
     parentElement.removeChild(script);
   }
 }; // The actual component
-const Commento = ({ id }) => {
+const Commento = () => {
+  const location= useLocation();
+  
   useEffect(() => {
     // If there's no window there's nothing to do for us
     if (!window) {
@@ -25,7 +28,7 @@ const Commento = ({ id }) => {
       insertScript(`https://comments-nk7.herokuapp.com/js/commento.js`, `commento-script`, document.body);
     } // Cleanup; remove the script from the page
     return () => removeScript(`commento-script`, document.body);
-  }, [id]);
+  }, [location]);
   return <div id={`commento`} />;
 };
 export default Commento;

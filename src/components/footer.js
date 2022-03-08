@@ -38,14 +38,14 @@ const Footer = () => {
       <div className="row flicker-3">
         <div className="">
           <ul className="footer-social">
-            {social.map((element, index) => {
-              if (element.link)
+            {social().map((element) => {
+              if (element)
                 return (
                   
-                  <li key={index}>
-                    <a className="ln text-decoration-none" href={element.link} target="blank">
+                  <li key={element.name}>
+                    <a className="ln text-decoration-none" href={element.url} target="blank">
                       {/* TODO Increase Icon size in Mobile view */}
-                      <FontAwesomeIcon icon={element.class} />
+                      <FontAwesomeIcon icon={element.icon} />
                       <span>{element.name}</span>
                     </a>
                   </li>

@@ -93,7 +93,7 @@ const BlogTemplate = ({ location, pageContext }) => {
               >
                 <FontAwesomeIcon className="blog-social anchor-color" icon={faFacebook} />
               </FacebookShareButton>
-              <PinterestShareButton {...shareProps}>
+              <PinterestShareButton  {...shareProps}>
                 <FontAwesomeIcon className="blog-social anchor-color" icon={faPinterest} />
               </PinterestShareButton>
               <WhatsappShareButton {...shareProps}>

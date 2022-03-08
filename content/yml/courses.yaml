@@ -4,6 +4,7 @@
 - name: Operating Systems
 - name: Database Management
 - name: Software Engineering
+- name: Data Warehousing and Data Management
 - name: Cryptography and Blockchain Technology
 - name: "Google Cloud Platform Fundamentals: Core Infrastructure"
   provider: Google, Coursera
