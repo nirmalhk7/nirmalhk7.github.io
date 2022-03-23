@@ -14,7 +14,7 @@ const getEnvVariables = (env) => {
   });
 };
 
-const downloadImage = (url,location) => {
+const downloadImage = (url, location) => {
   var https = require("https"),
     Stream = require("stream").Transform,
     fs = require("fs");
@@ -32,13 +32,36 @@ const downloadImage = (url,location) => {
       });
     })
     .end();
-    console.log("Downloaded image",url)
+  console.log("Downloaded image", url);
 };
 
+exports.onPreBuild = ({graphql}) => {
+  return new Promise((resolve, reject) => {
+    resolve(
+      graphql(
+        `
+          query MyQuery {
+            siteDetails: site {
+              siteMetadata {
+                url
+                author
+              }
+            }
+          }
+        `
+      ).then((result) => {
+        console.log(result);
+      })
+    );
+  });
+};
 exports.createPages = ({ page, graphql, actions }, { paths }) => {
   const { createPage, deletePage } = actions;
   getEnvVariables(process.env.NODE_ENV);
-  downloadImage("https://avatars.githubusercontent.com/u/25480443","src/assets/images/profile.png")
+  downloadImage(
+    "https://avatars.githubusercontent.com/u/25480443",
+    "src/assets/images/profile.png"
+  );
   return new Promise((resolve, reject) => {
     const blogPostTemplate = path.resolve("src/templates/blog-article.js");
 
