@@ -22,5 +22,17 @@
     {{else if releaseDate}}
       {{formatDate releaseDate}}
     {{/if}}
+    {{#if location}}
+      <span class="startDate">
+        {{#if location.url}}
+          <a href="{{location.url}}" target="_blank">
+            {{location.label}}
+            <i class="fa fa-external-link" aria-hidden="true"></i>
+          </a>
+        {{else}}
+          {{location.label}}
+        {{/if}}
+      </span>
+    {{/if}}
   </h5>
 </div>

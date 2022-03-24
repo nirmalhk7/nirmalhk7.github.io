@@ -1,4 +1,5 @@
 /*----- Colors -----*/
+@import "../../../../src/assets/css/constants";
 
 $gray-darkest           : #333;
 $gray-darker            : #666;
@@ -9,7 +10,7 @@ $gray-lighter           : #eee;
 $gray-lightest          : #f8f8f8;
 
 // $slate-gray             : #39424B;
-$slate-green            : #ff7b08;
+$slate-green            : map-get($map: $theme-colors, $key: "accent");
 
 $primary-color          : $slate-green;
 // $secondary-color        : $slate-gray;
