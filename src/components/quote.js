@@ -6,7 +6,7 @@ const quoteList = [
     saidby: "Will Smith",
   },
   {
-    content: "It’s not enough to be against something. You have to be for something better.",
+    content: "It's not enough to be against something. You have to be for something better.",
     saidby: "Tony Stark",
   },
   {

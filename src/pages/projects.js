@@ -74,14 +74,14 @@ class Projects extends React.Component {
         <section className="blog-content-wrap bootstrap-wrapper">
           <div className="container blog-content">
             <div className="blog-list block-1-2 block-tab-full">
-              <div className="accordion js-accordion">
+              <div className="accordion">
                 <div className="row">
                   {this.props.data.allFile.group.map((e1, i1) => (
                     <div className="col-lg-6 col-md-12" key={i1}>
                       <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
                       {e1.edges.map((e2, i2) => (
                         <div
-                          className={`accordion__item js-accordion-item ${
+                          className={`accordion__item ${
                             this.state.hasClicked &&
                             e2.node.id === this.state.openIndex
                               ? "active"
@@ -91,7 +91,7 @@ class Projects extends React.Component {
                           key={i2}
                         >
                           <div
-                         className="accordion-header js-accordion-header"
+                         className="accordion-header"
                          id={`header@${e2.node.id}`}
                           onClick={this.handleClick}
                           onKeyDown={this.handleClick}
@@ -101,7 +101,7 @@ class Projects extends React.Component {
                             {e2.node.childMarkdownRemark.frontmatter.title}
                           </div>
                           <div
-                            className="accordion-body js-accordion-body bg-gray"
+                            className="accordion-body bg-gray"
                             style={{
                               display:
                                 this.state.hasClicked &&
