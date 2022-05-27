@@ -4,6 +4,7 @@ import Layout from "../layouts/main";
 import SearchEnggOp from "../components/seo";
 import SocialMediaIcons from "../components/social";
 import { StaticImage } from "gatsby-plugin-image";
+import { Accordion, AccordionItem, AccordionItemPanel, AccordionItemHeading, AccordionItemButton } from "react-accessible-accordion";
 
 const Jumbotron = () => (
   <section
@@ -53,6 +54,25 @@ const WorkExperience = ({ experience }) => (
       <h3>My Work Experience</h3>
     </div>
     <div className="row">
+      <Accordion>
+        <AccordionItem className="col-lg-6 col-md-6 col-sm-12 left">
+          <div className="timeline">
+            <div className="timeline__block">
+              <div className="timeline__bullet" first={index} />
+              <AccordionItemHeading>
+                <AccordionItemButton className="timeline__header">
+                  <p className="timeline__timeframe">{element.timeframe}</p>
+                  <h3>{element.company}</h3>
+                  <h5>{element.post}</h5>
+                </AccordionItemButton>
+              </AccordionItemHeading>
+              <AccordionItemPanel className="timeline__desc">
+                <p>{element.description}</p>
+              </AccordionItemPanel>
+            </div>
+          </div>
+        </AccordionItem>
+      </Accordion>
       {experience.map((element, index) => (
         <div className="col-lg-6 col-md-6 col-sm-12 left" key={index}>
           <div className="timeline">
@@ -110,33 +130,20 @@ const Projects = ({ projects, isOpen, handleClick }) => (
           </div>
         </div>
         <div className="col-lg-6 col-md-6 col-sm-12 tab-full left">
-          <div className="accordion">
+          <Accordion className="accordion">
             {projects.nodes.map((element, index) => (
-              <div
-                className={`accordion__item ${isOpen[index] ? "active" : ""
-                  }`}
-                id={`accordion-${index}`}
-                key={index}
+              <AccordionItem
+                className="accordion__item"
               >
-                <div
-                  className="accordion-header bg-gray"
-                  id={`accordionheader-${index}`}
-                  onClick={handleClick}
-                  onKeyDown={handleClick}
-                  role="button"
-                  tabIndex={0}
-                >
-
-                  {element.childMarkdownRemark.frontmatter.title}
-                </div>
-                <div
+                <AccordionItemHeading>
+                  <AccordionItemButton className="accordion-header bg-gray">
+                    {element.childMarkdownRemark.frontmatter.title}
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel
                   className="accordion-body bg-white"
-                  id={`accordionbody-${index}`}
-                  style={{
-                    display: `${isOpen[index] ? "block" : "none"}`,
-                  }}
                 >
-                  <div className="accordion-body__contents">
+                  <p className="accordion-body__contents">
                     <p>{element.childMarkdownRemark.excerpt}</p>
                     <Link to={`/projects?id=${element.id}`}>
                       Find more here
@@ -145,11 +152,11 @@ const Projects = ({ projects, isOpen, handleClick }) => (
                     <code>
                       {element.childMarkdownRemark.frontmatter.tags[0]}
                     </code>
-                  </div>
-                </div>
-              </div>
+                  </p>
+                </AccordionItemPanel>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
       </div>
     </div>
@@ -229,7 +236,6 @@ class IndexPage extends React.Component {
   handleClick = (event) => {
     event.preventDefault();
     event.persist();
-    console.log(event.target.id);
     const clickedOn = parseInt(event.target.id.split("-")[1]);
     const newState = this.state.isOpen;
     newState.forEach((element, index) => {
@@ -352,8 +358,6 @@ class IndexPage extends React.Component {
           <WorkExperience experience={workexperience.nodes} />
         </section>
         <Projects
-          handleClick={this.handleClick}
-          isOpen={this.state.isOpen}
           projects={projects}
         />
         <Blog name={site.siteMetadata.blogName} />

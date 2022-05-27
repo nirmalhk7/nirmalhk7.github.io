@@ -74,7 +74,6 @@
 }
 
 .accordion-body {
-  display: none;
   padding: 1.5em 1.5em;
 }
 
@@ -86,7 +85,7 @@
   border-bottom: 1px solid transparent;
 }
 
-.accordion__item > .accordion-header:after {
+.accordion-header[aria-expanded=false]::after {
   content: "\002b";
   color: map-get($map: $theme-colors, $key: "accent");
   font-size: 1.2em;
@@ -96,12 +95,17 @@
   transition: 0.3s all;
 }
 
-.accordion__item.active > .accordion-header:after {
+.accordion-header[aria-expanded=true]::after {
   content: "\2212";
   color: map-get($map: $theme-colors, $key: "white");
+  float: right;
+  font-size: 1.2em;
+  position: relative;
+  top: -2px;
+  transition: all .3s;
 }
 
-.accordion__item.active .accordion-header {
+.accordion-header[aria-expanded=true] {
   background: map-get($map: $theme-colors, $key: "accent");
   color: white!important;
 }
