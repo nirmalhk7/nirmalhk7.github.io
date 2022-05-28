@@ -1,0 +1,149 @@
+
+  /* Flicker Animation ============================================== */
+
+.flicker-3 {
+    -webkit-animation: flicker-3 2.5s linear infinite both;
+    animation: flicker-3 2.5s linear infinite both;
+  }
+  
+  @keyframes flicker-3 {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    32.98% {
+      opacity: 1;
+    }
+    33% {
+      opacity: 0;
+    }
+    34% {
+      opacity: 0;
+    }
+    34.02% {
+      opacity: 1;
+    }
+    34.98% {
+      opacity: 1;
+    }
+    35% {
+      opacity: 0;
+    }
+    35.9% {
+      opacity: 0;
+    }
+    35.92% {
+      opacity: 1;
+    }
+    38.98% {
+      opacity: 1;
+    }
+    39% {
+      opacity: 0;
+    }
+    39.8% {
+      opacity: 0;
+    }
+    39.82% {
+      opacity: 1;
+    }
+    83.98% {
+      opacity: 1;
+    }
+    84% {
+      opacity: 0;
+    }
+    84.9% {
+      opacity: 0;
+    }
+    84.92% {
+      opacity: 1;
+    }
+  }
+
+  .footer-social {
+    list-style: none;
+    margin-top: 3rem;
+    margin-left: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    text-decoration: none;
+}
+.footer-social:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.footer-social li {
+    display: inline-block;
+    padding-left: 0;
+    margin-right: .9rem;
+    line-height: 3.9rem;
+    vertical-align: middle;
+}
+.footer-social li::after {
+    content: "|";
+    color: rgba(255, 255, 255, 0.15);
+    padding-left: .9rem;
+}
+.footer-social li i {
+    font-size: 1.7rem;
+    line-height: 3rem;
+    vertical-align: middle;
+}
+.footer-social li span {
+    margin-left: .6rem;
+}
+.footer-social li a {
+    color: #FFFFFF;
+}
+.footer-social li:last-child {
+    margin-right: 0;
+}
+.footer-social li:last-child::after {
+    display: none;
+}
+.footer-bottom {
+    margin-top: 7.2rem;
+    text-align: center;
+}
+.footer-bottom .copyright span {
+    display: inline-block;
+}
+.footer-bottom .copyright span::after {
+    content: "|";
+    display: inline-block;
+    padding: 0 1rem 0 1.2rem;
+    color: rgba(255, 255, 255, 0.1);
+}
+.footer-bottom .copyright span:last-child::after {
+    display: none;
+}
+
+/* ------------------------------------------------------------------- 
+* responsive:
+* footer 
+* ------------------------------------------------------------------- */
+@media only screen and (max-width: 600px) {
+    .footer-social li {
+        margin-right: 1.8rem;
+    }
+    .footer-social li span, .footer-social li::after {
+        display: none;
+    }
+    .footer-social li svg {
+        font-size: 2.4rem;
+    }
+    .footer-bottom {
+        padding-bottom: .6rem;
+    }
+    .footer-bottom .copyright span {
+        display: block;
+    }
+    .footer-bottom .copyright span::after {
+        display: none;
+    }
+}

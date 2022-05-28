@@ -1,7 +1,7 @@
 import React from "react";
 
-import Layout from "../components/layouts/main";
-import SearchEnggOp from "../components/elements/seo";
+import Layout from "../layouts/main";
+import SearchEnggOp from "../elements/seo";
 
 const NotFoundPage = ({ location }) => (
   <Layout location={location}>

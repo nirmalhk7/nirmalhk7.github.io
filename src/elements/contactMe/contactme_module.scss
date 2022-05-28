@@ -1,0 +1,11 @@
+@import "../../assets/css/constants";
+
+    /* ------------------------------------------------------------------- 
+ * responsive:
+ * contact
+ * ------------------------------------------------------------------- */
+ @media only screen and (max-width: 800px) {
+    .contact__infos {
+        padding-top: 3rem;
+    }
+}

@@ -1,14 +1,15 @@
 import React from "react";
 
-import Layout from "../components/layouts/main";
-import SearchEnggOp from "../components/elements/seo";
+import Layout from "../layouts/main";
+import SearchEnggOp from "../elements/seo";
 import { graphql, Link } from "gatsby";
-import SocialMediaIcons from "../components/elements/social/social";
-import LatestBlogItem from "../components/elements/latestBlog";
-import MasonPanel from "../components/elements/blogList";
+import SocialMediaIcons from "../elements/social/social";
+import LatestBlogItem from "../elements/latestBlog";
+import MasonPanel from "../elements/blogList";
 // import SocialMediaSideIcons from "../components/partials/social"
 
 const Blog = ({ location, data }) => {
+  if(!data) return null;
   return (
     <Layout location={location}>
       <SearchEnggOp title={data.site.siteMetadata.blogName} />
@@ -35,34 +36,32 @@ const Blog = ({ location, data }) => {
               </div>
             </div>
             <div className="absolute right-0 text-center bottom-8">
-              <blog
+              <a
                 className="smoothscroll btn btn-outline-white"
                 href="#blog-first"
               >
                 Explore
-              </blog>
+              </a>
             </div>
           </div>
         </div>
         <SocialMediaIcons />
       </section>
-      <LatestBlogItem item={data.allFile.nodes[0]} />
+      <LatestBlogItem item={data.blogs.nodes[0]} />
       <MasonPanel
-        blogItems={data.allFile.nodes}
+        blogItems={data.blogs.nodes}
         sitename={data.site.siteMetadata.blogName}
       />
     </Layout>
   );
 };
-export const postQuery = graphql`
-  {
-    allFile(
+export const potQuery = graphql`
+  query xyz {
+    blogs: allFile(
       filter: {
         sourceInstanceName: { eq: "blog" }
         ext: { eq: ".md" }
-        childMarkdownRemark: { frontmatter: { draft: { in: [null, false] } } }
-      }
-      sort: { fields: childMarkdownRemark___frontmatter___date, order: DESC }
+     }
     ) {
       nodes {
         relativeDirectory
@@ -74,12 +73,8 @@ export const postQuery = graphql`
             description
             img {
               childImageSharp {
-                fixed {
-                  srcWebp
-                  srcSetWebp
-                }
+                gatsbyImageData(width:400, placeholder: BLURRED)
               }
-              publicURL
             }
           }
         }

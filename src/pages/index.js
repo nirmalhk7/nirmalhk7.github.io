@@ -1,13 +1,15 @@
 import React from "react";
 import { Link, withPrefix, graphql } from "gatsby";
 // import data from '../../public/static/data.json'
-import Layout from "../components/layouts/main";
 // import Image from "../components/image"
-import Blog from "../components/elements/blogIntro";
-import SearchEnggOp from "../components/elements/seo";
-import SocialMediaIcons from "../components/elements/social/social";
-import WorkExperience from "../components/elements/workExperience";
-import { MySkills } from "../components/elements/mySkills";
+import Blog from "../elements/blogIntro";
+import SearchEnggOp from "../elements/seo";
+import WorkExperience from "../elements/workExperience";
+import { MySkills } from "../elements/mySkills";
+import Layout from "../layouts/main";
+import SocialMediaIcons from "../elements/social/social";
+import { StaticImage } from "gatsby-plugin-image";
+import { Accordion, AccordionItem, AccordionItemPanel, AccordionItemHeading, AccordionItemButton } from "react-accessible-accordion";
 
 const Jumbotron = () => (
   <section
@@ -57,61 +59,12 @@ const Jumbotron = () => (
   </section>
 );
 
-const PersonalInfo = () => (
-  <div>
-    <h3 id="howdy">Greetings!</h3>
-    <p>
-      I’m from India, and I’m final year student at National Institute of
-      Technology, Karnataka. Programming, reading books, reading news, table
-      tennis and
-      <strong>making applications that eliminate iterative work</strong> is my
-      hobby. I like to constantly challenge myself with problems. I also have a
-      knack for finance and investment.
-    </p>
-    <h5 id="academics">Academics</h5>
-    <p>
-      I completed my 10th grade in Bangalore with <strong>9.4 CGPA</strong> and
-      my 12th grade with 87.9%. I currently study in{" "}
-      <strong>National Institute of Technology Karnataka</strong> doing BTech in
-      Information Technology.
-    </p>
 
-    <h5 id="technical-projects-and-activities">
-      Technical Projects and Activities
-    </h5>
-    <p>
-      My projects are listed below. Most of them are open-sourced on GitHub.
-      I’ve worked on several MERN Stack based, Native Android and Ruby on Rails
-      projects. I’m also member Web Developer of IRIS NITK, which is NITK’s
-      student-run university management portal. I’m also passionate about
-      Machine Learning and its applications.
-    </p>
-  </div>
-);
-
-const Blogx = ({ name }) => (
-  <section className="bg-gradient-accent  " id="blog">
-    <div className="narrow section-intro has-bottom-sep m-auto">
-      <div className="w-full">
-        <h3 className="text-white">{name}</h3>
-        <h1 className="text-white font-heading">Latest From The Blog</h1>
-        <p className="font-lead font-blocky mb-16">
-          I have strong views on topics like Finance, Technology, Future and
-          Environment. Find me&nbsp;
-          <Link className="text-white" title={name} to="/blog">
-            blogging about them here
-          </Link>
-          .
-        </p>
-      </div>
-    </div>
-  </section>
-);
 
 const Projects = ({ projects, isOpen, handleClick }) => (
   <section className="bg-gray" id="projects">
     <div className="sm:container mx-auto">
-      <div className="grid grid-cols-2 sm:grid-cols-1">
+      <div className="grid grid-cols-2  md:grid-cols-2 sm:grid-cols-1">
         <div className="">
           <div className="pb-6 relative">
             <div className=" text-center">
@@ -127,50 +80,34 @@ const Projects = ({ projects, isOpen, handleClick }) => (
             </div>
           </div>
         </div>
-        <div className="col-lg-6 col-md-6 col-sm-12 w-full left">
-          <div className="rounded my-auto mx-0 js-accordion">
+        <div className="">
+          <Accordion className="accordion">
             {projects.nodes.map((element, index) => (
-              <div
-                className={`accordion__item js-accordion-item`}
-                id={`accordion-${index}`}
-                key={index}
+              <AccordionItem
+                className="accordion__item"
               >
-                <div
-                  className={`uppercase cursor-pointer text-mini 
-                  transition p-5 font-blocky font-semibold 
-                  after:content-['+'] after:text-accent after:float-right 
-                  after:relative after:font-bold after:text-base ${
-                    isOpen[index]
-                      ? "bg-accent after:content-['-'] after:font-bold  text-white after:text-white"
-                      : ""
-                  }`}
-                  id={`accordionheader-${index}`}
-                  onClick={handleClick}
-                  onKeyDown={handleClick}
-                  role="button"
-                  tabIndex={0}
+                <AccordionItemHeading>
+                  <AccordionItemButton className="accordion-header bg-gray">
+                    {element.childMarkdownRemark.frontmatter.title}
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel
+                  className="accordion-body bg-white"
                 >
-                  {element.childMarkdownRemark.frontmatter.title}
-                </div>
-                <div
-                  className="hidden bg-white | js-accordion-body"
-                  id={`accordionbody-${index}`}
-                  style={{
-                    display: `${isOpen[index] ? "block" : "none"}`,
-                  }}
-                >
-                  <div className="p-5">
-                    <p>{element.excerpt}</p>
+                  <p className="accordion-body__contents">
+                    <p>{element.childMarkdownRemark.excerpt}</p>
                     <Link to={`/projects?id=${element.id}`}>
                       Find more here
                     </Link>
                     .&nbsp;&nbsp;&nbsp;
-                    <code>{element.childMarkdownRemark.frontmatter.tags[0]}</code>
-                  </div>
-                </div>
-              </div>
+                    <code>
+                      {element.childMarkdownRemark.frontmatter.tags[0]}
+                    </code>
+                  </p>
+                </AccordionItemPanel>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
       </div>
     </div>
@@ -228,6 +165,7 @@ const CollegeCourses = ({ collegeCourses }) => (
         ))}
       </div>
     </div>
+
   </>
 );
 
@@ -242,7 +180,6 @@ class IndexPage extends React.Component {
   handleClick = (event) => {
     event.preventDefault();
     event.persist();
-    console.log(event.target.id);
     const clickedOn = parseInt(event.target.id.split("-")[1]);
     const newState = this.state.isOpen;
     newState.forEach((element, index) => {
@@ -263,7 +200,7 @@ class IndexPage extends React.Component {
       onlineCourses,
       collegeCourses,
       membership,
-      ymlYaml,
+      skills,
       site,
     } = this.props.data;
     return (
@@ -289,14 +226,42 @@ class IndexPage extends React.Component {
             </div>
           </div>
           <div className="container mx-auto ">
-            <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+            <div className="columns-2 gap-8">
               <div className>
-                <PersonalInfo />
+                <div>
+                  <h3 id="howdy">Greetings!</h3>
+                  <p>
+                    I'm from India, and I'm final year student at National Institute of
+                    Technology, Karnataka. Programming, reading books, reading news, table
+                    tennis and
+                    <strong>making applications that eliminate iterative work</strong> is my
+                    hobby. I like to constantly challenge myself with problems. I also have a
+                    knack for finance and investment.
+                  </p>
+                  <h5 id="academics">Academics</h5>
+                  <p>
+                    I completed my 10th grade in Bangalore with <strong>9.4 CGPA</strong> and
+                    my 12th grade with 87.9%. I currently study in{" "}
+                    <strong>National Institute of Technology Karnataka</strong> doing BTech in
+                    Information Technology.
+                  </p>
+
+                  <h5 id="technical-projects-and-activities">
+                    Technical Projects and Activities
+                  </h5>
+                  <p>
+                    My projects are listed below. Most of them are open-sourced on GitHub.
+                    I've worked on several MERN Stack based, Native Android and Ruby on Rails
+                    projects. I'm also member Web Developer of IRIS NITK, which is NITK's
+                    student-run university management portal. I'm also passionate about
+                    Machine Learning and its applications.
+                  </p>
+                </div>
               </div>
               <div className>
                 <img
                   alt="Nirmal Khedkar"
-                  className="hidden sm:block"
+                  className="lg:hidden md:hidden sm:block"
                   src="https://avatars.githubusercontent.com/u/25480443"
                   style={{
                     borderRadius: "70%",
@@ -309,8 +274,7 @@ class IndexPage extends React.Component {
                 />
 
                 <MySkills
-                  frameworksLibraries={ymlYaml.frameworks_libraries}
-                  languages={ymlYaml.languages}
+                  skills={skills.nodes.map(element => element.name)}
                 />
                 <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
                   <a
@@ -328,11 +292,7 @@ class IndexPage extends React.Component {
                     Want to Hire?
                   </Link>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="container mx-auto ">
-            <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+              </div >
               <div className>
                 <OnlineCourses onlineCourses={onlineCourses} />
               </div>
@@ -343,14 +303,12 @@ class IndexPage extends React.Component {
             </div>
           </div>
           <WorkExperience experience={workexperience.nodes} />
-        </section>
+        </section >
         <Projects
-          handleClick={this.handleClick}
-          isOpen={this.state.isOpen}
           projects={projects}
         />
         <Blog name={site.siteMetadata.blogName} />
-      </Layout>
+      </Layout >
     );
   }
 }
@@ -413,12 +371,12 @@ export const postQuery = graphql`
         name
         url
         icon
-        initial
       }
     }
-    ymlYaml {
-      frameworks_libraries
-      languages
+    skills: allSkillsYaml(sort: {fields: priority, order: DESC}, limit: 12) {
+      nodes {
+        name
+      }
     }
   }
 `;

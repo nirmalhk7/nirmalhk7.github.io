@@ -1,6 +1,6 @@
 import React from "react";
-import Layout from "../components/layouts/main";
-import SearchEnggOp from "../components/elements/seo";
+import Layout from "../layouts/main";
+import SearchEnggOp from "../elements/seo";
 import { graphql } from "gatsby";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -81,7 +81,7 @@ class Projects extends React.Component {
                       <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
                       {e1.edges.map((e2, i2) => (
                         <div
-                          className={`accordion__item js-accordion-item ${
+                          className={`accordion__item ${
                             this.state.hasClicked &&
                             e2.node.id === this.state.openIndex
                               ? "active"
@@ -101,7 +101,7 @@ class Projects extends React.Component {
                             {e2.node.childMarkdownRemark.frontmatter.title}
                           </div>
                           <div
-                            className="accordion-body js-accordion-body bg-gray"
+                            className="accordion-body bg-gray"
                             style={{
                               display:
                                 this.state.hasClicked &&

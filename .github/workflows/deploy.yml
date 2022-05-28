@@ -14,13 +14,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install NPM Packages
         run: npm install -f
       - name: Build script
         run: npm run build
       - name: Pass on build directory
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: public
           path: public
@@ -31,7 +31,7 @@ jobs:
     if: github.ref=='refs/heads/master'
     steps:
       - name: Download hello world file
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: public
           path: public
