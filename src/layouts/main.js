@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Navbar from "../elements/navbar/navbar";
 import Footer from "../elements/footer/footer";
 import ContactForm from "../elements/contactMe/contactMe";
-import RandomQuote from "../components/quote";
+import RandomQuote from "../elements/quote";
 import jquery from "jquery";
 
 class Layout extends React.Component {

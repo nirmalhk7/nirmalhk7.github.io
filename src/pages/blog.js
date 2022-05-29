@@ -6,7 +6,6 @@ import { graphql, Link } from "gatsby";
 import SocialMediaIcons from "../elements/social/social";
 import LatestBlogItem from "../elements/latestBlog";
 import MasonPanel from "../elements/blogList";
-// import SocialMediaSideIcons from "../components/partials/social"
 
 const Blog = ({ location, data }) => {
   if(!data) return null;

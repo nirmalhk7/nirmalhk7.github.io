@@ -7,7 +7,7 @@ const Blog = ({ name }) => (
         <h3 className="m-0 p-0 font-blocky  not-italic leading-tight text-white font-semibold mb-0 mt-0 uppercase">
           Pitlane Chat
         </h3>
-        <h1 className="font-bold font-heading leading-snug mt-0 text-white">
+        <h1 className="font-bold leading-snug mt-0 font-heading text-white">
           Latest From The Blog
         </h1>
         <p className="text-white text-center m-0 p-0 font-normal mb-16">

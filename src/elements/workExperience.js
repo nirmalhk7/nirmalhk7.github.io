@@ -1,14 +1,14 @@
 import React from "react";
 
 const WorkExperience = ({ experience }) => (
-  <div className="container mx-auto  --timeline">
+  <div className="container mx-auto">
     <div className="col text-center">
       <h3>My Work Experience</h3>
     </div>
-    <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+    <div className="columns-2">
       {experience.map((element, index) => (
-        <div className=" left" key={index}>
-          <div className="timeline">
+        <div className="break-inside-avoid left" key={index}>
+          <div className="timeline pt-2">
             <div className="timeline__block">
               <div className="timeline__bullet" first={index} />
               <div className="timeline__header">

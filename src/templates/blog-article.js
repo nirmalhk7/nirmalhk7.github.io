@@ -170,7 +170,7 @@ const BlogTemplate = ({ location, pageContext }) => {
                 {pageContext.previous ? (
                   <div className="blog-content__prev">
                     <Link
-                      className="text-decoration-none"
+                      className="no-underline"
                       rel="prev"
                       to={`/blog/${pageContext.previous.relativeDirectory}`}
                     >

@@ -39,7 +39,7 @@ const Navbar = () => {
 
             return (
               <li className="text-white  inline-block pl-0 mr-8" key={index}>
-                <Link className="" title={element} to={hrx}>
+                <Link title={element} to={hrx}>
                   {element}
                 </Link>
               </li>

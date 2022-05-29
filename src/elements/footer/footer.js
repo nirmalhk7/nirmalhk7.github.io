@@ -4,14 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 import { social } from "../social/social";
-import "./footer_module.css";
-
-const styles = {};
+import * as styles from "./footer.module.css";
 
 const Footer = () => {
   return (
     <footer>
-      <div className={` ${false ? styles.flicker_3 : ""}`}>
+      <div className={styles.flicker_3}>
         <div className="">
           <ul className={styles.footer_social}>
             {social.map((element, index) => {
@@ -19,7 +17,7 @@ const Footer = () => {
                 return (
                   <li key={index}>
                     <a
-                      className="text-decoration-none"
+                      className="no-underline	"
                       href={element.link}
                       target="blank"
                     >
@@ -33,9 +31,9 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="footer-bottom">
+      <div className="mt-32 text-center">
         <div className="w-full">
-          <div className="copyright">
+          <div>
             <span style={{ color: "#3d3d3d" }}>
               Made with <FontAwesomeIcon icon={faHeart} /> by Nirmal Khedkar
             </span>
@@ -43,7 +41,7 @@ const Footer = () => {
               Last Updated: July 20, 2020
             </span>
           </div>
-          <div className="copyright">
+          <div>
             <span id="justinmaller" style={{ color: "#3d3d3d" }}>
               Image Credits &nbsp;
               <a className="hidelink" href="/" style={{ color: "#3d3d3d" }}>

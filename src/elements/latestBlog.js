@@ -39,13 +39,13 @@ const LatestBlogItem = ({ item }) => {
           </div>
           <div className="text-md-right">
             <h1
-              className="entry-title text-white text-decoration-none"
+              className="entry-title text-white no-underline"
               style={{ textDecoration: "none" }}
             >
               {item.frontmatter.title}
             </h1>
             <div
-              className="entry-content text-white text-decoration-none"
+              className="entry-content text-white no-underline"
               style={{ textDecoration: "none" }}
             >
               <p>{item.frontmatter.description}</p>

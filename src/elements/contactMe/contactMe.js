@@ -24,8 +24,8 @@ class ContactForm extends React.Component {
   render() {
     return (
       <div className="">
-        <section className={`${styles.section_contact} bg-fixed bg-center bg-no-repeat`} id="contact">
-          {/* <div className={styles.overlay} /> */}
+        <section className={`relative ${styles.section_contact} bg-fixed bg-center bg-no-repeat`} id="contact">
+          <div className="bg-black h-full left-0 opacity-75 absolute top-0 w-full" />
           <div className={`${styles.section_intro} narrow m-auto`}>
             <div className=" text-center">
               <h3 className="text-accent font-blocky  not-italic leading-tight font-semibold uppercase">
