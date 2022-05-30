@@ -1,15 +1,17 @@
+let plugin= require('tailwindcss/plugin');
+
 module.exports = {
   content: [
     "src/**/*.{js,tsx,ts,jsx}"
   ],
   theme: {
     screens: {
-      "xs": "0px",
-      "sm": "576px",
-      "md": "768px",
-      "lg": "992px",
-      "xl": "1200px",
-      "xxl": "1400px"
+      "xs": {'min':"0px"},
+      "sm": {'min':"576px"},
+      "md": {'min':"768px"},
+      "lg": {'min':"992px"},
+      "xl": {'min':"1200px"},
+      "xxl": {'min':"1400px"}
     },
     colors: {
       "white": "#ffffff",

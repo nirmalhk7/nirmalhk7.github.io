@@ -6,7 +6,7 @@
  *
  * ------------------------------------------------------------------- */
 .narrow {
-    max-width: 800px;
+    max-width: 768px;
 }
 
     /* ------------------------------------------------------------------- 
@@ -47,7 +47,7 @@
 * responsive:
 * section-intro
 * ------------------------------------------------------------------- */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
     .section-intro h1 {
         font-size: 4.2rem;
     }
@@ -55,7 +55,7 @@
         font-size: 1.8rem;
     }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
     .section-intro h1 {
         font-size: 3.6rem;
     }
@@ -85,11 +85,7 @@
     color: rgba(255, 255, 255, 0.5);
     min-height: 50.4rem;
 }
-.page-header--single {
-    padding-top: 22.8rem;
-    padding-bottom: 7.2rem;
-    text-align: center;
-}
+
 .page-header::before {
     display: block;
     content: "";
@@ -117,15 +113,13 @@
     background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
-@media only screen and (max-width: 800px) {
-    .page-header--single {
-        padding-top: 18rem;
-    }
+@media only screen and (max-width: 768px) {
+
     .page-header__title {
         font-size: 5.4rem;
     }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
     .page-header {
         padding-top: 18rem;
     }
@@ -142,7 +136,7 @@
     font-size: 2rem;
     line-height: 1.8;
     position: relative;
-    max-width: 900px;
+    max-width: 992px;
     z-index: 2;
 }
 .page-header__content p {
@@ -172,7 +166,7 @@
  * ------------------------------------------------------------------- */
  @media only screen and (max-width: 1200px) {
     .page-header__content {
-        max-width: 800px;
+        max-width: 768px;
         font-size: 1.7rem;
     }
     .page-header__cat {
@@ -182,7 +176,7 @@
         font-size: 6rem;
     }
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
     .page-header__content {
         max-width: 700px;
     }
@@ -209,7 +203,7 @@
 
 
 
- .page-header__cat, .page-header__date {
+ .page-header__cat {
     display: inline-block;
     margin-right: 2rem;
     margin-bottom: .3rem;
@@ -235,17 +229,7 @@
 .page-header__cat a:last-child::after {
     display: none;
 }
-.page-header__date {
-    font-family: "montserrat-light", sans-serif;
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.4);
-}
-.page-header__date a {
-    color: rgba(255, 255, 255, 0.4);
-}
-.page-header__date a:hover, .page-header__date a:focus, .page-header__date a:active {
-    color: white;
-}
+
 
 .page-header__meta {
     list-style: none;

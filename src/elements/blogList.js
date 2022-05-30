@@ -1,6 +1,8 @@
 import { Link } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
-const MasonPanel = ({ sitename, blogItems }) => {
+
+const MasonPanel = ({ blogItems }) => {
   return (
     <section className="bg-gray">
       <div className="">
@@ -17,16 +19,6 @@ const MasonPanel = ({ sitename, blogItems }) => {
           <div className="blog-list block-1-2 block-w-full">
             <div className="columns-4">
               {blogItems.map((element, index) => {
-                element = element.childMarkdownRemark;
-                let srx = element.frontmatter.img;
-                // if (srx.childImageSharp !== null) {
-                //   srx = {
-                //     src: srx.childImageSharp.fixed.srcWebp,
-                //     srcSet: srx.childImageSharp.fixed.srcSetWebp,
-                //   };
-                // } else {
-                //   srx = { src: srx.publicURL, srcSet: null };
-                // }
 
                 return (
                   <div
@@ -37,22 +29,22 @@ const MasonPanel = ({ sitename, blogItems }) => {
                       <div className="item-folio__thumb">
                         <Link
                           className=""
-                          title={element.frontmatter.description}
+                          title={element.childMarkdownRemark.frontmatter.description}
                           to={`/blog/${element.relativeDirectory}`}
                         >
-                          <img
-                            alt={element.frontmatter.title}
+                          <GatsbyImage
+                            alt={element.childMarkdownRemark.frontmatter.title}
                             layout="fill"
-                            src={srx}
+                            image={getImage(element.childMarkdownRemark.frontmatter.img)}
                           />
                         </Link>
                       </div>
                       <div className="bottom-12	left-0 absolute">
                         <h3 className="text-white text-base font-semibold m-0 uppercase font-blocky">
-                          {element.frontmatter.title}
+                          {element.childMarkdownRemark.frontmatter.title}
                         </h3>
                         <strong className="text-accent">
-                          {element.frontmatter.category}
+                          {element.childMarkdownRemark.frontmatter.category}
                         </strong>
                       </div>
                     </div>

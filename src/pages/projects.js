@@ -49,7 +49,7 @@ class Projects extends React.Component {
           className="page-header page-hero bg-fixed bg-center bg-no-repeat "
           id="projects-header"
         >
-          <div className="container page-header__content">
+          <div className="container mx-auto page-header__content">
             <article className="">
               <h1 className="page-header__title">
                 <a href="#0" title="Projects">
@@ -72,12 +72,12 @@ class Projects extends React.Component {
         </section>
 
         <section className="bg-white pt-16 pb-48 ">
-          <div className="container max-w-screen-lg">
-            <div className="blog-list block-1-2 block-tab-full">
+          <div className="container mx-auto">
+            <div className="">
               <div className="my-0 mx-auto rounded js-accordion">
-                <div className="grid grid-cols-2 md:grid-cols-1">
+                <div className="gap-y-16 lg:columns-2 sm:columns-1">
                   {this.props.data.allFile.group.map((e1, i1) => (
-                    <div className="" key={i1}>
+                    <div className="break-inside-avoid" key={i1}>
                       <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
                       {e1.edges.map((e2, i2) => (
                         <div
@@ -101,7 +101,7 @@ class Projects extends React.Component {
                             {e2.node.childMarkdownRemark.frontmatter.title}
                           </div>
                           <div
-                            className="accordion-body bg-gray"
+                            className="p-6 bg-gray"
                             style={{
                               display:
                                 this.state.hasClicked &&

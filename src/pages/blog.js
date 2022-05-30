@@ -46,7 +46,7 @@ const Blog = ({ location, data }) => {
         </div>
         <SocialMediaIcons />
       </section>
-      <LatestBlogItem item={data.blogs.nodes[0]} />
+      <LatestBlogItem relativeDirectory={data.blogs.nodes[0].relativeDirectory} frontmatter={data.blogs.nodes[0].childMarkdownRemark.frontmatter} />
       <MasonPanel
         blogItems={data.blogs.nodes}
         sitename={data.site.siteMetadata.blogName}

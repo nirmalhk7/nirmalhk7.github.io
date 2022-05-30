@@ -37,7 +37,7 @@ const BlogTemplate = ({ location, pageContext }) => {
       />
       <article className="blog-single has-bottom-sep">
         <div
-          className="page-header page-header--single page-hero bg-fixed bg-center bg-no-repeat"
+          className="page-header pt-64 pb-32 text-center page-hero bg-fixed bg-center bg-no-repeat"
           style={{
             backgroundImage: `url(${pageContext.current.childMarkdownRemark.frontmatter.img.childImageSharp.original.src})`,
             backgroundSize: "cover",

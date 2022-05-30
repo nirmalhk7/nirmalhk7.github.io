@@ -5,7 +5,6 @@
 
 .accordion-header {
   padding: 1.5em 1.5em;
-  // background: map-get($map: $theme-colors, $key: "gray");
   text-transform: uppercase;
   cursor: pointer;
   font-family: "montserrat-semibold", sans-serif;
@@ -14,9 +13,7 @@
   transition: all 0.3s;
 }
 
-.accordion-body {
-  padding: 1.5em 1.5em;
-}
+
 
 .accordion__item.active:last-child .accordion-header {
   border-radius: none;
@@ -54,22 +51,4 @@
 .accordion__item .accordion__item .accordion-header {
   background: $color-gray;
   color: black;
-}
-
-/* MiniCards ============================================= */
-
-
-
-.ital-hover{
-  -moz-transition: all 1s;
-  -webkit-transition: all 1s;
-  -o-transition: all 1s;
-  transition: all 1s;
-}
-
-.ital-hover:hover {
-  -webkit-transform: skewX(-20deg);
-  -moz-transform: skewX(-20deg);
-  -o-transform: skewX(-20deg);
-  transform: skewX(-20deg);
 }

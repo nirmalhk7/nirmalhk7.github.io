@@ -1,17 +1,8 @@
 import { Link } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 
-const LatestBlogItem = ({ item }) => {
-  if (!item.frontmatter) return null;
-  let srx = item.frontmatter.img;
-  // if (srx.childImageSharp !== null) {
-  //   srx = {
-  //     src: srx.childImageSharp.fixed.srcWebp,
-  //     srcSet: srx.childImageSharp.fixed.srcSetWebp,
-  //   };
-  // } else {
-  //   srx = { src: srx.publicURL, srcSet: null };
-  // }
+const LatestBlogItem = ({ relativeDirectory, frontmatter }) => {
   return (
     <section
       className="bg-gradient-accent"
@@ -23,17 +14,11 @@ const LatestBlogItem = ({ item }) => {
       }}
     >
       <div className="sm:container max-w-screen-lg">
-        {/* <Link
-            className="blog-list block-1-2 block-w-full"
-            style={{ marginTop: "0rem" }}
-            to={`/blog/${item.relativeDirectory}`}
-          > */}
         <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
           <div className>
-            <img
+            <GatsbyImage
               alt="Latest Blog"
-              src={srx.src}
-              srcSet={srx.srcSet}
+              image={getImage(frontmatter.img)}
               style={{ width: "70%", height: "auto" }}
             />
           </div>
@@ -42,17 +27,17 @@ const LatestBlogItem = ({ item }) => {
               className="entry-title text-white no-underline"
               style={{ textDecoration: "none" }}
             >
-              {item.frontmatter.title}
+              {frontmatter.title}
             </h1>
             <div
               className="entry-content text-white no-underline"
               style={{ textDecoration: "none" }}
             >
-              <p>{item.frontmatter.description}</p>
+              <p>{frontmatter.description}</p>
             </div>
             <Link
               className="btn btn-outline-white btn-outline-fill-white "
-              to={`/blog/${item.relativeDirectory}`}
+              to={`/blog/${relativeDirectory}`}
             >
               Read More
             </Link>

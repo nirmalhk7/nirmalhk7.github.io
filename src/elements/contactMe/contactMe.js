@@ -2,7 +2,6 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 const styles={}
-import "./contactme_module.scss";
 
 class ContactForm extends React.Component {
   constructor(props) {
@@ -25,8 +24,8 @@ class ContactForm extends React.Component {
     return (
       <div className="">
         <section className={`relative ${styles.section_contact} bg-fixed bg-center bg-no-repeat`} id="contact">
-          <div className="bg-black h-full left-0 opacity-75 absolute top-0 w-full" />
-          <div className={`${styles.section_intro} narrow m-auto`}>
+          <div className="z-0 bg-black h-full left-0 opacity-75 absolute top-0 w-full" />
+          <div className={`${styles.section_intro} z-10 narrow m-auto`}>
             <div className=" text-center">
               <h3 className="text-accent font-blocky  not-italic leading-tight font-semibold uppercase">
                 Contact Me
@@ -37,7 +36,7 @@ class ContactForm extends React.Component {
               </p>
             </div>
           </div>
-          <div className="container mx-auto" style={{ maxWidth: "1000px" }}>
+          <div className="container mx-auto z-10" style={{ maxWidth: "1000px" }}>
             <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1">
               <div className={`col-span-2`}>
                 <form method="post">

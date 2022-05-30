@@ -90,7 +90,7 @@ const Projects = ({ projects }) => (
                   </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel
-                  className="accordion-body bg-white"
+                  className="p-6 bg-white"
                 >
                   <p className="accordion-body__contents">
                     <p>{element.childMarkdownRemark.excerpt}</p>
@@ -136,7 +136,7 @@ class IndexPage extends React.Component {
         <Jumbotron />
         <section className="pt-56 pb-32 bg-white relative " id="about">
           <div className="w-100 text-center">
-            <div className="narrow section-intro has-bottom-sep m-auto">
+            <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
               <div className="w-full text-center">
                 <h3 className="text-accent">Nirmal Khedkar</h3>
                 <h1>More About Me</h1>
@@ -180,7 +180,7 @@ class IndexPage extends React.Component {
                   Machine Learning and its applications.
                 </p>
               </div>
-              <img
+              <StaticImage
                 alt="Nirmal Khedkar"
                 className="lg:hidden md:block sm:block break-inside-avoid"
                 src="https://avatars.githubusercontent.com/u/25480443"
@@ -192,6 +192,7 @@ class IndexPage extends React.Component {
                   marginLeft: "auto",
                   marginRight: "auto",
                 }}
+                placeholder="blurred"
               />
 
               <div  className="break-inside-avoid py-4">

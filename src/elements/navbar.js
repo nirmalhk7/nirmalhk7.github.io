@@ -1,7 +1,6 @@
 import React from "react";
 import Scrollspy from "react-scrollspy";
 import { Link } from "gatsby";
-import "./navbar_module.scss";
 
 const Navbar = () => {
   const navbarList = ["Home", "About", "Projects", "Blog", "Contact"];

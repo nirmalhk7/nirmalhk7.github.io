@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Navbar from "../elements/navbar/navbar";
+import Navbar from "../elements/navbar";
 import Footer from "../elements/footer/footer";
 import ContactForm from "../elements/contactMe/contactMe";
 import RandomQuote from "../elements/quote";
