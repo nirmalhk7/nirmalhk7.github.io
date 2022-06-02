@@ -22,7 +22,7 @@ const Blog = ({ location, data }) => {
       >
         <div className="overlay" />
         <div className="home-content">
-          <div className="container home-content__main">
+          <div className="container mx-auto home-content__main">
             <h3 className="ital-hover">Official Blog of Nirmal Khedkar</h3>
             <h1 className="page-header__title">
               <Link title="" to="/blog">
@@ -36,7 +36,7 @@ const Blog = ({ location, data }) => {
             </div>
             <div className="absolute right-0 text-center bottom-8">
               <a
-                className="smoothscroll btn btn-outline-white"
+                className="btn btn-outline-white"
                 href="#blog-first"
               >
                 Explore
@@ -61,6 +61,7 @@ export const potQuery = graphql`
         sourceInstanceName: { eq: "blog" }
         ext: { eq: ".md" }
      }
+     sort: {fields: childrenMarkdownRemark___frontmatter___date, order: DESC}
     ) {
       nodes {
         relativeDirectory

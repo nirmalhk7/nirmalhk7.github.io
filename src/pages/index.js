@@ -31,13 +31,13 @@ const Jumbotron = () => (
         </h1>
         <div className="static text-left gap-4 right-0 bottom-8  text-button font-blocky uppercase font-bold">
           <Link
-            className="inline-block mr-4 smoothscroll border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
+            className="inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
             to="#projects"
           >
             Latest Projects
           </Link>
           <Link
-            className="inline-block mr-4 smoothscroll border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
+            className="inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
             to="#about"
           >
             More About Me
@@ -45,7 +45,7 @@ const Jumbotron = () => (
         </div>
         <div className="home-content__scroll">
           <Link
-            className="scroll-link smoothscroll no-underline hover:text-white"
+            className="scroll-link no-underline hover:text-white"
             to="#about"
           >
             <span>Scroll Down</span>
@@ -198,7 +198,7 @@ class IndexPage extends React.Component {
               <div  className="break-inside-avoid py-4">
                 <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
                   <a
-                    className="bg-accent border-4 border-accent text-white  no-underline w-full"
+                    className="bg-accent border-4 border-accent text-white hover:text-black  no-underline w-full"
                     href={"./Resume.pdf"}
                     rel="noreferrer"
                     target="_blank"
@@ -206,7 +206,7 @@ class IndexPage extends React.Component {
                     Download My Resume
                   </a>
                   <Link
-                    className="smoothscroll border-4 no-underline border-accent  text-accent w-full"
+                    className="border-4 no-underline border-accent  text-accent hover:text-black  w-full"
                     to="#contact"
                   >
                     Want to Hire?

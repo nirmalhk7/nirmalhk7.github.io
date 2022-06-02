@@ -38,7 +38,7 @@ const Navbar = () => {
 
             return (
               <li className="text-white  inline-block pl-0 mr-8" key={index}>
-                <Link title={element} to={hrx}>
+                <Link className="hover:text-accent" title={element} to={hrx}>
                   {element}
                 </Link>
               </li>
