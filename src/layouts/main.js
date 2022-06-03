@@ -12,7 +12,6 @@ class Layout extends React.Component {
     const hdr = document.querySelector("header");
   
     document.addEventListener("scroll",(event)=>{
-      console.log(window.scrollY)
       if (window.scrollY < hdr.offsetHeight + 300) {
         hdr.classList.add("bg-transparent");
         hdr.classList.add("absolute");

@@ -68,7 +68,9 @@ module.exports = {
         'workexp': '0 0 0 9px #e9e9e9',
       },
       backgroundImage: {
-        "beac": "url('/images/BeachNK_1.jpg')"
+        "beachNirmal": "url('../images/BeachNK_1.jpg')",
+        "milkyWay": "url('../images/MilkyWay.jpg')",
+        "blogWallpaper": "url('../images/pitlane.jpg')"
       },
       fontFamily: {
         "blocky": ["Montserrat", "sans-serif"],

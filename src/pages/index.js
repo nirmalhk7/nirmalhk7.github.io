@@ -8,54 +8,9 @@ import Layout from "../layouts/main";
 import SocialMediaIcons from "../elements/social/social";
 import { StaticImage } from "gatsby-plugin-image";
 import { Accordion, AccordionItem, AccordionItemPanel, AccordionItemHeading, AccordionItemButton } from "react-accessible-accordion";
+import Jumbotron from "../elements/jumbotron";
 
-const Jumbotron = () => (
-  <section
-    className="s-home page-hero  bg-fixed bg-center bg-no-repeat"
-    data-natural-height="2000"
-    data-natural-width="3000"
-    data-parallax="scroll"
-    data-position-y="center"
-    id="home"
-  >
-    <div className="overlay" />
-    <div className="home-content ">
-      <div className="container mx-auto home-content__main">
-        <h3 className="ital-hover">Hey!</h3>
-        <h1>
-          I'm Nirmal Khedkar, <br />
-          product developer
-          {"\n"}
-          based in <br />
-          Surathkal, India.
-        </h1>
-        <div className="static text-left gap-4 right-0 bottom-8  text-button font-blocky uppercase font-bold">
-          <Link
-            className="inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
-            to="#projects"
-          >
-            Latest Projects
-          </Link>
-          <Link
-            className="inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
-            to="#about"
-          >
-            More About Me
-          </Link>
-        </div>
-        <div className="home-content__scroll">
-          <Link
-            className="scroll-link no-underline hover:text-white"
-            to="#about"
-          >
-            <span>Scroll Down</span>
-          </Link>
-        </div>
-      </div>
-    </div>
-    <SocialMediaIcons />
-  </section>
-);
+
 
 
 
@@ -113,9 +68,7 @@ const Projects = ({ projects }) => (
 );
 
 class IndexPage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
 
   render() {
     const {
@@ -133,7 +86,13 @@ class IndexPage extends React.Component {
           description="Welcome to Nirmal Khedkar's Official Website"
           title="Home"
         />
-        <Jumbotron />
+        <Jumbotron.fullHeight HeadingTextComponent={<h1>
+          I'm Nirmal Khedkar, <br />
+          product developer
+          {"\n"}
+          based in <br />
+          Surathkal, India.
+        </h1>} orangeText="Hey!" buttonDetails={[["Latest Projects", "#projects"], ["More About Me", "#about"]]} showScrollDown bgImg="sm:bg-milkyWay lg:bg-beachNirmal" />
         <section className="pt-56 pb-32 bg-white relative " id="about">
           <div className="w-100 text-center">
             <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
@@ -151,7 +110,7 @@ class IndexPage extends React.Component {
           </div>
           <div className="container mx-auto ">
             <div className="columns-2 gap-16 gap-y-16">
-              <div  className="break-inside-avoid">
+              <div className="break-inside-avoid">
                 <h3 id="howdy">Greetings!</h3>
                 <p>
                   I'm from India, and I'm final year student at National Institute of
@@ -195,7 +154,7 @@ class IndexPage extends React.Component {
                 placeholder="blurred"
               />
 
-              <div  className="break-inside-avoid py-4">
+              <div className="break-inside-avoid py-4">
                 <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
                   <a
                     className="bg-accent border-4 border-accent text-white hover:text-black  no-underline w-full"
@@ -218,7 +177,7 @@ class IndexPage extends React.Component {
                   skills={skills.nodes.map(element => element.name)}
                 />
               </div>
-              <div  className="break-inside-avoid">
+              <div className="break-inside-avoid">
                 <h5>Online Certification and Courses Taken</h5>
                 <hr />
                 <div className="m-0">

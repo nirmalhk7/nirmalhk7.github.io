@@ -2,17 +2,8 @@
 
 $home-wallpaper-cutoff: 1100px;
 
-#blog-header {
-    background-image: url("../images/pitlane.jpg");
-    background-size: cover;
-}
 
-@media only screen and (min-width: $home-wallpaper-cutoff) {
-    #home {
-        background-image: url("../images/BeachNK_1.jpg");
-        background-size: cover;
-    }
-}
+
 
 #projects-header {
     background-image: url('../images/nasa-earth.jpg')
@@ -22,22 +13,13 @@ $home-wallpaper-cutoff: 1100px;
     background-image: url('../images/f1car.jpg');
 }
 
-@media only screen and (max-width: $home-wallpaper-cutoff) {
-    #home {
-        background-image: url("../images/MilkyWay.jpg");
-        background-size: cover;
-    }
-}
+
 
 
 /*1220px needed*/
 
 /*From 0 to 320px display nothing*/
-@media only screen and (max-width: 320px) {
-    #home {
-        background-size: cover;
-    }
-}
+
 
 @media only screen and (min-width: 1024px) {
     #contact {
@@ -1505,10 +1487,6 @@ html.no-csstransitions .home-content__main {
  * # works - (_site-layout.scss)
  *
  * ------------------------------------------------------------------- */
-section {
-    padding-top: 10rem;
-    padding-bottom: 10rem;
-}
 
 /* ------------------------------------------------------------------- 
  * ## bricks/masonry - (_site-layout.scss)

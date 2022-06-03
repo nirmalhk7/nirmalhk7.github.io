@@ -36,7 +36,7 @@ const BlogTemplate = ({ location, pageContext }) => {
         title={pageContext.current.childMarkdownRemark.frontmatter.title}
       />
       <article className="blog-single has-bottom-sep">
-        <div
+        {/* <div
           className="page-header pt-64 pb-32 text-center page-hero bg-fixed bg-center bg-no-repeat"
           style={{
             backgroundImage: `url(${pageContext.current.childMarkdownRemark.frontmatter.img.childImageSharp.original.src})`,
@@ -68,15 +68,14 @@ const BlogTemplate = ({ location, pageContext }) => {
               </ul>
             </article>
           </div>
-        </div>
-        <div className=" max-w-screen-lg m-auto" style={{ paddingBottom: "72px" }}>
-          <div className="w-full blog-content__main">
+        </div> */}
+        <div className=" m-auto" style={{ paddingBottom: "72px" }}>
+          <div className="w-full pl-24 pr-24">
             <div
               className="blogpost"
               dangerouslySetInnerHTML={{
                 __html: pageContext.current.childMarkdownRemark.html,
               }}
-              style={{ marginTop: "2em" }}
             />
             <div className="blog-content__pagenav">
               <h6 className="boxfont text-uppercase mt-0">Share the article</h6>

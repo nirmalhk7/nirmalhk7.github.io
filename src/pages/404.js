@@ -21,7 +21,7 @@ const NotFoundPage = ({ location }) => (
       </div>
     </section>
     <section className="bg-white pt-16 pb-48">
-      <div className=" max-w-screen-lg m-auto">
+      <div className="  m-auto">
         <div className="w-full">
           <h6 style={{ textAlign: "center" }}>
             Lost your way? Search what you need here.

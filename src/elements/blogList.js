@@ -6,7 +6,7 @@ const MasonPanel = ({ blogItems }) => {
   return (
     <section className="bg-gray">
       <div className="">
-        <div className="max-w-screen-lg m-auto" style={{ maxWidth: "1500px" }}>
+        <div className=" m-auto" style={{ maxWidth: "1500px" }}>
           <div
             className="section_intro has-bottom-sep"
             style={{ paddingTop: "5em" }}
@@ -16,17 +16,17 @@ const MasonPanel = ({ blogItems }) => {
               <h1>All Posts</h1>
             </div>
           </div>
-          <div className="blog-list block-1-2 block-w-full">
+          <div className="">
             <div className="columns-4">
               {blogItems.map((element, index) => {
 
                 return (
                   <div
-                    className="break-inside-avoid-column masonry__brick"
+                    className="break-inside-avoid-column"
                     key={index}
                   >
-                    <div className="overflow-hidden relative hover:opacity-100 hover:visible">
-                      <div className="item-folio__thumb">
+                    <div className=" overflow-hidden relative hover:opacity-100 hover:visible">
+                      <div className=" before:bg-black before:z-10">
                         <Link
                           className=""
                           title={element.childMarkdownRemark.frontmatter.description}
