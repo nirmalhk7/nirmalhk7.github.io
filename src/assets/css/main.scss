@@ -1,13 +1,12 @@
 @import "./constants";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 $home-wallpaper-cutoff: 1100px;
 
 
 
-
-#projects-header {
-    background-image: url('../images/nasa-earth.jpg')
-}
 
 #notfound {
     background-image: url('../images/f1car.jpg');
@@ -47,62 +46,10 @@ $home-wallpaper-cutoff: 1100px;
     }
 }
 
-/* ===================================================================
- * # base style overrides - (_document-setup.scss)
- *
- * ------------------------------------------------------------------- */
-html {
-    font-size: 10px;
-}
-
-body {
-    background: #0a0809;
-    font-family: "Libre Baskerville", serif;
-    font-weight: 400;
-    font-size: 1.6rem;
-    line-height: 1.875;
-    color: #5f5f5f;
-    margin: 0;
-    padding: 0;
-}
-
-p,
-b,
-i,
-strong,
-h1,
-h2,
-h3,
-h4,
-h5,
-cite {
-    &::selection {
-        color: map-get($map: $theme-colors, $key: "white");
-        background: map-get($map: $theme-colors, $key: "accent");
-    }
-
-    &::-moz-selection {
-        color: map-get($map: $theme-colors, $key: "white");
-        background: map-get($map: $theme-colors, $key: "accent");
-    }
-}
-
 /* ------------------------------------------------------------------- 
  * ## links - (_document-setup.scss) 
  * ------------------------------------------------------------------- */
-a {
-    color: map-get($map: $theme-colors, $key: "accent");
 
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    text-decoration: underline;
-}
-
-a:hover,
-a:focus,
-a:active {
-    color: #191A3F;
-}
 
 a:focus {
     outline: none;
@@ -113,58 +60,6 @@ h1 a {
     text-decoration: none;
 }
 
-/* ===================================================================
- * # typography & general theme styles - (_document-setup.scss) 
- * 
- * ------------------------------------------------------------------- */
-h1,
-.h01 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 3.6rem;
-    margin-bottom: 1.8rem;
-    margin-top: 6rem;
-    line-height: 1.25;
-    letter-spacing: -.1rem;
-}
-
-h2,
-.h02 {
-    font-size: 3rem;
-    margin-bottom: 1.8rem;
-    margin-top: 6rem;
-    line-height: 1.3;
-}
-
-h3,
-.h03 {
-    font-size: 2.4rem;
-    line-height: 1.25;
-    margin-bottom: 1.8rem;
-    margin-top: 6rem;
-}
-
-h4,
-.h04 {
-    font-size: 2.1rem;
-    line-height: 1.286;
-}
-
-h5,
-.h05 {
-    font-size: 1.6rem;
-    line-height: 1.3125;
-}
-
-h6,
-.h06 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 1.4rem;
-    line-height: 1.5;
-    text-transform: uppercase;
-    letter-spacing: .16rem;
-}
 
 p img {
     margin: 0;
@@ -180,68 +75,10 @@ b {
     font-weight: normal;
 }
 
-em,
-i {
-    font-family: "Libre Baskerville", serif;
-    font-weight: 400;
-    font-style: italic;
-}
-
-strong,
-b {
-    font-family: "Libre Baskerville", serif;
-    font-weight: 700;
-}
 
 small {
     font-size: 1.2rem;
     line-height: inherit;
-}
-
-blockquote {
-    margin: 3.9rem 0;
-    padding-left: 4.5rem;
-    position: relative;
-}
-
-blockquote:before {
-    content: "\201C";
-    font-size: 10rem;
-    line-height: 0px;
-    margin: 0;
-    font-family: arial, sans-serif;
-    position: absolute;
-    top: 3.6rem;
-    left: 0;
-    color: map-get($map: $theme-colors, $key: "accent");
-}
-
-blockquote p {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    padding: 0;
-    font-size: 2.1rem;
-    line-height: 1.857;
-    color: #0D0A0B;
-}
-
-blockquote cite {
-    display: block;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 1.4rem;
-    font-style: normal;
-    line-height: 1.5;
-}
-
-blockquote cite:before {
-    content: "\2014 \0020";
-}
-
-blockquote cite a,
-blockquote cite a:visited {
-    color: #6c6c6c;
-    border: none;
 }
 
 abbr {
@@ -730,27 +567,6 @@ select:-webkit-autofill:focus {
     margin-left: -0.2em;
 }
 
-/* dictionary definition style 
- * ----------------------------------------------- */
-.dictionary-style dt {
-    display: inline;
-    counter-reset: definitions;
-}
-
-.dictionary-style dt+dt:before {
-    content: ", ";
-    margin-left: -0.2em;
-}
-
-.dictionary-style dd {
-    display: block;
-    counter-increment: definitions;
-}
-
-.dictionary-style dd:before {
-    content: counter(definitions, decimal) ". ";
-}
-
 /** 
  * Pull Quotes
  * -----------
@@ -848,150 +664,6 @@ select:-webkit-autofill:focus {
     font-weight: 400;
     color: #6c6c6c;
 }
-
-/* ------------------------------------------------------------------- 
- * ## skillbars - (_skillbars.scss)
- * ------------------------------------------------------------------- */
-.skill-bars {
-    list-style: none;
-    margin: 6rem 0 3rem;
-}
-
-.skill-bars li {
-    height: .6rem;
-    background: #c9c9c9;
-    width: 100%;
-    margin-bottom: 6.9rem;
-    padding: 0;
-    position: relative;
-}
-
-.skill-bars li strong {
-    position: absolute;
-    left: 0;
-    top: -3rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    color: #0D0A0B;
-    text-transform: uppercase;
-    letter-spacing: .2rem;
-    font-size: 1.4rem;
-    line-height: 2.4rem;
-}
-
-.skill-bars li .progress {
-    background: #000000;
-    background-image: linear-gradient(to right, #191A3F, #2d462c);
-    position: relative;
-    height: 100%;
-}
-
-.skill-bars li .progress span {
-    position: absolute;
-    right: 0;
-    top: -3.6rem;
-    display: block;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    color: #FFFFFF;
-    font-size: 1.1rem;
-    line-height: 1;
-    background: #000000;
-    padding: .6rem .6rem;
-    border-radius: 3px;
-}
-
-.skill-bars li .progress span::after {
-    position: absolute;
-    left: 50%;
-    bottom: -5px;
-    margin-left: -5px;
-    border-right: 5px solid transparent;
-    border-left: 5px solid transparent;
-    border-top: 5px solid #000000;
-    content: "";
-}
-
-.skill-bars li .percent5 {
-    width: 5%;
-}
-
-.skill-bars li .percent10 {
-    width: 10%;
-}
-
-.skill-bars li .percent15 {
-    width: 15%;
-}
-
-.skill-bars li .percent20 {
-    width: 20%;
-}
-
-.skill-bars li .percent25 {
-    width: 25%;
-}
-
-.skill-bars li .percent30 {
-    width: 30%;
-}
-
-.skill-bars li .percent35 {
-    width: 35%;
-}
-
-.skill-bars li .percent40 {
-    width: 40%;
-}
-
-.skill-bars li .percent45 {
-    width: 45%;
-}
-
-.skill-bars li .percent50 {
-    width: 50%;
-}
-
-.skill-bars li .percent55 {
-    width: 55%;
-}
-
-.skill-bars li .percent60 {
-    width: 60%;
-}
-
-.skill-bars li .percent65 {
-    width: 65%;
-}
-
-.skill-bars li .percent70 {
-    width: 70%;
-}
-
-.skill-bars li .percent75 {
-    width: 75%;
-}
-
-.skill-bars li .percent80 {
-    width: 80%;
-}
-
-.skill-bars li .percent85 {
-    width: 85%;
-}
-
-.skill-bars li .percent90 {
-    width: 90%;
-}
-
-.skill-bars li .percent95 {
-    width: 95%;
-}
-
-.skill-bars li .percent100 {
-    width: 100%;
-}
-
 
 /* ------------------------------------------------------------------- 
  * ## blog-list - (_common-styles.scss)

@@ -32,7 +32,7 @@
     "gatsby-transformer-sharp": "4.9.0",
     "gatsby-transformer-yaml": "4.9.0",
     "jquery": "3.6.0",
-    "moment": "2.29.1",
+    "moment": "2.29.2",
     "postcss": "8.4.7",
     "prop-types": "15.8.1",
     "purgecss": "4.1.3",

@@ -6,7 +6,7 @@ import SearchEnggOp from "../elements/seo";
 const NotFoundPage = ({ location }) => (
   <Layout location={location}>
     <SearchEnggOp title="404: Not Found" />
-    <section className="page-header page-hero bg-fixed bg-center bg-no-repeat notfound-img">
+    <section className="page-header page-hero bg-fixed bg-center bg-no-repeat bg-f1Car">
       <div className="page-header__content  m-auto">
         <article className="container mx-auto">
           <h1 className="page-header__title">

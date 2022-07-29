@@ -70,7 +70,9 @@ module.exports = {
       backgroundImage: {
         "beachNirmal": "url('../images/BeachNK_1.jpg')",
         "milkyWay": "url('../images/MilkyWay.jpg')",
-        "blogWallpaper": "url('../images/pitlane.jpg')"
+        "blogWallpaper": "url('../images/pitlane.jpg')",
+        "nasaEarth":"url('../images/nasa-earth.jpg')",
+        "f1Car": "url('../images/f1car.jpg')"
       },
       fontFamily: {
         "blocky": ["Montserrat", "sans-serif"],
