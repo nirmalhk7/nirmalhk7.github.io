@@ -17,7 +17,7 @@ const Footer = () => {
                 return (
                   <li key={index}>
                     <a
-                      className="no-underline	"
+                      className="no-underline	hover:text-accent"
                       href={element.link}
                       target="blank"
                     >

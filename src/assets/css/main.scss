@@ -98,26 +98,6 @@ pre {
     font-family: Consolas, "Andale Mono", Courier, "Courier New", monospace;
 }
 
-pre>code {
-    display: block;
-    white-space: pre;
-    line-height: 2;
-    padding: 0;
-    margin: 0;
-}
-
-pre.prettyprint>code {
-    border: none;
-}
-
-hr {
-    border: solid rgba(0, 0, 0, 0.1);
-    border-width: 1px 0 0;
-    clear: both;
-    height: 0;
-    border-color: map-get($map: $theme-colors, $key: "accent");
-}
-
 /* ------------------------------------------------------------------- 
  * ## Lists - (_document-setup.scss)  
  * ------------------------------------------------------------------- */
@@ -257,7 +237,6 @@ textarea,
 select,
 pre,
 blockquote,
-figure,
 table,
 p,
 ul,

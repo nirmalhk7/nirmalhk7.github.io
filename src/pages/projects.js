@@ -11,7 +11,7 @@ const Projects = ({ location, data }) => (
   <Layout location={location}>
     <SearchEnggOp title="Projects" />
     <section
-      className="page-header page-hero bg-fixed bg-center bg-no-repeat bg-nasaEarth"
+      className="page-header  bg-fixed bg-center bg-no-repeat bg-nasaEarth"
       id="projects-header"
     >
       <div className="container mx-auto page-header__content">

@@ -6,8 +6,9 @@ const Jumbotron = {
     mini: () => <></>,
     fullHeight: ({ bgImg, orangeText, HeadingTextComponent, buttonDetails, showScrollDown }) => (
         <section
-            className={`s-home page-hero  bg-fixed bg-center bg-no-repeat ${bgImg} bg-cover opacity-50`}
+            className={`s-home   bg-fixed bg-center bg-no-repeat ${bgImg} bg-cover relative z-10`}
         >
+            <div className="z-0 bg-black h-full left-0 opacity-40 absolute top-0 w-full" />
             <div className="home-content  py-40 z-10">
                 <div className="container mx-auto home-content__main">
                     <h3 className="ital-hover">{orangeText}</h3>

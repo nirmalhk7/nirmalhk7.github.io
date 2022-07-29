@@ -92,7 +92,8 @@ class IndexPage extends React.Component {
           {"\n"}
           based in <br />
           Surathkal, India.
-        </h1>} orangeText="Hey!" buttonDetails={[["Latest Projects", "#projects"], ["More About Me", "#about"]]} showScrollDown bgImg="sm:bg-milkyWay lg:bg-beachNirmal" />
+        </h1>} 
+        orangeText="Hey!" buttonDetails={[["Latest Projects", "#projects"], ["More About Me", "#about"]]} showScrollDown bgImg="sm:bg-milkyWay lg:bg-beachNirmal" />
         <section className="pt-56 pb-32 bg-white relative " id="about">
           <div className="w-100 text-center">
             <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
