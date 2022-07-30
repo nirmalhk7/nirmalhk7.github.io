@@ -5,9 +5,7 @@ import { Link } from "gatsby";
 const Navbar = () => {
   const navbarList = ["Home", "About", "Projects", "Blog", "Contact"];
   return (
-    <header
-      className="font-blocky transition duration-200 font-bold text-navbar uppercase  w-full h-navbar bg-transparent z-40 absolute top-0"
-    >
+    <header className="font-blocky transition duration-200 font-bold text-navbar uppercase  w-full h-navbar bg-transparent z-40 absolute top-0">
       <Link to="/">
         <div className="left-20 inline-block text-white m-0 p-0 absolute">
           nirmalhk7

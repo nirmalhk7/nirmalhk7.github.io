@@ -4,8 +4,13 @@ import SearchEnggOp from "../elements/seo";
 import { graphql } from "gatsby";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Accordion, AccordionItem, AccordionItemPanel, AccordionItemHeading, AccordionItemButton } from "react-accessible-accordion";
-
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemPanel,
+  AccordionItemHeading,
+  AccordionItemButton,
+} from "react-accessible-accordion";
 
 const Projects = ({ location, data }) => (
   <Layout location={location}>
@@ -28,8 +33,7 @@ const Projects = ({ location, data }) => (
           </div>
           <p className="narrow">
             I&apos;m a fullstack and hybrid product developer, currently
-            understanding and exploring cloud platforms. I love building
-            stuff!{" "}
+            understanding and exploring cloud platforms. I love building stuff!{" "}
             <FontAwesomeIcon className="ml-2 text-accent" icon={faWrench} />
           </p>
         </article>
@@ -45,19 +49,13 @@ const Projects = ({ location, data }) => (
                 <div className="break-inside-avoid" key={i1}>
                   <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
                   {e1.edges.map((e2, i2) => (
-                    <AccordionItem
-                      className="accordion__item"
-                      key={i2}
-                    >
-
+                    <AccordionItem className="accordion__item" key={i2}>
                       <AccordionItemHeading>
                         <AccordionItemButton className="accordion-header bg-white">
                           {e2.node.childMarkdownRemark.frontmatter.title}
                         </AccordionItemButton>
                       </AccordionItemHeading>
-                      <AccordionItemPanel
-                        className="p-6 bg-gray"
-                      >
+                      <AccordionItemPanel className="p-6 bg-gray">
                         <div
                           className="accordion-body__contents"
                           dangerouslySetInnerHTML={{

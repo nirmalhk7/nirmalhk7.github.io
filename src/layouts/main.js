@@ -10,8 +10,8 @@ import jquery from "jquery";
 class Layout extends React.Component {
   componentDidMount() {
     const hdr = document.querySelector("header");
-  
-    document.addEventListener("scroll",(event)=>{
+
+    document.addEventListener("scroll", (event) => {
       if (window.scrollY < hdr.offsetHeight + 300) {
         hdr.classList.add("bg-transparent");
         hdr.classList.add("absolute");

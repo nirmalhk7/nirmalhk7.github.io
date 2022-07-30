@@ -41,8 +41,6 @@ const LatestBlogItem = ({ relativeDirectory, frontmatter }) => {
                 to={`/blog/${relativeDirectory}`}
               >
                 Read More
-
-
               </Link>
             </div>
           </div>

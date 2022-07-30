@@ -7,12 +7,14 @@ import { MySkills } from "../elements/mySkills";
 import Layout from "../layouts/main";
 import SocialMediaIcons from "../elements/social/social";
 import { StaticImage } from "gatsby-plugin-image";
-import { Accordion, AccordionItem, AccordionItemPanel, AccordionItemHeading, AccordionItemButton } from "react-accessible-accordion";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemPanel,
+  AccordionItemHeading,
+  AccordionItemButton,
+} from "react-accessible-accordion";
 import Jumbotron from "../elements/jumbotron";
-
-
-
-
 
 const Projects = ({ projects }) => (
   <section className="bg-gray" id="projects">
@@ -36,17 +38,13 @@ const Projects = ({ projects }) => (
         <div className="">
           <Accordion className="accordion">
             {projects.nodes.map((element, index) => (
-              <AccordionItem
-                className="accordion__item"
-              >
+              <AccordionItem className="accordion__item">
                 <AccordionItemHeading>
                   <AccordionItemButton className="accordion-header bg-gray">
                     {element.childMarkdownRemark.frontmatter.title}
                   </AccordionItemButton>
                 </AccordionItemHeading>
-                <AccordionItemPanel
-                  className="p-6 bg-white"
-                >
+                <AccordionItemPanel className="p-6 bg-white">
                   <p className="accordion-body__contents">
                     <p>{element.childMarkdownRemark.excerpt}</p>
                     <Link to={`/projects?id=${element.id}`}>
@@ -68,10 +66,9 @@ const Projects = ({ projects }) => (
 );
 
 class IndexPage extends React.Component {
-
-
   render() {
     const {
+      mainIndex,
       projects,
       workexperience,
       onlineCourses,
@@ -86,14 +83,24 @@ class IndexPage extends React.Component {
           description="Welcome to Nirmal Khedkar's Official Website"
           title="Home"
         />
-        <Jumbotron.fullHeight HeadingTextComponent={<h1>
-          I'm Nirmal Khedkar, <br />
-          product developer
-          {"\n"}
-          based in <br />
-          Surathkal, India.
-        </h1>} 
-        orangeText="Hey!" buttonDetails={[["Latest Projects", "#projects"], ["More About Me", "#about"]]} showScrollDown bgImg="sm:bg-milkyWay lg:bg-beachNirmal" />
+        <Jumbotron.fullHeight
+          HeadingTextComponent={
+            <h1>
+              I'm Nirmal Khedkar, <br />
+              product developer
+              {"\n"}
+              based in <br />
+              Surathkal, India.
+            </h1>
+          }
+          orangeText="Hey!"
+          buttonDetails={[
+            ["Latest Projects", "#projects"],
+            ["More About Me", "#about"],
+          ]}
+          showScrollDown
+          bgImg="sm:bg-milkyWay lg:bg-beachNirmal"
+        />
         <section className="pt-56 pb-32 bg-white relative " id="about">
           <div className="w-100 text-center">
             <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
@@ -111,35 +118,12 @@ class IndexPage extends React.Component {
           </div>
           <div className="container mx-auto ">
             <div className="columns-2 gap-16 gap-y-16">
-              <div className="break-inside-avoid">
-                <h3 id="howdy">Greetings!</h3>
-                <p>
-                  I'm from India, and I'm final year student at National Institute of
-                  Technology, Karnataka. Programming, reading books, reading news, table
-                  tennis and
-                  <strong>making applications that eliminate iterative work</strong> is my
-                  hobby. I like to constantly challenge myself with problems. I also have a
-                  knack for finance and investment.
-                </p>
-                <h5 id="academics">Academics</h5>
-                <p>
-                  I completed my 10th grade in Bangalore with <strong>9.4 CGPA</strong> and
-                  my 12th grade with 87.9%. I currently study in{" "}
-                  <strong>National Institute of Technology Karnataka</strong> doing BTech in
-                  Information Technology.
-                </p>
-
-                <h5 id="technical-projects-and-activities">
-                  Technical Projects and Activities
-                </h5>
-                <p>
-                  My projects are listed below. Most of them are open-sourced on GitHub.
-                  I've worked on several MERN Stack based, Native Android and Ruby on Rails
-                  projects. I'm also member Web Developer of IRIS NITK, which is NITK's
-                  student-run university management portal. I'm also passionate about
-                  Machine Learning and its applications.
-                </p>
-              </div>
+              <div
+                className="break-inside-avoid"
+                dangerouslySetInnerHTML={{
+                  __html: mainIndex.childMarkdownRemark.html,
+                }}
+              ></div>
               <StaticImage
                 alt="Nirmal Khedkar"
                 className="lg:hidden md:block sm:block break-inside-avoid"
@@ -172,11 +156,25 @@ class IndexPage extends React.Component {
                     Want to Hire?
                   </Link>
                 </div>
-              </div >
+              </div>
               <div className="break-inside-avoid">
-                <MySkills
-                  skills={skills.nodes.map(element => element.name)}
-                />
+                <h5 style={{ paddingTop: "0.5em" }}>
+                  Familiar Languages, Frameworks and Libraries
+                </h5>
+                <hr />
+                <div
+                  className="grid grid-cols-4"
+                  style={{ marginBottom: "5em" }}
+                >
+                  {skills.nodes.map((element, index) => (
+                    <div
+                      className="p-2 text-center text-base text-black uppercase font-blocky"
+                      key={index}
+                    >
+                      {element.name}
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="break-inside-avoid">
                 <h5>Online Certification and Courses Taken</h5>
@@ -195,8 +193,8 @@ class IndexPage extends React.Component {
               <div className="break-inside-avoid">
                 <h5>Prominent College Courses Taken</h5>
                 <hr />
-                <div className="mr-0 ml-0">
-                  <div className="disc">
+                <div className="m-0">
+                  <ul className="disc">
                     {collegeCourses.nodes.map((element, index) => (
                       <React.Fragment key={index}>
                         {index + 1 !== collegeCourses.nodes.length
@@ -204,7 +202,7 @@ class IndexPage extends React.Component {
                           : `${element.name}.`}
                       </React.Fragment>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
               <div className="break-inside-avoid">
@@ -226,12 +224,10 @@ class IndexPage extends React.Component {
             </div>
           </div>
           <WorkExperience experience={workexperience.nodes} />
-        </section >
-        <Projects
-          projects={projects}
-        />
+        </section>
+        <Projects projects={projects} />
         <Blog name={site.siteMetadata.blogName} />
-      </Layout >
+      </Layout>
     );
   }
 }
@@ -239,6 +235,11 @@ class IndexPage extends React.Component {
 export default IndexPage;
 export const postQuery = graphql`
   query x {
+    mainIndex: file(name: { eq: "mainIndex" }) {
+      childMarkdownRemark {
+        html
+      }
+    }
     projects: allFile(
       filter: { sourceInstanceName: { eq: "projects" } }
       sort: { order: DESC, fields: birthTime }
@@ -296,7 +297,7 @@ export const postQuery = graphql`
         icon
       }
     }
-    skills: allSkillsYaml(sort: {fields: priority, order: DESC}, limit: 12) {
+    skills: allSkillsYaml(sort: { fields: priority, order: DESC }, limit: 12) {
       nodes {
         name
       }

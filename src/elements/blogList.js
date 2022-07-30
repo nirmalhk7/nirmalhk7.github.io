@@ -19,23 +19,23 @@ const MasonPanel = ({ blogItems }) => {
           <div className="">
             <div className="columns-4">
               {blogItems.map((element, index) => {
-
                 return (
-                  <div
-                    className="break-inside-avoid-column"
-                    key={index}
-                  >
+                  <div className="break-inside-avoid-column" key={index}>
                     <div className=" overflow-hidden relative hover:opacity-100 hover:visible">
                       <div className=" before:bg-black before:z-10">
                         <Link
                           className=""
-                          title={element.childMarkdownRemark.frontmatter.description}
+                          title={
+                            element.childMarkdownRemark.frontmatter.description
+                          }
                           to={`/blog/${element.relativeDirectory}`}
                         >
                           <GatsbyImage
                             alt={element.childMarkdownRemark.frontmatter.title}
                             layout="fill"
-                            image={getImage(element.childMarkdownRemark.frontmatter.img)}
+                            image={getImage(
+                              element.childMarkdownRemark.frontmatter.img
+                            )}
                           />
                         </Link>
                       </div>

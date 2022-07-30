@@ -12,13 +12,22 @@ const Blog = ({ location, data }) => {
   return (
     <Layout location={location}>
       <SearchEnggOp title={data.site.siteMetadata.blogName} />
-      <Jumbotron.fullHeight buttonDetails={[["Explore", "#blog-first"]]} bgImg="bg-blogWallpaper" HeadingTextComponent={<h1 className="page-header__title">
-        <Link title="" to="/blog">
-          {data.site.siteMetadata.blogName}
-        </Link>
-      </h1>}
-        orangeText="Official Blog of Nirmal Khedkar" />
-      <LatestBlogItem relativeDirectory={data.blogs.nodes[0].relativeDirectory} frontmatter={data.blogs.nodes[0].childMarkdownRemark.frontmatter} />
+      <Jumbotron.fullHeight
+        buttonDetails={[["Explore", "#blog-first"]]}
+        bgImg="bg-blogWallpaper"
+        HeadingTextComponent={
+          <h1 className="page-header__title">
+            <Link title="" to="/blog">
+              {data.site.siteMetadata.blogName}
+            </Link>
+          </h1>
+        }
+        orangeText="Official Blog of Nirmal Khedkar"
+      />
+      <LatestBlogItem
+        relativeDirectory={data.blogs.nodes[0].relativeDirectory}
+        frontmatter={data.blogs.nodes[0].childMarkdownRemark.frontmatter}
+      />
       <MasonPanel
         blogItems={data.blogs.nodes}
         sitename={data.site.siteMetadata.blogName}
@@ -29,11 +38,8 @@ const Blog = ({ location, data }) => {
 export const potQuery = graphql`
   query xyz {
     blogs: allFile(
-      filter: {
-        sourceInstanceName: { eq: "blog" }
-        ext: { eq: ".md" }
-     }
-     sort: {fields: childrenMarkdownRemark___frontmatter___date, order: DESC}
+      filter: { sourceInstanceName: { eq: "blog" }, ext: { eq: ".md" } }
+      sort: { fields: childrenMarkdownRemark___frontmatter___date, order: DESC }
     ) {
       nodes {
         relativeDirectory
@@ -45,7 +51,7 @@ export const potQuery = graphql`
             description
             img {
               childImageSharp {
-                gatsbyImageData(width:400, placeholder: BLURRED)
+                gatsbyImageData(width: 400, placeholder: BLURRED)
               }
             }
           }
