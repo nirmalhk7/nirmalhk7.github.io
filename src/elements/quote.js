@@ -21,7 +21,7 @@ const RandomQuote = () => {
   return (
     <section className="bg-white">
       <div className="narrow m-auto text-center text-h4 pb-6 relative">
-        <div className="">
+        <div>
           <blockquote>
             <p>{state.content} </p>
             <cite>{state.saidby}</cite>

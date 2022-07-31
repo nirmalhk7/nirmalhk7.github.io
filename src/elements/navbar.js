@@ -43,9 +43,9 @@ const Navbar = () => {
           })}
         </Scrollspy>
       </nav>
-      {/* <Link className="header-menu-toggle" to="#0">
+      <Link className="header-menu-toggle" to="#0">
         <span>Menu</span>
-      </Link> */}
+      </Link>
     </header>
   );
 };

@@ -22,6 +22,7 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
     const blogPostTemplate = path.resolve("src/templates/blog-article.js");
 
     resolve(
+      
       graphql(
         `
           query MyQuery {

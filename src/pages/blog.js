@@ -6,6 +6,7 @@ import { graphql, Link } from "gatsby";
 import LatestBlogItem from "../elements/latestBlog";
 import MasonPanel from "../elements/blogList";
 import Jumbotron from "../elements/jumbotron";
+import { getItem } from "../elements/util";
 
 const Blog = ({ location, data }) => {
   if (!data) return null;
@@ -26,7 +27,7 @@ const Blog = ({ location, data }) => {
       />
       <LatestBlogItem
         relativeDirectory={data.blogs.nodes[0].relativeDirectory}
-        frontmatter={data.blogs.nodes[0].childMarkdownRemark.frontmatter}
+        frontmatter={getItem(data.blogs.nodes[0])}
       />
       <MasonPanel
         blogItems={data.blogs.nodes}

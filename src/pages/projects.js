@@ -11,6 +11,7 @@ import {
   AccordionItemHeading,
   AccordionItemButton,
 } from "react-accessible-accordion";
+import { getItem } from "../elements/util";
 
 const Projects = ({ location, data }) => (
   <Layout location={location}>
@@ -20,7 +21,7 @@ const Projects = ({ location, data }) => (
       id="projects-header"
     >
       <div className="container mx-auto page-header__content">
-        <article className="">
+        <article>
           <h1 className="page-header__title">
             <a href="#0" title="Projects">
               Projects
@@ -42,7 +43,7 @@ const Projects = ({ location, data }) => (
 
     <section className="bg-white pt-16 pb-48 ">
       <div className="container mx-auto">
-        <div className="">
+        <div>
           <Accordion className="my-0 mx-auto rounded js-accordion">
             <div className="gap-y-16 lg:columns-2 sm:columns-1">
               {data.allFile.group.map((e1, i1) => (
@@ -52,7 +53,7 @@ const Projects = ({ location, data }) => (
                     <AccordionItem className="accordion__item" key={i2}>
                       <AccordionItemHeading>
                         <AccordionItemButton className="accordion-header bg-white">
-                          {e2.node.childMarkdownRemark.frontmatter.title}
+                          {getItem(e2.node).title}
                         </AccordionItemButton>
                       </AccordionItemHeading>
                       <AccordionItemPanel className="p-6 bg-gray">

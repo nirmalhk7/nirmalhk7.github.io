@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <footer>
       <div className={styles.flicker_3}>
-        <div className="">
+        <div>
           <ul className={styles.footer_social}>
             {social.map((element, index) => {
               if (element.link)

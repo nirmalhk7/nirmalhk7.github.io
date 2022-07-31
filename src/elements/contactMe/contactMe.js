@@ -22,7 +22,7 @@ class ContactForm extends React.Component {
 
   render() {
     return (
-      <div className="">
+      <div>
         <section
           className={`relative ${styles.section_contact} bg-fixed bg-center bg-no-repeat`}
           id="contact"

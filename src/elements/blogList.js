@@ -1,22 +1,23 @@
 import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
+import { getItem } from "./util";
 
 const MasonPanel = ({ blogItems }) => {
   return (
     <section className="bg-gray">
-      <div className="">
+      <div>
         <div className=" m-auto" style={{ maxWidth: "1500px" }}>
           <div
             className="section_intro has-bottom-sep"
             style={{ paddingTop: "5em" }}
           >
             <div className="text-center">
-              <h3>Eclipse</h3>
+              <h3>{blogName}</h3>
               <h1>All Posts</h1>
             </div>
           </div>
-          <div className="">
+          <div>
             <div className="columns-4">
               {blogItems.map((element, index) => {
                 return (
@@ -24,27 +25,27 @@ const MasonPanel = ({ blogItems }) => {
                     <div className=" overflow-hidden relative hover:opacity-100 hover:visible">
                       <div className=" before:bg-black before:z-10">
                         <Link
-                          className=""
+                         
                           title={
-                            element.childMarkdownRemark.frontmatter.description
+                            getItem(element).description
                           }
                           to={`/blog/${element.relativeDirectory}`}
                         >
                           <GatsbyImage
-                            alt={element.childMarkdownRemark.frontmatter.title}
+                            alt={getItem(element).title}
                             layout="fill"
                             image={getImage(
-                              element.childMarkdownRemark.frontmatter.img
+                              getItem(element).img
                             )}
                           />
                         </Link>
                       </div>
                       <div className="pt-0 pb-0 pl-12 pr-12 z-10 bottom-12	left-0 absolute">
                         <h3 className="text-white text-base font-semibold m-0 uppercase font-blocky">
-                          {element.childMarkdownRemark.frontmatter.title}
+                          {getItem(element).title}
                         </h3>
                         <strong className="text-accent">
-                          {element.childMarkdownRemark.frontmatter.category}
+                          {getItem(element).category}
                         </strong>
                       </div>
                     </div>

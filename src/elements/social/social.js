@@ -9,6 +9,7 @@ import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import "./social_module.scss";
+
 // TODO fix colors of social icons
 export const social = [
   {

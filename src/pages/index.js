@@ -3,9 +3,7 @@ import { Link, withPrefix, graphql } from "gatsby";
 import Blog from "../elements/blogIntro";
 import SearchEnggOp from "../elements/seo";
 import WorkExperience from "../elements/workExperience";
-import { MySkills } from "../elements/mySkills";
 import Layout from "../layouts/main";
-import SocialMediaIcons from "../elements/social/social";
 import { StaticImage } from "gatsby-plugin-image";
 import {
   Accordion,
@@ -15,55 +13,7 @@ import {
   AccordionItemButton,
 } from "react-accessible-accordion";
 import Jumbotron from "../elements/jumbotron";
-
-const Projects = ({ projects }) => (
-  <section className="bg-gray" id="projects">
-    <div className="sm:container mx-auto">
-      <div className="grid grid-cols-2  md:grid-cols-2 sm:grid-cols-1">
-        <div className="">
-          <div className="pb-6 relative">
-            <div className=" text-center">
-              <h3 className="font-blocky font-semibold mb-0 mt-0 uppercase text-accent">
-                Projects
-              </h3>
-              <h1 className="font-bold  font-heading leading-snug mt-0">
-                See My Latest Projects
-              </h1>
-              <p className="lead">
-                Find my projects <Link to="/projects">categorized here</Link>.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="">
-          <Accordion className="accordion">
-            {projects.nodes.map((element, index) => (
-              <AccordionItem className="accordion__item">
-                <AccordionItemHeading>
-                  <AccordionItemButton className="accordion-header bg-gray">
-                    {element.childMarkdownRemark.frontmatter.title}
-                  </AccordionItemButton>
-                </AccordionItemHeading>
-                <AccordionItemPanel className="p-6 bg-white">
-                  <p className="accordion-body__contents">
-                    <p>{element.childMarkdownRemark.excerpt}</p>
-                    <Link to={`/projects?id=${element.id}`}>
-                      Find more here
-                    </Link>
-                    .&nbsp;&nbsp;&nbsp;
-                    <code>
-                      {element.childMarkdownRemark.frontmatter.tags[0]}
-                    </code>
-                  </p>
-                </AccordionItemPanel>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </div>
-    </div>
-  </section>
-);
+import { getItem } from "../elements/util";
 
 class IndexPage extends React.Component {
   render() {
@@ -195,13 +145,7 @@ class IndexPage extends React.Component {
                 <hr />
                 <div className="m-0">
                   <ul className="disc">
-                    {collegeCourses.nodes.map((element, index) => (
-                      <React.Fragment key={index}>
-                        {index + 1 !== collegeCourses.nodes.length
-                          ? `${element.name}, `
-                          : `${element.name}.`}
-                      </React.Fragment>
-                    ))}
+                    {collegeCourses.nodes.join(", ")+"."}
                   </ul>
                 </div>
               </div>
@@ -225,7 +169,52 @@ class IndexPage extends React.Component {
           </div>
           <WorkExperience experience={workexperience.nodes} />
         </section>
-        <Projects projects={projects} />
+        <section className="bg-gray" id="projects">
+          <div className="sm:container mx-auto">
+            <div className="grid grid-cols-2  md:grid-cols-2 sm:grid-cols-1">
+              <div>
+                <div className="pb-6 relative">
+                  <div className=" text-center">
+                    <h3 className="font-blocky font-semibold mb-0 mt-0 uppercase text-accent">
+                      Projects
+                    </h3>
+                    <h1 className="font-bold  font-heading leading-snug mt-0">
+                      See My Latest Projects
+                    </h1>
+                    <p className="lead">
+                      Find my projects <Link to="/projects">categorized here</Link>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <Accordion className="accordion">
+                  {projects.nodes.map((element, index) => (
+                    <AccordionItem className="accordion__item">
+                      <AccordionItemHeading>
+                        <AccordionItemButton className="accordion-header bg-gray">
+                          {getItem(element).title}
+                        </AccordionItemButton>
+                      </AccordionItemHeading>
+                      <AccordionItemPanel className="p-6 bg-white">
+                        <p className="accordion-body__contents">
+                          <p>{element.childMarkdownRemark.excerpt}</p>
+                          <Link to={`/projects?id=${element.id}`}>
+                            Find more here
+                          </Link>
+                          .&nbsp;&nbsp;&nbsp;
+                          <code>
+                            {getItem(element).tags[0]}
+                          </code>
+                        </p>
+                      </AccordionItemPanel>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </div>
+          </div>
+        </section>
         <Blog name={site.siteMetadata.blogName} />
       </Layout>
     );
