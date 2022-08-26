@@ -27,8 +27,8 @@ class ContactForm extends React.Component {
           className={`relative ${styles.section_contact} bg-fixed bg-center bg-no-repeat`}
           id="contact"
         >
-          <div className="z-0 bg-black h-full left-0 opacity-75 absolute top-0 w-full" />
-          <div className={`${styles.section_intro} z-10 narrow m-auto`}>
+          {/* <div className="z-0 bg-black h-full left-0 opacity-75 absolute top-0 w-full " /> */}
+          <div className="z-10 narrow m-auto">
             <div className=" text-center">
               <h3 className="text-accent font-blocky  not-italic leading-tight font-semibold uppercase">
                 Contact Me
@@ -43,7 +43,7 @@ class ContactForm extends React.Component {
             className="container mx-auto z-10"
             style={{ maxWidth: "1000px" }}
           >
-            <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1">
+            <div className="grid laptop:grid-cols-3 tablet:grid-cols-3 mobile-l:grid-cols-1">
               <div className={`col-span-2`}>
                 <form method="post">
                   <input

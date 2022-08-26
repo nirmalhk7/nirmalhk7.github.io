@@ -14,7 +14,7 @@ const LatestBlogItem = ({ relativeDirectory, frontmatter }) => {
       }}
     >
       <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 py-10">
+        <div className="grid laptop:grid-cols-2 tablet:grid-cols-2 mobile-l:grid-cols-1 py-10">
           <div>
             <GatsbyImage
               alt="Latest Blog"
@@ -22,7 +22,7 @@ const LatestBlogItem = ({ relativeDirectory, frontmatter }) => {
               style={{ width: "70%", height: "auto" }}
             />
           </div>
-          <div className="lg:text-right md:text-right relative">
+          <div className="laptop:text-right tablet:text-right relative">
             <div className="absolute bottom-10">
               <h1
                 className="font-bold leading-snug mt-0 font-heading text-white"

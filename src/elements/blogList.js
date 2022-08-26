@@ -3,7 +3,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import { getItem } from "./util";
 
-const MasonPanel = ({ blogItems }) => {
+const MasonPanel = ({ blogItems, sitename  }) => {
   return (
     <section className="bg-gray">
       <div>
@@ -13,7 +13,8 @@ const MasonPanel = ({ blogItems }) => {
             style={{ paddingTop: "5em" }}
           >
             <div className="text-center">
-              <h3>{blogName}</h3>
+              <h3>{sitename}</h3>
+              {/* TODO Fix the font here */}
               <h1>All Posts</h1>
             </div>
           </div>

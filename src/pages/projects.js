@@ -45,9 +45,9 @@ const Projects = ({ location, data }) => (
       <div className="container mx-auto">
         <div>
           <Accordion className="my-0 mx-auto rounded js-accordion">
-            <div className="gap-y-16 lg:columns-2 sm:columns-1">
+            <div className="gap-y-16 laptop:columns-2 mobile-l:columns-1">
               {data.allFile.group.map((e1, i1) => (
-                <div className="break-inside-avoid" key={i1}>
+                <div className="break-inside-avoid mb-4" key={i1}>
                   <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
                   {e1.edges.map((e2, i2) => (
                     <AccordionItem className="accordion__item" key={i2}>

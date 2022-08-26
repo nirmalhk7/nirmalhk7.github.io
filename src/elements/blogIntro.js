@@ -12,7 +12,7 @@ const Blog = ({ name }) => (
         </h1>
         <p className="text-white text-center m-0 p-0 font-normal mb-16">
           I have strong views on topics like Finance, Technology, Future and
-          Environment. Find me
+          Environment. Find me&nbsp;
           <Link className="text-white" title={name} to="/blog">
             blogging about them here
           </Link>

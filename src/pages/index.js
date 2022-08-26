@@ -37,10 +37,10 @@ class IndexPage extends React.Component {
           HeadingTextComponent={
             <h1>
               I'm Nirmal Khedkar, <br />
-              product developer
+              Software Engineer
               {"\n"}
               based in <br />
-              Surathkal, India.
+              Bangalore.
             </h1>
           }
           orangeText="Hey!"
@@ -49,7 +49,7 @@ class IndexPage extends React.Component {
             ["More About Me", "#about"],
           ]}
           showScrollDown
-          bgImg="sm:bg-milkyWay lg:bg-beachNirmal"
+          bgImg="bg-milkyWay laptop:bg-beachNirmal"
         />
         <section className="pt-56 pb-32 bg-white relative " id="about">
           <div className="w-100 text-center">
@@ -58,6 +58,7 @@ class IndexPage extends React.Component {
                 <h3 className="text-accent">Nirmal Khedkar</h3>
                 <h1>More About Me</h1>
                 <p className="font-lead font-blocky mb-16">
+                  {/* TODO To change */}
                   I'm a student in National Institute of Technology Karnataka
                   Surathkal doing a Bachelors in Technology (Information
                   Technology) constantly looking for new and interesting
@@ -67,7 +68,7 @@ class IndexPage extends React.Component {
             </div>
           </div>
           <div className="container mx-auto ">
-            <div className="columns-2 gap-16 gap-y-16">
+            <div className="columns-1 mobile-l:columns-2 gap-16 gap-y-16">
               <div
                 className="break-inside-avoid"
                 dangerouslySetInnerHTML={{
@@ -76,7 +77,7 @@ class IndexPage extends React.Component {
               ></div>
               <StaticImage
                 alt="Nirmal Khedkar"
-                className="lg:hidden md:block sm:block break-inside-avoid"
+                className="laptop:hidden tablet:block mobile-l:block break-inside-avoid"
                 src="https://avatars.githubusercontent.com/u/25480443"
                 style={{
                   borderRadius: "70%",
@@ -113,7 +114,7 @@ class IndexPage extends React.Component {
                 </h5>
                 <hr />
                 <div
-                  className="grid grid-cols-4"
+                  className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4"
                   style={{ marginBottom: "5em" }}
                 >
                   {skills.nodes.map((element, index) => (
@@ -145,7 +146,7 @@ class IndexPage extends React.Component {
                 <hr />
                 <div className="m-0">
                   <ul className="disc">
-                    {collegeCourses.nodes.join(", ")+"."}
+                    {collegeCourses.nodes.map(element=>element.name).join(", ")}.
                   </ul>
                 </div>
               </div>
@@ -170,8 +171,8 @@ class IndexPage extends React.Component {
           <WorkExperience experience={workexperience.nodes} />
         </section>
         <section className="bg-gray" id="projects">
-          <div className="sm:container mx-auto">
-            <div className="grid grid-cols-2  md:grid-cols-2 sm:grid-cols-1">
+          <div className="mobile-l:container mx-auto">
+            <div className="grid grid-cols-2  tablet:grid-cols-2 mobile-l:grid-cols-1">
               <div>
                 <div className="pb-6 relative">
                   <div className=" text-center">
@@ -189,15 +190,15 @@ class IndexPage extends React.Component {
               </div>
               <div>
                 <Accordion className="accordion">
-                  {projects.nodes.map((element, index) => (
-                    <AccordionItem className="accordion__item">
+                  {projects.nodes.map((element) => (
+                    <AccordionItem className="accordion__item" key={getItem(element).title}>
                       <AccordionItemHeading>
                         <AccordionItemButton className="accordion-header bg-gray">
                           {getItem(element).title}
                         </AccordionItemButton>
                       </AccordionItemHeading>
                       <AccordionItemPanel className="p-6 bg-white">
-                        <p className="accordion-body__contents">
+                        <div className="accordion-body__contents">
                           <p>{element.childMarkdownRemark.excerpt}</p>
                           <Link to={`/projects?id=${element.id}`}>
                             Find more here
@@ -206,7 +207,7 @@ class IndexPage extends React.Component {
                           <code>
                             {getItem(element).tags[0]}
                           </code>
-                        </p>
+                        </div>
                       </AccordionItemPanel>
                     </AccordionItem>
                   ))}

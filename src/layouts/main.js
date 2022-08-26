@@ -6,10 +6,12 @@ import Footer from "../elements/footer/footer";
 import ContactForm from "../elements/contactMe/contactMe";
 import RandomQuote from "../elements/quote";
 import jquery from "jquery";
+import { slideToggle } from "../elements/util";
 
 class Layout extends React.Component {
   componentDidMount() {
     const hdr = document.querySelector("header");
+    const tbtn = document.getElementById("nav-button");
 
     document.addEventListener("scroll", (event) => {
       if (window.scrollY < hdr.offsetHeight + 300) {
@@ -24,6 +26,14 @@ class Layout extends React.Component {
         hdr.classList.remove("absolute");
       }
     });
+
+    tbtn.onclick(event=>{
+      event.preventDefault();
+      tbtn.classList.toggle("is-clicked");
+      slideToggle(tbtn);
+    });
+    
+
   }
   render() {
     console.log(`

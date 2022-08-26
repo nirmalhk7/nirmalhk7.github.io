@@ -11,9 +11,9 @@ const Navbar = () => {
           nirmalhk7
         </div>
       </Link>
-      <nav className="absolute right-20">
+      <nav className="absolute right-20 hidden tablet:block">
         <Scrollspy
-          className="inline-block h-16 m-0 list-none text-white "
+          className="inline-block h-16 m-0 list-none text-white"
           currentClassName="text-accent"
           items={navbarList.map((element) => element.toLowerCase())}
           offset={-100}
@@ -43,7 +43,7 @@ const Navbar = () => {
           })}
         </Scrollspy>
       </nav>
-      <Link className="header-menu-toggle" to="#0">
+      <Link className="header-menu-toggle block tablet:hidden" to="#0" id="nav-button">
         <span>Menu</span>
       </Link>
     </header>

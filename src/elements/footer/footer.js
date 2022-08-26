@@ -47,7 +47,7 @@ const Footer = () => {
               <a className="hidelink" href="/" style={{ color: "#3d3d3d" }}>
                 Beast Dreams II
               </a>
-              &nbsp; by Justin Maller
+              &nbsp; by Justin Maller &nbsp;
             </span>
             <span style={{ color: "#3d3d3d" }}>
               Website theme heavily modified from &nbsp;

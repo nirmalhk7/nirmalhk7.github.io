@@ -12,7 +12,7 @@ const WorkExperience = ({ experience }) => (
             <div className="timeline__block">
               <div className="timeline__bullet" first={index} />
               <div className="timeline__header">
-                <p className="timeline__timeframe">{element.timeframe}</p>
+                <p className="timeline__timeframe hover:text-accent">{element.timeframe}</p>
                 <h3>{element.company}</h3>
                 <h5>{element.post}</h5>
               </div>

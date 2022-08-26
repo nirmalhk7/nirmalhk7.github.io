@@ -45,7 +45,7 @@
     }
 
     section {
-        @apply pt-40 pb-40;
+        @apply pt-28 pb-28;
     }
 
     p {
@@ -79,19 +79,11 @@
     }
 
     a {
-        @apply text-accent;
+        @apply text-accent underline;
         background-color: transparent;
         -webkit-text-decoration-skip: objects;
         -webkit-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
-        text-decoration: underline;
-    }
-
-    a:hover,
-    a:focus,
-    a:active {
-        color: #191A3F;
-        outline-width: 0;
     }
 
     abbr[title] {
@@ -288,15 +280,12 @@
 
 
     h1 {
-        @apply text-h1 text-black;
+        @apply text-h1 text-black font-blocky;
         margin: 0.67em 0;
-        font-family: 'Montserrat', sans-serif;
         font-weight: 700;
-        font-size: 3.6rem;
         margin-bottom: 1.8rem;
         margin-top: 6rem;
         line-height: 1.25;
-        letter-spacing: -.1rem;
     }
 
     h2 {
@@ -329,8 +318,7 @@
     }
 
     h6 {
-        @apply text-h6 text-black;
-        font-family: 'Montserrat', sans-serif;
+        @apply text-h6 text-black font-blocky;
         font-weight: 700;
         font-size: 1.4rem;
         line-height: 1.5;
@@ -340,8 +328,7 @@
 
     em,
     i {
-        @apply italic;
-        font-family: "Libre Baskerville", serif;
+        @apply italic font-heading;
         font-weight: 400;
         font-style: italic;
         line-height: inherit;
@@ -349,9 +336,9 @@
 
     strong,
     b {
+        @apply font-heading;
         font-weight: bold;
         line-height: inherit;
-        font-family: "Libre Baskerville", serif;
         font-weight: 700;
     }
 
@@ -423,12 +410,6 @@
         text-decoration: underline;
     }
 
-    a:hover,
-    a:focus,
-    a:active {
-        color: #191A3F;
-    }
-
     a:focus {
         outline: none;
     }
@@ -463,34 +444,23 @@
         font-size: 10rem;
         line-height: 0px;
         margin: 0;
-        font-family: arial, sans-serif;
         position: absolute;
         top: 3.6rem;
         left: 0;
-        color: map-get($map: $theme-colors, $key: "accent");
     }
 
     blockquote p {
-        @apply font-normal p-0 text-black;
-        font-family: 'Montserrat', sans-serif;
+        @apply font-normal p-0 text-black font-blocky;
         line-height: 1.857;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 400;
-        padding: 0;
         font-size: 2.1rem;
-        line-height: 1.857;
         color: #0D0A0B;
     }
 
     blockquote cite {
-        @apply block font-normal not-italic leading-normal text-h6;
-        font-family: 'Montserrat', sans-serif;
-        display: block;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 400;
+        @apply block font-normal not-italic leading-normal text-h6 font-blocky; 
+       display: block;
         font-size: 1.4rem;
         font-style: normal;
-        line-height: 1.5;
     }
 
     blockquote cite:before {
@@ -499,10 +469,8 @@
 
     blockquote cite a,
     blockquote cite a:visited {
-        @apply text-gray;
-        border: none;
+        @apply text-gray border-none;
         color: #6c6c6c;
-        border: none;
     }
 
     /* ===================================================================
@@ -546,4 +514,71 @@
             font-size: 2.2rem;
         }
     }
+    
+    .contact__form {
+        padding-right: 40px;
+    }
+    .contact__form input[type="email"], .contact__form input[type="number"], .contact__form input[type="text"], .contact__form input[type="tel"], .contact__form input[type="url"], .contact__form textarea {
+        background-color: transparent;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: .9rem;
+        color: rgba(255, 255, 255, 0.75);
+    }
+    .contact__form input[type="email"]:focus, .contact__form input[type="number"]:focus, .contact__form input[type="text"]:focus, .contact__form input[type="tel"]:focus, .contact__form input[type="url"]:focus, .contact__form textarea:focus {
+        color: white;
+        border-bottom: 1px solid white;
+    }
+    .contact__form button {
+        margin-top: 4.2rem;
+        background-color: map-get($map: $theme-colors, $key: "accent");
+        border-color: map-get($map: $theme-colors, $key: "accent");
+    }
+        /* ------------------------------------------------------------------- 
+     * responsive:
+     * contact
+     * ------------------------------------------------------------------- */
+     @media only screen and (max-width: 800px) {
+        .contact__form {
+            padding-right: 15px;
+        }
+        .contact__infos {
+            padding-top: 3rem;
+        }
+    }
+    @media only screen and (max-width: 600px) {
+        .contact__form {
+            padding-right: 10px;
+        }
+    }
+    @media only screen and (max-width: 400px) {
+        .contact__form {
+            padding-right: 0;
+        }
+    }
+
+    input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+    display: block;
+    height: 6rem;
+    padding: 1.5rem 0;
+    border: 0;
+    outline: none;
+    color: #333333;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem; 
+    line-height: 3rem;
+    max-width: 100%;
+    background: transparent;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
 }
