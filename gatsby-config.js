@@ -4,7 +4,8 @@ const path = require("path");
 module.exports = {
   siteMetadata: {
     title: `Nirmal Khedkar`,
-    description: `Product Developer, ML Enthusiast, learner and motorsport enthusiast: Hi, I'm Nirmal Khedkar.`,
+    description: `SWE, Cloud Enthusiast, learner and motorsport enthusiast: Hi, I'm Nirmal Khedkar.`,
+    
     author: `Nirmal Khedkar`,
     url: `nirmalhk7.tech`,
     blogName: `Pitlane Chat`,

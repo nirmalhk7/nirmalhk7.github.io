@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const getEnvVariables = (env) => {
-  let inp = fs.readFileSync(`.env.${env}`, { encoding: "utf-8" });
+  let inp = fs.readFileSync(`.env`, { encoding: "utf-8" });
   let arr = inp.split("\n");
   arr.forEach((element) => {
     let ans = element.split("=")[1];

@@ -1,6 +1,16 @@
 {
-  "parser": "babel-eslint", // uses babel-eslint transforms
-  "settings": {
+  "ignorePatterns": [
+    "**/*.config.js",
+    "src/pages/index.js",
+    "src/pages/404.js"
+  ],
+  "parserOptions": {
+    "parser": "@babel/eslint-parser",
+    "requireConfigFile": false, // <== ADD THIS
+    "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module" // Allows for the use of imports
+  }
+  ,"settings": {
     "react": {
       "version": "detect" // detect react version
     }
@@ -20,6 +30,7 @@
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
   ],
+  "plugins": ["react", "filenames", "folders"],
   "rules": {
     "arrow-parens": "error",
     "camelcase": "warn",
@@ -65,6 +76,10 @@
     // "limited-exports-page-templates": "warn",
     "sonarjs/no-duplicated-branches":"off", // Work to enable this
 "react/no-unescaped-entities":"off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+
+    "filenames/match-exported": ["error", "camel"],
+    "filenames/match-regex": "error",
+    "folders/match-regex": [2, "^[a-z]+(?:[A-Z][a-z]+)*$", "/src/"]
   }
  }
