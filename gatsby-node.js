@@ -19,10 +19,10 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
   const { createPage, deletePage } = actions;
   getEnvVariables(process.env.NODE_ENV);
   return new Promise((resolve, reject) => {
-    const blogPostTemplate = path.resolve("src/templates/blog-article.js");
+    const blogPostTemplate = path.resolve("src/templates/blogTemplate.js");
 
     resolve(
-      
+
       graphql(
         `
           query MyQuery {
@@ -37,7 +37,7 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
                 node {
                   relativeDirectory
                   childMarkdownRemark {
-                    html
+                    rawMarkdownBody: html
                     frontmatter {
                       title
                       tags

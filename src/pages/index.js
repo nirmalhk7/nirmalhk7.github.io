@@ -13,9 +13,8 @@ import {
   AccordionItemButton,
 } from "react-accessible-accordion";
 import Jumbotron from "../elements/jumbotron";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { getItem } from "../elements/util";
+import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
 
 class IndexPage extends React.Component {
   render() {
@@ -67,12 +66,8 @@ class IndexPage extends React.Component {
           </div>
           <div className="container mx-auto ">
             <div className="columns-1 mobile-l:columns-2 gap-16 gap-y-16">
-              <ReactMarkdown
-                className="break-inside-avoid"
-                remarkPlugins={[remarkGfm]}
-              >
-                {mainContent.childMarkdownRemark.html}
-              </ReactMarkdown>
+                <ReactSafelySetInnerHTML>{mainContent.childMarkdownRemark.html}</ReactSafelySetInnerHTML>
+         
               <StaticImage
                 alt="Nirmal Khedkar"
                 className="laptop:hidden tablet:block mobile-l:block break-inside-avoid"
@@ -151,12 +146,13 @@ class IndexPage extends React.Component {
                   </ul>
                 </div>
               </div>
-              <div className="break-inside-avoid">
+              {/* TODO: This is causing some weird padding issues. */}
+              {/* <div className="break-inside-avoid">
                 <h5>Memberships</h5>
                 <hr />
                 <div className="m-0">
                   <ul className="disc">
-                    {membership.nodes.map((element, index) => (
+                  {membership.nodes.map((element, index) => (
                       <li key={index}>
                         {element.position} at&nbsp;
                         <a href={element.clubwebsite} key={index}>
@@ -166,7 +162,7 @@ class IndexPage extends React.Component {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           <WorkExperience experience={workexperience.nodes} />
@@ -230,7 +226,7 @@ export const postQuery = graphql`
   query x {
     mainContent: file(name: { eq: "mainContent" }) {
       childMarkdownRemark {
-        html: rawMarkdownBody
+        html
       }
     }
     projects: allFile(

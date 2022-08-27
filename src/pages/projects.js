@@ -12,8 +12,8 @@ import {
   AccordionItemButton,
 } from "react-accessible-accordion";
 import { getItem } from "../elements/util";
-import remarkGfm from "remark-gfm";
-import ReactMarkdown from "react-markdown";
+import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
+
 
 const Projects = ({ location, data }) => (
   <Layout location={location}>
@@ -59,12 +59,9 @@ const Projects = ({ location, data }) => (
                         </AccordionItemButton>
                       </AccordionItemHeading>
                       <AccordionItemPanel className="p-6 bg-gray">
-                        <ReactMarkdown
-                          className="accordion-body__contents"
-                          remarkPlugins={[remarkGfm]}
-                        >
-                          {e2.node.childMarkdownRemark.html}
-                        </ReactMarkdown>
+
+                        <ReactSafelySetInnerHTML >
+                          {e2.node.childMarkdownRemark.html}</ReactSafelySetInnerHTML>
                       </AccordionItemPanel>
                     </AccordionItem>
                   ))}
@@ -93,7 +90,7 @@ export const postQuery = graphql`
                 title
                 tags
               }
-              html: rawMarkdownBody
+              html
             }
           }
         }
