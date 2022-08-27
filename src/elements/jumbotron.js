@@ -1,10 +1,10 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { Link } from "gatsby";
 import SocialMediaIcons from "./social/social";
 
 const Jumbotron = {
-  mini: () => <></>,
-  fullHeight: ({
+  mini: () => <div />,
+  Max: ({
     bgImg,
     orangeText,
     HeadingTextComponent,
@@ -24,8 +24,8 @@ const Jumbotron = {
               buttonDetails.map((item) => (
                 <Link
                   className="inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
-                  to={item[1]}
                   key={item[0]}
+                  to={item[1]}
                 >
                   {item[0]}
                 </Link>

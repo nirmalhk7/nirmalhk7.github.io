@@ -1,12 +1,12 @@
 /* eslint-disable no-constant-condition */
-import { faLongArrowAltUp, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 import { social } from "../social/social";
 import * as styles from "./footer.module.css";
 
-const Footer = () => {
+const FooterSection = () => {
   return (
     <footer>
       <div className={styles.flicker_3}>
@@ -66,4 +66,4 @@ const Footer = () => {
     </footer>
   );
 };
-export default Footer;
+export default FooterSection;

@@ -2,8 +2,8 @@ import { useStaticQuery, graphql } from "gatsby";
 import React, { useState } from "react";
 import sampleSize from "lodash/sampleSize";
 
-const RandomQuote = () => {
-  const [state, setState] = useState(
+const QuoteSection = () => {
+  const [state] = useState(
     sampleSize(
       useStaticQuery(graphql`
         query MyQuery {
@@ -31,4 +31,4 @@ const RandomQuote = () => {
     </section>
   );
 };
-export default RandomQuote;
+export default QuoteSection;

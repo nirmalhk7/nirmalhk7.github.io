@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../layouts/main";
+import Layout from "../layouts/mainLayout";
 import SearchEnggOp from "../elements/seo";
 import { graphql } from "gatsby";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
@@ -12,6 +12,8 @@ import {
   AccordionItemButton,
 } from "react-accessible-accordion";
 import { getItem } from "../elements/util";
+import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
+
 
 const Projects = ({ location, data }) => (
   <Layout location={location}>
@@ -57,12 +59,9 @@ const Projects = ({ location, data }) => (
                         </AccordionItemButton>
                       </AccordionItemHeading>
                       <AccordionItemPanel className="p-6 bg-gray">
-                        <div
-                          className="accordion-body__contents"
-                          dangerouslySetInnerHTML={{
-                            __html: e2.node.childMarkdownRemark.html,
-                          }}
-                        />
+
+                        <ReactSafelySetInnerHTML >
+                          {e2.node.childMarkdownRemark.html}</ReactSafelySetInnerHTML>
                       </AccordionItemPanel>
                     </AccordionItem>
                   ))}

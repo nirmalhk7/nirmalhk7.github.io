@@ -3,7 +3,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import { getItem } from "./util";
 
-const MasonPanel = ({ blogItems, sitename  }) => {
+const BlogListSection = ({ blogItems, sitename }) => {
   return (
     <section className="bg-gray">
       <div>
@@ -26,18 +26,13 @@ const MasonPanel = ({ blogItems, sitename  }) => {
                     <div className=" overflow-hidden relative hover:opacity-100 hover:visible">
                       <div className=" before:bg-black before:z-10">
                         <Link
-                         
-                          title={
-                            getItem(element).description
-                          }
+                          title={getItem(element).description}
                           to={`/blog/${element.relativeDirectory}`}
                         >
                           <GatsbyImage
                             alt={getItem(element).title}
+                            image={getImage(getItem(element).img)}
                             layout="fill"
-                            image={getImage(
-                              getItem(element).img
-                            )}
                           />
                         </Link>
                       </div>
@@ -60,4 +55,4 @@ const MasonPanel = ({ blogItems, sitename  }) => {
     </section>
   );
 };
-export default MasonPanel;
+export default BlogListSection;

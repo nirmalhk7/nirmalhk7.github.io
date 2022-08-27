@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 const styles = {};
 
-class ContactForm extends React.Component {
+class ContactMeSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -142,4 +142,4 @@ class ContactForm extends React.Component {
     );
   }
 }
-export default ContactForm;
+export default ContactMeSection;

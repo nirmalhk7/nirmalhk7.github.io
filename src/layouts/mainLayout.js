@@ -1,19 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Navbar from "../elements/navbar";
-import Footer from "../elements/footer/footer";
-import ContactForm from "../elements/contactMe/contactMe";
-import RandomQuote from "../elements/quote";
-import jquery from "jquery";
+import Navbar from "../elements/navbarSection";
+import Footer from "../elements/footer/footerSection";
+import ContactForm from "../elements/contactMe/contactMeSection";
+import RandomQuote from "../elements/quoteSection";
 import { slideToggle } from "../elements/util";
 
-class Layout extends React.Component {
+class MainLayout extends React.Component {
   componentDidMount() {
     const hdr = document.querySelector("header");
     const tbtn = document.getElementById("nav-button");
 
-    document.addEventListener("scroll", (event) => {
+    document.addEventListener("scroll", () => {
       if (window.scrollY < hdr.offsetHeight + 300) {
         hdr.classList.add("bg-transparent");
         hdr.classList.add("absolute");
@@ -27,13 +26,11 @@ class Layout extends React.Component {
       }
     });
 
-    tbtn.onclick(event=>{
+    tbtn.onclick((event) => {
       event.preventDefault();
       tbtn.classList.toggle("is-clicked");
       slideToggle(tbtn);
     });
-    
-
   }
   render() {
     console.log(`
@@ -65,8 +62,8 @@ class Layout extends React.Component {
 }
 
 export const isProduction = process.env.NODE_ENV === "development";
-Layout.propTypes = {
+MainLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Layout;
+export default MainLayout;

@@ -1,9 +1,9 @@
 import React from "react";
-import { Link, withPrefix, graphql } from "gatsby";
-import Blog from "../elements/blogIntro";
+import { Link, graphql } from "gatsby";
+import Blog from "../elements/blogIntroSection";
 import SearchEnggOp from "../elements/seo";
-import WorkExperience from "../elements/workExperience";
-import Layout from "../layouts/main";
+import WorkExperience from "../elements/workExperienceSection";
+import Layout from "../layouts/mainLayout";
 import { StaticImage } from "gatsby-plugin-image";
 import {
   Accordion,
@@ -14,11 +14,12 @@ import {
 } from "react-accessible-accordion";
 import Jumbotron from "../elements/jumbotron";
 import { getItem } from "../elements/util";
+import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
 
 class IndexPage extends React.Component {
   render() {
     const {
-      mainIndex,
+      mainContent,
       projects,
       workexperience,
       onlineCourses,
@@ -33,7 +34,7 @@ class IndexPage extends React.Component {
           description="Welcome to Nirmal Khedkar's Official Website"
           title="Home"
         />
-        <Jumbotron.fullHeight
+        <Jumbotron.Max
           HeadingTextComponent={
             <h1>
               I'm Nirmal Khedkar, <br />
@@ -43,13 +44,13 @@ class IndexPage extends React.Component {
               Bangalore.
             </h1>
           }
-          orangeText="Hey!"
+          bgImg="bg-milkyWay laptop:bg-beachNirmal"
           buttonDetails={[
             ["Latest Projects", "#projects"],
             ["More About Me", "#about"],
           ]}
+          orangeText="Hey!"
           showScrollDown
-          bgImg="bg-milkyWay laptop:bg-beachNirmal"
         />
         <section className="pt-56 pb-32 bg-white relative " id="about">
           <div className="w-100 text-center">
@@ -58,26 +59,19 @@ class IndexPage extends React.Component {
                 <h3 className="text-accent">Nirmal Khedkar</h3>
                 <h1>More About Me</h1>
                 <p className="font-lead font-blocky mb-16">
-                  {/* TODO To change */}
-                  I'm a student in National Institute of Technology Karnataka
-                  Surathkal doing a Bachelors in Technology (Information
-                  Technology) constantly looking for new and interesting
-                  challenges.
+                  {site.siteMetadata.description}
                 </p>
               </div>
             </div>
           </div>
           <div className="container mx-auto ">
             <div className="columns-1 mobile-l:columns-2 gap-16 gap-y-16">
-              <div
-                className="break-inside-avoid"
-                dangerouslySetInnerHTML={{
-                  __html: mainIndex.childMarkdownRemark.html,
-                }}
-              ></div>
+                <ReactSafelySetInnerHTML>{mainContent.childMarkdownRemark.html}</ReactSafelySetInnerHTML>
+         
               <StaticImage
                 alt="Nirmal Khedkar"
                 className="laptop:hidden tablet:block mobile-l:block break-inside-avoid"
+                placeholder="blurred"
                 src="https://avatars.githubusercontent.com/u/25480443"
                 style={{
                   borderRadius: "70%",
@@ -87,7 +81,6 @@ class IndexPage extends React.Component {
                   marginLeft: "auto",
                   marginRight: "auto",
                 }}
-                placeholder="blurred"
               />
 
               <div className="break-inside-avoid py-4">
@@ -146,16 +139,20 @@ class IndexPage extends React.Component {
                 <hr />
                 <div className="m-0">
                   <ul className="disc">
-                    {collegeCourses.nodes.map(element=>element.name).join(", ")}.
+                    {collegeCourses.nodes
+                      .map((element) => element.name)
+                      .join(", ")}
+                    .
                   </ul>
                 </div>
               </div>
-              <div className="break-inside-avoid">
+              {/* TODO: This is causing some weird padding issues. */}
+              {/* <div className="break-inside-avoid">
                 <h5>Memberships</h5>
                 <hr />
                 <div className="m-0">
                   <ul className="disc">
-                    {membership.nodes.map((element, index) => (
+                  {membership.nodes.map((element, index) => (
                       <li key={index}>
                         {element.position} at&nbsp;
                         <a href={element.clubwebsite} key={index}>
@@ -165,7 +162,7 @@ class IndexPage extends React.Component {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           <WorkExperience experience={workexperience.nodes} />
@@ -183,7 +180,8 @@ class IndexPage extends React.Component {
                       See My Latest Projects
                     </h1>
                     <p className="lead">
-                      Find my projects <Link to="/projects">categorized here</Link>.
+                      Find my projects{" "}
+                      <Link to="/projects">categorized here</Link>.
                     </p>
                   </div>
                 </div>
@@ -191,7 +189,10 @@ class IndexPage extends React.Component {
               <div>
                 <Accordion className="accordion">
                   {projects.nodes.map((element) => (
-                    <AccordionItem className="accordion__item" key={getItem(element).title}>
+                    <AccordionItem
+                      className="accordion__item"
+                      key={getItem(element).title}
+                    >
                       <AccordionItemHeading>
                         <AccordionItemButton className="accordion-header bg-gray">
                           {getItem(element).title}
@@ -204,9 +205,7 @@ class IndexPage extends React.Component {
                             Find more here
                           </Link>
                           .&nbsp;&nbsp;&nbsp;
-                          <code>
-                            {getItem(element).tags[0]}
-                          </code>
+                          <code>{getItem(element).tags[0]}</code>
                         </div>
                       </AccordionItemPanel>
                     </AccordionItem>
@@ -225,7 +224,7 @@ class IndexPage extends React.Component {
 export default IndexPage;
 export const postQuery = graphql`
   query x {
-    mainIndex: file(name: { eq: "mainIndex" }) {
+    mainContent: file(name: { eq: "mainContent" }) {
       childMarkdownRemark {
         html
       }
@@ -250,6 +249,7 @@ export const postQuery = graphql`
     site: site {
       siteMetadata {
         blogName
+        description
       }
     }
     workexperience: allWorkexperiencesYaml {
