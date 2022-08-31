@@ -1,4 +1,6 @@
 const path = require("path");
+const fetch = require("node-fetch");
+
 const fs = require("fs");
 const getEnvVariables = (env) => {
   let inp = fs.readFileSync(`.env`, { encoding: "utf-8" });
@@ -13,7 +15,6 @@ const getEnvVariables = (env) => {
     process.env[element.split("=")[0]] = ans;
   });
 };
-
 
 exports.createPages = ({ page, graphql, actions }, { paths }) => {
   const { createPage, deletePage } = actions;
@@ -105,3 +106,17 @@ exports.createPages = ({ page, graphql, actions }, { paths }) => {
     );
   });
 };
+
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNode, createNodeField } = actions;
+  if(node?.fileAbsolutePath?.includes("content/projects") && node?.frontmatter?.repo?.url){
+    console.log(Object.keys(node))
+    fetch(`${node.frontmatter.repo.url.replace("github.com","api.github.com/repos")}/readme`, {method: "GET", headers: {'Accept':'application/vnd.github.html'}})
+      .then(res=> {return res.text()})
+      .then(text=> createNodeField({
+        node,
+        name: "gitHubReadmeBody",
+        value: text
+      }))
+  }
+}

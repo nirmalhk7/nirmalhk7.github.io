@@ -1,6 +1,9 @@
 ---
 title: ScholarHub
 tags: ["Ruby on Rails"]
+repo: 
+  url: https://github.com/nirmalhk7/ScholarHub
+  branch: master
 ---
 
 Linkedin for Research Students.
