@@ -3,8 +3,63 @@ import { Link } from "gatsby";
 import SocialMediaIcons from "./social/social";
 
 const Jumbotron = {
+<<<<<<< Updated upstream
   mini: () => <div />,
   Max: ({
+=======
+  miniCenter: ({ bgImage, categories, title, byLine, sectionClassName }) =>
+    <div
+      className={`page-header pt-64 pb-32 text-center  bg-fixed bg-center bg-no-repeat ${sectionClassName}`}
+      style={{
+        backgroundImage: bgImage,
+        backgroundSize: "cover",
+      }}
+    >
+      <div className="m-auto page-header__content narrow">
+        <article className="w-full">
+          <div className="page-header__info">
+            <div className="page-header__cat">
+              {categories}
+            </div>
+          </div>
+          <h1 className="page-header__title">
+            <a href="#0" title="">
+              {title}
+            </a>
+          </h1>
+          <ul className="page-header__meta">
+            <li className="date">
+              {byLine}
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>,
+  mini: () => <section
+    className="page-header  bg-fixed bg-center bg-no-repeat bg-nasaEarth"
+  >
+    <div className="container mx-auto page-header__content">
+      <article>
+        <h1 className="page-header__title">
+          <a href="#0" title="Projects">
+            Projects
+          </a>
+        </h1>
+        <div className="page-header__info">
+          <div className="page-header__cat">
+            Projects Catalogue of Nirmal Khedkar
+          </div>
+        </div>
+        <p className="narrow">
+          I&apos;m a fullstack and hybrid product developer, currently
+          understanding and exploring cloud platforms. I love building stuff!{" "}
+          <FontAwesomeIcon className="ml-2 text-accent" icon={faWrench} />
+        </p>
+      </article>
+    </div>
+  </section>,
+  fullHeight: ({
+>>>>>>> Stashed changes
     bgImg,
     orangeText,
     HeadingTextComponent,

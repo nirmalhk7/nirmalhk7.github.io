@@ -25,6 +25,7 @@ import { CategoryList } from "../elements/category";
 import Commento from "../elements/commento";
 import { getItem } from "../elements/util";
 import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
+import Jumbotron from "../elements/jumbotron";
 
 const BlogTemplate = ({ location, pageContext }) => {
   const pageTitle = `${getItem(pageContext.current).title} by ${pageContext.siteDetails.author
@@ -37,39 +38,17 @@ const BlogTemplate = ({ location, pageContext }) => {
     <Layout location={location}>
       <SearchEnggOp title={getItem(pageContext.current).title} />
       <article className="blog-single has-bottom-sep">
-        <div
-          className="page-header pt-64 pb-32 text-center  bg-fixed bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${getItem(pageContext.current).img.childImageSharp.original.src})`,
-            backgroundSize: "cover",
-          }}
-        >
-          <div className="m-auto page-header__content narrow">
-            <article className="w-full">
-              <div className="page-header__info">
-                <div className="page-header__cat">
-                  <CategoryList
-                    categories={
-                      getItem(pageContext.current)
-                        .category
-                    }
-                  />
-                </div>
-              </div>
-              <h1 className="page-header__title">
-                <a href="#0" title="">
-                  {getItem(pageContext.current).title}
-                </a>
-              </h1>
-              <ul className="page-header__meta">
-                <li className="date">
-                  <b>Nirmal Khedkar</b> on
-                  {` ${getItem(pageContext.current).date}`}
-                </li>
-              </ul>
-            </article>
-          </div>
-        </div>
+        <Jumbotron.miniCenter 
+          title={getItem(pageContext.current).title} 
+          byLine={`By Nirmal Khedkar - ${getItem(pageContext.current).date}`}
+          categories={<CategoryList
+            categories={
+              getItem(pageContext.current)
+                .category
+            }
+          />}
+          bgImage={`url(${getItem(pageContext.current).img.childImageSharp.original.src})`}  
+        />
         <div className=" m-auto" style={{ paddingBottom: "72px" }}>
           <div className="w-full pl-24 pr-24">
             <ReactSafelySetInnerHTML>

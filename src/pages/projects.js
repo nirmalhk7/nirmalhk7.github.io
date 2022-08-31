@@ -20,7 +20,6 @@ const Projects = ({ location, data }) => (
     <SearchEnggOp title="Projects" />
     <section
       className="page-header  bg-fixed bg-center bg-no-repeat bg-nasaEarth"
-      id="projects-header"
     >
       <div className="container mx-auto page-header__content">
         <article>
