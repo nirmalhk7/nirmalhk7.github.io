@@ -1,28 +1,21 @@
+import { GatsbyNode } from "gatsby";
+
 const path = require("path");
 const fs = require("fs");
-const getEnvVariables = (env) => {
-  let inp = fs.readFileSync(`.env.${env}`, { encoding: "utf-8" });
-  let arr = inp.split("\n");
-  arr.forEach((element) => {
-    let ans = element.split("=")[1];
-    if (ans === "true") {
-      ans = true;
-    } else if (ans === "false") {
-      ans = false;
-    }
-    process.env[element.split("=")[0]] = ans;
-  });
+const getEnvVariables = () => {
+  let inp = fs.readFileSync(".env", { encoding: "utf-8" });
+  inp.split("\n").map((element:String)=>{
+    process.env[element.split("=")[0]]=element.split("=")[1]
+  })
 };
 
 
-exports.createPages = ({ page, graphql, actions }, { paths }) => {
+export const createPages: GatsbyNode['createPages'] = ({ page, graphql, actions }, { paths }) => {
   const { createPage, deletePage } = actions;
-  getEnvVariables(process.env.NODE_ENV);
+  getEnvVariables();
   return new Promise((resolve, reject) => {
-    const blogPostTemplate = path.resolve("src/templates/blog-article.js");
-
+    const blogPostTemplate = path.resolve("src/templates/blog-article.tsx");
     resolve(
-      
       graphql(
         `
           query MyQuery {

@@ -26,6 +26,8 @@
     "id-length": "warn",
     "jsx-quotes": "error",
     "no-confusing-arrow": "warn",
+
+
     "no-else-return": "warn",
     "new-cap": "error",
     "no-undef-init": "error",
