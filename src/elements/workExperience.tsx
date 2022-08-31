@@ -1,6 +1,13 @@
 import React from "react";
 
-const WorkExperience = ({ experience }) => (
+type WorkExperienceType = {
+  timeframe: string,
+  company: string,
+  post: string,
+  description: string
+}
+
+const WorkExperience = ({ experience }: {experience: WorkExperienceType[]}) => (
   <div className="container mx-auto">
     <div className="col text-center">
       <h3>My Work Experience</h3>

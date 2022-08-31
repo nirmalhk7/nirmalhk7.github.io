@@ -2,13 +2,13 @@ import React from "react";
 
 import Layout from "../layouts/main";
 import SearchEnggOp from "../elements/seo";
-import { graphql, Link } from "gatsby";
+import { graphql, Link, PageProps } from "gatsby";
 import LatestBlogItem from "../elements/latestBlog";
 import MasonPanel from "../elements/blogList";
 import Jumbotron from "../elements/jumbotron";
 import { getItem } from "../elements/util";
 
-const Blog = ({ location, data }) => {
+const Blog = ({ location, data }: PageProps) => {
   if (!data) return null;
   return (
     <Layout location={location}>

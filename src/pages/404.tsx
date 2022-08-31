@@ -2,8 +2,9 @@ import React from "react";
 
 import Layout from "../layouts/main";
 import SearchEnggOp from "../elements/seo";
+import { PageProps } from "gatsby";
 
-const NotFoundPage = ({ location }) => (
+const NotFoundPage = ({ location }: PageProps) => (
   <Layout location={location}>
     <SearchEnggOp title="404: Not Found" />
     <section className="page-header  bg-fixed bg-center bg-no-repeat bg-f1Car">

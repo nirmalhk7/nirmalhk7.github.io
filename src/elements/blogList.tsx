@@ -1,9 +1,26 @@
 import { Link } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image";
 import React from "react";
 import { getItem } from "./util";
 
-const MasonPanel = ({ blogItems, sitename  }) => {
+type blogDetails = {
+  relativeDirectory: string,
+  childMarkdownRemark: {
+    frontmatter: {
+      description: string,
+      title: string,
+      img: ImageDataLike,
+      category: string
+    }
+  }
+}
+
+type MasonPanelProps = {
+  sitename: string,
+  blogItems: blogDetails[]
+}
+
+const MasonPanel = ({ blogItems, sitename }: MasonPanelProps) => {
   return (
     <section className="bg-gray">
       <div>
@@ -14,7 +31,6 @@ const MasonPanel = ({ blogItems, sitename  }) => {
           >
             <div className="text-center">
               <h3>{sitename}</h3>
-              {/* TODO Fix the font here */}
               <h1>All Posts</h1>
             </div>
           </div>

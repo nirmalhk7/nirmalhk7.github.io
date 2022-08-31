@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../layouts/main";
 import SearchEnggOp from "../elements/seo";
-import { graphql } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,7 +13,23 @@ import {
 } from "react-accessible-accordion";
 import { getItem } from "../elements/util";
 
-const Projects = ({ location, data }) => (
+interface ProjectTypes {
+  childMarkdownRemark: {
+    
+  }
+}
+
+type ProjectsPageTypes = {
+  allFile: {
+    group: {
+      fieldValue: string
+      edges: {
+        node: ProjectTypes
+    }[]
+  }[]
+}
+
+const Projects = ({ location, data }: PageProps<ProjectsPageTypes>) => (
   <Layout location={location}>
     <SearchEnggOp title="Projects" />
     <section

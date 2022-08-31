@@ -1,6 +1,6 @@
 import React from "react";
 import SearchEnggOp from "../elements/seo";
-import { Link } from "gatsby";
+import { Link, PageProps } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
@@ -25,7 +25,7 @@ import { CategoryList } from "../elements/category";
 import Commento from "../elements/commento";
 import { getItem } from "../elements/util";
 
-const BlogTemplate = ({ location, pageContext }) => {
+const BlogTemplate = ({ location, pageContext }: PageProps) => {
   const pageTitle = `${getItem(pageContext.current).title} by ${pageContext.siteDetails.author}`;
   const shareProps = {
     url: pageContext.siteDetails.url + location.pathname,
