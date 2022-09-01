@@ -30,7 +30,7 @@ export const createPages: GatsbyNode['createPages'] = ({ page, graphql, actions 
                 node {
                   relativeDirectory
                   childMarkdownRemark {
-                    html
+                    rawMarkdownBody: html
                     frontmatter {
                       title
                       tags

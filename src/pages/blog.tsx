@@ -6,16 +6,30 @@ import { graphql, Link, PageProps } from "gatsby";
 import LatestBlogItem from "../elements/latestBlog";
 import MasonPanel from "../elements/blogList";
 import Jumbotron from "../elements/jumbotron";
-import { getItem } from "../elements/util";
+import Utils  from "../elements/util";
 
-const Blog = ({ location, data }: PageProps) => {
+type BlogPageTypes= {
+  site: {
+    siteMetadata: {
+      blogName: string
+    }
+  }
+  blogs: {
+    nodes: {
+      relativeDirectory: string,
+      childMarkdownRemark: {
+        frontmatter: any
+      }
+    }[]
+  }
+}
+
+const Blog = ({ location, data }: PageProps<BlogPageTypes>) => {
   if (!data) return null;
   return (
     <Layout location={location}>
       <SearchEnggOp title={data.site.siteMetadata.blogName} />
-      <Jumbotron.fullHeight
-        buttonDetails={[["Explore", "#blog-first"]]}
-        bgImg="bg-blogWallpaper"
+      <Jumbotron.Max
         HeadingTextComponent={
           <h1 className="page-header__title">
             <Link title="" to="/blog">
@@ -23,11 +37,13 @@ const Blog = ({ location, data }: PageProps) => {
             </Link>
           </h1>
         }
+        bgImg="bg-blogWallpaper"
+        buttonDetails={[["Explore", "#blog-first"]]}
         orangeText="Official Blog of Nirmal Khedkar"
       />
       <LatestBlogItem
+        frontmatter={Utils.getFrontmatter(data.blogs.nodes[0])}
         relativeDirectory={data.blogs.nodes[0].relativeDirectory}
-        frontmatter={getItem(data.blogs.nodes[0])}
       />
       <MasonPanel
         blogItems={data.blogs.nodes}

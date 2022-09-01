@@ -43,7 +43,11 @@ const Navbar = () => {
           })}
         </Scrollspy>
       </nav>
-      <Link className="header-menu-toggle block tablet:hidden" to="#0" id="nav-button">
+      <Link
+        className="header-menu-toggle block tablet:hidden"
+        id="nav-button"
+        to="#0"
+      >
         <span>Menu</span>
       </Link>
     </header>

@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../layouts/main";
+import Layout from "../layouts/mainLayout";
 import SearchEnggOp from "../elements/seo";
 import { graphql, PageProps } from "gatsby";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
@@ -11,22 +11,28 @@ import {
   AccordionItemHeading,
   AccordionItemButton,
 } from "react-accessible-accordion";
-import { getItem } from "../elements/util";
+import Utils from "../elements/util";
+import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
+
 
 interface ProjectTypes {
-  childMarkdownRemark: {
-    
-  }
 }
 
-type ProjectsPageTypes = {
+interface ProjectsPageTypes{
   allFile: {
     group: {
-      fieldValue: string
+      fieldValue: string,
       edges: {
-        node: ProjectTypes
+        node: {
+          childMarkdownRemark: {
+            frontmatter: {
+              title: string
+            }
+          }
+        }
+      }[]
     }[]
-  }[]
+  }
 }
 
 const Projects = ({ location, data }: PageProps<ProjectsPageTypes>) => (
@@ -62,23 +68,20 @@ const Projects = ({ location, data }: PageProps<ProjectsPageTypes>) => (
         <div>
           <Accordion className="my-0 mx-auto rounded js-accordion">
             <div className="gap-y-16 laptop:columns-2 mobile-l:columns-1">
-              {data.allFile.group.map((e1, i1) => (
-                <div className="break-inside-avoid mb-4" key={i1}>
+              {data.allFile.group.map((e1) => (
+                <div className="break-inside-avoid mb-4" key={e1.fieldValue}>
                   <h6 id={e1.fieldValue}>{e1.fieldValue}</h6>
                   {e1.edges.map((e2, i2) => (
                     <AccordionItem className="accordion__item" key={i2}>
                       <AccordionItemHeading>
                         <AccordionItemButton className="accordion-header bg-white">
-                          {getItem(e2.node).title}
+                          {Utils.getFrontmatter(e2.node).title}
                         </AccordionItemButton>
                       </AccordionItemHeading>
                       <AccordionItemPanel className="p-6 bg-gray">
-                        <div
-                          className="accordion-body__contents"
-                          dangerouslySetInnerHTML={{
-                            __html: e2.node.childMarkdownRemark.html,
-                          }}
-                        />
+
+                        <ReactSafelySetInnerHTML >
+                          {e2.node.childMarkdownRemark.html}</ReactSafelySetInnerHTML>
                       </AccordionItemPanel>
                     </AccordionItem>
                   ))}

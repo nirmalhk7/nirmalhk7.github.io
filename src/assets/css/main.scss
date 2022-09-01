@@ -1076,7 +1076,7 @@ html.no-csstransitions .home-content__main {
     top: .3rem;
 }
 
-.timeline__bullet[first="0"] {
+.timeline__bullet[data-first="0"] {
     background: map-get($map: $theme-colors, $key: "accent");
 }
 

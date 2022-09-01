@@ -5,7 +5,7 @@ import Navbar from "../elements/navbar";
 import Footer from "../elements/footer/footer";
 import ContactForm from "../elements/contactMe/contactMe";
 import RandomQuote from "../elements/quote";
-import Utils from "../elements/util";
+import { slideToggle } from "../elements/util";
 
 class MainLayout extends React.Component {
   componentDidMount() {
@@ -29,7 +29,7 @@ class MainLayout extends React.Component {
     tbtn.onclick((event) => {
       event.preventDefault();
       tbtn.classList.toggle("is-clicked");
-      Utils.slideToggle(tbtn);
+      slideToggle(tbtn);
     });
   }
   render() {

@@ -7,7 +7,7 @@ knack for finance and investment.
 
 ##### Academics
 I completed my 10th grade in Bangalore with **9.4 CGPA** and
-my 12th grade with 87.9%. I currently study in{" "}
+my 12th grade with 87.9%. I currently study in
 **National Institute of Technology Karnataka** doing BTech in
 Information Technology.
 

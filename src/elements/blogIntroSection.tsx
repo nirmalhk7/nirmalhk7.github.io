@@ -1,6 +1,6 @@
 import { Link } from "gatsby";
 import React from "react";
-const Blog = ({ name }: {name: string}) => (
+const BlogIntroSection = ({ name }: {name: string}) => (
   <section className="bg-gradient-to-r from-accent to-accentLight" id="blog">
     <div className="narrow mx-auto text-center  pb-6 relative">
       <div className="w-full">
@@ -23,4 +23,4 @@ const Blog = ({ name }: {name: string}) => (
   </section>
 );
 
-export default Blog;
+export default BlogIntroSection;

@@ -1,40 +1,35 @@
+export default class Utils {
+  static getFrontmatter(params: { childMarkdownRemark: { frontmatter: object } }): object {
+    return params.childMarkdownRemark.frontmatter;
+  }
 
-const getItem = (element) => element.childMarkdownRemark.frontmatter;
-
-function slideToggle(mdiv) {
-    var slideOpen = true;
-    var heightChecked = false;
-    var initHeight = 0;
-    var intval = null;
+  static slideToggle(mdiv: HTMLElement) {
+    let slideOpen = true;
+    let heightChecked = false;
+    let initHeight = 0;
+    let intval = null;
 
     window.clearInterval(intval);
     if (!heightChecked) {
-        initHeight = mdiv.offsetHeight;
-        heightChecked = true;
+      initHeight = mdiv.offsetHeight;
+      heightChecked = true;
     }
     if (slideOpen) {
-        var h = initHeight;
-        slideOpen = false;
-        intval = setInterval(function () {
-            h--;
-            mdiv.style.height = h + 'px';
-            if (h <= 0)
-                window.clearInterval(intval);
-        }, 1
-        );
+      var h = initHeight;
+      slideOpen = false;
+      intval = setInterval(() => {
+        h--;
+        mdiv.style.height = `${h}px`;
+        if (h <= 0) window.clearInterval(intval);
+      }, 1);
+    } else {
+      var h = 0;
+      slideOpen = true;
+      intval = setInterval(() => {
+        h++;
+        mdiv.style.height = `${h}px`;
+        if (h >= initHeight) window.clearInterval(intval);
+      }, 1);
     }
-    else {
-        var h = 0;
-        slideOpen = true;
-        intval = setInterval(function () {
-            h++;
-            mdiv.style.height = h + 'px';
-            if (h >= initHeight)
-                window.clearInterval(intval);
-        }, 1
-        );
-    }
+  }
 }
-
-export { getItem, slideToggle };
-
