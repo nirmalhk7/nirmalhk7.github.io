@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint", // uses babel-eslint transforms
+  "parser": "@typescript-eslint/parser", // uses babel-eslint transforms
   "settings": {
     "react": {
       "version": "detect" // detect react version
@@ -14,13 +14,15 @@
   },
   
   "extends": [
-    "eslint:recommended", // use recommended configs
+    "eslint:recommended", 
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:sonarjs/recommended",
 
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
   ],
-  "plugins": ["react", "filenames", "folders"],
+  "plugins": ["@typescript-eslint","react", "filenames", "folders"],
   "rules": {
     "arrow-parens": "error",
     "camelcase": "warn",

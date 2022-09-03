@@ -23,7 +23,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../layouts/mainLayout";
 import { CategoryList } from "../elements/categoryList";
 import Commento from "../elements/commento";
-import Utils from "../elements/util";
+import Utils from "../elements/utils";
 import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
 
 const BlogTemplate = ({ location, pageContext }: PageProps) => {

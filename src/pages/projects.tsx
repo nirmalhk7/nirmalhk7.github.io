@@ -11,12 +11,8 @@ import {
   AccordionItemHeading,
   AccordionItemButton,
 } from "react-accessible-accordion";
-import Utils from "../elements/util";
+import Utils from "../elements/utils";
 import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
-
-
-interface ProjectTypes {
-}
 
 interface ProjectsPageTypes{
   allFile: {

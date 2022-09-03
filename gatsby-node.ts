@@ -3,10 +3,10 @@ import { GatsbyNode } from "gatsby";
 const path = require("path");
 const fs = require("fs");
 const getEnvVariables = () => {
-  let inp = fs.readFileSync(".env", { encoding: "utf-8" });
-  inp.split("\n").map((element:String)=>{
-    process.env[element.split("=")[0]]=element.split("=")[1]
-  })
+  const inp = fs.readFileSync(".env", { encoding: "utf-8" });
+  inp.split("\n").map((element:string)=>{
+    process.env[element.split("=")[0]]=element.split("=")[1];
+  });
 };
 
 
@@ -14,7 +14,7 @@ export const createPages: GatsbyNode['createPages'] = ({ page, graphql, actions 
   const { createPage, deletePage } = actions;
   getEnvVariables();
   return new Promise((resolve, reject) => {
-    const blogPostTemplate = path.resolve("src/templates/blog-article.tsx");
+    const blogPostTemplate = path.resolve("src/templates/blogTemplate.tsx");
     resolve(
       graphql(
         `
@@ -84,7 +84,7 @@ export const createPages: GatsbyNode['createPages'] = ({ page, graphql, actions 
       ).then((result) => {
         result.data.blog.edges.map((post) => {
           createPage({
-            path: "blog/" + post.node.relativeDirectory,
+            path: `blog/${  post.node.relativeDirectory}`,
             component: blogPostTemplate,
             context: {
               previous: post.previous,

@@ -1,12 +1,12 @@
 import React from "react";
 
-import Layout from "../layouts/main";
+import Layout from "../layouts/mainLayout";
 import SearchEnggOp from "../elements/seo";
 import { graphql, Link, PageProps } from "gatsby";
-import LatestBlogItem from "../elements/latestBlog";
-import MasonPanel from "../elements/blogList";
+import LatestBlogItem from "../elements/latestBlogSection";
+import MasonPanel from "../elements/blogListSection";
 import Jumbotron from "../elements/jumbotron";
-import Utils  from "../elements/util";
+import Utils  from "../elements/utils";
 
 type BlogPageTypes= {
   site: {

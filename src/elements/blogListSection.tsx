@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image";
 import React from "react";
-import Utils from "./util";
+import Utils from "./utils";
 
 type blogDetails = {
   relativeDirectory: string,

@@ -1,5 +1,5 @@
 {
-  "name": "nirmalhk7-gitlab",
+  "name": "nirmalhk7-personal-website",
   "private": true,
   "description": "Official Website of Nirmal Khedkar",
   "url": "nirmalhk7.tech",
@@ -13,6 +13,8 @@
     "@types/node": "^18.7.14",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
     "cross-fetch": "3.1.5",
     "gatsby": "4.9.2",
     "gatsby-plugin-feed": "4.9.0",
@@ -81,7 +83,7 @@
     "serve": "gatsby serve",
     "packages:update": "npm update --save-dev && npm update --save",
     "clean": "gatsby clean",
-    "lint": "eslint . --fix",
+    "lint": "eslint src/**/*.tsx --fix",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repositgory": {

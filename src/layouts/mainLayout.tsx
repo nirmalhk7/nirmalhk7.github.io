@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Navbar from "../elements/navbar";
-import Footer from "../elements/footer/footer";
-import ContactForm from "../elements/contactMe/contactMe";
-import RandomQuote from "../elements/quote";
-import { slideToggle } from "../elements/util";
+import Footer from "../elements/footer/footerSection";
+import ContactForm from "../elements/contactMe/contactMeSection";
+import RandomQuote from "../elements/quoteSection";
+import Utils from "../elements/utils";
 
 class MainLayout extends React.Component {
   componentDidMount() {
@@ -29,7 +29,7 @@ class MainLayout extends React.Component {
     tbtn.onclick((event) => {
       event.preventDefault();
       tbtn.classList.toggle("is-clicked");
-      slideToggle(tbtn);
+      Utils.slideToggle(tbtn);
     });
   }
   render() {

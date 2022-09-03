@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby";
 import Blog from "../elements/blogIntroSection";
 import SearchEnggOp from "../elements/seo";
 import WorkExperience from "../elements/workExperienceSection";
-import Layout from "../layouts/main";
+import Layout from "../layouts/mainLayout";
 import { StaticImage } from "gatsby-plugin-image";
 import {
   Accordion,
@@ -13,7 +13,7 @@ import {
   AccordionItemButton,
 } from "react-accessible-accordion";
 import Jumbotron from "../elements/jumbotron";
-import Utils from "../elements/util";
+import Utils from "../elements/utils";
 import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
 
 class IndexPage extends React.Component {

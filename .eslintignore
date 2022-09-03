@@ -69,3 +69,7 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+**/*.config.js
+src/pages/index.tsx
+src/pages/404.tsx

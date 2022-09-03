@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 
-const LatestBlogItem = ({ relativeDirectory, frontmatter }) => {
+const LatestBlogSection = ({ relativeDirectory, frontmatter }) => {
   return (
     <section
       className="bg-gradient-to-r from-accent to-accentLight"
@@ -51,4 +51,4 @@ const LatestBlogItem = ({ relativeDirectory, frontmatter }) => {
   );
 };
 
-export default LatestBlogItem;
+export default LatestBlogSection;

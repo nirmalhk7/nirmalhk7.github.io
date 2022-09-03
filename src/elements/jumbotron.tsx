@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import SocialMediaIcons from "./social/social";
+import SocialMediaIcons from "./social/socialSection";
 
 const Jumbotron = {
   mini: () => <div />,
