@@ -1,19 +1,11 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import Blog from "../elements/blogIntroSection";
-import SearchEnggOp from "../elements/seo";
+import SearchEnggOp from "../elements/seoUtil";
 import WorkExperience from "../elements/workExperienceSection";
 import Layout from "../layouts/mainLayout";
 import { StaticImage } from "gatsby-plugin-image";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemPanel,
-  AccordionItemHeading,
-  AccordionItemButton,
-} from "react-accessible-accordion";
 import Jumbotron from "../elements/jumbotron";
-import Utils from "../elements/utils";
 import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
 
 class IndexPage extends React.Component {
@@ -167,54 +159,7 @@ class IndexPage extends React.Component {
           </div>
           <WorkExperience experience={workexperience.nodes} />
         </section>
-        <section className="bg-gray" id="projects">
-          <div className="mobile-l:container mx-auto">
-            <div className="grid grid-cols-2  tablet:grid-cols-2 mobile-l:grid-cols-1">
-              <div>
-                <div className="pb-6 relative">
-                  <div className=" text-center">
-                    <h3 className="font-blocky font-semibold mb-0 mt-0 uppercase text-accent">
-                      Projects
-                    </h3>
-                    <h1 className="font-bold  font-heading leading-snug mt-0">
-                      See My Latest Projects
-                    </h1>
-                    <p className="lead">
-                      Find my projects{" "}
-                      <Link to="/projects">categorized here</Link>.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <Accordion className="accordion">
-                  {projects.nodes.map((element) => (
-                    <AccordionItem
-                      className="accordion__item"
-                      key={Utils.getFrontmatter(element).title}
-                    >
-                      <AccordionItemHeading>
-                        <AccordionItemButton className="accordion-header bg-gray">
-                          {Utils.getFrontmatter(element).title}
-                        </AccordionItemButton>
-                      </AccordionItemHeading>
-                      <AccordionItemPanel className="p-6 bg-white">
-                        <div className="accordion-body__contents">
-                          <p>{element.childMarkdownRemark.excerpt}</p>
-                          <Link to={`/projects?id=${element.id}`}>
-                            Find more here
-                          </Link>
-                          .&nbsp;&nbsp;&nbsp;
-                          <code>{Utils.getFrontmatter(element).tags[0]}</code>
-                        </div>
-                      </AccordionItemPanel>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-            </div>
-          </div>
-        </section>
+        
         <Blog name={site.siteMetadata.blogName} />
       </Layout>
     );

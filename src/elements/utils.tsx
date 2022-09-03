@@ -1,5 +1,6 @@
+
 export default class Utils {
-  static getFrontmatter(params: { childMarkdownRemark: { frontmatter: object } }): object {
+  static getFrontmatter(params: { childMarkdownRemark: { frontmatter: object } }): object.childMarkdownRemark {
     return params.childMarkdownRemark.frontmatter;
   }
 
@@ -15,20 +16,20 @@ export default class Utils {
       heightChecked = true;
     }
     if (slideOpen) {
-      var h = initHeight;
+      let height = initHeight;
       slideOpen = false;
       intval = setInterval(() => {
-        h--;
-        mdiv.style.height = `${h}px`;
-        if (h <= 0) window.clearInterval(intval);
+        height--;
+        mdiv.style.height = `${height}px`;
+        if (height <= 0) window.clearInterval(intval);
       }, 1);
     } else {
-      var h = 0;
+      let height = 0;
       slideOpen = true;
       intval = setInterval(() => {
-        h++;
+        height++;
         mdiv.style.height = `${h}px`;
-        if (h >= initHeight) window.clearInterval(intval);
+        if (height >= initHeight) window.clearInterval(intval);
       }, 1);
     }
   }

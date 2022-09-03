@@ -1,30 +1,34 @@
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-const styles = {};
 
-class ContactMeSection extends React.Component {
-  constructor(props) {
+interface ContactMeSectionStateInterface {
+  name: string,
+  email: string,
+  subject: string,
+  message: string
+}
+
+class ContactMeSection extends React.Component<object,ContactMeSectionStateInterface> {
+  constructor(props: object) {
     super(props);
     this.state = {
-      name: null,
-      email: null,
-      subject: null,
-      message: null,
-      response: null,
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
     };
     this.onChange = this.onChange.bind(this);
   }
-  onChange(event) {
+  onChange(event: React.SyntheticEvent) {
     event.preventDefault();
-    this.setState({ [event.target.id]: event.target.value });
+    const target = event.target as HTMLInputElement;
+    this.setState({ [target.id]: target.value });
   }
 
   render() {
     return (
       <div>
         <section
-          className={`relative ${styles.section_contact} bg-fixed bg-center bg-no-repeat`}
+          className={`relative bg-fixed bg-center bg-no-repeat`}
           id="contact"
         >
           {/* <div className="z-0 bg-black h-full left-0 opacity-75 absolute top-0 w-full " /> */}
@@ -62,7 +66,7 @@ class ContactMeSection extends React.Component {
                       name="contactEmail: "
                       onChange={this.onChange}
                       placeholder="Email"
-                      required=""
+                      required
                       type="email"
                     />
                   </div>
@@ -78,13 +82,13 @@ class ContactMeSection extends React.Component {
                     <textarea
                       aria-required="true"
                       className="w-full"
-                      cols="40"
+                      cols={40}
                       id="message"
                       name="contactMessage: "
                       onChange={this.onChange}
                       placeholder="Message"
-                      required=""
-                      rows="10"
+                      required
+                      rows={10}
                     />
                   </div>
                   <input
@@ -106,15 +110,6 @@ class ContactMeSection extends React.Component {
                     type="submit"
                     value="Submit"
                   />
-                  {this.state.response ? (
-                    <div className="alert-box alert-box--info hideit">
-                      <p>Info Message. Your Message Goes Here.</p>
-                      <FontAwesomeIcon
-                        className="alert-box__close"
-                        icon={faTimes}
-                      />
-                    </div>
-                  ) : null}
                 </form>
               </div>
               <div className="w-full contact__infos">

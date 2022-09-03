@@ -1,7 +1,7 @@
 import React from "react";
 
 import Layout from "../layouts/mainLayout";
-import SearchEnggOp from "../elements/seo";
+import SearchEnggOp from "../elements/seoUtil";
 import { graphql, Link, PageProps } from "gatsby";
 import LatestBlogItem from "../elements/latestBlogSection";
 import MasonPanel from "../elements/blogListSection";

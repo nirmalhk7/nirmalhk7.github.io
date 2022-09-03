@@ -1,13 +1,18 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import Navbar from "../elements/navbar";
 import Footer from "../elements/footer/footerSection";
 import ContactForm from "../elements/contactMe/contactMeSection";
 import RandomQuote from "../elements/quoteSection";
 import Utils from "../elements/utils";
+import SEOUtil from "../elements/seoUtil";
 
-class MainLayout extends React.Component {
+interface MainLayoutPropsInterface {
+  location: any,
+  children: any
+}
+
+class MainLayout extends React.Component<MainLayoutPropsInterface> {
   componentDidMount() {
     const hdr = document.querySelector("header");
     const tbtn = document.getElementById("nav-button");
@@ -51,7 +56,8 @@ class MainLayout extends React.Component {
     const children = this.props.children;
     return (
       <>
-        <Navbar location={this.props.location} />
+        <SEOUtil/>
+        <Navbar />
         <main>{children}</main>
         <RandomQuote />
         <ContactForm />
@@ -62,8 +68,4 @@ class MainLayout extends React.Component {
 }
 
 export const isProduction = process.env.NODE_ENV === "development";
-MainLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
 export default MainLayout;

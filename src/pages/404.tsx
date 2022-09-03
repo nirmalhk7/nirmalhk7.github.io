@@ -1,7 +1,7 @@
 import React from "react";
 
 import Layout from "../layouts/mainLayout";
-import SearchEnggOp from "../elements/seo";
+import SearchEnggOp from "../elements/seoUtil";
 import { PageProps } from "gatsby";
 
 const NotFoundPage = ({ location }: PageProps) => (

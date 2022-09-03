@@ -1,5 +1,5 @@
 import React from "react";
-import SearchEnggOp from "../elements/seo";
+import SearchEnggOp from "../elements/seoUtil";
 import { Link, PageProps } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -26,7 +26,23 @@ import Commento from "../elements/commento";
 import Utils from "../elements/utils";
 import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
 
-const BlogTemplate = ({ location, pageContext }: PageProps) => {
+interface BlogTemplateInterface {
+  siteDetails: {
+    author: string,
+    url: string
+  }
+  next: { relativeDirectory: string},
+  previous: { relativeDirectory: string}
+  current: {
+    childMarkdownRemark: {
+      frontmatter: {
+        title: string
+      }
+    }
+  }
+}
+
+const BlogTemplate = ({ location, pageContext }: PageProps<object,BlogTemplateInterface,object,object>) => {
   const pageTitle = `${Utils.getFrontmatter(pageContext.current).title} by ${pageContext.siteDetails.author}`;
   const shareProps = {
     url: pageContext.siteDetails.url + location.pathname,
@@ -175,7 +191,7 @@ const BlogTemplate = ({ location, pageContext }: PageProps) => {
                       to={`/blog/${pageContext.next.relativeDirectory}`}
                     >
                       <span>Next Post</span>
-                      {pageContext.next.childMarkdownRemark.frontmatter.title}
+                      {Utils.getFrontmatter(pageContext.next).title}
                     </Link>
                   </div>
                 ) : null}
