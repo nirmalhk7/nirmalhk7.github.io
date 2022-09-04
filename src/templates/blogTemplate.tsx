@@ -25,20 +25,20 @@ import { CategoryList } from "../elements/categoryList";
 import Commento from "../elements/commento";
 import Utils from "../elements/utils";
 import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
+import BlogInterface from "../interfaces/blogInterface";
+import { getImage } from "gatsby-plugin-image";
+
+
 
 interface BlogTemplateInterface {
   siteDetails: {
     author: string,
     url: string
   }
-  next: { relativeDirectory: string},
-  previous: { relativeDirectory: string}
+  next: { relativeDirectory: string },
+  previous: { relativeDirectory: string },
   current: {
-    childMarkdownRemark: {
-      frontmatter: {
-        title: string
-      }
-    }
+    childMarkdownRemark: BlogInterface
   }
 }
 

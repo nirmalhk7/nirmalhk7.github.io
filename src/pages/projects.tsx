@@ -13,6 +13,7 @@ import {
 } from "react-accessible-accordion";
 import Utils from "../elements/utils";
 import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
+import ProjectInterface from "../interfaces/projectInterface";
 
 interface ProjectsPageTypes{
   allFile: {
@@ -20,11 +21,7 @@ interface ProjectsPageTypes{
       fieldValue: string,
       edges: {
         node: {
-          childMarkdownRemark: {
-            frontmatter: {
-              title: string
-            }
-          }
+          childMarkdownRemark: ProjectInterface
         }
       }[]
     }[]

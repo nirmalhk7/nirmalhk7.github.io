@@ -58,22 +58,23 @@ class IndexPage extends React.Component {
           </div>
           <div className="container mx-auto ">
             <div className="columns-1 mobile-l:columns-2 gap-16 gap-y-16">
-                <ReactSafelySetInnerHTML>{mainContent.childMarkdownRemark.html}</ReactSafelySetInnerHTML>
-         
-              <StaticImage
-                alt="Nirmal Khedkar"
-                className="laptop:hidden tablet:block mobile-l:block break-inside-avoid"
-                placeholder="blurred"
-                src="https://avatars.githubusercontent.com/u/25480443"
-                style={{
-                  borderRadius: "70%",
-                  padding: "1rem",
-                  width: "70%",
-                  height: "auto",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
+              <ReactSafelySetInnerHTML>{mainContent.childMarkdownRemark.html}</ReactSafelySetInnerHTML>
+              <div className="laptop:hidden tablet:block mobile-l:block">
+                <StaticImage
+                  alt="Nirmal Khedkar"
+                  className="break-inside-avoid"
+                  placeholder="blurred"
+                  src="https://avatars.githubusercontent.com/u/25480443"
+                  style={{
+                    borderRadius: "70%",
+                    padding: "1rem",
+                    width: "70%",
+                    height: "auto",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                />
+              </div>
 
               <div className="break-inside-avoid py-4">
                 <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
@@ -159,7 +160,7 @@ class IndexPage extends React.Component {
           </div>
           <WorkExperience experience={workexperience.nodes} />
         </section>
-        
+
         <Blog name={site.siteMetadata.blogName} />
       </Layout>
     );

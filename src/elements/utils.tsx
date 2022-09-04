@@ -1,6 +1,6 @@
 
 export default class Utils {
-  static getFrontmatter(params: { childMarkdownRemark: { frontmatter: object } }): object.childMarkdownRemark {
+  static getFrontmatter(params: { childMarkdownRemark: { frontmatter: object } }): any {
     return params.childMarkdownRemark.frontmatter;
   }
 

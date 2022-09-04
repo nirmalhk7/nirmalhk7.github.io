@@ -8,22 +8,16 @@ import {
     AccordionItemButton,
 } from "react-accessible-accordion";
 import Utils from "../elements/utils";
-
-interface ProjectInterface {
-    childMarkdownRemark: {
-        excerpt: string,
-        frontmattter: {
-            title: string,
-            tags: string[]
-        }
-    }
-}
+import ProjectInterface from "../interfaces/projectInterface";
 
 interface ProjectIntroSectionInterface {
-    nodes: ProjectInterface[]
+    nodes: { 
+        childMarkdownRemark: ProjectInterface,
+        id: string 
+    }[]
 }
 
-const ProjectIntroSection = ({ projects }: { projeects: ProjectIntroSectionInterface }) => (
+const ProjectIntroSection = ({ projects }: { projects: ProjectIntroSectionInterface }) => (
     <section className="bg-gray" id="projects">
         <div className="mobile-l:container mx-auto">
             <div className="grid grid-cols-2  tablet:grid-cols-2 mobile-l:grid-cols-1">

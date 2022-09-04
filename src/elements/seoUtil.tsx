@@ -13,10 +13,10 @@ interface SEOInterface {
   description?: string,
   lang?: string,
   meta?: [],
-  title?: string | null
+  title: string
 }
 
-function SEOUtil({ description, lang='en', meta, title }: SEOInterface) {
+function SEOUtil({ description, lang='en', meta=[], title }: SEOInterface) {
   const { site } = useStaticQuery(
     graphql`
       query {
