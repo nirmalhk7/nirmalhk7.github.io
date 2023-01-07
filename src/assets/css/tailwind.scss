@@ -1,0 +1,553 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: sans-serif;
+        font-size: 10px;
+        line-height: 1.15;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        @apply box-border;
+    }
+
+    body {
+        @apply m-0 font-blocky p-0 bg-black font-normal leading-7 text-base;
+        color: #5f5f5f;
+        /* @apply ; */
+        -webkit-overflow-scrolling: touch;
+        word-wrap: break-word;
+        text-rendering: optimizeLegibility;
+        -webkit-text-size-adjust: none;
+        scrollbar-width: thin;
+    }
+
+    body::-webkit-scrollbar {
+        @apply w-2.5;
+    }
+
+    body::-webkit-scrollbar-track {
+        @apply bg-gray;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        @apply bg-accent;
+        border-radius: 6px;
+    }
+
+    article,
+    aside,
+    footer,
+    header,
+    nav,
+    section {
+        @apply block;
+    }
+
+    section {
+        @apply pt-28 pb-28;
+    }
+
+    p {
+        @apply selection:bg-accent selection:text-white;
+        line-height: 1.875
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply selection:text-accent
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        margin-bottom: 1.8rem;
+        margin-top: 6rem;
+    }
+
+    main {
+        @apply block;
+    }
+
+    hr {
+        @apply box-content h-0 overflow-visible clear-both border-accent border-solid;
+    }
+
+    a {
+        @apply text-accent underline;
+        background-color: transparent;
+        -webkit-text-decoration-skip: objects;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+    abbr[title] {
+        border-bottom: none;
+        text-decoration: underline;
+        text-decoration: underline dotted;
+    }
+
+    b,
+    strong {
+        font-weight: bolder;
+    }
+
+    code,
+    kbd,
+    samp {
+        font-family: monospace, monospace;
+        font-size: 1em;
+    }
+
+    code {
+        @apply bg-gray border-darkgray rounded-md text-base my-0 mx-1 py-1 px-1 hover:bg-darkgray hover:text-gray transition;
+        border: 1px solid #E1E1E1;
+    }
+
+    img {
+        @apply border-none;
+    }
+
+
+    svg:not(:root) {
+        overflow: hidden;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+        @apply m-0;
+        font-family: sans-serif;
+        font-size: 100%;
+        line-height: 1.15;
+    }
+
+    button,
+    input {
+        @apply overflow-visible;
+    }
+
+    button,
+    select {
+        @apply normal-case;
+    }
+
+    button,
+    html [type="button"],
+    [type="reset"],
+    [type="submit"] {
+        -webkit-appearance: button;
+    }
+
+    button::-moz-focus-inner,
+    [type="button"]::-moz-focus-inner,
+    [type="reset"]::-moz-focus-inner,
+    [type="submit"]::-moz-focus-inner {
+        @apply border-none p-0;
+    }
+
+    button:-moz-focusring,
+    [type="button"]:-moz-focusring,
+    [type="reset"]:-moz-focusring,
+    [type="submit"]:-moz-focusring {
+        outline: 1px dotted ButtonText;
+    }
+
+    fieldset {
+        border: 1px solid #c0c0c0;
+        margin: 0 2px;
+        padding: 0.35em 0.625em 0.75em;
+    }
+
+    legend {
+        @apply box-border table max-w-full p-0 whitespace-normal;
+        color: inherit;
+
+    }
+
+    textarea {
+        @apply overflow-auto;
+    }
+
+    [type="checkbox"],
+    [type="radio"] {
+        @apply box-border p-0;
+    }
+
+    [type="number"]::-webkit-inner-spin-button,
+    [type="number"]::-webkit-outer-spin-button {
+        @apply h-auto;
+    }
+
+    [type="search"] {
+        -webkit-appearance: textfield;
+        outline-offset: -2px;
+    }
+
+    [type="search"]::-webkit-search-cancel-button,
+    [type="search"]::-webkit-search-decoration {
+        -webkit-appearance: none;
+    }
+
+    details,
+    menu {
+        @apply block;
+    }
+
+
+    [hidden] {
+        @apply hidden;
+    }
+
+    /* ===================================================================
+   * # basic/base setup styles - (_basic.scss)
+   *
+   * ------------------------------------------------------------------- */
+
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+    }
+
+
+
+    body,
+    input,
+    button {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* ------------------------------------------------------------------- 
+   * ## Media - (_basic.scss)
+   * ------------------------------------------------------------------- */
+
+    img,
+    video {
+        @apply max-w-full h-auto;
+    }
+
+    /* ------------------------------------------------------------------- 
+   * ## Typography resets - (_basic.scss)
+   * ------------------------------------------------------------------- */
+
+    div,
+    dl,
+    dt,
+    dd,
+    ul,
+    ol,
+    li,
+    h5,
+    h6,
+    pre,
+    form,
+    p,
+    blockquote,
+    th,
+    td {
+        @apply m-0 p-0;
+    }
+
+
+
+    h1 {
+        @apply text-h1 text-black font-blocky;
+        margin: 0.67em 0;
+        font-weight: 700;
+        margin-bottom: 1.8rem;
+        margin-top: 6rem;
+        line-height: 1.25;
+    }
+
+    h2 {
+        @apply text-h2 text-black;
+        font-size: 3rem;
+        margin-bottom: 1.8rem;
+        margin-top: 6rem;
+        line-height: 1.3;
+    }
+
+    h3 {
+        @apply text-h3 text-black;
+        font-size: 2.4rem;
+        line-height: 1.25;
+        margin-bottom: 1.8rem;
+        margin-top: 6rem;
+    }
+
+    h4 {
+        @apply text-h4 text-black;
+        font-size: 2.1rem;
+        line-height: 1.286;
+    }
+
+    h5 {
+        @apply text-h5 mb-6 mt-16 text-black;
+
+        font-size: 1.6rem;
+        line-height: 1.3125;
+    }
+
+    h6 {
+        @apply text-h6 text-black font-blocky;
+        font-weight: 700;
+        font-size: 1.4rem;
+        line-height: 1.5;
+        text-transform: uppercase;
+        letter-spacing: .16rem;
+    }
+
+    em,
+    i {
+        @apply italic font-heading;
+        font-weight: 400;
+        font-style: italic;
+        line-height: inherit;
+    }
+
+    strong,
+    b {
+        @apply font-heading;
+        font-weight: bold;
+        line-height: inherit;
+        font-weight: 700;
+    }
+
+    ol,
+    ul {
+        list-style: none;
+    }
+
+    li {
+        @apply block;
+    }
+
+
+    /* ------------------------------------------------------------------- 
+   * ## links - (_basic.scss)
+   * ------------------------------------------------------------------- */
+
+    a {
+        text-decoration: none;
+        line-height: inherit;
+    }
+
+    a img {
+        border: none;
+    }
+
+    /* ------------------------------------------------------------------- 
+   * ## inputs - (_basic.scss)
+   * ------------------------------------------------------------------- */
+
+    fieldset {
+        margin: 0;
+        padding: 0;
+    }
+
+    input,
+    textarea {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+    }
+
+
+
+    html,
+    body {
+        height: 100%;
+    }
+
+
+
+
+    p,
+    b,
+    i,
+    strong,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    cite {
+        @apply selection:bg-accent selection:text-white;
+    }
+
+
+    /* ------------------------------------------------------------------- 
+* ## links - (_document-setup.scss) 
+* ------------------------------------------------------------------- */
+    a {
+        @apply text-accent;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        text-decoration: underline;
+        
+        &:focus {
+            outline: none;
+        }
+    }
+
+
+
+    nav a,
+    h1 a {
+        text-decoration: none;
+    }
+
+    nav a {
+        @apply text-white
+    }
+
+
+    /** Blockquote **/
+    blockquote {
+        @apply pl-16 relative;
+        margin: 3.9rem 0;
+        margin: 3.9rem 0;
+        padding-left: 4.5rem;
+        position: relative;
+
+        &:before {
+            @apply m-0 absolute left-0 text-accent;
+            content: "\201C";
+            line-height: 0px;
+            font-size: 10rem;
+            font-family: arial, sans-serif;
+            top: 3.6rem;
+            content: "\201C";
+            font-size: 10rem;
+            line-height: 0px;
+            margin: 0;
+            position: absolute;
+            top: 3.6rem;
+            left: 0;
+        }
+    
+        p {
+            @apply font-normal p-0 text-black font-blocky;
+            line-height: 1.857;
+            font-size: 2.1rem;
+        }
+    
+        cite {
+            @apply block font-normal not-italic leading-normal text-h6 font-blocky;
+            display: block;
+            font-size: 1.4rem;
+            font-style: normal;
+
+            &:before {
+                content: "\2014 \0020";
+            }
+        
+            a, a:visited {
+                @apply text-gray border-none;
+            }
+        }
+    }
+
+
+
+    /* ===================================================================
+ * # footer - (_site-layout.scss)
+ *
+ * ------------------------------------------------------------------- */
+    footer {
+        @apply bg-black font-normal text-center font-blocky text-white;
+        padding: 6.6rem 0 4.2rem;
+
+        a,
+        a:visited {
+            @apply text-accent
+        }
+
+        a:hover,
+        a:focus {
+            @apply text-white
+        }
+    }
+
+
+
+    .footer-logo {
+        @apply inline-block;
+    }
+
+    .footer-site-logo {
+        @apply block w-32;
+    }
+
+
+    @media only screen and (max-width: 400px) {
+        .footer-site-logo {
+            width: 100px;
+        }
+
+        .footer_social li {
+            margin-right: 1.2rem;
+        }
+
+        .footer_social li svg {
+            font-size: 2.2rem;
+        }
+    }
+
+
+
+
+    /* ------------------------------------------------------------------- 
+     * responsive:
+     * contact
+     * ------------------------------------------------------------------- */
+    @media only screen and (max-width: 800px) {
+
+
+        .contact__infos {
+            padding-top: 3rem;
+        }
+    }
+
+
+
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="text"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="password"],
+    textarea,
+    select {
+        display: block;
+        height: 6rem;
+        padding: 1.5rem 0;
+        border: 0;
+        outline: none;
+        color: #333333;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+        font-size: 1.5rem;
+        line-height: 3rem;
+        max-width: 100%;
+        background: transparent;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+}
