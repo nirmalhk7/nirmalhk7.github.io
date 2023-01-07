@@ -17,7 +17,7 @@ const FooterSection = () => {
                 return (
                   <li key={index}>
                     <a
-                      className="no-underline	hover:text-accent"
+                      className="no-underline	hover:text-accent bg-transparent"
                       href={element.link}
                       target="blank"
                     >

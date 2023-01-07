@@ -56,7 +56,6 @@ class MainLayout extends React.Component<MainLayoutPropsInterface> {
     const children = this.props.children;
     return (
       <>
-        <SEOUtil/>
         <Navbar />
         <main>{children}</main>
         <RandomQuote />

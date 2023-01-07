@@ -85,6 +85,7 @@ ul {
 
 ul li {
     padding-left: .4rem;
+    padding-top: 1rem;
 }
 
 ul ul,
@@ -97,38 +98,31 @@ ol ul {
 ul.disc li {
     display: list-item;
     list-style: none;
-    padding: 0 0 0 .8rem;
-    position: relative;
+    @apply relative;
 }
 
 ul.disc li::before {
-    @apply bg-accent;
+    @apply bg-accent absolute;
+    @apply inline-block;
     content: "";
-    display: inline-block;
     width: 8px;
+    top: 13px;
     height: 8px;
     border-radius: 50%;
-    position: absolute;
     left: -17px;
-    top: 11px;
-    vertical-align: middle;
 }
 
 /* ------------------------------------------------------------------- 
  * ## responsive video container - (_document-setup)
  * ------------------------------------------------------------------- */
 .video-container {
-    position: relative;
+    @apply relative;
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
 
      iframe, object, embed, video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        @apply absolute top-0 left-0 w-full h-full;
     }
 }
 
@@ -150,7 +144,7 @@ img.pull-left {
  * ------------------------------------------------------------------- */
 table {
     border-width: 0;
-    width: 100%;
+    @apply w-full;
     max-width: 100%;
     font-family: "Libre Baskerville", serif;
     font-weight: 400;
@@ -242,8 +236,7 @@ legend {
     font-size: 1.4rem;
     margin-bottom: .9rem;
     line-height: 1.714;
-    display: block;
-    @apply text-black;
+    @apply block text-black;
 }
 
 input[type="checkbox"],
@@ -252,7 +245,7 @@ input[type="radio"] {
 }
 
 label>.label-text {
-    display: inline-block;
+    @apply inline-block;
     margin-left: 1rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
@@ -261,8 +254,7 @@ label>.label-text {
 
 label>input[type="checkbox"],
 label>input[type="radio"] {
-    margin: 0;
-    position: relative;
+    @apply relative m-0;
     top: .15rem;
 }
 
@@ -289,7 +281,7 @@ select:-webkit-autofill:focus {
  * ------------------------------------------------------------------- */
 .blog-list {
     margin-top: 6rem;
-    margin-left: 0;
+    @apply ml-0;
 
     article {
         margin-bottom: 7.2rem;
@@ -310,8 +302,7 @@ select:-webkit-autofill:focus {
         margin-top: .3rem;
         margin-bottom: 2.1rem;
         padding-bottom: 2.4rem;
-        position: relative;
-        @apply text-black;
+        @apply text-black relative;
     }
     
     h2 a {
@@ -319,11 +310,9 @@ select:-webkit-autofill:focus {
     }
     
     h2::after {
-        display: block;
+        @apply block absolute left-0;
         content: "";
-        position: absolute;
         bottom: 0;
-        left: 0;
         height: 1px;
         width: 80px;
         background-color: rgba(0, 0, 0, 0.15);
@@ -390,19 +379,15 @@ select:-webkit-autofill:focus {
  *
  * ------------------------------------------------------------------- */
 .s-home {
-    width: 100%;
+    @apply w-full relative;
     height: 100vh;
     min-height: 786px;
     background-color: transparent;
-    position: relative;
     display: table;
 
     .shadow-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        @apply absolute;
+        @apply top-0 left-0 w-full h-full;
         opacity: .8;
         background: -moz-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
         background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
@@ -411,11 +396,7 @@ select:-webkit-autofill:focus {
     }
     
     .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        @apply absolute top-0 left-0 w-full h-full;
         opacity: .5;
         background-color: #111111;
     }
@@ -432,11 +413,9 @@ select:-webkit-autofill:focus {
  * ------------------------------------------------------------------- */
 .home-content {
     display: table-cell;
-    width: 100%;
-    height: 100%;
     vertical-align: bottom;
     padding-bottom: 19.2rem;
-    position: relative;
+    @apply relative w-full h-full;
 
     h3 {
         font-family: 'Montserrat', sans-serif;
@@ -444,49 +423,46 @@ select:-webkit-autofill:focus {
         font-size: 1.8rem;
         text-transform: uppercase;
         letter-spacing: .5rem;
-        position: relative;
+        @apply relative;
         padding-left: 80px;
         margin-left: -30px;
         margin-bottom: .6rem;
-        @apply bg-accent;
     }
     
     h3::before {
-        display: block;
+        @apply block;
+        @apply absolute left-0;
         content: "";
         width: 60px;
         height: 2px;
         margin-top: -1.5px;
-        position: absolute;
-        left: 0;
         top: 50%;
-        @apply bg-accent;
     }
     
     h1 {
         font-family: "Libre Baskerville", serif;
-        color: #FFFFFF;
+        @apply text-white;
+        @apply mt-0;
         font-size: 6rem;
         font-weight: 700;
         line-height: 1.35;
-        margin-top: 0;
     }
 }
 
 .home-content__main {
     padding-right: 300px;
-    position: relative;
+    @apply relative;
 }
 
 .home-content__buttons {
-    position: absolute;
+    @apply absolute;
     right: 0;
     bottom: 2.1rem;
     text-align: center;
 }
 
 .home-content__scroll {
-    position: absolute;
+    @apply absolute;
     left: .6rem;
     bottom: -13.2rem;
 
@@ -496,9 +472,7 @@ select:-webkit-autofill:focus {
         font-size: 1.1rem;
         text-transform: uppercase;
         letter-spacing: .3rem;
-        @apply text-white;
-        position: relative;
-        display: inline-block;
+        @apply text-white relative inline-block;
         line-height: 3rem;
         padding-right: 2rem;
     }
@@ -507,12 +481,12 @@ select:-webkit-autofill:focus {
         border-bottom: 2px solid map-get($map: $theme-colors, $key: "accent");
         border-right: 2px solid map-get($map: $theme-colors, $key: "accent");
         content: '';
-        display: block;
+        @apply block;
         height: 8px;
         width: 8px;
         margin-top: -7px;
         pointer-events: none;
-        position: absolute;
+        @apply absolute;
         right: 0;
         top: 50%;
         -webkit-transform-origin: 66% 66%;
@@ -611,7 +585,7 @@ html.no-csstransitions .home-content__main {
     }
 
     .home-content__buttons {
-        position: static;
+        @apply static;
         text-align: left;
     }
 }
@@ -683,24 +657,20 @@ html.no-csstransitions .home-content__main {
  * ## timeline - (_site-layout.scss) 
  * ------------------------------------------------------------------- */
 .timeline {
-    position: relative;
+    @apply relative;
     text-align: left;
-    margin-top: 3.6rem;
 }
 
 .timeline::before {
     content: "";
-    display: block;
-    width: 1px;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
-    position: absolute;
+    @apply block h-full absolute top-0;
     left: 2rem;
-    top: 0;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .timeline__block {
-    position: relative;
+    @apply relative;
     padding-left: 8rem;
     min-height: 28.8rem;
 }
@@ -712,7 +682,7 @@ html.no-csstransitions .home-content__main {
     border-radius: 50%;
     margin-left: -0.75rem;
     box-shadow: 0 0 0 9px #E9E9E9;
-    position: absolute;
+    @apply absolute;
     left: 2rem;
     top: .3rem;
 }
@@ -739,7 +709,7 @@ html.no-csstransitions .home-content__main {
     }
     
     h5 {
-        margin-top: 0;
+        @apply mt-0;
     }
 }
 
@@ -839,7 +809,7 @@ html.no-csstransitions .home-content__main {
 
     .blog-content__prev,
     .blog-content__next {
-        width: 100%;
+        @apply w-full;
         float: none;
         padding: 0;
         text-align: left;
@@ -880,7 +850,7 @@ html.no-csstransitions .home-content__main {
     }
 
     .blog-content__all {
-        position: static;
+        @apply static;
         text-align: left;
         width: auto;
         margin-top: 1.8rem;
@@ -1014,15 +984,15 @@ footer a:visited {
 
 footer a:hover,
 footer a:focus {
-    color: #FFFFFF;
+    @apply text-white;
 }
 
 .footer-logo {
-    display: inline-block;
+    @apply inline-block;
 }
 
 .footer-site-logo {
-    display: block;
+    @apply block;
     width: 130px;
 }
 
@@ -1031,7 +1001,7 @@ footer a:focus {
  *
  * ------------------------------------------------------------------- */
 article.blog-single {
-    background-color: #FFFFFF;
+    @apply bg-white;
 }
 
 article.blog-single .blog-content {
@@ -1051,27 +1021,25 @@ article.blog-single .blog-content {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     color: #0D0A0B;
-    position: relative;
+    @apply relative;
     padding-right: 55px;
     margin-right: 1.5rem;
     margin-top: 1.2rem;
 }
 
 .blog-content__tags span::after {
-    display: inline-block;
+    @apply inline-block;
     content: "";
     height: 1px;
     width: 40px;
     background-color: rgba(0, 0, 0, 0.2);
-    position: absolute;
+    @apply absolute;
     top: 50%;
     right: 0;
 }
 
 .blog-content__tags .blog-content__tag-list {
-    display: inline-block;
-    padding-right: 0;
-    margin-right: 0;
+    @apply inline-block pr-0 mr-0;
 }
 
 .blog-content__tags .blog-content__tag-list::after {
@@ -1079,7 +1047,7 @@ article.blog-single .blog-content {
 }
 
 .blog-content__tags .blog-content__tag-list a {
-    display: inline-block;
+    @apply inline-block;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     font-size: 1.3rem;
@@ -1096,11 +1064,11 @@ article.blog-single .blog-content {
 .blog-content__tags .blog-content__tag-list a:focus {
     background-color: #0D0A0B;
     border-color: #0D0A0B;
-    color: #FFFFFF;
+    @apply text-white;
 }
 
 .blog-content__tags .blog-content__tag-list a:last-child {
-    margin-right: 0;
+    @apply mr-0;
 }
 
 /* blog single page navigation
@@ -1109,7 +1077,7 @@ article.blog-single .blog-content {
     margin-top: 7.8rem;
     padding-top: 1.8rem;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    position: relative;
+    @apply relative;
 }
 
 .blog-content__nav {
@@ -1123,7 +1091,7 @@ article.blog-single .blog-content {
 }
 
 .blog-content__nav span {
-    display: block;
+    @apply block;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     font-size: 1.6rem;
@@ -1156,7 +1124,7 @@ article.blog-single .blog-content {
 .blog-content__all {
     text-align: right;
     width: 210px;
-    position: absolute;
+    @apply absolute;
     top: 2.1rem;
     right: 0;
 }
@@ -1165,7 +1133,7 @@ article.blog-single .blog-content {
     font-size: 1.4rem;
     line-height: 1;
     margin-right: 8px;
-    position: relative;
+    @apply relative;
     top: 2px;
 }
 
@@ -1180,7 +1148,7 @@ article.blog-single .blog-content {
 .blog-entries-nav .im {
     font-size: 1.3rem;
     line-height: 1;
-    position: relative;
+    @apply relative;
     top: 2px;
 }
 
@@ -1214,14 +1182,14 @@ article.blog-single .blog-content {
  * ------------------------------------------------------------------- */
  .section-intro {
     text-align: center;
-    position: relative;
+    @apply relative;
 }
 .section-intro h1 {
     font-family: "Libre Baskerville", serif;
     font-size: 4.8rem;
     font-weight: 700;
     line-height: 1.375;
-    margin-top: 0;
+    @apply mt-0;
 }
 .section-intro h3 {
     font-family: 'Montserrat', sans-serif;
@@ -1229,15 +1197,15 @@ article.blog-single .blog-content {
     font-size: 2rem;
     text-transform: uppercase;
     letter-spacing: .15rem;
-    margin-top: 0;
+    @apply mt-0;
     margin-bottom: 0;
 }
 .section-intro.has-bottom-sep {
     padding-bottom: 1.5rem;
-    position: relative;
+    @apply relative;
 }
 .section-intro.has-bottom-sep::after {
-    display: inline-block;
+    @apply inline-block;
     height: 1px;
     width: 240px;
     background-color: rgba(0, 0, 0, 0.1);
@@ -1281,30 +1249,24 @@ article.blog-single .blog-content {
     background-position: center, center;
     padding-top: 20.4rem;
     padding-bottom: 7.2rem;
-    position: relative;
+    @apply relative;
     color: rgba(255, 255, 255, 0.5);
     min-height: 50.4rem;
 }
 
 .page-header::before {
-    display: block;
+    @apply block;
     content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    @apply absolute;
+    @apply top-0;
+    @apply left-0 w-full h-full;
     opacity: .75;
     background-color: #0D0A0B;
 }
 .page-header::after {
-    display: block;
+    @apply block;
     content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    @apply absolute top-0 left-0 w-full h-full;
     opacity: .5;
     background: -moz-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
     /* FF3.6-15 */
@@ -1335,7 +1297,7 @@ article.blog-single .blog-content {
     font-weight: 400;
     font-size: 2rem;
     line-height: 1.8;
-    position: relative;
+    @apply relative;
     max-width: 992px;
     z-index: 2;
 }
@@ -1343,22 +1305,21 @@ article.blog-single .blog-content {
     padding-right: 3rem;
 }
 .page-header__title {
-    color: #FFFFFF;
-    position: relative;
+    @apply text-white relative;
     font-family: "librebaskerville-bold", serif;
     font-size: 6.6rem;
     line-height: 1.227;
-    margin-top: 0;
+    @apply mt-0;
     margin-bottom: 3.6rem;
 }
 .page-header__title a {
-    color: #FFFFFF;
+    @apply text-white;
 }
 .page-header__info {
     margin-bottom: 1.2rem;
 }
 .page-header__info .div:last-child {
-    margin-right: 0;
+    @apply mr-0;
 }
     /* ------------------------------------------------------------------- 
  * responsive:
@@ -1404,7 +1365,7 @@ article.blog-single .blog-content {
 
 
  .page-header__cat {
-    display: inline-block;
+    @apply inline-block;
     margin-right: 2rem;
     margin-bottom: .3rem;
     font-size: 1.4rem;
@@ -1431,32 +1392,31 @@ article.blog-single .blog-content {
 
 .page-header__meta {
     list-style: none;
-    margin-left: 0;
+    @apply ml-0;
     padding-top: 2.4rem;
     font-size: 1.6rem;
-    position: relative;
+    @apply relative;
 }
 .page-header__meta::before {
-    display: block;
+    @apply block;
+    @apply absolute top-0;
     content: "";
     height: 1px;
     width: 100px;
     background-color: rgba(255, 255, 255, 0.1);
-    position: absolute;
-    top: 0;
     left: 50%;
     margin-left: -50px;
 }
 .page-header__meta li {
-    display: inline-block;
+    @apply inline-block;
     padding-left: 0;
     margin-right: 2rem;
 }
 .page-header__meta li::last-child {
-    margin-right: 0;
+    @apply mr-0;
 }
 .page-header__meta span, .page-header__meta a {
-    color: #FFFFFF;
+    @apply text-white;
 }
 
     /* -------------------------------------------------------------------

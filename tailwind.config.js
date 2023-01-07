@@ -10,14 +10,6 @@ module.exports = {
       "laptop": {'min':"1024px"},
       "laptop-l": {'min':"1440px"}
     },
-    colors: {
-      "white": "#ffffff",
-      "accent": "#FF7B08",
-      "accentLight": "#ffb652",
-      "gray": "#f1f1f1",
-      "darkgray": "#7d7d7d",
-      "black": "#000000",
-    },
     fontSize: {
       'mini': ['1.2rem', {
         lineHeight: '3rem',
@@ -82,10 +74,14 @@ module.exports = {
       height: {
         navbar: '72px'
       },
-
-      // lineHeight: {
-      //   '3xl': '3.375'
-      // }
+      colors: {
+        "white": "#ffffff",
+        "accent": "#FF7B08",
+        "accentLight": "#ffb652",
+        "gray": "#f1f1f1",
+        "darkgray": "#7d7d7d",
+        "black": "#000000",
+      }
     },
   },
   plugins: [],

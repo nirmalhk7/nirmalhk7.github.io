@@ -41,14 +41,16 @@ class IndexPage extends React.Component {
             ["Latest Projects", "#projects"],
             ["More About Me", "#about"],
           ]}
-          orangeText="Hey!"
+          smallText="Hey!"
           showScrollDown
         />
-        <section className="pt-56 pb-32 bg-white relative " id="about">
+        <section className="bg-white relative " id="about">
           <div className="container mx-auto ">
             <div className="columns-1 mobile-l:columns-2 gap-16 gap-y-16">
-              {/* <ReactSafelySetInnerHTML>{mainContent.childMarkdownRemark.html}</ReactSafelySetInnerHTML> */}
-              <div className="laptop:hidden tablet:block mobile-l:block">
+              <div className="container mx-auto break-inside-avoid">
+                <ReactSafelySetInnerHTML>{mainContent.childMarkdownRemark.html}</ReactSafelySetInnerHTML>
+              </div>
+              <div className="break-inside-avoid laptop:hidden tablet:block mobile-l:block">
                 <StaticImage
                   alt="Nirmal Khedkar"
                   className="break-inside-avoid"
@@ -64,13 +66,6 @@ class IndexPage extends React.Component {
                   }}
                 />
               </div>
-            </div>
-          </div>
-          {/* <WorkExperience experience={workexperience.nodes} /> */}
-        </section>
-        <section className="pt-56 pb-32 bg-white relative " id="about">
-          <div className="container mx-auto ">
-            <div className="columns-1 mobile-l:columns-2 gap-16 gap-y-16">
               <div className="break-inside-avoid">
                 <h5 className="mt-0">
                   Familiar Languages, Frameworks and Libraries
@@ -106,7 +101,14 @@ class IndexPage extends React.Component {
               </div>
             </div>
           </div>
-          {/* <WorkExperience experience={workexperience.nodes} /> */}
+        </section>
+        <section className="bg-white relative " id="about">
+          <div className="container mx-auto ">
+            <div className="columns-1 mobile-l:columns-2 gap-16 gap-y-16">
+     
+            </div>
+          </div>
+          <WorkExperience experience={workexperience.nodes} />
         </section>
         <Blog name={site.siteMetadata.blogName} />
       </Layout>
@@ -180,7 +182,7 @@ export const postQuery = graphql`
         icon
       }
     }
-    skills: allSkillsYaml(sort: { fields: priority, order: DESC }, limit: 12) {
+    skills: allSkillsYaml(sort: { fields: priority, order: DESC }, limit: 16) {
       nodes {
         name
       }

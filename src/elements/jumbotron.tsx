@@ -6,7 +6,7 @@ const Jumbotron = {
   mini: () => <div />,
   Max: ({
     bgImg,
-    orangeText,
+    smallText,
     HeadingTextComponent,
     buttonDetails,
     showScrollDown,
@@ -17,7 +17,7 @@ const Jumbotron = {
       <div className="z-0 bg-black h-full left-0 opacity-40 absolute top-0 w-full" />
       <div className="home-content  pt-40 z-10">
         <div className="tablet:container mx-auto home-content__main">
-          <h3 className="ital-hover">{orangeText}</h3>
+          <h3 className="ital-hover text-accent">{smallText}</h3>
           {HeadingTextComponent}
           <div className="static text-left gap-4 right-0 bottom-8  text-button font-blocky uppercase font-bold">
             {buttonDetails &&
