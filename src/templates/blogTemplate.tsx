@@ -92,6 +92,7 @@ const BlogTemplate = ({ location, pageContext }: PageProps<object,BlogTemplateIn
             </ReactSafelySetInnerHTML>
             <div className="blog-content__pagenav">
               <h6 className="boxfont text-uppercase mt-0">Share the article</h6>
+    
               <TwitterShareButton
                 hashtags={Utils.getFrontmatter(pageContext.current).category}
                 {...shareProps}
@@ -202,8 +203,7 @@ const BlogTemplate = ({ location, pageContext }: PageProps<object,BlogTemplateIn
                 </a>
               </div>
               <hr />
-
-              <Commento id={location.href} />
+              {/* <Commento id={location.href} /> */}
             </div>
           </div>
         </div>

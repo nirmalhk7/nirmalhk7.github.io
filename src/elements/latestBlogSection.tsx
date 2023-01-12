@@ -23,7 +23,7 @@ const LatestBlogSection = ({ relativeDirectory, frontmatter }) => {
             />
           </div>
           <div className="laptop:text-right tablet:text-right relative">
-            <div className="absolute bottom-10">
+            <div>
               <h1
                 className="font-bold leading-snug mt-0 font-heading text-white"
                 style={{ textDecoration: "none" }}

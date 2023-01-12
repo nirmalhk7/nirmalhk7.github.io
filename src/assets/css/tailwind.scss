@@ -263,7 +263,8 @@
 
 
     h1 {
-        @apply text-h1 text-black font-blocky;
+        // text
+        @apply text-black font-blocky text-[3.6rem];
         margin: 0.67em 0;
         font-weight: 700;
         margin-bottom: 1.8rem;
@@ -272,7 +273,8 @@
     }
 
     h2 {
-        @apply text-h2 text-black;
+        // text
+        @apply text-black text-[3rem];
         font-size: 3rem;
         margin-bottom: 1.8rem;
         margin-top: 6rem;
@@ -280,7 +282,8 @@
     }
 
     h3 {
-        @apply text-h3 text-black;
+        // text
+        @apply  text-black text-[2.4rem];
         font-size: 2.4rem;
         line-height: 1.25;
         margin-bottom: 1.8rem;
@@ -288,20 +291,23 @@
     }
 
     h4 {
-        @apply text-h4 text-black;
+        // text
+        @apply  text-black text-[2.1rem];
         font-size: 2.1rem;
         line-height: 1.286;
     }
 
     h5 {
-        @apply text-h5 mb-6 mt-16 text-black;
+        // text
+        @apply mb-6 mt-16 text-black text-[1.6rem];
 
         font-size: 1.6rem;
         line-height: 1.3125;
     }
 
     h6 {
-        @apply text-h6 text-black font-blocky;
+        // text
+        @apply text-black font-blocky text-[1.4rem];
         font-weight: 700;
         font-size: 1.4rem;
         line-height: 1.5;
