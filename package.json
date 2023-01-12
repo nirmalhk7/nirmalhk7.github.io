@@ -32,7 +32,7 @@
     "gatsby-plugin-sharp": "4.9.0",
     "gatsby-remark-images": "6.9.0",
     "gatsby-source-filesystem": "4.9.0",
-    "gatsby-transformer-remark": "5.9.0",
+    "gatsby-transformer-remark": "5.25.1",
     "gatsby-transformer-sharp": "4.9.0",
     "gatsby-transformer-yaml": "4.9.0",
     "jquery": "3.6.0",
