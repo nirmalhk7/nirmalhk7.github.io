@@ -1,4 +1,5 @@
 import React from "react";
+import * as styles from "./contactme.module.scss";
 
 interface ContactMeSectionStateInterface {
   name: string,
