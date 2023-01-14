@@ -275,7 +275,6 @@ select:-webkit-autofill:focus {
 }
 
 
-
 /* ------------------------------------------------------------------- 
  * ## blog-list - (_common-styles.scss)
  * ------------------------------------------------------------------- */
@@ -612,7 +611,6 @@ html.no-csstransitions .home-content__main {
 
 @media only screen and (max-width: 400px) {
 
-
     .home-content {
         vertical-align: middle;
     }
@@ -746,7 +744,6 @@ html.no-csstransitions .home-content__main {
 }
 
 
-
 @media only screen and (max-width: 1200px) {
 
     .stats h4 {
@@ -823,19 +820,22 @@ html.no-csstransitions .home-content__main {
 
 @media only screen and (max-width: 768px) {
 
-    .home-content h3 {
-        font-size: 1.6rem;
-        padding-left: 50px;
-        margin-left: -10px;
+    .home-content {
+        h3 {
+            font-size: 1.6rem;
+            padding-left: 50px;
+            margin-left: -10px;
+        }
+    
+        h3::before {
+            width: 40px;
+        }
+    
+        h1 {
+            font-size: 4.4rem;
+        }
     }
-
-    .home-content h3::before {
-        width: 40px;
-    }
-
-    .home-content h1 {
-        font-size: 4.4rem;
-    }
+    
 
     .home-content__main {
         max-width: 500px;

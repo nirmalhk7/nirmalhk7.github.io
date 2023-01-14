@@ -92,7 +92,6 @@ const BlogTemplate = ({ location, pageContext }: PageProps<object,BlogTemplateIn
             </ReactSafelySetInnerHTML>
             <div className="blog-content__pagenav">
               <h6 className="boxfont text-uppercase mt-0">Share the article</h6>
-    
               <TwitterShareButton
                 hashtags={Utils.getFrontmatter(pageContext.current).category}
                 {...shareProps}
