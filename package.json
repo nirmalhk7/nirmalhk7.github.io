@@ -34,7 +34,7 @@
     "gatsby-source-filesystem": "4.25.0",
     "gatsby-transformer-remark": "5.25.1",
     "gatsby-transformer-sharp": "4.25.0",
-    "gatsby-transformer-yaml": "4.25.0",
+    "gatsby-transformer-yaml": "5.11.0",
     "jquery": "3.6.3",
     "prop-types": "15.8.1",
     "purgecss": "5.0.0",
