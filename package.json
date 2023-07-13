@@ -16,7 +16,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "autoprefixer": "10.4.13",
-    "cross-fetch": "3.1.5",
+    "cross-fetch": "3.1.8",
     "gatsby": "5.11.0",
     "gatsby-plugin-feed": "5.11.0",
     "gatsby-plugin-google-gtag": "5.11.0",
