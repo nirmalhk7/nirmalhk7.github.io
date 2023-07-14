@@ -1,118 +1,185 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import React from "react";
+import Blog from "../elements/blogIntroSection";
+import SearchEnggOp from "../elements/seoUtil";
+import WorkExperience from "../elements/workExperienceSection";
+import Layout from "../layouts/mainLayout";
+// import { StaticImage } from "gatsby-plugin-image";
+import Jumbotron from "../elements/jumbotron";
+// import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
+import Link from "next/link";
+import { GetStaticProps } from "next";
+import { loadMarkdownFiles } from "@/util/loadMarkdown";
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
+const IndexPage = ({
+  mainContent,
+  projects,
+  workexperience,
+  onlineCourses,
+  collegeCourses,
+  membership,
+  skills,
+  site,
+}:any) => {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <Layout location="/">
+    <SearchEnggOp
+      description="Welcome to Nirmal Khedkar's Official Website"
+      title="Home"
+    />
+    <Jumbotron.Max
+      HeadingTextComponent={
+        <h1>
+          I'm Nirmal Khedkar, <br />
+          Software Engineer
+          {"\n"}
+          based in <br />
+          Bangalore.
+        </h1>
+      }
+      bgImg="bg-milkyWay laptop:bg-beachNirmal"
+      buttonDetails={[
+        ["Latest Projects", "#projects"],
+        ["More About Me", "#about"],
+      ]}
+      orangeText="Hey!"
+      showScrollDown
+    />
+    <section className="pt-56 pb-32 bg-white relative " id="about">
+      <div className="w-100 text-center">
+        <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
+          <div className="w-full text-center">
+            <h3 className="text-accent">Nirmal Khedkar</h3>
+            <h1>More About Me</h1>
+            <p className="font-lead font-blocky mb-16">
+            SWE, Cloud Enthusiast, learner and motorsport enthusiast: Hi, I'm Nirmal Khedkar.
+            </p>
+          </div>
         </div>
       </div>
+      <div className="container mx-auto ">
+        <div className="columns-1 mobile-l:columns-2 gap-16 gap-y-16">
+          {/* <ReactSafelySetInnerHTML>{mainContent.childMarkdownRemark.html}</ReactSafelySetInnerHTML> */}
+          <div className="laptop:hidden tablet:block mobile-l:block">
+            {/* <StaticImage
+              alt="Nirmal Khedkar"
+              className="break-inside-avoid"
+              placeholder="blurred"
+              src="https://avatars.githubusercontent.com/u/25480443"
+              style={{
+                borderRadius: "70%",
+                padding: "1rem",
+                width: "70%",
+                height: "auto",
+                marginLeft: "auto",
+                marginRight: "auto",
+              }}
+            /> */}
+          </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+          <div className="break-inside-avoid py-4">
+            <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
+              <a
+                className="bg-accent border-4 border-accent text-white hover:text-black  no-underline w-full"
+                href={"./Resume.pdf"}
+                rel="noreferrer"
+                target="_blank"
+              >
+                Download My Resume
+              </a>
+              <Link
+                className="border-4 no-underline border-accent  text-accent hover:text-black  w-full"
+                href="#contact"
+              >
+                Want to Hire?
+              </Link>
+            </div>
+          </div>
+          <div className="break-inside-avoid">
+            <h5 style={{ paddingTop: "0.5em" }}>
+              Familiar Languages, Frameworks and Libraries
+            </h5>
+            <hr />
+            <div
+              className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4"
+              style={{ marginBottom: "5em" }}
+            >
+              {skills.map((element, index) => (
+                <div
+                  className="p-2 text-center text-base text-black uppercase font-blocky"
+                  key={index}
+                >
+                  {element.name}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="break-inside-avoid">
+            <h5>Online Certification and Courses Taken</h5>
+            <hr />
+            <div className="m-0">
+              <ul className="disc">
+                {onlineCourses.map((element, index) => (
+                  <li key={index}>
+                    {element.name} by {element.provider}- (
+                    <a href={element.link}>link</a>)
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="break-inside-avoid">
+            <h5>Prominent College Courses Taken</h5>
+            <hr />
+            <div className="m-0">
+              <ul className="disc">
+                {collegeCourses
+                  .map((element) => element.name)
+                  .join(", ")}
+                .
+              </ul>
+            </div>
+          </div>
+          {/* TODO: This is causing some weird padding issues. */}
+          {/* <div className="break-inside-avoid">
+            <h5>Memberships</h5>
+            <hr />
+            <div className="m-0">
+              <ul className="disc">
+              {membership.map((element, index) => (
+                  <li key={index}>
+                    {element.position} at&nbsp;
+                    <a href={element.clubwebsite} key={index}>
+                      {element.club}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div> */}
+        </div>
       </div>
+      <WorkExperience experience={workexperience} />
+    </section>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+    <Blog name="Pitlane Chat" />
+  </Layout>
+  );
+}
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
+export default IndexPage;
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+
+export const getStaticProps: GetStaticProps<any> = async () => {
+  const allCoursesYaml: any[]= require("../../content/yml/courses.yaml");
+  const allSkillsYaml: any[]= require("../../content/yml/skills.yaml");
+  const allProfilesYaml: any[]= require("../../content/yml/profiles.yaml");
+  const allMembershipsYaml: any[]= require("../../content/yml/memberships.yaml");
+  const allWorkExperiencesYaml: any[]= require("../../content/yml/workexperiences.yaml");
+  
+
+  return { props: { mainContent: "", collegeCourses: allCoursesYaml.filter(val=>val.provider===null), 
+    onlineCourses: allCoursesYaml.filter(val=>val.provider!==null), 
+    skills: allSkillsYaml, cv: allProfilesYaml, membership: allMembershipsYaml,
+    workexperience: allWorkExperiencesYaml, projects: loadMarkdownFiles("content/projects") } }
 }
