@@ -6,10 +6,32 @@ const nextConfig = {
       {
         test: /\.ya?ml$/,
         use: 'js-yaml-loader',
-      },
+      }
     )
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader',
+    })
     return config
-  }
+  },
+  async rewrites() {
+    return [
+        {
+          source: '/.well-known/webfinger',
+          destination: '/api/.well-known/webfinger'
+        }
+    ];
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        port: '',
+        pathname: '/u/25480443',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig

@@ -1,30 +1,20 @@
 // import { useStaticQuery, graphql } from "gatsby";
 import React, { useState } from "react";
-import sampleSize from "lodash/sampleSize";
 
-const QuoteSection = (state) => {
-  // const [state] = useState(
-  //   sampleSize(
-  //     useStaticQuery(graphql`
-  //       query MyQuery {
-  //         data: allQuotesYaml {
-  //           nodes {
-  //             saidby
-  //             content
-  //           }
-  //         }
-  //       }
-  //     `).data.nodes,
-  //     1
-  //   )[0]
-  // );
+export interface QuoteInterface {
+  content: string,
+  saidby: string
+}
+
+const QuoteSection = ({ quote }: {quote: QuoteInterface}) => {
+  if(!quote) return null;
   return (
     <section className="bg-white">
       <div className="narrow m-auto text-center text-h4 pb-6 relative">
         <div>
           <blockquote>
-            <p>{state.content} </p>
-            <cite>{state.saidby}</cite>
+            <p>{quote.content} </p>
+            <cite>{quote.saidby}</cite>
           </blockquote>
         </div>
       </div>

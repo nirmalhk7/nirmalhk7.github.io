@@ -20,18 +20,18 @@ interface SEOInterface {
 function SEOUtil({ description, lang='en', meta=[], title }: SEOInterface) {
   const site = {}
   const metaDescription = description || "";
-
+  const finalTitle= `${title} | Nirmal Khedkar`
   return (
     <Head>
       <meta name="description" content={metaDescription} />
-      <meta name="og:title" content={title} />
+      <meta name="og:title" content={finalTitle} />
       <meta name="og:description" content={metaDescription} />
       <meta name="og:type" content='website' />
       <meta name="twitter:card" content='summary' />
       <meta name="twitter:creator" content='Nirmal Khedkar' />
-      <meta name="twitter:title" content=""/>
+      <meta name="twitter:title" content={finalTitle}/>
       <meta name="twitter:description" content=""/>
-      <title>tk</title>
+      <title>{finalTitle}</title>
     </Head>
   );
 }

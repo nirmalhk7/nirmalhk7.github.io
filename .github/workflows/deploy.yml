@@ -1,0 +1,50 @@
+name: Deployment and Testing Workflow
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Load environment variables
+        run: echo "DRAFT=false" > .env
+      - name: Install NPM Packages
+        run: npm install -f
+      - name: Build script
+        run: npm run build
+      - name: Pass on build directory
+        uses: actions/upload-artifact@v3
+        with:
+          name: public
+          path: public
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref=='refs/heads/master'
+    steps:
+      - name: Download hello world file
+        uses: actions/download-artifact@v3
+        with:
+          name: public
+          path: public
+      - name: Set up git
+        run: |
+          git config --global user.email "info@nirmalhk7.tech"
+          git config --global user.name "Nirmal Khedkar"
+      # Runs a set of commands using the runners shell
+      - name: Deploy script
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: public
+          cname: nirmalhk7.tech

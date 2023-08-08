@@ -2,9 +2,39 @@ import React from "react";
 
 import SocialMediaIcons from "./social/socialSection";
 import Link from "next/link";
+import Image from "next/image";
+import beachImage from "../assets/images/BeachNK_1.jpg";
 
 const Jumbotron = {
-  mini: () => <div />,
+  mini: ({bgImg, bgImgAlt, title, subtitle, DescriptionComponent}) => (
+    <section
+      className="page-header  bg-fixed bg-center bg-no-repeat"
+      id={`${title}-header`}
+    >
+      <Image
+        layout="fill"
+        className="object-center object-cover pointer-events-none"
+        src={bgImg}
+        placeholder="blur"
+        alt={bgImgAlt}
+      />
+      <div className="container mx-auto page-header__content">
+        <article>
+          <h1 className="page-header__title">
+            <a href="#0" title={title}>
+              {title}
+            </a>
+          </h1>
+          <div className="page-header__info">
+            <div className="page-header__cat">
+              {subtitle}
+            </div>
+          </div>
+          <DescriptionComponent />
+        </article>
+      </div>
+    </section>
+  ),
   Max: ({
     bgImg,
     orangeText,
@@ -12,9 +42,17 @@ const Jumbotron = {
     buttonDetails,
     showScrollDown,
   }) => (
+
     <section
-      className={`s-home   bg-fixed bg-center bg-no-repeat ${bgImg} bg-cover relative z-10`}
+      className={`s-home   bg-fixed bg-center bg-no-repeat bg-cover relative z-10`}
     >
+      <Image
+        layout="fill"
+        className="object-center object-cover pointer-events-none"
+        src={beachImage}
+        placeholder="blur"
+        alt="Me on the beack"
+      />
       <div className="z-0 bg-black h-full left-0 opacity-40 absolute top-0 w-full" />
       <div className="home-content  pt-40 z-10">
         <div className="tablet:container mx-auto home-content__main">
