@@ -2,7 +2,7 @@ import React from "react";
 
 import SocialMediaIcons from "./social/socialSection";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import beachImage from "../assets/images/BeachNK_1.jpg";
 
 const Jumbotron = {
@@ -48,6 +48,7 @@ const Jumbotron = {
     >
       <Image
         layout="fill"
+        
         className="object-center object-cover pointer-events-none"
         src={beachImage}
         placeholder="blur"

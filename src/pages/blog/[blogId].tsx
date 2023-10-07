@@ -30,7 +30,7 @@ import Link from "next/link";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { groupBy, sampleSize, sortBy } from "lodash";
 import { QuoteInterface } from "@/elements/quoteSection";
-import { loadMarkdownFile } from "@/util/loadMarkdown";
+import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { readdirSync } from "fs";
 
 
@@ -47,6 +47,7 @@ interface BlogTemplateInterface {
   }
 }
 
+
 const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const pageTitle = `${currentBlog.childMarkdownRemark.frontmatter.title} by NK`;
   const shareProps = {
@@ -58,13 +59,13 @@ const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<
       <SearchEnggOp title={currentBlog.childMarkdownRemark.frontmatter.title} />
       <article className="blog-single has-bottom-sep">
         <div
-          className="page-header pt-64 pb-32 text-center  bg-fixed bg-center bg-no-repeat"
+          className="page-header  bg-fixed bg-center bg-no-repeat text-center"
           style={{
             // backgroundImage: `url(${Utils.getFrontmatter(pageContext.current).img.childImageSharp.original.src})`,
             backgroundSize: "cover",
           }}
         >
-          <div className="m-auto page-header__content narrow">
+          <div className="container mx-auto page-header__content ">
             <article className="w-full">
               <div className="page-header__info">
                 <div className="page-header__cat">
@@ -228,12 +229,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<any> = async (context) => {
   const allQuotesYaml: QuoteInterface[] = require("../../../content/yml/quotes.yaml");
   const blogId= context.params && context.params.blogId;
-  const currentBlog= loadMarkdownFile("content/blog/"+blogId+"/index.md",blogId, {getContent: true})
+  const currentBlog= loadMarkdownFile("content/blog/"+blogId+".md",blogId, {getContent: true})
   
+  let blogDetail= loadMarkdownFiles("content/blog",{getContent: true, getExcerpt: true});
   // context.params.blogId
-  let blogDetail= readdirSync("content/blog").map(blogName=>{
-    return {relativeDirectory: blogName, ...loadMarkdownFile("content/blog/"+blogName+"/index.md",blogName)};
-  });
+ 
   blogDetail= sortBy(blogDetail, blog=>blog.childMarkdownRemark.frontmatter.date);
   return { props: { currentBlog, 
   quote: sampleSize(allQuotesYaml)[0], blogDetail}}

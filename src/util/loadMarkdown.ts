@@ -9,7 +9,7 @@ interface LoadMarkdownOptions {
 export const loadMarkdownFile = (path: string, slug: string, options?: LoadMarkdownOptions) => {
     const readFile = fs.readFileSync(path, 'utf-8');
     const { data: frontmatter, content, excerpt } = matter(readFile);
-      
+    
     return {
       id: slug,
       childMarkdownRemark: { frontmatter },

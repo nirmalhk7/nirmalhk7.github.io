@@ -18,7 +18,7 @@ import { groupBy, sampleSize } from "lodash";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { GetStaticProps } from "next";
 import { QuoteInterface } from "@/elements/quoteSection";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Jumbotron from "@/elements/jumbotron";
 
 interface ProjectsPageTypes {

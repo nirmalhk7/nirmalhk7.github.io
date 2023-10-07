@@ -10,7 +10,7 @@ import Link from "next/link";
 import sampleSize from "lodash/sampleSize";
 import { GetStaticProps } from "next";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { QuoteInterface } from "@/elements/quoteSection";
 
 const IndexPage = ({

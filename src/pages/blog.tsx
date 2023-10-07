@@ -2,8 +2,8 @@ import React from "react";
 
 import Layout from "../layouts/mainLayout";
 import SearchEnggOp from "../elements/seoUtil";
-import LatestBlogItem from "../elements/latestBlogSection";
-import MasonPanel from "../elements/blogListSection";
+import LatestBlogSection from "../elements/latestBlogSection";
+import BlogListSection from "../elements/blogListSection";
 import Jumbotron from "../elements/jumbotron";
 import Utils  from "../elements/utils";
 import { GetStaticProps } from "next";
@@ -46,11 +46,11 @@ const Blog = ({ blogs, location, data, quote }: any) => {
         buttonDetails={[["Explore", "#blog-first"]]}
         orangeText="Official Blog of Nirmal Khedkar"
       />
-      <LatestBlogItem
+      <LatestBlogSection
         frontmatter={blogs[0].childMarkdownRemark.frontmatter}
-        relativeDirectory={blogs[0].relativeDirectory}
+        relativeDirectory={blogs[0].slug}
       />
-      <MasonPanel
+      <BlogListSection
         blogItems={blogs}
         sitename="Pitlane Chat"
       />
@@ -61,9 +61,7 @@ const Blog = ({ blogs, location, data, quote }: any) => {
 export const getStaticProps: GetStaticProps<any> = async () => {
   const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml");
 
-  const blogDetail= readdirSync("content/blog").map(blogName=>{
-    return {relativeDirectory: blogName, ...loadMarkdownFile("content/blog/"+blogName+"/index.md",blogName)};
-  });
+  const blogDetail= loadMarkdownFiles("content/blog",{getContent: true, getExcerpt: true});
   
   return { props: { blogs: blogDetail, quote: sampleSize(allQuotesYaml)[0]}}
 }  
