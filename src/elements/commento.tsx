@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"; // Helper to add scripts to our page
-const insertScript = (src, id, parentElement) => {
+const insertScript = (src:any, id:any, parentElement:any) => {
   const script = window.document.createElement("script");
   script.async = true;
   script.src = src;
@@ -7,13 +7,13 @@ const insertScript = (src, id, parentElement) => {
   parentElement.appendChild(script);
   return script;
 }; // Helper to remove scripts from our page
-const removeScript = (id, parentElement) => {
+const removeScript = (id:any, parentElement:any) => {
   const script = window.document.getElementById(id);
   if (script) {
     parentElement.removeChild(script);
   }
 }; // The actual component
-const Commento = ({ id }) => {
+const Commento = ({ id }: any) => {
   useEffect(() => {
     // If there's no window there's nothing to do for us
     if (!window) {

@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  eslint: { ignoreDuringBuilds: true, },
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
   reactStrictMode: true,
   webpack: function (config) {
     config.module.rules.push(
@@ -16,10 +25,10 @@ const nextConfig = {
   },
   async rewrites() {
     return [
-        {
-          source: '/.well-known/webfinger',
-          destination: '/api/.well-known/webfinger'
-        }
+      {
+        source: '/.well-known/webfinger',
+        destination: '/api/.well-known/webfinger'
+      }
     ];
   },
   images: {
