@@ -11,10 +11,11 @@ type blogDetails = {
     frontmatter: {
       description: string,
       title: string,
-      img: ImageDataLike,
+      img: any,
       category: string
     }
   }
+  slug: string
 }
 
 type MasonPanelProps = {

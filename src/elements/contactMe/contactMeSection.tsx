@@ -39,7 +39,7 @@ class ContactMeSection extends React.Component<object,ContactMeSectionStateInter
               </h3>
               <h1>Say Hi!</h1>
               <p className="font-blocky">
-                I'll reach out to you as soon as I can.
+                I&apos;ll reach out to you as soon as I can.
               </p>
             </div>
           </div>

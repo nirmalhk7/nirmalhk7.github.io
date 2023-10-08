@@ -25,7 +25,6 @@ import Commento from "../../elements/commento";
 import Utils from "../../elements/utils";
 import ReactMarkdown from 'react-markdown';
 import BlogInterface from "../../interfaces/blogInterface";
-import { getImage } from "gatsby-plugin-image";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { groupBy, sampleSize, sortBy } from "lodash";
@@ -199,9 +198,9 @@ const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<
                 ) : null} */}
               </div>
               <div className="blog-content__all">
-                <a className="btn btn--primary" href="/blog">
+                <Link className="btn btn--primary" href="/blog">
                   View All Posts
-                </a>
+                </Link>
               </div>
               <hr />
 

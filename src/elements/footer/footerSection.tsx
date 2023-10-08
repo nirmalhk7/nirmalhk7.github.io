@@ -44,7 +44,7 @@ const FooterSection = () => {
           <div>
             <span id="justinmaller" style={{ color: "#3d3d3d" }}>
               Image Credits &nbsp;
-              <a className="hidelink" href="/" style={{ color: "#3d3d3d" }}>
+              <a className="hidelink" href="https://justinmaller.com" style={{ color: "#3d3d3d" }}>
                 Beast Dreams II
               </a>
               &nbsp; by Justin Maller &nbsp;
