@@ -5,18 +5,39 @@ import Link from "next/link";
 import Image from "next/legacy/image";
 import beachImage from "../assets/images/BeachNK_1.jpg";
 
+type MiniProps = {
+  backgroundImage: string;
+  backgroundImageAlt: string;
+  title: string;
+  subtitle: string;
+  DescriptionComponent: React.ComponentType;
+};
+type MaxProps = {
+  bgImg: string;
+  orangeText: string;
+  HeadingTextComponent: React.ReactNode;
+  buttonDetails?: [string, string][];
+  showScrollDown?: boolean;
+};
+
 const Jumbotron = {
-  mini: ({bgImg, bgImgAlt, title, subtitle, DescriptionComponent}) => (
+  mini: ({
+    backgroundImage,
+    backgroundImageAlt,
+    title,
+    subtitle,
+    DescriptionComponent
+  }: MiniProps) => (
     <section
-      className="page-header  bg-fixed bg-center bg-no-repeat"
+      className="page-header bg-fixed bg-center bg-no-repeat"
       id={`${title}-header`}
     >
       <Image
         layout="fill"
         className="object-center object-cover pointer-events-none"
-        src={bgImg}
+        src={backgroundImage}
         placeholder="blur"
-        alt={bgImgAlt}
+        alt={backgroundImageAlt}
       />
       <div className="container mx-auto page-header__content">
         <article>
@@ -26,9 +47,7 @@ const Jumbotron = {
             </a>
           </h1>
           <div className="page-header__info">
-            <div className="page-header__cat">
-              {subtitle}
-            </div>
+            <div className="page-header__cat">{subtitle}</div>
           </div>
           <DescriptionComponent />
         </article>
@@ -41,18 +60,18 @@ const Jumbotron = {
     HeadingTextComponent,
     buttonDetails,
     showScrollDown,
-  }) => (
+  }: MaxProps) => (
 
     <section
       className={`s-home   bg-fixed bg-center bg-no-repeat bg-cover relative z-10`}
     >
       <Image
         layout="fill"
-        
+
         className="object-center object-cover pointer-events-none"
         src={beachImage}
         placeholder="blur"
-        alt="Me on the beack"
+        alt="Me on the beach"
       />
       <div className="z-0 bg-black h-full left-0 opacity-40 absolute top-0 w-full" />
       <div className="home-content  pt-40 z-10">

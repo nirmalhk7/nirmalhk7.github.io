@@ -48,11 +48,6 @@ const BlogListSection = ({ blogItems, sitename }: MasonPanelProps) => {
                           title={Utils.getFrontmatter(element).description}
                           href={`/blog/${element.slug}`}
                         >
-                          {/* <GatsbyImage
-                            alt={Utils.getFrontmatter(element).title}
-                            image={getImage(Utils.getFrontmatter(element).img)}
-                            layout="fill"
-                          /> */}
                           <Image src={`/blog/${element.childMarkdownRemark.frontmatter.img}`} width={500} height={300} alt="image" />
                         </Link>
                       </div>

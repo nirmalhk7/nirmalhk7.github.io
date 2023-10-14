@@ -3,15 +3,18 @@ import Blog from "../elements/blogIntroSection";
 import SearchEnggOp from "../elements/seoUtil";
 import WorkExperience from "../elements/workExperienceSection";
 import Layout from "../layouts/mainLayout";
-// import { StaticImage } from "gatsby-plugin-image";
 import Jumbotron from "../elements/jumbotron";
-// import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
+import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
 import Link from "next/link";
 import sampleSize from "lodash/sampleSize";
 import { GetStaticProps } from "next";
-import { loadMarkdownFiles } from "@/util/loadMarkdown";
+import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import Image from "next/legacy/image";
 import { QuoteInterface } from "@/elements/quoteSection";
+import Utils from "@/elements/utils";
+import ReactMarkdown from "react-markdown";
+import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from "react-accessible-accordion";
+import ProjectIntroSection from "@/elements/projectIntroSection";
 
 const IndexPage = ({
   mainContent,
@@ -62,33 +65,36 @@ const IndexPage = ({
         </div>
         <div className="container mx-auto ">
           <div className="columns-1 mobile-l:columns-2 gap-16 gap-y-16">
-            {/* <ReactSafelySetInnerHTML>{mainContent.childMarkdownRemark.html}</ReactSafelySetInnerHTML> */}
+            <ReactMarkdown>
+              {mainContent}
+            </ReactMarkdown>
+
             <div className="laptop:hidden tablet:block mobile-l:block">
               <Image src="https://avatars.githubusercontent.com/u/25480443"
-              // placeholder="blur"
-              width={500}
-              height={500}
-              alt="Nirmal Khedkar"
-              className="break-inside-avoid"
-              style={{
-                borderRadius: "70%",
-                padding: "1rem",
-                marginLeft: "auto",
-                marginRight: "auto",
-              }}
-            />
+                // placeholder="blur"
+                width={500}
+                height={500}
+                alt="Nirmal Khedkar"
+                className="break-inside-avoid"
+                style={{
+                  borderRadius: "70%",
+                  padding: "1rem",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              />
             </div>
 
             <div className="break-inside-avoid py-4">
               <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
-                <a
+                <Link
                   className="bg-accent border-4 border-accent text-white hover:text-black  no-underline w-full"
                   href={"./Resume.pdf"}
                   rel="noreferrer"
                   target="_blank"
                 >
                   Download My Resume
-                </a>
+                </Link>
                 <Link
                   className="border-4 no-underline border-accent  text-accent hover:text-black  w-full"
                   href="#contact"
@@ -98,13 +104,9 @@ const IndexPage = ({
               </div>
             </div>
             <div className="break-inside-avoid">
-              <h5 style={{ paddingTop: "0.5em" }}>
-                Familiar Languages, Frameworks and Libraries
-              </h5>
-              <hr />
+              <Utils.getHeader headerName="Familiar Languages, Frameworks and Libraries" />
               <div
                 className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4"
-                style={{ marginBottom: "5em" }}
               >
                 {skills.map((element, index) => (
                   <div
@@ -117,8 +119,7 @@ const IndexPage = ({
               </div>
             </div>
             <div className="break-inside-avoid">
-              <h5>Online Certification and Courses Taken</h5>
-              <hr />
+              <Utils.getHeader headerName="Online Certification and Courses Taken" />
               <div className="m-0">
                 <ul className="disc">
                   {onlineCourses.map((element, index) => (
@@ -131,8 +132,7 @@ const IndexPage = ({
               </div>
             </div>
             <div className="break-inside-avoid">
-              <h5>Prominent College Courses Taken</h5>
-              <hr />
+              <Utils.getHeader headerName="Prominent College Courses Taken" />
               <div className="m-0">
                 <ul className="disc">
                   {collegeCourses
@@ -163,7 +163,7 @@ const IndexPage = ({
         </div>
         <WorkExperience experience={workexperience} />
       </section>
-
+      <ProjectIntroSection projects={projects}/>
       <Blog name="Pitlane Chat" />
     </Layout>
   );
@@ -174,19 +174,25 @@ export default IndexPage;
 
 
 export const getStaticProps: GetStaticProps<any> = async () => {
-  const allCoursesYaml: any[] = require("../../content/yml/courses.yaml");
+  const allCoursesYaml: any[] = sampleSize(require("../../content/yml/courses.yaml"),5);
   const allSkillsYaml: any[] = require("../../content/yml/skills.yaml");
+  // Lodash get random 5 projects
+
   const allProfilesYaml: any[] = require("../../content/yml/profiles.yaml");
   const allMembershipsYaml: any[] = require("../../content/yml/memberships.yaml");
   const allWorkExperiencesYaml: any[] = require("../../content/yml/workexperiences.yaml");
   const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml")
 
+
   return {
     props: {
-      mainContent: "", collegeCourses: allCoursesYaml.filter(val => val.provider === null),
-      onlineCourses: allCoursesYaml.filter(val => val.provider !== null),
-      skills: allSkillsYaml, cv: allProfilesYaml, membership: allMembershipsYaml,
-      workexperience: allWorkExperiencesYaml, projects: loadMarkdownFiles("content/projects"),
+      mainContent: loadMarkdownFile("content/yml/mainContent.md", "mainContent", { getContent: true }).content,
+      collegeCourses: allCoursesYaml.filter(val => !val.provider),
+      onlineCourses: allCoursesYaml.filter(val => val.provider),
+      skills: allSkillsYaml, 
+      cv: allProfilesYaml, membership: allMembershipsYaml,
+      workexperience: allWorkExperiencesYaml, 
+      projects: sampleSize(loadMarkdownFiles("content/projects",{getExcerpt: true}),5),
       quote: sampleSize(allQuotesYaml)[0]
     }
   }

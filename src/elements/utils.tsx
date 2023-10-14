@@ -1,3 +1,8 @@
+import Link from "next/link";
+
+declare type buttonType = React.ForwardRefExoticComponent<Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof InternalLinkProps> & InternalLinkProps & {
+  children?: React.ReactNode;
+} & React.RefAttributes<HTMLAnchorElement>>;
 
 export default class Utils {
   static getFrontmatter(params: { childMarkdownRemark: { frontmatter: object } }): any {
@@ -32,5 +37,12 @@ export default class Utils {
         if (height >= initHeight) window.clearInterval(intval);
       }, 1);
     }
+  }
+
+  static getHeader({ headerName }: { headerName: string }) {
+    return (<><h5 className="mb-2">
+      {headerName}
+    </h5>
+      <hr className="mb-4" /></>);
   }
 }

@@ -7,7 +7,7 @@ interface ContactMeSectionStateInterface {
   message: string
 }
 
-class ContactMeSection extends React.Component<object,ContactMeSectionStateInterface> {
+class ContactMeSection extends React.Component<object, ContactMeSectionStateInterface> {
   constructor(props: object) {
     super(props);
     this.state = {
@@ -18,10 +18,10 @@ class ContactMeSection extends React.Component<object,ContactMeSectionStateInter
     };
     this.onChange = this.onChange.bind(this);
   }
-  onChange(event: React.SyntheticEvent) {
+  onChange(event: React.ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
-    const target = event.target as HTMLInputElement;
-    this.setState({ [target.id]: target.value });
+    const target = event.target;
+    this.setState({ [target.id]: target.value } as Pick<ContactMeSectionStateInterface, keyof ContactMeSectionStateInterface>);
   }
 
   render() {
@@ -85,7 +85,7 @@ class ContactMeSection extends React.Component<object,ContactMeSectionStateInter
                       cols={40}
                       id="message"
                       name="contactMessage: "
-                      onChange={this.onChange}
+                      onChange={event=> this.onChange}
                       placeholder="Message"
                       required
                       rows={10}
@@ -99,13 +99,12 @@ class ContactMeSection extends React.Component<object,ContactMeSectionStateInter
                       !this.state.name
                     }
                     style={{
-                      cursor: `${
-                        !this.state.email ||
-                        !this.state.subject ||
-                        !this.state.name
+                      cursor: `${!this.state.email ||
+                          !this.state.subject ||
+                          !this.state.name
                           ? "not-allowed"
                           : "default"
-                      }`,
+                        }`,
                     }}
                     type="submit"
                     value="Submit"

@@ -21,7 +21,6 @@ import {
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../layouts/mainLayout";
 import { CategoryList } from "../../elements/categoryList";
-import Commento from "../../elements/commento";
 import Utils from "../../elements/utils";
 import ReactMarkdown from 'react-markdown';
 import BlogInterface from "../../interfaces/blogInterface";

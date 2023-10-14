@@ -32,7 +32,7 @@ const LatestBlogSection = ({ relativeDirectory, frontmatter }) => {
                 className="entry-content text-white no-underline mb-10"
                 style={{ textDecoration: "none" }}
               >
-                <p>sss{frontmatter.description}</p>
+                <p>{frontmatter.description}</p>
               </div>
               <Link
                 className="font-blocky uppercase font-bold mr-4 border-4 no-underline p-5 text-white border-white hover:bg-white hover:text-black"

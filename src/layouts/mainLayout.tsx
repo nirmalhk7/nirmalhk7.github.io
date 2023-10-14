@@ -14,23 +14,22 @@ interface MainLayoutPropsInterface {
 }
 
 class MainLayout extends React.Component<MainLayoutPropsInterface> {
+
   componentDidMount() {
     const hdr = document.querySelector("header");
     const tbtn = document.getElementById("nav-button");
 
-    document.addEventListener("scroll", () => {
+    const handleScroll = () => {
       if (window.scrollY < hdr.offsetHeight + 300) {
-        hdr.classList.add("bg-transparent");
-        hdr.classList.add("absolute");
-        hdr.classList.remove("bg-black");
-        hdr.classList.remove("fixed");
+        hdr.classList.add("bg-transparent", "absolute");
+        hdr.classList.remove("bg-black", "fixed");
       } else {
-        hdr.classList.add("bg-black");
-        hdr.classList.add("fixed");
-        hdr.classList.remove("bg-transparent");
-        hdr.classList.remove("absolute");
+        hdr.classList.add("bg-black", "fixed");
+        hdr.classList.remove("bg-transparent", "absolute");
       }
-    });
+    };
+
+    document.addEventListener("scroll", handleScroll);
 
     tbtn.onclick((event) => {
       event.preventDefault();
@@ -56,7 +55,7 @@ class MainLayout extends React.Component<MainLayoutPropsInterface> {
 
     return (
       <>
-        <SEOUtil/>
+        <SEOUtil />
         <Navbar />
         <main>{this.props.children}</main>
         <RandomQuote quote={this.props.quote} />

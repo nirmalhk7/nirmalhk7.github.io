@@ -1,12 +1,30 @@
 import Link from "next/link";
+import { Router, useRouter } from "next/router";
 import React from "react";
 import Scrollspy from "react-scrollspy";
 
 
 const Navbar = () => {
-  const navbarList = ["Home", "About", "Projects", "Blog", "Contact"];
+  const router = useRouter();
+  const navbarData = [{
+    label: "Home",
+    route: "/"
+  }, {
+    label: "About",
+    route: "/#about"
+  }, {
+    label: "Projects",
+    route: router.pathname === "/" ? "/#project" : "/projects"
+  }, {
+    label: "Blog",
+    route: router.pathname === "/" ? "/#blog" : "/blog"
+  }, {
+    label: "Contact",
+    route: "#contact"
+  }]
+
   return (
-    <header className="font-blocky transition duration-200 font-bold text-navbar uppercase  w-full h-navbar bg-transparent z-40 absolute top-0">
+    <header className="font-blocky transition duration-200 font-bold text-navbar uppercase w-full h-navbar bg-transparent z-40 absolute top-0">
       <Link href="/">
         <div className="left-20 inline-block text-white m-0 p-0 absolute">
           nirmalhk7
@@ -16,32 +34,15 @@ const Navbar = () => {
         <Scrollspy
           className="inline-block h-16 m-0 list-none text-white"
           currentClassName="text-accent"
-          items={navbarList.map((element) => element.toLowerCase())}
+          items={navbarData.map((element) => element.label.toLowerCase())}
           offset={-100}
         >
-          {navbarList.map((element, index) => {
-            let hrx;
-            if (
-              element === "Contact" ||
-              element === "About" ||
-              element === "Home"
-            ) {
-              hrx = `#${element.toLowerCase()}`;
-              if (element === "About" || element === "Home") {
-                hrx = `/${hrx}`;
-              }
-            } else {
-              hrx = `/${element.toLowerCase()}`;
-            }
-
-            return (
-              <li className="text-white  inline-block pl-0 mr-8" key={index}>
-                <Link className="hover:text-accent" title={element} href={hrx}>
-                  {element}
-                </Link>
-              </li>
-            );
-          })}
+          {navbarData.map((element) =>
+            <li className="text-white inline-block pl-0 mr-8" key={element.label}>
+              <Link className="hover:text-accent" title={element.label} href={element.route}>
+                {element.label}
+              </Link>
+            </li>)}
         </Scrollspy>
       </nav>
       <Link

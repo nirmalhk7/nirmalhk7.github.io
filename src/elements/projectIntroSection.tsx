@@ -12,13 +12,12 @@ import ProjectInterface from "../interfaces/projectInterface";
 import Link from "next/link";
 
 interface ProjectIntroSectionInterface {
-    nodes: { 
-        childMarkdownRemark: ProjectInterface,
-        id: string 
-    }[]
+    childMarkdownRemark: ProjectInterface,
+    id: string,
+    slug: string
 }
 
-const ProjectIntroSection = ({ projects }: { projects: ProjectIntroSectionInterface }) => (
+const ProjectIntroSection = ({ projects }: { projects: ProjectIntroSectionInterface[] }) => (
     <section className="bg-gray" id="projects">
         <div className="mobile-l:container mx-auto">
             <div className="grid grid-cols-2  tablet:grid-cols-2 mobile-l:grid-cols-1">
@@ -40,7 +39,7 @@ const ProjectIntroSection = ({ projects }: { projects: ProjectIntroSectionInterf
                 </div>
                 <div>
                     <Accordion className="accordion">
-                        {projects.nodes.map((element) => (
+                        {projects.map((element) => (
                             <AccordionItem
                                 className="accordion__item"
                                 key={Utils.getFrontmatter(element).title}
