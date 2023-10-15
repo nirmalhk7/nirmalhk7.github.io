@@ -22,7 +22,7 @@ const FooterSection = () => {
                       target="blank"
                     >
                       {/* TODO Increase Icon size in Mobile view */}
-                      <FontAwesomeIcon icon={element.class} />
+                      <FontAwesomeIcon icon={element.class} size="sm"/>
                       <span>{element.name}</span>
                     </a>
                   </li>
@@ -35,7 +35,7 @@ const FooterSection = () => {
         <div className="w-full">
           <div>
             <span style={{ color: "#3d3d3d" }}>
-              Made with <FontAwesomeIcon icon={faHeart} /> by Nirmal Khedkar<a rel="me" href="https://mstdn.social/@nirmalhk7"></a>
+              Made with <FontAwesomeIcon icon={faHeart} size="xs" /> by Nirmal Khedkar<a rel="me" href="https://mstdn.social/@nirmalhk7"></a>
             </span>
             <span style={{ color: "#3d3d3d" }}>
               Last Updated: July 20, 2020
