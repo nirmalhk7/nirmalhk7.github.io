@@ -1,6 +1,6 @@
 - name: LinkedIn
   url: https://www.linkedin.com/in/nirmalhk7/
-  icon: fab fa-linkedin
+  icon: fab fa-mastodon
 - name: GitHub
   url: https://www.github.com/nirmalhk7
   icon: fab fa-github

@@ -123,7 +123,7 @@ const IndexPage = ({
               <div className="m-0">
                 <ul className="disc">
                   {onlineCourses.map((element, index) => (
-                    <li key={index}>
+                    <li key={index} style={{paddingTop:"0.4em"}}>
                       {element.name} by {element.provider}- (
                       <a href={element.link}>link</a>)
                     </li>
@@ -143,13 +143,12 @@ const IndexPage = ({
               </div>
             </div>
             {/* TODO: This is causing some weird padding issues. */}
-            {/* <div className="break-inside-avoid">
-            <h5>Memberships</h5>
-            <hr />
+            <div className="break-inside-avoid">
+            <Utils.getHeader headerName="Volunteer Experience" />
             <div className="m-0">
               <ul className="disc">
               {membership.map((element, index) => (
-                  <li key={index}>
+                  <li key={index} style={{paddingTop:"0.4em"}}>
                     {element.position} at&nbsp;
                     <a href={element.clubwebsite} key={index}>
                       {element.club}
@@ -158,7 +157,7 @@ const IndexPage = ({
                 ))}
               </ul>
             </div>
-          </div> */}
+          </div>
           </div>
         </div>
         <WorkExperience experience={workexperience} />

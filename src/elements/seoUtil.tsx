@@ -31,6 +31,7 @@ function SEOUtil({ description, lang='en', meta=[], title }: SEOInterface) {
       <meta name="twitter:creator" content='Nirmal Khedkar' />
       <meta name="twitter:title" content={finalTitle}/>
       <meta name="twitter:description" content=""/>
+      <link rel="me" href="https://fosstodon.org/@nirmalhk7"/>
       <title>{finalTitle}</title>
     </Head>
   );

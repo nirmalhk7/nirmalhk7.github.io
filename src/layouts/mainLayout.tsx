@@ -59,7 +59,7 @@ class MainLayout extends React.Component<MainLayoutPropsInterface> {
         <Navbar />
         <main>{this.props.children}</main>
         <RandomQuote quote={this.props.quote} />
-        <ContactForm />
+        {/* <ContactForm /> */}
         <Footer />
       </>
     );

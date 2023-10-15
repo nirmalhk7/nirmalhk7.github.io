@@ -1,12 +1,25 @@
 - timeframe: June 2022 - Present
   company: Visa Inc
   post: Software Engineer
-  description: Visa Developer Platform
+  description: 
+  - Successfully migrated Springboot services to asynchronous Reactor architecture for performance improvements.
+  - Handled all test, infra and deployment issues for release of these components in internal test environments and production.
+  - Proficient in handling unpredictable client and production errors.
+  - Introduced test coverage practices and end-to-end Jenkins pipelines, thus improving engineering practices at my team and reduced development time.
+
 - timeframe: May 2021 - July 2021
   company: Visa Inc
-  post: Software Developer Intern
-  description: Coordinated with different Visa teams to list out various metrics collected from Visa Developer Platform (VDP), to analyse and generate reports on the same. Collaborated and developed a full-stack website with GraphQL APIs to provide VDP clients, developers and product managers appropriate means to access this data from one single source.
-- timeframe: Oct 2019 - Jan 2020
+  post: Software Engineer Intern
+  description: 
+  - Analyzed several data points within Visa Developer Platform ecosystem to gather data on route, API, product and client level.
+  - Merged the above data into a single portal and developed a frontend panel to query said data. Also provided an API access to query generated data using GraphQL.
+  - Angular, GraphQL, Springboot, Hibernate, MySQL, Prometheus.
+
+- timeframe: Oct 2019 - April 2021
   company: Twzzr
-  post: Product Developer Intern
-  description: Spearheaded the development and release of the web app with Firebase backend. Introduced and formalized tools which improve customer experience or developer experience while building for the company, like analytical and error collection.
+  post: Tech Lead
+  description: 
+  - Restructured code to make it more scalable and compatible with future requirements.
+  - Brainstormed business requirements, design plans and translated them into development tasks.
+  - Introduced linters, automated version bumps, CI-CD pipelines to improve development experience and quality of code.
+  - Implemented customer engagement and analytics tools, such as chatbots, log metrics and web traffic analysis to gain insights into customer experience and proactively address errors.

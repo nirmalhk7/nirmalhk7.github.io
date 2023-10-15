@@ -18,10 +18,12 @@ const Navbar = () => {
   }, {
     label: "Blog",
     route: router.pathname === "/" ? "/#blog" : "/blog"
-  }, {
-    label: "Contact",
-    route: "#contact"
-  }]
+  }
+  // , {
+  //   label: "Contact",
+  //   route: "#contact"
+  // }
+]
 
   return (
     <header className="font-blocky transition duration-200 font-bold text-navbar uppercase w-full h-navbar bg-transparent z-40 absolute top-0">

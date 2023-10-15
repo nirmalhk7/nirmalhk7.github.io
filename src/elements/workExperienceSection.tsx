@@ -4,10 +4,10 @@ type WorkExperienceType = {
   timeframe: string,
   company: string,
   post: string,
-  description: string
+  description: string | string[]
 }
 
-const WorkExperienceSection = ({ experience }: {experience: WorkExperienceType[]}) => (
+const WorkExperienceSection = ({ experience }: { experience: WorkExperienceType[] }) => (
   <div className="container mx-auto">
     <div className="col text-center">
       <h3>My Work Experience</h3>
@@ -26,7 +26,7 @@ const WorkExperienceSection = ({ experience }: {experience: WorkExperienceType[]
                 <h5>{element.post}</h5>
               </div>
               <div className="timeline__desc">
-                <p>{element.description}</p>
+                {typeof element.description === 'string' ? <p>{element.description}</p> : <ul>{element.description.map(line => <li className="pt-2" key={line}>{line}</li>)}</ul>}
               </div>
             </div>
           </div>
