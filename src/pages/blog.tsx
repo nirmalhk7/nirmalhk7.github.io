@@ -1,7 +1,6 @@
 import React from "react";
 
 import Layout from "../layouts/mainLayout";
-import SearchEnggOp from "../elements/seoUtil";
 import LatestBlogSection from "../elements/latestBlogSection";
 import BlogListSection from "../elements/blogListSection";
 import Jumbotron from "../elements/jumbotron";
@@ -32,8 +31,7 @@ type BlogPageTypes= {
 const Blog = ({ blogs, location, data, quote }: any) => {
   // if (!data) return null;
   return (
-    <Layout location={location} quote={quote}>
-      <SearchEnggOp title="Pitlane Chat" />
+    <Layout location={location} quote={quote} metadata={{title:"Pitlane Chat", description:"I love writing about my opinions and general topics. Follow in."}}>
       <Jumbotron.Max
         HeadingTextComponent={
           <h1 className="page-header__title">

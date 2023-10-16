@@ -736,8 +736,6 @@ select:-webkit-autofill:focus {
  *
  * ------------------------------------------------------------------- */
 .s-home {
-    width: 100%;
-    height: 100vh;
     min-height: 786px;
     background-color: transparent;
     position: relative;
@@ -776,8 +774,7 @@ select:-webkit-autofill:focus {
  * ------------------------------------------------------------------- */
 .home-content {
     display: table-cell;
-    width: 100%;
-    height: 100%;
+    
     vertical-align: bottom;
     padding-bottom: 19.2rem;
     position: relative;
@@ -4369,14 +4366,6 @@ select:-webkit-autofill:focus {
  * # home - (_site-layout.scss)
  *
  * ------------------------------------------------------------------- */
-.s-home {
-    width: 100%;
-    height: 100vh;
-    min-height: 786px;
-    background-color: transparent;
-    position: relative;
-    display: table;
-}
 
 .s-home .shadow-overlay {
     position: absolute;

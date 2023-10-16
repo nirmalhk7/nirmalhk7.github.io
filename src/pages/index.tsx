@@ -1,13 +1,12 @@
 import React from "react";
 import Blog from "../elements/blogIntroSection";
-import SearchEnggOp from "../elements/seoUtil";
 import WorkExperience from "../elements/workExperienceSection";
 import Layout from "../layouts/mainLayout";
 import Jumbotron from "../elements/jumbotron";
 import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
 import Link from "next/link";
 import sampleSize from "lodash/sampleSize";
-import { GetStaticProps } from "next";
+import { GetStaticProps, Metadata } from "next";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import Image from "next/legacy/image";
 import { QuoteInterface } from "@/elements/quoteSection";
@@ -28,11 +27,7 @@ const IndexPage = ({
   quote
 }: any) => {
   return (
-    <Layout location="/" quote={quote}>
-      <SearchEnggOp
-        description="Welcome to Nirmal Khedkar's Official Website"
-        title="Home"
-      />
+    <Layout location="/" quote={quote} >
       <Jumbotron.Max
         HeadingTextComponent={
           <h1>
@@ -123,7 +118,7 @@ const IndexPage = ({
               <div className="m-0">
                 <ul className="disc">
                   {onlineCourses.map((element, index) => (
-                    <li key={index} style={{paddingTop:"0.4em"}}>
+                    <li key={index} style={{ paddingTop: "0.4em" }}>
                       {element.name} by {element.provider}- (
                       <a href={element.link}>link</a>)
                     </li>
@@ -144,25 +139,25 @@ const IndexPage = ({
             </div>
             {/* TODO: This is causing some weird padding issues. */}
             <div className="break-inside-avoid">
-            <Utils.getHeader headerName="Volunteer Experience" />
-            <div className="m-0">
-              <ul className="disc">
-              {membership.map((element, index) => (
-                  <li key={index} style={{paddingTop:"0.4em"}}>
-                    {element.position} at&nbsp;
-                    <a href={element.clubwebsite} key={index}>
-                      {element.club}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <Utils.getHeader headerName="Volunteer Experience" />
+              <div className="m-0">
+                <ul className="disc">
+                  {membership.map((element, index) => (
+                    <li key={index} style={{ paddingTop: "0.4em" }}>
+                      {element.position} at&nbsp;
+                      <a href={element.clubwebsite} key={index}>
+                        {element.club}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
           </div>
         </div>
         <WorkExperience experience={workexperience} />
       </section>
-      <ProjectIntroSection projects={projects}/>
+      <ProjectIntroSection projects={projects} />
       <Blog name="Pitlane Chat" />
     </Layout>
   );
@@ -173,7 +168,7 @@ export default IndexPage;
 
 
 export const getStaticProps: GetStaticProps<any> = async () => {
-  const allCoursesYaml: any[] = sampleSize(require("../../content/yml/courses.yaml"),5);
+  const allCoursesYaml: any[] = sampleSize(require("../../content/yml/courses.yaml"), 5);
   const allSkillsYaml: any[] = require("../../content/yml/skills.yaml");
   // Lodash get random 5 projects
 
@@ -188,10 +183,10 @@ export const getStaticProps: GetStaticProps<any> = async () => {
       mainContent: loadMarkdownFile("content/yml/mainContent.md", "mainContent", { getContent: true }).content,
       collegeCourses: allCoursesYaml.filter(val => !val.provider),
       onlineCourses: allCoursesYaml.filter(val => val.provider),
-      skills: allSkillsYaml, 
+      skills: allSkillsYaml,
       cv: allProfilesYaml, membership: allMembershipsYaml,
-      workexperience: allWorkExperiencesYaml, 
-      projects: sampleSize(loadMarkdownFiles("content/projects",{getExcerpt: true}),5),
+      workexperience: allWorkExperiencesYaml,
+      projects: sampleSize(loadMarkdownFiles("content/projects", { getExcerpt: true }), 5),
       quote: sampleSize(allQuotesYaml)[0]
     }
   }

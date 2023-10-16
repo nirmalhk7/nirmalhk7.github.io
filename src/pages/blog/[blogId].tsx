@@ -1,5 +1,4 @@
 import React from "react";
-import SearchEnggOp from "../../elements/seoUtil";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
@@ -21,7 +20,6 @@ import {
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../layouts/mainLayout";
 import { CategoryList } from "../../elements/categoryList";
-import Utils from "../../elements/utils";
 import ReactMarkdown from 'react-markdown';
 import BlogInterface from "../../interfaces/blogInterface";
 import Link from "next/link";
@@ -29,8 +27,6 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { groupBy, sampleSize, sortBy } from "lodash";
 import { QuoteInterface } from "@/elements/quoteSection";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
-import { readdirSync } from "fs";
-
 
 
 interface BlogTemplateInterface {
@@ -53,8 +49,7 @@ const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<
     title: pageTitle,
   };
   return (
-    <Layout location={location} quote={quote}>
-      <SearchEnggOp title={currentBlog.childMarkdownRemark.frontmatter.title} />
+    <Layout location={location} quote={quote} metadata={{ title: currentBlog.childMarkdownRemark.frontmatter.title }}>
       <article className="blog-single has-bottom-sep">
         <div
           className="page-header  bg-fixed bg-center bg-no-repeat text-center"
@@ -146,7 +141,7 @@ const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<
               </TelegramShareButton>
               <EmailShareButton
                 body="I found this interesting blog article that you might like:"
-                subject="Check out this blog on nirmalhk7.tech"
+                subject="Check out this blog on nirmalhk7.com"
                 {...shareProps}
               >
                 <FontAwesomeIcon
@@ -226,15 +221,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<any> = async (context) => {
   const allQuotesYaml: QuoteInterface[] = require("../../../content/yml/quotes.yaml");
-  const blogId= context.params && context.params.blogId;
-  const currentBlog= loadMarkdownFile("content/blog/"+blogId+".md",blogId, {getContent: true})
-  
-  let blogDetail= loadMarkdownFiles("content/blog",{getContent: true, getExcerpt: true});
+  const blogId = context.params && context.params.blogId;
+  const currentBlog = loadMarkdownFile("content/blog/" + blogId + ".md", blogId, { getContent: true })
+
+  let blogDetail = loadMarkdownFiles("content/blog", { getContent: true, getExcerpt: true });
   // context.params.blogId
- 
-  blogDetail= sortBy(blogDetail, blog=>blog.childMarkdownRemark.frontmatter.date);
-  return { props: { currentBlog, 
-  quote: sampleSize(allQuotesYaml)[0], blogDetail}}
+
+  blogDetail = sortBy(blogDetail, blog => blog.childMarkdownRemark.frontmatter.date);
+  return {
+    props: {
+      currentBlog,
+      quote: sampleSize(allQuotesYaml)[0], blogDetail
+    }
+  }
 }
 
 export default BlogTemplate;

@@ -35,11 +35,10 @@ interface ProjectsPageTypes {
 }
 
 const Projects = ({ location, projects, quote }: any) => (
-  <Layout location={location} quote={quote}>
-    <SearchEnggOp title="Projects" />
+  <Layout location={location} quote={quote} metadata={{title:"Projects"}}>
     <Jumbotron.mini
-      bgImg={nasaGalaxy}
-      bgImgAlt="Earth from Space"
+      backgroundImage={nasaGalaxy}
+      backgroundImageAlt="Earth from Space"
       title="Projects"
       subtitle="Projects Catalogue of Nirmal Khedkar"
       DescriptionComponent={()=><p className="narrow">

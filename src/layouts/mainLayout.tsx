@@ -5,12 +5,13 @@ import Footer from "../elements/footer/footerSection";
 import ContactForm from "../elements/contactMe/contactMeSection";
 import RandomQuote, { QuoteInterface } from "../elements/quoteSection";
 import Utils from "../elements/utils";
-import SEOUtil from "../elements/seoUtil";
+import { NextSeo, NextSeoProps } from "next-seo";
 
 interface MainLayoutPropsInterface {
   location: string,
   children: any,
-  quote: QuoteInterface
+  quote: QuoteInterface,
+  metadata?: NextSeoProps
 }
 
 class MainLayout extends React.Component<MainLayoutPropsInterface> {
@@ -51,11 +52,11 @@ class MainLayout extends React.Component<MainLayoutPropsInterface> {
     //                                                         Y8b d88P
     //                                                          "Y88P"
 
-    // Find my resume here: https://nirmalhk7.tech/Resume.pdf`);
+    // Find my resume here: https://nirmalhk7.com/Resume.pdf`);
 
     return (
       <>
-        <SEOUtil />
+        <NextSeo {...this.props.metadata}  />
         <Navbar />
         <main>{this.props.children}</main>
         <RandomQuote quote={this.props.quote} />

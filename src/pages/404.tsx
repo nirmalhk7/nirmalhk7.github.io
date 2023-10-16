@@ -1,11 +1,9 @@
 import React from "react";
 
 import Layout from "../layouts/mainLayout";
-import SearchEnggOp from "../elements/seoUtil";
 
 const NotFoundPage = ({ location }) => (
-  <Layout location={location} quote={{}}>
-    <SearchEnggOp title="404: Not Found" />
+  <Layout location={location} quote={{}} metadata={{title:"404"}}>
     <section className="page-header  bg-fixed bg-center bg-no-repeat bg-f1Car">
       <div className="page-header__content  m-auto">
         <article className="container mx-auto">

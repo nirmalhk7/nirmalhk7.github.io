@@ -117,16 +117,6 @@ class ContactMeSection extends React.Component<object, ContactMeSectionStateInte
                 </h4>
                 <p>
                   nirmalhk7@gmail.com
-                  <br />
-                  hello@nirmalhk7.tech
-                </p>
-                <h4 className="h06 text-white">Address</h4>
-                <p>
-                  Block 5,
-                  <br /> National Institute of Technology Karnataka Surathkal
-                  Hostel,
-                  <br /> NITK Surathkal,
-                  <br /> Karnataka- 575025, India
                 </p>
               </div>
             </div>
