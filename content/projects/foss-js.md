@@ -1,5 +1,5 @@
 ---
-title: Open Source Contributions
+title: FOSS - JS Libraries
 tags: ['JS']
 ---
 

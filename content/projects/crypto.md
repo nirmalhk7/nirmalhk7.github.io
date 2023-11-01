@@ -2,7 +2,7 @@
 title: Crypto
 tags: ['C++']
 ---
-Built with Diffie Hellman principles. Wanna get that James Bond feeling?
+Built with Diffie Hellman principles.
 
 ##### About
 The Crypto can be used to send information encrypted. Before you begin conversation, all you need is:- 
@@ -26,13 +26,6 @@ On Cranberry (v3.01) edition, anybody who knew the names of the senders and reci
 
 ##### Inspiration
 The Movie _The Imitation Game_ ,based on Alan Turing's life, played by Benedict Cumberbatch and Keira Knightley.
-
-![alt text][logo]
-
-[logo]: https://cdn-static.denofgeek.com/sites/denofgeek/files/styles/main_wide/public/7/89//imitation-game-poster.jpg?itok=J8A4ABiU "The Imitation Game"
-
-##### Direction of Improvement
-I've not thought of any further improvements yet.
 
 ##### Makers
 Nirmal Khedkar ([@nirmalhk7](www.github.com/nirmalhk7)) is the sole maker of this project.
