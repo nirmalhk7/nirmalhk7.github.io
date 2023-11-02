@@ -5441,3 +5441,15 @@ article.blog-single .blog-content {
         margin: 3rem 0 3rem;
     }
 }
+
+@media only screen and (max-width: 800px) {
+    .header-nav-wrap {
+        height: auto;
+        width: 100%;
+        right: auto;
+        top: 0;
+        left: 0;
+        background-color: #000000;
+        padding: 120px 40px 21px;
+    }
+}

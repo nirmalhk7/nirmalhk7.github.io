@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { Router, useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import Scrollspy from "react-scrollspy";
 
 
 const Navbar = () => {
   const router = useRouter();
+  const [mobileMenuClick,mobileMenuSet]=useState(false)
   const navbarInternalData = [{
     label: "Home",
     route: "/",
@@ -44,7 +45,7 @@ const Navbar = () => {
           nirmalhk7
         </div>
       </Link>
-      <nav className="absolute right-20 hidden tablet:block">
+      <nav className={`header-nav-wrap absolute right-20 tablet:block tablet:transition-all ${!mobileMenuClick?'hidden':null}`}>
         <Scrollspy
           className="inline-block h-16 m-0 list-none text-white"
           currentClassName="text-accent"
@@ -66,8 +67,9 @@ const Navbar = () => {
         </Scrollspy>
       </nav>
       <Link
-        className="header-menu-toggle block tablet:hidden"
+        className={`header-menu-toggle block tablet:hidden ${mobileMenuClick ? 'is-clicked': ''}`}
         id="nav-button"
+        onClick={e=>mobileMenuSet(!mobileMenuClick)}
         href="#0"
       >
         <span>Menu</span>
