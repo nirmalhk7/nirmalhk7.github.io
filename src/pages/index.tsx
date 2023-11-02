@@ -44,7 +44,7 @@ const IndexPage = ({
           ["More About Me", "#about"],
         ]}
         orangeText="Hey!"
-        showScrollDown
+        showScrollDown={!process.env.NEXT_PUBLIC_LEANMODE}
       />
       {process.env.NEXT_PUBLIC_LEANMODE!==true? null: <>
         <section className="pt-56 pb-32 bg-white relative " id="about">

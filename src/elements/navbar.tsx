@@ -6,24 +6,36 @@ import Scrollspy from "react-scrollspy";
 
 const Navbar = () => {
   const router = useRouter();
-  const navbarData = [{
+  const navbarInternalData = [{
     label: "Home",
-    route: "/"
+    route: "/",
+    lean: true
   }, {
     label: "About",
-    route: "/#about"
+    route: "/#about",
+    lean: false
   }, {
     label: "Projects",
-    route: router.pathname === "/" ? "/#project" : "/projects"
+    route: router.pathname === "/" ? "/#project" : "/projects",
+    lean: false
   }, {
     label: "Blog",
-    route: router.pathname === "/" ? "/#blog" : "/blog"
+    route: router.pathname === "/" ? "/#blog" : "/blog",
+    lean: false
   }
-  // , {
-  //   label: "Contact",
-  //   route: "#contact"
-  // }
-]
+    , {
+    label: "Contact",
+    route: "#contact",
+    lean: false
+  }
+  ].filter(i => i)
+
+  const navbarExternalData = [{
+    label: "Blog",
+    route: "https://linkedin.com/in/nirmalhk7",
+    lean: true
+  }]
+  const checkIfValid = (flag: boolean) => String(flag) === process.env.NEXT_PUBLIC_LEANMODE;
 
   return (
     <header className="font-blocky transition duration-200 font-bold text-navbar uppercase w-full h-navbar bg-transparent z-40 absolute top-0">
@@ -36,14 +48,20 @@ const Navbar = () => {
         <Scrollspy
           className="inline-block h-16 m-0 list-none text-white"
           currentClassName="text-accent"
-          items={navbarData.map((element) => element.label.toLowerCase())}
+          items={navbarInternalData.map((element) => element.label.toLowerCase())}
           offset={-100}
         >
-          {navbarData.map((element) =>
+          {navbarInternalData.filter(i => checkIfValid(i.lean)).map((element) =>
             <li className="text-white inline-block pl-0 mr-8" key={element.label}>
               <Link className="hover:text-accent" title={element.label} href={element.route}>
                 {element.label}
               </Link>
+            </li>)}
+          {navbarExternalData.filter(i => checkIfValid(i.lean)).map((element) =>
+            <li className="text-white inline-block pl-0 mr-8" key={element.label}>
+              <a rel="noreferrer" target="_blank" className="hover:text-accent" title={element.label} href={element.route}>
+                {element.label}
+              </a>
             </li>)}
         </Scrollspy>
       </nav>
