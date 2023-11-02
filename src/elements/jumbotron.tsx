@@ -2,7 +2,7 @@ import React from "react";
 
 import SocialMediaIcons from "./social/socialSection";
 import Link from "next/link";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import beachImage from "../assets/images/BeachNK_1.jpg";
 
 type MiniProps = {
@@ -38,6 +38,7 @@ const Jumbotron = {
         src={backgroundImage}
         placeholder="blur"
         alt={backgroundImageAlt}
+        style={{height:"100vh"}}
       />
       <div className="container mx-auto page-header__content">
         <article>
@@ -63,17 +64,17 @@ const Jumbotron = {
   }: MaxProps) => (
 
     <section
-      className={`s-home   bg-fixed bg-center bg-no-repeat bg-cover relative z-10`}
+      className={`s-home z-10 py-0`}
     >
       <Image
         layout="fill"
 
-        className="object-center object-cover pointer-events-none"
+        className="object-right object-cover pointer-events-none tablet:object-center !h-screen"
         src={beachImage}
         placeholder="blur"
         alt="Me on the beach"
       />
-      <div className="z-0 bg-black h-full left-0 opacity-40 absolute top-0 w-full" />
+      <div className="z-0 bg-black h-screen left-0 opacity-40 absolute top-0 w-full" />
       <div className="home-content  pt-40 z-10">
         <div className="tablet:container mx-auto home-content__main">
           <h3 className="ital-hover">{orangeText}</h3>

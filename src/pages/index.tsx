@@ -46,7 +46,8 @@ const IndexPage = ({
         orangeText="Hey!"
         showScrollDown
       />
-      <section className="pt-56 pb-32 bg-white relative " id="about">
+      {process.env.NEXT_PUBLIC_LEANMODE!==true? null: <>
+        <section className="pt-56 pb-32 bg-white relative " id="about">
         <div className="w-100 text-center">
           <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
             <div className="w-full text-center">
@@ -159,6 +160,8 @@ const IndexPage = ({
       </section>
       <ProjectIntroSection projects={projects} />
       <Blog name="Pitlane Chat" />
+      </>}
+      
     </Layout>
   );
 }
