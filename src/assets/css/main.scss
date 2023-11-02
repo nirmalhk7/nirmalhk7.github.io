@@ -736,7 +736,6 @@ select:-webkit-autofill:focus {
  *
  * ------------------------------------------------------------------- */
 .s-home {
-    min-height: 786px;
     background-color: transparent;
     position: relative;
     display: table;
@@ -772,13 +771,6 @@ select:-webkit-autofill:focus {
 /* ------------------------------------------------------------------- 
  * ## home content - (_site-layout.scss) 
  * ------------------------------------------------------------------- */
-.home-content {
-    display: table-cell;
-    
-    vertical-align: bottom;
-    padding-bottom: 19.2rem;
-    position: relative;
-}
 
 .home-content h3 {
     font-family: 'Montserrat', sans-serif;
@@ -2559,7 +2551,6 @@ select:-webkit-autofill:focus {
 .s-home {
     width: 100%;
     height: 100vh;
-    min-height: 786px;
     background-color: transparent;
     position: relative;
     display: table;
@@ -2599,8 +2590,7 @@ select:-webkit-autofill:focus {
     display: table-cell;
     width: 100%;
     height: 100%;
-    vertical-align: bottom;
-    padding-bottom: 19.2rem;
+    vertical-align: middle;
     position: relative;
 }
 
@@ -4397,14 +4387,7 @@ select:-webkit-autofill:focus {
 /* ------------------------------------------------------------------- 
  * ## home content - (_site-layout.scss) 
  * ------------------------------------------------------------------- */
-.home-content {
-    display: table-cell;
-    width: 100%;
-    height: 100%;
-    vertical-align: bottom;
-    padding-bottom: 19.2rem;
-    position: relative;
-}
+
 
 .home-content h3 {
     font-family: 'Montserrat', sans-serif;

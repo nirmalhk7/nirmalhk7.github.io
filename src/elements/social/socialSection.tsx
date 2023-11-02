@@ -39,11 +39,6 @@ export const social = [
     name: "Goodreads",
     link: "https://www.goodreads.com/user/show/93069537-nirmal",
     class: faGoodreads,
-  },
-  {
-    name: "RSS",
-    link: "/feed.xml",
-    class: faRss,
   }
 ];
 
