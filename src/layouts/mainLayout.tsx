@@ -56,11 +56,12 @@ class MainLayout extends React.Component<MainLayoutPropsInterface> {
 
     return (
       <>
-        <NextSeo {...this.props.metadata}  />
+        <NextSeo {...this.props.metadata} />
         <Navbar />
         <main>{this.props.children}</main>
+        {!process.env.NEXT_PUBLIC_LEANMODE ? <>
         <RandomQuote quote={this.props.quote} />
-        {/* <ContactForm /> */}
+          <ContactForm /></> : null}
         <Footer />
       </>
     );

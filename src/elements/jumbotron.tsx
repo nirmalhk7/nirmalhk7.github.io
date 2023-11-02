@@ -16,7 +16,7 @@ type MaxProps = {
   bgImg: string;
   orangeText: string;
   HeadingTextComponent: React.ReactNode;
-  buttonDetails?: [string, string][];
+  buttonDetails: [string, string][];
   showScrollDown?: boolean;
 };
 
@@ -38,7 +38,7 @@ const Jumbotron = {
         src={backgroundImage}
         placeholder="blur"
         alt={backgroundImageAlt}
-        style={{height:"100vh"}}
+        style={{ height: "100vh" }}
       />
       <div className="container mx-auto page-header__content">
         <article>
@@ -69,7 +69,7 @@ const Jumbotron = {
       <Image
         layout="fill"
 
-        className="object-right object-cover pointer-events-none tablet:object-center !h-screen"
+        className="object-right object-cover pointer-events-none laptop:object-center !h-screen"
         src={beachImage}
         placeholder="blur"
         alt="Me on the beach"
@@ -80,16 +80,22 @@ const Jumbotron = {
           <h3 className="ital-hover">{orangeText}</h3>
           {HeadingTextComponent}
           <div className="static text-left gap-4 right-0 bottom-8  text-button font-blocky uppercase font-bold">
-            {buttonDetails &&
-              buttonDetails.map((item) => (
-                <Link
-                  className="inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
-                  key={item[0]}
-                  href={item[1]}
-                >
-                  {item[0]}
-                </Link>
-              ))}
+            {!process.env.NEXT_PUBLIC_LEANMODE && buttonDetails.map((item) => (
+              <Link
+                className="inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
+                key={item[0]}
+                href={item[1]}
+              >
+                {item[0]}
+              </Link>
+            ))}
+            {process.env.NEXT_PUBLIC_LEANMODE ? <Link
+              className="inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
+              href="/Resume.pdf"
+              rel="noreferrer" target="_blank"
+            >
+              My Resume
+            </Link> : null}
           </div>
           {showScrollDown ? (
             <div className="home-content__scroll">

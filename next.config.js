@@ -1,5 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects(){
+    if(process.env.NEXT_PUBLIC_LEANMODE){
+      return [{
+        source: '/projects',
+        destination: '/',
+        permanent: false
+      },
+      {
+        source: '/blog',
+        destination: '/',
+        permanent: false
+      },{
+        source: '/blog/:id',
+        destination: '/',
+        permanent: false
+      }]
+    }
+    return []
+  },
   eslint: { ignoreDuringBuilds: true, },
   typescript: {
     // !! WARN !!

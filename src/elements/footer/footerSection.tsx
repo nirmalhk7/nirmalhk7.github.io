@@ -9,8 +9,8 @@ import * as styles from "./footer.module.css";
 const FooterSection = () => {
   return (
     <footer>
-      <div className={styles.flicker_3}>
-        <div>
+      {process.env.NEXT_PUBLIC ? <div className={styles.flicker_3}>
+        <div className="mb-32">
           <ul className={styles.footer_social}>
             {social.map((element, index) => {
               if (element.link)
@@ -22,7 +22,7 @@ const FooterSection = () => {
                       target="blank"
                     >
                       {/* TODO Increase Icon size in Mobile view */}
-                      <FontAwesomeIcon icon={element.class} size="sm"/>
+                      <FontAwesomeIcon icon={element.class} size="sm" />
                       <span>{element.name}</span>
                     </a>
                   </li>
@@ -30,15 +30,12 @@ const FooterSection = () => {
             })}
           </ul>
         </div>
-      </div>
-      <div className="mt-32 text-center">
+      </div> : null}
+      <div className="text-center">
         <div className="w-full">
-          <div>
+          <div className="font-bold">
             <span style={{ color: "#3d3d3d" }}>
               Made with <FontAwesomeIcon icon={faHeart} size="xs" /> by Nirmal Khedkar<a rel="me" href="https://mstdn.social/@nirmalhk7"></a>
-            </span>
-            <span style={{ color: "#3d3d3d" }}>
-              Last Updated: July 20, 2020
             </span>
           </div>
           <div>
