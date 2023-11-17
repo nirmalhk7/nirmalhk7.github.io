@@ -13,6 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return <>
     <DefaultSeo
       defaultTitle="Nirmal Khedkar | Official Website"
+      
       description="SWE, Cloud Enthusiast, learner and motorsport enthusiast: Hi, I'm Nirmal Khedkar."
       openGraph={{
         type:'website',
