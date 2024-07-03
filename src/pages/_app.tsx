@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <DefaultSeo
       defaultTitle="Nirmal Khedkar | Official Website"
       
-      description="SWE, Cloud Enthusiast, learner and motorsport enthusiast: Hi, I'm Nirmal Khedkar."
+      description="SWE and Cloud enthusiast. Hi, I'm Nirmal Khedkar."
       openGraph={{
         type:'website',
         locale: 'en_IN',
@@ -26,6 +26,6 @@ export default function App({ Component, pageProps }: AppProps) {
       twitter={{cardType:'summary',handle:'nirmalhk7', site:"https://nirmalhk7.com"}}
       titleTemplate="%s | Nirmal Khedkar"
     />
-    <GoogleAnalytics gaId={process.env.NEXT_GOOGLETAG || ""}/>
+    <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLETAG || ""}/>
     <Component {...pageProps} /></>
 }
