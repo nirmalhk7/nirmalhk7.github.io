@@ -7,6 +7,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 
 import type { AppProps } from 'next/app'
 import { DefaultSeo, NextSeo } from "next-seo";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 config.autoAddCss = false;
 export default function App({ Component, pageProps }: AppProps) {
@@ -25,5 +26,6 @@ export default function App({ Component, pageProps }: AppProps) {
       twitter={{cardType:'summary',handle:'nirmalhk7', site:"https://nirmalhk7.com"}}
       titleTemplate="%s | Nirmal Khedkar"
     />
+    <GoogleAnalytics gaId={process.env.NEXT_GOOGLETAG || ""}/>
     <Component {...pageProps} /></>
 }
