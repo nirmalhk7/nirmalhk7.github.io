@@ -1,15 +1,4 @@
-### Greetings!
-I'm from India, and I'm final year student at National Institute of
-Technology, Karnataka. Programming, reading books, reading news, table
-tennis and **making applications that eliminate iterative work** is my
-hobby. I like to constantly challenge myself with problems. I also have a
-knack for finance and investment.
-
-##### Academics
-I completed my 10th grade in Bangalore with **9.4 CGPA** and
-my 12th grade with 87.9%. I currently study in
-**National Institute of Technology Karnataka** doing BTech in
-Information Technology.
+I'm a software engineer from Bengaluru, KA. From my experience, I bring a wealth of knowledge and experience to the table in a variety of areas, including expertise in all major JavaScript frameworks, proficiency in Spring Boot, and both native and hybrid mobile development. I also have experience in cloud deployment and working with both SQL and NoSQL databases. In addition, I am eager to continue developing my understanding of software deployment and cloud architecture, and am always looking for new opportunities to expand my skillset in these areas.
 
 ##### Technical Projects and Activities
 

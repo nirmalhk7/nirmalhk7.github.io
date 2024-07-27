@@ -8,7 +8,7 @@ import * as styles from "./footer.module.css";
 
 const FooterSection = () => {
   return (
-    <footer>
+    <footer className="selection:bg-accent selection:text-white">
       {process.env.NEXT_PUBLIC ? <div className={styles.flicker_3}>
         <div className="mb-32">
           <ul className={styles.footer_social}>
@@ -35,17 +35,10 @@ const FooterSection = () => {
         <div className="w-full">
           <div className="font-bold">
             <span style={{ color: "#3d3d3d" }}>
-              Made with <FontAwesomeIcon icon={faHeart} size="xs" /> by Nirmal Khedkar<a rel="me" href="https://mstdn.social/@nirmalhk7"></a>
+              Built Bengaluru Tough by Nirmal Khedkar <FontAwesomeIcon icon={faHeart} size="xs" />  
             </span>
           </div>
           <div>
-            <span id="justinmaller" style={{ color: "#3d3d3d" }}>
-              Image Credits &nbsp;
-              <a className="hidelink" href="https://justinmaller.com" style={{ color: "#3d3d3d" }}>
-                Beast Dreams II
-              </a>
-              &nbsp; by Justin Maller &nbsp;
-            </span>
             <span style={{ color: "#3d3d3d" }}>
               Website theme heavily modified from &nbsp;
               <a

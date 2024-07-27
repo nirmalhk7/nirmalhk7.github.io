@@ -18,7 +18,7 @@ interface ProjectIntroSectionInterface {
 }
 
 const ProjectIntroSection = ({ projects }: { projects: ProjectIntroSectionInterface[] }) => (
-    <section className="bg-gray" id="projects">
+    <section className="bg-gray selection:bg-accent selection:text-white" id="projects">
         <div className="mobile-l:container mx-auto">
             <div className="grid grid-cols-2  tablet:grid-cols-2 mobile-l:grid-cols-1">
                 <div>

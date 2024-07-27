@@ -10,7 +10,7 @@ const Navbar = () => {
   const navbarInternalData = [{
     label: "Home",
     route: "/",
-    lean: true
+    lean: false
   }, {
     label: "About",
     route: "/#about",
@@ -39,7 +39,7 @@ const Navbar = () => {
   const checkIfValid = (flag: boolean) => String(flag) === process.env.NEXT_PUBLIC_LEANMODE;
 
   return (
-    <header className="font-blocky transition duration-200 font-bold text-navbar uppercase w-full h-navbar bg-transparent z-40 absolute top-0">
+    <header className="font-blocky transition duration-500 font-bold text-navbar uppercase w-full h-navbar bg-transparent z-40 absolute top-0 selection:bg-accent selection:text-white">
       <Link href="/">
         <div className="left-20 inline-block text-white m-0 p-0 absolute">
           nirmalhk7
