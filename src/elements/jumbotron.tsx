@@ -79,7 +79,7 @@ const Jumbotron = {
           <h3 className="ital-hover">{orangeText}</h3>
           {HeadingTextComponent}
           <div className="static text-left gap-4 right-0 bottom-8  text-button font-blocky uppercase font-bold">
-            {!process.env.NEXT_PUBLIC_LEANMODE && buttonDetails.map((item) => (
+            {buttonDetails.map((item) => (
               <Link
                 className="inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
                 key={item[0]}
@@ -88,24 +88,7 @@ const Jumbotron = {
                 {item[0]}
               </Link>
             ))}
-            {process.env.NEXT_PUBLIC_LEANMODE ? <Link
-              className="inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
-              href="/Resume.pdf"
-              rel="noreferrer" target="_blank"
-            >
-              My Resume
-            </Link> : null}
           </div>
-          {showScrollDown ? (
-            <div className="home-content__scroll">
-              <Link
-                className="scroll-link no-underline hover:text-white"
-                href="#about"
-              >
-                <span>Scroll Down</span>
-              </Link>
-            </div>
-          ) : null}
         </div>
       </div>
       <SocialMediaIcons />

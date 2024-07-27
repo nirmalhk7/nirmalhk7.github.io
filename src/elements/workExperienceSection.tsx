@@ -10,7 +10,7 @@ type WorkExperienceType = {
 const WorkExperienceSection = ({ experience }: { experience: WorkExperienceType[] }) => (
   <div className="container mx-auto">
     <div className="col text-center">
-      <h3>My Work Experience</h3>
+      <h3 className="mb-24">My Work Experience</h3>
     </div>
     <div className="columns-2">
       {experience.map((element, index) => (

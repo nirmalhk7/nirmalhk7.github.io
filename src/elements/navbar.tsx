@@ -45,7 +45,7 @@ const Navbar = () => {
           nirmalhk7
         </div>
       </Link>
-      <nav className={`header-nav-wrap absolute right-20 tablet:block tablet:transition-all ${!mobileMenuClick?'hidden':null}`}>
+      <nav className={`header-nav-wrap absolute right-20 tablet:block tablet:transition-all ${!mobileMenuClick?'hidden':'duration-500'}`}>
         <Scrollspy
           className="inline-block h-16 m-0 list-none text-white"
           currentClassName="text-accent"
