@@ -43,4 +43,7 @@
   provider: LinkedIn Learning
 - name: AI Pair Programming with GitHub Copilot
   provider: LinkedIn Learning
-- name: Introduction to Artificial Int
+- name: Introduction to Artificial Intelligence
+  provider: LinkedIn Learning
+- name: Prompt Engineering- How to talk to the AIs
+  provider: LinkedIn Learning

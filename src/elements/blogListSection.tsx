@@ -29,8 +29,7 @@ const BlogListSection = ({ blogItems, sitename }: MasonPanelProps) => {
       <div>
         <div className=" m-auto" style={{ maxWidth: "1500px" }}>
           <div
-            className="section_intro has-bottom-sep"
-            style={{ paddingTop: "5em" }}
+            className="section_intro has-bottom-sep pt-20"
           >
             <div className="text-center">
               <h3>Pitlane Chat</h3>

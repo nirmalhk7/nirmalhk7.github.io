@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects(){
-    if(process.env.NEXT_PUBLIC_LEANMODE){
+    if(process.env.NEXT_PUBLIC_LEANMODE && false){
       return [{
         source: '/projects',
         destination: '/',

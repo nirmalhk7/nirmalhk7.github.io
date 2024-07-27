@@ -5,7 +5,7 @@ type PDFViewerProps = {
   pdfUrl: string;
 };
 
-const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl }) => {
+const PDFViewer: React.FC<PDFViewerProps> = () => {
   return (
     <div className="h-screen w-screen flex justify-center items-center">
       <NextSeo title="Resume" description='Resume of Nirmal Khedkar' />

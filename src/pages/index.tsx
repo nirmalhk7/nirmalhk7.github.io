@@ -41,9 +41,8 @@ const IndexPage = ({
           ["More About Me", "#about"],
         ]}
         orangeText="Hey!"
-        showScrollDown={!process.env.NEXT_PUBLIC_LEANMODE}
+        showScrollDown={true}
       />
-      {process.env.NEXT_PUBLIC_LEANMODE===true? null: <>
         <section className="pt-32 pb-32 bg-white relative selection:bg-accent selection:text-white" id="about">
         <div className="w-100 text-center">
           <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
@@ -108,7 +107,7 @@ const IndexPage = ({
               <div className="m-0">
                 <ul className="disc">
                   {membership.map((element, index) => (
-                    <li key={index} style={{ paddingTop: "0.4em" }}>
+                    <li key={index} className="pt-1">
                       {element.position} at&nbsp;
                       <a href={element.clubwebsite} key={index}>
                         {element.club}
@@ -123,7 +122,7 @@ const IndexPage = ({
               <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
                 <Link
                   className="bg-accent border-4 border-accent text-white hover:text-black  no-underline w-full"
-                  href={"./Resume.pdf"}
+                  href={"/resume"}
                   rel="noreferrer"
                   target="_blank"
                 >
@@ -143,7 +142,7 @@ const IndexPage = ({
       </section>
       <ProjectIntroSection projects={projects} />
       <Blog name="Pitlane Chat" />
-      </>}
+      
       
     </Layout>
   );

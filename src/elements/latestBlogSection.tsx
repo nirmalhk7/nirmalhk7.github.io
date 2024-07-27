@@ -7,10 +7,9 @@ import React from "react";
 const LatestBlogSection = ({ relativeDirectory, frontmatter }) => {
   return (
     <section
-      className="bg-gradient-to-r from-accent to-accentLight"
+      className="bg-gradient-to-r from-accent to-accentLight not-underline"
       id="blog-first"
       style={{
-        textDecoration: "none",
         paddingTop: "2em",
         paddingBottom: "2em",
       }}
@@ -23,14 +22,12 @@ const LatestBlogSection = ({ relativeDirectory, frontmatter }) => {
           <div className="laptop:text-right tablet:text-right relative">
             <div>
               <h1
-                className="font-bold leading-snug mt-0 font-heading text-white"
-                style={{ textDecoration: "none" }}
+                className="font-bold leading-snug mt-0 font-heading text-white underline"
               >
                 {frontmatter.title}
               </h1>
               <div
-                className="entry-content text-white no-underline mb-10"
-                style={{ textDecoration: "none" }}
+                className="entry-content text-white no-underline mb-10 not-underline"
               >
                 <p>{frontmatter.description}</p>
               </div>

@@ -45,7 +45,7 @@ const ProjectIntroSection = ({ projects }: { projects: ProjectIntroSectionInterf
                                 key={Utils.getFrontmatter(element).title}
                             >
                                 <AccordionItemHeading>
-                                    <AccordionItemButton className="accordion-header bg-gray">
+                                    <AccordionItemButton className="accordion-header">
                                         {Utils.getFrontmatter(element).title}
                                     </AccordionItemButton>
                                 </AccordionItemHeading>

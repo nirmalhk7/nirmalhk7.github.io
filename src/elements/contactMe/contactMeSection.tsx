@@ -32,7 +32,7 @@ class ContactMeSection extends React.Component<object, ContactMeSectionStateInte
         >
           <div className="z-10 narrow m-auto text-white">
             <div className=" text-center">
-              <h3 className="text-accent font-blocky font-semibold uppercase">
+              <h3 className="text-accent font-blocky font-semibold uppercase my-0">
                 Contact Me
               </h3>
               <h1>Say Hi!</h1>
@@ -42,7 +42,7 @@ class ContactMeSection extends React.Component<object, ContactMeSectionStateInte
             </div>
           </div>
           <div className="container mx-auto z-10">
-            <div className="mt-32 grid gap-16 laptop:grid-cols-3 tablet:grid-cols-3 mobile-l:grid-cols-1">
+            <div className="mt-24 grid gap-16 laptop:grid-cols-3 tablet:grid-cols-3 mobile-l:grid-cols-1">
               <div className="col-span-2">
                 <form method="post">
                   <input
