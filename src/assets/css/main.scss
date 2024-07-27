@@ -427,54 +427,6 @@ select:-webkit-autofill:focus {
     position: relative;
 }
 
-.home-content__buttons {
-    position: absolute;
-    right: 0;
-    bottom: 2.1rem;
-    text-align: center;
-}
-
-.home-content__scroll {
-    position: absolute;
-    left: .6rem;
-    bottom: -13.2rem;
-}
-
-.home-content__scroll a {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: .3rem;
-    color: #FFFFFF;
-    position: relative;
-    display: inline-block;
-    line-height: 3rem;
-    padding-right: 2rem;
-}
-
-.home-content__scroll a::after {
-    border-bottom: 2px solid map-get($map: $theme-colors, $key: "accent");
-    border-right: 2px solid map-get($map: $theme-colors, $key: "accent");
-    content: '';
-    display: block;
-    height: 8px;
-    width: 8px;
-    margin-top: -7px;
-    pointer-events: none;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    -webkit-transform-origin: 66% 66%;
-    -ms-transform-origin: 66% 66%;
-    transform-origin: 66% 66%;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-    -webkit-transition: all 0.15s ease-in-out;
-    transition: all 0.15s ease-in-out;
-}
-
 /* animate .home-content__main
  * ------------------------------------------------------------------- */
 html.ss-preload .home-content__main {
@@ -584,11 +536,6 @@ html.no-csstransitions .home-content__main {
     .home-content__main {
         padding-right: 40px;
         max-width: 680px;
-    }
-
-    .home-content__buttons {
-        position: static;
-        text-align: left;
     }
 }
 
@@ -939,10 +886,6 @@ html.no-csstransitions .home-content__main {
         max-width: 768px;
     }
 
-    .home-content__buttons {
-        right: 30px;
-    }
-
     .blog-list article:nth-child(2n+1) {
         padding-right: 40px;
     }
@@ -1067,10 +1010,6 @@ html.no-csstransitions .home-content__main {
         width: 100%;
     }
 
-    .home-content {
-        padding-bottom: 15rem;
-    }
-
     .home-content h1 {
         font-size: 4.2rem;
     }
@@ -1079,11 +1018,6 @@ html.no-csstransitions .home-content__main {
         max-width: 380px;
         padding: 0;
     }
-
-    .home-content__scroll {
-        bottom: -9rem;
-    }
-
     .home-social {
         padding-bottom: 10.8rem;
     }
@@ -1816,10 +1750,6 @@ html.no-csstransitions .home-content__main {
         max-width: 768px;
     }
 
-    .home-content__buttons {
-        right: 30px;
-    }
-
     .blog-list article:nth-child(2n+1) {
         padding-right: 40px;
     }
@@ -1944,10 +1874,6 @@ html.no-csstransitions .home-content__main {
         width: 100%;
     }
 
-    .home-content {
-        padding-bottom: 15rem;
-    }
-
     .home-content h1 {
         font-size: 4.2rem;
     }
@@ -1955,10 +1881,6 @@ html.no-csstransitions .home-content__main {
     .home-content__main {
         max-width: 380px;
         padding: 0;
-    }
-
-    .home-content__scroll {
-        bottom: -9rem;
     }
 
     .home-social {
@@ -2498,11 +2420,6 @@ html.no-csstransitions .home-content__main {
         padding-right: 40px;
         max-width: 680px;
     }
-
-    .home-content__buttons {
-        position: static;
-        text-align: left;
-    }
 }
 
 @media only screen and (max-width: 500px) {
@@ -2662,10 +2579,6 @@ html.no-csstransitions .home-content__main {
         max-width: 768px;
     }
 
-    .home-content__buttons {
-        right: 30px;
-    }
-
     .blog-list article:nth-child(2n+1) {
         padding-right: 40px;
     }
@@ -2790,10 +2703,6 @@ html.no-csstransitions .home-content__main {
         width: 100%;
     }
 
-    .home-content {
-        padding-bottom: 15rem;
-    }
-
     .home-content h1 {
         font-size: 4.2rem;
     }
@@ -2801,10 +2710,6 @@ html.no-csstransitions .home-content__main {
     .home-content__main {
         max-width: 380px;
         padding: 0;
-    }
-
-    .home-content__scroll {
-        bottom: -9rem;
     }
 
     .home-social {
