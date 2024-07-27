@@ -28,13 +28,11 @@ class ContactMeSection extends React.Component<object, ContactMeSectionStateInte
     return (
       <div>
         <section
-          className={`relative bg-fixed bg-center bg-no-repeat`}
-          id="contact"
+          className="relative bg-fixed bg-center bg-no-repeat bg-black selection:bg-accent selection:text-white"
         >
-          {/* <div className="z-0 bg-black h-full left-0 opacity-75 absolute top-0 w-full " /> */}
-          <div className="z-10 narrow m-auto">
+          <div className="z-10 narrow m-auto text-white">
             <div className=" text-center">
-              <h3 className="text-accent font-blocky  not-italic leading-tight font-semibold uppercase">
+              <h3 className="text-accent font-blocky font-semibold uppercase">
                 Contact Me
               </h3>
               <h1>Say Hi!</h1>
@@ -43,15 +41,12 @@ class ContactMeSection extends React.Component<object, ContactMeSectionStateInte
               </p>
             </div>
           </div>
-          <div
-            className="container mx-auto z-10"
-            style={{ maxWidth: "1000px" }}
-          >
-            <div className="grid laptop:grid-cols-3 tablet:grid-cols-3 mobile-l:grid-cols-1">
-              <div className={`col-span-2`}>
+          <div className="container mx-auto z-10">
+            <div className="mt-32 grid gap-16 laptop:grid-cols-3 tablet:grid-cols-3 mobile-l:grid-cols-1">
+              <div className="col-span-2">
                 <form method="post">
                   <input
-                    className="bg-transparent border border-solid text-white mb-4"
+                    className="w-full bg-transparent mb-4"
                     id="name"
                     name="NAME:"
                     onChange={this.onChange}
@@ -61,7 +56,7 @@ class ContactMeSection extends React.Component<object, ContactMeSectionStateInte
                   <div className="form-field">
                     <input
                       aria-required="true"
-                      className="w-full "
+                      className="w-full"
                       id="email"
                       name="contactEmail: "
                       onChange={this.onChange}
@@ -92,27 +87,15 @@ class ContactMeSection extends React.Component<object, ContactMeSectionStateInte
                     />
                   </div>
                   <input
-                    className="submit w-full bg-gray text-button font-blocky uppercase font-bold"
-                    disabled={
-                      !this.state.email ||
-                      !this.state.subject ||
-                      !this.state.name
-                    }
-                    style={{
-                      cursor: `${!this.state.email ||
-                          !this.state.subject ||
-                          !this.state.name
-                          ? "not-allowed"
-                          : "default"
-                        }`,
-                    }}
+                    className="mt-32 font-blocky uppercase text-center  text-button font-bold bg-accent border-4 border-accent text-white hover:text-black  no-underline w-full"
                     type="submit"
                     value="Submit"
+                    style={{lineHeight:"0"}}
                   />
                 </form>
               </div>
               <div className="w-full contact__infos">
-                <h4 className=" text-white font-blocky uppercase text-navbar font-bold ">
+                <h4 className="text-white font-blocky uppercase text-navbar font-bold my-0">
                   Email
                 </h4>
                 <p>

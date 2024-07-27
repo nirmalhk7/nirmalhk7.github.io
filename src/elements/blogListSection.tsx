@@ -25,7 +25,7 @@ type MasonPanelProps = {
 
 const BlogListSection = ({ blogItems, sitename }: MasonPanelProps) => {
   return (
-    <section className="bg-gray">
+    <section className="bg-gray selection:bg-accent selection:text-white">
       <div>
         <div className=" m-auto" style={{ maxWidth: "1500px" }}>
           <div

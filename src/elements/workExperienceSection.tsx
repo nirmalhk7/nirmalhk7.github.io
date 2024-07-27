@@ -15,7 +15,7 @@ const WorkExperienceSection = ({ experience }: { experience: WorkExperienceType[
     <div className="columns-2">
       {experience.map((element, index) => (
         <div className="break-inside-avoid left" key={index}>
-          <div className="timeline pt-2">
+          <div className="timeline">
             <div className="timeline__block">
               <div className="timeline__bullet" data-first={index} />
               <div className="timeline__header">

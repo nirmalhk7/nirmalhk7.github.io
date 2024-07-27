@@ -29,7 +29,7 @@ const Jumbotron = {
     DescriptionComponent
   }: MiniProps) => (
     <section
-      className="page-header bg-fixed bg-center bg-no-repeat"
+      className="page-header bg-fixed bg-center bg-no-repeat selection:bg-accent selection:text-white"
       id={`${title}-header`}
     >
       <Image
@@ -64,11 +64,10 @@ const Jumbotron = {
   }: MaxProps) => (
 
     <section
-      className={`s-home z-10 py-0`}
+      className="s-home z-10 py-0 selection:bg-accent selection:text-white"
     >
       <Image
         layout="fill"
-
         className="object-right object-cover pointer-events-none laptop:object-center !h-screen"
         src={beachImage}
         placeholder="blur"

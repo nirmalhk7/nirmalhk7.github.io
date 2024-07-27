@@ -32,10 +32,7 @@ const IndexPage = ({
         HeadingTextComponent={
           <h1>
             I&apos;m Nirmal Khedkar, <br />
-            Software Engineer
-            {"\n"}
-            based in <br />
-            Bangalore.
+            Software Engineer. 
           </h1>
         }
         bgImg="bg-milkyWay laptop:bg-beachNirmal"
@@ -46,15 +43,15 @@ const IndexPage = ({
         orangeText="Hey!"
         showScrollDown={!process.env.NEXT_PUBLIC_LEANMODE}
       />
-      {process.env.NEXT_PUBLIC_LEANMODE!==true? null: <>
-        <section className="pt-56 pb-32 bg-white relative " id="about">
+      {process.env.NEXT_PUBLIC_LEANMODE===true? null: <>
+        <section className="pt-32 pb-32 bg-white relative selection:bg-accent selection:text-white" id="about">
         <div className="w-100 text-center">
           <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
             <div className="w-full text-center">
               <h3 className="text-accent">Nirmal Khedkar</h3>
               <h1>More About Me</h1>
               <p className="font-lead font-blocky mb-16">
-                SWE, Cloud Enthusiast, learner and motorsport enthusiast: Hi, I&apos;m Nirmal Khedkar.
+                Fortress code, lightning fast: Hi, I&apos;m Nirmal Khedkar.
               </p>
             </div>
           </div>
@@ -65,40 +62,7 @@ const IndexPage = ({
               {mainContent}
             </ReactMarkdown>
 
-            <div className="laptop:hidden tablet:block mobile-l:block">
-              <Image src="https://avatars.githubusercontent.com/u/25480443"
-                // placeholder="blur"
-                width={500}
-                height={500}
-                alt="Nirmal Khedkar"
-                className="break-inside-avoid"
-                style={{
-                  borderRadius: "70%",
-                  padding: "1rem",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            </div>
-
-            <div className="break-inside-avoid py-4">
-              <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
-                <Link
-                  className="bg-accent border-4 border-accent text-white hover:text-black  no-underline w-full"
-                  href={"./Resume.pdf"}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Download My Resume
-                </Link>
-                <Link
-                  className="border-4 no-underline border-accent  text-accent hover:text-black  w-full"
-                  href="#contact"
-                >
-                  Want to Hire?
-                </Link>
-              </div>
-            </div>
+            
             <div className="break-inside-avoid">
               <Utils.getHeader headerName="Familiar Languages, Frameworks and Libraries" />
               <div
@@ -106,7 +70,7 @@ const IndexPage = ({
               >
                 {skills.map((element, index) => (
                   <div
-                    className="p-2 text-center text-base text-black uppercase font-blocky"
+                    className="p-2 text-center text-base text-black uppercase font-blocky hover:shadow-md"
                     key={index}
                   >
                     {element.name}
@@ -153,6 +117,25 @@ const IndexPage = ({
                   ))}
                 </ul>
               </div>
+            
+            </div>
+            <div className="break-inside-avoid pt-16">
+              <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
+                <Link
+                  className="bg-accent border-4 border-accent text-white hover:text-black  no-underline w-full"
+                  href={"./Resume.pdf"}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Download My Resume
+                </Link>
+                <Link
+                  className="border-4 no-underline border-accent  text-accent hover:text-black  w-full"
+                  href="#contact"
+                >
+                  Want to Hire?
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -171,7 +154,7 @@ export default IndexPage;
 
 
 export const getStaticProps: GetStaticProps<any> = async () => {
-  const allCoursesYaml: any[] = sampleSize(require("../../content/yml/courses.yaml"), 5);
+  const allCoursesYaml: any[] = require("../../content/yml/courses.yaml");
   const allSkillsYaml: any[] = require("../../content/yml/skills.yaml");
   // Lodash get random 5 projects
 
