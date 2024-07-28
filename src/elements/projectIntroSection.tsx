@@ -20,14 +20,14 @@ interface ProjectIntroSectionInterface {
 const ProjectIntroSection = ({ projects }: { projects: ProjectIntroSectionInterface[] }) => (
     <section className="bg-gray selection:bg-accent selection:text-white" id="projects">
         <div className="mobile-l:container mx-auto">
-            <div className="grid grid-cols-2  tablet:grid-cols-2 mobile-l:grid-cols-1">
-                <div>
+            <div className="grid grid-cols-1  tablet:grid-cols-2">
+                <div className="mb-8 tablet:mb-0">
                     <div className="pb-6 relative">
                         <div className=" text-center">
                             <h3 className="font-blocky font-semibold mb-0 mt-0 uppercase text-accent">
                                 Projects
                             </h3>
-                            <h1 className="font-bold  font-heading leading-snug mt-0">
+                            <h1 className="font-bold font-heading leading-snug mt-0 hover:text-black transition duration-500">
                                 See My Latest Projects
                             </h1>
                             <p className="lead">

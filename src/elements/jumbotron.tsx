@@ -34,11 +34,10 @@ const Jumbotron = {
     >
       <Image
         layout="fill"
-        className="object-center object-cover pointer-events-none"
+        className="object-center object-cover pointer-events-none !h2/5"
         src={backgroundImage}
         placeholder="blur"
         alt={backgroundImageAlt}
-        style={{ height: "100vh" }}
       />
       <div className="container mx-auto page-header__content">
         <article>
@@ -81,7 +80,7 @@ const Jumbotron = {
           <div className="static text-left gap-4 right-0 bottom-8  text-button font-blocky uppercase font-bold">
             {buttonDetails.map((item) => (
               <Link
-                className="inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
+                className="my-4 inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
                 key={item[0]}
                 href={item[1]}
               >
