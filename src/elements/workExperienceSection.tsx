@@ -12,9 +12,9 @@ const WorkExperienceSection = ({ experience }: { experience: WorkExperienceType[
     <div className="col text-center">
       <h3 className="mb-24">My Work Experience</h3>
     </div>
-    <div className="columns-2">
+    <div className="columns-1 tablet:columns-2">
       {experience.map((element, index) => (
-        <div className="break-inside-avoid left" key={index}>
+        <div className="break-inside-avoid left mt-8" key={index}>
           <div className="timeline">
             <div className="timeline__block">
               <div className="timeline__bullet" data-first={index} />

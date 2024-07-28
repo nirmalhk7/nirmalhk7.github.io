@@ -65,14 +65,7 @@ class ContactMeSection extends React.Component<object, ContactMeSectionStateInte
                       type="email"
                     />
                   </div>
-                  <input
-                    className="w-full"
-                    id="subject"
-                    name="contactSubject: "
-                    onChange={this.onChange}
-                    placeholder="Subject"
-                    type="text"
-                  />
+                
                   <div className="form-field">
                     <textarea
                       aria-required="true"

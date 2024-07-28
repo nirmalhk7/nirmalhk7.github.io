@@ -106,11 +106,7 @@
     width: 100%;
     height: 100%;
     opacity: .5;
-    background: -moz-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+    background: rgb(0 0 0 / 1);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 @media only screen and (max-width: 768px) {
@@ -145,7 +141,8 @@
 .page-header__title {
     color: #FFFFFF;
     position: relative;
-    font-family: "librebaskerville-bold", serif;
+    
+    font-family: "Libre Baskerville", serif;
     font-size: 6.6rem;
     line-height: 1.227;
     margin-top: 0;

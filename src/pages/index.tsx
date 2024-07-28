@@ -48,7 +48,7 @@ const IndexPage = ({
           <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
             <div className="w-full text-center">
               <h3 className="text-accent">Nirmal Khedkar</h3>
-              <h1>More About Me</h1>
+              <h1 className="hover:text-black transition duration-500">More About Me</h1>
               <p className="font-lead font-blocky mb-16">
                 Fortress code, lightning fast: Hi, I&apos;m Nirmal Khedkar.
               </p>
@@ -69,7 +69,7 @@ const IndexPage = ({
               >
                 {skills.map((element, index) => (
                   <div
-                    className="p-2 text-center text-base text-black uppercase font-blocky hover:shadow-md"
+                    className="p-2 text-center text-base text-black uppercase font-blocky hover:shadow-md transition duration-300"
                     key={index}
                   >
                     {element.name}
@@ -141,7 +141,7 @@ const IndexPage = ({
         <WorkExperience experience={workexperience} />
       </section>
       <ProjectIntroSection projects={projects} />
-      <Blog name="Pitlane Chat" />
+      <Blog name="The Blue Green Manual" />
       
       
     </Layout>

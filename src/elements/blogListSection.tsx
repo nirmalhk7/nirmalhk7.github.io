@@ -32,7 +32,7 @@ const BlogListSection = ({ blogItems, sitename }: MasonPanelProps) => {
             className="section_intro has-bottom-sep pt-20"
           >
             <div className="text-center">
-              <h3>Pitlane Chat</h3>
+              <h3>The Blue Green Manual</h3>
               <h1>All Posts</h1>
             </div>
           </div>

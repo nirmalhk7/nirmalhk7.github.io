@@ -31,12 +31,12 @@ type BlogPageTypes= {
 const Blog = ({ blogs, location, data, quote }: any) => {
   // if (!data) return null;
   return (
-    <Layout location={location} quote={quote} metadata={{title:"Pitlane Chat", description:"I love writing about my opinions and general topics. Follow in."}}>
+    <Layout location={location} quote={quote} metadata={{title:"The Blue Green Manual", description:"I love writing about my opinions and general topics. Follow in."}}>
       <Jumbotron.Max
         HeadingTextComponent={
           <h1 className="page-header__title">
             <Link title="" href="/blog">
-              Pitlane Chat
+              The Blue Green Manual
             </Link>
           </h1>
         }
@@ -50,7 +50,7 @@ const Blog = ({ blogs, location, data, quote }: any) => {
       />
       <BlogListSection
         blogItems={blogs}
-        sitename="Pitlane Chat"
+        sitename="The Blue Green Manual"
       />
     </Layout>
   );
