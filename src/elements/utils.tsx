@@ -1,4 +1,4 @@
-import Link from "next/link";
+import React from "react"
 
 declare type buttonType = React.ForwardRefExoticComponent<Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof InternalLinkProps> & InternalLinkProps & {
   children?: React.ReactNode;

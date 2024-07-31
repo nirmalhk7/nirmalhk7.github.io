@@ -24,7 +24,7 @@ import ReactMarkdown from 'react-markdown';
 import BlogInterface from "../../interfaces/blogInterface";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import { groupBy, sampleSize, sortBy } from "lodash";
+import { sampleSize, sortBy } from "lodash";
 import { QuoteInterface } from "@/elements/quoteSection";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 

@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../layouts/mainLayout";
-import SearchEnggOp from "../elements/seoUtil";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,13 +11,11 @@ import {
 } from "react-accessible-accordion";
 import nasaGalaxy from "../assets/images/nasa-earth.jpg";
 import ReactMarkdown from "react-markdown";
-// import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
 import ProjectInterface from "../interfaces/projectInterface";
 import { groupBy, sampleSize } from "lodash";
-import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
+import { loadMarkdownFiles } from "@/util/loadMarkdown";
 import { GetStaticProps } from "next";
 import { QuoteInterface } from "@/elements/quoteSection";
-import Image from "next/legacy/image";
 import Jumbotron from "@/elements/jumbotron";
 
 interface ProjectsPageTypes {

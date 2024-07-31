@@ -10,6 +10,7 @@ const PDFViewer: React.FC<PDFViewerProps> = () => {
     <div className="h-screen w-screen flex justify-center items-center">
       <NextSeo title="Resume" description='Resume of Nirmal Khedkar' />
       <iframe
+        title="Resume of Nirmal Khedkar"
         src="https://drive.google.com/file/d/1uiBM20zWZrbdRYfJAP-2mr_2aoyL3wac/preview"
         className="w-full h-full border-none"
       />

@@ -1,5 +1,5 @@
 // import { useStaticQuery, graphql } from "gatsby";
-import React, { useState } from "react";
+import React from "react";
 
 export interface QuoteInterface {
   content: string,

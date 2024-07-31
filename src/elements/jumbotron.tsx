@@ -55,11 +55,9 @@ const Jumbotron = {
     </section>
   ),
   Max: ({
-    bgImg,
     orangeText,
     HeadingTextComponent,
-    buttonDetails,
-    showScrollDown,
+    buttonDetails
   }: MaxProps) => (
 
     <section
@@ -72,7 +70,7 @@ const Jumbotron = {
         placeholder="blur"
         alt="Me on the beach"
       />
-      <div className="z-0 bg-black h-screen left-0 opacity-40 absolute top-0 w-full" />
+      <div className="z-0 bg-black h-screen left-0 opacity-50 absolute top-0 w-full" />
       <div className="home-content z-10">
         <div className="tablet:container mx-auto home-content__main">
           <h3 className="ital-hover">{orangeText}</h3>

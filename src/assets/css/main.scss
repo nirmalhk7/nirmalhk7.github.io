@@ -443,85 +443,7 @@ html.no-csstransitions .home-content__main {
     opacity: 1;
 }
 
-/* ------------------------------------------------------------------- 
- * ## home animations - (_site-layout.scss) 
- * ------------------------------------------------------------------- */
-/* bounce */
-@keyframes bounce {
 
-    0%,
-    100% {
-        -webkit-transform: translate3d(0, -30px, 0);
-        -ms-transform: translate3d(0, -30px, 0);
-        transform: translate3d(0, -30px, 0);
-    }
-
-    50% {
-        -webkit-transform: translate3d(0, -4px, 0);
-        -ms-transform: translate3d(0, -4px, 0);
-        transform: translate3d(0, -4px, 0);
-    }
-}
-
-/* fade in */
-@-webkit-keyframes fadeIn {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-
-    to {
-        opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-
-    to {
-        opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-/* fade out */
-@-webkit-keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-}
 
 /* ------------------------------------------------------------------- 
  * responsive:
@@ -1291,111 +1213,6 @@ label>input[type="radio"] {
     color: #6c6c6c !important;
 }
 
-/** 
- * Pull Quotes
- * -----------
- * markup:
- *
- * <aside className="pull-quote">
- *      <blockquote>
- *          <p></p>
- *      </blockquote>
- *  </aside>
- *
- * --------------------------------------------------------------------- */
-.pull-quote {
-    position: relative;
-    padding: 2.1rem 3rem 2.1rem 0px;
-}
-
-.pull-quote:before,
-.pull-quote:after {
-    height: 1em;
-    position: absolute;
-    font-size: 10rem;
-    font-family: Arial, Sans-Serif;
-    color: rgba(0, 0, 0, 0.15);
-}
-
-.pull-quote:before {
-    content: "\201C";
-    top: -3.6rem;
-    left: 0;
-}
-
-.pull-quote:after {
-    content: '\201D';
-    bottom: 3.6rem;
-    right: 0;
-}
-
-.pull-quote blockquote {
-    margin: 0;
-}
-
-.pull-quote blockquote:before {
-    content: none;
-}
-
-/** 
- * Stats Tab
- * ---------
- * markup:
- *
- * <ul className="stats-tabs">
- *      <li><a href="#">[value]<em>[name]</em></a></li>
- *  </ul>
- *
- * Extend this object into your markup.
- *
- * --------------------------------------------------------------------- */
-.stats-tabs {
-    padding: 0;
-    margin: 3rem 0;
-}
-
-.stats-tabs li {
-    display: inline-block;
-    margin: 0 1.5rem 3rem 0;
-    padding: 0 1.5rem 0 0;
-    border-right: 1px solid rgba(13, 10, 11, 0.15);
-}
-
-.stats-tabs li:last-child {
-    margin: 0;
-    padding: 0;
-    border: none;
-}
-
-.stats-tabs li a {
-    display: inline-block;
-    font-size: 2.5rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    border: none;
-    color: #151515;
-}
-
-.stats-tabs li a:hover {
-    color: map-get($map: $theme-colors, $key: "accent");
-}
-
-.stats-tabs li a em {
-    display: block;
-    margin: .6rem 0 0 0;
-    font-size: 1.4rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    color: #6c6c6c;
-}
-
-
-
-/* ------------------------------------------------------------------- 
- * responsive:
- * blog-list
- * ------------------------------------------------------------------- */
-
 
 /* ===================================================================
  * # home - (_site-layout.scss)
@@ -1442,82 +1259,9 @@ html.no-csstransitions .home-content__main {
 /* ------------------------------------------------------------------- 
  * ## home animations - (_site-layout.scss) 
  * ------------------------------------------------------------------- */
-/* bounce */
-@keyframes bounce {
 
-    0%,
-    100% {
-        -webkit-transform: translate3d(0, -30px, 0);
-        -ms-transform: translate3d(0, -30px, 0);
-        transform: translate3d(0, -30px, 0);
-    }
 
-    50% {
-        -webkit-transform: translate3d(0, -4px, 0);
-        -ms-transform: translate3d(0, -4px, 0);
-        transform: translate3d(0, -4px, 0);
-    }
-}
 
-/* fade in */
-@-webkit-keyframes fadeIn {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-
-    to {
-        opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-
-    to {
-        opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-/* fade out */
-@-webkit-keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-}
 
 /* ------------------------------------------------------------------- 
  * responsive:
@@ -1616,7 +1360,7 @@ html.no-csstransitions .home-content__main {
         content: "";
         display: block;
         width: 1px;
-        height: 100%;
+        height: 120%;
         background-color: rgba(0, 0, 0, 0.1);
         position: absolute;
         left: 2rem;
@@ -2125,18 +1869,6 @@ form,
     display: none;
 }
 
-@keyframes sk-scaleout {
-    0% {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-    }
-
-    100% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-        opacity: 0;
-    }
-}
 
 /* ===================================================================
  * # forms - (_forms.scss)
@@ -2329,82 +2061,6 @@ html.no-csstransitions .home-content__main {
 /* ------------------------------------------------------------------- 
  * ## home animations - (_site-layout.scss) 
  * ------------------------------------------------------------------- */
-/* bounce */
-@keyframes bounce {
-
-    0%,
-    100% {
-        -webkit-transform: translate3d(0, -30px, 0);
-        -ms-transform: translate3d(0, -30px, 0);
-        transform: translate3d(0, -30px, 0);
-    }
-
-    50% {
-        -webkit-transform: translate3d(0, -4px, 0);
-        -ms-transform: translate3d(0, -4px, 0);
-        transform: translate3d(0, -4px, 0);
-    }
-}
-
-/* fade in */
-@-webkit-keyframes fadeIn {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-
-    to {
-        opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-
-    to {
-        opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-/* fade out */
-@-webkit-keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-}
 
 /* ------------------------------------------------------------------- 
  * responsive:
@@ -2767,22 +2423,6 @@ html.no-csstransitions .home-content__main {
     font-size: 1.5rem;
 }
 
-@keyframes bouncedelay {
-
-    0%,
-    80%,
-    100% {
-        -webkit-transform: scale(0);
-        -ms-transform: scale(0);
-        transform: scale(0);
-    }
-
-    40% {
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1);
-        transform: scale(1);
-    }
-}
 
 /* ===================================================================
  * # footer - (_site-layout.scss)

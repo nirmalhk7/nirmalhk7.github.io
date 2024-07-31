@@ -1,12 +1,10 @@
 import {
-  faAngellist,
-  faDev,
   faGithub,
   faGoodreads,
   faLinkedin,
   faMastodon,
 } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faRss } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 // import "./social_module.scss";

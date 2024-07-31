@@ -3,17 +3,15 @@ import Blog from "../elements/blogIntroSection";
 import WorkExperience from "../elements/workExperienceSection";
 import Layout from "../layouts/mainLayout";
 import Jumbotron from "../elements/jumbotron";
-import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
 import Link from "next/link";
 import sampleSize from "lodash/sampleSize";
-import { GetStaticProps, Metadata } from "next";
+import { GetStaticProps } from "next";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
-import Image from "next/legacy/image";
 import { QuoteInterface } from "@/elements/quoteSection";
 import Utils from "@/elements/utils";
 import ReactMarkdown from "react-markdown";
-import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from "react-accessible-accordion";
 import ProjectIntroSection from "@/elements/projectIntroSection";
+import { CourseInterface, MembershipInterface, ProfilesInterface, SkillsInterface, WorkExperienceInterface } from "@/interfaces/interfaces";
 
 const IndexPage = ({
   mainContent,
@@ -152,14 +150,14 @@ const IndexPage = ({
 export default IndexPage;
 
 
-export const getStaticProps: GetStaticProps<any> = async () => {
-  const allCoursesYaml: any[] = require("../../content/yml/courses.yaml");
-  const allSkillsYaml: any[] = require("../../content/yml/skills.yaml");
+export const getStaticProps: GetStaticProps<string> = async () => {
+  const allCoursesYaml: CourseInterface[] = require("../../content/yml/courses.yaml");
+  const allSkillsYaml: SkillsInterface[] = require("../../content/yml/skills.yaml");
   // Lodash get random 5 projects
 
-  const allProfilesYaml: any[] = require("../../content/yml/profiles.yaml");
-  const allMembershipsYaml: any[] = require("../../content/yml/memberships.yaml");
-  const allWorkExperiencesYaml: any[] = require("../../content/yml/workexperiences.yaml");
+  const allProfilesYaml: ProfilesInterface[] = require("../../content/yml/profiles.yaml");
+  const allMembershipsYaml: MembershipInterface[] = require("../../content/yml/memberships.yaml");
+  const allWorkExperiencesYaml: WorkExperienceInterface[] = require("../../content/yml/workexperiences.yaml");
   const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml")
 
 

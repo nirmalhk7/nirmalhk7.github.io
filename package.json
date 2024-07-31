@@ -19,8 +19,6 @@
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
-    "eslint": "8.44.0",
-    "eslint-config-next": "13.4.10",
     "font-awesome": "^4.7.0",
     "gray-matter": "^4.0.3",
     "js-yaml-loader": "^1.2.2",
@@ -39,5 +37,16 @@
     "sass": "^1.63.6",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.25.0",
+    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "@typescript-eslint/parser": "^7.17.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.5",
+    "eslint-plugin-boundaries": "^4.2.2",
+    "eslint-plugin-jsx-a11y": "^6.9.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^4.6.2"
   }
 }

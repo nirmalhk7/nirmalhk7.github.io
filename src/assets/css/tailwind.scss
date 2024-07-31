@@ -9,15 +9,15 @@
 
 @layer base {
     .container {
-        width: 90%!important;
+        width: 90% !important;
     }
+
     html {
         font-family: sans-serif;
         font-size: 10px;
         line-height: 1.15;
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
-        
     }
 
     body {
@@ -29,18 +29,20 @@
         text-rendering: optimizeLegibility;
         -webkit-text-size-adjust: none;
         scrollbar-width: thin;
-      }
+    }
+
     body::-webkit-scrollbar {
         @apply w-2.5;
-      }
+    }
 
-      body::-webkit-scrollbar-track {
+    body::-webkit-scrollbar-track {
         @apply bg-gray;
-      }
-      body::-webkit-scrollbar-thumb {
+    }
+
+    body::-webkit-scrollbar-thumb {
         @apply bg-accent;
         border-radius: 6px;
-      }
+    }
 
     article,
     aside,
@@ -57,14 +59,6 @@
 
     p {
         line-height: 1.875
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-        margin-bottom: 1.8rem;
-        margin-top: 6rem;
     }
 
     main {
@@ -102,7 +96,7 @@
     }
 
     code {
-        @apply bg-gray border-darkgray rounded-md text-base my-0 mx-1 py-1 px-1 hover:bg-darkgray hover:text-gray transition;
+        @apply bg-[#f1f1f1] border-[#7d7d7d] rounded-md text-base my-0 mx-1 py-1 px-1 hover:bg-[#7d7d7d] hover:text-gray transition duration-500;
         border: 1px solid #E1E1E1;
     }
 
@@ -277,50 +271,27 @@
 
 
     h1 {
-        @apply text-h1 font-blocky;
-        margin: 0.67em 0;
-        font-weight: 700;
-        margin-bottom: 1.8rem;
-        margin-top: 6rem;
-        line-height: 1.25;
+        @apply text-h1 font-blocky mb-7 mt-24;
     }
 
     h2 {
-        @apply text-h2 ;
-        font-size: 3rem;
-        margin-bottom: 1.8rem;
-        margin-top: 6rem;
-        line-height: 1.3;
+        @apply text-h2 mb-7 mt-24;
     }
 
     h3 {
-        @apply text-h3;
-        font-size: 2.4rem;
-        line-height: 1.25;
-        margin-bottom: 1.8rem;
-        margin-top: 6rem;
+        @apply text-h3 mb-7 mt-24;
     }
 
     h4 {
-        @apply text-h4;
-        font-size: 2.1rem;
-        line-height: 1.286;
+        @apply text-h4 mb-7 mt-24;
     }
 
     h5 {
         @apply text-h5 mb-6 mt-16;
-        
-    font-size: 1.6rem;
-    line-height: 1.3125;
     }
 
     h6 {
-        @apply text-h6 font-blocky;
-        font-weight: 700;
-        font-size: 1.4rem;
-        line-height: 1.5;
-        text-transform: uppercase;
-        letter-spacing: .16rem;
+        @apply text-h6 font-blocky uppercase;
     }
 
     em,
@@ -389,13 +360,6 @@
         height: 100%;
     }
 
-  
-
-
-    p, b, i, strong, h1, h2, h3, h4, h5, cite {
-    }
-
-
     /* ------------------------------------------------------------------- 
 * ## links - (_document-setup.scss) 
 * ------------------------------------------------------------------- */
@@ -426,7 +390,6 @@
         margin: 3.9rem 0;
         margin: 3.9rem 0;
         padding-left: 4.5rem;
-        position: relative;
     }
 
     blockquote:before {
@@ -436,12 +399,6 @@
         font-size: 10rem;
         font-family: arial, sans-serif;
         top: 3.6rem;
-        content: "\201C";
-        font-size: 10rem;
-        line-height: 0px;
-        margin: 0;
-        position: absolute;
-        top: 3.6rem;
         left: 0;
     }
 
@@ -449,12 +406,11 @@
         @apply font-normal p-0 text-black font-blocky;
         line-height: 1.857;
         font-size: 2.1rem;
-        color: #0D0A0B;
     }
 
     blockquote cite {
-        @apply block font-normal not-italic leading-normal text-h6 font-blocky; 
-       display: block;
+        @apply block font-normal not-italic leading-normal text-h6 font-blocky;
+        display: block;
         font-size: 1.4rem;
         font-style: normal;
     }
@@ -510,64 +466,272 @@
             font-size: 2.2rem;
         }
     }
-    
+
     .contact__form {
         padding-right: 40px;
     }
-    .contact__form input[type="email"], .contact__form input[type="number"], .contact__form input[type="text"], .contact__form input[type="tel"], .contact__form input[type="url"], .contact__form textarea {
+
+    .contact__form input,
+    .contact__form textarea {
         background-color: transparent;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         margin-bottom: .9rem;
         color: rgba(255, 255, 255, 0.75);
     }
-    .contact__form input[type="email"]:focus, .contact__form input[type="number"]:focus, .contact__form input[type="text"]:focus, .contact__form input[type="tel"]:focus, .contact__form input[type="url"]:focus, .contact__form textarea:focus {
-        color: white;
+
+    .contact__form input:focus,
+    .contact__form textarea:focus {
+        @apply text-white;
         border-bottom: 1px solid white;
     }
+
     .contact__form button {
         margin-top: 4.2rem;
         background-color: map-get($map: $theme-colors, $key: "accent");
         border-color: map-get($map: $theme-colors, $key: "accent");
     }
-        /* ------------------------------------------------------------------- 
+
+    /* ------------------------------------------------------------------- 
      * responsive:
      * contact
      * ------------------------------------------------------------------- */
-     @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: 800px) {
         .contact__form {
             padding-right: 15px;
         }
+
         .contact__infos {
             padding-top: 3rem;
         }
     }
+
     @media only screen and (max-width: 600px) {
         .contact__form {
             padding-right: 10px;
         }
     }
+
     @media only screen and (max-width: 400px) {
         .contact__form {
             padding-right: 0;
         }
     }
 
-input,
-textarea,
-select {
-    @apply block font-blocky;
-    height: 6rem;
-    padding: 1.5rem 0;
-    border: 0;
-    outline: none;
-    color: map-get($map: $theme-colors, $key: "gray");
-    font-weight: 400;
-    font-size: 1.5rem; 
-    line-height: 3rem;
-    max-width: 100%;
-    background: transparent;
-    border-bottom: 2px solid map-get($map: $theme-colors, $key: "gray");
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+    input,
+    textarea,
+    select {
+        @apply block font-blocky text-gray;
+        height: 6rem;
+        padding: 1.5rem 0;
+        border: 0;
+        outline: none;
+        font-weight: 400;
+        font-size: 1.5rem;
+        line-height: 3rem;
+        max-width: 100%;
+        background: transparent;
+        border-bottom: 2px solid map-get($map: $theme-colors, $key: "gray");
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
 }
+
+/* ------------------------------------------------------------------- 
+ * ## home animations - (_site-layout.scss) 
+ * ------------------------------------------------------------------- */
+/* bounce */
+@keyframes bounce {
+
+    0%,
+    100% {
+        -webkit-transform: translate3d(0, -30px, 0);
+        -ms-transform: translate3d(0, -30px, 0);
+        transform: translate3d(0, -30px, 0);
+    }
+
+    50% {
+        -webkit-transform: translate3d(0, -4px, 0);
+        -ms-transform: translate3d(0, -4px, 0);
+        transform: translate3d(0, -4px, 0);
+    }
 }
+
+/* fade in */
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -150%, 0);
+        -ms-transform: translate3d(0, -150%, 0);
+        transform: translate3d(0, -150%, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -150%, 0);
+        -ms-transform: translate3d(0, -150%, 0);
+        transform: translate3d(0, -150%, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* fade out */
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -150%, 0);
+        -ms-transform: translate3d(0, -150%, 0);
+        transform: translate3d(0, -150%, 0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -150%, 0);
+        -ms-transform: translate3d(0, -150%, 0);
+        transform: translate3d(0, -150%, 0);
+    }
+}
+
+
+@keyframes sk-scaleout {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* bounce */
+@keyframes bounce {
+
+    0%,
+    100% {
+        -webkit-transform: translate3d(0, -30px, 0);
+        -ms-transform: translate3d(0, -30px, 0);
+        transform: translate3d(0, -30px, 0);
+    }
+
+    50% {
+        -webkit-transform: translate3d(0, -4px, 0);
+        -ms-transform: translate3d(0, -4px, 0);
+        transform: translate3d(0, -4px, 0);
+    }
+}
+
+@keyframes bouncedelay {
+
+    0%,
+    80%,
+    100% {
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+    }
+
+    40% {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes flicker-3 {
+    0%,
+    100% {
+      opacity: 1;
+    }
+  
+    32.98% {
+      opacity: 1;
+    }
+  
+    33% {
+      opacity: 0;
+    }
+  
+    34% {
+      opacity: 0;
+    }
+  
+    34.02% {
+      opacity: 1;
+    }
+  
+    34.98% {
+      opacity: 1;
+    }
+  
+    35% {
+      opacity: 0;
+    }
+  
+    35.9% {
+      opacity: 0;
+    }
+  
+    35.92% {
+      opacity: 1;
+    }
+  
+    38.98% {
+      opacity: 1;
+    }
+  
+    39% {
+      opacity: 0;
+    }
+  
+    39.8% {
+      opacity: 0;
+    }
+  
+    39.82% {
+      opacity: 1;
+    }
+  
+    83.98% {
+      opacity: 1;
+    }
+  
+    84% {
+      opacity: 0;
+    }
+  
+    84.9% {
+      opacity: 0;
+    }
+  
+    84.92% {
+      opacity: 1;
+    }
+  }
+  

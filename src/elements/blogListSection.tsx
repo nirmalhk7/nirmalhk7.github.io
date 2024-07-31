@@ -11,7 +11,7 @@ type blogDetails = {
     frontmatter: {
       description: string,
       title: string,
-      img: any,
+      img: string,
       category: string
     }
   }
@@ -19,11 +19,10 @@ type blogDetails = {
 }
 
 type MasonPanelProps = {
-  sitename: string,
   blogItems: blogDetails[]
 }
 
-const BlogListSection = ({ blogItems, sitename }: MasonPanelProps) => {
+const BlogListSection = ({ blogItems }: MasonPanelProps) => {
   return (
     <section className="bg-gray selection:bg-accent selection:text-white">
       <div>
