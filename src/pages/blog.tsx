@@ -4,12 +4,10 @@ import Layout from "../layouts/mainLayout";
 import LatestBlogSection from "../elements/latestBlogSection";
 import BlogListSection from "../elements/blogListSection";
 import Jumbotron from "../elements/jumbotron";
-import Utils  from "../elements/utils";
 import { GetStaticProps } from "next";
 import sampleSize from "lodash/sampleSize";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import Link from "next/link";
-import { readdirSync } from "fs";
 import { QuoteInterface } from "@/elements/quoteSection";
 
 type BlogPageTypes= {

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React from "react";
 const BlogIntroSection = ({ name }: {name: string}) => (
-  <section className="bg-gradient-to-r from-accent to-accentLight selection:bg-white selection:text-accent" id="blog">
+  <section className="bg-gradient-to-r from-accent/50 to-accent selection:bg-white selection:text-accent bg-white" id="blog">
     <div className="narrow mx-auto text-center  pb-6 relative">
       <div className="w-full">
         <h3 className="m-0 p-0 font-blocky  not-italic leading-tight text-white font-semibold mb-0 mt-0 uppercase">

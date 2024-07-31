@@ -73,7 +73,7 @@ class ContactMeSection extends React.Component<object, ContactMeSectionStateInte
                       cols={40}
                       id="message"
                       name="contactMessage: "
-                      onChange={event=> this.onChange}
+                      onChange={()=> this.onChange}
                       placeholder="Message"
                       required
                       rows={10}
@@ -91,9 +91,9 @@ class ContactMeSection extends React.Component<object, ContactMeSectionStateInte
                 <h4 className="text-white font-blocky uppercase text-navbar font-bold my-0">
                   Email
                 </h4>
-                <p>
+                <a className="" href="mailto:nirmalhk7@gmail.com">
                   nirmalhk7@gmail.com
-                </p>
+                </a>
               </div>
             </div>
           </div>

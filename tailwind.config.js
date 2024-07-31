@@ -1,4 +1,4 @@
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "src/**/*.{js,tsx,ts,jsx}"
@@ -10,41 +10,31 @@ module.exports = {
       "laptop": {'min':"1024px"},
       "laptop-l": {'min':"1440px"}
     },
-    colors: {
-      "white": "#ffffff",
-      "accent": "#FF7B08",
-      "accentLight": "#ffb652",
-      "gray": "#f1f1f1",
-      "darkgray": "#7d7d7d",
-      "black": "#000000",
-    },
     fontSize: {
-      'mini': ['1.2rem', {
-        lineHeight: '3rem',
-        letterSpacing: '0.1em'
-      }],
       'base': ['1.6rem', {
         lineHeight: '3rem',
       }],
       'h1': ['3.6rem', {
-        lineHeight: '4.5rem',
-        letterSpacing: '-.1rem'
+        lineHeight: '3.25rem',
+        letterSpacing: '-.1rem',
+        fontWeight: '700'
       }],
       'h2': ['3rem', {
-        lineHeight: '3.9rem',
+        lineHeight: '3.3rem',
       }],
       'h3': ['2.4rem', {
-        lineHeight: '3rem',
+        lineHeight: '3.25rem',
       }],
       'h4': ['2.1rem', {
-        lineHeight: '2.7rem',
+        lineHeight: '3.286rem',
       }],
       'h5': ['1.6rem', {
-        lineHeight: '2.1rem',
+        lineHeight: '3.3125rem',
       }],
       'h6': ['1.4rem', {
-        lineHeight: '2.4rem',
-        letterSpacing: '.16rem'
+        lineHeight: '3.5rem',
+        letterSpacing: '.16rem',
+        fontWeight: '700'
       }],
       "lead": ["2rem",{
         lineHeight: "3.6rem"
@@ -60,7 +50,14 @@ module.exports = {
       }]
     },
     extend: {
-
+      colors: {
+        "white": "#ffffff",
+        "black": "#000000",
+        "accent": "#D93838",
+        "accentLight": "#ffb652",
+        "gray": "#f1f1f1",
+        "darkgray": "#7d7d7d",
+      },
       boxShadow: {
         'workexp': '0 0 0 9px #e9e9e9',
       },

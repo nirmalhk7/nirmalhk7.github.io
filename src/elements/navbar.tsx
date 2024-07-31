@@ -41,7 +41,7 @@ const Navbar = () => {
   return (
     <header className="font-blocky transition duration-500 font-bold text-navbar uppercase w-full h-navbar bg-transparent z-40 absolute top-0 selection:bg-accent selection:text-white">
       <Link href="/">
-        <div className="left-20 inline-block text-white m-0 p-0 absolute">
+        <div className="left-20 inline-block text-white m-0 p-0 absolute hover:text-accent transition duration-500">
           nirmalhk7
         </div>
       </Link>
@@ -69,7 +69,7 @@ const Navbar = () => {
       <Link
         className={`header-menu-toggle block tablet:hidden ${mobileMenuClick ? 'is-clicked': ''}`}
         id="nav-button"
-        onClick={e=>mobileMenuSet(!mobileMenuClick)}
+        onClick={()=>mobileMenuSet(!mobileMenuClick)}
         href="#0"
       >
         <span>Menu</span>
