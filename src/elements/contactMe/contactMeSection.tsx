@@ -79,12 +79,11 @@ class ContactMeSection extends React.Component<object, ContactMeSectionStateInte
                       rows={10}
                     />
                   </div>
-                  <input
-                    className="mt-32 font-blocky uppercase text-center  text-button font-bold bg-accent border-4 border-accent text-white hover:text-black  no-underline w-full"
+                  <button
+                    className="mt-32 py-8 button button-red w-full bg-accent text-white hover:text-accent hover:bg-white"
                     type="submit"
-                    value="Submit"
                     style={{lineHeight:"0"}}
-                  />
+                  >Submit</button>
                 </form>
               </div>
               <div className="w-full contact__infos">

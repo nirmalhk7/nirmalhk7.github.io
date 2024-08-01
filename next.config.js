@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects(){
-    if(process.env.NEXT_PUBLIC_LEANMODE && false){
+  async redirects() {
+    if (process.env.NEXT_PUBLIC_LEANMODE && false) {
       return [{
         source: '/projects',
         destination: '/',
@@ -11,7 +11,7 @@ const nextConfig = {
         source: '/blog',
         destination: '/',
         permanent: false
-      },{
+      }, {
         source: '/blog/:id',
         destination: '/',
         permanent: false
@@ -60,6 +60,14 @@ const nextConfig = {
       },
     ],
   },
+  i18n: {
+    // These are all the locales you want to support in
+    // your application
+    locales: ['en-US'],
+    // This is the default locale you want to be used when visiting
+    // a non-locale prefixed path e.g. `/hello`
+    defaultLocale: 'en-US'
+  }
 }
 
 module.exports = nextConfig

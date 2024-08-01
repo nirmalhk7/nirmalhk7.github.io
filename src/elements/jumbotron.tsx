@@ -75,10 +75,10 @@ const Jumbotron = {
         <div className="tablet:container mx-auto home-content__main">
           <h3 className="ital-hover">{orangeText}</h3>
           {HeadingTextComponent}
-          <div className="static text-left gap-4 right-0 bottom-8  text-button font-blocky uppercase font-bold">
+          <div className="static text-left gap-4 right-0 bottom-8">
             {buttonDetails.map((item) => (
               <Link
-                className="my-4 inline-block mr-4 border-4 no-underline px-5 text-white border-white hover:bg-white hover:text-black"
+                className="button button-white inline-block mr-4"
                 key={item[0]}
                 href={item[1]}
               >

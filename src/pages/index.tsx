@@ -119,7 +119,7 @@ const IndexPage = ({
             <div className="break-inside-avoid pt-16">
               <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
                 <Link
-                  className="bg-accent border-4 border-accent text-white hover:text-black  no-underline w-full"
+                  className="button button-red bg-accent w-full text-white hover:text-accent hover:bg-white"
                   href={"/resume"}
                   rel="noreferrer"
                   target="_blank"
@@ -127,7 +127,7 @@ const IndexPage = ({
                   Download My Resume
                 </Link>
                 <Link
-                  className="border-4 no-underline border-accent  text-accent hover:text-black  w-full"
+                  className="button button-red w-full text-accent hover:text-white hover:bg-accent"
                   href="#contact"
                 >
                   Want to Hire?
