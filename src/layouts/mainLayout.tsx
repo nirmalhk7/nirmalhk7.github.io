@@ -56,7 +56,7 @@ class MainLayout extends React.Component<MainLayoutPropsInterface> {
 
     return (
       <>
-        <NextSeo {...this.props.metadata} />
+        <NextSeo {...this.props.metadata}  />
         <Navbar />
         <main>{this.props.children}</main>
         <RandomQuote quote={this.props.quote} />

@@ -13,11 +13,13 @@
     }
 
     html {
+        @apply box-border;
         font-family: sans-serif;
         font-size: 10px;
         line-height: 1.15;
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
+        height: 100%;
     }
 
     body {
@@ -29,19 +31,20 @@
         text-rendering: optimizeLegibility;
         -webkit-text-size-adjust: none;
         scrollbar-width: thin;
-    }
+        height: 100%;
 
-    body::-webkit-scrollbar {
-        @apply w-2.5;
-    }
-
-    body::-webkit-scrollbar-track {
-        @apply bg-gray;
-    }
-
-    body::-webkit-scrollbar-thumb {
-        @apply bg-accent;
-        border-radius: 6px;
+        &::-webkit-scrollbar {
+            @apply w-2.5;
+        }
+    
+        &::-webkit-scrollbar-track {
+            @apply bg-gray;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            @apply bg-accent;
+            border-radius: 6px;
+        }
     }
 
     article,
@@ -77,27 +80,17 @@
         transition: all 0.3s ease-in-out;
     }
 
-    abbr[title] {
-        border-bottom: none;
-        text-decoration: underline;
-        text-decoration: underline dotted;
-    }
-
     b,
     strong {
         font-weight: bolder;
     }
 
-    code,
-    kbd,
-    samp {
-        font-family: monospace, monospace;
-        font-size: 1em;
-    }
 
     code {
         @apply bg-[#f1f1f1] border-[#7d7d7d] rounded-md text-base my-0 mx-1 py-1 px-1 hover:bg-[#7d7d7d] hover:text-gray transition duration-500;
         border: 1px solid #E1E1E1;
+        font-family: monospace, monospace;
+        font-size: 1em;
     }
 
     img {
@@ -109,7 +102,6 @@
         overflow: hidden;
     }
 
-    button,
     input,
     optgroup,
     select,
@@ -120,36 +112,29 @@
         line-height: 1.15;
     }
 
-    button,
     input {
         @apply overflow-visible;
     }
 
-    button,
     select {
         @apply normal-case;
     }
 
-    button,
-    html [type="button"],
-    [type="reset"],
-    [type="submit"] {
+    .button {
         -webkit-appearance: button;
+        @apply border-4 no-underline hover:shadow-lg px-4 text-button font-blocky uppercase font-bold transition duration-500;
+
+        &-red {
+            @apply border-accent hover:shadow-accent/50;
+        }
+
+        &-white {
+            @apply border-white hover:shadow-white/50 text-white hover:bg-white hover:text-black;
+        }
     }
 
-    button::-moz-focus-inner,
-    [type="button"]::-moz-focus-inner,
-    [type="reset"]::-moz-focus-inner,
-    [type="submit"]::-moz-focus-inner {
-        @apply border-none p-0;
-    }
 
-    button:-moz-focusring,
-    [type="button"]:-moz-focusring,
-    [type="reset"]:-moz-focusring,
-    [type="submit"]:-moz-focusring {
-        outline: 1px dotted ButtonText;
-    }
+
 
     fieldset {
         border: 1px solid #c0c0c0;
@@ -176,19 +161,10 @@
         @apply box-border p-0;
     }
 
-    [type="number"]::-webkit-inner-spin-button,
-    [type="number"]::-webkit-outer-spin-button {
-        @apply h-auto;
-    }
 
     [type="search"] {
         -webkit-appearance: textfield;
         outline-offset: -2px;
-    }
-
-    [type="search"]::-webkit-search-cancel-button,
-    [type="search"]::-webkit-search-decoration {
-        -webkit-appearance: none;
     }
 
     details,
@@ -217,10 +193,6 @@
    *
    * ------------------------------------------------------------------- */
 
-    html {
-        font-size: 62.5%;
-        @apply box-border;
-    }
 
     *,
     *::before,
@@ -231,8 +203,7 @@
 
 
     body,
-    input,
-    button {
+    input {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
     }
@@ -259,7 +230,6 @@
     li,
     h5,
     h6,
-    pre,
     form,
     p,
     blockquote,
@@ -351,15 +321,6 @@
         appearance: none;
     }
 
-    html {
-        font-size: 10px;
-    }
-
-    html,
-    body {
-        height: 100%;
-    }
-
     /* ------------------------------------------------------------------- 
 * ## links - (_document-setup.scss) 
 * ------------------------------------------------------------------- */
@@ -368,10 +329,10 @@
         -webkit-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
         text-decoration: underline;
-    }
 
-    a:focus {
-        outline: none;
+        &:focus {
+            outline: none;
+        }
     }
 
     nav a,
@@ -390,40 +351,41 @@
         margin: 3.9rem 0;
         margin: 3.9rem 0;
         padding-left: 4.5rem;
+
+        &:before {
+            @apply m-0 absolute left-0 text-accent shadow shadow-accent;
+            content: "\201C";
+            line-height: 0px;
+            font-size: 10rem;
+            font-family: arial, sans-serif;
+            top: 3.6rem;
+        }
+
+        p {
+            @apply font-normal p-0 text-black font-blocky;
+            line-height: 1.857;
+            font-size: 2.1rem;
+        }
+
+        cite {
+            @apply block font-normal not-italic leading-normal text-h6 font-blocky;
+            display: block;
+            font-size: 1.4rem;
+            font-style: normal;
+
+            &:before {
+                content: "\2014 \0020";
+            }
+
+            a,
+            a:visited {
+                @apply text-gray border-none;
+                color: #6c6c6c;
+            }
+        }
     }
 
-    blockquote:before {
-        @apply m-0 absolute left-0 text-accent;
-        content: "\201C";
-        line-height: 0px;
-        font-size: 10rem;
-        font-family: arial, sans-serif;
-        top: 3.6rem;
-        left: 0;
-    }
 
-    blockquote p {
-        @apply font-normal p-0 text-black font-blocky;
-        line-height: 1.857;
-        font-size: 2.1rem;
-    }
-
-    blockquote cite {
-        @apply block font-normal not-italic leading-normal text-h6 font-blocky;
-        display: block;
-        font-size: 1.4rem;
-        font-style: normal;
-    }
-
-    blockquote cite:before {
-        content: "\2014 \0020";
-    }
-
-    blockquote cite a,
-    blockquote cite a:visited {
-        @apply text-gray border-none;
-        color: #6c6c6c;
-    }
 
     /* ===================================================================
  * # footer - (_site-layout.scss)
@@ -432,17 +394,19 @@
     footer {
         @apply bg-black font-normal text-center font-blocky text-white;
         padding: 4.2rem 0 4.2rem;
+
+        a,
+        a:visited {
+            @apply text-accent
+        }
+
+        a:hover,
+        a:focus {
+            @apply text-white
+        }
     }
 
-    footer a,
-    footer a:visited {
-        @apply text-accent
-    }
 
-    footer a:hover,
-    footer a:focus {
-        @apply text-white
-    }
 
     .footer-logo {
         @apply inline-block;
@@ -469,27 +433,29 @@
 
     .contact__form {
         padding-right: 40px;
+
+        input,
+        textarea {
+            background-color: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: .9rem;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        input:focus,
+        textarea:focus {
+            @apply text-white;
+            border-bottom: 1px solid white;
+        }
+
+        button {
+            margin-top: 4.2rem;
+            background-color: map-get($map: $theme-colors, $key: "accent");
+            border-color: map-get($map: $theme-colors, $key: "accent");
+        }
     }
 
-    .contact__form input,
-    .contact__form textarea {
-        background-color: transparent;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        margin-bottom: .9rem;
-        color: rgba(255, 255, 255, 0.75);
-    }
 
-    .contact__form input:focus,
-    .contact__form textarea:focus {
-        @apply text-white;
-        border-bottom: 1px solid white;
-    }
-
-    .contact__form button {
-        margin-top: 4.2rem;
-        background-color: map-get($map: $theme-colors, $key: "accent");
-        border-color: map-get($map: $theme-colors, $key: "accent");
-    }
 
     /* ------------------------------------------------------------------- 
      * responsive:
@@ -665,73 +631,73 @@
 }
 
 @keyframes flicker-3 {
+
     0%,
     100% {
-      opacity: 1;
+        opacity: 1;
     }
-  
+
     32.98% {
-      opacity: 1;
+        opacity: 1;
     }
-  
+
     33% {
-      opacity: 0;
+        opacity: 0;
     }
-  
+
     34% {
-      opacity: 0;
+        opacity: 0;
     }
-  
+
     34.02% {
-      opacity: 1;
+        opacity: 1;
     }
-  
+
     34.98% {
-      opacity: 1;
+        opacity: 1;
     }
-  
+
     35% {
-      opacity: 0;
+        opacity: 0;
     }
-  
+
     35.9% {
-      opacity: 0;
+        opacity: 0;
     }
-  
+
     35.92% {
-      opacity: 1;
+        opacity: 1;
     }
-  
+
     38.98% {
-      opacity: 1;
+        opacity: 1;
     }
-  
+
     39% {
-      opacity: 0;
+        opacity: 0;
     }
-  
+
     39.8% {
-      opacity: 0;
+        opacity: 0;
     }
-  
+
     39.82% {
-      opacity: 1;
+        opacity: 1;
     }
-  
+
     83.98% {
-      opacity: 1;
+        opacity: 1;
     }
-  
+
     84% {
-      opacity: 0;
+        opacity: 0;
     }
-  
+
     84.9% {
-      opacity: 0;
+        opacity: 0;
     }
-  
+
     84.92% {
-      opacity: 1;
+        opacity: 1;
     }
-  }
-  
+}
