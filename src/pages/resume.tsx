@@ -11,7 +11,7 @@ const PDFViewer: React.FC<PDFViewerProps> = () => {
       <NextSeo title="Resume" description='Resume of Nirmal Khedkar' />
       <iframe
         title="Resume of Nirmal Khedkar"
-        src="https://drive.google.com/file/d/1uiBM20zWZrbdRYfJAP-2mr_2aoyL3wac/preview"
+        src={`/Resume.pdf`}
         className="w-full h-full border-none"
       />
     </div>

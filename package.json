@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "get-resume": "curl -L -o Resume.pdf https://drive.google.com/uc?export=download&id=1uiBM20zWZrbdRYfJAP-2mr_2aoyL3wac && mv Resume.pdf && public"
   },
   "dependencies": {
+    "@formspree/react": "^2.5.1",
     "@fortawesome/fontawesome-svg-core": "6.4.0",
     "@fortawesome/free-brands-svg-icons": "6.4.0",
     "@fortawesome/free-solid-svg-icons": "6.4.0",
