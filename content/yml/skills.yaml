@@ -44,3 +44,5 @@
   priority: 4
 - name: Lodash
   priority: 3
+- name: Project Reactor
+  priority: 1
