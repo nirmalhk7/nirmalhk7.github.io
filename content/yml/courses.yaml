@@ -1,6 +1,9 @@
 # College Courses =======================================================================
+- name: Datacenter Scale Computing
+- name: Cybersecurity
+- name: Big Data Architecture
 - name: Web Technologies
-- name: DSA
+- name: Data Structures and Algorithms
 - name: Computer Networking
 - name: Operating Systems
 - name: Database Management
