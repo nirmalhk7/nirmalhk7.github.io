@@ -12,7 +12,6 @@ const parseMarkdownFile = (path: string) => {
 }
 
 const createMarkdownObject = (slug: string, frontmatter: any, content: string, excerpt?: string, options?: LoadMarkdownOptions) => ({
-  id: slug,
   childMarkdownRemark: { frontmatter },
   content: options?.getContent ? content : null,
   excerpt: options?.getExcerpt ? excerpt : null,

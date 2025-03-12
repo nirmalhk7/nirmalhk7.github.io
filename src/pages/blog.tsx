@@ -9,18 +9,14 @@ import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import Link from "next/link";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { DefaultPageProps } from "./_app";
+import { BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
 
 interface BlogPageProps extends DefaultPageProps {
-  blogs: {
-    id: string;
-    childMarkdownRemark: { frontmatter: any };
-    content: string | null;
-    excerpt: string | null | undefined;
-    slug: string;
-  }[];
+  blogs: BlogInterface[],
+  blogsMiniInformation: BlogMiniInterface[]
 }
 
-const Blog = ({ blogs, location, data, quote }: any) => {
+const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
   return (
     <main>
       <Jumbotron.Max
@@ -39,7 +35,7 @@ const Blog = ({ blogs, location, data, quote }: any) => {
         frontmatter={blogs[0].childMarkdownRemark.frontmatter}
         relativeDirectory={blogs[0].slug}
       />
-      <BlogListSection blogItems={blogs} />
+      <BlogListSection blogItems={blogsMiniInformation} />
     </main>
   );
 };
@@ -52,9 +48,15 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
     getExcerpt: true,
   });
 
+  const miniBlogInformation = blogDetail.map(i=>({
+    childMarkdownRemark: i.childMarkdownRemark,
+    excerpt: i.excerpt,
+    slug: i.slug
+  }))
   return {
     props: {
       blogs: blogDetail,
+      blogsMiniInformation: miniBlogInformation,
       quote: sampleSize(allQuotesYaml)[0],
       pageMetadata: {
         enableWrap: true,

@@ -18,7 +18,7 @@ export default function ContactMeSection() {
 
   return (
     <div>
-      <WebSection className="relative bg-fixed bg-center bg-no-repeat bg-black selection:bg-accent selection:text-white">
+      <WebSection id="contact" className="relative bg-fixed bg-center bg-no-repeat bg-black selection:bg-accent selection:text-white">
         <div className="z-10 narrow m-auto text-white">
           <div className=" text-center">
             <h3 className="text-accent font-blocky font-semibold uppercase my-0">
