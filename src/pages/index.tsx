@@ -16,7 +16,7 @@ import {
   ProfilesInterface,
   SkillsInterface,
   WorkExperienceInterface,
-} from "@/interfaces/interfaces";
+} from "@/interfaces";
 import WebSection from "@/elements/WebSection";
 import { NextSeoProps } from "next-seo";
 import { DefaultPageProps } from "./_app";

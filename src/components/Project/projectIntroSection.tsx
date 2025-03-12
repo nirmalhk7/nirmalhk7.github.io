@@ -7,7 +7,7 @@ import {
   AccordionItemButton,
 } from "react-accessible-accordion";
 import Utils from "@/elements/utils";
-import ProjectInterface from "@/interfaces/projectInterface";
+import ProjectInterface from "@/interfaces/projects";
 import Link from "next/link";
 import WebSection from "@/elements/WebSection";
 

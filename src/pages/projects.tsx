@@ -10,7 +10,7 @@ import {
 } from "react-accessible-accordion";
 import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
 import ReactMarkdown from "react-markdown";
-import ProjectInterface from "@/interfaces/projectInterface";
+import ProjectInterface from "@/interfaces/projects";
 import { groupBy, sampleSize } from "lodash";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
 import { GetStaticProps } from "next";

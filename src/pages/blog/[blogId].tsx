@@ -19,7 +19,7 @@ import {
 } from "react-share";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import ReactMarkdown from "react-markdown";
-import BlogInterface from "@/interfaces/blogInterface";
+import BlogInterface from "@/interfaces/blog";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { sampleSize } from "lodash";
@@ -28,19 +28,7 @@ import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { DefaultPageProps } from "../_app";
 
 interface BlogTemplatePageProps extends DefaultPageProps {
-  current: {
-    id: string;
-    childMarkdownRemark: {
-      frontmatter?: {
-        tags: string[],
-        category: string,
-        title: string
-      };
-    };
-    content: string | null;
-    excerpt: string | undefined | null;
-    slug: string;
-  };
+  current: BlogInterface
 }
 
 const BlogTemplate = ({
