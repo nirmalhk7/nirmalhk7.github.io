@@ -1,17 +1,38 @@
 import React from "react";
-import Blog from "../elements/blogIntroSection";
-import WorkExperience from "../elements/workExperienceSection";
-import Layout from "../layouts/mainLayout";
-import Jumbotron from "../elements/jumbotron";
+import BlogIntroSection from "@/components/Blog/blogIntroSection";
+import WorkExperience from "@/elements/workExperienceSection";
+import Jumbotron from "@/elements/jumbotron";
 import Link from "next/link";
 import sampleSize from "lodash/sampleSize";
 import { GetStaticProps } from "next";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
-import { QuoteInterface } from "@/elements/quoteSection";
+import { QuoteInterface } from "@/components/Quote/quoteSection";
 import Utils from "@/elements/utils";
 import ReactMarkdown from "react-markdown";
-import ProjectIntroSection from "@/elements/projectIntroSection";
-import { CourseInterface, MembershipInterface, ProfilesInterface, SkillsInterface, WorkExperienceInterface } from "@/interfaces/interfaces";
+import ProjectIntroSection from "@/components/Project/projectIntroSection";
+import {
+  CourseInterface,
+  MembershipInterface,
+  ProfilesInterface,
+  SkillsInterface,
+  WorkExperienceInterface,
+} from "@/interfaces/interfaces";
+import WebSection from "@/elements/WebSection";
+import { NextSeoProps } from "next-seo";
+import { DefaultPageProps } from "./_app";
+
+
+
+interface IndexPageProps extends DefaultPageProps {
+  mainContent: string;
+  collegeCourses: CourseInterface[];
+  onlineCourses: CourseInterface[];
+  skills: SkillsInterface[];
+  cv: ProfilesInterface[];
+  membership: MembershipInterface[];
+  workexperience: WorkExperienceInterface[];
+  projects: any[];
+}
 
 const IndexPage = ({
   mainContent,
@@ -22,15 +43,16 @@ const IndexPage = ({
   membership,
   skills,
   site,
-  quote
+  quote,
 }: any) => {
+  
   return (
-    <Layout location="/" quote={quote} >
+      <main>
       <Jumbotron.Max
         HeadingTextComponent={
-          <h1>
+          <h1 className="text-4xl font-bold leading-tight">
             I&apos;m Nirmal Khedkar, <br />
-            Software Engineer. 
+            Software Engineer.
           </h1>
         }
         bgImg="bg-milkyWay laptop:bg-beachNirmal"
@@ -41,30 +63,33 @@ const IndexPage = ({
         orangeText="Hey!"
         showScrollDown={true}
       />
-        <section className="pt-32 pb-32 bg-white relative selection:bg-accent selection:text-white" id="about">
-        <div className="w-100 text-center">
+      <WebSection
+        className="pt-32 pb-32 bg-white relative selection:bg-accent selection:text-white"
+        id="about"
+      >
+        <div className="w-full text-center">
           <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
             <div className="w-full text-center">
-              <h3 className="text-accent">Nirmal Khedkar</h3>
-              <h1 className="hover:text-black transition duration-500">More About Me</h1>
-              <p className="font-lead font-blocky mb-16">
+              <h3 className="text-accent text-2xl font-semibold">
+                Nirmal Khedkar
+              </h3>
+              <h1 className="hover:text-black transition duration-500 text-3xl font-bold">
+                More About Me
+              </h1>
+              <p className="font-lead font-blocky mb-16 text-lg">
                 Fortress code, lightning fast: Hi, I&apos;m Nirmal Khedkar.
               </p>
             </div>
           </div>
         </div>
-        <div className="container mx-auto ">
+        <div className="container mx-auto">
           <div className="columns-1 mobile-l:columns-2 gap-16 gap-y-16">
             <ReactMarkdown>
               {mainContent}
             </ReactMarkdown>
-
-            
             <div className="break-inside-avoid">
               <Utils.getHeader headerName="Familiar Languages, Frameworks and Libraries" />
-              <div
-                className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4"
-              >
+              <div className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-4">
                 {skills.map((element, index) => (
                   <div
                     className="p-2 text-center text-base text-black uppercase font-blocky hover:shadow-md transition duration-300"
@@ -76,13 +101,20 @@ const IndexPage = ({
               </div>
             </div>
             <div className="break-inside-avoid">
+              {/* TODO NK  This looks too wordy */}
               <Utils.getHeader headerName="Online Certification and Courses Taken" />
               <div className="m-0">
-                <ul className="disc">
+                <ul className="list-disc pl-5">
                   {onlineCourses.map((element, index) => (
-                    <li key={index} style={{ paddingTop: "0.4em" }}>
-                      {element.name} by {element.provider}- (
-                      <a href={element.link}>link</a>)
+                    <li key={index} className="py-1">
+                      {element.name} by {element.provider} - (
+                      <a
+                        href={element.link}
+                        className="text-accent hover:underline"
+                      >
+                        link
+                      </a>
+                      )
                     </li>
                   ))}
                 </ul>
@@ -91,35 +123,33 @@ const IndexPage = ({
             <div className="break-inside-avoid">
               <Utils.getHeader headerName="Prominent College Courses Taken" />
               <div className="m-0">
-                <ul className="disc">
-                  {collegeCourses
-                    .map((element) => element.name)
-                    .join(", ")}
-                  .
+                <ul className="list-disc pl-5">
+                  {collegeCourses.map((element) => element.name).join(", ")}.
                 </ul>
               </div>
             </div>
-            {/* TODO: This is causing some weird padding issues. */}
             <div className="break-inside-avoid">
               <Utils.getHeader headerName="Volunteer Experience" />
               <div className="m-0">
-                <ul className="disc">
+                <ul className="list-disc pl-5">
                   {membership.map((element, index) => (
-                    <li key={index} className="pt-1">
+                    <li key={index} className="py-1">
                       {element.position} at&nbsp;
-                      <a href={element.clubwebsite} key={index}>
+                      <a
+                        href={element.clubwebsite}
+                        className="text-accent hover:underline"
+                      >
                         {element.club}
                       </a>
                     </li>
                   ))}
                 </ul>
               </div>
-            
             </div>
             <div className="break-inside-avoid pt-16">
-              <div className="grid gap-4 font-blocky uppercase text-center  text-button font-bold">
+              <div className="grid gap-4 font-blocky uppercase text-center text-button font-bold">
                 <Link
-                  className="button button-red bg-accent w-full text-white hover:text-accent hover:bg-white"
+                  className="button button-red bg-accent w-full text-white hover:text-accent hover:bg-white transition duration-300"
                   href={"/resume"}
                   rel="noreferrer"
                   target="_blank"
@@ -127,7 +157,7 @@ const IndexPage = ({
                   Download My Resume
                 </Link>
                 <Link
-                  className="button button-red w-full text-accent hover:text-white hover:bg-accent"
+                  className="button button-red w-full text-accent hover:text-white hover:bg-accent transition duration-300"
                   href="#contact"
                 >
                   Want to Hire?
@@ -136,41 +166,49 @@ const IndexPage = ({
             </div>
           </div>
         </div>
-        <WorkExperience experience={workexperience} />
-      </section>
+      </WebSection>
+      <WorkExperience experience={workexperience} />
       <ProjectIntroSection projects={projects} />
-      <Blog name="The Blue Green Manual" />
-      
-      
-    </Layout>
+      <BlogIntroSection name="The Blue Green Manual" />
+      </main>
   );
-}
-
+};
 
 export default IndexPage;
 
-
-export const getStaticProps: GetStaticProps<string> = async () => {
+export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
   const allCoursesYaml: CourseInterface[] = require("../../content/yml/courses.yaml");
   const allSkillsYaml: SkillsInterface[] = require("../../content/yml/skills.yaml");
-  // Lodash get random 5 projects
-
   const allProfilesYaml: ProfilesInterface[] = require("../../content/yml/profiles.yaml");
   const allMembershipsYaml: MembershipInterface[] = require("../../content/yml/memberships.yaml");
   const allWorkExperiencesYaml: WorkExperienceInterface[] = require("../../content/yml/workexperiences.yaml");
-  const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml")
-
+  const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml");
 
   return {
     props: {
-      mainContent: loadMarkdownFile("content/yml/mainContent.md", "mainContent", { getContent: true }).content,
-      collegeCourses: allCoursesYaml.filter(val => !val.provider),
-      onlineCourses: allCoursesYaml.filter(val => val.provider),
+      mainContent: loadMarkdownFile(
+        "content/yml/mainContent.md",
+        "mainContent",
+        { getContent: true }
+      ).content || "",
+      collegeCourses: allCoursesYaml.filter((val) => !val.provider),
+      onlineCourses: allCoursesYaml.filter((val) => val.provider),
       skills: allSkillsYaml,
-      cv: allProfilesYaml, membership: allMembershipsYaml,
+      cv: allProfilesYaml,
+      membership: allMembershipsYaml,
       workexperience: allWorkExperiencesYaml,
-      projects: sampleSize(loadMarkdownFiles("content/projects", { getExcerpt: true }), 5),
-      quote: sampleSize(allQuotesYaml)[0]
-    }
-  }
-}
+      projects: sampleSize(
+        loadMarkdownFiles("content/projects", { getExcerpt: true }),
+        5
+      ),
+      quote: sampleSize(allQuotesYaml)[0],
+      pageMetadata: {
+        enableWrap: true,
+        seoMetadata: {
+          defaultTitle: "Official Website of Nirmal Khedkar",
+          description: "Fortress Code Lightning Fast. This is Nirmal Khedkar's Official Website"
+        }
+      }
+    },
+  };
+};

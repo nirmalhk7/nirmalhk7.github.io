@@ -18,43 +18,46 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import Layout from "../../layouts/mainLayout";
-import { CategoryList } from "../../elements/categoryList";
-import ReactMarkdown from 'react-markdown';
-import BlogInterface from "../../interfaces/blogInterface";
+import ReactMarkdown from "react-markdown";
+import BlogInterface from "@/interfaces/blogInterface";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import { sampleSize, sortBy } from "lodash";
-import { QuoteInterface } from "@/elements/quoteSection";
+import { sampleSize } from "lodash";
+import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
+import { DefaultPageProps } from "../_app";
 
-
-interface BlogTemplateInterface {
-  siteDetails: {
-    author: string,
-    url: string
-  }
-  next: { relativeDirectory: string },
-  previous: { relativeDirectory: string },
+interface BlogTemplatePageProps extends DefaultPageProps {
   current: {
-    childMarkdownRemark: BlogInterface
-  }
+    id: string;
+    childMarkdownRemark: {
+      frontmatter?: {
+        tags: string[],
+        category: string,
+        title: string
+      };
+    };
+    content: string | null;
+    excerpt: string | undefined | null;
+    slug: string;
+  };
 }
 
-
-const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const pageTitle = `${currentBlog.childMarkdownRemark.frontmatter.title} by NK`;
+const BlogTemplate = ({
+  current
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  // TODO NK: Fix needed here: appropriate representation
   const shareProps = {
     url: "/",
-    title: pageTitle,
+    title: current.childMarkdownRemark.frontmatter?.title,
   };
+
   return (
-    <Layout location={location} quote={quote} metadata={{ title: currentBlog.childMarkdownRemark.frontmatter.title }}>
+    <main>
       <article className="blog-single has-bottom-sep">
         <div
           className="page-header  bg-fixed bg-center bg-no-repeat text-center"
           style={{
-            // backgroundImage: `url(${Utils.getFrontmatter(pageContext.current).img.childImageSharp.original.src})`,
             backgroundSize: "cover",
           }}
         >
@@ -62,22 +65,29 @@ const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<
             <article className="w-full">
               <div className="page-header__info">
                 <div className="page-header__cat">
-                  <CategoryList
-                    categories={
-                      currentBlog.childMarkdownRemark.frontmatter.category
-                    }
-                  />
+                  {/* {current.childMarkdownRemark.frontmatter.category.map(
+                    ({ category, index }: any) => (
+                      <React.Fragment key={index}>
+                        <a href={`/blog#${category}`}>{category}</a>
+                        {current.childMarkdownRemark.frontmatter.category
+                          .length !==
+                        index + 1
+                          ? ", "
+                          : null}
+                      </React.Fragment>
+                    )
+                  )} */}
                 </div>
               </div>
               <h1 className="page-header__title">
                 <a href="#0" title="">
-                  {currentBlog.childMarkdownRemark.frontmatter.title}
+                  {/* {current.childMarkdownRemark.frontmatter.title} */}
                 </a>
               </h1>
               <ul className="page-header__meta">
                 <li className="date">
                   <b>Nirmal Khedkar</b> on
-                  {` ${currentBlog.childMarkdownRemark.frontmatter.date}`}
+                  {/* {` ${current.childMarkdownRemark.frontmatter.date}`} */}
                 </li>
               </ul>
             </article>
@@ -85,13 +95,11 @@ const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<
         </div>
         <div className=" m-auto" style={{ paddingBottom: "72px" }}>
           <div className="w-full pl-24 pr-24">
-            <ReactMarkdown>
-              {currentBlog.content}
-            </ReactMarkdown>
+            <ReactMarkdown>{current.content || ""}</ReactMarkdown>
             <div className="blog-content__pagenav">
               <h6 className="boxfont text-uppercase mt-0">Share the article</h6>
               <TwitterShareButton
-                hashtags={currentBlog.childMarkdownRemark.frontmatter.category}
+                hashtags={current.childMarkdownRemark.frontmatter?.tags}
                 {...shareProps}
               >
                 <FontAwesomeIcon
@@ -101,7 +109,7 @@ const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<
               </TwitterShareButton>
               <LinkedinShareButton
                 source={"/"}
-                summary={currentBlog.childMarkdownRemark.frontmatter.title}
+                summary={current.childMarkdownRemark.frontmatter?.title}
                 {...shareProps}
               >
                 <FontAwesomeIcon
@@ -110,8 +118,8 @@ const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<
                 />
               </LinkedinShareButton>
               <FacebookShareButton
-                hashtag={`#${currentBlog.childMarkdownRemark.frontmatter.category}`}
-                quote={`${currentBlog.childMarkdownRemark.frontmatter.title} by Nirmal Khedkar`}
+                hashtag={`#${current.childMarkdownRemark.frontmatter?.category}`}
+                quote={`${current.childMarkdownRemark.frontmatter?.title} by Nirmal Khedkar`}
                 {...shareProps}
               >
                 <FontAwesomeIcon
@@ -131,9 +139,7 @@ const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<
                   icon={faWhatsapp}
                 />
               </WhatsappShareButton>
-              <TelegramShareButton
-                {...shareProps}
-              >
+              <TelegramShareButton {...shareProps}>
                 <FontAwesomeIcon
                   className="mr-2 text-accent"
                   icon={faTelegram}
@@ -154,16 +160,15 @@ const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<
                 style={{ marginTop: "3rem!important" }}
               >
                 <span>
-                  <CategoryList
-                    categories={currentBlog.childMarkdownRemark.frontmatter.category}
-                  />
                 </span>
                 <span className="blog-content__tag-list">
-                  {currentBlog.childMarkdownRemark.frontmatter.tags.map((element, index) => (
-                    <a href="#0" key={index}>
-                      {element}
-                    </a>
-                  ))}
+                  {current.childMarkdownRemark.frontmatter?.tags.map(
+                    (element, index) => (
+                      <a href="#0" key={index}>
+                        {element}
+                      </a>
+                    )
+                  )}
                 </span>
               </p>
               <div className="blog-content__nav">
@@ -197,43 +202,58 @@ const BlogTemplate = ({ location, currentBlog, quote }: InferGetStaticPropsType<
                 </Link>
               </div>
               <hr />
-
             </div>
           </div>
         </div>
       </article>
-    </Layout>
+    </main>
   );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const blogs = loadMarkdownFiles("content/blog", {
+    getContent: false,
+    getExcerpt: false,
+  });
+
+  const paths = blogs.map((file) => {
+    return {
+      params: {
+        blogId: file.slug,
+      },
+    };
+  });
+
   return {
-    paths: [
-      {
-        params: {
-          blogId: 'conclave',
-        },
-      }, // See the "paths" section below
-    ],
+    paths,
     fallback: false, // false or "blocking"
-  }
-}
+  };
+};
 
-export const getStaticProps: GetStaticProps<any> = async (context) => {
+export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
+  context
+) => {
   const allQuotesYaml: QuoteInterface[] = require("../../../content/yml/quotes.yaml");
-  const blogId = context.params && context.params.blogId;
-  const currentBlog = loadMarkdownFile("content/blog/" + blogId + ".md", blogId, { getContent: true })
+  const blogId = context.params?.blogId as string;
+  const currentBlog = loadMarkdownFile(
+    "content/blog/" + blogId + ".md",
+    blogId,
+    { getContent: true }
+  );
 
-  let blogDetail = loadMarkdownFiles("content/blog", { getContent: true, getExcerpt: true });
-  // context.params.blogId
-
-  blogDetail = sortBy(blogDetail, blog => blog.childMarkdownRemark.frontmatter.date);
   return {
     props: {
-      currentBlog,
-      quote: sampleSize(allQuotesYaml)[0], blogDetail
-    }
-  }
-}
+      current: currentBlog,
+      quote: sampleSize(allQuotesYaml)[0],
+      pageMetadata: {
+        enableWrap: true,
+        seoMetadata: {
+          defaultTitle: "The Blue Green Manual",
+          description: "Blog by Nirmal Khedkar",
+        },
+      },
+    },
+  };
+};
 
 export default BlogTemplate;

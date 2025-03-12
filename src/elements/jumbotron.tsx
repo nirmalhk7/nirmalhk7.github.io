@@ -1,9 +1,10 @@
 import React from "react";
 
-import SocialMediaIcons from "./social/socialSection";
+import SocialMediaIcons from "../components/Social/socialSection";
 import Link from "next/link";
 import Image from "next/image";
 import beachImage from "../assets/images/BeachNK_1.jpg";
+import WebSection from "@/elements/WebSection";
 
 type MiniProps = {
   backgroundImage: string;
@@ -26,9 +27,9 @@ const Jumbotron = {
     backgroundImageAlt,
     title,
     subtitle,
-    DescriptionComponent
+    DescriptionComponent,
   }: MiniProps) => (
-    <section
+    <WebSection
       className="page-header bg-fixed bg-center bg-no-repeat selection:bg-accent selection:text-white"
       id={`${title}-header`}
     >
@@ -52,17 +53,10 @@ const Jumbotron = {
           <DescriptionComponent />
         </article>
       </div>
-    </section>
+    </WebSection>
   ),
-  Max: ({
-    orangeText,
-    HeadingTextComponent,
-    buttonDetails
-  }: MaxProps) => (
-
-    <section
-      className="s-home z-10 py-0 selection:bg-accent selection:text-white"
-    >
+  Max: ({ orangeText, HeadingTextComponent, buttonDetails }: MaxProps) => (
+    <WebSection className="s-home z-10 py-0 selection:bg-accent selection:text-white">
       <Image
         layout="fill"
         className="object-right object-cover pointer-events-none laptop:object-center !h-screen"
@@ -89,7 +83,7 @@ const Jumbotron = {
         </div>
       </div>
       <SocialMediaIcons />
-    </section>
+    </WebSection>
   ),
 };
 

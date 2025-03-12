@@ -1,15 +1,16 @@
 // import { useStaticQuery, graphql } from "gatsby";
 import React from "react";
+import WebSection from "@/elements/WebSection";
 
 export interface QuoteInterface {
-  content: string,
-  saidby: string
+  content: string;
+  saidby: string;
 }
 
-const QuoteSection = ({ quote }: {quote: QuoteInterface}) => {
-  if(!quote) return null;
+const QuoteSection = ({ quote }: { quote: QuoteInterface }) => {
+  if (!quote) return null;
   return (
-    <section className="bg-white">
+    <WebSection className="bg-white" id="quote">
       <div className="narrow m-auto text-center text-h4 pb-6 relative selection:bg-accent selection:text-white">
         <div>
           <blockquote>
@@ -18,7 +19,7 @@ const QuoteSection = ({ quote }: {quote: QuoteInterface}) => {
           </blockquote>
         </div>
       </div>
-    </section>
+    </WebSection>
   );
 };
 export default QuoteSection;

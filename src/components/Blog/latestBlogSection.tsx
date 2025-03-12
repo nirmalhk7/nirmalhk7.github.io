@@ -3,17 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import WebSection from "@/elements/WebSection";
 
 const LatestBlogSection = ({ relativeDirectory, frontmatter }) => {
   return (
-    <section
-      className="bg-gradient-to-r from-accent to-accentLight not-underline"
-      id="blog-first"
-      style={{
-        paddingTop: "2em",
-        paddingBottom: "2em",
-      }}
-    >
+    <WebSection className="bg-gradient-to-r from-accent to-accentLight not-underline pt-8 pb-8"
+      id="blog-first">
+
       <div className="container mx-auto">
         <div className="grid laptop:grid-cols-2 tablet:grid-cols-2 mobile-l:grid-cols-1 py-10">
           <div>
@@ -22,7 +18,7 @@ const LatestBlogSection = ({ relativeDirectory, frontmatter }) => {
           <div className="laptop:text-right tablet:text-right relative">
             <div>
               <h1
-                className="font-bold leading-snug mt-0 font-heading text-white underline"
+                className="font-bold leading-snug mt-0 font-heading text-white"
               >
                 {frontmatter.title}
               </h1>
@@ -42,7 +38,7 @@ const LatestBlogSection = ({ relativeDirectory, frontmatter }) => {
         </div>
         {/* </Link> */}
       </div>
-    </section>
+    </WebSection>
   );
 };
 

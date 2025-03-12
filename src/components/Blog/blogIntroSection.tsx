@@ -1,8 +1,12 @@
-
 import Link from "next/link";
 import React from "react";
-const BlogIntroSection = ({ name }: {name: string}) => (
-  <section className="bg-gradient-to-r from-accent/50 to-accent selection:bg-white selection:text-accent bg-white" id="blog">
+import WebSection from "@/elements/WebSection";
+
+const BlogIntroSection = ({ name }: { name: string }) => (
+  <WebSection
+    className="bg-gradient-to-r from-accent/50 to-accent selection:bg-white selection:text-accent bg-white"
+    id="blog"
+  >
     <div className="narrow mx-auto text-center  pb-6 relative">
       <div className="w-full">
         <h3 className="m-0 p-0 font-blocky  not-italic leading-tight text-white font-semibold mb-0 mt-0 uppercase">
@@ -21,7 +25,7 @@ const BlogIntroSection = ({ name }: {name: string}) => (
         </p>
       </div>
     </div>
-  </section>
+  </WebSection>
 );
 
 export default BlogIntroSection;

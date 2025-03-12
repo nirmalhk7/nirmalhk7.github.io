@@ -3,7 +3,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-import { social } from "../social/socialSection";
+import { social } from "@/components/Social/socialSection";
 import * as styles from "./footer.module.css";
 
 const FooterSection = () => {
@@ -21,7 +21,6 @@ const FooterSection = () => {
                       href={element.link}
                       target="blank"
                     >
-                      {/* TODO Increase Icon size in Mobile view */}
                       <FontAwesomeIcon icon={element.class} size="sm" />
                       <span>{element.name}</span>
                     </a>
