@@ -6,34 +6,29 @@ interface LoadMarkdownOptions {
   getExcerpt?: boolean
 }
 
-export const loadMarkdownFile = (path: string, slug: string, options?: LoadMarkdownOptions) => {
-    const readFile = fs.readFileSync(path, 'utf-8');
-    const { data: frontmatter, content, excerpt } = matter(readFile);
-    
-    return {
-      id: slug,
-      childMarkdownRemark: { frontmatter },
-      content: options && options.getContent ? content: null,
-      excerpt: options && options.getExcerpt ? excerpt:null,
-      slug
-    };
+const parseMarkdownFile = (path: string) => {
+  const readFile = fs.readFileSync(path, 'utf-8');
+  return matter(readFile);
 }
 
+const createMarkdownObject = (slug: string, frontmatter: any, content: string, excerpt?: string, options?: LoadMarkdownOptions) => ({
+  id: slug,
+  childMarkdownRemark: { frontmatter },
+  content: options?.getContent ? content : null,
+  excerpt: options?.getExcerpt ? excerpt : null,
+  slug
+});
+
+export const loadMarkdownFile = (path: string, slug: string, options?: LoadMarkdownOptions) => {
+  const { data: frontmatter, content, excerpt } = parseMarkdownFile(path);
+  return createMarkdownObject(slug, frontmatter, content, excerpt, options);
+}
 
 export const loadMarkdownFiles = (path: fs.PathLike, options?: LoadMarkdownOptions) => {
-    const files = fs.readdirSync(path);
-  
-    return files.filter(e1=>e1.endsWith(".md")).map((fileName) => {
-      const slug = fileName.replace('.md', '');
-      const readFile = fs.readFileSync(`${path}/${fileName}`, 'utf-8');
-      const { data: frontmatter, content, excerpt } = matter(readFile);
-      
-      return {
-        id: slug,
-        childMarkdownRemark: { frontmatter },
-        content: options && options.getContent ? content: null,
-        excerpt: options && options.getExcerpt ? excerpt:null,
-        slug
-      };  
-    }); 
+  const files = fs.readdirSync(path);
+  return files.filter(file => file.endsWith(".md")).map((fileName) => {
+    const slug = fileName.replace('.md', '');
+    const { data: frontmatter, content, excerpt } = parseMarkdownFile(`${path}/${fileName}`);
+    return createMarkdownObject(slug, frontmatter, content, excerpt, options);
+  });
 }

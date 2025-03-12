@@ -1,11 +1,12 @@
+import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
 
-type PDFViewerProps = {
+type ResumePageProps = {
   pdfUrl: string;
 };
 
-const PDFViewer: React.FC<PDFViewerProps> = () => {
+const ResumePage: React.FC<ResumePageProps> = () => {
   return (
     <div className="h-screen w-screen flex justify-center items-center">
       <NextSeo title="Resume" description='Resume of Nirmal Khedkar' />
@@ -18,4 +19,17 @@ const PDFViewer: React.FC<PDFViewerProps> = () => {
   );
 };
 
-export default PDFViewer;
+export default ResumePage;
+
+export const getStaticProps: GetStaticProps<any> = async () => {
+  return {
+    props: {
+      pageMetadata: {
+        enableWrap: false,
+        seoMetadata: {
+          title: "Resume"
+        }
+      }
+    },
+  };
+};

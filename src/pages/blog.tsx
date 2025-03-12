@@ -1,35 +1,28 @@
 import React from "react";
 
-import Layout from "../layouts/mainLayout";
-import LatestBlogSection from "../elements/latestBlogSection";
-import BlogListSection from "../elements/blogListSection";
+import LatestBlogSection from "@/components/Blog/latestBlogSection";
+import BlogListSection from "@/components/Blog/blogListSection";
 import Jumbotron from "../elements/jumbotron";
 import { GetStaticProps } from "next";
 import sampleSize from "lodash/sampleSize";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import Link from "next/link";
-import { QuoteInterface } from "@/elements/quoteSection";
+import { QuoteInterface } from "@/components/Quote/quoteSection";
+import { DefaultPageProps } from "./_app";
 
-type BlogPageTypes= {
-  site: {
-    siteMetadata: {
-      blogName: string
-    }
-  }
+interface BlogPageProps extends DefaultPageProps {
   blogs: {
-    nodes: {
-      relativeDirectory: string,
-      childMarkdownRemark: {
-        frontmatter: any
-      }
-    }[]
-  }
+    id: string;
+    childMarkdownRemark: { frontmatter: any };
+    content: string | null;
+    excerpt: string | null | undefined;
+    slug: string;
+  }[];
 }
 
 const Blog = ({ blogs, location, data, quote }: any) => {
-  // if (!data) return null;
   return (
-    <Layout location={location} quote={quote} metadata={{title:"The Blue Green Manual", description:"I love writing about my opinions and general topics. Follow in."}}>
+    <main>
       <Jumbotron.Max
         HeadingTextComponent={
           <h1 className="page-header__title">
@@ -46,19 +39,31 @@ const Blog = ({ blogs, location, data, quote }: any) => {
         frontmatter={blogs[0].childMarkdownRemark.frontmatter}
         relativeDirectory={blogs[0].slug}
       />
-      <BlogListSection
-        blogItems={blogs}
-        sitename="The Blue Green Manual"
-      />
-    </Layout>
+      <BlogListSection blogItems={blogs} />
+    </main>
   );
 };
 
-export const getStaticProps: GetStaticProps<any> = async () => {
+export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
   const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml");
 
-  const blogDetail= loadMarkdownFiles("content/blog",{getContent: true, getExcerpt: true});
-  
-  return { props: { blogs: blogDetail, quote: sampleSize(allQuotesYaml)[0]}}
-}  
+  const blogDetail = loadMarkdownFiles("content/blog", {
+    getContent: true,
+    getExcerpt: true,
+  });
+
+  return {
+    props: {
+      blogs: blogDetail,
+      quote: sampleSize(allQuotesYaml)[0],
+      pageMetadata: {
+        enableWrap: true,
+        seoMetadata: {
+          title: "The Blue Green Manual",
+          description: "Dwelving into Production Scale Engineering with Nirmal Khedkar. This is The Blue Green Manual",
+        },
+      },
+    },
+  };
+};
 export default Blog;
