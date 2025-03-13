@@ -2,12 +2,6 @@ import { useForm, ValidationError } from "@formspree/react";
 import React from "react";
 import WebSection from "@/elements/WebSection";
 
-interface ContactMeSectionStateInterface {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
 
 export default function ContactMeSection() {
   const [state, handleSubmit] = useForm("mgvwblra");

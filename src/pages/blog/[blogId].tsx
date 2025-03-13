@@ -53,6 +53,7 @@ const BlogTemplate = ({
             <article className="w-full">
               <div className="page-header__info">
                 <div className="page-header__cat">
+                  {/* TODO NK Print category */}
                   {/* {current.childMarkdownRemark.frontmatter.category.map(
                     ({ category, index }: any) => (
                       <React.Fragment key={index}>
@@ -87,7 +88,7 @@ const BlogTemplate = ({
             <div className="blog-content__pagenav">
               <h6 className="boxfont text-uppercase mt-0">Share the article</h6>
               <TwitterShareButton
-                hashtags={current.childMarkdownRemark.frontmatter?.tags}
+                hashtags={current.frontmatter?.tags}
                 {...shareProps}
               >
                 <FontAwesomeIcon
@@ -97,7 +98,7 @@ const BlogTemplate = ({
               </TwitterShareButton>
               <LinkedinShareButton
                 source={"/"}
-                summary={current.childMarkdownRemark.frontmatter?.title}
+                summary={current.frontmatter?.title}
                 {...shareProps}
               >
                 <FontAwesomeIcon
@@ -106,8 +107,8 @@ const BlogTemplate = ({
                 />
               </LinkedinShareButton>
               <FacebookShareButton
-                hashtag={`#${current.childMarkdownRemark.frontmatter?.category}`}
-                quote={`${current.childMarkdownRemark.frontmatter?.title} by Nirmal Khedkar`}
+                hashtag={`#${current.frontmatter?.category}`}
+                quote={`${current.frontmatter?.title} by Nirmal Khedkar`}
                 {...shareProps}
               >
                 <FontAwesomeIcon
@@ -150,7 +151,7 @@ const BlogTemplate = ({
                 <span>
                 </span>
                 <span className="blog-content__tag-list">
-                  {current.childMarkdownRemark.frontmatter?.tags.map(
+                  {current.frontmatter?.tags.map(
                     (element, index) => (
                       <a href="#0" key={index}>
                         {element}

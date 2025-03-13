@@ -7,20 +7,16 @@ import {
   AccordionItemButton,
 } from "react-accessible-accordion";
 import Utils from "@/elements/utils";
-import ProjectInterface from "@/interfaces/projects";
 import Link from "next/link";
 import WebSection from "@/elements/WebSection";
+import { ProjectInterface } from "@/interfaces/projects";
 
-interface ProjectIntroSectionInterface {
-  childMarkdownRemark: ProjectInterface;
-  id: string;
-  slug: string;
-}
+
 
 const ProjectIntroSection = ({
   projects,
 }: {
-  projects: ProjectIntroSectionInterface[];
+  projects: ProjectInterface[];
 }) => (
   <WebSection
     className="bg-gray selection:bg-accent selection:text-white"
@@ -58,8 +54,8 @@ const ProjectIntroSection = ({
                 </AccordionItemHeading>
                 <AccordionItemPanel className="p-6 bg-white">
                   <div className="accordion-body__contents">
-                    <p>{element.childMarkdownRemark.excerpt}</p>
-                    <Link href={`/projects?id=${element.id}`}>
+                    <p>{element.excerpt}</p>
+                    <Link href={`/projects?id=${element.slug}`}>
                       Find more here
                     </Link>
                     .&nbsp;&nbsp;&nbsp;

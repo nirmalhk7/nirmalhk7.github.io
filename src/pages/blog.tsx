@@ -5,15 +5,15 @@ import BlogListSection from "@/components/Blog/blogListSection";
 import Jumbotron from "../elements/jumbotron";
 import { GetStaticProps } from "next";
 import sampleSize from "lodash/sampleSize";
-import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
+import { loadMarkdownFiles } from "@/util/loadMarkdown";
 import Link from "next/link";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { DefaultPageProps } from "./_app";
 import { BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
 
 interface BlogPageProps extends DefaultPageProps {
-  blogs: BlogInterface[],
-  blogsMiniInformation: BlogMiniInterface[]
+  blogs: BlogInterface[];
+  blogsMiniInformation: BlogMiniInterface[];
 }
 
 const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
@@ -32,8 +32,9 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
         orangeText="Official Blog of Nirmal Khedkar"
       />
       <LatestBlogSection
-        frontmatter={blogs[0].childMarkdownRemark.frontmatter}
-        relativeDirectory={blogs[0].slug}
+        frontmatter={blogs[0].frontmatter}
+        excerpt={blogs[0].excerpt}
+        slug={blogs[0].slug}
       />
       <BlogListSection blogItems={blogsMiniInformation} />
     </main>
@@ -48,11 +49,11 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
     getExcerpt: true,
   });
 
-  const miniBlogInformation = blogDetail.map(i=>({
+  const miniBlogInformation = blogDetail.map((i) => ({
     childMarkdownRemark: i.childMarkdownRemark,
     excerpt: i.excerpt,
-    slug: i.slug
-  }))
+    slug: i.slug,
+  }));
   return {
     props: {
       blogs: blogDetail,
@@ -62,7 +63,8 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
         enableWrap: true,
         seoMetadata: {
           title: "The Blue Green Manual",
-          description: "Dwelving into Production Scale Engineering with Nirmal Khedkar. This is The Blue Green Manual",
+          description:
+            "Dwelving into Production Scale Engineering with Nirmal Khedkar. This is The Blue Green Manual",
         },
       },
     },
