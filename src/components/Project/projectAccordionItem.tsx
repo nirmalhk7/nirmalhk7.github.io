@@ -15,7 +15,7 @@ export const ProjectAccordionItem = ({ project }: { project: ProjectInterface })
         {project.frontmatter.title}
       </AccordionItemButton>
     </AccordionItemHeading>
-    <AccordionItemPanel className="p-6 bg-gray">
+    <AccordionItemPanel className="p-6 bg-gray-100">
       <ReactMarkdown>{project.content || ""}</ReactMarkdown>
     </AccordionItemPanel>
   </AccordionItem>

@@ -38,7 +38,7 @@
         }
     
         &::-webkit-scrollbar-track {
-            @apply bg-gray;
+            @apply bg-gray-100;
         }
     
         &::-webkit-scrollbar-thumb {
@@ -87,7 +87,7 @@
 
 
     code {
-        @apply bg-[#f1f1f1] border-[#7d7d7d] rounded-md text-base my-0 mx-1 py-1 px-1 hover:bg-[#7d7d7d] hover:text-gray transition duration-500;
+        @apply bg-[#f1f1f1] border-[#7d7d7d] rounded-md text-base my-0 mx-1 py-1 px-1 hover:bg-[#7d7d7d] hover:text-gray-100 transition duration-500;
         border: 1px solid #E1E1E1;
         font-family: monospace, monospace;
         font-size: 1em;
@@ -241,11 +241,11 @@
 
 
     h1 {
-        @apply text-h1 font-blocky mb-7 mt-24;
+        @apply text-h1 font-blocky mb-7 mt-24 ;
     }
 
     h2 {
-        @apply text-h2 mb-7 mt-24;
+        @apply text-h2 mb-7 mt-24 leading-[3.25rem];
     }
 
     h3 {
@@ -379,7 +379,7 @@
 
             a,
             a:visited {
-                @apply text-gray border-none;
+                @apply text-gray-100 border-none;
                 color: #6c6c6c;
             }
         }
@@ -486,7 +486,7 @@
     input,
     textarea,
     select {
-        @apply block font-blocky text-gray;
+        @apply block font-blocky text-gray-100;
         height: 6rem;
         padding: 1.5rem 0;
         border: 0;
