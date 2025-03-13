@@ -1,10 +1,9 @@
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
+import { DefaultPageProps } from './_app';
 
-type ResumePageProps = {
-  pdfUrl: string;
-};
+interface ResumePageProps extends DefaultPageProps{}
 
 const ResumePage: React.FC<ResumePageProps> = () => {
   return (
@@ -21,7 +20,7 @@ const ResumePage: React.FC<ResumePageProps> = () => {
 
 export default ResumePage;
 
-export const getStaticProps: GetStaticProps<any> = async () => {
+export const getStaticProps: GetStaticProps<ResumePageProps> = async () => {
   return {
     props: {
       pageMetadata: {

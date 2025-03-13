@@ -7,7 +7,7 @@ export interface QuoteInterface {
   saidby: string;
 }
 
-const QuoteSection = ({ quote }: { quote: QuoteInterface }) => {
+const QuoteSection = ({ quote }: { quote?: QuoteInterface }) => {
   if (!quote) return null;
   return (
     <WebSection className="bg-white" id="quote">

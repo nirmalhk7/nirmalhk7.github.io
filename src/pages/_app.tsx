@@ -19,7 +19,7 @@ export interface DefaultPageProps {
     enableWrap: boolean,
     seoMetadata: NextSeoProps
   }
-  quote: QuoteInterface;
+  quote?: QuoteInterface;
 }
 
 interface CustomAppProps extends AppProps {

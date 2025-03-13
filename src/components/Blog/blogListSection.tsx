@@ -1,6 +1,4 @@
-// import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image";
 import React from "react";
-import Utils from "@/elements/utils";
 import Link from "next/link";
 import Image from "next/legacy/image";
 import WebSection from "@/elements/WebSection";
@@ -34,7 +32,7 @@ const BlogListSection = ({blogItems}: {blogItems: BlogMiniInterface[]}) => {
                           href={`/blog/${element.slug}`}
                         >
                           <Image
-                            src={`/blog/${element.childMarkdownRemark.frontmatter?.img}`}
+                            src={`/blog/${element.frontmatter?.img}`}
                             width={500}
                             height={300}
                             alt="image"
@@ -43,10 +41,10 @@ const BlogListSection = ({blogItems}: {blogItems: BlogMiniInterface[]}) => {
                       </div>
                       <div className="pt-0 pb-0 pl-12 pr-12 z-10 bottom-12	left-0 absolute">
                         <h3 className="text-white text-base font-semibold m-0 uppercase font-blocky">
-                          {element.childMarkdownRemark.frontmatter?.title}
+                          {element.frontmatter?.title}
                         </h3>
                         <strong className="text-accent">
-                          {element.childMarkdownRemark.frontmatter?.category}
+                          {element.frontmatter?.category}
                         </strong>
                       </div>
                     </div>

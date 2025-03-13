@@ -18,8 +18,8 @@ import {
   WorkExperienceInterface,
 } from "@/interfaces";
 import WebSection from "@/elements/WebSection";
-import { NextSeoProps } from "next-seo";
 import { DefaultPageProps } from "./_app";
+import { ProjectInterface } from "@/interfaces/projects";
 
 
 
@@ -31,7 +31,7 @@ interface IndexPageProps extends DefaultPageProps {
   cv: ProfilesInterface[];
   membership: MembershipInterface[];
   workexperience: WorkExperienceInterface[];
-  projects: any[];
+  projects: ProjectInterface[];
 }
 
 const IndexPage = ({
@@ -41,10 +41,8 @@ const IndexPage = ({
   onlineCourses,
   collegeCourses,
   membership,
-  skills,
-  site,
-  quote,
-}: any) => {
+  skills
+}: IndexPageProps) => {
   
   return (
       <main>

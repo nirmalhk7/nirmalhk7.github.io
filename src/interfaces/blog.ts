@@ -1,12 +1,12 @@
+export interface BlogFrontmatterInterface {
+  tags: string[];
+  category: string;
+  title: string;
+  img?: string
+}
+
 export interface BlogMiniInterface {
-  childMarkdownRemark: {
-    frontmatter?: {
-      tags: string[];
-      category: string;
-      title: string;
-      img?: string
-    };
-  };
+  frontmatter?: BlogFrontmatterInterface;
   excerpt: string | null | undefined;
   slug: string;
 }
