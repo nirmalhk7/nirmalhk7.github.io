@@ -9,7 +9,7 @@ import { BlogMiniInterface } from "@/interfaces/blog";
 const BlogListSection = ({blogItems}: {blogItems: BlogMiniInterface[]}) => {
   return (
     <WebSection
-      className="bg-gray selection:bg-accent selection:text-white"
+      className="bg-gray-100 selection:bg-accent selection:text-white"
       id="blog-list"
     >
       <div>

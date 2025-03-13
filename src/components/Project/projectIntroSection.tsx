@@ -18,7 +18,7 @@ const ProjectIntroSection = ({
   projects: ProjectInterface[];
 }) => (
   <WebSection
-    className="bg-gray selection:bg-accent selection:text-white"
+    className="bg-gray-100 selection:bg-accent selection:text-white"
     id="project"
   >
     <div className="mobile-l:container mx-auto">
