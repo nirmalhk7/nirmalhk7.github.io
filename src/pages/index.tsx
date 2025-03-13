@@ -88,7 +88,7 @@ const IndexPage = ({
               <div className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-4">
                 {skills.map((element, index) => (
                   <div
-                    className="p-2 text-center text-base text-black uppercase font-blocky hover:shadow-md transition duration-300"
+                    className="p-2 text-center text-2xl text-black uppercase font-blocky hover:shadow-md transition duration-300"
                     key={index}
                   >
                     {element.name}

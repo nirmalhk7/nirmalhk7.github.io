@@ -4,14 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 import { social } from "@/components/Social/socialSection";
-import * as styles from "./footer.module.css";
 
 const FooterSection = () => {
   return (
     <footer className="selection:bg-accent selection:text-white">
-      {process.env.NEXT_PUBLIC ? <div className={styles.flicker_3}>
+      {process.env.NEXT_PUBLIC ? <div className="">
         <div className="mb-32">
-          <ul className={styles.footer_social}>
+          <ul className="list-none mt-12 ml-0 font-blocky font-normal text-[1.3rem] uppercase tracking-[0.3rem] no-underline">
             {social.map((element, index) => {
               if (element.link)
                 return (
@@ -31,19 +30,18 @@ const FooterSection = () => {
         </div>
       </div> : null}
       <div className="text-center">
-        <div className="w-full">
+        <div className="w-full text-neutral-700">
           <div className="font-bold">
-            <span style={{ color: "#3d3d3d" }}>
+            <span>
               Built Bengaluru Tough by Nirmal Khedkar <FontAwesomeIcon icon={faHeart} size="xs" />  
             </span>
           </div>
           <div>
-            <span style={{ color: "#3d3d3d" }}>
-              Website theme heavily modified from &nbsp;
+            <span>
+              Web theme heavily modified from &nbsp;
               <a
-                className="hidelink"
                 href="https://www.styleshout.com/"
-                style={{ color: "#3d3d3d" }}
+                className="text-neutral-700"
               >
                 styleshout
               </a>

@@ -391,7 +391,7 @@ select:-webkit-autofill:focus {
  * ## home content - (_site-layout.scss) 
  * ------------------------------------------------------------------- */
 
-.home-content h3 {
+.jumbotron h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 1.8rem;
@@ -404,7 +404,7 @@ select:-webkit-autofill:focus {
     margin-bottom: .6rem;
 }
 
-.home-content h3::before {
+.jumbotron h3::before {
     display: block;
     content: "";
     width: 60px;
@@ -416,7 +416,7 @@ select:-webkit-autofill:focus {
     top: 50%;
 }
 
-.home-content h1 {
+.jumbotron h1 {
     font-family: "Libre Baskerville", serif;
     color: #FFFFFF;
     font-size: 6rem;
@@ -454,7 +454,7 @@ html.no-csstransitions .home-content__main {
  * ------------------------------------------------------------------- */
 
 @media only screen and (max-width: 1600px) {
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 4.8rem;
     }
 
@@ -469,11 +469,11 @@ html.no-csstransitions .home-content__main {
         min-height: 654px;
     }
 
-    .home-content h3 {
+    .jumbotron h3 {
         font-size: 1.5rem;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 3.8rem;
     }
 
@@ -489,11 +489,11 @@ html.no-csstransitions .home-content__main {
         width: auto;
     }
 
-    .home-content {
+    .jumbotron {
         vertical-align: middle;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 3.5rem;
     }
 
@@ -761,7 +761,7 @@ html.no-csstransitions .home-content__main {
         width: 400px;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 5.2rem;
     }
 
@@ -799,11 +799,11 @@ html.no-csstransitions .home-content__main {
         font-size: 1.6rem;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 5rem;
     }
 
-    .home-content br {
+    .jumbotron br {
         display: none;
     }
 
@@ -865,17 +865,17 @@ html.no-csstransitions .home-content__main {
 
 @media only screen and (max-width: 768px) {
 
-    .home-content h3 {
+    .jumbotron h3 {
         font-size: 1.6rem;
         padding-left: 50px;
         margin-left: -10px;
     }
 
-    .home-content h3::before {
+    .jumbotron h3::before {
         width: 40px;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 4.4rem;
     }
 
@@ -935,7 +935,7 @@ html.no-csstransitions .home-content__main {
         width: 100%;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 4.2rem;
     }
 
@@ -1234,7 +1234,7 @@ label>input[type="radio"] {
 /* ------------------------------------------------------------------- 
  * ## home content - (_site-layout.scss) 
  * ------------------------------------------------------------------- */
-.home-content {
+.jumbotron {
     display: table-cell;
     width: 100%;
     height: 100%;
@@ -1273,7 +1273,7 @@ html.no-csstransitions .home-content__main {
  * ------------------------------------------------------------------- */
 
 @media only screen and (max-width: 1600px) {
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 4.8rem;
     }
 
@@ -1293,11 +1293,11 @@ html.no-csstransitions .home-content__main {
         min-height: 654px;
     }
 
-    .home-content h3 {
+    .jumbotron h3 {
         font-size: 1.5rem;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 3.8rem;
     }
 
@@ -1313,11 +1313,11 @@ html.no-csstransitions .home-content__main {
         width: auto;
     }
 
-    .home-content {
+    .jumbotron {
         vertical-align: middle;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 3.5rem;
     }
 
@@ -1448,7 +1448,7 @@ html.no-csstransitions .home-content__main {
         width: 400px;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 5.2rem;
     }
 
@@ -1486,11 +1486,11 @@ html.no-csstransitions .home-content__main {
         font-size: 1.6rem;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 5rem;
     }
 
-    .home-content br {
+    .jumbotron br {
         display: none;
     }
 
@@ -1552,17 +1552,17 @@ html.no-csstransitions .home-content__main {
 
 @media only screen and (max-width: 768px) {
 
-    .home-content h3 {
+    .jumbotron h3 {
         font-size: 1.6rem;
         padding-left: 50px;
         margin-left: -10px;
     }
 
-    .home-content h3::before {
+    .jumbotron h3::before {
         width: 40px;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 4.4rem;
     }
 
@@ -1622,7 +1622,7 @@ html.no-csstransitions .home-content__main {
         width: 100%;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 4.2rem;
     }
 
@@ -2072,7 +2072,7 @@ html.no-csstransitions .home-content__main {
  * ------------------------------------------------------------------- */
 
 @media only screen and (max-width: 1600px) {
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 4.8rem;
     }
 
@@ -2087,11 +2087,11 @@ html.no-csstransitions .home-content__main {
         min-height: 654px;
     }
 
-    .home-content h3 {
+    .jumbotron h3 {
         font-size: 1.5rem;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 3.8rem;
     }
 
@@ -2107,11 +2107,11 @@ html.no-csstransitions .home-content__main {
         width: auto;
     }
 
-    .home-content {
+    .jumbotron {
         vertical-align: middle;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 3.5rem;
     }
 
@@ -2189,7 +2189,7 @@ html.no-csstransitions .home-content__main {
         width: 400px;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 5.2rem;
     }
 
@@ -2227,11 +2227,11 @@ html.no-csstransitions .home-content__main {
         font-size: 1.6rem;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 5rem;
     }
 
-    .home-content br {
+    .jumbotron br {
         display: none;
     }
 
@@ -2293,17 +2293,17 @@ html.no-csstransitions .home-content__main {
 
 @media only screen and (max-width: 768px) {
 
-    .home-content h3 {
+    .jumbotron h3 {
         font-size: 1.6rem;
         padding-left: 50px;
         margin-left: -10px;
     }
 
-    .home-content h3::before {
+    .jumbotron h3::before {
         width: 40px;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 4.4rem;
     }
 
@@ -2363,7 +2363,7 @@ html.no-csstransitions .home-content__main {
         width: 100%;
     }
 
-    .home-content h1 {
+    .jumbotron h1 {
         font-size: 4.2rem;
     }
 
