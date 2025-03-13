@@ -6,7 +6,6 @@ import {
   AccordionItemHeading,
   AccordionItemButton,
 } from "react-accessible-accordion";
-import Utils from "@/elements/utils";
 import Link from "next/link";
 import WebSection from "@/elements/WebSection";
 import { ProjectInterface } from "@/interfaces/projects";
@@ -45,11 +44,11 @@ const ProjectIntroSection = ({
             {projects.map((element) => (
               <AccordionItem
                 className="accordion__item"
-                key={Utils.getFrontmatter(element).title}
+                key={element.frontmatter.title}
               >
                 <AccordionItemHeading>
                   <AccordionItemButton className="accordion-header">
-                    {Utils.getFrontmatter(element).title}
+                    {element.frontmatter.title}
                   </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel className="p-6 bg-white">
@@ -59,7 +58,9 @@ const ProjectIntroSection = ({
                       Find more here
                     </Link>
                     .&nbsp;&nbsp;&nbsp;
-                    <code>{Utils.getFrontmatter(element).tags[0]}</code>
+                    {element.frontmatter.tags && element.frontmatter.tags.length > 0 && (
+                      <code>{element.frontmatter.tags[0]}</code>
+                    )}
                   </div>
                 </AccordionItemPanel>
               </AccordionItem>

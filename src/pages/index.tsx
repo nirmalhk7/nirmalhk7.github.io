@@ -7,7 +7,6 @@ import sampleSize from "lodash/sampleSize";
 import { GetStaticProps } from "next";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
-import Utils from "@/elements/utils";
 import ReactMarkdown from "react-markdown";
 import ProjectIntroSection from "@/components/Project/projectIntroSection";
 import {
@@ -20,8 +19,7 @@ import {
 import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
 import { ProjectInterface } from "@/interfaces/projects";
-
-
+import { CommonHeader } from "@/components/header";
 
 interface IndexPageProps extends DefaultPageProps {
   mainContent: string;
@@ -86,7 +84,7 @@ const IndexPage = ({
               {mainContent}
             </ReactMarkdown>
             <div className="break-inside-avoid">
-              <Utils.getHeader headerName="Familiar Languages, Frameworks and Libraries" />
+              <CommonHeader headerName="Familiar Languages, Frameworks and Libraries" />
               <div className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-4">
                 {skills.map((element, index) => (
                   <div
@@ -100,7 +98,7 @@ const IndexPage = ({
             </div>
             <div className="break-inside-avoid">
               {/* TODO NK  This looks too wordy */}
-              <Utils.getHeader headerName="Online Certification and Courses Taken" />
+              <CommonHeader headerName="Online Certification and Courses Taken" />
               <div className="m-0">
                 <ul className="list-disc pl-5">
                   {onlineCourses.map((element, index) => (
@@ -119,7 +117,7 @@ const IndexPage = ({
               </div>
             </div>
             <div className="break-inside-avoid">
-              <Utils.getHeader headerName="Prominent College Courses Taken" />
+              <CommonHeader headerName="Prominent College Courses Taken" />
               <div className="m-0">
                 <ul className="list-disc pl-5">
                   {collegeCourses.map((element) => element.name).join(", ")}.
@@ -127,7 +125,7 @@ const IndexPage = ({
               </div>
             </div>
             <div className="break-inside-avoid">
-              <Utils.getHeader headerName="Volunteer Experience" />
+              <CommonHeader headerName="Volunteer Experience" />
               <div className="m-0">
                 <ul className="list-disc pl-5">
                   {membership.map((element, index) => (
