@@ -40,7 +40,7 @@ const BlogListSection = ({blogItems}: {blogItems: BlogMiniInterface[]}) => {
                         </Link>
                       </div>
                       <div className="pt-0 pb-0 pl-12 pr-12 z-10 bottom-12	left-0 absolute">
-                        <h3 className="text-white text-base font-semibold m-0 uppercase font-blocky">
+                        <h3 className="text-white text-2xl font-semibold m-0 uppercase font-blocky">
                           {element.frontmatter?.title}
                         </h3>
                         <strong className="text-accent">
