@@ -25,7 +25,7 @@ export const social = [
     name: "Mastodon",
     link: "https://fosstodon.org/@nirmalhk7",
     class: faMastodon,
-    underBlog: true
+    underBlog: true,
   },
   {
     name: "Email",
@@ -36,7 +36,7 @@ export const social = [
     name: "Goodreads",
     link: "https://www.goodreads.com/user/show/93069537-nirmal",
     class: faGoodreads,
-  }
+  },
 ];
 
 const SocialSection = () => {
@@ -44,16 +44,15 @@ const SocialSection = () => {
     <ul className="pb-16 font-bold m-0 absolute bottom-0 right-16 font-blocky list-none	after:block after:w-px after:bg-white after:bottom-0 after:content-[''] z-20">
       {social.map((element, index) => (
         <li className="relative h-16" key={index}>
-            <button
-            className="text-white hover:text-accent hover:shadow-lg hover:shadow-accent/50"
-            onClick={() => window.open(element.link, "_blank", "noopener,noreferrer")}
+          <button
+            className="button-white border-0"
+            onClick={() =>
+              window.open(element.link, "_blank", "noopener,noreferrer")
+            }
             title={element.name}
-            >
+          >
             <FontAwesomeIcon icon={element.class} />
-            <span className="absolute top-0 leading-10 text-xl opacity-0 invisible text-accent right-14">
-              {element.name}
-            </span>
-            </button>
+          </button>
         </li>
       ))}
     </ul>

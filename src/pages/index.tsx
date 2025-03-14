@@ -46,7 +46,7 @@ const IndexPage = ({
       <main>
       <Jumbotron.Max
         HeadingTextComponent={
-          <h1 className="text-4xl font-bold leading-tight">
+          <h1 className="text-white">
             I&apos;m Nirmal Khedkar, <br />
             Software Engineer.
           </h1>
@@ -66,10 +66,10 @@ const IndexPage = ({
         <div className="w-full text-center">
           <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
             <div className="w-full text-center">
-              <h3 className="text-accent text-2xl font-semibold">
+              <h3>
                 Nirmal Khedkar
               </h3>
-              <h1 className="hover:text-black transition duration-500 text-3xl font-bold">
+              <h1>
                 More About Me
               </h1>
               <p className="font-lead font-blocky mb-16 text-lg">
@@ -106,7 +106,6 @@ const IndexPage = ({
                       {element.name} by {element.provider} - (
                       <a
                         href={element.link}
-                        className="text-accent hover:underline"
                       >
                         link
                       </a>
@@ -133,7 +132,6 @@ const IndexPage = ({
                       {element.position} at&nbsp;
                       <a
                         href={element.clubwebsite}
-                        className="text-accent hover:underline"
                       >
                         {element.club}
                       </a>
@@ -145,7 +143,7 @@ const IndexPage = ({
             <div className="break-inside-avoid pt-16">
               <div className="grid gap-4 font-blocky uppercase text-center text-button font-bold">
                 <Link
-                  className="button button-red bg-accent w-full text-white hover:text-accent hover:bg-white transition duration-300"
+                  className="button button-accent w-full"
                   href={"/resume"}
                   rel="noreferrer"
                   target="_blank"
@@ -153,7 +151,7 @@ const IndexPage = ({
                   Download My Resume
                 </Link>
                 <Link
-                  className="button button-red w-full text-accent hover:text-white hover:bg-accent transition duration-300"
+                  className="button button-accent-fill w-full"
                   href="#contact"
                 >
                   Want to Hire?
@@ -179,13 +177,18 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
   const allMembershipsYaml: MembershipInterface[] = require("../../content/yml/memberships.yaml");
   const allWorkExperiencesYaml: WorkExperienceInterface[] = require("../../content/yml/workexperiences.yaml");
   const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml");
+  const fiveProjects = sampleSize(
+    loadMarkdownFiles("content/projects", { getExcerpt: true, getContent: false }),
+    5
+  );
 
+  
   return {
     props: {
       mainContent: loadMarkdownFile(
         "content/yml/mainContent.md",
         "mainContent",
-        { getContent: true }
+        { getContent: true, getExcerpt: false }
       ).content || "",
       collegeCourses: allCoursesYaml.filter((val) => !val.provider),
       onlineCourses: allCoursesYaml.filter((val) => val.provider),
@@ -193,10 +196,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
       cv: allProfilesYaml,
       membership: allMembershipsYaml,
       workexperience: allWorkExperiencesYaml,
-      projects: sampleSize(
-        loadMarkdownFiles("content/projects", { getExcerpt: true }),
-        5
-      ),
+      projects: fiveProjects,
       quote: sampleSize(allQuotesYaml)[0],
       pageMetadata: {
         enableWrap: true,

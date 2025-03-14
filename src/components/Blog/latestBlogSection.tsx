@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import WebSection from "@/elements/WebSection";
-import { BlogFrontmatterInterface, BlogMiniInterface } from "@/interfaces/blog";
+import { BlogMiniInterface } from "@/interfaces/blog";
 
 const LatestBlogSection = ({
   frontmatter,
@@ -27,14 +27,15 @@ const LatestBlogSection = ({
           </div>
           <div className="laptop:text-right tablet:text-right relative">
             <div>
-              <h1 className="font-bold leading-snug mt-0 font-heading text-white">
+              <h3 className="text-white">Latest Article</h3>
+              <h1 className="font-bold leading-snug mt-20 font-heading text-white">
                 {frontmatter.title}
               </h1>
               <div className="entry-content text-white no-underline mb-10 not-underline">
                 <p>{excerpt}</p>
               </div>
               <Link
-                className="font-blocky uppercase font-bold mr-4 border-4 no-underline p-5 text-white border-white hover:bg-white hover:text-black"
+                className="button button-white"
                 href={`/blog/${slug}`}
               >
                 Read More

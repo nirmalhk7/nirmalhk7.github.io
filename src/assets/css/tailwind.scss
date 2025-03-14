@@ -1,703 +1,443 @@
-@import './main.scss';
-@import './nirmalhk7.scss';
-@import './index.scss';
+@import "./main.scss";
+@import "./nirmalhk7.scss";
+@import "./index.scss";
 
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    .container {
-        width: 90% !important;
+  .container {
+    width: 90% !important;
+  }
+
+  html {
+    @apply box-border h-full leading-[1.15] text-[10px];
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply m-0 font-blocky p-0 bg-black font-normal leading-7 text-2xl;
+    /* @apply ; */
+    -webkit-overflow-scrolling: touch;
+    word-wrap: break-word;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: none;
+    scrollbar-width: thin;
+    height: 100%;
+
+    &::-webkit-scrollbar {
+      @apply w-2.5;
     }
 
-    html {
-        @apply box-border;
-        font-family: sans-serif;
-        font-size: 10px;
-        line-height: 1.15;
-        -ms-text-size-adjust: 100%;
-        -webkit-text-size-adjust: 100%;
-        height: 100%;
+    &::-webkit-scrollbar-track {
+      @apply bg-gray-100;
     }
 
-    body {
-        @apply m-0 font-blocky p-0 bg-black font-normal leading-7 text-2xl;
-        color: #5f5f5f;
-        /* @apply ; */
-        -webkit-overflow-scrolling: touch;
-        word-wrap: break-word;
-        text-rendering: optimizeLegibility;
-        -webkit-text-size-adjust: none;
-        scrollbar-width: thin;
-        height: 100%;
+    &::-webkit-scrollbar-thumb {
+      @apply bg-accent rounded-[6px];
+    }
+  }
 
-        &::-webkit-scrollbar {
-            @apply w-2.5;
-        }
-    
-        &::-webkit-scrollbar-track {
-            @apply bg-gray-100;
-        }
-    
-        &::-webkit-scrollbar-thumb {
-            @apply bg-accent;
-            border-radius: 6px;
-        }
+  article,
+  aside,
+  footer,
+  header,
+  nav,
+  section,
+  main,
+  details,
+  menu {
+    @apply block;
+  }
+
+  section {
+    @apply pt-28 pb-28;
+  }
+
+  p {
+    @apply leading-[1.875];
+  }
+
+  hr {
+    @apply box-content h-0 overflow-visible clear-both border-accent border-solid;
+  }
+
+  a {
+    @apply text-accent underline bg-transparent transition-all duration-300 ease-in-out;
+    -webkit-text-decoration-skip: objects;
+  }
+
+  b,
+  strong {
+    font-weight: bolder;
+  }
+
+  code {
+    @apply bg-neutral-100 border-neutral-500 rounded-md text-2xl py-1 px-2 hover:bg-neutral-500 hover:text-gray-100 transition duration-500;
+    border: 1px solid #e1e1e1;
+    top: -10px;
+    font-family: monospace, monospace;
+    font-size: 1em;
+  }
+  .code-selected {
+    @apply bg-neutral-500 text-white transition duration-500;
+  }
+
+  img {
+    @apply border-none;
+  }
+
+  svg:not(:root) {
+    overflow: hidden;
+  }
+
+  input,
+  optgroup,
+  select,
+  textarea {
+    @apply m-0;
+    font-family: sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+  }
+
+  input {
+    @apply overflow-visible;
+  }
+
+  select {
+    @apply normal-case;
+  }
+
+  button,
+  .button {
+    -webkit-appearance: button;
+    @apply border-4 no-underline hover:shadow-lg px-4 text-button font-blocky uppercase font-bold transition duration-300;
+  }
+
+  .button {
+    @apply border-accent hover:shadow-accent/50;
+
+    &-accent-fill {
+      @apply bg-accent text-white border-accent  hover:shadow-accent/50 hover:scale-105;
     }
 
-    article,
-    aside,
-    footer,
-    header,
-    nav,
-    section {
-        @apply block;
+    &-white {
+      @apply border-white hover:shadow-white/50 text-white hover:bg-white hover:text-black;
     }
+  }
 
-    section {
-        @apply pt-28 pb-28;
+  fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+  }
+
+  legend {
+    @apply box-border table max-w-full p-0 whitespace-normal;
+    color: inherit;
+  }
+
+  progress {
+    @apply inline-block align-baseline;
+  }
+
+  textarea {
+    @apply overflow-auto;
+  }
+
+  [type="checkbox"],
+  [type="radio"] {
+    @apply box-border p-0;
+  }
+
+  [type="search"] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px;
+  }
+
+  li {
+    &::marker {
+      @apply text-accent;
     }
+  }
 
-    p {
-        line-height: 1.875
-    }
+  summary {
+    display: list-item;
+  }
 
-    main {
-        @apply block;
-    }
+  canvas {
+    @apply inline-block;
+  }
 
-    hr {
-        @apply box-content h-0 overflow-visible clear-both border-accent border-solid;
-    }
+  template,
+  [hidden] {
+    @apply hidden;
+  }
 
-    a {
-        @apply text-accent underline;
-        background-color: transparent;
-        -webkit-text-decoration-skip: objects;
-        -webkit-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
-    }
-
-    b,
-    strong {
-        font-weight: bolder;
-    }
-
-
-    code {
-        @apply bg-[#f1f1f1] border-[#7d7d7d] rounded-md text-2xl my-0 mx-1 py-1 px-1 hover:bg-[#7d7d7d] hover:text-gray-100 transition duration-500;
-        border: 1px solid #E1E1E1;
-        font-family: monospace, monospace;
-        font-size: 1em;
-    }
-
-    img {
-        @apply border-none;
-    }
-
-
-    svg:not(:root) {
-        overflow: hidden;
-    }
-
-    input,
-    optgroup,
-    select,
-    textarea {
-        @apply m-0;
-        font-family: sans-serif;
-        font-size: 100%;
-        line-height: 1.15;
-    }
-
-    input {
-        @apply overflow-visible;
-    }
-
-    select {
-        @apply normal-case;
-    }
-
-    .button {
-        -webkit-appearance: button;
-        @apply border-4 no-underline hover:shadow-lg px-4 text-button font-blocky uppercase font-bold transition duration-500;
-
-        &-red {
-            @apply border-accent hover:shadow-accent/50;
-        }
-
-        &-white {
-            @apply border-white hover:shadow-white/50 text-white hover:bg-white hover:text-black;
-        }
-    }
-
-
-
-
-    fieldset {
-        border: 1px solid #c0c0c0;
-        margin: 0 2px;
-        padding: 0.35em 0.625em 0.75em;
-    }
-
-    legend {
-        @apply box-border table max-w-full p-0 whitespace-normal;
-        color: inherit;
-
-    }
-
-    progress {
-        @apply inline-block align-baseline;
-    }
-
-    textarea {
-        @apply overflow-auto;
-    }
-
-    [type="checkbox"],
-    [type="radio"] {
-        @apply box-border p-0;
-    }
-
-
-    [type="search"] {
-        -webkit-appearance: textfield;
-        outline-offset: -2px;
-    }
-
-    details,
-    menu {
-        @apply block;
-    }
-
-    summary {
-        display: list-item;
-    }
-
-    canvas {
-        @apply inline-block;
-    }
-
-    template {
-        @apply hidden;
-    }
-
-    [hidden] {
-        @apply hidden;
-    }
-
-    /* ===================================================================
+  /* ===================================================================
    * # basic/base setup styles - (_basic.scss)
    *
    * ------------------------------------------------------------------- */
 
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
 
-    *,
-    *::before,
-    *::after {
-        box-sizing: inherit;
-    }
+  body,
+  input {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
 
-
-
-    body,
-    input {
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    /* ------------------------------------------------------------------- 
+  /* ------------------------------------------------------------------- 
    * ## Media - (_basic.scss)
    * ------------------------------------------------------------------- */
 
-    img,
-    video {
-        @apply max-w-full h-auto;
-    }
+  img,
+  video {
+    @apply max-w-full h-auto;
+  }
 
-    /* ------------------------------------------------------------------- 
+  /* ------------------------------------------------------------------- 
    * ## Typography resets - (_basic.scss)
    * ------------------------------------------------------------------- */
+  h1 {
+    @apply text-h1 font-heading my-8 leading-tight font-semibold;
+  }
 
-    div,
-    dl,
-    dt,
-    dd,
-    ul,
-    ol,
-    li,
-    h5,
-    h6,
-    form,
-    p,
-    blockquote,
-    th,
-    td {
-        @apply m-0 p-0;
-    }
+  h2 {
+    @apply text-h2 my-8 leading-[3.25rem];
+  }
 
+  h3 {
+    @apply font-blocky text-h3 uppercase text-accent font-semibold;
+  }
 
+  h4 {
+    @apply text-h4 my-4;
+  }
 
-    h1 {
-        @apply text-6xl font-heading mb-7 mt-24;
-    }
+  h5 {
+    @apply text-h5 my-4;
+  }
 
-    h2 {
-        @apply text-h2 mb-7 mt-24 leading-[3.25rem];
-    }
+  h6 {
+    @apply text-h6 font-blocky uppercase;
+  }
 
-    h3 {
-        @apply text-h3 mb-7 mt-24;
-    }
+  em,
+  i {
+    @apply italic font-heading;
+    font-weight: 400;
+    font-style: italic;
+    line-height: inherit;
+  }
 
-    h4 {
-        @apply text-h4 mb-7 mt-24;
-    }
+  strong,
+  b {
+    @apply font-heading;
+    font-weight: bold;
+    line-height: inherit;
+    font-weight: 700;
+  }
 
-    h5 {
-        @apply text-h5 mb-6 mt-16;
-    }
+  ol,
+  ul {
+    list-style: none;
+  }
 
-    h6 {
-        @apply text-h6 font-blocky uppercase;
-    }
-
-    em,
-    i {
-        @apply italic font-heading;
-        font-weight: 400;
-        font-style: italic;
-        line-height: inherit;
-    }
-
-    strong,
-    b {
-        @apply font-heading;
-        font-weight: bold;
-        line-height: inherit;
-        font-weight: 700;
-    }
-
-    ol,
-    ul {
-        list-style: none;
-    }
-
-    li {
-        @apply block;
-    }
-
-
-    /* ------------------------------------------------------------------- 
+  /* ------------------------------------------------------------------- 
    * ## links - (_basic.scss)
    * ------------------------------------------------------------------- */
 
-    a {
-        text-decoration: none;
-        line-height: inherit;
-    }
+  a {
+    @apply underline transition duration-500 hover:decoration-dotted;
+    line-height: inherit;
 
-    a img {
-        border: none;
+    &.text-white {
+      @apply hover:decoration-dotted;
     }
+  }
 
-    /* ------------------------------------------------------------------- 
+  a img {
+    border: none;
+  }
+
+  /* ------------------------------------------------------------------- 
    * ## inputs - (_basic.scss)
    * ------------------------------------------------------------------- */
 
-    fieldset {
-        margin: 0;
-        padding: 0;
-    }
+  fieldset {
+    margin: 0;
+    padding: 0;
+  }
 
-    input,
-    textarea {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        -ms-appearance: none;
-        -o-appearance: none;
-        appearance: none;
-    }
+  input,
+  textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+  }
 
-    /* ------------------------------------------------------------------- 
+  /* ------------------------------------------------------------------- 
 * ## links - (_document-setup.scss) 
 * ------------------------------------------------------------------- */
-    a {
-        @apply text-accent;
-        -webkit-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
-        text-decoration: underline;
+  a {
+    @apply text-accent;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    text-decoration: underline;
 
-        &:focus {
-            outline: none;
-        }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  nav a,
+  h1 a {
+    text-decoration: none;
+  }
+
+  nav a {
+    @apply text-white;
+  }
+
+  /** Blockquote **/
+  blockquote {
+    @apply pl-16 relative;
+    margin: 3.9rem 0;
+    margin: 3.9rem 0;
+    padding-left: 4.5rem;
+
+    &:before {
+      @apply m-0 absolute left-0 text-accent transition duration-300 hover:scale-110;
+      content: "\201C";
+      line-height: 0px;
+      font-size: 10rem;
+      font-family: arial, sans-serif;
+      top: 3.6rem;
     }
 
-    nav a,
-    h1 a {
-        text-decoration: none;
+    p {
+      @apply font-normal p-0 text-black font-blocky;
+      line-height: 1.857;
+      font-size: 2.1rem;
     }
 
-    nav a {
-        @apply text-white
+    cite {
+      @apply block font-normal not-italic leading-normal text-h6 font-blocky;
+      display: block;
+      font-size: 1.4rem;
+      font-style: normal;
+
+      &:before {
+        content: "\2014 \0020";
+      }
+
+      a,
+      a:visited {
+        @apply text-gray-100 border-none;
+        color: #6c6c6c;
+      }
     }
+  }
 
-
-    /** Blockquote **/
-    blockquote {
-        @apply pl-16 relative;
-        margin: 3.9rem 0;
-        margin: 3.9rem 0;
-        padding-left: 4.5rem;
-
-        &:before {
-            @apply m-0 absolute left-0 text-accent shadow shadow-accent;
-            content: "\201C";
-            line-height: 0px;
-            font-size: 10rem;
-            font-family: arial, sans-serif;
-            top: 3.6rem;
-        }
-
-        p {
-            @apply font-normal p-0 text-black font-blocky;
-            line-height: 1.857;
-            font-size: 2.1rem;
-        }
-
-        cite {
-            @apply block font-normal not-italic leading-normal text-h6 font-blocky;
-            display: block;
-            font-size: 1.4rem;
-            font-style: normal;
-
-            &:before {
-                content: "\2014 \0020";
-            }
-
-            a,
-            a:visited {
-                @apply text-gray-100 border-none;
-                color: #6c6c6c;
-            }
-        }
-    }
-
-
-
-    /* ===================================================================
+  /* ===================================================================
  * # footer - (_site-layout.scss)
  *
  * ------------------------------------------------------------------- */
-    footer {
-        @apply bg-black font-normal text-center font-blocky text-white;
-        padding: 4.2rem 0 4.2rem;
+  footer {
+    @apply bg-black font-normal text-center font-blocky text-white;
+    padding: 4.2rem 0 4.2rem;
 
-        a,
-        a:visited {
-            @apply text-accent
-        }
-
-        a:hover,
-        a:focus {
-            @apply text-white
-        }
+    a,
+    a:visited {
+      @apply text-accent;
     }
 
-
-
-    .footer-logo {
-        @apply inline-block;
+    a:hover,
+    a:focus {
+      @apply text-white;
     }
+  }
 
+  .footer-logo {
+    @apply inline-block;
+  }
+
+  .footer-site-logo {
+    @apply block w-32;
+  }
+
+  @media only screen and (max-width: 400px) {
     .footer-site-logo {
-        @apply block w-32;
+      @apply w-24;
     }
 
-
-    @media only screen and (max-width: 400px) {
-        .footer-site-logo {
-            width: 100px;
-        }
-
-        .footer_social li {
-            margin-right: 1.2rem;
-        }
-
-        .footer_social li svg {
-            font-size: 2.2rem;
-        }
+    .footer_social li {
+      @apply mr-3;
     }
 
-    .contact__form {
-        padding-right: 40px;
+    .footer_social li svg {
+      @apply text-2xl;
+    }
+  }
 
-        input,
-        textarea {
-            background-color: transparent;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: .9rem;
-            color: rgba(255, 255, 255, 0.75);
-        }
+  .contact__form {
+    @apply pr-10;
 
-        input:focus,
-        textarea:focus {
-            @apply text-white;
-            border-bottom: 1px solid white;
-        }
-
-        button {
-            margin-top: 4.2rem;
-            background-color: map-get($map: $theme-colors, $key: "accent");
-            border-color: map-get($map: $theme-colors, $key: "accent");
-        }
+    input,
+    textarea {
+      @apply bg-transparent border-b border-white/10 mb-2.5 text-white/75;
     }
 
+    input:focus,
+    textarea:focus {
+      @apply text-white border-b-white;
+    }
 
+    button {
+      @apply mt-16 bg-accent border-accent;
+    }
+  }
 
-    /* ------------------------------------------------------------------- 
+  /* ------------------------------------------------------------------- 
      * responsive:
      * contact
      * ------------------------------------------------------------------- */
-    @media only screen and (max-width: 800px) {
-        .contact__form {
-            padding-right: 15px;
-        }
-
-        .contact__infos {
-            padding-top: 3rem;
-        }
+  @media only screen and (max-width: 800px) {
+    .contact__form {
+      @apply pr-4;
     }
 
-    @media only screen and (max-width: 600px) {
-        .contact__form {
-            padding-right: 10px;
-        }
+    .contact__infos {
+      @apply pt-12;
     }
+  }
 
-    @media only screen and (max-width: 400px) {
-        .contact__form {
-            padding-right: 0;
-        }
+  @media only screen and (max-width: 600px) {
+    .contact__form {
+      @apply pr-2.5;
     }
+  }
 
-    input,
-    textarea,
-    select {
-        @apply block font-blocky text-gray-100;
-        height: 6rem;
-        padding: 1.5rem 0;
-        border: 0;
-        outline: none;
-        font-weight: 400;
-        font-size: 1.5rem;
-        line-height: 3rem;
-        max-width: 100%;
-        background: transparent;
-        border-bottom: 2px solid map-get($map: $theme-colors, $key: "gray");
-        -webkit-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
+  @media only screen and (max-width: 400px) {
+    .contact__form {
+      @apply pr-0;
     }
-}
+  }
 
-/* ------------------------------------------------------------------- 
- * ## home animations - (_site-layout.scss) 
- * ------------------------------------------------------------------- */
-/* bounce */
-@keyframes bounce {
-
-    0%,
-    100% {
-        -webkit-transform: translate3d(0, -30px, 0);
-        -ms-transform: translate3d(0, -30px, 0);
-        transform: translate3d(0, -30px, 0);
-    }
-
-    50% {
-        -webkit-transform: translate3d(0, -4px, 0);
-        -ms-transform: translate3d(0, -4px, 0);
-        transform: translate3d(0, -4px, 0);
-    }
-}
-
-/* fade in */
-@-webkit-keyframes fadeIn {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-
-    to {
-        opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-
-    to {
-        opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-/* fade out */
-@-webkit-keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -150%, 0);
-        -ms-transform: translate3d(0, -150%, 0);
-        transform: translate3d(0, -150%, 0);
-    }
-}
-
-
-@keyframes sk-scaleout {
-    0% {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-    }
-
-    100% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-        opacity: 0;
-    }
-}
-
-/* bounce */
-@keyframes bounce {
-
-    0%,
-    100% {
-        -webkit-transform: translate3d(0, -30px, 0);
-        -ms-transform: translate3d(0, -30px, 0);
-        transform: translate3d(0, -30px, 0);
-    }
-
-    50% {
-        -webkit-transform: translate3d(0, -4px, 0);
-        -ms-transform: translate3d(0, -4px, 0);
-        transform: translate3d(0, -4px, 0);
-    }
-}
-
-@keyframes bouncedelay {
-
-    0%,
-    80%,
-    100% {
-        -webkit-transform: scale(0);
-        -ms-transform: scale(0);
-        transform: scale(0);
-    }
-
-    40% {
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1);
-        transform: scale(1);
-    }
-}
-
-@keyframes flicker-3 {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    32.98% {
-        opacity: 1;
-    }
-
-    33% {
-        opacity: 0;
-    }
-
-    34% {
-        opacity: 0;
-    }
-
-    34.02% {
-        opacity: 1;
-    }
-
-    34.98% {
-        opacity: 1;
-    }
-
-    35% {
-        opacity: 0;
-    }
-
-    35.9% {
-        opacity: 0;
-    }
-
-    35.92% {
-        opacity: 1;
-    }
-
-    38.98% {
-        opacity: 1;
-    }
-
-    39% {
-        opacity: 0;
-    }
-
-    39.8% {
-        opacity: 0;
-    }
-
-    39.82% {
-        opacity: 1;
-    }
-
-    83.98% {
-        opacity: 1;
-    }
-
-    84% {
-        opacity: 0;
-    }
-
-    84.9% {
-        opacity: 0;
-    }
-
-    84.92% {
-        opacity: 1;
-    }
+  input,
+  textarea,
+  select {
+    @apply block font-blocky text-gray-100 h-[6rem] p-[1.5rem_0] border-0 outline-none font-normal text-[1.5rem] leading-[3rem] max-w-full bg-transparent border-b-2 border-gray-500 transition-all duration-300 ease-in-out;
+  }
 }
