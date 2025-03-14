@@ -29,6 +29,7 @@ import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { DefaultPageProps } from "../_app";
 import Jumbotron from "@/elements/jumbotron";
 import { ProjectDescription } from "@/components/Project/projectDescription";
+import { StaticImageData } from "next/image";
 
 interface BlogTemplatePageProps extends DefaultPageProps {
   current: BlogInterface;
@@ -45,12 +46,12 @@ const BlogTemplate = ({
   };
 
   const shareIcons = "mr-5 my-5  text-accent text-5xl"
-
+  const imgPath = `/assets/${current.frontmatter.img}` as unknown as StaticImageData
   return (
     <main>
       <article className="blog-single has-bottom-sep">
         <Jumbotron.mini
-          backgroundImage={nasaGalaxy}
+          backgroundImage={imgPath}
           backgroundImageAlt="Earth from Space"
           title={current.frontmatter.title}
           centerAlign={true}

@@ -25,13 +25,13 @@ const LatestBlogSection = ({
               alt="image"
             />
           </div>
-          <div className="laptop:text-right tablet:text-right relative">
+          <div className="laptop:text-right tablet:text-right relative text-white">
             <div>
               <h3 className="text-white">Latest Article</h3>
-              <h1 className="font-bold leading-snug mt-20 font-heading text-white">
+              <h1 className="font-bold leading-snug mt-20 font-heading">
                 {frontmatter.title}
               </h1>
-              <div className="entry-content text-white no-underline mb-10 not-underline">
+              <div className="entry-content no-underline mb-10 not-underline">
                 <p>{excerpt}</p>
               </div>
               <Link

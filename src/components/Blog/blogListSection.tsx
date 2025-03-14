@@ -15,13 +15,12 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
           <div className="section_intro has-bottom-sep pt-20">
             <div className="text-center">
               <h3>The Blue Green Manual</h3>
-              <h1>All Posts</h1>
+              <h1>All Articles</h1>
             </div>
           </div>
           <div>
-            <div className="columns-4">
+            <div className="columns-4 gap-0">
               {blogItems.map((element, index) => {
-                console.log(element);
                 return (
                   <div className="break-inside-avoid-column" key={index}>
                     <div className=" overflow-hidden relative hover:opacity-100 hover:visible">
@@ -49,7 +48,6 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                   </div>
                 );
               })}
-              
             </div>
           </div>
         </div>
