@@ -3,7 +3,6 @@ import React from "react";
 import SocialMediaIcons from "../components/Social/socialSection";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
-import beachImage from "../assets/images/BeachNK_1.jpg";
 import WebSection from "@/elements/WebSection";
 
 type MiniJumbotronProps = {
@@ -12,9 +11,11 @@ type MiniJumbotronProps = {
   title: string;
   subtitle: string;
   DescriptionComponent: React.ComponentType;
+  centerAlign?: boolean
 };
+
 type MaxJumbotronProps = {
-  bgImg: string;
+  bgImg: StaticImageData;
   orangeText: string;
   HeadingTextComponent: React.ReactNode;
   buttonDetails: [string, string][];
@@ -28,6 +29,7 @@ const Jumbotron = {
     title,
     subtitle,
     DescriptionComponent,
+    centerAlign= false
   }: MiniJumbotronProps) => (
     <WebSection
       className="page-header bg-fixed bg-center bg-no-repeat selection:bg-accent selection:text-white"
@@ -40,7 +42,7 @@ const Jumbotron = {
         placeholder="blur"
         alt={backgroundImageAlt}
       />
-      <div className="container mx-auto page-header__content text-center">
+      <div className={`container mx-auto page-header__content ${centerAlign ? 'text-center':''}`}>
         <article>
           <h1 className="page-header__title text-white">
               {title}
@@ -53,12 +55,12 @@ const Jumbotron = {
       </div>
     </WebSection>
   ),
-  Max: ({ orangeText, HeadingTextComponent, buttonDetails }: MaxJumbotronProps) => (
+  Max: ({ orangeText, HeadingTextComponent, buttonDetails, bgImg }: MaxJumbotronProps) => (
     <WebSection id="max-jumbo" className="s-home z-40 py-0 selection:bg-accent selection:text-white">
       <Image
         layout="fill"
         className="object-right object-cover pointer-events-none laptop:object-center !h-screen"
-        src={beachImage}
+        src={bgImg}
         placeholder="blur"
         alt="Me on the beach"
       />

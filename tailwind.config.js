@@ -9,6 +9,9 @@ module.exports = {
       "laptop-l": { min: "1440px" },
     },
     extend: {
+      brightness: {
+        25: '.25'
+      },
       fontSize: {
         h1: [
           "3.6rem",

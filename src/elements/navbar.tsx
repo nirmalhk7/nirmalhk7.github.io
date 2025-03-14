@@ -65,19 +65,20 @@ const Navbar = () => {
         }`}
       >
         <Scrollspy
-          className="inline-block h-16 m-0 list-none"
-          currentClassName="text-accent"
+          className="header-nav-wrap__navbar inline-block h-16 m-0 list-none"
+          currentClassName="!text-accent"
           items={navbarInternalData.map((element) =>
             element.label.toLowerCase()
           )}
           offset={-100}
         >
           {navbarInternalData.map((element) => (
-            <li className="inline-block pl-0 mr-8" key={element.label}>
+            <li className="pl-0 mr-8" key={element.label}>
               <Link
                 className="hover:text-accent"
                 title={element.label}
                 href={element.route}
+                onClick={()=>mobileMenuSet(false)}
               >
                 {element.label}
               </Link>

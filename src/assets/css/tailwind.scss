@@ -130,6 +130,28 @@
     }
   }
 
+  @media only screen and (max-width: 766px) {
+    .header-nav-wrap {
+      @apply transition duration-300 bg-black p-10;
+      width: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .header-nav-wrap__navbar {
+      // display: block !important;
+      // flex-direction: column !important; // Ensure vertical direction
+      line-height: 4rem;
+    }
+
+    .header-nav-wrap__navbar li {
+      display: block!important;
+    }
+  }
+  .header-nav-wrap__navbar li {
+    display: inline-block;
+  }
+
   fieldset {
     border: 1px solid #c0c0c0;
     margin: 0 2px;

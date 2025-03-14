@@ -10,6 +10,7 @@ import Link from "next/link";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { DefaultPageProps } from "./_app";
 import { BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
+import blogWallpaper from "@/assets/images/datacenter.jpg";
 
 interface BlogPageProps extends DefaultPageProps {
   blogs: BlogInterface[];
@@ -21,13 +22,13 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
     <main>
       <Jumbotron.Max
         HeadingTextComponent={
-          <h1 className="page-header__title">
+          <h1 className="page-header__title text-white">
               The Blue Green Manual
           </h1>
         }
-        bgImg="bg-blogWallpaper"
+        bgImg={blogWallpaper}
         buttonDetails={[["Explore", "#blog-first"]]}
-        orangeText="Official Blog of Nirmal Khedkar"
+        orangeText="The Official Blog of Nirmal Khedkar"
       />
       <LatestBlogSection
         frontmatter={blogs[0].frontmatter}
@@ -47,10 +48,9 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
     getExcerpt: true,
   });
 
-  const miniBlogInformation = blogDetail.map((i) => ({
-    childMarkdownRemark: i,
-    excerpt: i.excerpt,
-    slug: i.slug,
+  const miniBlogInformation = blogDetail.map(blog=>({
+    ...blog,
+    content: '',
   }));
   return {
     props: {

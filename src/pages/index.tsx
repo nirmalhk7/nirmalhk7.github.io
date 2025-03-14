@@ -16,6 +16,7 @@ import {
   SkillsInterface,
   WorkExperienceInterface,
 } from "@/interfaces";
+import beachImage from "../assets/images/BeachNK_1.jpg";
 import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
 import { ProjectInterface } from "@/interfaces/projects";
@@ -51,7 +52,8 @@ const IndexPage = ({
             Software Engineer.
           </h1>
         }
-        bgImg="bg-milkyWay laptop:bg-beachNirmal"
+        // bgImg="bg-milkyWay laptop:bg-beachNirmal"
+        bgImg={beachImage}
         buttonDetails={[
           ["Latest Projects", "#projects"],
           ["More About Me", "#about"],
