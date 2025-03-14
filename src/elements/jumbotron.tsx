@@ -40,15 +40,13 @@ const Jumbotron = {
         placeholder="blur"
         alt={backgroundImageAlt}
       />
-      <div className="container mx-auto page-header__content">
+      <div className="container mx-auto page-header__content text-center">
         <article>
-          <h1 className="page-header__title">
-            <a href="#0" title={title}>
+          <h1 className="page-header__title text-white">
               {title}
-            </a>
           </h1>
           <div className="page-header__info">
-            <div className="page-header__cat">{subtitle}</div>
+            <div className="page-header__cat text-white inline-block uppercase">{subtitle}</div>
           </div>
           <DescriptionComponent />
         </article>
@@ -56,7 +54,7 @@ const Jumbotron = {
     </WebSection>
   ),
   Max: ({ orangeText, HeadingTextComponent, buttonDetails }: MaxJumbotronProps) => (
-    <WebSection className="s-home z-10 py-0 selection:bg-accent selection:text-white">
+    <WebSection id="max-jumbo" className="s-home z-40 py-0 selection:bg-accent selection:text-white">
       <Image
         layout="fill"
         className="object-right object-cover pointer-events-none laptop:object-center !h-screen"
@@ -64,8 +62,8 @@ const Jumbotron = {
         placeholder="blur"
         alt="Me on the beach"
       />
-      <div className="z-0 bg-black h-screen left-0 opacity-50 absolute top-0 w-full" />
-      <div className="jumbotron z-10">
+      <div className="bg-black h-screen left-0 opacity-50 absolute top-0 w-full" />
+      <div className="jumbotron">
         <div className="tablet:container mx-auto home-content__main">
           <h3 className="ital-hover">{orangeText}</h3>
           {HeadingTextComponent}

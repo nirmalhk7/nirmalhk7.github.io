@@ -21,78 +21,69 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import ReactMarkdown from "react-markdown";
 import BlogInterface from "@/interfaces/blog";
 import Link from "next/link";
+import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { sampleSize } from "lodash";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { DefaultPageProps } from "../_app";
+import Jumbotron from "@/elements/jumbotron";
+import { ProjectDescription } from "@/components/Project/projectDescription";
 
 interface BlogTemplatePageProps extends DefaultPageProps {
-  current: BlogInterface
+  current: BlogInterface;
 }
 
 const BlogTemplate = ({
-  current
+  current,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   // TODO NK: Fix needed here: appropriate representation
   const shareProps = {
     url: "/",
-    title: current.childMarkdownRemark.frontmatter?.title,
+    title: current.frontmatter?.title,
+    className: "py-4"
   };
+
+  const shareIcons = "mr-5 my-5  text-accent text-5xl"
 
   return (
     <main>
       <article className="blog-single has-bottom-sep">
-        <div
-          className="page-header  bg-fixed bg-center bg-no-repeat text-center"
-          style={{
-            backgroundSize: "cover",
-          }}
-        >
-          <div className="container mx-auto page-header__content ">
-            <article className="w-full">
-              <div className="page-header__info">
-                <div className="page-header__cat">
-                  {/* TODO NK Print category */}
-                  {/* {current.childMarkdownRemark.frontmatter.category.map(
-                    ({ category, index }: any) => (
-                      <React.Fragment key={index}>
-                        <a href={`/blog#${category}`}>{category}</a>
-                        {current.childMarkdownRemark.frontmatter.category
-                          .length !==
-                        index + 1
-                          ? ", "
-                          : null}
-                      </React.Fragment>
-                    )
-                  )} */}
-                </div>
+        <Jumbotron.mini
+          backgroundImage={nasaGalaxy}
+          backgroundImageAlt="Earth from Space"
+          title={current.frontmatter.title}
+          subtitle=""
+          DescriptionComponent={() => (
+            <div className="page-header__info">
+              <div className="page-header__cat">
+                {current.frontmatter.category.map((category: string) => (
+                  <React.Fragment key={category}>
+                    <Link
+                      className="text-white no-underline uppercase"
+                      href={`/blog#${category}`}
+                    >
+                      {category}
+                    </Link>
+                  </React.Fragment>
+                ))}
               </div>
-              <h1 className="page-header__title">
-                <a href="#0" title="">
-                  {/* {current.childMarkdownRemark.frontmatter.title} */}
-                </a>
-              </h1>
-              <ul className="page-header__meta">
-                <li className="date">
-                  <b>Nirmal Khedkar</b> on
-                  {/* {` ${current.childMarkdownRemark.frontmatter.date}`} */}
-                </li>
-              </ul>
-            </article>
-          </div>
-        </div>
-        <div className=" m-auto" style={{ paddingBottom: "72px" }}>
-          <div className="w-full pl-24 pr-24">
+            </div>
+          )}
+        />
+        <div className="container mx-auto pt-20">
+          <div className="w-full">
             <ReactMarkdown>{current.content || ""}</ReactMarkdown>
-            <div className="blog-content__pagenav">
+            <div className="relative border-y-2 border-gray-100 mt-10 py-10">
               <h6 className="boxfont text-uppercase mt-0">Share the article</h6>
               <TwitterShareButton
                 hashtags={current.frontmatter?.tags}
-                {...shareProps}
+                url="/"
+                title={current.frontmatter.title}
+                className="hover:shadow-none"
               >
                 <FontAwesomeIcon
-                  className="mr-2 text-accent"
+                  className={shareIcons}
                   icon={faTwitter}
                 />
               </TwitterShareButton>
@@ -102,7 +93,7 @@ const BlogTemplate = ({
                 {...shareProps}
               >
                 <FontAwesomeIcon
-                  className="mr-2 text-accent"
+                  className={shareIcons}
                   icon={faLinkedin}
                 />
               </LinkedinShareButton>
@@ -112,25 +103,25 @@ const BlogTemplate = ({
                 {...shareProps}
               >
                 <FontAwesomeIcon
-                  className="mr-2 text-accent"
+                  className={shareIcons}
                   icon={faFacebook}
                 />
               </FacebookShareButton>
               <PinterestShareButton {...shareProps}>
                 <FontAwesomeIcon
-                  className="mr-2 text-accent"
+                  className={shareIcons}
                   icon={faPinterest}
                 />
               </PinterestShareButton>
               <WhatsappShareButton {...shareProps}>
                 <FontAwesomeIcon
-                  className="mr-2 text-accent"
+                  className={shareIcons}
                   icon={faWhatsapp}
                 />
               </WhatsappShareButton>
               <TelegramShareButton {...shareProps}>
                 <FontAwesomeIcon
-                  className="mr-2 text-accent"
+                  className={shareIcons}
                   icon={faTelegram}
                 />
               </TelegramShareButton>
@@ -140,57 +131,27 @@ const BlogTemplate = ({
                 {...shareProps}
               >
                 <FontAwesomeIcon
-                  className="mr-2 text-accent"
+                  className={shareIcons}
                   icon={faEnvelope}
                 />
               </EmailShareButton>
               <p
                 className="blog-content__tags"
-                style={{ marginTop: "3rem!important" }}
               >
-                <span>
-                </span>
+                <span></span>
                 <span className="blog-content__tag-list">
-                  {current.frontmatter?.tags.map(
-                    (element, index) => (
-                      <a href="#0" key={index}>
-                        {element}
-                      </a>
-                    )
-                  )}
+                  {current.frontmatter?.tags.map((element, index) => (
+                    <a href="#0" key={index}>
+                      {element}
+                    </a>
+                  ))}
                 </span>
               </p>
-              <div className="blog-content__nav">
-                {/* {pageContext.previous ? (
-                  <div className="blog-content__prev">
-                    <Link
-                      className="no-underline"
-                      rel="prev"
-                      href={`/blog/${pageContext.previous.relativeDirectory}`}
-                    >
-                      <span>Previous Post</span>
-                      {Utils.getFrontmatter(pageContext.previous).title}
-                    </Link>
-                  </div>
-                ) : null}
-                {pageContext.next ? (
-                  <div className="blog-content__next">
-                    <Link
-                      rel="next"
-                      href={`/blog/${pageContext.next.relativeDirectory}`}
-                    >
-                      <span>Next Post</span>
-                      {Utils.getFrontmatter(pageContext.next).title}
-                    </Link>
-                  </div>
-                ) : null} */}
-              </div>
               <div className="blog-content__all">
-                <Link className="btn btn--primary" href="/blog">
+                <Link className="button button-accent-fill" href="/blog">
                   View All Posts
                 </Link>
               </div>
-              <hr />
             </div>
           </div>
         </div>
@@ -237,7 +198,7 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
       pageMetadata: {
         enableWrap: true,
         seoMetadata: {
-          defaultTitle: "The Blue Green Manual",
+          title: currentBlog.frontmatter.title,
           description: "Blog by Nirmal Khedkar",
         },
       },

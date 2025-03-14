@@ -30,7 +30,7 @@ const WorkExperienceSection = ({
                   <p className="timeline__timeframe hover:text-accent">
                     {element.timeframe}
                   </p>
-                  <h3>{element.company}</h3>
+                  <h4>{element.company}</h4>
                   <h5>{element.post}</h5>
                 </div>
                 <div className="timeline__desc">

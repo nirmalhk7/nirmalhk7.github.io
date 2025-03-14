@@ -2,7 +2,6 @@ import { useForm, ValidationError } from "@formspree/react";
 import React from "react";
 import WebSection from "@/elements/WebSection";
 
-
 export default function ContactMeSection() {
   const [state, handleSubmit] = useForm("mgvwblra");
 
@@ -12,10 +11,17 @@ export default function ContactMeSection() {
 
   return (
     <div>
-      <WebSection id="contact" className="relative bg-fixed bg-center bg-no-repeat bg-black selection:bg-accent selection:text-white">
+      <WebSection
+        id="contact"
+        className="relative  bg-milkyWay selection:bg-accent selection:text-white"
+      >
+        <div
+          className="bg-black h-screen left-0 opacity-25 absolute top-0 w-full"
+          style={{ zIndex: -1 }}
+        />
         <div className="z-10 narrow m-auto text-white">
           <div className=" text-center">
-            <h3 className="text-accent font-blocky font-semibold uppercase my-0">
+            <h3 className="my-0">
               Contact Me
             </h3>
             <h1>Say Hi!</h1>
@@ -66,9 +72,8 @@ export default function ContactMeSection() {
                   />
                 </div>
                 <button
-                  className="mt-32 py-8 button button-red w-full bg-accent text-white hover:text-accent hover:bg-white"
+                  className="button button-accent-fill w-full mt-32"
                   type="submit"
-                  style={{ lineHeight: "0" }}
                   disabled={state.submitting}
                 >
                   Submit
@@ -76,9 +81,9 @@ export default function ContactMeSection() {
               </form>
             </div>
             <div className="w-full contact__infos">
-              <h4 className="text-white font-blocky uppercase text-navbar font-bold my-0">
+              <h5 className="text-white font-blocky uppercase text-navbar font-bold my-0">
                 Email
-              </h4>
+              </h5>
               <a className="" href="mailto:nirmalhk7@gmail.com">
                 nirmalhk7@gmail.com
               </a>

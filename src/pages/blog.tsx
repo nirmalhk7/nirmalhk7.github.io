@@ -22,9 +22,7 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
       <Jumbotron.Max
         HeadingTextComponent={
           <h1 className="page-header__title">
-            <Link title="" href="/blog">
               The Blue Green Manual
-            </Link>
           </h1>
         }
         bgImg="bg-blogWallpaper"
@@ -50,7 +48,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
   });
 
   const miniBlogInformation = blogDetail.map((i) => ({
-    childMarkdownRemark: i.childMarkdownRemark,
+    childMarkdownRemark: i,
     excerpt: i.excerpt,
     slug: i.slug,
   }));

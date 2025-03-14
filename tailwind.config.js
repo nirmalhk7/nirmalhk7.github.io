@@ -10,7 +10,6 @@ module.exports = {
     },
     extend: {
       fontSize: {
-
         h1: [
           "3.6rem",
           {

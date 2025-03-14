@@ -1,75 +1,96 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Scrollspy from "react-scrollspy";
-
 
 const Navbar = () => {
   const router = useRouter();
-  const [mobileMenuClick,mobileMenuSet]=useState(false)
-  const navbarInternalData = [{
-    label: "Home",
-    route: "/",
-    lean: false
-  }, {
-    label: "About",
-    route: "/#about",
-    lean: false
-  }, {
-    label: "Projects",
-    route: router.pathname === "/" ? "/#project" : "/projects",
-    lean: false
-  }, {
-    label: "Blog",
-    route: router.pathname === "/" ? "/#blog" : "/blog",
-    lean: false
-  }
-    , {
-    label: "Contact",
-    route: "#contact",
-    lean: false
-  }
-  ].filter(i => i)
+  const [mobileMenuClick, mobileMenuSet] = useState(false);
 
-  const navbarExternalData = [{
-    label: "Blog",
-    route: "https://linkedin.com/in/nirmalhk7",
-    lean: true
-  }]
-  const checkIfValid = (flag: boolean) => String(flag) === process.env.NEXT_PUBLIC_LEANMODE;
+  const navbarInternalData = [
+    {
+      label: "Home",
+      route: "/",
+    },
+    {
+      label: "About",
+      route: "/#about",
+    },
+    {
+      label: "Projects",
+      route: router.pathname === "/" ? "/#project" : "/projects",
+    },
+    {
+      label: "Blog",
+      route: router.pathname === "/" ? "/#blog" : "/blog",
+    },
+    {
+      label: "Contact",
+      route: "#contact",
+    },
+  ].filter((i) => i);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const header = document.querySelector("header");
+      if (window.scrollY >= window.innerHeight && header) {
+        header.classList.add("sticky", "bg-gradient-to-r", "bg-black", "text-white");
+      } else if (header) {
+        header.classList.remove("sticky", "bg-gradient-to-r", "bg-black", "text-white");
+      }
+
+      // const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;   
+      // console.log(`Scrolled: ${scrollPercentage.toFixed(2)}%`);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
 
   return (
-    <header className="font-blocky transition duration-500 font-bold text-navbar uppercase w-full h-navbar bg-transparent z-40 absolute top-0 selection:bg-accent selection:text-white">
-      <Link href="/">
-        <div className="left-20 inline-block text-white m-0 p-0 absolute hover:text-accent transition duration-500">
-          nirmalhk7
-        </div>
+    <header className=" font-blocky transition duration-300 font-bold text-navbar uppercase w-full h-navbar z-50 absolute top-0 selection:bg-accent selection:text-white">
+      <Link
+        href="/"
+        className="text-white no-underline left-20 inline-block m-0 p-0 absolute hover:text-accent"
+      >
+        nirmalhk7
       </Link>
-      <nav className={`header-nav-wrap absolute right-20 tablet:block tablet:transition-all duration-500 ${!mobileMenuClick?'hidden':''}`}>
+      <nav
+        className={`header-nav-wrap absolute right-20 tablet:block tablet:transition-all ${
+          !mobileMenuClick ? "hidden" : ""
+        }`}
+      >
         <Scrollspy
-          className="inline-block h-16 m-0 list-none text-white"
+          className="inline-block h-16 m-0 list-none"
           currentClassName="text-accent"
-          items={navbarInternalData.map((element) => element.label.toLowerCase())}
+          items={navbarInternalData.map((element) =>
+            element.label.toLowerCase()
+          )}
           offset={-100}
         >
-          {navbarInternalData.filter(i => checkIfValid(i.lean)).map((element) =>
-            <li className="text-white inline-block pl-0 mr-8" key={element.label}>
-              <Link className="hover:text-accent" title={element.label} href={element.route}>
+          {navbarInternalData.map((element) => (
+            <li className="inline-block pl-0 mr-8" key={element.label}>
+              <Link
+                className="hover:text-accent"
+                title={element.label}
+                href={element.route}
+              >
                 {element.label}
               </Link>
-            </li>)}
-          {navbarExternalData.filter(i => checkIfValid(i.lean)).map((element) =>
-            <li className="text-white inline-block pl-0 mr-8" key={element.label}>
-              <a rel="noreferrer" target="_blank" className="hover:text-accent" title={element.label} href={element.route}>
-                {element.label}
-              </a>
-            </li>)}
+            </li>
+          ))}
         </Scrollspy>
       </nav>
       <Link
-        className={`header-menu-toggle block tablet:hidden ${mobileMenuClick ? 'is-clicked': ''}`}
+        className={`header-menu-toggle block tablet:hidden ${
+          mobileMenuClick ? "is-clicked" : ""
+        }`}
         id="nav-button"
-        onClick={()=>mobileMenuSet(!mobileMenuClick)}
+        onClick={() => mobileMenuSet(!mobileMenuClick)}
         href="#0"
       >
         <span>Menu</span>
