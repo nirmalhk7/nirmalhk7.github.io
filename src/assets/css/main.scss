@@ -463,9 +463,6 @@ html.no-csstransitions .home-content__main {
 }
 
 @media only screen and (max-width: 400px) {
-  .masonry-wrap {
-    width: auto;
-  }
 
   .jumbotron {
     vertical-align: middle;
@@ -521,30 +518,6 @@ html.no-csstransitions .home-content__main {
  *
  * ------------------------------------------------------------------- */
 
-/* ------------------------------------------------------------------- 
- * ## bricks/masonry - (_site-layout.scss)
- * ------------------------------------------------------------------- */
-.masonry-wrap {
-  margin-top: 4.8rem;
-  max-width: none;
-  width: 1600px;
-}
-
-.masonry:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.masonry .grid-sizer,
-.masonry__brick {
-  width: 400px;
-}
-
-.masonry__brick {
-  float: left;
-  padding: 0;
-}
 
 .item-folio {
   position: relative;
@@ -729,26 +702,7 @@ html.no-csstransitions .home-content__main {
  * responsive:
  * works
  * ------------------------------------------------------------------- */
-@media only screen and (max-width: 1700px) {
-  .masonry-wrap {
-    width: 1400px;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 350px;
-  }
-}
-
 @media only screen and (max-width: 1500px) {
-  .masonry-wrap {
-    width: 1200px;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 400px;
-  }
 
   .jumbotron h1 {
     font-size: 5.2rem;
@@ -756,29 +710,6 @@ html.no-csstransitions .home-content__main {
 
   .home-content__main {
     max-width: 1000px;
-  }
-}
-
-@media only screen and (max-width: 1300px) {
-  .masonry-wrap {
-    width: 999px;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 333px;
-  }
-}
-
-@media only screen and (max-width: 1099px) {
-  .masonry-wrap {
-    width: 90%;
-    max-width: 768px;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 50%;
   }
 }
 
@@ -914,11 +845,6 @@ html.no-csstransitions .home-content__main {
   h4,
   .h04 {
     margin-top: 5.1rem;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 100%;
   }
 
   .jumbotron h1 {
@@ -1265,10 +1191,6 @@ html.no-csstransitions .home-content__main {
 }
 
 @media only screen and (max-width: 400px) {
-  .masonry-wrap {
-    width: auto;
-  }
-
   .jumbotron {
     vertical-align: middle;
   }
@@ -1381,56 +1303,14 @@ html.no-csstransitions .home-content__main {
  * responsive:
  * works
  * ------------------------------------------------------------------- */
-@media only screen and (max-width: 1700px) {
-  .masonry-wrap {
-    width: 1400px;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 350px;
-  }
-}
 
 @media only screen and (max-width: 1500px) {
-  .masonry-wrap {
-    width: 1200px;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 400px;
-  }
-
   .jumbotron h1 {
     font-size: 5.2rem;
   }
 
   .home-content__main {
     max-width: 1000px;
-  }
-}
-
-@media only screen and (max-width: 1300px) {
-  .masonry-wrap {
-    width: 999px;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 333px;
-  }
-}
-
-@media only screen and (max-width: 1099px) {
-  .masonry-wrap {
-    width: 90%;
-    max-width: 768px;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 50%;
   }
 }
 
@@ -1566,11 +1446,6 @@ html.no-csstransitions .home-content__main {
   h4,
   .h04 {
     margin-top: 5.1rem;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 100%;
   }
 
   .jumbotron h1 {
@@ -2002,10 +1877,6 @@ html.no-csstransitions .home-content__main {
 }
 
 @media only screen and (max-width: 400px) {
-  .masonry-wrap {
-    width: auto;
-  }
-
   .jumbotron {
     vertical-align: middle;
   }
@@ -2060,30 +1931,7 @@ html.no-csstransitions .home-content__main {
  *
  * ------------------------------------------------------------------- */
 
-/* ------------------------------------------------------------------- 
- * responsive:
- * works
- * ------------------------------------------------------------------- */
-@media only screen and (max-width: 1700px) {
-  .masonry-wrap {
-    width: 1400px;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 350px;
-  }
-}
-
 @media only screen and (max-width: 1500px) {
-  .masonry-wrap {
-    width: 1200px;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 400px;
-  }
 
   .jumbotron h1 {
     font-size: 5.2rem;
@@ -2091,29 +1939,6 @@ html.no-csstransitions .home-content__main {
 
   .home-content__main {
     max-width: 1000px;
-  }
-}
-
-@media only screen and (max-width: 1300px) {
-  .masonry-wrap {
-    width: 999px;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 333px;
-  }
-}
-
-@media only screen and (max-width: 1099px) {
-  .masonry-wrap {
-    width: 90%;
-    max-width: 768px;
-  }
-
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 50%;
   }
 }
 
@@ -2251,11 +2076,6 @@ html.no-csstransitions .home-content__main {
     margin-top: 5.1rem;
   }
 
-  .masonry .grid-sizer,
-  .masonry__brick {
-    width: 100%;
-  }
-
   .jumbotron h1 {
     font-size: 4.2rem;
   }
@@ -2380,14 +2200,3 @@ article.blog-single {
   }
 }
 
-@media only screen and (max-width: 800px) {
-  .header-nav-wrap {
-    height: auto;
-    width: 100%;
-    right: auto;
-    top: 0;
-    left: 0;
-    background-color: #000000;
-    padding: 120px 40px 21px;
-  }
-}

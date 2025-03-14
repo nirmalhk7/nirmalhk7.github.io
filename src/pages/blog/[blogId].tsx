@@ -53,6 +53,7 @@ const BlogTemplate = ({
           backgroundImage={nasaGalaxy}
           backgroundImageAlt="Earth from Space"
           title={current.frontmatter.title}
+          centerAlign={true}
           subtitle=""
           DescriptionComponent={() => (
             <div className="page-header__info">
