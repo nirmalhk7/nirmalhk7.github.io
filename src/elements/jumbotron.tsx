@@ -37,9 +37,8 @@ const Jumbotron = {
     >
       <Image
         layout="fill"
-        className="object-center object-cover pointer-events-none !h2/5"
+        className="object-center object-cover pointer-events-none !h2/5 brightness-25"
         src={backgroundImage}
-        placeholder="blur"
         alt={backgroundImageAlt}
       />
       <div className={`container mx-auto page-header__content ${centerAlign ? 'text-center':''}`}>
@@ -59,12 +58,12 @@ const Jumbotron = {
     <WebSection id="max-jumbo" className="s-home z-40 py-0 selection:bg-accent selection:text-white">
       <Image
         layout="fill"
-        className="object-right object-cover pointer-events-none laptop:object-center !h-screen"
+        className="object-right object-cover pointer-events-none laptop:object-center !h-screen brightness-50"
         src={bgImg}
         placeholder="blur"
         alt="Me on the beach"
       />
-      <div className="bg-black h-screen left-0 opacity-50 absolute top-0 w-full" />
+      {/* <div className="bg-black h-screen left-0 opacity-50 absolute top-0 w-full" /> */}
       <div className="jumbotron">
         <div className="tablet:container mx-auto home-content__main">
           <h3 className="ital-hover">{orangeText}</h3>
