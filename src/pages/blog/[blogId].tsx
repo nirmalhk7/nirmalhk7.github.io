@@ -42,11 +42,12 @@ const BlogTemplate = ({
   const shareProps = {
     url: "/",
     title: current.frontmatter?.title,
-    className: "py-4"
+    className: "py-4",
   };
 
-  const shareIcons = "mr-5 my-5  text-accent text-5xl"
-  const imgPath = `/assets/${current.frontmatter.img}` as unknown as StaticImageData
+  const shareIcons = "mr-5 my-5  text-accent text-5xl";
+  const imgPath =
+    `/assets/${current.frontmatter.img}` as unknown as StaticImageData;
   return (
     <main>
       <article className="blog-single has-bottom-sep">
@@ -76,81 +77,72 @@ const BlogTemplate = ({
         <div className="container mx-auto pt-20">
           <div className="w-full">
             <ReactMarkdown>{current.content || ""}</ReactMarkdown>
-            <div className="relative border-y-2 border-gray-100 mt-10 py-10">
-              <h6 className="boxfont text-uppercase mt-0">Share the article</h6>
-              <TwitterShareButton
-                hashtags={current.frontmatter?.tags}
-                url="/"
-                title={current.frontmatter.title}
-                className="hover:shadow-none"
-              >
-                <FontAwesomeIcon
-                  className={shareIcons}
-                  icon={faTwitter}
-                />
-              </TwitterShareButton>
-              <LinkedinShareButton
-                source={"/"}
-                summary={current.frontmatter?.title}
-                {...shareProps}
-              >
-                <FontAwesomeIcon
-                  className={shareIcons}
-                  icon={faLinkedin}
-                />
-              </LinkedinShareButton>
-              <FacebookShareButton
-                hashtag={`#${current.frontmatter?.category}`}
-                quote={`${current.frontmatter?.title} by Nirmal Khedkar`}
-                {...shareProps}
-              >
-                <FontAwesomeIcon
-                  className={shareIcons}
-                  icon={faFacebook}
-                />
-              </FacebookShareButton>
-              <PinterestShareButton {...shareProps}>
-                <FontAwesomeIcon
-                  className={shareIcons}
-                  icon={faPinterest}
-                />
-              </PinterestShareButton>
-              <WhatsappShareButton {...shareProps}>
-                <FontAwesomeIcon
-                  className={shareIcons}
-                  icon={faWhatsapp}
-                />
-              </WhatsappShareButton>
-              <TelegramShareButton {...shareProps}>
-                <FontAwesomeIcon
-                  className={shareIcons}
-                  icon={faTelegram}
-                />
-              </TelegramShareButton>
-              <EmailShareButton
-                body="I found this interesting blog article that you might like:"
-                subject="Check out this blog on nirmalhk7.com"
-                {...shareProps}
-              >
-                <FontAwesomeIcon
-                  className={shareIcons}
-                  icon={faEnvelope}
-                />
-              </EmailShareButton>
-              <p
-                className="blog-content__tags"
-              >
-                <span></span>
-                <span className="blog-content__tag-list">
-                  {current.frontmatter?.tags.map((element, index) => (
-                    <a href="#0" key={index}>
-                      {element}
-                    </a>
-                  ))}
-                </span>
-              </p>
-              <div className="blog-content__all">
-                <Link className="button button-accent-fill" href="/blog">
+            <div className="relative border-y-2 border-gray-100 mt-10 py-10 grid grid-cols-8 gap-5">
+              <div className="col-span-5">
+                <h6 className="boxfont text-uppercase mt-0">
+                  Share the article
+                </h6>
+                <TwitterShareButton
+                  hashtags={current.frontmatter?.tags}
+                  url="/"
+                  title={current.frontmatter.title}
+                  className="hover:shadow-none"
+                >
+                  <FontAwesomeIcon className={shareIcons} icon={faTwitter} />
+                </TwitterShareButton>
+                <LinkedinShareButton
+                  source={"/"}
+                  summary={current.frontmatter?.title}
+                  {...shareProps}
+                >
+                  <FontAwesomeIcon className={shareIcons} icon={faLinkedin} />
+                </LinkedinShareButton>
+                <FacebookShareButton
+                  hashtag={`#${current.frontmatter?.category}`}
+                  quote={`${current.frontmatter?.title} by Nirmal Khedkar`}
+                  {...shareProps}
+                >
+                  <FontAwesomeIcon className={shareIcons} icon={faFacebook} />
+                </FacebookShareButton>
+                <PinterestShareButton {...shareProps}>
+                  <FontAwesomeIcon className={shareIcons} icon={faPinterest} />
+                </PinterestShareButton>
+                <WhatsappShareButton {...shareProps}>
+                  <FontAwesomeIcon className={shareIcons} icon={faWhatsapp} />
+                </WhatsappShareButton>
+                <TelegramShareButton {...shareProps}>
+                  <FontAwesomeIcon className={shareIcons} icon={faTelegram} />
+                </TelegramShareButton>
+                <EmailShareButton
+                  body="I found this interesting blog article that you might like:"
+                  subject="Check out this blog on nirmalhk7.com"
+                  {...shareProps}
+                >
+                  <FontAwesomeIcon className={shareIcons} icon={faEnvelope} />
+                </EmailShareButton>
+                <p className="blog-content__tags">
+                  <span></span>
+                  <span className="blog-content__tag-list">
+                    {current.frontmatter?.tags.map((element, index) => (
+                      <a href="#0" key={index}>
+                        {element}
+                      </a>
+                    ))}
+                  </span>
+                </p>
+              </div>
+
+              <div className="col-span-2 col-start-7">
+                <button
+                  className="button-accent-fill w-full text-center h-fit my-2"
+                  onClick={()=>alert("Yes!")}
+                >
+                  Subscribe to the Blog
+                </button>
+                <Link
+                  className="button button-accent w-full text-center h-fit my-2"
+                  href="/blog"
+                >
                   View All Posts
                 </Link>
               </div>
