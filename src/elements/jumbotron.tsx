@@ -11,7 +11,7 @@ type MiniJumbotronProps = {
   title: string;
   subtitle: string;
   DescriptionComponent: React.ComponentType;
-  centerAlign?: boolean
+  centerAlign?: boolean;
 };
 
 type MaxJumbotronProps = {
@@ -29,7 +29,7 @@ const Jumbotron = {
     title,
     subtitle,
     DescriptionComponent,
-    centerAlign= false
+    centerAlign = false,
   }: MiniJumbotronProps) => (
     <WebSection
       className="page-header bg-fixed bg-center bg-no-repeat selection:bg-accent selection:text-white"
@@ -41,21 +41,33 @@ const Jumbotron = {
         src={backgroundImage}
         alt={backgroundImageAlt}
       />
-      <div className={`container mx-auto page-header__content ${centerAlign ? 'text-center':''}`}>
+      <div
+        className={`container mx-auto page-header__content ${
+          centerAlign ? "text-center" : ""
+        }`}
+      >
         <article>
-          <h1 className="page-header__title text-white">
-              {title}
-          </h1>
+          <h1 className="page-header__title text-white">{title}</h1>
           <div className="page-header__info">
-            <div className="page-header__cat text-white inline-block uppercase">{subtitle}</div>
+            <div className="page-header__cat text-white inline-block uppercase">
+              {subtitle}
+            </div>
           </div>
           <DescriptionComponent />
         </article>
       </div>
     </WebSection>
   ),
-  Max: ({ orangeText, HeadingTextComponent, buttonDetails, bgImg }: MaxJumbotronProps) => (
-    <WebSection id="max-jumbo" className="s-home z-40 py-0 selection:bg-accent selection:text-white">
+  Max: ({
+    orangeText,
+    HeadingTextComponent,
+    buttonDetails,
+    bgImg,
+  }: MaxJumbotronProps) => (
+    <WebSection
+      id="max-jumbo"
+      className="s-home z-40 py-0 selection:bg-accent selection:text-white"
+    >
       <Image
         layout="fill"
         className="object-right object-cover pointer-events-none laptop:object-center !h-screen brightness-50"

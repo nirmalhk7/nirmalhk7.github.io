@@ -58,6 +58,12 @@ const nextConfig = {
         port: '',
         pathname: '/u/25480443',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '',
+      },
     ],
   },
   i18n: {

@@ -29,7 +29,7 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                         href={`/blog/${element.slug}`}
                       >
                         <Image
-                          src={`/assets/${element.frontmatter?.img}`}
+                          src={element.frontmatter.img}
                           width={500}
                           height={600}
                           alt="image"

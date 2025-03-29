@@ -11,6 +11,7 @@ import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { DefaultPageProps } from "./_app";
 import { BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
 import blogWallpaper from "@/assets/images/datacenter.jpg";
+import { sortBy } from "lodash";
 
 interface BlogPageProps extends DefaultPageProps {
   blogs: BlogInterface[];
@@ -23,7 +24,7 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
       <Jumbotron.Max
         HeadingTextComponent={
           <h1 className="page-header__title text-white">
-              The Blue Green Manual
+            The Blue Green Manual
           </h1>
         }
         bgImg={blogWallpaper}
@@ -43,14 +44,17 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
 export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
   const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml");
 
-  const blogDetail = loadMarkdownFiles("content/blog", {
-    getContent: true,
-    getExcerpt: true,
-  });
+  const blogDetail = sortBy(
+    loadMarkdownFiles("content/blog", {
+      getContent: true,
+      getExcerpt: true,
+    }),
+    (o) => o.frontmatter.date
+  ).reverse();
 
-  const miniBlogInformation = blogDetail.map(blog=>({
+  const miniBlogInformation = blogDetail.map((blog) => ({
     ...blog,
-    content: '',
+    content: "",
   }));
   return {
     props: {

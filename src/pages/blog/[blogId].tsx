@@ -46,13 +46,14 @@ const BlogTemplate = ({
   };
 
   const shareIcons = "mr-5 my-5  text-accent text-5xl";
-  const imgPath =
-    `/assets/${current.frontmatter.img}` as unknown as StaticImageData;
+  // let imgPath = current.frontmatter.img 
+  let imgPath="";
+  console.log(current.frontmatter.img)
   return (
     <main>
       <article className="blog-single has-bottom-sep">
         <Jumbotron.mini
-          backgroundImage={imgPath}
+          backgroundImage={current.frontmatter.img}
           backgroundImageAlt="Earth from Space"
           title={current.frontmatter.title}
           centerAlign={true}
@@ -75,8 +76,35 @@ const BlogTemplate = ({
           )}
         />
         <div className="container mx-auto pt-20">
-          <div className="w-full">
-            <ReactMarkdown>{current.content || ""}</ReactMarkdown>
+          <div className="w-full leading-4">
+            <ReactMarkdown
+              components={{
+                h1: (props) => <h3 {...props} className="text-black" />,
+                h2: (props) => <h4 {...props} className="text-black" />,
+                h3: (props) => <h5 {...props} className="text-black" />,
+                h4: "b",
+                h5: "b",
+                h6: "b",
+                blockquote(props) {
+                  const { children, node, ...rest } = props;
+                  return (
+                    <blockquote {...rest} className="scale-75 w-full">
+                      {children}
+                    </blockquote>
+                  );
+                },
+                ul(props){
+                  const { children, node, ...rest } = props;
+                  return (
+                    <ul className="list-disc pl-5 leading-10">{children}</ul>
+                  )
+                }
+              }}
+              skipHtml={false}
+              className="rm-article"
+            >
+              {current.content || ""}
+            </ReactMarkdown>
             <div className="relative border-y-2 border-gray-100 mt-10 py-10 grid grid-cols-8 gap-5">
               <div className="col-span-5">
                 <h6 className="boxfont text-uppercase mt-0">
@@ -134,13 +162,14 @@ const BlogTemplate = ({
 
               <div className="col-span-2 col-start-7">
                 <button
+                  disabled
                   className="button-accent-fill w-full text-center h-fit my-2"
-                  onClick={()=>alert("Yes!")}
+                  onClick={() => alert("Yes!")}
                 >
                   Subscribe to the Blog
                 </button>
                 <Link
-                  className="button button-accent w-full text-center h-fit my-2"
+                  className="block button button-accent w-full text-center h-fit my-2"
                   href="/blog"
                 >
                   View All Posts
@@ -182,7 +211,7 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
   const currentBlog = loadMarkdownFile(
     "content/blog/" + blogId + ".md",
     blogId,
-    { getContent: true }
+    { getContent: true, getExcerpt: false }
   );
 
   return {
