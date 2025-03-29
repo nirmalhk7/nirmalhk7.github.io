@@ -61,7 +61,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
             </code>
           </div>
           {allTags.map((tag) => (
-            <div className="inline-block my-2 mx-2">
+            <div className="inline-block my-2 mx-2" key={tag}>
               <code
                 className={tag === filter ? "code-selected" : ""}
                 key={tag}
