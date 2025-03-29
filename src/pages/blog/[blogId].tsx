@@ -30,6 +30,7 @@ import { DefaultPageProps } from "../_app";
 import Jumbotron from "@/elements/jumbotron";
 import { ProjectDescription } from "@/components/Project/projectDescription";
 import { StaticImageData } from "next/image";
+import { useRouter } from "next/router";
 
 interface BlogTemplatePageProps extends DefaultPageProps {
   current: BlogInterface;
@@ -38,17 +39,14 @@ interface BlogTemplatePageProps extends DefaultPageProps {
 const BlogTemplate = ({
   current,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  // TODO NK: Fix needed here: appropriate representation
-  const shareProps = {
-    url: "/",
-    title: current.frontmatter?.title,
-    className: "py-4",
-  };
-
   const shareIcons = "mr-5 my-5  text-accent text-5xl";
-  // let imgPath = current.frontmatter.img 
-  let imgPath="";
-  console.log(current.frontmatter.img)
+  // let imgPath = current.frontmatter.img
+  let imgPath = "";
+  const router = useRouter();
+  const sharedButtonProps = {
+    className: "hover:shadow-none hover:scale-110 cursor-pointer",
+    url: `https://nirmalhk7.com${router.asPath}`
+  }
   return (
     <main>
       <article className="blog-single has-bottom-sep">
@@ -76,7 +74,7 @@ const BlogTemplate = ({
           )}
         />
         <div className="container mx-auto pt-20">
-          <div className="w-full leading-4">
+          <div className="w-full">
             <ReactMarkdown
               components={{
                 h1: (props) => <h3 {...props} className="text-black" />,
@@ -93,15 +91,21 @@ const BlogTemplate = ({
                     </blockquote>
                   );
                 },
-                ul(props){
+                ul(props) {
                   const { children, node, ...rest } = props;
                   return (
                     <ul className="list-disc pl-5 leading-10">{children}</ul>
-                  )
+                  );
+                },
+                p(props){
+                  const { children, node, ...rest } = props;
+                  return (
+                    <p className="mt-4 leading-10">{children}</p>
+                  );
                 }
               }}
               skipHtml={false}
-              className="rm-article"
+              className="text-black"
             >
               {current.content || ""}
             </ReactMarkdown>
@@ -112,39 +116,49 @@ const BlogTemplate = ({
                 </h6>
                 <TwitterShareButton
                   hashtags={current.frontmatter?.tags}
-                  url="/"
                   title={current.frontmatter.title}
-                  className="hover:shadow-none"
+                  {...sharedButtonProps}
                 >
                   <FontAwesomeIcon className={shareIcons} icon={faTwitter} />
                 </TwitterShareButton>
                 <LinkedinShareButton
-                  source={"/"}
-                  summary={current.frontmatter?.title}
-                  {...shareProps}
+                  summary={`${current.frontmatter?.title} by Nirmal Khedkar`}
+                  source={"https://nirmalhk7.com"}
+                  {...sharedButtonProps}
                 >
                   <FontAwesomeIcon className={shareIcons} icon={faLinkedin} />
                 </LinkedinShareButton>
                 <FacebookShareButton
                   hashtag={`#${current.frontmatter?.category}`}
                   quote={`${current.frontmatter?.title} by Nirmal Khedkar`}
-                  {...shareProps}
+                  {...sharedButtonProps}
                 >
                   <FontAwesomeIcon className={shareIcons} icon={faFacebook} />
                 </FacebookShareButton>
-                <PinterestShareButton {...shareProps}>
+                <PinterestShareButton
+                  media={`https://nirmalhk7.com/assets/${current.frontmatter.img}`}
+                  description={`${current.frontmatter?.title} by Nirmal Khedkar`}
+                  {...sharedButtonProps}
+                >
                   <FontAwesomeIcon className={shareIcons} icon={faPinterest} />
                 </PinterestShareButton>
-                <WhatsappShareButton {...shareProps}>
+                <WhatsappShareButton
+                  separator=" "
+                  {...sharedButtonProps}
+                >
                   <FontAwesomeIcon className={shareIcons} icon={faWhatsapp} />
                 </WhatsappShareButton>
-                <TelegramShareButton {...shareProps}>
+                <TelegramShareButton
+                  title={`${current.frontmatter?.title} by Nirmal Khedkar`}
+                  {...sharedButtonProps}
+                >
                   <FontAwesomeIcon className={shareIcons} icon={faTelegram} />
                 </TelegramShareButton>
                 <EmailShareButton
-                  body="I found this interesting blog article that you might like:"
-                  subject="Check out this blog on nirmalhk7.com"
-                  {...shareProps}
+                  body="Nirmal Khedkar is a fullstack software engineer. I this blog article he wrote online that you might like:"
+                  subject="Check out this blog article by Nirmal Khedkar"
+                  separator=" "
+                  {...sharedButtonProps}
                 >
                   <FontAwesomeIcon className={shareIcons} icon={faEnvelope} />
                 </EmailShareButton>
