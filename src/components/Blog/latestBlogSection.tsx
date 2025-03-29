@@ -19,7 +19,7 @@ const LatestBlogSection = ({
         <div className="grid laptop:grid-cols-2 tablet:grid-cols-2 mobile-l:grid-cols-1 py-10">
           <div>
             <Image
-              src={`/blog/${frontmatter?.img}`}
+              src={frontmatter?.img}
               width={500}
               height={500}
               alt="image"
@@ -35,7 +35,7 @@ const LatestBlogSection = ({
                 <p>{excerpt}</p>
               </div>
               <Link
-                className="button button-white"
+                className="button button-white inline-block"
                 href={`/blog/${slug}`}
               >
                 Read More
