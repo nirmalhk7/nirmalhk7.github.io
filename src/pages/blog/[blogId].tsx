@@ -31,6 +31,8 @@ import Jumbotron from "@/elements/jumbotron";
 import { ProjectDescription } from "@/components/Project/projectDescription";
 import { StaticImageData } from "next/image";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import ProfileImage from "@/assets/images/profile.png";
 
 interface BlogTemplatePageProps extends DefaultPageProps {
   current: BlogInterface;
@@ -45,8 +47,8 @@ const BlogTemplate = ({
   const router = useRouter();
   const sharedButtonProps = {
     className: "hover:shadow-none hover:scale-110 cursor-pointer",
-    url: `https://nirmalhk7.com${router.asPath}`
-  }
+    url: `https://nirmalhk7.com${router.asPath}`,
+  };
   return (
     <main>
       <article className="blog-single has-bottom-sep">
@@ -77,9 +79,9 @@ const BlogTemplate = ({
           <div className="w-full">
             <ReactMarkdown
               components={{
-                h1: (props) => <h3 {...props} className="text-black" />,
-                h2: (props) => <h4 {...props} className="text-black" />,
-                h3: (props) => <h5 {...props} className="text-black" />,
+                h1: ({node,...props}) => <h3 {...props} className="text-black mt-5" />,
+                h2: ({node,...props}) => <h4 {...props} className="text-black mt-5" />,
+                h3: ({node,...props}) => <h5 {...props} className="text-black mt-5" />,
                 h4: "b",
                 h5: "b",
                 h6: "b",
@@ -97,20 +99,18 @@ const BlogTemplate = ({
                     <ul className="list-disc pl-5 leading-10">{children}</ul>
                   );
                 },
-                p(props){
+                p(props) {
                   const { children, node, ...rest } = props;
-                  return (
-                    <p className="mt-4 leading-10">{children}</p>
-                  );
-                }
+                  return <p className="mt-4 leading-10">{children}</p>;
+                },
               }}
               skipHtml={false}
               className="text-black"
             >
               {current.content || ""}
             </ReactMarkdown>
-            <div className="relative border-y-2 border-gray-100 mt-10 py-10 grid grid-cols-8 gap-5">
-              <div className="col-span-5">
+            <div className="relative border-y-2 border-gray-100 mt-14 py-5 grid grid-cols-8 gap-5">
+              <div className="col-span-6">
                 <h6 className="boxfont text-uppercase mt-0">
                   Share the article
                 </h6>
@@ -123,7 +123,7 @@ const BlogTemplate = ({
                 </TwitterShareButton>
                 <LinkedinShareButton
                   summary={`${current.frontmatter?.title} by Nirmal Khedkar`}
-                  source={"https://nirmalhk7.com"}
+                  source={`https://nirmalhk7.com`}
                   {...sharedButtonProps}
                 >
                   <FontAwesomeIcon className={shareIcons} icon={faLinkedin} />
@@ -142,10 +142,7 @@ const BlogTemplate = ({
                 >
                   <FontAwesomeIcon className={shareIcons} icon={faPinterest} />
                 </PinterestShareButton>
-                <WhatsappShareButton
-                  separator=" "
-                  {...sharedButtonProps}
-                >
+                <WhatsappShareButton separator=" " {...sharedButtonProps}>
                   <FontAwesomeIcon className={shareIcons} icon={faWhatsapp} />
                 </WhatsappShareButton>
                 <TelegramShareButton
@@ -174,7 +171,7 @@ const BlogTemplate = ({
                 </p>
               </div>
 
-              <div className="col-span-2 col-start-7">
+              <div className="col-span-2 pr-5">
                 <button
                   disabled
                   className="button-accent-fill w-full text-center h-fit my-2"
@@ -187,6 +184,37 @@ const BlogTemplate = ({
                   href="/blog"
                 >
                   View All Posts
+                </Link>
+              </div>
+            </div>
+            <div className="relative bg-gray-100 p-5 grid grid-cols-12 gap-5">
+              <div className="col-span-1">
+                <Image
+                  src={ProfileImage}
+                  width={500}
+                  height={500}
+                  alt="my profile image"
+                  className="rounded-full"
+                />
+              </div>
+
+              <div className="col-span-8 pl-10">
+                Looking to boost your engineering team's performance and
+                reliability? Hire Nirmal Khedkar. With two years of full-stack
+                experience at Visa, <u>he's your man to improve your system
+                performance and handle any runtime errors</u>. Nirmal is passionate
+                about writing secure and efficient "fortress" code, and has a
+                track record of working in all major languages (Java, JS,
+                Python) and all major frameworks (Springboot, MERN/MEAN, NextJS,
+                etc). Nirmal is ready than ever to make an immediate and
+                positive impact to your team
+              </div>
+              <div className="col-span-3">
+                <Link
+                  className="block button button-accent-fill w-full text-center h-fit my-2 animate-bounce"
+                  href="/resume?utm_source=pitch"
+                >
+                  Hire Nirmal Now
                 </Link>
               </div>
             </div>

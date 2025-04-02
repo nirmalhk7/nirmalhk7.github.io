@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "get-rss": "node src/util/generateRss.js",
-    "get-resume": "curl -L -o public/Resume.pdf https://drive.google.com/uc?export=download&id=1uiBM20zWZrbdRYfJAP-2mr_2aoyL3wac && ls"
+    "get-resume": "curl -L -o public/Resume.pdf https://drive.google.com/uc?export=download&id=19hL9Zho2yynl-VBcfk6D5k88_L_ZlJnd && ls"
   },
   "dependencies": {
     "@formspree/react": "^2.5.1",
