@@ -20,9 +20,9 @@ const LatestBlogSection = ({
           <div>
             <Image
               src={frontmatter?.img}
-              width={500}
-              height={500}
-              alt="image"
+              width={400}
+              height={400}
+              alt={frontmatter.title}
             />
           </div>
           <div className="laptop:text-right tablet:text-right relative text-white">
