@@ -51,7 +51,7 @@ const BlogTemplate = ({
   };
   return (
     <main>
-      <article className="blog-single has-bottom-sep">
+      <article className="bg-white has-bottom-sep">
         <Jumbotron.mini
           backgroundImage={current.frontmatter.img}
           backgroundImageAlt="Earth from Space"
@@ -69,6 +69,7 @@ const BlogTemplate = ({
                     >
                       {category}
                     </Link>
+                    <div>{current.frontmatter.date}</div>
                   </React.Fragment>
                 ))}
               </div>

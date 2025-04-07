@@ -911,14 +911,6 @@ html.no-csstransitions .home-content__main {
  * # blog styles - (_blog.scss)
  *
  * ------------------------------------------------------------------- */
-article.blog-single {
-  background-color: #ffffff;
-}
-
-article.blog-single .blog-content {
-  padding-top: 7.2rem;
-  padding-bottom: 12rem;
-}
 
 /* post tags
  * ------------------------------------------------- */
@@ -1494,15 +1486,6 @@ html.no-csstransitions .home-content__main {
  * # blog styles - (_blog.scss)
  *
  * ------------------------------------------------------------------- */
-article.blog-single {
-  background-color: #ffffff;
-}
-
-article.blog-single .blog-content {
-  padding-top: 7.2rem;
-  padding-bottom: 12rem;
-}
-
 
 .blog-content__nav {
   padding-right: 220px;
@@ -2174,14 +2157,7 @@ footer {
  * # blog styles - (_blog.scss)
  *
  * ------------------------------------------------------------------- */
-article.blog-single {
-  background-color: #ffffff;
 
-  .blog-content {
-    padding-top: 7.2rem;
-    padding-bottom: 12rem;
-  }
-}
 
 /* ------------------------------------------------------------------- 
  * responsive:

@@ -18,37 +18,40 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
               <h1>All Articles</h1>
             </div>
           </div>
-          <div>
-            <div className="columns-4 gap-0">
-              {blogItems.map((element, index) => {
-                return (
-                  <div className="break-inside-avoid-column" key={index}>
-                    <div className=" overflow-hidden relative hover:opacity-100 hover:visible">
-                      <Link
-                        title={element.excerpt ?? "The Blue Green Manual"}
-                        href={`/blog/${element.slug}`}
-                      >
-                        <Image
-                          src={element.frontmatter.img}
-                          width={500}
-                          height={600}
-                          alt="image"
-                          className="brightness-50 hover:brightness-25 hover:scale-105 transition duration-300"
-                        />
-                      </Link>
-                      <div className="pt-0 pb-0 pl-12 pr-12 z-20 bottom-12	left-0 absolute">
-                        <h4 className="text-white text-2xl m-0 font-bold">
+          <div className="py-5 columns-4 gap-0">
+            {blogItems.map((element, index) => {
+              return (
+                <div className="break-inside-avoid-column" key={index}>
+                  <div className=" overflow-hidden relative hover:opacity-100 hover:visible">
+                    <Link
+                      title={element.excerpt ?? "The Blue Green Manual"}
+                      href={`/blog/${element.slug}`}
+                    >
+                      <Image
+                        src={element.frontmatter.img}
+                        width={500}
+                        height={600}
+                        alt="image"
+                        className="brightness-50 hover:brightness-25 hover:scale-105 transition duration-300"
+                      />
+                    </Link>
+                    <div className="px-8 z-20 bottom-8	left-0 absolute w-full">
+                      <div className="grid grid-flow-row-dense grid-cols-2">
+                        <h4 className="text-white text-2xl m-0 font-bold col-span-2">
                           {element.frontmatter?.title}
                         </h4>
                         <strong className="text-accent uppercase font-blocky">
                           {element.frontmatter?.category}
                         </strong>
+                        <div className="text-gray-300 uppercase font-blocky text-end">
+                          {element.frontmatter?.date}
+                        </div>
                       </div>
                     </div>
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
