@@ -106,11 +106,11 @@ const BlogTemplate = ({
                 },
               }}
               skipHtml={false}
-              className="text-black"
+              className="text-black mb-14"
             >
               {current.content || ""}
             </ReactMarkdown>
-            <div className="relative border-y-2 border-gray-100 mt-14 py-5 grid grid-cols-8 gap-5">
+            <div className="relative border-y-2 border-gray-100 my-24 py-5 grid grid-cols-8 gap-5">
               <div className="col-span-6">
                 <h6 className="boxfont text-uppercase mt-0">
                   Share the article
@@ -178,7 +178,7 @@ const BlogTemplate = ({
                   className="button-accent-fill w-full text-center h-fit my-2"
                   onClick={() => alert("Yes!")}
                 >
-                  Subscribe to the Blog
+                  Subscribe (WIP)
                 </button>
                 <Link
                   className="block button button-accent w-full text-center h-fit my-2"
