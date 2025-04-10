@@ -1,5 +1,5 @@
 ---
-title: "Homelab Architecture: Planning Your Personal Tech Playground"
+title: "Homelab Architecture: Planning Your Playground"
 category: ['Guides']
 tags: ["technology","project","personal","homelab"]
 img: /assets/datacenter_1.png
