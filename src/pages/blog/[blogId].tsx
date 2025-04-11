@@ -80,9 +80,15 @@ const BlogTemplate = ({
           <div className="w-full">
             <ReactMarkdown
               components={{
-                h1: ({node,...props}) => <h3 {...props} className="text-black mt-5" />,
-                h2: ({node,...props}) => <h4 {...props} className="text-black mt-5" />,
-                h3: ({node,...props}) => <h5 {...props} className="text-black mt-5" />,
+                h1: ({ node, ...props }) => (
+                  <h3 {...props} className="text-black mt-5" />
+                ),
+                h2: ({ node, ...props }) => (
+                  <h4 {...props} className="text-black mt-5" />
+                ),
+                h3: ({ node, ...props }) => (
+                  <h5 {...props} className="text-black mt-5" />
+                ),
                 h4: "b",
                 h5: "b",
                 h6: "b",
@@ -202,13 +208,16 @@ const BlogTemplate = ({
               <div className="col-span-8 pl-10">
                 Looking to boost your engineering team's performance and
                 reliability? Hire Nirmal Khedkar. With two years of full-stack
-                experience at Visa, <u>he's your man to improve your system
-                performance and handle any runtime errors</u>. Nirmal is passionate
-                about writing secure and efficient "fortress" code, and has a
-                track record of working in all major languages (Java, JS,
-                Python) and all major frameworks (Springboot, MERN/MEAN, NextJS,
-                etc). Nirmal is ready than ever to make an immediate and
-                positive impact to your team
+                experience at Visa,{" "}
+                <u>
+                  he's your man to improve your system performance and handle
+                  any runtime errors
+                </u>
+                . Nirmal is passionate about writing secure and efficient
+                "fortress" code, and has a track record of working in all major
+                languages (Java, JS, Python) and all major frameworks
+                (Springboot, MERN/MEAN, NextJS, etc). Nirmal is ready than ever
+                to make an immediate and positive impact to your team
               </div>
               <div className="col-span-3">
                 <Link
@@ -256,7 +265,6 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
     blogId,
     { getContent: true, getExcerpt: false }
   );
-  console.log(currentBlog)
 
   return {
     props: {
@@ -269,11 +277,20 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
           description: currentBlog.frontmatter.description,
           openGraph: {
             type: "website",
-            url: `https://nirmalhk7.com/blog/${blogId}`
+            url: `https://nirmalhk7.com/blog/${blogId}`,
+            images: [
+              {
+                url: `https://nirmalhk7.com${currentBlog.frontmatter.img}`,
+                alt: currentBlog.frontmatter.title,
+                width: 900,
+                height: 800
+              },
+            ],
           },
           twitter: {
-            site: `https://nirmalhk7.com/blog/${blogId}`
-          }
+            site: `https://nirmalhk7.com/blog/${blogId}`,
+            
+          },
         },
       },
     },
