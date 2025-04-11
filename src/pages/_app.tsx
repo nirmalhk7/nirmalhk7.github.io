@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
           type: "website",
           locale: "en_IN",
           url: "https://nirmalhk7.com",
-          siteName: "Official Website of Nirmal Khedkar",
+          
         }}
         additionalLinkTags={[
           { rel: "me", href: "https://fosstodon.org/@nirmalhk7" },

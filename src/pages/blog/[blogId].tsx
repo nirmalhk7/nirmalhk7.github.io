@@ -256,6 +256,7 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
     blogId,
     { getContent: true, getExcerpt: false }
   );
+  console.log(currentBlog)
 
   return {
     props: {
@@ -265,7 +266,14 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
         enableWrap: true,
         seoMetadata: {
           title: currentBlog.frontmatter.title,
-          description: "Blog by Nirmal Khedkar",
+          description: currentBlog.frontmatter.description,
+          openGraph: {
+            type: "website",
+            url: `https://nirmalhk7.com/blog/${blogId}`
+          },
+          twitter: {
+            site: `https://nirmalhk7.com/blog/${blogId}`
+          }
         },
       },
     },
