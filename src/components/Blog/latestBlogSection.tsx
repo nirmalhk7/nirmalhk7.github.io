@@ -16,8 +16,8 @@ const LatestBlogSection = ({
       id="blog-first"
     >
       <div className="container mx-auto">
-        <div className="grid laptop:grid-cols-2 tablet:grid-cols-2 mobile-l:grid-cols-1 py-10">
-          <div>
+        <div className="grid laptop:grid-cols-2 tablet:grid-cols-2 mobile-l:grid-cols-1">
+          <div className="py-10">
             <Image
               src={frontmatter?.img}
               width={400}
@@ -25,7 +25,7 @@ const LatestBlogSection = ({
               alt={frontmatter.title}
             />
           </div>
-          <div className="laptop:text-right tablet:text-right relative text-white">
+          <div className="laptop:text-right tablet:text-right relative text-white py-10">
             <div>
               <h3 className="text-white">Latest Article</h3>
               <h1 className="font-bold leading-snug mt-20 font-heading">

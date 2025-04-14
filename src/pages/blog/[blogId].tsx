@@ -117,7 +117,7 @@ const BlogTemplate = ({
               {current.content || ""}
             </ReactMarkdown>
             <div className="relative border-y-2 border-gray-100 my-24 py-5 grid grid-cols-8 gap-5">
-              <div className="col-span-6">
+              <div className="col-span-8 tablet:col-span-6 ">
                 <h6 className="boxfont text-uppercase mt-0">
                   Share the article
                 </h6>
@@ -178,7 +178,7 @@ const BlogTemplate = ({
                 </p>
               </div>
 
-              <div className="col-span-2 pr-5">
+              <div className="col-span-8 tablet:col-span-2 pr-5">
                 <button
                   disabled
                   className="button-accent-fill w-full text-center h-fit my-2"
@@ -195,7 +195,7 @@ const BlogTemplate = ({
               </div>
             </div>
             <div className="relative bg-gray-100 p-5 grid grid-cols-12 gap-5">
-              <div className="col-span-1">
+              <div className="col-span-12 tablet:col-span-1">
                 <Image
                   src={ProfileImage}
                   width={500}
@@ -205,7 +205,7 @@ const BlogTemplate = ({
                 />
               </div>
 
-              <div className="col-span-8 pl-10">
+              <div className="col-span-12 tablet:col-span-8 pl-10">
                 Looking to boost your engineering team's performance and
                 reliability? Hire Nirmal Khedkar. With two years of full-stack
                 experience at Visa,{" "}
@@ -219,7 +219,7 @@ const BlogTemplate = ({
                 (Springboot, MERN/MEAN, NextJS, etc). Nirmal is ready than ever
                 to make an immediate and positive impact to your team
               </div>
-              <div className="col-span-3">
+              <div className="col-span-12 tablet:col-span-3">
                 <Link
                   className="block button button-accent-fill w-full text-center h-fit my-2 animate-bounce"
                   href="/resume?utm_source=pitch"

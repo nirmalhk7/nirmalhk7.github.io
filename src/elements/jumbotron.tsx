@@ -42,12 +42,12 @@ const Jumbotron = {
         alt={backgroundImageAlt}
       />
       <div
-        className={`container mx-auto page-header__content ${
+        className={`jumbotron container mx-auto page-header__content ${
           centerAlign ? "text-center" : ""
         }`}
       >
         <article>
-          <h1 className="page-header__title text-white">{title}</h1>
+          <h1 className="page-header__title text-white w-screen">{title}</h1>
           <div className="page-header__info">
             <div className="page-header__cat text-white inline-block uppercase">
               {subtitle}
