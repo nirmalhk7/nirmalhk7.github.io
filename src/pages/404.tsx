@@ -48,7 +48,8 @@ const NotFoundPage = () => (
 
 export const getStaticProps: GetStaticProps<NotFoundPageProps> = async (context) => {
   const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml");
-  
+  const searchEntries: 
+
   return {
     props: {
       quote: sampleSize(allQuotesYaml)[0],

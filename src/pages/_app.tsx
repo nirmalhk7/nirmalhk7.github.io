@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
     <>
       <DefaultSeo
         defaultTitle="Nirmal Khedkar | Official Website"
-        description="SWE and Cloud enthusiast. Hi, I'm Nirmal Khedkar."
+        description="Fortress Code, Lightning Fast: Hi, I'm Nirmal Khedkar."
         openGraph={{
           type: "website",
           locale: "en_IN",

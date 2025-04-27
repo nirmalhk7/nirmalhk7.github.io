@@ -203,8 +203,23 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
       pageMetadata: {
         enableWrap: true,
         seoMetadata: {
-          defaultTitle: "Official Website of Nirmal Khedkar",
-          description: "Fortress Code Lightning Fast. This is Nirmal Khedkar's Official Website"
+          title: "Official Website of Nirmal Khedkar",
+          description: "Looking to boost your engineering team's performance and reliability? Hire Nirmal Khedkar. With two years of full-stack experience at Visa, he's your man to improve your system performance and handle any runtime errors.",
+          openGraph: {
+            type: "website",
+            url: `https://nirmalhk7.com`,
+            images: [
+              {
+                url: `https://nirmalhk7.com${beachImage.src}`,
+                alt: "Hi, I'm Nirmal Khedkar",
+                width: 900,
+                height: 800
+              },
+            ],
+          },
+          twitter: {
+            site: `https://nirmalhk7.com`,
+          },
         }
       }
     },
