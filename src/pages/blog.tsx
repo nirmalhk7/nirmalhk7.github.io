@@ -67,6 +67,21 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
           title: "The Blue Green Manual",
           description:
             "Dwelving into Production Scale Engineering with Nirmal Khedkar. This is The Blue Green Manual",
+          openGraph: {
+            type: "website",
+            url: `https://nirmalhk7.com/blog`,
+            images: [
+              {
+                url: `https://nirmalhk7.com${blogWallpaper.src}`,
+                alt: "Hi, I'm Nirmal Khedkar",
+                width: 900,
+                height: 800,
+              },
+            ],
+          },
+          twitter: {
+            site: `https://nirmalhk7.com/blog`,
+          },
         },
       },
     },

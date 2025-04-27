@@ -136,7 +136,22 @@ export const getStaticProps: GetStaticProps<ProjectPageProps> = async () => {
         seoMetadata: {
           title: "Projects",
           description: "I love what I do. Here's all I do.",
-        },
+          openGraph: {
+            type: "website",
+            url: `https://nirmalhk7.com/projects`,
+            images: [
+              {
+                url: `https://nirmalhk7.com${nasaGalaxy.src}`,
+                alt: "Hi, I'm Nirmal Khedkar",
+                width: 900,
+                height: 800
+              },
+            ],
+          },
+          twitter: {
+            site: `https://nirmalhk7.com/projects`,
+          },
+        }
       },
     },
   };

@@ -26,7 +26,23 @@ export const getStaticProps: GetStaticProps<ResumePageProps> = async () => {
       pageMetadata: {
         enableWrap: false,
         seoMetadata: {
-          title: "Resume"
+          title: "Resume",
+          description: "Looking to boost your engineering team's performance and reliability? Hire Nirmal Khedkar. With two years of full-stack experience at Visa, he's your man to improve your system performance and handle any runtime errors.",
+          openGraph: {
+            type: "website",
+            url: `https://nirmalhk7.com/resume`,
+            images: [
+              {
+                url: `https://nirmalhk7.com${beachImage.src}`,
+                alt: "Hi, I'm Nirmal Khedkar",
+                width: 900,
+                height: 800
+              },
+            ],
+          },
+          twitter: {
+            site: `https://nirmalhk7.com/resume`,
+          },
         }
       }
     },
