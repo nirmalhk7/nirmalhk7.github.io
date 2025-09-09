@@ -33,7 +33,7 @@ export const getStaticProps: GetStaticProps<ResumePageProps> = async () => {
             url: `https://nirmalhk7.com/resume`,
             images: [
               {
-                url: `https://nirmalhk7.com${beachImage.src}`,
+                url: `https://nirmalhk7.com/assets/images/BeachNK_1.jpg`,
                 alt: "Hi, I'm Nirmal Khedkar",
                 width: 900,
                 height: 800
