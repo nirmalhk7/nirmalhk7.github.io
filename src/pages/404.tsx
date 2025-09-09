@@ -47,8 +47,12 @@ const NotFoundPage = () => (
 );
 
 export const getStaticProps: GetStaticProps<NotFoundPageProps> = async (context) => {
-  const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml");
-  const searchEntries: 
+  const fs = require('fs');
+  const path = require('path');
+  const yaml = require('js-yaml');
+  const quotesPath = path.join(process.cwd(), 'content/yml/quotes.yaml');
+  const fileContents = fs.readFileSync(quotesPath, 'utf8');
+  const allQuotesYaml: QuoteInterface[] = yaml.load(fileContents);
 
   return {
     props: {
