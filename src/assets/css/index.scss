@@ -15,7 +15,7 @@
 
   h3 {
     font-weight: 600;
-    font-size: 2rem;
+    @apply text-3xl;
     letter-spacing: 0.15rem;
   }
 
@@ -51,7 +51,7 @@
 @media only screen and (max-width: 576px) {
   .section-intro {
     h1 {
-      font-size: 3.6rem;
+      @apply text-6xl;
     }
     h3 {
       font-size: 1.7rem;
@@ -73,10 +73,10 @@
     font-size: 3.3rem;
   }
   .section-intro h3 {
-    font-size: 1.6rem;
+    @apply text-2xl;
   }
   .page-header__content {
-    font-size: 1.6rem;
+    @apply text-2xl;
     line-height: 1.875;
   }
   .page-header__title {
@@ -139,7 +139,7 @@
 .page-header__content {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  font-size: 2rem;
+  @apply text-3xl;
   line-height: 1.8;
   position: relative;
   max-width: 992px;
@@ -167,7 +167,7 @@
   display: inline-block;
   margin-right: 2rem;
   margin-bottom: 0.3rem;
-  font-size: 1.4rem;
+  @apply text-2xl;
   line-height: 1.5;
   letter-spacing: 0.16rem;
   font-family: "Montserrat", sans-serif;
@@ -178,7 +178,7 @@
   list-style: none;
   margin-left: 0;
   padding-top: 2.4rem;
-  font-size: 1.6rem;
+  @apply text-2xl;
   position: relative;
 
   &::before {

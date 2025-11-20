@@ -11,7 +11,7 @@ const QuoteSection = ({ quote }: { quote?: QuoteInterface }) => {
   if (!quote) return null;
   return (
     <WebSection className="bg-white" id="quote">
-      <div className="narrow m-auto text-center text-h4 pb-6 relative selection:bg-accent selection:text-white">
+      <div className="narrow m-auto text-center text-4xl pb-6 relative selection:bg-accent selection:text-white">
         <div>
           <blockquote>
             <p>{quote.content} </p>

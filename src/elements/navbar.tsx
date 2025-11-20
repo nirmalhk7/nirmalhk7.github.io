@@ -52,7 +52,7 @@ const Navbar = () => {
 
 
   return (
-    <header className=" font-blocky transition duration-300 font-bold text-navbar uppercase w-full h-navbar z-50 absolute top-0 selection:bg-accent selection:text-white">
+    <header className=" font-blocky transition duration-300 font-bold text-base leading-[7.2rem] tracking-[0.25rem] uppercase w-full h-navbar z-50 absolute top-0 selection:bg-accent selection:text-white">
       <Link
         href="/"
         className="text-white no-underline left-20 inline-block m-0 p-0 absolute hover:text-accent"

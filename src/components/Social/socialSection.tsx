@@ -41,11 +41,11 @@ export const social = [
 
 const SocialSection = () => {
   return (
-    <ul className="pb-16 font-bold m-0 absolute bottom-0 right-16 font-blocky list-none	after:block after:w-px after:bg-white after:bottom-0 after:content-[''] z-20">
+    <ul className="pb-16 font-bold m-0 absolute bottom-0 right-16 font-blocky list-none after:block after:w-px after:bg-white after:bottom-0 after:content-[''] z-20">
       {social.map((element, index) => (
-        <li className="relative h-16" key={index}>
+        <li className="relative h-24" key={index}>
           <button
-            className="button-white border-0"
+            className="button-white border-0 h-full text-3xl align-top"
             onClick={() =>
               window.open(element.link, "_blank", "noopener,noreferrer")
             }

@@ -12,68 +12,6 @@ module.exports = {
       brightness: {
         25: '.25'
       },
-      fontSize: {
-        h1: [
-          "3.6rem",
-          {
-            // lineHeight: '3.25rem',
-            // letterSpacing: '-.1rem',
-            // fontWeight: '700'
-          },
-        ],
-        h2: [
-          "3rem",
-          {
-            // lineHeight: '3.3rem',
-          },
-        ],
-        h3: [
-          "2.4rem",
-          {
-            // lineHeight: '3.25rem',
-          },
-        ],
-        h4: [
-          "2.1rem",
-          {
-            // lineHeight: '3.286rem',
-          },
-        ],
-        h5: [
-          "1.6rem",
-          {
-            // lineHeight: '3.3125rem',
-          },
-        ],
-        h6: [
-          "1.4rem",
-          {
-            // lineHeight: '3.5rem',
-            // letterSpacing: '.16rem',
-            // fontWeight: '700'
-          },
-        ],
-        lead: [
-          "2rem",
-          {
-            // lineHeight: "3.6rem"
-          },
-        ],
-        button: [
-          "1.2rem",
-          {
-            lineHeight: "4.8rem",
-            letterSpacing: ".3rem",
-          },
-        ],
-        navbar: [
-          "1.0rem",
-          {
-            letterSpacing: ".25rem",
-            lineHeight: "7.2rem",
-          },
-        ],
-      },
       colors: {
         accent: "#D93838",
         accentLight: "#ffb652",
