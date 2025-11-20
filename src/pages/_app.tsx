@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import "@/assets/css/tailwind.scss";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -11,6 +11,7 @@ import Navbar from "@/elements/navbar";
 import ContactMeSection from "@/components/ContactMe/contactMeSection";
 import FooterSection from "@/components/Footer/footerSection";
 import QuoteSection, { QuoteInterface } from "@/components/Quote/quoteSection";
+import Loader from "@/components/Loader/Loader";
 
 config.autoAddCss = false;
 
@@ -27,8 +28,31 @@ interface CustomAppProps extends AppProps {
 }
 
 export default function App({ Component, pageProps }: CustomAppProps) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isFinishing, setIsFinishing] = useState(false);
+
+  useEffect(() => {
+    const handleLoad = () => {
+        setIsFinishing(true);
+    };
+
+    if (document.readyState === "complete") {
+      
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
+    }
+  }, []);
+
   return (
     <>
+      <Loader 
+        isLoading={isLoading} 
+        isFinishing={isFinishing} 
+        duration={1000} 
+        onComplete={() => setIsLoading(false)} 
+      />
       <DefaultSeo
         defaultTitle="Nirmal Khedkar | Official Website"
         description="Fortress Code, Lightning Fast: Hi, I'm Nirmal Khedkar."
