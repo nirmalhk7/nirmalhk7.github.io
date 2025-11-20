@@ -1,153 +1,74 @@
-@import "./constants";
-
 /* ------------------------------------------------------------------- 
- * ## mobile menu toggle - (_site-layout.css) 
+ * ## Mobile Menu Toggle
  * ------------------------------------------------------------------- */
 .header-menu-toggle {
-  display: none;
-  position: absolute;
-  right: 29px;
-  top: 18px;
-  height: 42px;
-  width: 42px;
-  line-height: 42px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 1.4rem;
-  text-transform: uppercase;
-  letter-spacing: .2rem;
-  color: rgba(255, 255, 255, 0.5);
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  @apply hidden absolute right-[29px] top-[18px] h-[42px] w-[42px] leading-[42px] font-blocky font-normal text-[1.4rem] uppercase tracking-[.2rem] text-white/50 transition-all duration-300 ease-in-out;
 
-  &:hover,
-  &:focus {
-    color: #FFFFFF;
-  }
+  &:hover, &:focus { @apply text-white; }
 
   span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    margin-top: -1px;
-    position: absolute;
-    left: 9px;
-    top: 50%;
-    right: auto;
-    bottom: auto;
-    background-color: white;
-    -webkit-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
+    @apply block w-6 h-0.5 -mt-px absolute left-[9px] top-1/2 bg-white transition-all duration-500 ease-in-out text-transparent;
     font: 0/0 a;
     text-shadow: none;
-    color: transparent;
 
-    &::before,
-    &::after {
-      content: '';
-      width: 100%;
-      height: 100%;
-      background-color: inherit;
-      position: absolute;
-      left: 0;
-      -webkit-transition: all 0.5s ease-in-out;
-      transition: all 0.5s ease-in-out;
+    &::before, &::after {
+      @apply content-[''] w-full h-full bg-inherit absolute left-0 transition-all duration-500 ease-in-out;
     }
 
-    &::before {
-      top: -9px;
-    }
-
-    &::after {
-      bottom: -9px;
-    }
+    &::before { @apply -top-[9px]; }
+    &::after { @apply -bottom-[9px]; }
   }
-
 
   &.is-clicked span {
-    background-color: rgba(255, 255, 255, 0);
-    -webkit-transition: all 0.1s ease-in-out;
-    transition: all 0.1s ease-in-out;
+    @apply bg-transparent transition-all duration-100 ease-in-out;
 
-    &::before,
-    &::after {
-      background-color: white;
-    }
+    &::before, &::after { @apply bg-white; }
 
     &::before {
-      top: 0;
-      -webkit-transform: rotate(135deg);
-      -ms-transform: rotate(135deg);
-      transform: rotate(135deg);
+      @apply top-0 rotate-[135deg];
     }
 
     &::after {
-      bottom: 0;
-      -webkit-transform: rotate(225deg);
-      -ms-transform: rotate(225deg);
-      transform: rotate(225deg);
+      @apply bottom-0 rotate-[225deg];
     }
   }
-
-
 }
 
 .s-header.sticky .header-menu-toggle {
-  top: 12px;
+  @apply top-3;
 }
 
-
-
-/* Accordion ==================================================  */
-
+/* ------------------------------------------------------------------- 
+ * ## Accordion
+ * ------------------------------------------------------------------- */
 .accordion-header {
-  padding: 1.5em 1.5em;
-  text-transform: uppercase;
-  cursor: pointer;
-  font-family: "montserrat-semibold", sans-serif;
-  font-size: 1.2rem;
-  letter-spacing: 0.1em;
-  transition: all 0.3s;
+  @apply p-[1.5em] uppercase cursor-pointer font-blocky font-semibold text-[1.2rem] tracking-[0.1em] transition-all duration-300;
+
+  &:hover {
+    @apply text-accent font-bold;
+  }
 
   &[aria-expanded=false]::after {
-    content: "\002b";
-    color: map-get($map: $theme-colors, $key: "accent");
-    font-size: 1.2em;
-    float: right;
-    position: relative;
-    top: -2px;
-    transition: 0.3s all;
+    @apply content-['\002b'] text-accent text-[1.2em] float-right relative -top-0.5 transition-all duration-300;
   }
   
   &[aria-expanded=true]::after {
-    content: "\2212";
-    color: map-get($map: $theme-colors, $key: "white");
-    float: right;
-    font-size: 1.2em;
-    position: relative;
-    top: -2px;
-    transition: all .3s;
+    @apply content-['\2212'] text-white float-right text-[1.2em] relative -top-0.5 transition-all duration-300;
   }
   
   &[aria-expanded=true] {
-    background: map-get($map: $theme-colors, $key: "accent");
-    color: white !important;
+    @apply bg-accent text-white !important;
   }
 }
 
-
-
 .accordion__item.active:last-child .accordion-header {
-  border-radius: none;
+  @apply rounded-none;
 }
 
-.accordion:first-child>.accordion__item>.accordion-header {
-  border-bottom: 1px solid transparent;
+.accordion:first-child > .accordion__item > .accordion-header {
+  @apply border-b border-transparent;
 }
-
-
 
 .accordion__item .accordion__item .accordion-header {
-  background: $color-gray;
-  color: black;
+  @apply bg-[#f1f1f1] text-black;
 }
