@@ -20,11 +20,11 @@ nav a, h1 a { @apply no-underline; }
 p img { @apply m-0; }
 
 em, i, strong, b {
-  @apply text-inherit leading-inherit not-italic font-normal;
+  @apply text-inherit leading-[inherit] not-italic font-normal;
 }
 
 small {
-  @apply text-[1.2rem] leading-inherit;
+  @apply text-[1.2rem] leading-[inherit];
 }
 
 /* Lists */
@@ -102,7 +102,7 @@ label, legend {
 input[type="checkbox"], input[type="radio"] { @apply inline; }
 
 label > .label-text {
-  @apply inline-block ml-4 font-blocky font-normal leading-inherit;
+  @apply inline-block ml-4 font-blocky font-normal leading-[inherit];
 }
 
 label > input[type="checkbox"], label > input[type="radio"] {
@@ -239,7 +239,7 @@ input, textarea, select, blockquote, table, p, ul, ol, dl, form, .video-containe
       &::after { @apply hidden; }
 
       a {
-        @apply inline-block font-blocky font-normal text-[1.3rem] leading-inherit text-[#797979] border border-black/30 rounded-[3px] mr-[6px] mb-[6px] px-[10px];
+        @apply inline-block font-blocky font-normal text-[1.3rem] leading-[inherit] text-[#797979] border border-black/30 rounded-[3px] mr-[6px] mb-[6px] px-[10px];
         &:last-child { @apply mr-0; }
         &:hover, &:focus { @apply bg-[#0d0a0b] border-[#0d0a0b] text-white; }
       }

@@ -72,7 +72,7 @@
 
 @media only screen and (max-width: 1200px) {
   .page-header__content {
-    @apply max-w-screen-md text-[1.7rem];
+    @apply max-w-[768px] text-[1.7rem];
   }
   .page-header__cat {
     @apply text-[1.3rem];

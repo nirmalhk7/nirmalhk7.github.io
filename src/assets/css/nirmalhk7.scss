@@ -57,7 +57,8 @@
   }
   
   &[aria-expanded=true] {
-    @apply bg-accent text-white !important;
+    background-color: #D93838 !important;
+    color: white !important;
   }
 }
 
