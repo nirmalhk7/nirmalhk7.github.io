@@ -13,10 +13,10 @@ export default function ContactMeSection() {
     <div>
       <WebSection
         id="contact"
-        className="relative  bg-milkyWay selection:bg-accent selection:text-white"
+        className="relative bg-milkyWay selection:bg-accent selection:text-white"
       >
         <div
-          className="bg-black h-screen left-0 opacity-25 absolute top-0 w-full"
+          className="bg-black h-screen left-0 opacity-50 absolute top-0 w-full"
           style={{ zIndex: -1 }}
         />
         <div className="z-10 narrow m-auto text-white">
@@ -25,7 +25,7 @@ export default function ContactMeSection() {
               Contact Me
             </h3>
             <h1>Say Hi!</h1>
-            <p className="font-blocky">
+            <p className="font-blocky text-3xl">
               I&apos;ll reach out to you as soon as I can.
             </p>
           </div>
