@@ -81,7 +81,7 @@ export default function ContactMeSection() {
               </form>
             </div>
             <div className="w-full contact__infos">
-              <h5 className="text-white font-blocky uppercase text-navbar font-bold my-0">
+              <h5 className="text-white font-blocky uppercase text-base leading-[7.2rem] tracking-[0.25rem] font-bold my-0">
                 Email
               </h5>
               <a className="" href="mailto:nirmalhk7@gmail.com">

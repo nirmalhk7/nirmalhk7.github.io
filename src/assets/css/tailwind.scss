@@ -113,7 +113,7 @@
   }
   button,
   .button {
-    @apply border-4 no-underline hover:shadow-lg px-4 text-button font-blocky uppercase font-bold transition duration-300 border-accent hover:shadow-accent/50;
+    @apply border-4 no-underline hover:shadow-lg px-4 text-xl leading-[4.8rem] tracking-[0.3rem] font-blocky uppercase font-bold transition duration-300 border-accent hover:shadow-accent/50;
 
     &:disabled {
       @apply bg-gray-400 hover:shadow-none border-gray-400;
@@ -230,27 +230,27 @@
    * ## Typography resets - (_basic.scss)
    * ------------------------------------------------------------------- */
   h1 {
-    @apply text-h1 font-heading my-8 leading-tight font-semibold;
+    @apply text-6xl font-heading my-8 leading-tight font-semibold;
   }
 
   h2 {
-    @apply text-h2 my-8 leading-[3.25rem];
+    @apply text-5xl my-8 leading-[3.25rem];
   }
 
   h3 {
-    @apply font-blocky text-h3 uppercase text-accent font-semibold;
+    @apply font-blocky text-4xl uppercase text-accent font-semibold;
   }
 
   h4 {
-    @apply text-h4 my-4;
+    @apply text-4xl my-4;
   }
 
   h5 {
-    @apply text-h5 my-4;
+    @apply text-2xl my-4;
   }
 
   h6 {
-    @apply text-h6 font-blocky uppercase;
+    @apply text-2xl font-blocky uppercase;
   }
 
   em,
@@ -349,15 +349,13 @@
     }
 
     p {
-      @apply font-normal p-0 text-black font-blocky;
+      @apply font-normal p-0 text-black font-blocky text-4xl;
       line-height: 1.857;
-      font-size: 2.1rem;
     }
 
     cite {
-      @apply block font-normal not-italic leading-normal text-h6 font-blocky;
+      @apply block font-normal not-italic leading-normal text-2xl font-blocky;
       display: block;
-      font-size: 1.4rem;
       font-style: normal;
 
       &:before {
