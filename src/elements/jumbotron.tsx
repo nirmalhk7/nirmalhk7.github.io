@@ -32,7 +32,7 @@ const Jumbotron = {
     centerAlign = false,
   }: MiniJumbotronProps) => (
     <WebSection
-      className="page-header bg-fixed bg-center bg-no-repeat selection:bg-accent selection:text-white"
+      className="page-header bg-fixed bg-center bg-no-repeat selection:bg-accent selection:text-white flex justify-center items-center"
       id={`${title}-header`}
     >
       <Image
@@ -42,19 +42,19 @@ const Jumbotron = {
         alt={backgroundImageAlt}
       />
       <div
-        className={`jumbotron container mx-auto page-header__content ${
+        className={`jumbotron container page-header__content ${
           centerAlign ? "text-center" : ""
         }`}
       >
-        <article>
-          <h1 className="page-header__title text-white w-screen">{title}</h1>
+        <div>
+          <h1 className="page-header__title text-white">{title}</h1>
           <div className="page-header__info">
             <div className="page-header__cat text-white inline-block uppercase">
               {subtitle}
             </div>
           </div>
           <DescriptionComponent />
-        </article>
+        </div>
       </div>
     </WebSection>
   ),

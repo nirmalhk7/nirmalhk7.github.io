@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
   faPinterest,
-  faTwitter,
   faFacebook,
+  faXTwitter,
   faWhatsapp,
   faTelegram,
 } from "@fortawesome/free-brands-svg-icons";
@@ -19,7 +19,7 @@ import {
 } from "react-share";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import ReactMarkdown from "react-markdown";
-import BlogInterface from "@/interfaces/blog";
+import { BlogInterface } from "@/interfaces/blog";
 import Link from "next/link";
 import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
@@ -28,8 +28,6 @@ import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { DefaultPageProps } from "../_app";
 import Jumbotron from "@/elements/jumbotron";
-import { ProjectDescription } from "@/components/Project/projectDescription";
-import { StaticImageData } from "next/image";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import ProfileImage from "@/assets/images/profile.png";
@@ -41,27 +39,99 @@ interface BlogTemplatePageProps extends DefaultPageProps {
 const BlogTemplate = ({
   current,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const shareIcons = "mr-5 my-5  text-accent text-5xl";
+  const shareIcons = "mr-5 my-5 text-5xl";
   // let imgPath = current.frontmatter.img
   let imgPath = "";
   const router = useRouter();
   const sharedButtonProps = {
-    className: "hover:shadow-none hover:scale-110 cursor-pointer",
     url: `https://nirmalhk7.com${router.asPath}`,
   };
+
+  const shareButtons = [
+    {
+      Component: TwitterShareButton,
+      Payload: {
+        hashtags: current.frontmatter?.tags,
+        title: current.frontmatter?.title,
+        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
+      },
+      Icon: faXTwitter,
+      iconHoverClass: "hover:text-[#000000]"
+    },
+    {
+      Component: LinkedinShareButton,
+      Payload: {
+        summary: `${current.frontmatter?.title} by Nirmal Khedkar`,
+        source: `https://nirmalhk7.com`,
+        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
+      },
+      Icon: faLinkedin,
+      iconHoverClass: "hover:text-[#0077b5]"
+    },
+    {
+      Component: FacebookShareButton,
+      Payload: {
+        hashtag: `#${current.frontmatter?.category}`,
+        quote: `${current.frontmatter?.title} by Nirmal Khedkar`,
+        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
+      },
+      iconHoverClass: "hover:text-[#1877F2]",
+      Icon: faFacebook,
+    },
+    {
+      Component: PinterestShareButton,
+      Payload: {
+        media: `https://nirmalhk7.com/assets/${current.frontmatter?.img}`,
+        description: `${current.frontmatter?.title} by Nirmal Khedkar`,
+        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-500",
+      },
+      iconHoverClass: "hover:text-[#E60023]",
+      Icon: faPinterest,
+    },
+    {
+      Component: WhatsappShareButton,
+      Payload: {
+        separator: " ",
+        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
+      },
+      iconHoverClass: "hover:text-[#25D366]",
+      Icon: faWhatsapp,
+    },
+    {
+      Component: TelegramShareButton,
+      Payload: {
+        title: `${current.frontmatter?.title} by Nirmal Khedkar`,
+        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
+      },
+      iconHoverClass: "hover:text-[#0088cc]",
+      Icon: faTelegram,
+    },
+    {
+      Component: EmailShareButton,
+      Payload: {
+        body: "Nirmal Khedkar is a fullstack software engineer. I this blog article he wrote online that you might like:",
+        subject: "Check out this blog article by Nirmal Khedkar",
+        separator: " ",
+        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
+      },
+      iconHoverClass: "hover:text-[#FFC107]",
+      Icon: faEnvelope,
+    },
+  ];
+
   return (
     <main>
       <article className="bg-white has-bottom-sep">
         <Jumbotron.mini
-          backgroundImage={current.frontmatter.img}
+          backgroundImage={current.frontmatter?.img as any}
           backgroundImageAlt="Earth from Space"
-          title={current.frontmatter.title}
+          title={current.frontmatter?.title || ""}
           centerAlign={true}
           subtitle=""
           DescriptionComponent={() => (
             <div className="page-header__info">
               <div className="page-header__cat">
-                {current.frontmatter.category.map((category: string) => (
+                {current.frontmatter?.category?.map((category: string) => (
                   <React.Fragment key={category}>
                     <Link
                       className="text-white no-underline uppercase"
@@ -69,7 +139,7 @@ const BlogTemplate = ({
                     >
                       {category}
                     </Link>
-                    <div>{current.frontmatter.date}</div>
+                    <div>{current.frontmatter?.date}</div>
                   </React.Fragment>
                 ))}
               </div>
@@ -106,6 +176,12 @@ const BlogTemplate = ({
                     <ul className="list-disc pl-5 leading-10">{children}</ul>
                   );
                 },
+                ol(props) {
+                  const { children, node, ...rest } = props;
+                  return (
+                    <ol className="list-decimal pl-5 leading-10">{children}</ol>
+                  );
+                },
                 p(props) {
                   const { children, node, ...rest } = props;
                   return <p className="mt-4 leading-10">{children}</p>;
@@ -121,55 +197,26 @@ const BlogTemplate = ({
                 <h6 className="boxfont text-uppercase mt-0">
                   Share the article
                 </h6>
-                <TwitterShareButton
-                  hashtags={current.frontmatter?.tags}
-                  title={current.frontmatter.title}
-                  {...sharedButtonProps}
-                >
-                  <FontAwesomeIcon className={shareIcons} icon={faTwitter} />
-                </TwitterShareButton>
-                <LinkedinShareButton
-                  summary={`${current.frontmatter?.title} by Nirmal Khedkar`}
-                  source={`https://nirmalhk7.com`}
-                  {...sharedButtonProps}
-                >
-                  <FontAwesomeIcon className={shareIcons} icon={faLinkedin} />
-                </LinkedinShareButton>
-                <FacebookShareButton
-                  hashtag={`#${current.frontmatter?.category}`}
-                  quote={`${current.frontmatter?.title} by Nirmal Khedkar`}
-                  {...sharedButtonProps}
-                >
-                  <FontAwesomeIcon className={shareIcons} icon={faFacebook} />
-                </FacebookShareButton>
-                <PinterestShareButton
-                  media={`https://nirmalhk7.com/assets/${current.frontmatter.img}`}
-                  description={`${current.frontmatter?.title} by Nirmal Khedkar`}
-                  {...sharedButtonProps}
-                >
-                  <FontAwesomeIcon className={shareIcons} icon={faPinterest} />
-                </PinterestShareButton>
-                <WhatsappShareButton separator=" " {...sharedButtonProps}>
-                  <FontAwesomeIcon className={shareIcons} icon={faWhatsapp} />
-                </WhatsappShareButton>
-                <TelegramShareButton
-                  title={`${current.frontmatter?.title} by Nirmal Khedkar`}
-                  {...sharedButtonProps}
-                >
-                  <FontAwesomeIcon className={shareIcons} icon={faTelegram} />
-                </TelegramShareButton>
-                <EmailShareButton
-                  body="Nirmal Khedkar is a fullstack software engineer. I this blog article he wrote online that you might like:"
-                  subject="Check out this blog article by Nirmal Khedkar"
-                  separator=" "
-                  {...sharedButtonProps}
-                >
-                  <FontAwesomeIcon className={shareIcons} icon={faEnvelope} />
-                </EmailShareButton>
+                {shareButtons.map((shareSocialMedia, index) => {
+                  const Component = shareSocialMedia.Component;
+                  return (
+                    <Component
+                      key={index}
+                      url={`https://nirmalhk7.com${router.asPath}`}
+                      media={`https://nirmalhk7.com${current.frontmatter.img}`}
+                      {...shareSocialMedia.Payload}
+                    >
+                      <FontAwesomeIcon
+                        className={`mr-5 my-5 text-5xl text-accent ${shareSocialMedia.iconHoverClass}`}
+                        icon={shareSocialMedia.Icon}
+                      />
+                    </Component>
+                  );
+                })}
                 <p className="blog-content__tags">
                   <span></span>
                   <span className="blog-content__tag-list">
-                    {current.frontmatter?.tags.map((element, index) => (
+                    {current.frontmatter?.tags.map((element: string, index: number) => (
                       <a href="#0" key={index}>
                         {element}
                       </a>
@@ -217,14 +264,14 @@ const BlogTemplate = ({
                 "fortress" code, and has a track record of working in all major
                 languages (Java, JS, Python) and all major frameworks
                 (Springboot, MERN/MEAN, NextJS, etc). Nirmal is ready than ever
-                to make an immediate and positive impact to your team
+                to make an immediate and positive impact to your team.
               </div>
               <div className="col-span-12 tablet:col-span-3">
                 <Link
-                  className="block button button-accent-fill w-full text-center h-fit my-2 animate-bounce"
+                  className="block button button-accent-fill hover:scale-50 w-full text-center h-fit my-2 animate-bounce"
                   href="/resume?utm_source=pitch"
                 >
-                  Hire Nirmal Now
+                  Hire Nirmal Now!
                 </Link>
               </div>
             </div>

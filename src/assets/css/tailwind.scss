@@ -75,9 +75,8 @@
   hr { @apply box-content h-0 clear-both border-solid border-accent; }
 
   code {
-    @apply relative -top-[10px] rounded-md border border-neutral-500 bg-neutral-100 px-2 py-1 text-2xl transition duration-500 hover:bg-neutral-500 hover:text-gray-100;
+    @apply relative rounded-md border border-neutral-500 bg-neutral-100 px-2 py-1 text-2xl transition duration-500 hover:bg-neutral-500 hover:text-gray-100;
     font-family: monospace, monospace;
-    
     &.code-selected {
       @apply bg-neutral-500 text-white;
     }
