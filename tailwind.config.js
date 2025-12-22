@@ -14,7 +14,7 @@ module.exports = {
       },
       colors: {
         accent: "#D93838",
-        accentLight: "#ffb652",
+        accentLight: "#D9A9A9",
       },
       boxShadow: {
         workexp: "0 0 0 9px #e9e9e9",
