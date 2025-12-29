@@ -19,6 +19,8 @@ jobs:
         run: echo "DRAFT=false" > .env
       - name: Install NPM Packages
         run: npm install -f
+      - name: Run tests
+        run: npm test
       - name: Build script
         run: npm run build
       - name: Pass on build directory

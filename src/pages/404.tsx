@@ -26,23 +26,6 @@ const NotFoundPage = () => (
         </article>
       </div>
     </WebSection>
-    <WebSection id="404-search" className="bg-white pt-16 pb-48">
-      <div className="  m-auto">
-        <div className="w-full">
-          <h6 style={{ textAlign: "center" }}>
-            Lost your way? Search what you need here.
-          </h6>
-          <div className="blog-list block-1-2 block-tab-full">
-            <input
-              className="w-full"
-              id="sampleInput"
-              placeholder="Search Here"
-              type="text"
-            />
-          </div>
-        </div>
-      </div>
-    </WebSection>
   </main>
 );
 
