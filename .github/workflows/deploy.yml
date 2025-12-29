@@ -15,6 +15,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: Production
     env:
       NODE_VERSION: 22.x
       DRAFT: "false"
@@ -69,6 +70,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    environment: Production
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     env:
