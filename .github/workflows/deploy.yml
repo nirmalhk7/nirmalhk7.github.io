@@ -36,6 +36,12 @@ jobs:
       - name: Build Next.js
         run: npm run build
 
+      - name: Authenticate with Vercel
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel login --token="$VERCEL_TOKEN"
+
       - name: Prepare Vercel project configuration
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         env:
@@ -79,3 +85,10 @@ jobs:
 
       - name: Deploy with Vercel CLI
         run: npx vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+
+      - name: Notify placeholder endpoint
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d '{"status":"deployed","commit":"'"${GITHUB_SHA}"'"}' \
+            https://example.com/webhook
