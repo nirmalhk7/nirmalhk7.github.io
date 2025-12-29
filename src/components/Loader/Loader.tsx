@@ -18,13 +18,11 @@ const Loader: React.FC<LoaderProps> = ({ isLoading, isFinishing, duration = 3000
   useEffect(() => {
     if (completedIndex >= TARGET_TEXT.length && isFinishing) {
       if (onComplete) {
-        // Small buffer to ensure the last letter is perceived
         setTimeout(onComplete, 200);
       }
     }
   }, [completedIndex, isFinishing, onComplete]);
 
-  // Effect for cycling characters (visual only)
   useEffect(() => {
     if (!isLoading) return;
 
@@ -36,9 +34,8 @@ const Loader: React.FC<LoaderProps> = ({ isLoading, isFinishing, duration = 3000
     }, 50);
 
     return () => clearInterval(cycleInterval);
-  }, [isLoading, completedIndex]); // Re-run when completedIndex changes to update closure
-
-  // Effect for locking characters (logic only)
+  }, [isLoading, completedIndex]); 
+  
   useEffect(() => {
     if (!isLoading || !isFinishing) {
       setCompletedIndex(0);

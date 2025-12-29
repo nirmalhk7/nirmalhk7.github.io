@@ -37,7 +37,6 @@ export default function App({ Component, pageProps }: CustomAppProps) {
     };
 
     if (document.readyState === "complete") {
-      
       handleLoad();
     } else {
       window.addEventListener("load", handleLoad);
