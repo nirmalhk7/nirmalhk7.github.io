@@ -12,6 +12,7 @@ import ContactMeSection from "@/components/ContactMe/contactMeSection";
 import FooterSection from "@/components/Footer/footerSection";
 import QuoteSection, { QuoteInterface } from "@/components/Quote/quoteSection";
 import Loader from "@/components/Loader/Loader";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 config.autoAddCss = false;
 
@@ -72,6 +73,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         titleTemplate="%s | Nirmal Khedkar"
       />
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLETAG || ""} />
+      <SpeedInsights/>
       {pageProps.pageMetadata ? (
         <>
           {pageProps.pageMetadata.seoMetadata ? (
