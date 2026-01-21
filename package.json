@@ -26,7 +26,7 @@
     "font-awesome": "^4.7.0",
     "gray-matter": "^4.0.3",
     "js-yaml-loader": "^1.2.2",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "markdown-it": "^13.0.1",
     "next": "14.2.35",
     "next-seo": "^6.1.0",
