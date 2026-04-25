@@ -97,7 +97,7 @@ const Jumbotron = {
         className="object-right object-cover pointer-events-none laptop:object-center !h-screen brightness-50"
         src={bgImg}
         placeholder="blur"
-        alt="Me on the beach"
+        alt="Nirmal Khedkar - Software Engineer"
       />
       {/* <div className="bg-black h-screen left-0 opacity-50 absolute top-0 w-full" /> */}
       <div className="jumbotron">

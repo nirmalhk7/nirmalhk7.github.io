@@ -11,6 +11,7 @@ import { DefaultPageProps } from "./_app";
 import { BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
 import blogWallpaper from "@/assets/images/datacenter.jpg";
 import { sortBy } from "lodash";
+import { BreadcrumbJsonLd } from "next-seo";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
 import { trackView } from "@/util/analytics";
@@ -27,6 +28,20 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
 
   return (
     <main>
+      <BreadcrumbJsonLd
+        itemListElements={[
+          {
+            position: 1,
+            name: "Home",
+            item: "https://nirmalhk7.com",
+          },
+          {
+            position: 2,
+            name: "Blog",
+            item: "https://nirmalhk7.com/blog",
+          },
+        ]}
+      />
       <Jumbotron.Max
         HeadingTextComponent={
           <h1 className="page-header__title text-white">

@@ -5,7 +5,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 
 import type { AppProps } from "next/app";
-import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo";
+import { DefaultSeo, NextSeo, NextSeoProps, WebSiteJsonLd } from "next-seo";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/elements/navbar";
@@ -122,6 +122,15 @@ export default function App({ Component, pageProps }: CustomAppProps) {
 
   return (
     <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+      <WebSiteJsonLd
+        url="https://nirmalhk7.com"
+        potentialAction={[
+          {
+            target: "https://nirmalhk7.com/blog?q={search_term_string}",
+            queryInput: "required name=search_term_string",
+          },
+        ]}
+      />
       <Loader 
         isLoading={isLoading} 
         isFinishing={isFinishing} 
@@ -137,6 +146,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
           url: "https://nirmalhk7.com",
           
         }}
+        canonical="https://nirmalhk7.com"
         additionalMetaTags={[
           {
             name: "robots",
@@ -144,7 +154,22 @@ export default function App({ Component, pageProps }: CustomAppProps) {
           },
         ]}
         additionalLinkTags={[
+          {
+            rel: "icon",
+            href: "/favicon.ico",
+          },
+          {
+            rel: "apple-touch-icon",
+            href: "/favicon.ico",
+            sizes: "180x180",
+          },
           { rel: "me", href: "https://fosstodon.org/@nirmalhk7" },
+          {
+            rel: "alternate",
+            type: "application/rss+xml",
+            href: "https://nirmalhk7.com/api/rss",
+            title: "The Blue Green Manual RSS Feed",
+          },
         ]}
         twitter={{
           cardType: "summary",

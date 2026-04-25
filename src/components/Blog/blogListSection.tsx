@@ -55,7 +55,7 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                         src={element.frontmatter?.img || ""}
                         width={500}
                         height={600}
-                        alt="image"
+                        alt={element.frontmatter?.title || "Blog image"}
                         className="brightness-50 hover:brightness-25 hover:scale-105 transition duration-300"
                       />
                     </Link>
