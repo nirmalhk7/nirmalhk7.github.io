@@ -1,0 +1,108 @@
+# Nirmal Khedkar
+
+Expert Software Engineer specializing in full-stack development, distributed systems, and mobile applications.
+
+## Summary
+From my experience, I bring a wealth of knowledge and experience to the table in a variety of areas, including expertise in all major JavaScript frameworks, proficiency in Spring Boot, and both native and hybrid mobile development. I also have experience in cloud deployment and working with both SQL and NoSQL databases. In addition, I am eager to continue developing my understanding of software deployment and cloud architecture, and am always looking for new opportunities to expand my skillset in these areas.
+
+
+Currently I'm pursuing a Masters of Science in Computer Science at **a major US University**.
+
+## Skills
+C/C++, JAVA, Python, Javascript, GraphQL, MySQL, MongoDB, SpringBoot, Angular, Jekyll, Ruby on Rails, Android, Dialogflow, React, React Native, Numpy, Pandas, Scikit-Learn, Ionic, Gatsby, Postgresql, Solidity, Lodash, Project Reactor
+
+## Experience
+
+### Software Engineering Intern | a healthcare data systems company | May 2025 - August 2025
+- Engineered an automated scheduling algorithm to process and prioritize pending and live dispatch trips, enhancing operational efficiency and optimizing resource allocation.
+- Introduced AI models & implementations to better suggest operators about their decisions.
+
+### Software Engineer | a global financial services company | June 2022 - July 2024
+- Successfully migrated Springboot services to asynchronous Reactor architecture for performance improvements.
+- Handled all test, infra and deployment issues for release of these components in internal test environments and production.
+- Proficient in handling unpredictable client and production errors.
+- Introduced test coverage practices and end-to-end Jenkins pipelines, thus improving engineering practices at my team and reduced development time.
+
+### Software Engineer Intern | a global financial services company | May 2021 - July 2021
+- Analyzed several data points within Visa Developer Platform ecosystem to gather data on route, API, product and client level.
+- Merged the above data into a single portal and developed a frontend panel to query said data. Also provided an API access to query generated data using GraphQL.
+- Angular, GraphQL, Springboot, Hibernate, MySQL, Prometheus.
+
+### Tech Lead | a technology startup | Oct 2019 - April 2021
+- Restructured code to make it more scalable and compatible with future requirements.
+- Brainstormed business requirements, design plans and translated them into development tasks.
+- Introduced linters, automated version bumps, CI-CD pipelines to improve development experience and quality of code.
+- Implemented customer engagement and analytics tools, such as chatbots, log metrics and web traffic analysis to gain insights into customer experience and proactively address errors.
+
+## Projects
+
+### AgriBazaar
+E-Commerce website for farmers. [Link](https://github.com/nirmalhk7/agribazaar)
+
+### AuthFather
+Description on AuthFather.
+
+### Automatic Generation of Topic Labels
+[Link](https://github.com/nirmalhk7/ir)
+
+### CollegeGO
+App to facilitate a college going student. Includes timetable, attendance logging and exam and holidays reminder.
+
+### Crypto
+Built with Diffie Hellman principles.
+
+### First Aid Man
+Built by Dialogflow, it makes life-saving first aid information only a "Hey Google" away.
+
+### FOSS - JS Libraries
+Following are my Javascript FOSS contributions:
+- [@twzzr/authfather](https://gitlab.com/twzzr/authfather/) (Owner)
+- [@devfolio/react-otp-input/pull/228](https://github.com/devfolioco/react-otp-input/pull/228)
+- [@devfolio/react-otp-input/pull/227](https://github.com/devfolioco/react-otp-input/pull/227)
+- [@devfolio/scroll-in/pull/121](https://github.com/devfolioco/scrroll-in/pull/121)
+- [@devfolio/react-otp-input/pull/207](https://github.com/devfolioco/react-otp-input/pull/207)
+
+### Handwriting Recognizer
+[Link](https://github.com/nirmalhk7/HandwritingRecognizer)
+
+### IET Club Website
+Made a Jekyll website-cum-blog for my college club IET a technical institute.
+[Link](https://iet-nitk.github.io)
+
+### Preemptive Kubernetes Autoscaler
+Existing Kubernetes autoscalers are great but they are reactive in nature: it will only scale if your deployment has too much or too little traffic. Since human usage has patterns, deployment traffic will always have patterns, which is where our application comes in. We built a horizontal and vertical autoscaler that uses past historical data and accordingly adjust resources on the cluster.
+
+### AR Visualisation of Human Anatomy
+[Link](https://github.com/nirmalhk7/MedicalVR)
+
+### FOSS- Mifos Initiative
+Find my contributions to Mifos Initiative here:
+- [mobile-wallet/644](https://github.com/openMF/mobile-wallet/pull/644)
+- [android-client/1371](https://github.com/openMF/android-client/pull/1371)
+- [mifos-mobile/1369](https://github.com/openMF/mifos-mobile/pull/1369)
+
+### nirmalhk7.github.io
+This very website, that is.
+
+### Obscuring or deleting data from nodes in a Blockchain network
+[Link](https://github.com/nirmalhk7/mp)
+
+### Question Paper Generator
+[Link](https://github.com/nirmalhk7/dwdm)
+
+### ScholarHub
+Linkedin for Research Students.
+
+### Shell Implementation using PThread libraries
+Basic shell implementation using PThread libraries.
+
+### Vehicle Reidentification using Convolutional Neural Network
+[Link](https://github.com/nirmalhk7/dwdm)
+
+### YACC Parser for C
+[Link](https://github.com/nirmalhk7/yaccelent)
+
+## Profiles
+- GitHub: https://www.github.com/nirmalhk7
+- LinkedIn: https://www.linkedin.com/in/nirmalhk7/
+- RSS Feed: /feed.xml

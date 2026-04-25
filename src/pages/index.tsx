@@ -97,9 +97,16 @@ const IndexPage = ({
               <div className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-4">
                 {skills.map((element, index) => (
                   <div
+                    role="button"
+                    tabIndex={0}
                     className="p-2 text-center text-2xl text-black uppercase font-blocky hover:font-bold hover:text-accent hover:scale(.5) transition duration-300 cursor-pointer"
                     key={index}
                     onClick={() => trackClick(element.name, "skill_click")}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        trackClick(element.name, "skill_click");
+                      }
+                    }}
                   >
                     {element.name}
                   </div>

@@ -30,7 +30,7 @@ import Jumbotron from "@/elements/jumbotron";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import ProfileImage from "@/assets/images/profile.png";
-import loadYaml from "js-yaml";
+import loadYaml from "@/util/loadYaml";
 import path from "path";
 import { trackClick, trackView } from "@/util/analytics";
 

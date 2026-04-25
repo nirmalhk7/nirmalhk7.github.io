@@ -35,7 +35,8 @@ const NotFoundPage = () => {
       </div>
     </WebSection>
   </main>
-);
+  );
+};
 
 export const getStaticProps: GetStaticProps<NotFoundPageProps> = async () => {
   const quotesPath = path.join(process.cwd(), 'content/yml/quotes.yaml');
