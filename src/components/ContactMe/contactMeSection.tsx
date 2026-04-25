@@ -1,7 +1,7 @@
 import { useForm, ValidationError } from "@formspree/react";
 import React from "react";
 import WebSection from "@/elements/WebSection";
-import { trackClick } from "@/util/analytics";
+import { trackClick, trackFormFocus } from "@/util/analytics";
 
 export default function ContactMeSection() {
   const [state, handleSubmit] = useForm("mgvwblra");
@@ -37,6 +37,7 @@ export default function ContactMeSection() {
                   name="NAME:"
                   placeholder="Name"
                   type="text"
+                  onFocus={() => trackFormFocus("name")}
                 />
 
                 <div className="form-field">
@@ -48,6 +49,7 @@ export default function ContactMeSection() {
                     placeholder="Email"
                     required
                     type="email"
+                    onFocus={() => trackFormFocus("email")}
                   />
                   <ValidationError
                     prefix="Email"
@@ -66,6 +68,7 @@ export default function ContactMeSection() {
                     placeholder="Message"
                     required
                     rows={10}
+                    onFocus={() => trackFormFocus("message")}
                   />
                 </div>
                 <button
