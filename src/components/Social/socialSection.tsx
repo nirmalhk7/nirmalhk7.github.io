@@ -7,7 +7,7 @@ import {
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-// import "./social_module.scss";
+import { trackClick } from "@/util/analytics";
 
 export const social = [
   {
@@ -46,9 +46,10 @@ const SocialSection = () => {
         <li className="relative h-24" key={index}>
           <button
             className="button-white border-0 h-full text-3xl align-top"
-            onClick={() =>
-              window.open(element.link, "_blank", "noopener,noreferrer")
-            }
+            onClick={() => {
+              trackClick(element.name, "social_link");
+              window.open(element.link, "_blank", "noopener,noreferrer");
+            }}
             title={element.name}
           >
             <FontAwesomeIcon icon={element.class} />

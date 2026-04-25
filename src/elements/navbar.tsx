@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Scrollspy from "react-scrollspy";
 import { motion } from "framer-motion";
+import { trackClick } from "@/util/analytics";
 
 const Navbar = () => {
   const router = useRouter();
@@ -61,6 +62,7 @@ const Navbar = () => {
     >
       <Link
         href="/"
+        onClick={() => trackClick("logo", "navbar")}
         className="text-white no-underline left-20 inline-block m-0 p-0 absolute hover:text-accent"
       >
         nirmalhk7
@@ -89,7 +91,10 @@ const Navbar = () => {
                 className="hover:text-accent"
                 title={element.label}
                 href={element.route}
-                onClick={()=>mobileMenuSet(false)}
+                onClick={() => {
+                  trackClick(element.label, "navbar_link");
+                  mobileMenuSet(false);
+                }}
               >
                 {element.label}
               </Link>

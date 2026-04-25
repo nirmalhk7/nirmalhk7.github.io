@@ -7,6 +7,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import type { AppProps } from "next/app";
 import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/elements/navbar";
 import ContactMeSection from "@/components/ContactMe/contactMeSection";
 import FooterSection from "@/components/Footer/footerSection";
@@ -73,6 +74,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         titleTemplate="%s | Nirmal Khedkar"
       />
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLETAG || ""} />
+      <Analytics />
       <SpeedInsights/>
       {pageProps.pageMetadata ? (
         <>
