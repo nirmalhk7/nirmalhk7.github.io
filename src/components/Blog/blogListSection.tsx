@@ -1,8 +1,24 @@
 import React from "react";
 import Link from "next/link";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import WebSection from "@/elements/WebSection";
 import { BlogMiniInterface } from "@/interfaces/blog";
+import { motion, Variants } from "framer-motion";
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const slideUpItem: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
 
 const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
   return (
@@ -18,17 +34,23 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
               <h1>All Articles</h1>
             </div>
           </div>
-          <div className="py-5 columns-4 gap-0">
+          <motion.div 
+            className="py-5 columns-4 gap-0"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+          >
             {blogItems.map((element, index) => {
               return (
-                <div className="break-inside-avoid-column" key={index}>
+                <motion.div variants={slideUpItem} className="break-inside-avoid-column" key={index}>
                   <div className=" overflow-hidden relative hover:opacity-100 hover:visible">
                     <Link
                       title={element.excerpt ?? "The Blue Green Manual"}
                       href={`/blog/${element.slug}`}
                     >
                       <Image
-                        src={element.frontmatter.img}
+                        src={element.frontmatter?.img || ""}
                         width={500}
                         height={600}
                         alt="image"
@@ -49,10 +71,10 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </div>
     </WebSection>

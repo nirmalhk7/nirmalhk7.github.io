@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Scrollspy from "react-scrollspy";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const router = useRouter();
@@ -52,7 +53,12 @@ const Navbar = () => {
 
 
   return (
-    <header className=" font-blocky transition duration-300 font-bold text-base leading-[7.2rem] tracking-[0.25rem] uppercase w-full h-navbar z-50 absolute top-0 selection:bg-accent selection:text-white">
+    <motion.header 
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className=" font-blocky transition duration-300 font-bold text-base leading-[7.2rem] tracking-[0.25rem] uppercase w-full h-navbar z-50 absolute top-0 selection:bg-accent selection:text-white"
+    >
       <Link
         href="/"
         className="text-white no-underline left-20 inline-block m-0 p-0 absolute hover:text-accent"
@@ -73,7 +79,12 @@ const Navbar = () => {
           offset={-100}
         >
           {navbarInternalData.map((element) => (
-            <li className="pl-0 mr-8" key={element.label}>
+            <motion.li 
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="pl-0 mr-8" 
+              key={element.label}
+            >
               <Link
                 className="hover:text-accent"
                 title={element.label}
@@ -82,7 +93,7 @@ const Navbar = () => {
               >
                 {element.label}
               </Link>
-            </li>
+            </motion.li>
           ))}
         </Scrollspy>
       </nav>
@@ -96,7 +107,7 @@ const Navbar = () => {
       >
         <span>Menu</span>
       </Link>
-    </header>
+    </motion.header>
   );
 };
 export default Navbar;

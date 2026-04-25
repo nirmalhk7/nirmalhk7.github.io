@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope, react/prop-types */
 export const CommonHeader: React.FC<{ headerName: string }> = ({ headerName }) => {
   return (
     <>

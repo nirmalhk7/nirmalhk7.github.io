@@ -1,11 +1,7 @@
 import React from "react";
 
-interface CategoryInterface {
-  category: string;
-  index: number;
-}
-
 export const CategoryList = ({ categories }: { categories: string[] }) => (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   categories.map(({ category, index }: any) => (
     <React.Fragment key={index}>
       <a href={`/blog#${category}`}>{category}</a>

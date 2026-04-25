@@ -7,7 +7,7 @@ import {
   AccordionItemPanel,
 } from "react-accessible-accordion";
 import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
-import { groupBy, sampleSize } from "lodash";
+import { sampleSize } from "lodash";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
 import { GetStaticProps } from "next";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
@@ -16,8 +16,9 @@ import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
 import { ProjectInterface } from "@/interfaces/projects";
 import { ProjectDescription } from "@/components/Project/projectDescription";
-import { ProjectCategory } from "@/components/Project/projectCategory";
 import ReactMarkdown from "react-markdown";
+import loadYaml from "@/util/loadYaml";
+import path from "path";
 
 interface ProjectPageProps extends DefaultPageProps {
   projects: ProjectInterface[];
@@ -53,6 +54,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
         <div className="container mx-auto">
           <h3 className="mb-10">{filter === "X" ? "All" : filter} Projects</h3>
           <div className="inline-block my-2 mx-2">
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
             <code
               onClick={() => setFilter("X")}
               className={filter === "X" ? "code-selected" : ""}
@@ -62,6 +64,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
           </div>
           {allTags.map((tag) => (
             <div className="inline-block my-2 mx-2" key={tag}>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
               <code
                 className={tag === filter ? "code-selected" : ""}
                 key={tag}
@@ -117,11 +120,11 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
 };
 
 export const getStaticProps: GetStaticProps<ProjectPageProps> = async () => {
-  const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml");
+  const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
   const projects = loadMarkdownFiles("content/projects", {
     getContent: true,
     getExcerpt: false,
-  });
+  }) as unknown as ProjectInterface[];
   const allTags = Array.from(
     new Set(projects.flatMap((project) => project.frontmatter.tags || []))
   );

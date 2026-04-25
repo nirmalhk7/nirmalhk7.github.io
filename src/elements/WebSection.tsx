@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 
 interface WebSectionProps {
   children: React.ReactNode;
@@ -7,30 +8,17 @@ interface WebSectionProps {
 }
 
 const WebSection: React.FC<WebSectionProps> = ({ children, className = "", id }) => {
-  useEffect(() => {
-    const element = document.getElementById(id);
-
-    if (!element) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-        }
-      });
-    });
-
-    observer.observe(element);
-
-    return () => {
-      observer.unobserve(element);
-    };
-  }, [id]);
-
   return (
-    <section id={id} className={`animate-fadeIn ${className}`}>
+    <motion.section
+      id={id}
+      className={className}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
       {children}
-    </section>
+    </motion.section>
   );
 };
 

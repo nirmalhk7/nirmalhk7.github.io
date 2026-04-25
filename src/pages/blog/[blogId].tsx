@@ -21,7 +21,6 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import ReactMarkdown from "react-markdown";
 import { BlogInterface } from "@/interfaces/blog";
 import Link from "next/link";
-import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { sampleSize } from "lodash";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
@@ -31,6 +30,8 @@ import Jumbotron from "@/elements/jumbotron";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import ProfileImage from "@/assets/images/profile.png";
+import loadYaml from "@/util/loadYaml";
+import path from "path";
 
 interface BlogTemplatePageProps extends DefaultPageProps {
   current: BlogInterface;
@@ -39,13 +40,7 @@ interface BlogTemplatePageProps extends DefaultPageProps {
 const BlogTemplate = ({
   current,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const shareIcons = "mr-5 my-5 text-5xl";
-  // let imgPath = current.frontmatter.img
-  let imgPath = "";
   const router = useRouter();
-  const sharedButtonProps = {
-    url: `https://nirmalhk7.com${router.asPath}`,
-  };
 
   const shareButtons = [
     {
@@ -123,7 +118,7 @@ const BlogTemplate = ({
     <main>
       <article className="bg-white has-bottom-sep">
         <Jumbotron.mini
-          backgroundImage={current.frontmatter?.img as any}
+          backgroundImage={current.frontmatter?.img as unknown as import("next/image").StaticImageData}
           backgroundImageAlt="Earth from Space"
           title={current.frontmatter?.title || ""}
           centerAlign={true}
@@ -150,19 +145,23 @@ const BlogTemplate = ({
           <div className="w-full">
             <ReactMarkdown
               components={{
-                h1: ({ node, ...props }) => (
-                  <h3 {...props} className="text-black mt-5" />
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                h1: ({ node, children, ...props }) => (
+                  <h3 {...props} className="text-black mt-5">{children}</h3>
                 ),
-                h2: ({ node, ...props }) => (
-                  <h4 {...props} className="text-black mt-5" />
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                h2: ({ node, children, ...props }) => (
+                  <h4 {...props} className="text-black mt-5">{children}</h4>
                 ),
-                h3: ({ node, ...props }) => (
-                  <h5 {...props} className="text-black mt-5" />
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                h3: ({ node, children, ...props }) => (
+                  <h5 {...props} className="text-black mt-5">{children}</h5>
                 ),
                 h4: "b",
                 h5: "b",
                 h6: "b",
                 blockquote(props) {
+                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const { children, node, ...rest } = props;
                   return (
                     <blockquote {...rest} className="scale-75 w-full">
@@ -171,18 +170,21 @@ const BlogTemplate = ({
                   );
                 },
                 ul(props) {
+                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const { children, node, ...rest } = props;
                   return (
                     <ul className="list-disc pl-5 leading-10">{children}</ul>
                   );
                 },
                 ol(props) {
+                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const { children, node, ...rest } = props;
                   return (
                     <ol className="list-decimal pl-5 leading-10">{children}</ol>
                   );
                 },
                 p(props) {
+                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const { children, node, ...rest } = props;
                   return <p className="mt-4 leading-10">{children}</p>;
                 },
@@ -203,7 +205,7 @@ const BlogTemplate = ({
                     <Component
                       key={index}
                       url={`https://nirmalhk7.com${router.asPath}`}
-                      media={`https://nirmalhk7.com${current.frontmatter.img}`}
+                      media={`https://nirmalhk7.com${current.frontmatter?.img || ""}`}
                       {...shareSocialMedia.Payload}
                     >
                       <FontAwesomeIcon
@@ -253,15 +255,15 @@ const BlogTemplate = ({
               </div>
 
               <div className="col-span-12 tablet:col-span-8 pl-10">
-                Looking to boost your engineering team's performance and
+                Looking to boost your engineering team&apos;s performance and
                 reliability? Hire Nirmal Khedkar. With two years of full-stack
                 experience at Visa,{" "}
                 <u>
-                  he's your man to improve your system performance and handle
+                  he&apos;s your man to improve your system performance and handle
                   any runtime errors
                 </u>
                 . Nirmal is passionate about writing secure and efficient
-                "fortress" code, and has a track record of working in all major
+                &quot;fortress&quot; code, and has a track record of working in all major
                 languages (Java, JS, Python) and all major frameworks
                 (Springboot, MERN/MEAN, NextJS, etc). Nirmal is ready than ever
                 to make an immediate and positive impact to your team.
@@ -305,7 +307,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
   context
 ) => {
-  const allQuotesYaml: QuoteInterface[] = require("../../../content/yml/quotes.yaml");
+  const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
   const blogId = context.params?.blogId as string;
   const currentBlog = loadMarkdownFile(
     "content/blog/" + blogId + ".md",
@@ -315,7 +317,7 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
 
   return {
     props: {
-      current: currentBlog,
+      current: currentBlog as unknown as BlogInterface,
       quote: sampleSize(allQuotesYaml)[0],
       pageMetadata: {
         enableWrap: true,

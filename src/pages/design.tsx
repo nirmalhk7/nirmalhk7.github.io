@@ -3,6 +3,8 @@ import WebSection from "@/elements/WebSection";
 import { sampleSize } from "lodash";
 import { GetStaticProps } from "next";
 import React from "react";
+import loadYaml from "@/util/loadYaml";
+import path from "path";
 
 const DesignPage: React.FC = () => {
   return (
@@ -12,7 +14,7 @@ const DesignPage: React.FC = () => {
         "bg-black text-white selection:bg-accent selection:text-white",
         "bg-accent text-white selection:bg-white selection:text-accent",
       ].map((color) => (
-        <div className={`${color} pt-32 pb-32`}>
+        <div className={`${color} pt-32 pb-32`} key={color}>
           <div className="container mx-auto">
             <h1>Heading One</h1>
             <h2>Heading Two</h2>
@@ -25,7 +27,7 @@ const DesignPage: React.FC = () => {
             <code>CODE1</code>
             <code>CODE1</code>
             <code>CODE1</code>
-            <a> Custom Link One</a>
+            <a href="#0"> Custom Link One</a>
             <button className="button button-white">Button One</button>
             <button className="button button-accent">Button One</button>
             <button className="button button-accent-fill">Button One</button>
@@ -38,8 +40,8 @@ const DesignPage: React.FC = () => {
 
 export default DesignPage;
 
-export const getStaticProps: GetStaticProps<any> = async () => {
-  const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml");
+export const getStaticProps: GetStaticProps = async () => {
+  const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
 
   return {
     props: {
