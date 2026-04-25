@@ -5,8 +5,8 @@ import '@testing-library/jest-dom';
 
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: (props: any) => {
-    return <img {...props} />; // Mock next/image to standard img for testing
+  default: (props: unknown) => {
+    return <img {...props} alt="" />; // Mock next/image to standard img for testing
   },
 }));
 
@@ -17,7 +17,7 @@ describe('Jumbotron Component', () => {
         orangeText="Hello World"
         HeadingTextComponent={<h1>Main Title</h1>}
         buttonDetails={[['Click Me', '#click']]}
-        bgImg={{ src: '/test.jpg', height: 100, width: 100 } as any}
+        bgImg={{ src: '/test.jpg', height: 100, width: 100 } as unknown}
       />
     );
 

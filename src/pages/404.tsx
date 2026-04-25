@@ -1,4 +1,6 @@
 import React from "react";
+import loadYaml from "@/util/loadYaml";
+import path from "path";
 import WebSection from "@/elements/WebSection";
 import { GetStaticProps } from "next";
 import { DefaultPageProps } from "./_app";
@@ -29,13 +31,9 @@ const NotFoundPage = () => (
   </main>
 );
 
-export const getStaticProps: GetStaticProps<NotFoundPageProps> = async (context) => {
-  const fs = require('fs');
-  const path = require('path');
-  const yaml = require('js-yaml');
+export const getStaticProps: GetStaticProps<NotFoundPageProps> = async () => {
   const quotesPath = path.join(process.cwd(), 'content/yml/quotes.yaml');
-  const fileContents = fs.readFileSync(quotesPath, 'utf8');
-  const allQuotesYaml: QuoteInterface[] = yaml.load(fileContents);
+  const allQuotesYaml = loadYaml<QuoteInterface[]>(quotesPath);
 
   return {
     props: {

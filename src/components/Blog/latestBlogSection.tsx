@@ -19,17 +19,17 @@ const LatestBlogSection = ({
         <div className="grid laptop:grid-cols-2 tablet:grid-cols-2 mobile-l:grid-cols-1">
           <div className="py-10">
             <Image
-              src={frontmatter?.img}
+              src={frontmatter?.img || ""}
               width={400}
               height={400}
-              alt={frontmatter.title}
+              alt={frontmatter?.title || "Blog Image"}
             />
           </div>
           <div className="laptop:text-right tablet:text-right relative text-white py-10">
             <div>
               <h3 className="text-white">Latest Article</h3>
               <h1 className="font-bold leading-snug mt-20 font-heading">
-                {frontmatter.title}
+                {frontmatter?.title || ""}
               </h1>
               <div className="entry-content no-underline mb-10 not-underline">
                 <p>{excerpt}</p>

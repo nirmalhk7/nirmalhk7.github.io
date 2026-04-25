@@ -9,8 +9,22 @@ import {
 import Link from "next/link";
 import WebSection from "@/elements/WebSection";
 import { ProjectInterface } from "@/interfaces/projects";
+import { motion, Variants } from "framer-motion";
 
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
+const slideUpItem: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 const ProjectIntroSection = ({
   projects,
@@ -38,35 +52,41 @@ const ProjectIntroSection = ({
             </div>
           </div>
         </div>
-        <div>
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           <Accordion className="accordion">
             {/* TODO NK Needs animations */}
             {projects.map((element) => (
-              <AccordionItem
-                className="accordion__item"
-                key={element.frontmatter.title}
-              >
-                <AccordionItemHeading>
-                  <AccordionItemButton className="accordion-header">
-                    {element.frontmatter.title}
-                  </AccordionItemButton>
-                </AccordionItemHeading>
-                <AccordionItemPanel className="p-6 bg-white">
-                  <div className="accordion-body__contents">
-                    <p>{element.excerpt}</p>
-                    <Link href={`/projects?id=${element.slug}`}>
-                      Find more here
-                    </Link>
-                    .&nbsp;&nbsp;&nbsp;
-                    {element.frontmatter.tags && element.frontmatter.tags.length > 0 && (
-                      <code>{element.frontmatter.tags[0]}</code>
-                    )}
-                  </div>
-                </AccordionItemPanel>
-              </AccordionItem>
+              <motion.div variants={slideUpItem} key={element.frontmatter.title}>
+                <AccordionItem
+                  className="accordion__item"
+                >
+                  <AccordionItemHeading>
+                    <AccordionItemButton className="accordion-header">
+                      {element.frontmatter.title}
+                    </AccordionItemButton>
+                  </AccordionItemHeading>
+                  <AccordionItemPanel className="p-6 bg-white">
+                    <div className="accordion-body__contents">
+                      <p>{element.excerpt}</p>
+                      <Link href={`/projects?id=${element.slug}`}>
+                        Find more here
+                      </Link>
+                      .&nbsp;&nbsp;&nbsp;
+                      {element.frontmatter.tags && element.frontmatter.tags.length > 0 && (
+                        <code>{element.frontmatter.tags[0]}</code>
+                      )}
+                    </div>
+                  </AccordionItemPanel>
+                </AccordionItem>
+              </motion.div>
             ))}
           </Accordion>
-        </div>
+        </motion.div>
       </div>
     </div>
   </WebSection>

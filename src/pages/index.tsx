@@ -21,6 +21,8 @@ import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
 import { ProjectInterface } from "@/interfaces/projects";
 import { CommonHeader } from "@/components/header";
+import loadYaml from "@/util/loadYaml";
+import path from "path";
 
 interface IndexPageProps extends DefaultPageProps {
   mainContent: string;
@@ -173,16 +175,17 @@ const IndexPage = ({
 export default IndexPage;
 
 export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
-  const allCoursesYaml: CourseInterface[] = require("../../content/yml/courses.yaml");
-  const allSkillsYaml: SkillsInterface[] = require("../../content/yml/skills.yaml");
-  const allProfilesYaml: ProfilesInterface[] = require("../../content/yml/profiles.yaml");
-  const allMembershipsYaml: MembershipInterface[] = require("../../content/yml/memberships.yaml");
-  const allWorkExperiencesYaml: WorkExperienceInterface[] = require("../../content/yml/workexperiences.yaml");
-  const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml");
+  const contentDir = path.join(process.cwd(), "content", "yml");
+  const allCoursesYaml = loadYaml<CourseInterface[]>(path.join(contentDir, "courses.yaml"));
+  const allSkillsYaml = loadYaml<SkillsInterface[]>(path.join(contentDir, "skills.yaml"));
+  const allProfilesYaml = loadYaml<ProfilesInterface[]>(path.join(contentDir, "profiles.yaml"));
+  const allMembershipsYaml = loadYaml<MembershipInterface[]>(path.join(contentDir, "memberships.yaml"));
+  const allWorkExperiencesYaml = loadYaml<WorkExperienceInterface[]>(path.join(contentDir, "workexperiences.yaml"));
+  const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(contentDir, "quotes.yaml"));
   const fiveProjects = sampleSize(
     loadMarkdownFiles("content/projects", { getExcerpt: true, getContent: false }),
     5
-  );
+  ) as unknown as ProjectInterface[];
 
   
   return {

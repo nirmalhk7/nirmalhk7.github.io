@@ -6,12 +6,13 @@ import Jumbotron from "../elements/jumbotron";
 import { GetStaticProps } from "next";
 import sampleSize from "lodash/sampleSize";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
-import Link from "next/link";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { DefaultPageProps } from "./_app";
 import { BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
 import blogWallpaper from "@/assets/images/datacenter.jpg";
 import { sortBy } from "lodash";
+import loadYaml from "@/util/loadYaml";
+import path from "path";
 
 interface BlogPageProps extends DefaultPageProps {
   blogs: BlogInterface[];
@@ -42,7 +43,7 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
 };
 
 export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
-  const allQuotesYaml: QuoteInterface[] = require("../../content/yml/quotes.yaml");
+  const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
 
   const blogDetail = sortBy(
     loadMarkdownFiles("content/blog", {
@@ -50,7 +51,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
       getExcerpt: true,
     }),
     (o) => o.frontmatter.date
-  ).reverse();
+  ).reverse() as unknown as BlogInterface[];
 
   const miniBlogInformation = blogDetail.map((blog) => ({
     ...blog,
