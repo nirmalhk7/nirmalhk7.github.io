@@ -112,9 +112,13 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         }}
         titleTemplate="%s | Nirmal Khedkar"
       />
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLETAG || ""} />
-      <Analytics />
-      <SpeedInsights/>
+      {process.env.NODE_ENV === "production" && (
+        <>
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLETAG || ""} />
+          <Analytics />
+          <SpeedInsights />
+        </>
+      )}
       {pageProps.pageMetadata ? (
         <>
           {pageProps.pageMetadata.seoMetadata ? (
