@@ -14,7 +14,7 @@ import FooterSection from "@/components/Footer/footerSection";
 import QuoteSection, { QuoteInterface } from "@/components/Quote/quoteSection";
 import Loader from "@/components/Loader/Loader";
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { trackClick, trackScrollDepth } from "@/util/analytics";
+import { trackClick, trackScrollDepth, trackError, setUserProperty, trackTiming } from "@/util/analytics";
 import throttle from "lodash/throttle";
 
 config.autoAddCss = false;
@@ -49,6 +49,9 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   }, []);
 
   useEffect(() => {
+    // Session timing
+    const startTime = Date.now();
+    
     // Scroll depth tracking
     const trackedMilestones = new Set<number>();
     const handleScroll = throttle(() => {
@@ -60,6 +63,9 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         if (scrollPercentage >= milestone && !trackedMilestones.has(milestone)) {
           trackScrollDepth(milestone);
           trackedMilestones.add(milestone);
+          
+          // Persona tagging
+          if (milestone === 75) setUserProperty("persona", "engaged_reader");
         }
       });
     }, 500);
@@ -72,16 +78,45 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         const url = new URL(anchor.href);
         if (url.origin !== window.location.origin && !url.href.startsWith("mailto:")) {
           trackClick(anchor.href, "outbound_link");
+          
+          // Timing surveillance
+          const timeSinceLoad = Date.now() - startTime;
+          trackTiming("outbound_click_latency", timeSinceLoad, "engagement");
+        }
+        
+        // Resume tracking
+        if (anchor.href.includes("Resume.pdf")) {
+          setUserProperty("persona", "recruiter");
+          trackClick("resume_download", "action");
         }
       }
     };
 
+    // Error surveillance
+    const handleGlobalError = (event: ErrorEvent) => {
+      trackError(event.message, false);
+    };
+
+    // Visibility surveillance
+    const handleVisibilityChange = () => {
+      const state = document.visibilityState;
+      trackClick(state, "visibility_change");
+    };
+
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("click", handleGlobalClick);
+    window.addEventListener("error", handleGlobalError);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("click", handleGlobalClick);
+      window.removeEventListener("error", handleGlobalError);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      
+      // Track total session time on unmount (best effort)
+      const sessionTime = Date.now() - startTime;
+      trackTiming("total_session_duration", sessionTime, "engagement");
     };
   }, []);
 

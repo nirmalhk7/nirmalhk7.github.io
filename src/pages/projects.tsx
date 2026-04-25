@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { trackClick } from "@/util/analytics";
 import {
   Accordion,
   AccordionItem,
@@ -56,7 +57,10 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
           <div className="inline-block my-2 mx-2">
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
             <code
-              onClick={() => setFilter("X")}
+              onClick={() => {
+                setFilter("X");
+                trackClick("clear_filter", "project_filter");
+              }}
               className={filter === "X" ? "code-selected" : ""}
             >
               X
@@ -68,7 +72,10 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
               <code
                 className={tag === filter ? "code-selected" : ""}
                 key={tag}
-                onClick={() => setFilter(tag)}
+                onClick={() => {
+                  setFilter(tag);
+                  trackClick(tag, "project_filter");
+                }}
               >
                 {tag}
               </code>
