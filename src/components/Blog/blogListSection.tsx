@@ -4,6 +4,7 @@ import Image from "next/image";
 import WebSection from "@/elements/WebSection";
 import { BlogMiniInterface } from "@/interfaces/blog";
 import { motion, Variants } from "framer-motion";
+import { trackClick } from "@/util/analytics";
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
@@ -48,6 +49,7 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                     <Link
                       title={element.excerpt ?? "The Blue Green Manual"}
                       href={`/blog/${element.slug}`}
+                      onClick={() => trackClick(element.frontmatter?.title || "", "blog_list_link")}
                     >
                       <Image
                         src={element.frontmatter?.img || ""}

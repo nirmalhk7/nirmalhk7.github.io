@@ -1,6 +1,7 @@
 import { useForm, ValidationError } from "@formspree/react";
 import React from "react";
 import WebSection from "@/elements/WebSection";
+import { trackClick } from "@/util/analytics";
 
 export default function ContactMeSection() {
   const [state, handleSubmit] = useForm("mgvwblra");
@@ -71,6 +72,7 @@ export default function ContactMeSection() {
                   className="button button-accent-fill w-full mt-32"
                   type="submit"
                   disabled={state.submitting}
+                  onClick={() => trackClick("submit", "contact_form")}
                 >
                   Submit
                 </button>
@@ -80,7 +82,11 @@ export default function ContactMeSection() {
               <h5 className="text-white font-blocky uppercase text-base leading-[7.2rem] tracking-[0.25rem] font-bold my-0">
                 Email
               </h5>
-              <a className="" href="mailto:nirmalhk7@gmail.com">
+              <a 
+                className="" 
+                href="mailto:nirmalhk7@gmail.com"
+                onClick={() => trackClick("email", "contact_link")}
+              >
                 nirmalhk7@gmail.com
               </a>
             </div>

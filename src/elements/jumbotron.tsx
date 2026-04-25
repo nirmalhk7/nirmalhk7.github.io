@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import WebSection from "@/elements/WebSection";
 import { motion, Variants } from "framer-motion";
+import { trackClick } from "@/util/analytics";
 
 type MiniJumbotronProps = {
   backgroundImage: StaticImageData;
@@ -114,6 +115,7 @@ const Jumbotron = {
                 className="button button-white inline-block mr-4"
                 key={item[0]}
                 href={item[1]}
+                onClick={() => trackClick(item[0], "jumbotron_cta")}
               >
                 {item[0]}
               </Link>

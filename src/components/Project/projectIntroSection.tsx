@@ -10,6 +10,7 @@ import Link from "next/link";
 import WebSection from "@/elements/WebSection";
 import { ProjectInterface } from "@/interfaces/projects";
 import { motion, Variants } from "framer-motion";
+import { trackClick } from "@/util/analytics";
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
@@ -66,14 +67,20 @@ const ProjectIntroSection = ({
                   className="accordion__item"
                 >
                   <AccordionItemHeading>
-                    <AccordionItemButton className="accordion-header">
+                    <AccordionItemButton 
+                      className="accordion-header"
+                      onClick={() => trackClick(element.frontmatter.title, "project_accordion")}
+                    >
                       {element.frontmatter.title}
                     </AccordionItemButton>
                   </AccordionItemHeading>
                   <AccordionItemPanel className="p-6 bg-white">
                     <div className="accordion-body__contents">
                       <p>{element.excerpt}</p>
-                      <Link href={`/projects?id=${element.slug}`}>
+                      <Link 
+                        href={`/projects?id=${element.slug}`}
+                        onClick={() => trackClick(element.frontmatter.title, "project_detail_link")}
+                      >
                         Find more here
                       </Link>
                       .&nbsp;&nbsp;&nbsp;
