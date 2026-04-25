@@ -1,6 +1,13 @@
 User-agent: *
 Disallow: /Resume.pdf
 
+# AI Bot Blocks
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
 User-agent: Google-Extended
 Disallow: /
 
@@ -13,19 +20,16 @@ Disallow: /
 User-agent: anthropic-ai
 Disallow: /
 
-User-agent: Bytespider
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: ChatGPT-User
+User-agent: Claude-Web
 Disallow: /
 
 User-agent: ClaudeBot
 Disallow: /
 
-User-agent: Claude-Web
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
 Disallow: /
 
 User-agent: Diffbot
@@ -47,4 +51,37 @@ User-agent: PerplexityBot
 Disallow: /
 
 User-agent: YouBot
+Disallow: /
+
+User-agent: Crawlera
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Webzio-Extended
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Meta-ExternalFetcher
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: DuckAssistantBot
+Disallow: /
+
+User-agent: Cohere-ai
+Disallow: /
+
+User-agent: FriendlyCrawler
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
+User-agent: IA_Archiver
 Disallow: /

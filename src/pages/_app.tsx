@@ -137,6 +137,12 @@ export default function App({ Component, pageProps }: CustomAppProps) {
           url: "https://nirmalhk7.com",
           
         }}
+        additionalMetaTags={[
+          {
+            name: "robots",
+            content: "noai, noimageai",
+          },
+        ]}
         additionalLinkTags={[
           { rel: "me", href: "https://fosstodon.org/@nirmalhk7" },
         ]}

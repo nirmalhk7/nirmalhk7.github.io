@@ -31,6 +31,19 @@ const nextConfig = {
     }
     return [];
   },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noai, noimageai",
+          },
+        ],
+      },
+    ];
+  },
   eslint: { ignoreDuringBuilds: false },
   typescript: {
     ignoreBuildErrors: false,
