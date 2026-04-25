@@ -6,6 +6,12 @@ import { trackClick, trackFormFocus } from "@/util/analytics";
 export default function ContactMeSection() {
   const [state, handleSubmit] = useForm("mgvwblra");
 
+  React.useEffect(() => {
+    if (state.succeeded) {
+      trackClick("success", "contact_form_submission");
+    }
+  }, [state.succeeded]);
+
   if (state.succeeded) {
     return <p>Thanks for your submission!</p>;
   }

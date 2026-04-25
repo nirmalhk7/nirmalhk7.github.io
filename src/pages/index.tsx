@@ -23,6 +23,7 @@ import { ProjectInterface } from "@/interfaces/projects";
 import { CommonHeader } from "@/components/header";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
+import { trackClick, trackView } from "@/util/analytics";
 
 interface IndexPageProps extends DefaultPageProps {
   mainContent: string;
@@ -45,6 +46,10 @@ const IndexPage = ({
   skills
 }: IndexPageProps) => {
   
+  React.useEffect(() => {
+    trackView("home_page");
+  }, []);
+
   return (
       <main>
       <Jumbotron.Max
@@ -92,8 +97,9 @@ const IndexPage = ({
               <div className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-4">
                 {skills.map((element, index) => (
                   <div
-                    className="p-2 text-center text-2xl text-black uppercase font-blocky hover:font-bold hover:text-accent hover:scale(.5) transition duration-300"
+                    className="p-2 text-center text-2xl text-black uppercase font-blocky hover:font-bold hover:text-accent hover:scale(.5) transition duration-300 cursor-pointer"
                     key={index}
+                    onClick={() => trackClick(element.name, "skill_click")}
                   >
                     {element.name}
                   </div>
@@ -110,6 +116,7 @@ const IndexPage = ({
                       {element.name} by {element.provider} - (
                       <a
                         href={element.link}
+                        onClick={() => trackClick(element.name, "online_course_click")}
                       >
                         link
                       </a>
@@ -151,12 +158,14 @@ const IndexPage = ({
                   href={"/resume"}
                   rel="noreferrer"
                   target="_blank"
+                  onClick={() => trackClick("download_resume", "engagement")}
                 >
                   Download My Resume
                 </Link>
                 <Link
                   className="button button-accent-fill w-full"
                   href="#contact"
+                  onClick={() => trackClick("want_to_hire", "engagement")}
                 >
                   Want to Hire?
                 </Link>

@@ -93,9 +93,10 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                   <AccordionItemHeading>
                     <AccordionItemButton
                       className="bg-gray-100"
-                      onClick={() =>
-                        handleHeadingClick(project.frontmatter.title)
-                      }
+                      onClick={() => {
+                        handleHeadingClick(project.frontmatter.title);
+                        trackClick(project.frontmatter.title, "project_accordion_detailed");
+                      }}
                     >
                       <div className="grid grid-cols-5 px-5">
                         <h5 className="col-span-3">

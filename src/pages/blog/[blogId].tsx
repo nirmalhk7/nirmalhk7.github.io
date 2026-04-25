@@ -30,8 +30,9 @@ import Jumbotron from "@/elements/jumbotron";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import ProfileImage from "@/assets/images/profile.png";
-import loadYaml from "@/util/loadYaml";
+import loadYaml from "js-yaml";
 import path from "path";
+import { trackClick, trackView } from "@/util/analytics";
 
 interface BlogTemplatePageProps extends DefaultPageProps {
   current: BlogInterface;
@@ -42,6 +43,10 @@ const BlogTemplate = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
 
+  React.useEffect(() => {
+    trackView(`blog_post_${current.slug}`);
+  }, [current.slug]);
+
   const shareButtons = [
     {
       Component: TwitterShareButton,
@@ -49,6 +54,7 @@ const BlogTemplate = ({
         hashtags: current.frontmatter?.tags,
         title: current.frontmatter?.title,
         className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
+        onClick: () => trackClick("twitter", "blog_share")
       },
       Icon: faXTwitter,
       iconHoverClass: "hover:text-[#000000]"
@@ -59,6 +65,7 @@ const BlogTemplate = ({
         summary: `${current.frontmatter?.title} by Nirmal Khedkar`,
         source: `https://nirmalhk7.com`,
         className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
+        onClick: () => trackClick("linkedin", "blog_share")
       },
       Icon: faLinkedin,
       iconHoverClass: "hover:text-[#0077b5]"
@@ -69,6 +76,7 @@ const BlogTemplate = ({
         hashtag: `#${current.frontmatter?.category}`,
         quote: `${current.frontmatter?.title} by Nirmal Khedkar`,
         className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
+        onClick: () => trackClick("facebook", "blog_share")
       },
       iconHoverClass: "hover:text-[#1877F2]",
       Icon: faFacebook,
@@ -79,6 +87,7 @@ const BlogTemplate = ({
         media: `https://nirmalhk7.com/assets/${current.frontmatter?.img}`,
         description: `${current.frontmatter?.title} by Nirmal Khedkar`,
         className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-500",
+        onClick: () => trackClick("pinterest", "blog_share")
       },
       iconHoverClass: "hover:text-[#E60023]",
       Icon: faPinterest,
@@ -88,6 +97,7 @@ const BlogTemplate = ({
       Payload: {
         separator: " ",
         className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
+        onClick: () => trackClick("whatsapp", "blog_share")
       },
       iconHoverClass: "hover:text-[#25D366]",
       Icon: faWhatsapp,
@@ -97,6 +107,7 @@ const BlogTemplate = ({
       Payload: {
         title: `${current.frontmatter?.title} by Nirmal Khedkar`,
         className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
+        onClick: () => trackClick("telegram", "blog_share")
       },
       iconHoverClass: "hover:text-[#0088cc]",
       Icon: faTelegram,
@@ -108,9 +119,10 @@ const BlogTemplate = ({
         subject: "Check out this blog article by Nirmal Khedkar",
         separator: " ",
         className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
+        onClick: () => trackClick("email", "blog_share")
       },
-      iconHoverClass: "hover:text-[#FFC107]",
       Icon: faEnvelope,
+      iconHoverClass: "hover:text-[#FFC107]",
     },
   ];
 
@@ -238,6 +250,7 @@ const BlogTemplate = ({
                 <Link
                   className="block button button-accent w-full text-center h-fit my-2"
                   href="/blog"
+                  onClick={() => trackClick("view_all_posts", "navigation")}
                 >
                   View All Posts
                 </Link>
@@ -272,6 +285,7 @@ const BlogTemplate = ({
                 <Link
                   className="block button button-accent-fill hover:scale-50 w-full text-center h-fit my-2 animate-bounce"
                   href="/resume?utm_source=pitch"
+                  onClick={() => trackClick("hire_me_pitch", "engagement")}
                 >
                   Hire Nirmal Now!
                 </Link>
