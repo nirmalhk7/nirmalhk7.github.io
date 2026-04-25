@@ -46,3 +46,41 @@ export const trackFormFocus = (fieldId: string) => {
     field_id: fieldId,
   });
 };
+
+export const trackError = (message: string, fatal: boolean = false) => {
+  if (process.env.NODE_ENV === "development") {
+    console.error(`[Surveillance] Error captured: ${message}`);
+    return;
+  }
+  sendGAEvent("event", "exception", {
+    description: message,
+    fatal: fatal,
+  });
+};
+
+export const setUserProperty = (key: string, value: string) => {
+  if (process.env.NODE_ENV === "development") {
+    console.log(`[Surveillance] Setting User Property: ${key} = ${value}`);
+    return;
+  }
+  // GA4 uses 'set' command for user properties via gtag
+  if (typeof window !== "undefined") {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const win = window as any;
+    if (win.gtag) {
+      win.gtag("set", "user_properties", { [key]: value });
+    }
+  }
+};
+
+export const trackTiming = (name: string, value: number, category?: string) => {
+  if (process.env.NODE_ENV === "development") {
+    console.log(`[Surveillance] Timing (${name}): ${value}ms`);
+    return;
+  }
+  sendGAEvent("event", "timing_complete", {
+    name: name,
+    value: value,
+    event_category: category,
+  });
+};
