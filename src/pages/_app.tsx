@@ -14,6 +14,8 @@ import FooterSection from "@/components/Footer/footerSection";
 import QuoteSection, { QuoteInterface } from "@/components/Quote/quoteSection";
 import Loader from "@/components/Loader/Loader";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { trackClick, trackScrollDepth } from "@/util/analytics";
+import throttle from "lodash/throttle";
 
 config.autoAddCss = false;
 
@@ -44,6 +46,43 @@ export default function App({ Component, pageProps }: CustomAppProps) {
       window.addEventListener("load", handleLoad);
       return () => window.removeEventListener("load", handleLoad);
     }
+  }, []);
+
+  useEffect(() => {
+    // Scroll depth tracking
+    const trackedMilestones = new Set<number>();
+    const handleScroll = throttle(() => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercentage = Math.round((scrollTop / scrollHeight) * 100);
+
+      [25, 50, 75, 90].forEach((milestone) => {
+        if (scrollPercentage >= milestone && !trackedMilestones.has(milestone)) {
+          trackScrollDepth(milestone);
+          trackedMilestones.add(milestone);
+        }
+      });
+    }, 500);
+
+    // Global outbound link tracking
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a");
+      if (anchor && anchor.href) {
+        const url = new URL(anchor.href);
+        if (url.origin !== window.location.origin && !url.href.startsWith("mailto:")) {
+          trackClick(anchor.href, "outbound_link");
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("click", handleGlobalClick);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("click", handleGlobalClick);
+    };
   }, []);
 
   return (

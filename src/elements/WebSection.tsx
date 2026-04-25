@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { trackView } from "@/util/analytics";
 
 interface WebSectionProps {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ const WebSection: React.FC<WebSectionProps> = ({ children, className = "", id })
       className={`snap-start ${className}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
+      onViewportEnter={() => trackView(id)}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
