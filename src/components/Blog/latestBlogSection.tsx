@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import WebSection from "@/elements/WebSection";
 import { BlogMiniInterface } from "@/interfaces/blog";
+import { trackClick } from "@/util/analytics";
 
 const LatestBlogSection = ({
   frontmatter,
@@ -37,6 +38,7 @@ const LatestBlogSection = ({
               <Link
                 className="button button-white inline-block"
                 href={`/blog/${slug}`}
+                onClick={() => trackClick(frontmatter?.title || "", "latest_blog_read_more")}
               >
                 Read More
               </Link>

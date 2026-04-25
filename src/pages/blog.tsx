@@ -11,8 +11,9 @@ import { DefaultPageProps } from "./_app";
 import { BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
 import blogWallpaper from "@/assets/images/datacenter.jpg";
 import { sortBy } from "lodash";
-import loadYaml from "@/util/loadYaml";
+import loadYaml from "js-yaml";
 import path from "path";
+import { trackView } from "@/util/analytics";
 
 interface BlogPageProps extends DefaultPageProps {
   blogs: BlogInterface[];
@@ -20,6 +21,10 @@ interface BlogPageProps extends DefaultPageProps {
 }
 
 const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
+  React.useEffect(() => {
+    trackView("blog_index");
+  }, []);
+
   return (
     <main>
       <Jumbotron.Max

@@ -6,14 +6,20 @@ import { GetStaticProps } from "next";
 import { DefaultPageProps } from "./_app";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { sampleSize } from "lodash";
-
+import { trackView, trackError } from "@/util/analytics";
 
 interface NotFoundPageProps extends DefaultPageProps {
 }
 
 
-const NotFoundPage = () => (
-  <main>
+const NotFoundPage = () => {
+  React.useEffect(() => {
+    trackView("404_page");
+    trackError("404 Not Found", false);
+  }, []);
+
+  return (
+    <main>
     <WebSection id="404" className="page-header  bg-fixed bg-center bg-no-repeat bg-f1Car">
       <div className="page-header__content  m-auto">
         <article className="container mx-auto">
