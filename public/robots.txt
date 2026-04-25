@@ -85,3 +85,5 @@ Disallow: /
 
 User-agent: IA_Archiver
 Disallow: /
+
+Sitemap: https://nirmalhk7.com/sitemap.xml

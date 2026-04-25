@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run gen-sitemap && npm run gen-llms && next build",
     "start": "next start",
     "lint": "next lint",
     "gen-llms": "node scripts/generate-llms.js",
+    "gen-sitemap": "node scripts/generate-sitemap.js",
     "get-rss": "node src/util/generateRss.js",
     "get-resume": "curl -L -o public/Resume.pdf https://drive.google.com/uc?export=download&id=19hL9Zho2yynl-VBcfk6D5k88_L_ZlJnd && ls",
     "test": "jest --passWithNoTests"

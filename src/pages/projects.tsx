@@ -17,6 +17,7 @@ import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
 import { ProjectInterface } from "@/interfaces/projects";
 import { ProjectDescription } from "@/components/Project/projectDescription";
+import { BreadcrumbJsonLd } from "next-seo";
 import ReactMarkdown from "react-markdown";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
@@ -43,6 +44,20 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
   };
   return (
     <main>
+      <BreadcrumbJsonLd
+        itemListElements={[
+          {
+            position: 1,
+            name: "Home",
+            item: "https://nirmalhk7.com",
+          },
+          {
+            position: 2,
+            name: "Projects",
+            item: "https://nirmalhk7.com/projects",
+          },
+        ]}
+      />
       <Jumbotron.mini
         backgroundImage={nasaGalaxy}
         backgroundImageAlt="Earth from Space"

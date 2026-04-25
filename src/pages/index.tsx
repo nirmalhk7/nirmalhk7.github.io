@@ -21,6 +21,7 @@ import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
 import { ProjectInterface } from "@/interfaces/projects";
 import { CommonHeader } from "@/components/header";
+import { PersonJsonLd, SocialProfileJsonLd } from "next-seo";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
 import { trackClick, trackView } from "@/util/analytics";
@@ -52,6 +53,26 @@ const IndexPage = ({
 
   return (
       <main>
+      <PersonJsonLd
+        name="Nirmal Khedkar"
+        url="https://nirmalhk7.com"
+        jobTitle="Software Engineer"
+        sameAs={[
+          "https://www.github.com/nirmalhk7",
+          "https://www.linkedin.com/in/nirmalhk7/",
+          "https://fosstodon.org/@nirmalhk7",
+        ]}
+      />
+      <SocialProfileJsonLd
+        type="Person"
+        name="Nirmal Khedkar"
+        url="https://nirmalhk7.com"
+        sameAs={[
+          "https://www.github.com/nirmalhk7",
+          "https://www.linkedin.com/in/nirmalhk7/",
+          "https://fosstodon.org/@nirmalhk7",
+        ]}
+      />
       <Jumbotron.Max
         HeadingTextComponent={
           <h1 className="text-white">

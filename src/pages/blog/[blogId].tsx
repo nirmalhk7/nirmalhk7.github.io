@@ -26,6 +26,7 @@ import { sampleSize } from "lodash";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { DefaultPageProps } from "../_app";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "next-seo";
 import Jumbotron from "@/elements/jumbotron";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -128,6 +129,34 @@ const BlogTemplate = ({
 
   return (
     <main>
+      <BreadcrumbJsonLd
+        itemListElements={[
+          {
+            position: 1,
+            name: "Home",
+            item: "https://nirmalhk7.com",
+          },
+          {
+            position: 2,
+            name: "Blog",
+            item: "https://nirmalhk7.com/blog",
+          },
+          {
+            position: 3,
+            name: current.frontmatter?.title || "Blog Post",
+            item: `https://nirmalhk7.com/blog/${current.slug}`,
+          },
+        ]}
+      />
+      <ArticleJsonLd
+        url={`https://nirmalhk7.com/blog/${current.slug}`}
+        title={current.frontmatter?.title || ""}
+        images={[`https://nirmalhk7.com${current.frontmatter?.img || ""}`]}
+        datePublished={current.frontmatter?.date || ""}
+        authorName={["Nirmal Khedkar"]}
+        description={current.frontmatter?.description || ""}
+        isAccessibleForFree={true}
+      />
       <article className="bg-white has-bottom-sep">
         <Jumbotron.mini
           backgroundImage={current.frontmatter?.img as unknown as import("next/image").StaticImageData}
@@ -262,7 +291,7 @@ const BlogTemplate = ({
                   src={ProfileImage}
                   width={500}
                   height={500}
-                  alt="my profile image"
+                  alt="Nirmal Khedkar's profile image"
                   className="rounded-full"
                 />
               </div>
