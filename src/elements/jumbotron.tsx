@@ -8,7 +8,7 @@ import { motion, Variants } from "framer-motion";
 import { trackClick } from "@/util/analytics";
 
 type MiniJumbotronProps = {
-  backgroundImage: StaticImageData;
+  backgroundImage: StaticImageData | string;
   backgroundImageAlt: string;
   title: string;
   subtitle: string;
@@ -17,7 +17,7 @@ type MiniJumbotronProps = {
 };
 
 type MaxJumbotronProps = {
-  bgImg: StaticImageData;
+  bgImg: StaticImageData | string;
   orangeText: string;
   HeadingTextComponent: React.ReactNode;
   buttonDetails: [string, string][];
@@ -54,7 +54,7 @@ const Jumbotron = {
       id={`${title}-header`}
     >
       <Image
-        layout="fill"
+        fill
         className="object-center object-cover pointer-events-none !h2/5 brightness-25"
         src={backgroundImage}
         alt={backgroundImageAlt}
@@ -93,10 +93,10 @@ const Jumbotron = {
       className="s-home z-40 py-0 selection:bg-accent selection:text-white"
     >
       <Image
-        layout="fill"
+        fill
         className="object-right object-cover pointer-events-none laptop:object-center !h-screen brightness-50"
         src={bgImg}
-        placeholder="blur"
+        placeholder={typeof bgImg === "string" ? undefined : "blur"}
         alt="Nirmal Khedkar - Software Engineer"
       />
       {/* <div className="bg-black h-screen left-0 opacity-50 absolute top-0 w-full" /> */}

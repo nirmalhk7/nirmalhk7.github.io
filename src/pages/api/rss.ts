@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { sortBy } from "lodash";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
+import { BlogFrontmatterInterface } from "@/interfaces/blog";
 import RSS from "rss";
 import dayjs from "dayjs";
 
@@ -12,7 +13,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   // Load and sort blog posts
   const blogDetail = sortBy(
-    loadMarkdownFiles("content/blog", {
+    loadMarkdownFiles<BlogFrontmatterInterface>("content/blog", {
       getContent: true,
       getExcerpt: true,
     }),
@@ -45,7 +46,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       description: post.frontmatter.description || "",
       url: `https://nirmalhk7.com/blog/${post.slug}?utm_source=rss`,
       date: dayjs(post.frontmatter.date).format("DD MMM YYYY"),
-      categories: [post.frontmatter.category],
+      categories: post.frontmatter.category,
       author: "Nirmal Khedkar"
     });
   });

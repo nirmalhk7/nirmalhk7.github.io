@@ -11,23 +11,23 @@ const parseMarkdownFile = (path: fs.PathLike) => {
   return matter(readFile);
 };
 
-interface MarkdownObject {
-  frontmatter: { [key: string]: string };
+export interface MarkdownObject<T = Record<string, unknown>> {
+  frontmatter: T;
   content: string | null;
   excerpt: string | undefined;
   slug: string;
 }
 
 
-export const loadMarkdownFile = (
+export const loadMarkdownFile = <T = Record<string, unknown>>(
   path: fs.PathLike,
   slug: string,
   options: LoadMarkdownOptions = { getContent: true, getExcerpt: true }
-): MarkdownObject => {
+): MarkdownObject<T> => {
   const { data: frontmatter, content, excerpt } = parseMarkdownFile(path);
-  const fileInfo = {
+  const fileInfo: MarkdownObject<T> = {
     slug,
-    frontmatter,
+    frontmatter: frontmatter as T,
     content: "",
     excerpt: ""
   }
@@ -41,15 +41,16 @@ export const loadMarkdownFile = (
   return fileInfo;
 };
 
-export const loadMarkdownFiles = (
+export const loadMarkdownFiles = <T = Record<string, unknown>>(
   path: fs.PathLike,
   options: LoadMarkdownOptions = { getContent: true, getExcerpt: true }
-): MarkdownObject[] => {
+): MarkdownObject<T>[] => {
   const files = fs.readdirSync(path);
   return files
     .filter((file) => file.endsWith(".md"))
     .map((fileName) => {
       const slug = fileName.replace(".md", "");
-      return loadMarkdownFile(`${path}/${fileName}`, slug, options);
+      return loadMarkdownFile<T>(`${path}/${fileName}`, slug, options);
     });
 };
+

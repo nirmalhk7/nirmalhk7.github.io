@@ -1,9 +1,11 @@
+export interface ProjectFrontmatterInterface {
+  title: string;
+  tags?: string[];
+  special?: boolean;
+}
+
 export interface ProjectInterface {
-  frontmatter: {
-    title: string;
-    tags?: string[];
-    special?: boolean;
-  };
+  frontmatter: ProjectFrontmatterInterface;
   content: string | null;
   excerpt: string | null | undefined;
   slug: string;
