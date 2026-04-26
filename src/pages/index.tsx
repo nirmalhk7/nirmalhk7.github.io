@@ -19,9 +19,8 @@ import {
 import beachImage from "../assets/images/BeachNK_1.jpg";
 import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
-import { ProjectInterface } from "@/interfaces/projects";
+import { ProjectFrontmatterInterface, ProjectInterface } from "@/interfaces/projects";
 import { CommonHeader } from "@/components/header";
-import { PersonJsonLd, SocialProfileJsonLd } from "next-seo";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
 import { trackClick, trackView } from "@/util/analytics";
@@ -53,26 +52,6 @@ const IndexPage = ({
 
   return (
       <main>
-      <PersonJsonLd
-        name="Nirmal Khedkar"
-        url="https://nirmalhk7.com"
-        jobTitle="Software Engineer"
-        sameAs={[
-          "https://www.github.com/nirmalhk7",
-          "https://www.linkedin.com/in/nirmalhk7/",
-          "https://fosstodon.org/@nirmalhk7",
-        ]}
-      />
-      <SocialProfileJsonLd
-        type="Person"
-        name="Nirmal Khedkar"
-        url="https://nirmalhk7.com"
-        sameAs={[
-          "https://www.github.com/nirmalhk7",
-          "https://www.linkedin.com/in/nirmalhk7/",
-          "https://fosstodon.org/@nirmalhk7",
-        ]}
-      />
       <Jumbotron.Max
         HeadingTextComponent={
           <h1 className="text-white">
@@ -220,9 +199,9 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
   const allWorkExperiencesYaml = loadYaml<WorkExperienceInterface[]>(path.join(contentDir, "workexperiences.yaml"));
   const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(contentDir, "quotes.yaml"));
   const fiveProjects = sampleSize(
-    loadMarkdownFiles("content/projects", { getExcerpt: true, getContent: false }),
+    loadMarkdownFiles<ProjectFrontmatterInterface>("content/projects", { getExcerpt: true, getContent: false }),
     5
-  ) as unknown as ProjectInterface[];
+  );
 
   
   return {

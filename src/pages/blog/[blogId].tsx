@@ -19,14 +19,15 @@ import {
 } from "react-share";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import ReactMarkdown from "react-markdown";
-import { BlogInterface } from "@/interfaces/blog";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { BlogFrontmatterInterface, BlogInterface } from "@/interfaces/blog";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { sampleSize } from "lodash";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { DefaultPageProps } from "../_app";
-import { ArticleJsonLd, BreadcrumbJsonLd } from "next-seo";
 import Jumbotron from "@/elements/jumbotron";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -129,37 +130,9 @@ const BlogTemplate = ({
 
   return (
     <main>
-      <BreadcrumbJsonLd
-        itemListElements={[
-          {
-            position: 1,
-            name: "Home",
-            item: "https://nirmalhk7.com",
-          },
-          {
-            position: 2,
-            name: "Blog",
-            item: "https://nirmalhk7.com/blog",
-          },
-          {
-            position: 3,
-            name: current.frontmatter?.title || "Blog Post",
-            item: `https://nirmalhk7.com/blog/${current.slug}`,
-          },
-        ]}
-      />
-      <ArticleJsonLd
-        url={`https://nirmalhk7.com/blog/${current.slug}`}
-        title={current.frontmatter?.title || ""}
-        images={[`https://nirmalhk7.com${current.frontmatter?.img || ""}`]}
-        datePublished={current.frontmatter?.date || ""}
-        authorName={["Nirmal Khedkar"]}
-        description={current.frontmatter?.description || ""}
-        isAccessibleForFree={true}
-      />
       <article className="bg-white has-bottom-sep">
         <Jumbotron.mini
-          backgroundImage={current.frontmatter?.img as unknown as import("next/image").StaticImageData}
+          backgroundImage={current.frontmatter?.img || ""}
           backgroundImageAlt="Earth from Space"
           title={current.frontmatter?.title || ""}
           centerAlign={true}
@@ -186,26 +159,40 @@ const BlogTemplate = ({
           <div className="w-full">
             <ReactMarkdown
               components={{
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                h1: ({ node, children, ...props }) => (
-                  <h3 {...props} className="text-black mt-5">{children}</h3>
+                h1: ({ children }) => (
+                  <h1 className="text-black mt-8 mb-4 text-4xl font-bold">{children}</h1>
                 ),
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                h2: ({ node, children, ...props }) => (
-                  <h4 {...props} className="text-black mt-5">{children}</h4>
+                h2: ({ children }) => (
+                  <h2 className="text-black mt-8 mb-4 text-3xl font-bold">{children}</h2>
                 ),
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                h3: ({ node, children, ...props }) => (
-                  <h5 {...props} className="text-black mt-5">{children}</h5>
+                h3: ({ children }) => (
+                  <h3 className="text-black mt-6 mb-3 text-2xl font-bold">{children}</h3>
                 ),
-                h4: "b",
-                h5: "b",
-                h6: "b",
+                h4: ({ children }) => (
+                  <h4 className="text-black mt-4 mb-2 text-xl font-bold">{children}</h4>
+                ),
+                code({ inline, className, children, ...props }) {
+                  const match = /language-(\w+)/.exec(className || "");
+                  return !inline && match ? (
+                    <SyntaxHighlighter
+                      {...props}
+                      // eslint-disable-next-line react/no-children-prop
+                      children={String(children).replace(/\n$/, "")}
+                      style={atomDark}
+                      language={match[1]}
+                      PreTag="div"
+                    />
+                  ) : (
+                    <code {...props} className={className}>
+                      {children}
+                    </code>
+                  );
+                },
                 blockquote(props) {
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const { children, node, ...rest } = props;
                   return (
-                    <blockquote {...rest} className="scale-75 w-full">
+                    <blockquote {...rest} className="border-l-4 border-accent pl-4 italic my-6 text-gray-700">
                       {children}
                     </blockquote>
                   );
@@ -214,24 +201,24 @@ const BlogTemplate = ({
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const { children, node, ...rest } = props;
                   return (
-                    <ul className="list-disc pl-5 leading-10">{children}</ul>
+                    <ul className="list-disc pl-5 my-4 leading-relaxed space-y-2">{children}</ul>
                   );
                 },
                 ol(props) {
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const { children, node, ...rest } = props;
                   return (
-                    <ol className="list-decimal pl-5 leading-10">{children}</ol>
+                    <ol className="list-decimal pl-5 my-4 leading-relaxed space-y-2">{children}</ol>
                   );
                 },
                 p(props) {
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const { children, node, ...rest } = props;
-                  return <p className="mt-4 leading-10">{children}</p>;
+                  return <p className="mt-4 leading-relaxed text-lg text-gray-800">{children}</p>;
                 },
               }}
               skipHtml={false}
-              className="text-black mb-14"
+              className="text-black mb-14 blog-content"
             >
               {current.content || ""}
             </ReactMarkdown>
@@ -352,7 +339,7 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
 ) => {
   const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
   const blogId = context.params?.blogId as string;
-  const currentBlog = loadMarkdownFile(
+  const currentBlog = loadMarkdownFile<BlogFrontmatterInterface>(
     "content/blog/" + blogId + ".md",
     blogId,
     { getContent: true, getExcerpt: false }
@@ -360,7 +347,7 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
 
   return {
     props: {
-      current: currentBlog as unknown as BlogInterface,
+      current: currentBlog,
       quote: sampleSize(allQuotesYaml)[0],
       pageMetadata: {
         enableWrap: true,

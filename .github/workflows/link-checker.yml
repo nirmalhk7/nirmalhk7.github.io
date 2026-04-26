@@ -1,0 +1,38 @@
+name: Broken Link Checker
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * 1' # Run every Monday at midnight to check external links
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+        
+      - name: Build site
+        run: npm run build
+        env:
+          NEXT_PUBLIC_GOOGLETAG: ${{ secrets.NEXT_PUBLIC_GOOGLETAG }}
+          
+      - name: Start production server
+        run: npm run start &
+        
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000 --timeout 60000
+        
+      - name: Check for broken links
+        run: npm run check-links

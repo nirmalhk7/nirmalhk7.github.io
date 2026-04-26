@@ -8,10 +8,9 @@ import sampleSize from "lodash/sampleSize";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { DefaultPageProps } from "./_app";
-import { BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
+import { BlogFrontmatterInterface, BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
 import blogWallpaper from "@/assets/images/datacenter.jpg";
 import { sortBy } from "lodash";
-import { BreadcrumbJsonLd } from "next-seo";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
 import { trackView } from "@/util/analytics";
@@ -28,20 +27,6 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
 
   return (
     <main>
-      <BreadcrumbJsonLd
-        itemListElements={[
-          {
-            position: 1,
-            name: "Home",
-            item: "https://nirmalhk7.com",
-          },
-          {
-            position: 2,
-            name: "Blog",
-            item: "https://nirmalhk7.com/blog",
-          },
-        ]}
-      />
       <Jumbotron.Max
         HeadingTextComponent={
           <h1 className="page-header__title text-white">
@@ -66,12 +51,12 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
   const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
 
   const blogDetail = sortBy(
-    loadMarkdownFiles("content/blog", {
+    loadMarkdownFiles<BlogFrontmatterInterface>("content/blog", {
       getContent: true,
       getExcerpt: true,
     }),
     (o) => o.frontmatter.date
-  ).reverse() as unknown as BlogInterface[];
+  ).reverse();
 
   const miniBlogInformation = blogDetail.map((blog) => ({
     ...blog,
