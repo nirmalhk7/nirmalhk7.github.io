@@ -11,19 +11,19 @@ A high-performance, SEO-optimized personal website and technical blog ("The Blue
 
 - **The Blue Green Manual:** A technical blog focused on software reliability, distributed systems, and DevOps patterns.
 - **Project Showcase:** A dynamic portfolio of engineering projects with markdown-based case studies.
-- **Optimized Performance:** Leverages Next.js Static Site Generation (SSG) for near-instant load times.
-- **Advanced Analytics:** Custom surveillance engine tracking scroll depth, engagement personas, and outbound clicks.
+- **Optimized Performance:** Leverages Next.js Static Site Generation (SSG) for near-instant load times and high Core Web Vitals.
+- **Advanced Analytics:** Custom surveillance engine tracking scroll depth, engagement personas (Recruiter vs. Reader), and outbound link latency.
 - **LLM Ready:** Automated generation of `llms.txt` to help AI agents understand my professional background accurately.
-- **Technical SEO:** Fully optimized with JSON-LD schemas (Person, Article, Breadcrumbs), OpenGraph tags, and RSS feeds.
-- **Hacker Aesthetic:** Custom-built terminal-style loader and high-fidelity animations using Framer Motion.
+- **Technical SEO:** Fully optimized with JSON-LD schemas (Person, Article, Breadcrumbs), OpenGraph tags, and a dynamic RSS feed.
+- **Hacker Aesthetic:** Custom-built "split-flap" terminal-style loader and high-fidelity animations using Framer Motion.
 
 ## 🛠️ Tech Stack
 
 - **Framework:** [Next.js 14](https://nextjs.org/) (Pages Router)
 - **Language:** [TypeScript](https://www.typescriptlang.org/) (Strict Mode)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/) (Consolidated from SASS)
-- **Content:** Markdown (Gray-matter + React-Markdown) & YAML
-- **Animations:** [Framer Motion](https://www.framer.com/motion/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) & [SASS Modules](https://sass-lang.com/)
+- **Content:** Markdown ([Gray-matter](https://github.com/jonschlinkert/gray-matter) + [React-Markdown](https://github.com/remarkjs/react-markdown)) & YAML
+- **Animations:** [Framer Motion 12](https://www.framer.com/motion/)
 - **Icons:** [FontAwesome 6](https://fontawesome.com/)
 - **Testing:** [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - **Deployment:** [Vercel](https://vercel.com/)
@@ -31,23 +31,27 @@ A high-performance, SEO-optimized personal website and technical blog ("The Blue
 ## 📦 Project Structure
 
 ```text
-├── content/           # Markdown (Blog/Projects) and YAML data
+├── content/           # Content source files
+│   ├── blog/          # Markdown posts for "The Blue Green Manual"
+│   ├── projects/      # Markdown case studies for engineering projects
+│   └── yml/           # YAML data for skills, experience, and profile
 ├── public/            # Static assets and generated feeds
-├── scripts/           # Build-time scripts (Sitemap, RSS, llms.txt)
+├── scripts/           # Build-time automation scripts
 ├── src/
-│   ├── components/    # React components (Layout, Blog, Project)
+│   ├── components/    # React components (Blog, Project, Loader)
 │   ├── elements/      # Reusable UI elements (Navbar, Jumbotron)
 │   ├── hooks/         # Custom React hooks (useAnalytics)
 │   ├── interfaces/    # Centralized TypeScript definitions
 │   ├── pages/         # Next.js routes and API handlers
-│   └── util/          # Helper functions (Markdown/YAML loaders)
+│   │   └── api/       # Serverless functions (RSS, Newsletter, etc.)
+│   └── util/          # Core utilities (Markdown loaders, Analytics engine)
 ```
 
 ## 🛠️ Getting Started
 
 ### Prerequisites
-- Node.js >= 22.0.0
-- npm
+- **Node.js:** >= 22.0.0 < 23.0.0
+- **npm:** Standard version
 
 ### Installation
 ```bash
@@ -61,21 +65,59 @@ npm install --legacy-peer-deps
 npm run dev
 ```
 
-### Build
+### Production Build
 ```bash
 npm run build
 ```
-This script will:
-1. Generate a fresh `sitemap.xml`.
-2. Generate an anonymized `llms.txt`.
-3. Build the static Next.js application.
+The build pipeline automatically:
+1. Generates a fresh `sitemap.xml`.
+2. Generates a sanitized `llms.txt` for AI consumption.
+3. Compiles the static Next.js application with full type-checking.
+
+## 📜 Project Scripts
+
+- `npm run dev`: Starts the development server.
+- `npm run build`: Executes the full production build pipeline.
+- `npm run lint`: Runs ESLint to ensure code quality and standard compliance.
+- `npm run test`: Executes the Jest test suite.
+- `npm run gen-llms`: Manually generates the `llms.txt` file from project content.
+- `npm run gen-sitemap`: Manually generates the `sitemap.xml`.
+- `npm run check-links`: Runs a broken link checker against the local production build.
+- `npm run get-resume`: Fetches the latest Resume PDF from a remote source.
+
+## ✍️ Content Management
+
+### Adding a Blog Post
+1. Create a new `.md` file in `content/blog/`.
+2. Add the required frontmatter:
+   ```markdown
+   ---
+   title: "Post Title"
+   description: "Brief summary"
+   date: "YYYY-MM-DD"
+   category: ["DevOps", "Reliability"]
+   image: "/assets/image.png"
+   ---
+   ```
+
+### Adding a Project
+1. Create a new `.md` file in `content/projects/`.
+2. Define the project details in the frontmatter and the case study in the body.
+
+## 🛡️ CI/CD & Reliability
+
+The project employs a robust CI/CD pipeline via GitHub Actions:
+- **Jest Tests:** Automated unit and component testing on every push.
+- **Link Checker:** Weekly scheduled checks to identify and fix broken external links.
+- **Vercel Deployment:** Automated production deployments with preview environments for PRs.
 
 ## 📈 Surveillance & Analytics
 
-This site uses a custom tracking hook `useAnalytics` that monitors:
+This site uses a custom tracking hook `useAnalytics` that integrates with Google Analytics 4 (GA4) to monitor:
 - **Scroll Depth:** Milestone tracking at 25%, 50%, 75%, and 90%.
-- **Persona Tagging:** Automatically identifies "Recruiters" (resume downloads) and "Engaged Readers" (deep scroll).
-- **Engagement Metrics:** Outbound link latency and session duration.
+- **Persona Tagging:** Automatically identifies "Recruiters" (resume downloads) and "Engaged Readers" (75%+ scroll depth).
+- **Engagement Metrics:** Tracks outbound link latency, session duration, and document visibility changes.
+- **Error Capturing:** Global error boundary for tracking client-side exceptions.
 
 ## 📄 License
 
