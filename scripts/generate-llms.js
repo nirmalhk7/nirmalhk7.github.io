@@ -103,7 +103,7 @@ function generateLLMS() {
   content += '## Profiles\n';
   content += '- GitHub: https://www.github.com/nirmalhk7\n';
   content += '- LinkedIn: https://www.linkedin.com/in/nirmalhk7/\n';
-  content += '- RSS Feed: /feed.xml\n';
+  content += '- RSS Feed: /api/rss\n';
 
   fs.writeFileSync(OUTPUT_FILE, content);
   console.log('llms.txt generated successfully.');

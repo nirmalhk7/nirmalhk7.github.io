@@ -105,4 +105,4 @@ Basic shell implementation using PThread libraries.
 ## Profiles
 - GitHub: https://www.github.com/nirmalhk7
 - LinkedIn: https://www.linkedin.com/in/nirmalhk7/
-- RSS Feed: /feed.xml
+- RSS Feed: /api/rss
