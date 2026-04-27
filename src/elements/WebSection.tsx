@@ -13,11 +13,8 @@ const WebSection: React.FC<WebSectionProps> = ({ children, className = "", id })
     <motion.section
       id={id}
       className={`${className}`}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
       onViewportEnter={() => trackView(id)}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
     >
       {children}
     </motion.section>

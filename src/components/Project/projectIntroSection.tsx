@@ -9,23 +9,7 @@ import {
 import Link from "next/link";
 import WebSection from "@/elements/WebSection";
 import { ProjectInterface } from "@/interfaces/projects";
-import { motion, Variants, AnimatePresence } from "framer-motion";
 import { trackClick } from "@/util/analytics";
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const slideUpItem: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
 
 const ProjectIntroSection = ({
   projects,
@@ -37,10 +21,10 @@ const ProjectIntroSection = ({
     id="project"
   >
     <div className="mobile-l:container mx-auto">
-      <div className="grid grid-cols-1  tablet:grid-cols-2">
+      <div className="grid grid-cols-1 tablet:grid-cols-2">
         <div className="mb-8 tablet:mb-0">
           <div className="pb-6 relative">
-            <div className=" text-center">
+            <div className="text-center">
               <h3 className="font-blocky font-semibold mb-0 mt-0 uppercase text-accent">
                 Projects
               </h3>
@@ -48,76 +32,46 @@ const ProjectIntroSection = ({
                 See My Latest Projects
               </h1>
               <p className="lead">
-                Find my projects <Link href="/projects" className="hover:text-black transition-colors">categorized here</Link>.
+                Find my projects <Link href="/projects">categorized here</Link>.
               </p>
             </div>
           </div>
         </div>
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-        >
+        <div>
           <Accordion className="accordion" allowZeroExpanded>
             {projects.map((element) => (
-              <motion.div 
-                layout
-                variants={slideUpItem} 
+              <AccordionItem
                 key={element.frontmatter.title}
-                className="overflow-hidden"
+                className="accordion__item"
               >
-                <AccordionItem
-                  className="accordion__item border-b border-gray-200"
-                >
-                  <AccordionItemHeading>
-                    <AccordionItemButton 
-                      className="accordion-header w-full text-left py-4 px-6 focus:outline-none hover:bg-white/50 transition-colors flex justify-between items-center"
-                      onClick={() => trackClick(element.frontmatter.title, "project_accordion")}
+                <AccordionItemHeading>
+                  <AccordionItemButton 
+                    className="accordion-header"
+                    onClick={() => trackClick(element.frontmatter.title, "project_accordion")}
+                  >
+                    {element.frontmatter.title}
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel className="p-6 bg-white">
+                  <div className="accordion-body__contents">
+                    <p className="text-2xl mb-4">{element.excerpt}</p>
+                    <Link 
+                      href={`/projects?id=${element.slug}`}
+                      className="text-accent font-bold"
+                      onClick={() => trackClick(element.frontmatter.title, "project_detail_link")}
                     >
-                      <span className="text-3xl font-semibold">{element.frontmatter.title}</span>
-                      <motion.span 
-                        animate={{ rotate: 0 }}
-                        className="text-accent"
-                      >
-                        +
-                      </motion.span>
-                    </AccordionItemButton>
-                  </AccordionItemHeading>
-                  <AccordionItemPanel className="p-0">
-                    <motion.div 
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="p-6 bg-white"
-                    >
-                      <div className="accordion-body__contents">
-                        <p className="mb-4">{element.excerpt}</p>
-                        <div className="flex justify-between items-center">
-                          <motion.div
-                            whileHover={{ x: 5 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                          >
-                            <Link 
-                              href={`/projects?id=${element.slug}`}
-                              className="text-accent font-bold hover:underline"
-                              onClick={() => trackClick(element.frontmatter.title, "project_detail_link")}
-                            >
-                              Find more here →
-                            </Link>
-                          </motion.div>
-                          {element.frontmatter.tags && element.frontmatter.tags.length > 0 && (
-                            <code className="text-sm">{element.frontmatter.tags[0]}</code>
-                          )}
-                        </div>
-                      </div>
-                    </motion.div>
-                  </AccordionItemPanel>
-                </AccordionItem>
-              </motion.div>
+                      Find more here
+                    </Link>
+                    .&nbsp;&nbsp;&nbsp;
+                    {element.frontmatter.tags && element.frontmatter.tags.length > 0 && (
+                      <code>{element.frontmatter.tags[0]}</code>
+                    )}
+                  </div>
+                </AccordionItemPanel>
+              </AccordionItem>
             ))}
           </Accordion>
-        </motion.div>
+        </div>
       </div>
     </div>
   </WebSection>
