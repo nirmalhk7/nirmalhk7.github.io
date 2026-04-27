@@ -35,14 +35,14 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const header = document.querySelector("header");
-      if (window.scrollY >= window.innerHeight && header) {
-        header.classList.add("sticky", "bg-gradient-to-r", "bg-black", "text-white");
-      } else if (header) {
-        header.classList.remove("sticky", "bg-gradient-to-r", "bg-black", "text-white");
-      }
+      const hero = document.getElementById("max-jumbo") || document.getElementById("hero-header") || document.querySelector(".page-header");
+      const heroHeight = hero ? hero.offsetHeight : window.innerHeight;
 
-      // const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;   
-      // console.log(`Scrolled: ${scrollPercentage.toFixed(2)}%`);
+      if (window.scrollY >= heroHeight - 80 && header) {
+        header.classList.add("!fixed", "bg-black", "text-white", "shadow-lg");
+      } else if (header) {
+        header.classList.remove("!fixed", "bg-black", "text-white", "shadow-lg");
+      }
     };
 
     window.addEventListener("scroll", handleScroll);

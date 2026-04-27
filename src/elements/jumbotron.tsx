@@ -113,9 +113,8 @@ const Jumbotron = {
     return (
       <WebSection
         id="max-jumbo"
-        className="s-home z-40 py-0 selection:bg-accent selection:text-white overflow-hidden"
-      >
-        <div ref={containerRef} className="absolute inset-0 z-0">
+        className="s-home z-40 py-0 selection:bg-accent selection:text-white overflow-hidden snap-start"
+      >        <div ref={containerRef} className="absolute inset-0 z-0">
           <motion.div style={{ y }} className="relative h-full w-full">
             <Image
               fill

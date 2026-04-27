@@ -12,7 +12,7 @@ const WebSection: React.FC<WebSectionProps> = ({ children, className = "", id })
   return (
     <motion.section
       id={id}
-      className={`snap-start ${className}`}
+      className={`${className}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       onViewportEnter={() => trackView(id)}
