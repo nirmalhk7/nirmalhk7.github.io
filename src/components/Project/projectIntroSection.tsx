@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 import WebSection from "@/elements/WebSection";
 import { ProjectInterface } from "@/interfaces/projects";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, AnimatePresence } from "framer-motion";
 import { trackClick } from "@/util/analytics";
 
 const staggerContainer: Variants = {
@@ -48,7 +48,7 @@ const ProjectIntroSection = ({
                 See My Latest Projects
               </h1>
               <p className="lead">
-                Find my projects <Link href="/projects">categorized here</Link>.
+                Find my projects <Link href="/projects" className="hover:text-black transition-colors">categorized here</Link>.
               </p>
             </div>
           </div>
@@ -59,35 +59,59 @@ const ProjectIntroSection = ({
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <Accordion className="accordion">
-            {/* TODO NK Needs animations */}
+          <Accordion className="accordion" allowZeroExpanded>
             {projects.map((element) => (
-              <motion.div variants={slideUpItem} key={element.frontmatter.title}>
+              <motion.div 
+                layout
+                variants={slideUpItem} 
+                key={element.frontmatter.title}
+                className="overflow-hidden"
+              >
                 <AccordionItem
-                  className="accordion__item"
+                  className="accordion__item border-b border-gray-200"
                 >
                   <AccordionItemHeading>
                     <AccordionItemButton 
-                      className="accordion-header"
+                      className="accordion-header w-full text-left py-4 px-6 focus:outline-none hover:bg-white/50 transition-colors flex justify-between items-center"
                       onClick={() => trackClick(element.frontmatter.title, "project_accordion")}
                     >
-                      {element.frontmatter.title}
+                      <span className="text-3xl font-semibold">{element.frontmatter.title}</span>
+                      <motion.span 
+                        animate={{ rotate: 0 }}
+                        className="text-accent"
+                      >
+                        +
+                      </motion.span>
                     </AccordionItemButton>
                   </AccordionItemHeading>
-                  <AccordionItemPanel className="p-6 bg-white">
-                    <div className="accordion-body__contents">
-                      <p>{element.excerpt}</p>
-                      <Link 
-                        href={`/projects?id=${element.slug}`}
-                        onClick={() => trackClick(element.frontmatter.title, "project_detail_link")}
-                      >
-                        Find more here
-                      </Link>
-                      .&nbsp;&nbsp;&nbsp;
-                      {element.frontmatter.tags && element.frontmatter.tags.length > 0 && (
-                        <code>{element.frontmatter.tags[0]}</code>
-                      )}
-                    </div>
+                  <AccordionItemPanel className="p-0">
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="p-6 bg-white"
+                    >
+                      <div className="accordion-body__contents">
+                        <p className="mb-4">{element.excerpt}</p>
+                        <div className="flex justify-between items-center">
+                          <motion.div
+                            whileHover={{ x: 5 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                          >
+                            <Link 
+                              href={`/projects?id=${element.slug}`}
+                              className="text-accent font-bold hover:underline"
+                              onClick={() => trackClick(element.frontmatter.title, "project_detail_link")}
+                            >
+                              Find more here →
+                            </Link>
+                          </motion.div>
+                          {element.frontmatter.tags && element.frontmatter.tags.length > 0 && (
+                            <code className="text-sm">{element.frontmatter.tags[0]}</code>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
                   </AccordionItemPanel>
                 </AccordionItem>
               </motion.div>
@@ -98,4 +122,5 @@ const ProjectIntroSection = ({
     </div>
   </WebSection>
 );
+
 export default ProjectIntroSection;

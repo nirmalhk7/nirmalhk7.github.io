@@ -15,6 +15,8 @@ import QuoteSection, { QuoteInterface } from "@/components/Quote/quoteSection";
 import Loader from "@/components/Loader/Loader";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router";
 
 config.autoAddCss = false;
 
@@ -33,6 +35,7 @@ interface CustomAppProps extends AppProps {
 export default function App({ Component, pageProps }: CustomAppProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isFinishing, setIsFinishing] = useState(false);
+  const router = useRouter();
 
   useAnalytics();
 
@@ -105,20 +108,30 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         </>
       )}
       {pageProps.pageMetadata ? (
-        <>
+        <div key="page-content">
           {pageProps.pageMetadata.seoMetadata ? (
             <NextSeo {...pageProps.pageMetadata.seoMetadata} />
           ) : null}
           {pageProps.pageMetadata.enableWrap ? <Navbar /> : null}
-          <Component {...pageProps} />
-          {pageProps.pageMetadata.enableWrap ? (
-            <>
-              <QuoteSection quote={pageProps.quote} />
-              <ContactMeSection />
-              <FooterSection />
-            </>
-          ) : null}
-        </>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={router.route}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <Component {...pageProps} />
+              {pageProps.pageMetadata.enableWrap ? (
+                <>
+                  <QuoteSection quote={pageProps.quote} />
+                  <ContactMeSection />
+                  <FooterSection />
+                </>
+              ) : null}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       ) : null}
     </div>
   );
