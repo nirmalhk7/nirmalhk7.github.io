@@ -8,6 +8,7 @@ import { trackClick } from "@/util/analytics";
 const Navbar = () => {
   const router = useRouter();
   const [mobileMenuClick, mobileMenuSet] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const navbarInternalData = [
     {
@@ -34,31 +35,33 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const header = document.querySelector("header");
       const hero = document.getElementById("max-jumbo") || document.getElementById("hero-header") || document.querySelector(".page-header");
-      const heroHeight = hero ? hero.offsetHeight : window.innerHeight;
-
-      if (window.scrollY >= heroHeight - 80 && header) {
-        header.classList.add("!fixed", "bg-black", "text-white", "shadow-lg");
-      } else if (header) {
-        header.classList.remove("!fixed", "bg-black", "text-white", "shadow-lg");
+      const heroHeight = hero ? (hero as HTMLElement).offsetHeight : window.innerHeight;
+      
+      if (window.scrollY >= heroHeight - 80) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-
 
   return (
     <motion.header 
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className=" font-blocky transition duration-300 font-bold text-base leading-[7.2rem] tracking-[0.25rem] uppercase w-full h-navbar z-50 absolute top-0 selection:bg-accent selection:text-white"
+      className={`font-blocky transition-all duration-300 font-bold text-base leading-[7.2rem] tracking-[0.25rem] uppercase w-full h-navbar z-50 selection:bg-accent selection:text-white ${
+        isScrolled 
+          ? "fixed top-0 bg-black text-white shadow-lg" 
+          : "absolute top-0 bg-transparent text-white"
+      }`}
     >
       <Link
         href="/"
