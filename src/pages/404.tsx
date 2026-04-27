@@ -5,7 +5,7 @@ import WebSection from "@/elements/WebSection";
 import { GetStaticProps } from "next";
 import { DefaultPageProps } from "./_app";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
-import { sampleSize } from "lodash";
+import sampleSize from "lodash/sampleSize";
 import { trackView, trackError } from "@/util/analytics";
 
 interface NotFoundPageProps extends DefaultPageProps {

@@ -94,6 +94,7 @@ const Jumbotron = {
     >
       <Image
         fill
+        priority={true}
         className="object-right object-cover pointer-events-none laptop:object-center !h-screen brightness-50"
         src={bgImg}
         placeholder={typeof bgImg === "string" ? undefined : "blur"}

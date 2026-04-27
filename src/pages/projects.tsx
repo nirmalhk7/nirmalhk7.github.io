@@ -8,7 +8,7 @@ import {
   AccordionItemPanel,
 } from "react-accessible-accordion";
 import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
-import { sampleSize } from "lodash";
+import sampleSize from "lodash/sampleSize";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
 import { GetStaticProps } from "next";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
