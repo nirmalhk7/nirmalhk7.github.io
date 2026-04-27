@@ -53,7 +53,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   }, []);
 
   return (
-    <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+    <div className="h-screen overflow-y-scroll scroll-smooth">
       <Loader 
         isLoading={isLoading} 
         isFinishing={isFinishing} 
