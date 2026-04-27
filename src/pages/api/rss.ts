@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { sortBy } from "lodash";
+import sortBy from "lodash/sortBy";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
 import { BlogFrontmatterInterface } from "@/interfaces/blog";
 import RSS from "rss";

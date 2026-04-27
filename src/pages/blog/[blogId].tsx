@@ -24,7 +24,7 @@ import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { BlogFrontmatterInterface, BlogInterface } from "@/interfaces/blog";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import { sampleSize } from "lodash";
+import sampleSize from "lodash/sampleSize";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { DefaultPageProps } from "../_app";
