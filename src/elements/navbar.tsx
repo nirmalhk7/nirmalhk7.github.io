@@ -1,26 +1,14 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Scrollspy from "react-scrollspy";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { trackClick } from "@/util/analytics";
 
 const Navbar = () => {
   const router = useRouter();
   const [mobileMenuClick, mobileMenuSet] = useState(false);
-  const { scrollYProgress } = useScroll();
-
-  // Define transition across the entire page: 0 (top) to 1 (bottom)
-  const backdropBlur = useTransform(scrollYProgress, [0, 1], ["blur(12px)", "blur(12px)"]);
-  const shadow = useTransform(scrollYProgress, [0, 1], ["0 10px 15px -3px rgb(0 0 0 / 0.1)", "0 10px 15px -3px rgb(0 0 0 / 0.1)"]);
-  const gradient = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [
-      "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 100%)",
-      "linear-gradient(to right, rgba(0,0,0,1) 90%, rgba(217,56,56,1) 100%)"
-    ]
-  );
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const navbarInternalData = [
     {
@@ -45,17 +33,39 @@ const Navbar = () => {
     },
   ].filter((i) => i);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const hero = document.getElementById("max-jumbo") || document.getElementById("hero-header") || document.querySelector(".page-header");
+      const heroHeight = hero ? (hero as HTMLElement).offsetHeight : window.innerHeight;
+      
+      if (window.scrollY >= heroHeight - 80) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <motion.header 
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      style={{ 
-        backgroundImage: gradient,
-        backdropFilter: backdropBlur,
-        boxShadow: shadow,
+      style={{
+        backdropFilter: isScrolled ? "blur(12px)" : "none",
+        WebkitBackdropFilter: isScrolled ? "blur(12px)" : "none",
       }}
-      className="font-blocky fixed top-0 transition-all duration-100 font-bold text-base leading-[7.2rem] tracking-[0.25rem] uppercase w-full h-navbar z-50 selection:bg-accent selection:text-white text-white"
+      className={`font-blocky transition-all duration-300 font-bold text-base leading-[7.2rem] tracking-[0.25rem] uppercase w-full h-navbar z-50 selection:bg-accent selection:text-white ${
+        isScrolled 
+          ? "fixed top-0 bg-black/80 text-white shadow-lg" 
+          : "absolute top-0 bg-transparent text-white"
+      }`}
     >
       <Link
         href="/"
