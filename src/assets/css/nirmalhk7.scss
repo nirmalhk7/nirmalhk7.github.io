@@ -2,7 +2,7 @@
  * ## Mobile Menu Toggle
  * ------------------------------------------------------------------- */
 .header-menu-toggle {
-  @apply h-[48px] w-[48px] leading-[48px] font-blocky font-normal text-[1.4rem] uppercase tracking-[.2rem] text-white transition-all duration-300 ease-in-out relative bg-white/5 rounded-lg;
+  @apply h-[48px] w-[48px] leading-[48px] font-blocky font-normal text-[1.4rem] uppercase tracking-[.2rem] text-white transition-all duration-300 ease-in-out relative bg-white/5 rounded-lg focus:outline-none;
 
   &:hover, &:focus { @apply text-accent bg-white/10; }
 
