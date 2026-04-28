@@ -49,7 +49,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   useAnalytics();
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen">
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-accent z-[60] origin-left"
         style={{ scaleX }}
