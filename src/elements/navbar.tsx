@@ -33,6 +33,31 @@ const Navbar = () => {
     },
   ].filter((i) => i);
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, route: string) => {
+    trackClick(route, "navbar_link");
+    mobileMenuSet(false);
+
+    if (route === "/") {
+      if (router.pathname === "/") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      return;
+    }
+
+    if (route.startsWith("#") || (route.startsWith("/#") && router.pathname === "/")) {
+      const id = route.includes("#") ? route.split("#")[1] : "";
+      if (id) {
+        e.preventDefault();
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          window.history.pushState(null, "", route);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const hero = document.getElementById("max-jumbo") || document.getElementById("hero-header") || document.querySelector(".page-header");
@@ -69,7 +94,7 @@ const Navbar = () => {
     >
       <Link
         href="/"
-        onClick={() => trackClick("logo", "navbar")}
+        onClick={(e) => handleLinkClick(e, "/")}
         className="text-white no-underline left-20 inline-block m-0 p-0 absolute hover:text-accent"
       >
         nirmalhk7
@@ -98,10 +123,7 @@ const Navbar = () => {
                 className="hover:text-accent"
                 title={element.label}
                 href={element.route}
-                onClick={() => {
-                  trackClick(element.label, "navbar_link");
-                  mobileMenuSet(false);
-                }}
+                onClick={(e) => handleLinkClick(e, element.route)}
               >
                 {element.label}
               </Link>
