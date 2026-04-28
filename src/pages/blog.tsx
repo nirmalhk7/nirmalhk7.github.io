@@ -61,6 +61,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
   const miniBlogInformation = blogDetail.map((blog) => ({
     ...blog,
     content: "",
+    excerpt: blog.frontmatter.description || blog.excerpt || "",
   }));
   return {
     props: {
