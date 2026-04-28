@@ -26,7 +26,6 @@ import path from "path";
 import { trackClick, trackView } from "@/util/analytics";
 import { TextReveal } from "@/components/TextReveal";
 import { TiltCard } from "@/components/TiltCard";
-import Magnetic from "@/components/Magnetic";
 
 interface IndexPageProps extends DefaultPageProps {
   mainContent: string;
