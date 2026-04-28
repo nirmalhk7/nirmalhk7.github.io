@@ -2,6 +2,7 @@ import { useForm, ValidationError } from "@formspree/react";
 import React from "react";
 import WebSection from "@/elements/WebSection";
 import { trackClick, trackFormFocus } from "@/util/analytics";
+import { motion } from "framer-motion";
 
 export default function ContactMeSection() {
   const [state, handleSubmit] = useForm("mgvwblra");
@@ -22,18 +23,24 @@ export default function ContactMeSection() {
         id="contact"
         className="relative bg-black selection:bg-accent selection:text-white"
       >
-        <div className="z-10 narrow m-auto text-white">
-          <div className=" text-center">
-            <h3 className="my-0">
-              Contact Me
-            </h3>
-            <h1>Say Hi!</h1>
-            <p className="font-blocky text-3xl">
-              I&apos;ll reach out to you as soon as I can.
-            </p>
+        <motion.div 
+          className="container mx-auto z-10"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <div className="narrow m-auto text-white">
+            <div className=" text-center">
+              <h3 className="my-0">
+                Contact Me
+              </h3>
+              <h1>Say Hi!</h1>
+              <p className="font-blocky text-3xl">
+                I&apos;ll reach out to you as soon as I can.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="container mx-auto z-10">
           <div className="mt-24 grid gap-16 laptop:grid-cols-3 tablet:grid-cols-3 mobile-l:grid-cols-1">
             <div className="col-span-2">
               <form onSubmit={handleSubmit}>
@@ -100,7 +107,7 @@ export default function ContactMeSection() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </WebSection>
     </div>
   );

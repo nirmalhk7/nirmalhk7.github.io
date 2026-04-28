@@ -10,6 +10,7 @@ import Link from "next/link";
 import WebSection from "@/elements/WebSection";
 import { ProjectInterface } from "@/interfaces/projects";
 import { trackClick } from "@/util/analytics";
+import { motion } from "framer-motion";
 
 const ProjectIntroSection = ({
   projects,
@@ -20,7 +21,13 @@ const ProjectIntroSection = ({
     className="bg-gray-100 selection:bg-accent selection:text-white"
     id="project"
   >
-    <div className="mobile-l:container mx-auto">
+    <motion.div 
+      className="mobile-l:container mx-auto"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
       <div className="grid grid-cols-1 tablet:grid-cols-2">
         <div className="mb-8 tablet:mb-0">
           <div className="pb-6 relative">
@@ -73,7 +80,7 @@ const ProjectIntroSection = ({
           </Accordion>
         </div>
       </div>
-    </div>
+    </motion.div>
   </WebSection>
 );
 
