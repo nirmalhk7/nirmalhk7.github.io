@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { Libre_Baskerville, Montserrat } from "next/font/google";
 
 import "@/assets/css/tailwind.scss";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -22,19 +21,6 @@ import { useRouter } from "next/router";
 const ContactMeSection = dynamic(() => import("@/components/ContactMe/contactMeSection"));
 const FooterSection = dynamic(() => import("@/components/Footer/footerSection"));
 const QuoteSection = dynamic(() => import("@/components/Quote/quoteSection"));
-
-const libreBaskerville = Libre_Baskerville({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-libre-baskerville",
-});
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-montserrat",
-});
 
 config.autoAddCss = false;
 
@@ -71,7 +57,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   }, []);
 
   return (
-    <div className={`min-h-screen scroll-smooth ${libreBaskerville.variable} ${montserrat.variable}`}>
+    <div className="min-h-screen scroll-smooth">
       <Loader 
         isLoading={isLoading} 
         isFinishing={isFinishing} 
