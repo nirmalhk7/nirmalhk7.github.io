@@ -9,6 +9,7 @@ const Navbar = () => {
   const router = useRouter();
   const [mobileMenuClick, mobileMenuSet] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const navbarInternalData = [
     {
@@ -112,21 +113,28 @@ const Navbar = () => {
           )}
           offset={-100}
         >
-          {navbarInternalData.map((element) => (
+          {navbarInternalData.map((element, index) => (
             <motion.li 
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="pl-0 mr-8" 
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className="pl-0 mr-8 relative group" 
               key={element.label}
             >
               <Link
-                className="hover:text-accent"
+                className="hover:text-accent relative z-10 transition-colors"
                 title={element.label}
                 href={element.route}
                 onClick={(e) => handleLinkClick(e, element.route)}
               >
                 {element.label}
               </Link>
+              {hoveredIndex === index && (
+                <motion.div
+                  layoutId="navbar-hover"
+                  className="absolute inset-x-[-12px] inset-y-[-4px] bg-accent/20 rounded-lg z-0"
+                  transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+                />
+              )}
             </motion.li>
           ))}
         </Scrollspy>
