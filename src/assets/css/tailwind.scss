@@ -12,7 +12,7 @@
 @layer base {
   /* Global Resets & Base Styles */
   html {
-    @apply text-[10px] leading-[1.15] scroll-smooth;
+    @apply text-[10px] leading-[1.15] scroll-smooth scroll-pt-[72px];
     -webkit-text-size-adjust: 100%;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* IE and Edge */

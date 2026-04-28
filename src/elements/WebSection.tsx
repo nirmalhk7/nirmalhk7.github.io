@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React from "react";
+import { motion, useMotionValue, useTransform, MotionValue } from "framer-motion";
 import { trackView } from "@/util/analytics";
 
 interface WebSectionProps {
@@ -37,7 +37,7 @@ const WebSection: React.FC<WebSectionProps> = ({ children, className = "", id })
   );
 };
 
-function useTemplateStyle(mouseX: any, mouseY: any) {
+function useTemplateStyle(mouseX: MotionValue<number>, mouseY: MotionValue<number>) {
   return useTransform(
     [mouseX, mouseY],
     ([x, y]) => `radial-gradient(600px circle at ${x}px ${y}px, rgba(234, 88, 12, 0.06), transparent 80%)`

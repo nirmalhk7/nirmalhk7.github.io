@@ -99,6 +99,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3 }}
                     key={project.frontmatter.title}
+                    ref={(el) => (accordionRefs.current[project.frontmatter.title] = el)}
                   >
                     <AccordionItem>
                       <AccordionItemHeading>
