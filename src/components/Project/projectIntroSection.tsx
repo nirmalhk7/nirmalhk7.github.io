@@ -1,11 +1,4 @@
 import React from "react";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemPanel,
-  AccordionItemHeading,
-  AccordionItemButton,
-} from "react-accessible-accordion";
 import Link from "next/link";
 import WebSection from "@/elements/WebSection";
 import { ProjectInterface } from "@/interfaces/projects";
@@ -21,66 +14,60 @@ const ProjectIntroSection = ({
     className="bg-gray-100 selection:bg-accent selection:text-white"
     id="project"
   >
-    <motion.div 
-      className="mobile-l:container mx-auto"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
-      <div className="grid grid-cols-1 tablet:grid-cols-2">
-        <div className="mb-8 tablet:mb-0">
-          <div className="pb-6 relative">
-            <div className="text-center">
-              <h3 className="font-blocky font-semibold mb-0 mt-0 uppercase text-accent">
-                Projects
-              </h3>
-              <h1 className="font-bold font-heading leading-snug mt-0 hover:text-black transition duration-500">
-                See My Latest Projects
-              </h1>
-              <p className="lead">
-                Find my projects <Link href="/projects">categorized here</Link>.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <Accordion className="accordion" allowZeroExpanded>
-            {projects.map((element) => (
-              <AccordionItem
-                key={element.frontmatter.title}
-                className="accordion__item"
+    <div className="container mx-auto">
+      <motion.div 
+        className="text-center mb-16"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
+        <h3 className="font-blocky font-semibold mb-2 uppercase text-accent">
+          Projects
+        </h3>
+        <h1 className="font-bold font-heading leading-snug mt-0">
+          See My Latest Projects
+        </h1>
+        <p className="lead">
+          Find my projects <Link href="/projects" className="text-accent hover:underline">categorized here</Link>.
+        </p>
+      </motion.div>
+
+      <div className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-8">
+        {projects.map((element, index) => (
+          <motion.div
+            key={element.frontmatter.title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            whileHover={{ y: -8 }}
+            className="bg-white/40 backdrop-blur-md border border-white/20 p-10 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col h-full group"
+          >
+            <h3 className="text-3xl font-bold mb-4 group-hover:text-accent transition-colors">
+              {element.frontmatter.title}
+            </h3>
+            <p className="text-gray-600 flex-grow mb-8 leading-relaxed text-xl">
+              {element.excerpt}
+            </p>
+            <div className="flex justify-between items-center mt-auto pt-6 border-t border-gray-200/50">
+              <Link 
+                href={`/projects?id=${element.slug}`}
+                className="text-accent font-bold flex items-center gap-2 group/link"
+                onClick={() => trackClick(element.frontmatter.title, "project_card_link")}
               >
-                <AccordionItemHeading>
-                  <AccordionItemButton 
-                    className="accordion-header"
-                    onClick={() => trackClick(element.frontmatter.title, "project_accordion")}
-                  >
-                    {element.frontmatter.title}
-                  </AccordionItemButton>
-                </AccordionItemHeading>
-                <AccordionItemPanel className="p-6 bg-white">
-                  <div className="accordion-body__contents">
-                    <p className="text-2xl mb-4">{element.excerpt}</p>
-                    <Link 
-                      href={`/projects?id=${element.slug}`}
-                      className="text-accent font-bold"
-                      onClick={() => trackClick(element.frontmatter.title, "project_detail_link")}
-                    >
-                      Find more here
-                    </Link>
-                    .&nbsp;&nbsp;&nbsp;
-                    {element.frontmatter.tags && element.frontmatter.tags.length > 0 && (
-                      <code>{element.frontmatter.tags[0]}</code>
-                    )}
-                  </div>
-                </AccordionItemPanel>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
+                View Project 
+                <span className="group-hover/link:translate-x-1 transition-transform">→</span>
+              </Link>
+              {element.frontmatter.tags && element.frontmatter.tags[0] && (
+                <span className="bg-accent/10 text-accent px-4 py-1.5 rounded-full text-sm font-blocky font-bold uppercase tracking-wider">
+                  {element.frontmatter.tags[0]}
+                </span>
+              )}
+            </div>
+          </motion.div>
+        ))}
       </div>
-    </motion.div>
+    </div>
   </WebSection>
 );
 
