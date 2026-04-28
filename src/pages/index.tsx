@@ -162,7 +162,7 @@ const IndexPage = ({
             </div>
             <div className="break-inside-avoid pt-16">
               <div className="grid gap-4 font-blocky uppercase text-center text-xl leading-[4.8rem] tracking-[0.3rem] font-bold">
-                <Magnetic>
+                <Magnetic className="w-full">
                   <Link
                     className="button button-accent w-full"
                     href={"/resume"}
@@ -173,7 +173,7 @@ const IndexPage = ({
                     Download My Resume
                   </Link>
                 </Magnetic>
-                <Magnetic>
+                <Magnetic className="w-full">
                   <Link
                     className="button button-accent-fill w-full"
                     href="#contact"
