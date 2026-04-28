@@ -116,10 +116,10 @@ export default function App({ Component, pageProps }: CustomAppProps) {
           <AnimatePresence mode="wait">
             <motion.div
               key={router.route}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 20, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 1.02 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
               <Component {...pageProps} />
               {pageProps.pageMetadata.enableWrap ? (
