@@ -41,7 +41,7 @@ const slideUpItem: Variants = {
 };
 
 const Jumbotron = {
-  mini: ({
+  Mini: ({
     backgroundImage,
     backgroundImageAlt,
     title,
@@ -69,6 +69,7 @@ const Jumbotron = {
               className="object-center object-cover pointer-events-none !h2/5 brightness-25"
               src={backgroundImage}
               alt={backgroundImageAlt}
+              sizes="100vw"
             />
           </motion.div>
         </div>
@@ -123,6 +124,7 @@ const Jumbotron = {
               src={bgImg}
               placeholder={typeof bgImg === "string" ? undefined : "blur"}
               alt="Nirmal Khedkar - Software Engineer"
+              sizes="100vw"
             />
           </motion.div>
         </div>

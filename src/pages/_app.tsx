@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { Libre_Baskerville, Montserrat } from "next/font/google";
 
 import "@/assets/css/tailwind.scss";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -9,14 +11,29 @@ import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/elements/navbar";
-import ContactMeSection from "@/components/ContactMe/contactMeSection";
-import FooterSection from "@/components/Footer/footerSection";
-import QuoteSection, { QuoteInterface } from "@/components/Quote/quoteSection";
 import Loader from "@/components/Loader/Loader";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
+
+// Dynamic imports for performance
+const ContactMeSection = dynamic(() => import("@/components/ContactMe/contactMeSection"));
+const FooterSection = dynamic(() => import("@/components/Footer/footerSection"));
+const QuoteSection = dynamic(() => import("@/components/Quote/quoteSection"));
+
+const libreBaskerville = Libre_Baskerville({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-libre-baskerville",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-montserrat",
+});
 
 config.autoAddCss = false;
 
@@ -25,7 +42,7 @@ export interface DefaultPageProps {
     enableWrap: boolean,
     seoMetadata: NextSeoProps
   }
-  quote?: QuoteInterface;
+  quote?: any;
 }
 
 interface CustomAppProps extends AppProps {
@@ -53,7 +70,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   }, []);
 
   return (
-    <div className="min-h-screen scroll-smooth">
+    <div className={`min-h-screen scroll-smooth ${libreBaskerville.variable} ${montserrat.variable}`}>
       <Loader 
         isLoading={isLoading} 
         isFinishing={isFinishing} 
