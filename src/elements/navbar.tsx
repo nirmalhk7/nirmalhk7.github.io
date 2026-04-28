@@ -106,7 +106,7 @@ const Navbar = () => {
         }`}
       >
         <Scrollspy
-          className="header-nav-wrap__navbar inline-block h-16 m-0 list-none"
+          className="header-nav-wrap__navbar inline-block h-16 m-0 list-none tablet:mt-0 mt-20"
           currentClassName="!text-accent"
           items={navbarInternalData.map((element) =>
             element.label.toLowerCase()
@@ -131,7 +131,7 @@ const Navbar = () => {
               {hoveredIndex === index && (
                 <motion.div
                   layoutId="navbar-hover"
-                  className="absolute inset-x-[-12px] inset-y-[-4px] bg-accent/20 rounded-lg z-0"
+                  className="absolute inset-x-[-12px] inset-y-[-4px] bg-accent/20 rounded-lg z-0 hidden tablet:block"
                   transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
                 />
               )}
@@ -139,16 +139,18 @@ const Navbar = () => {
           ))}
         </Scrollspy>
       </nav>
-      <Link
-        className={`header-menu-toggle block tablet:hidden ${
-          mobileMenuClick ? "is-clicked" : ""
-        }`}
-        id="nav-button"
-        onClick={() => mobileMenuSet(!mobileMenuClick)}
-        href="#0"
-      >
-        <span>Menu</span>
-      </Link>
+      <div className="absolute right-10 top-0 h-full flex items-center tablet:hidden">
+        <Link
+          className={`header-menu-toggle !static !block ${
+            mobileMenuClick ? "is-clicked" : ""
+          }`}
+          id="nav-button"
+          onClick={() => mobileMenuSet(!mobileMenuClick)}
+          href="#0"
+        >
+          <span>Menu</span>
+        </Link>
+      </div>
     </motion.header>
   );
 };
