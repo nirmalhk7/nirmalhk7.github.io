@@ -161,27 +161,23 @@ const IndexPage = ({
               </div>
             </div>
             <div className="break-inside-avoid pt-16">
-              <div className="grid gap-4 font-blocky uppercase text-center text-xl leading-[4.8rem] tracking-[0.3rem] font-bold">
-                <Magnetic className="w-full">
-                  <Link
-                    className="button button-accent w-full"
-                    href={"/resume"}
-                    rel="noreferrer"
-                    target="_blank"
-                    onClick={() => trackClick("download_resume", "engagement")}
-                  >
-                    Download My Resume
-                  </Link>
-                </Magnetic>
-                <Magnetic className="w-full">
-                  <Link
-                    className="button button-accent-fill w-full"
-                    href="#contact"
-                    onClick={() => trackClick("want_to_hire", "engagement")}
-                  >
-                    Want to Hire?
-                  </Link>
-                </Magnetic>
+              <div className="flex flex-col gap-4 font-blocky uppercase text-center text-xl tracking-[0.3rem] font-bold">
+                <Link
+                  className="button button-accent w-full m-0"
+                  href={"/resume"}
+                  rel="noreferrer"
+                  target="_blank"
+                  onClick={() => trackClick("download_resume", "engagement")}
+                >
+                  Download My Resume
+                </Link>
+                <Link
+                  className="button button-accent-fill w-full m-0"
+                  href="#contact"
+                  onClick={() => trackClick("want_to_hire", "engagement")}
+                >
+                  Want to Hire?
+                </Link>
               </div>
             </div>
           </div>
@@ -204,9 +200,9 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
   const allMembershipsYaml = loadYaml<MembershipInterface[]>(path.join(contentDir, "memberships.yaml"));
   const allWorkExperiencesYaml = loadYaml<WorkExperienceInterface[]>(path.join(contentDir, "workexperiences.yaml"));
   const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(contentDir, "quotes.yaml"));
-  const fiveProjects = sampleSize(
+  const sixProjects = sampleSize(
     loadMarkdownFiles<ProjectFrontmatterInterface>("content/projects", { getExcerpt: true, getContent: false }),
-    5
+    6
   );
 
   
@@ -223,7 +219,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
       cv: allProfilesYaml,
       membership: allMembershipsYaml,
       workexperience: allWorkExperiencesYaml,
-      projects: fiveProjects,
+      projects: sixProjects,
       quote: sampleSize(allQuotesYaml)[0],
       pageMetadata: {
         enableWrap: true,
