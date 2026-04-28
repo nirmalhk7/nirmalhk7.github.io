@@ -15,7 +15,7 @@ const BlogIntroSection = ({ name }: { name: string }) => (
         <h1 className="mt-0">
           Latest From The Blog
         </h1>
-        <p className="text-center m-0 p-0 font-normal">
+        <p className="text-center m-0 p-0 font-normal text-3xl">
           I have strong views on topics like Finance, Technology, Future and
           Environment. Find me&nbsp;
           <Link className="text-white" title={name} href="/blog">

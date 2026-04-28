@@ -59,7 +59,7 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                     <Link
                       title={element.excerpt ?? "The Blue Green Manual"}
                       href={`/blog/${element.slug}`}
-                      className="absolute inset-0 z-10"
+                      className="absolute inset-0 z-30"
                       onClick={() => trackClick(element.frontmatter?.title || "", "blog_list_link")}
                     >
                       <span className="sr-only">Read {element.frontmatter?.title}</span>
@@ -71,11 +71,11 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                         <strong className="text-accent uppercase font-blocky text-sm tracking-widest block font-bold">
                           {element.frontmatter?.category}
                         </strong>
-                        <h4 className="text-white text-4xl m-0 font-bold leading-tight">
+                        <h4 className="text-white text-5xl m-0 font-bold leading-tight">
                           {element.frontmatter?.title}
                         </h4>
                         {element.excerpt && (
-                          <p className="text-gray-300 text-lg leading-relaxed line-clamp-4">
+                          <p className="text-gray-300 text-2xl leading-relaxed line-clamp-4">
                             {element.excerpt}
                           </p>
                         )}
