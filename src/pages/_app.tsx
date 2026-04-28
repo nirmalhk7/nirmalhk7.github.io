@@ -11,6 +11,7 @@ import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/elements/navbar";
+import { QuoteInterface } from "@/components/Quote/quoteSection";
 import Loader from "@/components/Loader/Loader";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useAnalytics } from "@/hooks/useAnalytics";
@@ -42,7 +43,7 @@ export interface DefaultPageProps {
     enableWrap: boolean,
     seoMetadata: NextSeoProps
   }
-  quote?: any;
+  quote?: QuoteInterface;
 }
 
 interface CustomAppProps extends AppProps {
