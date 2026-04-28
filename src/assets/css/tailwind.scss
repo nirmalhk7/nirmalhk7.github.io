@@ -163,12 +163,13 @@
   /* Header/Nav */
   .header-nav-wrap {
     @media only screen and (max-width: 766px) {
-      @apply fixed left-0 top-0 w-full bg-black p-10 transition duration-300;
+      @apply fixed left-0 top-0 w-full h-screen bg-black p-10 transition duration-300;
     }
 
     &__navbar {
       @media only screen and (max-width: 766px) {
-        line-height: 5rem;
+        line-height: 6rem;
+        @apply text-[2rem];
       }
 
       li {
@@ -176,7 +177,7 @@
 
         @media only screen and (max-width: 766px) {
           display: block !important;
-          @apply py-4 border-b border-white/5;
+          @apply py-6 border-b border-white/5;
           margin-right: 0 !important;
         }
 
