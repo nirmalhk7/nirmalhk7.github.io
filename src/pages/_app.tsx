@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import dynamic from "next/dynamic";
 
 import "@/assets/css/tailwind.scss";
@@ -11,7 +11,6 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/elements/navbar";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
-import Loader from "@/components/Loader/Loader";
 import ScrollToTop from "@/elements/scrollToTop";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useAnalytics } from "@/hooks/useAnalytics";
@@ -38,8 +37,6 @@ interface CustomAppProps extends AppProps {
 }
 
 export default function App({ Component, pageProps }: CustomAppProps) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isFinishing, setIsFinishing] = useState(false);
   const router = useRouter();
 
   const { scrollYProgress } = useScroll();
@@ -51,30 +48,11 @@ export default function App({ Component, pageProps }: CustomAppProps) {
 
   useAnalytics();
 
-  useEffect(() => {
-    const handleLoad = () => {
-        setIsFinishing(true);
-    };
-
-    if (document.readyState === "complete") {
-      handleLoad();
-    } else {
-      window.addEventListener("load", handleLoad);
-      return () => window.removeEventListener("load", handleLoad);
-    }
-  }, []);
-
   return (
     <div className="min-h-screen scroll-smooth">
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-accent z-[60] origin-left"
         style={{ scaleX }}
-      />
-      <Loader 
-        isLoading={isLoading} 
-        isFinishing={isFinishing} 
-        duration={1000} 
-        onComplete={() => setIsLoading(false)} 
       />
       <ScrollToTop />
       <DefaultSeo
