@@ -45,7 +45,11 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
             {blogItems.map((element, index) => {
               return (
                 <motion.div variants={slideUpItem} className="break-inside-avoid-column mb-8" key={index}>
-                  <div className="overflow-hidden relative rounded-3xl group shadow-md hover:shadow-2xl transition-all duration-500 bg-black min-h-[250px] flex flex-col justify-end">
+                  <div 
+                    className={`overflow-hidden relative rounded-3xl group shadow-md hover:shadow-2xl transition-all duration-500 bg-black flex flex-col justify-end ${
+                      index % 3 === 0 ? "min-h-[450px]" : index % 3 === 1 ? "min-h-[350px]" : "min-h-[400px]"
+                    }`}
+                  >
                     <Image
                       src={element.frontmatter?.img || ""}
                       fill
@@ -60,7 +64,9 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                     >
                       <span className="sr-only">Read {element.frontmatter?.title}</span>
                     </Link>
-                    <div className="p-10 z-20 relative w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-32">
+                    <div className={`p-10 z-20 relative w-full bg-gradient-to-t from-black via-black/95 to-transparent ${
+                      index % 2 === 0 ? "pt-48" : "pt-32"
+                    }`}>
                       <div className="space-y-4">
                         <strong className="text-accent uppercase font-blocky text-sm tracking-widest block font-bold">
                           {element.frontmatter?.category}
@@ -69,13 +75,13 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                           {element.frontmatter?.title}
                         </h4>
                         {element.excerpt && (
-                          <p className="text-gray-300 text-lg line-clamp-3 leading-relaxed">
+                          <p className="text-gray-300 text-lg leading-relaxed line-clamp-4">
                             {element.excerpt}
                           </p>
                         )}
                         <div className="flex justify-between items-center text-gray-300 uppercase font-blocky text-sm tracking-wider pt-6 border-t border-white/10 mt-8">
-                          <span className="font-medium">{element.frontmatter?.date}</span>
-                          <span className="text-accent font-bold group-hover:translate-x-1 transition-transform">READ MORE →</span>
+                          <span className="font-bold">{element.frontmatter?.date}</span>
+                          <span className="text-accent font-bold group-hover:translate-x-2 transition-transform">READ MORE →</span>
                         </div>
                       </div>
                     </div>
