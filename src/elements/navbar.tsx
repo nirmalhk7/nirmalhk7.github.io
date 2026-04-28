@@ -8,16 +8,16 @@ import { trackClick } from "@/util/analytics";
 const Navbar = () => {
   const router = useRouter();
   const [mobileMenuClick, mobileMenuSet] = useState(false);
-  const { scrollY } = useScroll();
+  const { scrollYProgress } = useScroll();
 
-  // Define transition points: 0 to 300px scroll
-  const backdropBlur = useTransform(scrollY, [0, 300], ["blur(0px)", "blur(12px)"]);
-  const shadow = useTransform(scrollY, [0, 300], ["none", "0 10px 15px -3px rgb(0 0 0 / 0.1)"]);
+  // Define transition across the entire page: 0 (top) to 1 (bottom)
+  const backdropBlur = useTransform(scrollYProgress, [0, 1], ["blur(12px)", "blur(12px)"]);
+  const shadow = useTransform(scrollYProgress, [0, 1], ["0 10px 15px -3px rgb(0 0 0 / 0.1)", "0 10px 15px -3px rgb(0 0 0 / 0.1)"]);
   const gradient = useTransform(
-    scrollY,
-    [0, 300],
+    scrollYProgress,
+    [0, 1],
     [
-      "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(217,56,56,0) 100%)",
+      "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 100%)",
       "linear-gradient(to right, rgba(0,0,0,1) 90%, rgba(217,56,56,1) 100%)"
     ]
   );
