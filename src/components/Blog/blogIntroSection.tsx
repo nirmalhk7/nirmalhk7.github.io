@@ -8,9 +8,9 @@ const BlogIntroSection = ({ name }: { name: string }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Smooth out the mouse movement even more
-  const smoothX = useSpring(mouseX, { damping: 50, stiffness: 200 });
-  const smoothY = useSpring(mouseY, { damping: 50, stiffness: 200 });
+  // Much smoother spring settings
+  const smoothX = useSpring(mouseX, { damping: 100, stiffness: 50 });
+  const smoothY = useSpring(mouseY, { damping: 100, stiffness: 50 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const section = sectionRef.current;
@@ -27,34 +27,34 @@ const BlogIntroSection = ({ name }: { name: string }) => {
 
   // Convert mouse coordinates to an angle for the gradient
   const background = useTransform([smoothX, smoothY], ([latestX, latestY]) => {
-    // Initial state or far from center: keep it "to right" (90deg)
-    if (latestX === 0 && latestY === 0) return "linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(217, 56, 56, 1) 100%)";
+    // Initial state: subtle accent gradient
+    if (latestX === 0 && latestY === 0) return "linear-gradient(90deg, rgba(217, 56, 56, 0.4) 0%, rgba(217, 56, 56, 1) 100%)";
     
     const angle = Math.atan2(latestY, latestX) * (180 / Math.PI);
-    // Gradient from white to accent color
-    return `linear-gradient(${angle + 90}deg, rgba(255, 255, 255, 1) 0%, rgba(217, 56, 56, 1) 100%)`;
+    // Gradient from light accent to full accent (less white)
+    return `linear-gradient(${angle + 90}deg, rgba(217, 56, 56, 0.4) 0%, rgba(217, 56, 56, 1) 100%)`;
   });
 
   return (
     <WebSection
       ref={sectionRef}
       onMouseMove={handleMouseMove}
-      className="selection:bg-accent selection:text-white bg-white text-white transition-[background] duration-500 ease-out"
+      className="selection:bg-white selection:text-accent bg-white text-white"
       id="blog"
       style={{ background }}
     >
       <div className="narrow mx-auto text-center pb-6 relative">
         <div className="w-full">
-          <h3 className="leading-tight text-accent my-0 drop-shadow-sm">
+          <h3 className="leading-tight text-white my-0 drop-shadow-sm opacity-90">
             {name}
           </h3>
-          <h1 className="mt-0 text-black">
+          <h1 className="mt-0 text-white drop-shadow-md">
             Latest From The Blog
           </h1>
-          <p className="text-center m-0 p-0 font-normal text-black/80">
+          <p className="text-center m-0 p-0 font-normal text-white/90">
             I have strong views on topics like Finance, Technology, Future and
             Environment. Find me&nbsp;
-            <Link className="text-accent font-bold" title={name} href="/blog">
+            <Link className="text-white font-bold underline decoration-white/30 hover:decoration-white transition-all" title={name} href="/blog">
               blogging about them here
             </Link>
             .
