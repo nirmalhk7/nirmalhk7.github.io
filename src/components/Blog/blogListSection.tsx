@@ -45,22 +45,22 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
             {blogItems.map((element, index) => {
               return (
                 <motion.div variants={slideUpItem} className="break-inside-avoid-column mb-8" key={index}>
-                  <div className="overflow-hidden relative rounded-3xl group shadow-md hover:shadow-2xl transition-all duration-500 bg-black">
+                  <div className="overflow-hidden relative rounded-3xl group shadow-md hover:shadow-2xl transition-all duration-500 bg-black min-h-[250px] flex flex-col justify-end">
+                    <Image
+                      src={element.frontmatter?.img || ""}
+                      fill
+                      alt={element.frontmatter?.title || "Blog image"}
+                      className="brightness-75 group-hover:brightness-50 group-hover:scale-105 transition duration-700 object-cover"
+                    />
                     <Link
                       title={element.excerpt ?? "The Blue Green Manual"}
                       href={`/blog/${element.slug}`}
+                      className="absolute inset-0 z-10"
                       onClick={() => trackClick(element.frontmatter?.title || "", "blog_list_link")}
                     >
-                      <div className="relative aspect-[4/5]">
-                        <Image
-                          src={element.frontmatter?.img || ""}
-                          fill
-                          alt={element.frontmatter?.title || "Blog image"}
-                          className="brightness-75 group-hover:brightness-50 group-hover:scale-105 transition duration-700 object-cover"
-                        />
-                      </div>
+                      <span className="sr-only">Read {element.frontmatter?.title}</span>
                     </Link>
-                    <div className="p-10 z-20 bottom-0 left-0 absolute w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-32 pointer-events-none">
+                    <div className="p-10 z-20 relative w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-32 pointer-events-none">
                       <div className="space-y-3">
                         <strong className="text-accent uppercase font-blocky text-sm tracking-widest block font-bold">
                           {element.frontmatter?.category}
