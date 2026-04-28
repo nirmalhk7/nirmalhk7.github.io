@@ -131,7 +131,7 @@ const BlogTemplate = ({
   return (
     <main>
       <article className="bg-white has-bottom-sep">
-        <Jumbotron.mini
+        <Jumbotron.Mini
           backgroundImage={current.frontmatter?.img || ""}
           backgroundImageAlt="Earth from Space"
           title={current.frontmatter?.title || ""}

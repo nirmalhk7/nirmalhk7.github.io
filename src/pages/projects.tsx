@@ -43,7 +43,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
   };
   return (
     <main>
-      <Jumbotron.mini
+      <Jumbotron.Mini
         backgroundImage={nasaGalaxy}
         backgroundImageAlt="Earth from Space"
         title="Projects"
