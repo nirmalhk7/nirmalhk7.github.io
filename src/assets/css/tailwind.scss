@@ -168,15 +168,18 @@
 
     &__navbar {
       @media only screen and (max-width: 766px) {
-        line-height: 4rem;
+        line-height: 5rem;
       }
 
       li {
         @apply inline-block;
-        
+
         @media only screen and (max-width: 766px) {
           display: block !important;
+          @apply py-4 border-b border-white/5;
+          margin-right: 0 !important;
         }
+
       }
     }
   }
