@@ -60,16 +60,21 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                     >
                       <span className="sr-only">Read {element.frontmatter?.title}</span>
                     </Link>
-                    <div className="p-10 z-20 relative w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-32 pointer-events-none">
-                      <div className="space-y-3">
+                    <div className="p-10 z-20 relative w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-32">
+                      <div className="space-y-4">
                         <strong className="text-accent uppercase font-blocky text-sm tracking-widest block font-bold">
                           {element.frontmatter?.category}
                         </strong>
-                        <h4 className="text-white text-3xl m-0 font-bold leading-tight">
+                        <h4 className="text-white text-4xl m-0 font-bold leading-tight">
                           {element.frontmatter?.title}
                         </h4>
-                        <div className="flex justify-between items-center text-gray-400 uppercase font-blocky text-xs tracking-tighter pt-4 border-t border-white/10 mt-6">
-                          <span>{element.frontmatter?.date}</span>
+                        {element.excerpt && (
+                          <p className="text-gray-300 text-lg line-clamp-3 leading-relaxed">
+                            {element.excerpt}
+                          </p>
+                        )}
+                        <div className="flex justify-between items-center text-gray-300 uppercase font-blocky text-sm tracking-wider pt-6 border-t border-white/10 mt-8">
+                          <span className="font-medium">{element.frontmatter?.date}</span>
                           <span className="text-accent font-bold group-hover:translate-x-1 transition-transform">READ MORE →</span>
                         </div>
                       </div>
