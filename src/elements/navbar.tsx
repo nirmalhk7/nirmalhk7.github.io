@@ -1,14 +1,26 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Scrollspy from "react-scrollspy";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { trackClick } from "@/util/analytics";
 
 const Navbar = () => {
   const router = useRouter();
   const [mobileMenuClick, mobileMenuSet] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useScroll();
+
+  // Define transition points: 0 to 300px scroll
+  const backdropBlur = useTransform(scrollY, [0, 300], ["blur(0px)", "blur(12px)"]);
+  const shadow = useTransform(scrollY, [0, 300], ["none", "0 10px 15px -3px rgb(0 0 0 / 0.1)"]);
+  const gradient = useTransform(
+    scrollY,
+    [0, 300],
+    [
+      "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(217,56,56,0) 100%)",
+      "linear-gradient(to right, rgba(0,0,0,1) 90%, rgba(217,56,56,1) 100%)"
+    ]
+  );
 
   const navbarInternalData = [
     {
@@ -33,35 +45,17 @@ const Navbar = () => {
     },
   ].filter((i) => i);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const hero = document.getElementById("max-jumbo") || document.getElementById("hero-header") || document.querySelector(".page-header");
-      const heroHeight = hero ? (hero as HTMLElement).offsetHeight : window.innerHeight;
-      
-      if (window.scrollY >= heroHeight - 80) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <motion.header 
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`font-blocky transition-all duration-300 font-bold text-base leading-[7.2rem] tracking-[0.25rem] uppercase w-full h-navbar z-50 selection:bg-accent selection:text-white ${
-        isScrolled 
-          ? "fixed top-0 bg-black text-white shadow-lg" 
-          : "absolute top-0 bg-transparent text-white"
-      }`}
+      style={{ 
+        backgroundImage: gradient,
+        backdropFilter: backdropBlur,
+        boxShadow: shadow,
+      }}
+      className="font-blocky fixed top-0 transition-all duration-100 font-bold text-base leading-[7.2rem] tracking-[0.25rem] uppercase w-full h-navbar z-50 selection:bg-accent selection:text-white text-white"
     >
       <Link
         href="/"
