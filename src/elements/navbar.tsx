@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Scrollspy from "react-scrollspy";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { trackClick } from "@/util/analytics";
 
 const Navbar = () => {
@@ -84,29 +84,65 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       style={{
-        backdropFilter: isScrolled ? "blur(12px)" : "none",
-        WebkitBackdropFilter: isScrolled ? "blur(12px)" : "none",
+        backdropFilter: isScrolled && !mobileMenuClick ? "blur(12px)" : "none",
+        WebkitBackdropFilter: isScrolled && !mobileMenuClick ? "blur(12px)" : "none",
       }}
       className={`font-blocky transition-all duration-300 font-bold text-base leading-[7.2rem] tracking-[0.25rem] uppercase w-full h-navbar z-50 selection:bg-accent selection:text-white ${
-        isScrolled 
-          ? "fixed top-0 bg-black/80 text-white shadow-lg" 
+        isScrolled || mobileMenuClick
+          ? "fixed top-0 text-white shadow-lg bg-black/80" 
           : "absolute top-0 bg-transparent text-white"
       }`}
     >
+      <AnimatePresence>
+        {mobileMenuClick && (
+          <motion.nav
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="header-nav-wrap fixed inset-0 w-full h-screen bg-black p-10 tablet:hidden"
+          >
+            <Scrollspy
+              className="header-nav-wrap__navbar inline-block h-16 m-0 list-none mt-20"
+              currentClassName="!text-accent"
+              items={navbarInternalData.map((element) =>
+                element.label.toLowerCase()
+              )}
+              offset={-100}
+            >
+              {navbarInternalData.map((element) => (
+                <li 
+                  className="pl-0 relative group" 
+                  key={element.label}
+                >
+                  <Link
+                    className="hover:text-accent relative z-10 transition-colors"
+                    title={element.label}
+                    href={element.route}
+                    onClick={(e) => handleLinkClick(e, element.route)}
+                  >
+                    {element.label}
+                  </Link>
+                </li>
+              ))}
+            </Scrollspy>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+
       <Link
         href="/"
         onClick={(e) => handleLinkClick(e, "/")}
-        className="text-white no-underline left-20 inline-block m-0 p-0 absolute hover:text-accent"
+        className={`text-white no-underline left-20 inline-block m-0 p-0 absolute hover:text-accent ${
+          mobileMenuClick ? "opacity-0 invisible" : "opacity-100 visible"
+        }`}
       >
         nirmalhk7
       </Link>
-      <nav
-        className={`header-nav-wrap absolute right-20 tablet:block tablet:transition-all ${
-          !mobileMenuClick ? "hidden" : ""
-        }`}
-      >
+
+      <nav className="header-nav-wrap absolute right-20 hidden tablet:block">
         <Scrollspy
-          className="header-nav-wrap__navbar inline-block h-16 m-0 list-none tablet:mt-0 mt-20"
+          className="header-nav-wrap__navbar inline-block h-16 m-0 list-none"
           currentClassName="!text-accent"
           items={navbarInternalData.map((element) =>
             element.label.toLowerCase()
@@ -131,7 +167,7 @@ const Navbar = () => {
               {hoveredIndex === index && (
                 <motion.div
                   layoutId="navbar-hover"
-                  className="absolute inset-x-[-12px] inset-y-[-4px] bg-accent/20 rounded-lg z-0 hidden tablet:block"
+                  className="absolute inset-x-[-12px] inset-y-[-4px] bg-accent/20 rounded-lg z-0"
                   transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
                 />
               )}
@@ -139,7 +175,7 @@ const Navbar = () => {
           ))}
         </Scrollspy>
       </nav>
-      <div className="absolute right-10 top-0 h-full flex items-center tablet:hidden">
+      <div className="absolute right-10 top-0 h-full flex items-center tablet:hidden z-[60]">
         <Link
           className={`header-menu-toggle !static !block ${
             mobileMenuClick ? "is-clicked" : ""
