@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ScrollToTop = () => {
@@ -36,10 +36,10 @@ const ScrollToTop = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-[100] bg-accent text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-accent/80 transition-colors"
+          className="fixed bottom-8 right-8 z-[100] bg-accent text-white w-24 h-24 rounded-full shadow-lg flex items-center justify-center hover:bg-accent/80 transition-colors"
           aria-label="Scroll to top"
         >
-          <FontAwesomeIcon icon={faArrowUp} />
+          <FontAwesomeIcon icon={faChevronUp} className="text-4xl" />
         </motion.button>
       )}
     </AnimatePresence>
