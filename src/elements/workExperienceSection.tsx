@@ -1,10 +1,34 @@
 import React from "react";
 import WebSection from "@/elements/WebSection";
+import { motion } from "framer-motion";
+
 type WorkExperienceType = {
   timeframe: string;
   company: string;
   post: string;
   description: string | string[];
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
 };
 
 const WorkExperienceSection = ({
@@ -20,9 +44,19 @@ const WorkExperienceSection = ({
       <div className="col text-center">
         <h3 className="mb-24">My Work Experience</h3>
       </div>
-      <div className="columns-1 tablet:columns-2">
+      <motion.div 
+        className="columns-1 tablet:columns-2"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
         {experience.map((element, index) => (
-          <div className="break-inside-avoid left" key={index}>
+          <motion.div 
+            className="break-inside-avoid left" 
+            key={index}
+            variants={itemVariants}
+          >
             <div className="timeline mb-8">
               <div className="timeline__block">
                 <div className="timeline__bullet" data-first={index} />
@@ -48,9 +82,9 @@ const WorkExperienceSection = ({
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   </WebSection>
 );

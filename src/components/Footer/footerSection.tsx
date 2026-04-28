@@ -2,12 +2,19 @@
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { motion } from "framer-motion";
 
 import { social } from "@/components/Social/socialSection";
 
 const FooterSection = () => {
   return (
-    <footer className="selection:bg-accent selection:text-white">
+    <motion.footer 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="selection:bg-accent selection:text-white pb-12"
+    >
       {process.env.NEXT_PUBLIC ? <div className="">
         <div className="mb-32">
           <ul className="list-none mt-12 ml-0 font-blocky font-normal text-[1.3rem] uppercase tracking-[0.3rem] no-underline">
@@ -50,7 +57,7 @@ const FooterSection = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 export default FooterSection;

@@ -12,9 +12,10 @@ import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/elements/navbar";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import Loader from "@/components/Loader/Loader";
+import ScrollToTop from "@/elements/scrollToTop";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { useRouter } from "next/router";
 
 // Dynamic imports for performance
@@ -41,6 +42,13 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   const [isFinishing, setIsFinishing] = useState(false);
   const router = useRouter();
 
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   useAnalytics();
 
   useEffect(() => {
@@ -58,12 +66,17 @@ export default function App({ Component, pageProps }: CustomAppProps) {
 
   return (
     <div className="min-h-screen scroll-smooth">
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-accent z-[60] origin-left"
+        style={{ scaleX }}
+      />
       <Loader 
         isLoading={isLoading} 
         isFinishing={isFinishing} 
         duration={1000} 
         onComplete={() => setIsLoading(false)} 
       />
+      <ScrollToTop />
       <DefaultSeo
         defaultTitle="Nirmal Khedkar | Official Website"
         description="Fortress Code, Lightning Fast: Hi, I'm Nirmal Khedkar."
