@@ -15,6 +15,12 @@
     @apply h-full text-[10px] leading-[1.15] scroll-smooth;
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
+    }
   }
 
   body {
@@ -22,17 +28,11 @@
     text-rendering: optimizeLegibility;
     -webkit-overflow-scrolling: touch;
     word-wrap: break-word;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
 
     &::-webkit-scrollbar {
-      @apply w-2.5;
-    }
-
-    &::-webkit-scrollbar-track {
-      @apply bg-gray-100;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      @apply rounded-[6px] bg-accent;
+      display: none; /* Chrome, Safari and Opera */
     }
   }
 
