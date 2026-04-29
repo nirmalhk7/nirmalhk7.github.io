@@ -2,10 +2,17 @@ import { useForm, ValidationError } from "@formspree/react";
 import React from "react";
 import WebSection from "@/elements/WebSection";
 import { trackClick, trackFormFocus } from "@/util/analytics";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function ContactMeSection() {
   const [state, handleSubmit] = useForm("mgvwblra");
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+  const skyY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["4%", "-4%"]);
 
   React.useEffect(() => {
     if (state.succeeded) {
@@ -18,13 +25,28 @@ export default function ContactMeSection() {
   }
 
   return (
-    <div>
+    <div ref={containerRef}>
       <WebSection
         id="contact"
-        className="relative bg-black selection:bg-accent selection:text-white"
+        className="relative overflow-hidden bg-black selection:bg-accent selection:text-white"
       >
+        <motion.div
+          className="contact-shooting-stars pointer-events-none absolute -inset-y-24 inset-x-0 z-0"
+          aria-hidden="true"
+          style={{ y: skyY }}
+        >
+          <div className="contact-stars">
+            {Array.from({ length: 9 }).map((_, index) => (
+              <span key={index} />
+            ))}
+          </div>
+        </motion.div>
+        <motion.div
+          className="relative z-10"
+          style={{ y: contentY }}
+        >
         <motion.div 
-          className="container mx-auto z-10"
+          className="container mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -107,6 +129,7 @@ export default function ContactMeSection() {
               </a>
             </div>
           </div>
+        </motion.div>
         </motion.div>
       </WebSection>
     </div>
