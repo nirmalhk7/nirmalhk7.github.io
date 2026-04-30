@@ -36,7 +36,7 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
             </div>
           </div>
           <motion.div 
-            className="py-5 columns-4 gap-0"
+            className="py-10 columns-1 tablet:columns-2 laptop:columns-3 desktop:columns-4 gap-8"
             variants={staggerContainer}
             initial="hidden"
             whileInView="show"
@@ -44,31 +44,44 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
           >
             {blogItems.map((element, index) => {
               return (
-                <motion.div variants={slideUpItem} className="break-inside-avoid-column" key={index}>
-                  <div className=" overflow-hidden relative hover:opacity-100 hover:visible">
+                <motion.div variants={slideUpItem} className="break-inside-avoid-column mb-8" key={index}>
+                  <div 
+                    className={`overflow-hidden relative rounded-3xl group shadow-md hover:shadow-2xl transition-all duration-500 bg-black flex flex-col justify-end ${
+                      index % 3 === 0 ? "min-h-[450px]" : index % 3 === 1 ? "min-h-[350px]" : "min-h-[400px]"
+                    }`}
+                  >
+                    <Image
+                      src={element.frontmatter?.img || ""}
+                      fill
+                      alt={element.frontmatter?.title || "Blog image"}
+                      className="brightness-75 group-hover:brightness-50 group-hover:scale-105 transition duration-700 object-cover"
+                    />
                     <Link
                       title={element.excerpt ?? "The Blue Green Manual"}
                       href={`/blog/${element.slug}`}
+                      className="absolute inset-0 z-30"
                       onClick={() => trackClick(element.frontmatter?.title || "", "blog_list_link")}
                     >
-                      <Image
-                        src={element.frontmatter?.img || ""}
-                        width={500}
-                        height={600}
-                        alt={element.frontmatter?.title || "Blog image"}
-                        className="brightness-50 hover:brightness-25 hover:scale-105 transition duration-300"
-                      />
+                      <span className="sr-only">Read {element.frontmatter?.title}</span>
                     </Link>
-                    <div className="px-8 z-20 bottom-8	left-0 absolute w-full">
-                      <div className="grid grid-flow-row-dense grid-cols-2">
-                        <h4 className="text-white text-2xl m-0 font-bold col-span-2">
-                          {element.frontmatter?.title}
-                        </h4>
-                        <strong className="text-accent uppercase font-blocky">
+                    <div className={`p-10 z-20 relative w-full bg-gradient-to-t from-black via-black/95 to-transparent ${
+                      index % 2 === 0 ? "pt-48" : "pt-32"
+                    }`}>
+                      <div className="space-y-4">
+                        <strong className="text-accent uppercase font-blocky text-sm tracking-widest block font-bold">
                           {element.frontmatter?.category}
                         </strong>
-                        <div className="text-gray-300 uppercase font-blocky text-end">
-                          {element.frontmatter?.date}
+                        <h4 className="text-white text-5xl m-0 font-bold leading-tight">
+                          {element.frontmatter?.title}
+                        </h4>
+                        {element.excerpt && (
+                          <p className="text-gray-300 text-2xl leading-relaxed line-clamp-4">
+                            {element.excerpt}
+                          </p>
+                        )}
+                        <div className="flex justify-between items-center text-gray-300 uppercase font-blocky text-sm tracking-wider pt-6 border-t border-white/10 mt-8">
+                          <span className="font-bold">{element.frontmatter?.date}</span>
+                          <span className="text-accent font-bold group-hover:translate-x-2 transition-transform">READ MORE →</span>
                         </div>
                       </div>
                     </div>

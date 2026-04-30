@@ -10,7 +10,7 @@ import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { DefaultPageProps } from "./_app";
 import { BlogFrontmatterInterface, BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
 import blogWallpaper from "@/assets/images/datacenter.jpg";
-import { sortBy } from "lodash";
+import sortBy from "lodash/sortBy";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
 import { trackView } from "@/util/analytics";
@@ -61,6 +61,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
   const miniBlogInformation = blogDetail.map((blog) => ({
     ...blog,
     content: "",
+    excerpt: blog.frontmatter.description || blog.excerpt || "",
   }));
   return {
     props: {

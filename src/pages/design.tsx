@@ -1,6 +1,6 @@
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import WebSection from "@/elements/WebSection";
-import { sampleSize } from "lodash";
+import sampleSize from "lodash/sampleSize";
 import { GetStaticProps } from "next";
 import React from "react";
 import loadYaml from "@/util/loadYaml";

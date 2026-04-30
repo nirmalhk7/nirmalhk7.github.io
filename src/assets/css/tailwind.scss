@@ -3,34 +3,29 @@
 @import "./index.scss";
 
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   /* Global Resets & Base Styles */
   html {
-    @apply h-full text-[10px] leading-[1.15];
+    @apply text-[10px] leading-[1.15] scroll-smooth scroll-pt-[72px];
     -webkit-text-size-adjust: 100%;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
+    }
   }
 
   body {
-    @apply h-full m-0 bg-black p-0 font-blocky text-2xl font-normal leading-7;
+    @apply m-0 bg-black p-0 font-blocky text-2xl font-normal leading-7;
     text-rendering: optimizeLegibility;
-    -webkit-overflow-scrolling: touch;
     word-wrap: break-word;
-
-    &::-webkit-scrollbar {
-      @apply w-2.5;
-    }
-
-    &::-webkit-scrollbar-track {
-      @apply bg-gray-100;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      @apply rounded-[6px] bg-accent;
-    }
   }
 
   /* Layout Elements */
@@ -113,7 +108,6 @@
 
   input, textarea, select {
     @apply m-0 block h-[6rem] w-full max-w-full border-0 border-b-2 border-gray-500 bg-transparent p-[1.5rem_0] font-blocky text-[1.5rem] font-normal leading-[3rem] text-gray-100 outline-none transition-all duration-300 ease-in-out;
-    font-family: sans-serif;
   }
 
   input { @apply overflow-visible; }
@@ -160,20 +154,24 @@
   /* Header/Nav */
   .header-nav-wrap {
     @media only screen and (max-width: 766px) {
-      @apply fixed left-0 top-0 w-full bg-black p-10 transition duration-300;
+      @apply fixed left-0 top-0 w-full h-screen bg-black p-10 transition duration-300;
     }
 
     &__navbar {
       @media only screen and (max-width: 766px) {
-        line-height: 4rem;
+        line-height: 6rem;
+        @apply text-[2rem];
       }
 
       li {
         @apply inline-block;
-        
+
         @media only screen and (max-width: 766px) {
           display: block !important;
+          @apply py-6 border-b border-white/5;
+          margin-right: 0 !important;
         }
+
       }
     }
   }
@@ -201,6 +199,236 @@
   }
 
   /* Contact Form */
+  .contact-shooting-stars {
+    isolation: isolate;
+
+    &::before {
+      @apply pointer-events-none absolute inset-0 z-0;
+      content: "";
+      background:
+        radial-gradient(circle at 12% 20%, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 2.6px),
+        radial-gradient(circle at 16% 44%, rgba(255, 255, 255, 0.52) 0 1.2px, transparent 2.2px),
+        radial-gradient(circle at 20% 66%, rgba(255, 255, 255, 0.58) 0 1.3px, transparent 2.3px),
+        radial-gradient(circle at 26% 12%, rgba(255, 255, 255, 0.68) 0 1.3px, transparent 2.4px),
+        radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.72) 0 1.4px, transparent 2.4px),
+        radial-gradient(circle at 40% 54%, rgba(255, 255, 255, 0.56) 0 1.2px, transparent 2.2px),
+        radial-gradient(circle at 48% 78%, rgba(255, 255, 255, 0.5) 0 1.2px, transparent 2.2px),
+        radial-gradient(circle at 56% 36%, rgba(255, 255, 255, 0.86) 0 1.5px, transparent 2.6px),
+        radial-gradient(circle at 64% 16%, rgba(255, 255, 255, 0.78) 0 1.4px, transparent 2.4px),
+        radial-gradient(circle at 68% 86%, rgba(255, 255, 255, 0.52) 0 1.2px, transparent 2.2px),
+        radial-gradient(circle at 76% 52%, rgba(255, 255, 255, 0.58) 0 1.3px, transparent 2.3px),
+        radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.64) 0 1.3px, transparent 2.3px),
+        radial-gradient(circle at 88% 32%, rgba(255, 255, 255, 0.74) 0 1.4px, transparent 2.4px),
+        radial-gradient(circle at 92% 72%, rgba(255, 255, 255, 0.48) 0 1.2px, transparent 2.2px),
+        linear-gradient(180deg, rgba(10, 18, 32, 0.7), rgba(0, 0, 0, 0) 68%);
+      animation: contact-starfield-twinkle 6s ease-in-out infinite alternate;
+    }
+
+    &::after {
+      @apply pointer-events-none absolute inset-0 z-0 opacity-100;
+      content: "";
+      background:
+        radial-gradient(circle at 4% 74%, rgba(255, 255, 255, 0.44) 0 1px, transparent 1.9px),
+        radial-gradient(circle at 7% 38%, rgba(255, 255, 255, 0.62) 0 1.2px, transparent 2.1px),
+        radial-gradient(circle at 11% 86%, rgba(255, 255, 255, 0.32) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.46) 0 1px, transparent 1.9px),
+        radial-gradient(circle at 23% 35%, rgba(255, 255, 255, 0.72) 0 1.3px, transparent 2.3px),
+        radial-gradient(circle at 29% 70%, rgba(255, 255, 255, 0.38) 0 1px, transparent 1.9px),
+        radial-gradient(circle at 33% 92%, rgba(255, 255, 255, 0.54) 0 1.1px, transparent 2px),
+        radial-gradient(circle at 37% 16%, rgba(255, 255, 255, 0.36) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 43% 44%, rgba(255, 255, 255, 0.58) 0 1.2px, transparent 2.1px),
+        radial-gradient(circle at 51% 11%, rgba(255, 255, 255, 0.44) 0 1px, transparent 1.9px),
+        radial-gradient(circle at 53% 64%, rgba(255, 255, 255, 0.68) 0 1.3px, transparent 2.2px),
+        radial-gradient(circle at 59% 82%, rgba(255, 255, 255, 0.34) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 61% 27%, rgba(255, 255, 255, 0.5) 0 1.1px, transparent 2px),
+        radial-gradient(circle at 69% 48%, rgba(255, 255, 255, 0.42) 0 1px, transparent 1.9px),
+        radial-gradient(circle at 73% 8%, rgba(255, 255, 255, 0.6) 0 1.2px, transparent 2.1px),
+        radial-gradient(circle at 78% 88%, rgba(255, 255, 255, 0.48) 0 1.1px, transparent 2px),
+        radial-gradient(circle at 84% 41%, rgba(255, 255, 255, 0.74) 0 1.3px, transparent 2.3px),
+        radial-gradient(circle at 89% 14%, rgba(255, 255, 255, 0.36) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 94% 63%, rgba(255, 255, 255, 0.56) 0 1.2px, transparent 2.1px),
+        radial-gradient(circle at 97% 91%, rgba(255, 255, 255, 0.4) 0 1px, transparent 1.9px);
+      animation: contact-starfield-pulse 4.8s ease-in-out infinite alternate;
+    }
+  }
+
+  .contact-stars {
+    @apply pointer-events-none absolute inset-0 z-0 overflow-hidden;
+
+    span {
+      @apply absolute block h-px rounded-full;
+      width: var(--star-width);
+      left: var(--star-left);
+      top: var(--star-top);
+      opacity: 0;
+      transform: rotate(var(--star-angle)) translate3d(0, 0, 0);
+      transform-origin: left center;
+      animation: contact-shooting-star var(--star-duration) ease-out var(--star-delay) infinite;
+      background: linear-gradient(90deg, transparent, rgba(217, 56, 56, 0.28) 52%, rgba(255, 255, 255, 0.9));
+      filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.36));
+
+      &::before {
+        @apply absolute right-0 top-1/2 rounded-full bg-white;
+        content: "";
+        width: var(--star-head);
+        height: var(--star-head);
+        transform: translate(50%, -50%);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.85), 0 0 24px rgba(217, 56, 56, 0.3);
+      }
+
+      &:nth-child(1) {
+        --star-left: 6%;
+        --star-top: 10%;
+        --star-angle: 34deg;
+        --star-width: 8rem;
+        --star-head: 0.42rem;
+        --star-distance: 34rem;
+        --star-duration: 9.4s;
+        --star-delay: 0.8s;
+      }
+
+      &:nth-child(2) {
+        --star-left: 82%;
+        --star-top: 12%;
+        --star-angle: 136deg;
+        --star-width: 11rem;
+        --star-head: 0.5rem;
+        --star-distance: 42rem;
+        --star-duration: 11.8s;
+        --star-delay: 3.2s;
+      }
+
+      &:nth-child(3) {
+        --star-left: 38%;
+        --star-top: 22%;
+        --star-angle: 28deg;
+        --star-width: 6.5rem;
+        --star-head: 0.34rem;
+        --star-distance: 26rem;
+        --star-duration: 8.7s;
+        --star-delay: 6.4s;
+      }
+
+      &:nth-child(4) {
+        --star-left: 94%;
+        --star-top: 30%;
+        --star-angle: 148deg;
+        --star-width: 9rem;
+        --star-head: 0.44rem;
+        --star-distance: 36rem;
+        --star-duration: 10.6s;
+        --star-delay: 8.8s;
+      }
+
+      &:nth-child(5) {
+        --star-left: 14%;
+        --star-top: 42%;
+        --star-angle: 41deg;
+        --star-width: 12rem;
+        --star-head: 0.56rem;
+        --star-distance: 44rem;
+        --star-duration: 13.2s;
+        --star-delay: 4.9s;
+      }
+
+      &:nth-child(6) {
+        --star-left: 86%;
+        --star-top: 44%;
+        --star-angle: 132deg;
+        --star-width: 7.5rem;
+        --star-head: 0.38rem;
+        --star-distance: 30rem;
+        --star-duration: 9.9s;
+        --star-delay: 12.6s;
+      }
+
+      &:nth-child(7) {
+        --star-left: 28%;
+        --star-top: 58%;
+        --star-angle: 52deg;
+        --star-width: 5rem;
+        --star-head: 0.3rem;
+        --star-distance: 22rem;
+        --star-duration: 8.2s;
+        --star-delay: 15.4s;
+      }
+
+      &:nth-child(8) {
+        --star-left: 72%;
+        --star-top: 62%;
+        --star-angle: 144deg;
+        --star-width: 10rem;
+        --star-head: 0.46rem;
+        --star-distance: 38rem;
+        --star-duration: 12.4s;
+        --star-delay: 18.8s;
+      }
+
+      &:nth-child(9) {
+        --star-left: 46%;
+        --star-top: 6%;
+        --star-angle: 36deg;
+        --star-width: 7rem;
+        --star-head: 0.36rem;
+        --star-distance: 28rem;
+        --star-duration: 10.8s;
+        --star-delay: 21.2s;
+      }
+    }
+  }
+
+  @keyframes contact-starfield-twinkle {
+    0% { opacity: 0.78; }
+    35% { opacity: 1; }
+    62% { opacity: 0.82; }
+    100% { opacity: 0.96; }
+  }
+
+  @keyframes contact-starfield-pulse {
+    0% { opacity: 0.72; }
+    40% { opacity: 1; }
+    70% { opacity: 0.78; }
+    100% { opacity: 0.94; }
+  }
+
+  @keyframes contact-shooting-star {
+    0% {
+      opacity: 0;
+      transform: rotate(var(--star-angle)) translate3d(0, 0, 0);
+    }
+    3% {
+      opacity: 0;
+    }
+    7% {
+      opacity: 0.92;
+    }
+    14% {
+      opacity: 0.86;
+    }
+    24% {
+      opacity: 0;
+      transform: rotate(var(--star-angle)) translate3d(var(--star-distance), 0, 0);
+    }
+    100% {
+      opacity: 0;
+      transform: rotate(var(--star-angle)) translate3d(var(--star-distance), 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-shooting-stars::before {
+      animation: none;
+    }
+
+    .contact-shooting-stars::after {
+      animation: none;
+    }
+
+    .contact-stars span {
+      animation: none;
+    }
+  }
+
   .contact__form {
     @apply pr-10;
     @media (max-width: 800px) { @apply pr-4; }
