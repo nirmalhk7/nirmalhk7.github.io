@@ -57,7 +57,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
         <div className="container mx-auto">
           <h3 className="mb-10">{filter === "X" ? "All" : filter} Projects</h3>
           <div className="inline-block my-2 mx-2">
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
             <code
               onClick={() => {
                 setFilter("X");
@@ -70,7 +70,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
           </div>
           {allTags.map((tag) => (
             <div className="inline-block my-2 mx-2" key={tag}>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
               <code
                 className={tag === filter ? "code-selected" : ""}
                 key={tag}
@@ -99,7 +99,9 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3 }}
                     key={project.frontmatter.title}
-                    ref={(el) => (accordionRefs.current[project.frontmatter.title] = el)}
+                    ref={(el) => {
+                      accordionRefs.current[project.frontmatter.title] = el;
+                    }}
                   >
                     <AccordionItem>
                       <AccordionItemHeading>

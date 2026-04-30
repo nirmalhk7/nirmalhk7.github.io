@@ -12,13 +12,14 @@ import { loadMarkdownFiles } from "@/util/loadMarkdown";
 import { ProjectFrontmatterInterface } from "@/interfaces/projects";
 import { BlogFrontmatterInterface } from "@/interfaces/blog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faSearch, faArrowRight, faHome, faBook, faCode, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 interface SearchItem {
   title: string;
   url: string;
   type: "page" | "project" | "blog";
-  icon: any;
+  icon: IconDefinition | string;
 }
 
 interface NotFoundPageProps extends DefaultPageProps {
@@ -38,7 +39,7 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
     const lowerQuery = query.toLowerCase();
     
     // Map icons back to FontAwesome objects for display
-    const iconMap: Record<string, any> = {
+    const iconMap: Record<string, IconDefinition> = {
       faHome,
       faCode,
       faBook,
@@ -163,7 +164,7 @@ export const getStaticProps: GetStaticProps<NotFoundPageProps> = async () => {
     getExcerpt: false,
   });
 
-  const searchIndex: any[] = [
+  const searchIndex: SearchItem[] = [
     { title: "Home", url: "/", type: "page", icon: "faHome" },
     { title: "Projects", url: "/projects", type: "page", icon: "faCode" },
     { title: "Blog", url: "/blog", type: "page", icon: "faBook" },
@@ -171,13 +172,13 @@ export const getStaticProps: GetStaticProps<NotFoundPageProps> = async () => {
     ...projects.map(p => ({
       title: p.frontmatter.title,
       url: `/projects#${p.frontmatter.title}`,
-      type: "project",
+      type: "project" as const,
       icon: "faCode"
     })),
     ...blogs.map(b => ({
       title: b.frontmatter.title,
       url: `/blog/${b.slug}`,
-      type: "blog",
+      type: "blog" as const,
       icon: "faBook"
     }))
   ];
