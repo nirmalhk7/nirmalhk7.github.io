@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, MotionValue } from "framer-motion";
 import { trackView } from "@/util/analytics";
 
 interface WebSectionProps {
@@ -9,19 +9,39 @@ interface WebSectionProps {
 }
 
 const WebSection: React.FC<WebSectionProps> = ({ children, className = "", id }) => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
   return (
     <motion.section
       id={id}
-      className={`snap-start ${className}`}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      className={`${className} group relative`}
       onViewportEnter={() => trackView(id)}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      onMouseMove={handleMouseMove}
     >
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+        style={{
+          background: useTemplateStyle(mouseX, mouseY),
+        }}
+      />
       {children}
     </motion.section>
   );
 };
+
+function useTemplateStyle(mouseX: MotionValue<number>, mouseY: MotionValue<number>) {
+  return useTransform(
+    [mouseX, mouseY],
+    ([x, y]) => `radial-gradient(600px circle at ${x}px ${y}px, rgba(234, 88, 12, 0.06), transparent 80%)`
+  );
+}
 
 export default WebSection;

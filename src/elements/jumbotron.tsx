@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import SocialMediaIcons from "../components/Social/socialSection";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import WebSection from "@/elements/WebSection";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useScroll, useTransform } from "framer-motion";
 import { trackClick } from "@/util/analytics";
 
 type MiniJumbotronProps = {
@@ -41,91 +41,121 @@ const slideUpItem: Variants = {
 };
 
 const Jumbotron = {
-  mini: ({
+  Mini: ({
     backgroundImage,
     backgroundImageAlt,
     title,
     subtitle,
     DescriptionComponent,
     centerAlign = false,
-  }: MiniJumbotronProps) => (
-    <WebSection
-      className="page-header bg-fixed bg-center bg-no-repeat selection:bg-accent selection:text-white flex justify-center items-center"
-      id={`${title}-header`}
-    >
-      <Image
-        fill
-        className="object-center object-cover pointer-events-none !h2/5 brightness-25"
-        src={backgroundImage}
-        alt={backgroundImageAlt}
-      />
-      <div
-        className={`jumbotron container page-header__content ${
-          centerAlign ? "text-center" : ""
-        }`}
+  }: MiniJumbotronProps) => {
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+      target: containerRef,
+      offset: ["start start", "end start"]
+    });
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
+    return (
+      <WebSection
+        className="page-header bg-fixed bg-center bg-no-repeat selection:bg-accent selection:text-white flex justify-center items-center overflow-hidden"
+        id={`${title}-header`}
       >
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="show"
+        <div ref={containerRef} className="absolute inset-0 z-0">
+          <motion.div style={{ y }} className="relative h-full w-full">
+            <Image
+              fill
+              priority={true}
+              className="object-center object-cover pointer-events-none !h2/5 brightness-25"
+              src={backgroundImage}
+              alt={backgroundImageAlt}
+              sizes="100vw"
+            />
+          </motion.div>
+        </div>
+        <div
+          className={`jumbotron container page-header__content z-10 ${
+            centerAlign ? "text-center" : ""
+          }`}
         >
-          <motion.h1 variants={slideUpItem} className="page-header__title text-white">{title}</motion.h1>
-          <motion.div variants={slideUpItem} className="page-header__info">
-            <div className="page-header__cat text-white inline-block uppercase">
-              {subtitle}
-            </div>
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="show"
+          >
+            <motion.h1 variants={slideUpItem} className="page-header__title text-white">{title}</motion.h1>
+            <motion.div variants={slideUpItem} className="page-header__info">
+              <div className="page-header__cat text-white inline-block uppercase">
+                {subtitle}
+              </div>
+            </motion.div>
+            <motion.div variants={slideUpItem}>
+              <DescriptionComponent />
+            </motion.div>
           </motion.div>
-          <motion.div variants={slideUpItem}>
-            <DescriptionComponent />
-          </motion.div>
-        </motion.div>
-      </div>
-    </WebSection>
-  ),
+        </div>
+      </WebSection>
+    );
+  },
   Max: ({
     orangeText,
     HeadingTextComponent,
     buttonDetails,
     bgImg,
-  }: MaxJumbotronProps) => (
-    <WebSection
-      id="max-jumbo"
-      className="s-home z-40 py-0 selection:bg-accent selection:text-white"
-    >
-      <Image
-        fill
-        className="object-right object-cover pointer-events-none laptop:object-center !h-screen brightness-50"
-        src={bgImg}
-        placeholder={typeof bgImg === "string" ? undefined : "blur"}
-        alt="Nirmal Khedkar - Software Engineer"
-      />
-      {/* <div className="bg-black h-screen left-0 opacity-50 absolute top-0 w-full" /> */}
-      <div className="jumbotron">
-        <motion.div 
-          className="tablet:container mx-auto home-content__main"
-          variants={staggerContainer}
-          initial="hidden"
-          animate="show"
-        >
-          <motion.h3 variants={slideUpItem} className="ital-hover">{orangeText}</motion.h3>
-          <motion.div variants={slideUpItem}>{HeadingTextComponent}</motion.div>
-          <motion.div variants={slideUpItem} className="static text-left gap-4 right-0 bottom-8">
-            {buttonDetails.map((item) => (
-              <Link
-                className="button button-white inline-block mr-4"
-                key={item[0]}
-                href={item[1]}
-                onClick={() => trackClick(item[0], "jumbotron_cta")}
-              >
-                {item[0]}
-              </Link>
-            ))}
+  }: MaxJumbotronProps) => {
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+      target: containerRef,
+      offset: ["start start", "end start"]
+    });
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+    const textY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+
+    return (
+      <WebSection
+        id="max-jumbo"
+        className="s-home z-40 py-0 selection:bg-accent selection:text-white overflow-hidden snap-start"
+      >        <div ref={containerRef} className="absolute inset-0 z-0">
+          <motion.div style={{ y }} className="relative h-full w-full">
+            <Image
+              fill
+              priority={true}
+              className="object-right object-cover pointer-events-none laptop:object-center !h-screen brightness-50"
+              src={bgImg}
+              placeholder={typeof bgImg === "string" ? undefined : "blur"}
+              alt="Nirmal Khedkar - Software Engineer"
+              sizes="100vw"
+            />
           </motion.div>
-        </motion.div>
-      </div>
-      <SocialMediaIcons />
-    </WebSection>
-  ),
+        </div>
+        <div className="jumbotron z-10 relative">
+          <motion.div 
+            style={{ y: textY }}
+            className="tablet:container mx-auto home-content__main"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="show"
+          >
+            <motion.h3 variants={slideUpItem} className="ital-hover">{orangeText}</motion.h3>
+            <motion.div variants={slideUpItem}>{HeadingTextComponent}</motion.div>
+            <motion.div variants={slideUpItem} className="static text-left gap-4 right-0 bottom-8">
+              {buttonDetails.map((item) => (
+                <Link
+                  className="button button-white inline-block mr-4"
+                  key={item[0]}
+                  href={item[1]}
+                  onClick={() => trackClick(item[0], "jumbotron_cta")}
+                >
+                  {item[0]}
+                </Link>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
+        <SocialMediaIcons />
+      </WebSection>
+    );
+  },
 };
 
 export default Jumbotron;

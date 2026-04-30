@@ -8,6 +8,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { trackClick } from "@/util/analytics";
+import Magnetic from "@/components/Magnetic";
 
 export const social = [
   {
@@ -44,16 +45,18 @@ const SocialSection = () => {
     <ul className="pb-16 font-bold m-0 absolute bottom-0 right-16 font-blocky list-none after:block after:w-px after:bg-white after:bottom-0 after:content-[''] z-20">
       {social.map((element, index) => (
         <li className="relative h-24" key={index}>
-          <button
-            className="button-white border-0 h-full text-3xl align-top"
-            onClick={() => {
-              trackClick(element.name, "social_link");
-              window.open(element.link, "_blank", "noopener,noreferrer");
-            }}
-            title={element.name}
-          >
-            <FontAwesomeIcon icon={element.class} />
-          </button>
+          <Magnetic>
+            <button
+              className="button-white border-0 h-full text-3xl align-top"
+              onClick={() => {
+                trackClick(element.name, "social_link");
+                window.open(element.link, "_blank", "noopener,noreferrer");
+              }}
+              title={element.name}
+            >
+              <FontAwesomeIcon icon={element.class} />
+            </button>
+          </Magnetic>
         </li>
       ))}
     </ul>

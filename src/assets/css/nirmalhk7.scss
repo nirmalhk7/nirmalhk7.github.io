@@ -2,12 +2,12 @@
  * ## Mobile Menu Toggle
  * ------------------------------------------------------------------- */
 .header-menu-toggle {
-  @apply hidden absolute right-[29px] top-[18px] h-[42px] w-[42px] leading-[42px] font-blocky font-normal text-[1.4rem] uppercase tracking-[.2rem] text-white/50 transition-all duration-300 ease-in-out;
+  @apply h-[48px] w-[48px] leading-[48px] font-blocky font-normal text-[1.4rem] uppercase tracking-[.2rem] text-white transition-all duration-300 ease-in-out relative bg-white/5 rounded-lg focus:outline-none;
 
-  &:hover, &:focus { @apply text-white; }
+  &:hover, &:focus { @apply text-accent bg-white/10; }
 
   span {
-    @apply block w-6 h-0.5 -mt-px absolute left-[9px] top-1/2 bg-white transition-all duration-500 ease-in-out text-transparent;
+    @apply block w-6 h-[2px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white transition-all duration-500 ease-in-out text-transparent;
     font: 0/0 a;
     text-shadow: none;
 
@@ -15,31 +15,28 @@
       @apply content-[''] w-full h-full bg-inherit absolute left-0 transition-all duration-500 ease-in-out;
     }
 
-    &::before { @apply -top-[9px]; }
-    &::after { @apply -bottom-[9px]; }
+    &::before { @apply -top-[8px]; }
+    &::after { @apply -bottom-[8px]; }
   }
 
   &.is-clicked span {
-    @apply bg-transparent transition-all duration-100 ease-in-out;
+    @apply bg-transparent;
 
     &::before, &::after { @apply bg-white; }
 
     &::before {
-      @apply top-0 rotate-[135deg];
+      @apply top-0 rotate-[45deg];
     }
 
     &::after {
-      @apply bottom-0 rotate-[225deg];
+      @apply bottom-0 rotate-[-45deg];
     }
   }
 }
 
-.s-header.sticky .header-menu-toggle {
-  @apply top-3;
-}
-
-/* ------------------------------------------------------------------- 
+/* -------------------------------------------------------------------
  * ## Accordion
+
  * ------------------------------------------------------------------- */
 .accordion-header {
   @apply p-[1.5em] uppercase cursor-pointer font-blocky font-semibold text-[1.2rem] tracking-[0.1em] transition-all duration-300;

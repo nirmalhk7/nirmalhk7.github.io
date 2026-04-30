@@ -8,7 +8,7 @@ import {
   AccordionItemPanel,
 } from "react-accessible-accordion";
 import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
-import { sampleSize } from "lodash";
+import sampleSize from "lodash/sampleSize";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
 import { GetStaticProps } from "next";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
@@ -20,6 +20,8 @@ import { ProjectDescription } from "@/components/Project/projectDescription";
 import ReactMarkdown from "react-markdown";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
+
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ProjectPageProps extends DefaultPageProps {
   projects: ProjectInterface[];
@@ -43,7 +45,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
   };
   return (
     <main>
-      <Jumbotron.mini
+      <Jumbotron.Mini
         backgroundImage={nasaGalaxy}
         backgroundImageAlt="Earth from Space"
         title="Projects"
@@ -55,7 +57,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
         <div className="container mx-auto">
           <h3 className="mb-10">{filter === "X" ? "All" : filter} Projects</h3>
           <div className="inline-block my-2 mx-2">
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
             <code
               onClick={() => {
                 setFilter("X");
@@ -68,7 +70,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
           </div>
           {allTags.map((tag) => (
             <div className="inline-block my-2 mx-2" key={tag}>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
               <code
                 className={tag === filter ? "code-selected" : ""}
                 key={tag}
@@ -82,44 +84,58 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
             </div>
           ))}
           <Accordion className="mt-10">
-            {projects
-              .filter((project) =>
-                filter === "X"
-                  ? true
-                  : project.frontmatter.tags?.includes(filter)
-              )
-              .map((project) => (
-                <AccordionItem key={project.frontmatter.title}>
-                  <AccordionItemHeading>
-                    <AccordionItemButton
-                      className="bg-gray-100"
-                      onClick={() => {
-                        handleHeadingClick(project.frontmatter.title);
-                        trackClick(project.frontmatter.title, "project_accordion_detailed");
-                      }}
-                    >
-                      <div className="grid grid-cols-5 px-5">
-                        <h5 className="col-span-3">
-                          {project.frontmatter.title}
-                        </h5>
-                        <div className="col-span-2 text-end ">
-                          {project.frontmatter.tags?.map((tag) => (
-                            <div
-                              className="inline-block my-2 mx-2"
-                              key={tag + "-" + project.frontmatter.title}
-                            >
-                              <code>{tag}</code>
+            <AnimatePresence mode="popLayout">
+              {projects
+                .filter((project) =>
+                  filter === "X"
+                    ? true
+                    : project.frontmatter.tags?.includes(filter)
+                )
+                .map((project) => (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                    key={project.frontmatter.title}
+                    ref={(el) => {
+                      accordionRefs.current[project.frontmatter.title] = el;
+                    }}
+                  >
+                    <AccordionItem>
+                      <AccordionItemHeading>
+                        <AccordionItemButton
+                          className="bg-gray-100"
+                          onClick={() => {
+                            handleHeadingClick(project.frontmatter.title);
+                            trackClick(project.frontmatter.title, "project_accordion_detailed");
+                          }}
+                        >
+                          <div className="grid grid-cols-5 px-5">
+                            <h5 className="col-span-3">
+                              {project.frontmatter.title}
+                            </h5>
+                            <div className="col-span-2 text-end ">
+                              {project.frontmatter.tags?.map((tag) => (
+                                <div
+                                  className="inline-block my-2 mx-2"
+                                  key={tag + "-" + project.frontmatter.title}
+                                >
+                                  <code>{tag}</code>
+                                </div>
+                              ))}
                             </div>
-                          ))}
-                        </div>
-                      </div>
-                    </AccordionItemButton>
-                  </AccordionItemHeading>
-                  <AccordionItemPanel className="border-2 border-gray-100 px-5 py-10">
-                    <ReactMarkdown>{project.content || ""}</ReactMarkdown>
-                  </AccordionItemPanel>
-                </AccordionItem>
-              ))}
+                          </div>
+                        </AccordionItemButton>
+                      </AccordionItemHeading>
+                      <AccordionItemPanel className="border-2 border-gray-100 px-5 py-10">
+                        <ReactMarkdown>{project.content || ""}</ReactMarkdown>
+                      </AccordionItemPanel>
+                    </AccordionItem>
+                  </motion.div>
+                ))}
+            </AnimatePresence>
           </Accordion>
         </div>
       </WebSection>

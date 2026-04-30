@@ -24,7 +24,7 @@ import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { BlogFrontmatterInterface, BlogInterface } from "@/interfaces/blog";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import { sampleSize } from "lodash";
+import sampleSize from "lodash/sampleSize";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { DefaultPageProps } from "../_app";
@@ -131,7 +131,7 @@ const BlogTemplate = ({
   return (
     <main>
       <article className="bg-white has-bottom-sep">
-        <Jumbotron.mini
+        <Jumbotron.Mini
           backgroundImage={current.frontmatter?.img || ""}
           backgroundImageAlt="Earth from Space"
           title={current.frontmatter?.title || ""}
@@ -160,16 +160,16 @@ const BlogTemplate = ({
             <ReactMarkdown
               components={{
                 h1: ({ children }) => (
-                  <h1 className="text-black mt-8 mb-4 text-4xl font-bold">{children}</h1>
+                  <h1 className="text-black mt-8 mb-4 text-7xl font-bold">{children}</h1>
                 ),
                 h2: ({ children }) => (
-                  <h2 className="text-black mt-8 mb-4 text-3xl font-bold">{children}</h2>
+                  <h2 className="text-black mt-8 mb-4 text-6xl font-bold">{children}</h2>
                 ),
                 h3: ({ children }) => (
-                  <h3 className="text-black mt-6 mb-3 text-2xl font-bold">{children}</h3>
+                  <h3 className="text-black mt-6 mb-3 text-5xl font-bold">{children}</h3>
                 ),
                 h4: ({ children }) => (
-                  <h4 className="text-black mt-4 mb-2 text-xl font-bold">{children}</h4>
+                  <h4 className="text-black mt-4 mb-2 text-4xl font-bold">{children}</h4>
                 ),
                 code({ inline, className, children, ...props }) {
                   const match = /language-(\w+)/.exec(className || "");
@@ -192,7 +192,7 @@ const BlogTemplate = ({
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const { children, node, ...rest } = props;
                   return (
-                    <blockquote {...rest} className="border-l-4 border-accent pl-4 italic my-6 text-gray-700">
+                    <blockquote {...rest} className="border-l-4 border-accent pl-4 italic my-6 text-gray-700 text-3xl">
                       {children}
                     </blockquote>
                   );
@@ -201,20 +201,20 @@ const BlogTemplate = ({
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const { children, node, ...rest } = props;
                   return (
-                    <ul className="list-disc pl-5 my-4 leading-relaxed space-y-2">{children}</ul>
+                    <ul className="list-disc pl-5 my-4 leading-relaxed space-y-2 text-3xl">{children}</ul>
                   );
                 },
                 ol(props) {
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const { children, node, ...rest } = props;
                   return (
-                    <ol className="list-decimal pl-5 my-4 leading-relaxed space-y-2">{children}</ol>
+                    <ol className="list-decimal pl-5 my-4 leading-relaxed space-y-2 text-3xl">{children}</ol>
                   );
                 },
                 p(props) {
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const { children, node, ...rest } = props;
-                  return <p className="mt-4 leading-relaxed text-lg text-gray-800">{children}</p>;
+                  return <p className="mt-4 leading-relaxed text-3xl text-gray-800">{children}</p>;
                 },
               }}
               skipHtml={false}
@@ -283,7 +283,7 @@ const BlogTemplate = ({
                 />
               </div>
 
-              <div className="col-span-12 tablet:col-span-8 pl-10">
+              <div className="col-span-12 tablet:col-span-8 pl-10 text-3xl">
                 Looking to boost your engineering team&apos;s performance and
                 reliability? Hire Nirmal Khedkar. With two years of full-stack
                 experience at Visa,{" "}

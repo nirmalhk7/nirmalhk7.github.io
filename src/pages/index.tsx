@@ -24,6 +24,8 @@ import { CommonHeader } from "@/components/header";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
 import { trackClick, trackView } from "@/util/analytics";
+import { TextReveal } from "@/components/TextReveal";
+import { TiltCard } from "@/components/TiltCard";
 
 interface IndexPageProps extends DefaultPageProps {
   mainContent: string;
@@ -81,9 +83,10 @@ const IndexPage = ({
               <h1>
                 More About Me
               </h1>
-              <p className="font-lead font-blocky mb-16 text-3xl">
-                Fortress code, lightning fast: Hi, I&apos;m Nirmal Khedkar.
-              </p>
+              <TextReveal 
+                className="font-lead font-blocky mb-16 text-3xl justify-center" 
+                text="Fortress code, lightning fast: Hi, I'm Nirmal Khedkar." 
+              />
             </div>
           </div>
         </div>
@@ -96,11 +99,9 @@ const IndexPage = ({
               <CommonHeader headerName="Familiar Languages, Frameworks and Libraries" />
               <div className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-4">
                 {skills.map((element, index) => (
-                  <div
-                    role="button"
-                    tabIndex={0}
-                    className="p-2 text-center text-2xl text-black uppercase font-blocky hover:font-bold hover:text-accent hover:scale(.5) transition duration-300 cursor-pointer"
+                  <TiltCard
                     key={index}
+                    className="p-2 text-center text-2xl text-black uppercase font-blocky hover:font-bold hover:text-accent cursor-pointer border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white/50 backdrop-blur-sm"
                     onClick={() => trackClick(element.name, "skill_click")}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
@@ -109,7 +110,7 @@ const IndexPage = ({
                     }}
                   >
                     {element.name}
-                  </div>
+                  </TiltCard>
                 ))}
               </div>
             </div>
@@ -159,9 +160,9 @@ const IndexPage = ({
               </div>
             </div>
             <div className="break-inside-avoid pt-16">
-              <div className="grid gap-4 font-blocky uppercase text-center text-xl leading-[4.8rem] tracking-[0.3rem] font-bold">
+              <div className="flex flex-col gap-4 font-blocky uppercase text-center text-xl tracking-[0.3rem] font-bold">
                 <Link
-                  className="button button-accent w-full"
+                  className="button button-accent w-full m-0"
                   href={"/resume"}
                   rel="noreferrer"
                   target="_blank"
@@ -170,7 +171,7 @@ const IndexPage = ({
                   Download My Resume
                 </Link>
                 <Link
-                  className="button button-accent-fill w-full"
+                  className="button button-accent-fill w-full m-0"
                   href="#contact"
                   onClick={() => trackClick("want_to_hire", "engagement")}
                 >
@@ -198,9 +199,9 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
   const allMembershipsYaml = loadYaml<MembershipInterface[]>(path.join(contentDir, "memberships.yaml"));
   const allWorkExperiencesYaml = loadYaml<WorkExperienceInterface[]>(path.join(contentDir, "workexperiences.yaml"));
   const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(contentDir, "quotes.yaml"));
-  const fiveProjects = sampleSize(
+  const sixProjects = sampleSize(
     loadMarkdownFiles<ProjectFrontmatterInterface>("content/projects", { getExcerpt: true, getContent: false }),
-    5
+    6
   );
 
   
@@ -217,7 +218,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
       cv: allProfilesYaml,
       membership: allMembershipsYaml,
       workexperience: allWorkExperiencesYaml,
-      projects: fiveProjects,
+      projects: sixProjects,
       quote: sampleSize(allQuotesYaml)[0],
       pageMetadata: {
         enableWrap: true,
