@@ -33,10 +33,10 @@ const LatestBlogSection = ({
             </div>
             <div className="laptop:text-right tablet:text-right relative text-white py-10">
               <div>
-                <h3 className="text-white">Latest Article</h3>
-                <h1 className="font-bold leading-snug mt-20 font-heading text-7xl">
+                <p className="font-blocky text-4xl font-semibold uppercase text-accent text-white">Latest Article</p>
+                <h2 className="my-8 font-heading text-6xl font-semibold leading-tight mt-20">
                   {frontmatter?.title || ""}
-                </h1>
+                </h2>
                 <div className="entry-content no-underline mb-10 not-underline">
                   <p className="text-3xl">{excerpt}</p>
                 </div>

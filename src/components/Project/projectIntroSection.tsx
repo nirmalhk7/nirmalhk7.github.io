@@ -22,12 +22,12 @@ const ProjectIntroSection = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <h3 className="font-blocky font-semibold mb-2 uppercase text-accent">
+        <p className="font-blocky font-semibold mb-2 uppercase text-accent">
           Projects
-        </h3>
-        <h1 className="font-bold font-heading leading-snug mt-0">
+        </p>
+        <h2 className="my-8 font-heading text-6xl font-semibold leading-tight mt-0">
           See My Latest Projects
-        </h1>
+        </h2>
         <p className="lead">
           Find my projects <Link href="/projects" className="text-accent hover:underline">categorized here</Link>.
         </p>

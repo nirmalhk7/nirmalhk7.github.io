@@ -136,7 +136,7 @@ const Jumbotron = {
             initial="hidden"
             animate="show"
           >
-            <motion.h3 variants={slideUpItem} className="ital-hover">{orangeText}</motion.h3>
+            <motion.p variants={slideUpItem} className="ital-hover font-blocky text-4xl font-semibold uppercase text-accent">{orangeText}</motion.p>
             <motion.div variants={slideUpItem}>{HeadingTextComponent}</motion.div>
             <motion.div variants={slideUpItem} className="static text-left gap-4 right-0 bottom-8">
               {buttonDetails.map((item) => (

@@ -55,7 +55,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
 
       <WebSection className="bg-white pt-16 pb-48" id="projectdetailed">
         <div className="container mx-auto">
-          <h3 className="mb-10">{filter === "X" ? "All" : filter} Projects</h3>
+          <h2 className="font-blocky text-4xl font-semibold uppercase text-accent mb-10">{filter === "X" ? "All" : filter} Projects</h2>
           <div className="inline-block my-2 mx-2">
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
             <code
@@ -113,9 +113,9 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                           }}
                         >
                           <div className="grid grid-cols-5 px-5">
-                            <h5 className="col-span-3">
+                            <h3 className="col-span-3 my-4 text-2xl font-normal py-4">
                               {project.frontmatter.title}
-                            </h5>
+                            </h3>
                             <div className="col-span-2 text-end ">
                               {project.frontmatter.tags?.map((tag) => (
                                 <div

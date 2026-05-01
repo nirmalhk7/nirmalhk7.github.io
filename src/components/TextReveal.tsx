@@ -7,10 +7,10 @@ interface TextRevealProps {
 }
 
 const Word = ({ children, progress, range }: { children: string; progress: MotionValue<number>; range: [number, number] }) => {
-  const opacity = useTransform(progress, range, [0.2, 1]);
+  const opacity = useTransform(progress, range, [0.5, 1]);
   return (
     <span className="relative inline-block mr-2">
-      <span className="absolute opacity-20">{children}</span>
+      <span className="absolute opacity-50">{children}</span>
       <motion.span style={{ opacity }}>{children}</motion.span>
     </span>
   );

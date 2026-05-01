@@ -18,21 +18,19 @@ const FooterSection = () => {
       {process.env.NEXT_PUBLIC ? <div className="">
         <div className="mb-32">
           <ul className="list-none mt-12 ml-0 font-blocky font-normal text-[1.3rem] uppercase tracking-[0.3rem] no-underline">
-            {social.map((element, index) => {
-              if (element.link)
-                return (
+            {social.filter(element => element.link).map((element, index) => (
                   <li key={index}>
                     <a
-                      className="no-underline	hover:text-accent"
+                      className="no-underline hover:text-accent"
                       href={element.link}
-                      target="blank"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <FontAwesomeIcon icon={element.class} size="sm" />
                       <span>{element.name}</span>
                     </a>
                   </li>
-                );
-            })}
+            ))}
           </ul>
         </div>
       </div> : null}
@@ -49,6 +47,8 @@ const FooterSection = () => {
               <a
                 href="https://www.styleshout.com/"
                 className="text-neutral-700"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 styleshout
               </a>

@@ -42,7 +42,7 @@ const WorkExperienceSection = ({
   >
     <div className="container mx-auto ">
       <div className="col text-center">
-        <h3 className="mb-24">My Work Experience</h3>
+        <h2 className="mb-24 font-blocky text-4xl font-semibold uppercase text-accent">My Work Experience</h2>
       </div>
       <motion.div 
         className="columns-1 tablet:columns-2"
@@ -64,8 +64,8 @@ const WorkExperienceSection = ({
                   <p className="timeline__timeframe hover:text-accent">
                     {element.timeframe}
                   </p>
-                  <h4>{element.company}</h4>
-                  <h5>{element.post}</h5>
+                  <h3 className="my-4 text-4xl font-normal">{element.company}</h3>
+                  <h4 className="my-4 text-2xl font-normal">{element.post}</h4>
                 </div>
                 <div className="timeline__desc">
                   {typeof element.description === "string" ? (

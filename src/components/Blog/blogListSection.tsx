@@ -31,8 +31,8 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
         <div className=" m-auto" style={{ maxWidth: "1500px" }}>
           <div className="section_intro has-bottom-sep pt-20">
             <div className="text-center">
-              <h3>The Blue Green Manual</h3>
-              <h1>All Articles</h1>
+              <p className="font-blocky text-4xl font-semibold uppercase text-accent">The Blue Green Manual</p>
+              <h2 className="my-8 font-heading text-6xl font-semibold leading-tight mt-0">All Articles</h2>
             </div>
           </div>
           <motion.div 
@@ -71,9 +71,9 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                         <strong className="text-accent uppercase font-blocky text-sm tracking-widest block font-bold">
                           {element.frontmatter?.category}
                         </strong>
-                        <h4 className="text-white text-5xl m-0 font-bold leading-tight">
+                        <h3 className="my-4 text-4xl font-normal text-white m-0 font-bold leading-tight">
                           {element.frontmatter?.title}
-                        </h4>
+                        </h3>
                         {element.excerpt && (
                           <p className="text-gray-300 text-2xl leading-relaxed line-clamp-4">
                             {element.excerpt}

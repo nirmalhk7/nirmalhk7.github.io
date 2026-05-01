@@ -48,12 +48,12 @@ const BlogIntroSection = ({ name }: { name: string }) => {
         className="narrow mx-auto text-center pb-6 relative z-10"
       >
         <div className="relative w-full px-4 py-8">
-          <h3 className="leading-tight text-white my-0">
+          <p className="font-blocky text-4xl font-semibold uppercase text-accent leading-tight text-white my-0">
             {name}
-          </h3>
-          <h1 className="mt-0">
+          </p>
+          <h2 className="my-8 font-heading text-6xl font-semibold leading-tight mt-0">
             Latest From The Blog
-          </h1>
+          </h2>
           <p className="text-center m-0 p-0 font-normal text-3xl">
             I have strong views on topics like Finance, Technology, Future and
             Environment. Find me&nbsp;

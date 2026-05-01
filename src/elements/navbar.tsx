@@ -229,16 +229,17 @@ const Navbar = () => {
         </ul>
       </nav>
       <div className="absolute right-10 top-0 h-full flex items-center tablet:hidden z-[60]">
-        <Link
+        <button
           className={`header-menu-toggle !static !block ${
             mobileMenuClick ? "is-clicked" : ""
           }`}
           id="nav-button"
           onClick={() => mobileMenuSet(!mobileMenuClick)}
-          href="#0"
+          type="button"
+          aria-label="Toggle menu"
         >
           <span>Menu</span>
-        </Link>
+        </button>
       </div>
     </motion.header>
   );

@@ -54,10 +54,10 @@ export default function ContactMeSection() {
         >
           <div className="narrow m-auto text-white">
             <div className=" text-center">
-              <h3 className="my-0">
+              <p className="my-0 font-blocky text-4xl font-semibold uppercase text-accent">
                 Contact Me
-              </h3>
-              <h1>Say Hi!</h1>
+              </p>
+              <h2 className="my-8 font-heading text-6xl font-semibold leading-tight">Say Hi!</h2>
               <p className="font-blocky text-3xl">
                 I&apos;ll reach out to you as soon as I can.
               </p>
@@ -117,9 +117,9 @@ export default function ContactMeSection() {
               </form>
             </div>
             <div className="w-full contact__infos">
-              <h5 className="text-white font-blocky uppercase text-base leading-[7.2rem] tracking-[0.25rem] font-bold my-0">
+              <h3 className="text-white font-blocky uppercase text-base leading-[7.2rem] tracking-[0.25rem] font-bold my-0">
                 Email
-              </h5>
+              </h3>
               <a 
                 className="" 
                 href="mailto:nirmalhk7@gmail.com"

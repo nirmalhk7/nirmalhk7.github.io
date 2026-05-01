@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
@@ -22,7 +23,6 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { BlogFrontmatterInterface, BlogInterface } from "@/interfaces/blog";
-import Link from "next/link";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import sampleSize from "lodash/sampleSize";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
@@ -246,13 +246,12 @@ const BlogTemplate = ({
                 <p className="blog-content__tags">
                   <span></span>
                   <span className="blog-content__tag-list">
-                    {current.frontmatter?.tags.map((element: string, index: number) => (
-                      <a href="#0" key={index}>
-                        {element}
-                      </a>
-                    ))}
-                  </span>
-                </p>
+                   {current.frontmatter?.tags.map((element: string, index: number) => (
+                     <Link href={`/blog#${element}`} key={index}>
+                       {element}
+                     </Link>
+                   ))}
+                  </span>                </p>
               </div>
 
               <div className="col-span-8 tablet:col-span-2 pr-5">

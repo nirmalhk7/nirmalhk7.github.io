@@ -77,12 +77,12 @@ const IndexPage = ({
         <div className="w-full text-center">
           <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
             <div className="w-full text-center">
-              <h3>
+              <p className="font-blocky text-4xl font-semibold uppercase text-accent">
                 Nirmal Khedkar
-              </h3>
-              <h1>
+              </p>
+              <h2 className="my-8 font-heading text-6xl font-semibold leading-tight">
                 More About Me
-              </h1>
+              </h2>
               <TextReveal 
                 className="font-lead font-blocky mb-16 text-3xl justify-center" 
                 text="Fortress code, lightning fast: Hi, I'm Nirmal Khedkar." 
@@ -124,6 +124,8 @@ const IndexPage = ({
                       {element.name} by {element.provider} - (
                       <a
                         href={element.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         onClick={() => trackClick(element.name, "online_course_click")}
                       >
                         link
@@ -137,9 +139,9 @@ const IndexPage = ({
             <div className="break-inside-avoid">
               <CommonHeader headerName="Prominent College Courses Taken" />
               <div className="m-0">
-                <ul className="list-disc pl-5">
+                <p className="text-2xl leading-[1.875]">
                   {collegeCourses.map((element) => element.name).join(", ")}.
-                </ul>
+                </p>
               </div>
             </div>
             <div className="break-inside-avoid">
@@ -151,6 +153,8 @@ const IndexPage = ({
                       {element.position} at&nbsp;
                       <a
                         href={element.clubwebsite}
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         {element.club}
                       </a>
