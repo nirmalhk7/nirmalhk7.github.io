@@ -107,22 +107,10 @@ jobs:
     environment: Production
     needs: deploy
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    env:
-      TWITTER_APP_KEY: ${{ secrets.TWITTER_APP_KEY }}
-      TWITTER_APP_SECRET: ${{ secrets.TWITTER_APP_SECRET }}
-      TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-      TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
-      BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
-      BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.x
 
       - name: Get changed blog files
         id: changed-blog-files
@@ -130,8 +118,33 @@ jobs:
         with:
           files: content/blog/**.md
 
-      - name: Post to Social Media
+      - name: Prepare Social Media Message
         if: steps.changed-blog-files.outputs.any_changed == 'true'
+        id: prepare
         run: |
-          npm install twitter-api-v2 gray-matter
-          node scripts/post-to-socials.js ${{ steps.changed-blog-files.outputs.all_changed_files }}
+          # Get the first changed blog file
+          FILE=$(echo "${{ steps.changed-blog-files.outputs.all_changed_files }}" | awk '{print $1}')
+          # Extract title from frontmatter (removes 'title: ' and quotes)
+          TITLE=$(grep -m 1 '^title:' "$FILE" | sed 's/title: //; s/"//g; s/'\''//g')
+          SLUG=$(basename "$FILE" .md)
+          URL="https://nirmalhk7.com/blog/$SLUG"
+          MESSAGE="🚀 New blog post: \"$TITLE\"%0A%0ARead it here: $URL%0A%0A#webdev #softwareengineering #coding"
+          echo "message=$MESSAGE" >> $GITHUB_OUTPUT
+
+      - name: Post to Twitter
+        if: steps.changed-blog-files.outputs.any_changed == 'true'
+        uses: ethomson/send-tweet-action@v1
+        with:
+          status: ${{ steps.prepare.outputs.message }}
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+
+      - name: Post to Bluesky
+        if: steps.changed-blog-files.outputs.any_changed == 'true'
+        uses: mary-ext/bluesky-post@v2
+        with:
+          text: ${{ steps.prepare.outputs.message }}
+          identifier: ${{ secrets.BLUESKY_IDENTIFIER }}
+          password: ${{ secrets.BLUESKY_PASSWORD }}
