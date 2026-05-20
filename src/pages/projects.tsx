@@ -1,12 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { trackClick } from "@/util/analytics";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemButton,
-  AccordionItemHeading,
-  AccordionItemPanel,
-} from "react-accessible-accordion";
 import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
 import sampleSize from "lodash/sampleSize";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
@@ -17,11 +10,12 @@ import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
 import { ProjectInterface } from "@/interfaces/projects";
 import { ProjectDescription } from "@/components/Project/projectDescription";
-import ReactMarkdown from "react-markdown";
+import { ProjectCard } from "@/components/Project/projectCard";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
+import { useRouter } from "next/router";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 
 interface ProjectPageProps extends DefaultPageProps {
   projects: ProjectInterface[];
@@ -30,21 +24,33 @@ interface ProjectPageProps extends DefaultPageProps {
 
 const Projects = ({ projects, allTags }: ProjectPageProps) => {
   const [filter, setFilter] = useState("X");
-  const accordionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
+  const router = useRouter();
+  const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
-    const hash = window.location.hash.substring(1);
-    if (hash && accordionRefs.current[hash]) {
-      accordionRefs.current[hash]?.scrollIntoView({ behavior: "smooth" });
+    const { id } = router.query;
+    if (id && typeof id === "string") {
+      setExpandedSlug(id);
+      setTimeout(() => {
+        projectRefs.current[id]?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
     }
-  }, []);
+  }, [router.query]);
 
-  const handleHeadingClick = (title: string) => {
-    console.log(title)
-    window.location.hash = title;
+  const handleToggle = (slug: string) => {
+    if (expandedSlug === slug) {
+      setExpandedSlug(null);
+      router.push("/projects", undefined, { shallow: true });
+    } else {
+      setExpandedSlug(slug);
+      trackClick(slug, "project_expand");
+      router.push(`/projects?id=${slug}`, undefined, { shallow: true });
+    }
   };
+
   return (
-    <main>
+    <main className="bg-gray-50">
       <Jumbotron.Mini
         backgroundImage={nasaGalaxy}
         backgroundImageAlt="Earth from Space"
@@ -53,95 +59,84 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
         DescriptionComponent={ProjectDescription}
       />
 
-      <WebSection className="bg-white pt-16 pb-48" id="projectdetailed">
+      <WebSection className="pt-16 pb-48" id="projectdetailed">
         <div className="container mx-auto">
-          <h3 className="mb-10">{filter === "X" ? "All" : filter} Projects</h3>
-          <div className="inline-block my-2 mx-2">
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
-            <code
-              onClick={() => {
-                setFilter("X");
-                trackClick("clear_filter", "project_filter");
-              }}
-              className={filter === "X" ? "code-selected" : ""}
-            >
-              X
-            </code>
-          </div>
-          {allTags.map((tag) => (
-            <div className="inline-block my-2 mx-2" key={tag}>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
-              <code
-                className={tag === filter ? "code-selected" : ""}
-                key={tag}
-                onClick={() => {
-                  setFilter(tag);
-                  trackClick(tag, "project_filter");
-                }}
-              >
-                {tag}
-              </code>
+          <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
+            <div>
+              <h3 className="text-accent font-blocky uppercase tracking-widest text-sm mb-2">Portfolio</h3>
+              <h1 className="text-5xl font-bold">{filter === "X" ? "All" : filter} Projects</h1>
             </div>
-          ))}
-          <Accordion className="mt-10">
-            <AnimatePresence mode="popLayout">
-              {projects
-                .filter((project) =>
-                  filter === "X"
-                    ? true
-                    : project.frontmatter.tags?.includes(filter)
-                )
-                .map((project) => (
-                  <motion.div
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3 }}
-                    key={project.frontmatter.title}
-                    ref={(el) => {
-                      accordionRefs.current[project.frontmatter.title] = el;
-                    }}
-                  >
-                    <AccordionItem>
-                      <AccordionItemHeading>
-                        <AccordionItemButton
-                          className="bg-gray-100"
-                          onClick={() => {
-                            handleHeadingClick(project.frontmatter.title);
-                            trackClick(project.frontmatter.title, "project_accordion_detailed");
-                          }}
-                        >
-                          <div className="grid grid-cols-5 px-5">
-                            <h5 className="col-span-3">
-                              {project.frontmatter.title}
-                            </h5>
-                            <div className="col-span-2 text-end ">
-                              {project.frontmatter.tags?.map((tag) => (
-                                <div
-                                  className="inline-block my-2 mx-2"
-                                  key={tag + "-" + project.frontmatter.title}
-                                >
-                                  <code>{tag}</code>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </AccordionItemButton>
-                      </AccordionItemHeading>
-                      <AccordionItemPanel className="border-2 border-gray-100 px-5 py-10">
-                        <ReactMarkdown>{project.content || ""}</ReactMarkdown>
-                      </AccordionItemPanel>
-                    </AccordionItem>
-                  </motion.div>
-                ))}
-            </AnimatePresence>
-          </Accordion>
+            
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={() => {
+                  setFilter("X");
+                  trackClick("clear_filter", "project_filter");
+                }}
+                className={`px-6 py-2 rounded-full font-bold transition-all ${
+                  filter === "X" 
+                    ? "bg-accent text-white shadow-lg shadow-accent/30" 
+                    : "bg-white text-gray-600 hover:bg-gray-100"
+                }`}
+              >
+                All
+              </button>
+              {allTags.sort().map((tag) => (
+                <button
+                  key={tag}
+                  onClick={() => {
+                    setFilter(tag);
+                    trackClick(tag, "project_filter");
+                  }}
+                  className={`px-6 py-2 rounded-full font-bold transition-all ${
+                    tag === filter 
+                      ? "bg-accent text-white shadow-lg shadow-accent/30" 
+                      : "bg-white text-gray-600 hover:bg-gray-100"
+                  }`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <LayoutGroup>
+            <motion.div 
+              layout
+              className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-8"
+            >
+              <AnimatePresence mode="popLayout">
+                {projects
+                  .filter((project) =>
+                    filter === "X"
+                      ? true
+                      : project.frontmatter.tags?.includes(filter)
+                  )
+                  .map((project, index) => (
+                    <div
+                      key={project.slug}
+                      ref={(el) => {
+                        projectRefs.current[project.slug] = el;
+                      }}
+                      className={expandedSlug === project.slug ? "col-span-full" : ""}
+                    >
+                      <ProjectCard
+                        project={project}
+                        isExpanded={expandedSlug === project.slug}
+                        onToggle={() => handleToggle(project.slug)}
+                        index={index}
+                      />
+                    </div>
+                  ))}
+              </AnimatePresence>
+            </motion.div>
+          </LayoutGroup>
         </div>
       </WebSection>
     </main>
   );
 };
+
 
 export const getStaticProps: GetStaticProps<ProjectPageProps> = async () => {
   const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
