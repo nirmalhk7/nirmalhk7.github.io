@@ -73,10 +73,10 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                   setFilter("X");
                   trackClick("clear_filter", "project_filter");
                 }}
-                className={`px-8 py-2.5 rounded-full font-blocky text-base uppercase tracking-[0.25rem] transition-all duration-300 border ${
+                className={`px-8 py-2.5 rounded-full font-blocky text-base uppercase tracking-[0.25rem] transition-all duration-300 border-0 ${
                   filter === "X" 
-                    ? "bg-accent border-accent text-white shadow-lg shadow-accent/20 scale-105" 
-                    : "bg-white/50 backdrop-blur-sm border-gray-200 text-gray-500 hover:border-black/50 hover:text-black"
+                    ? "bg-accent text-white shadow-lg shadow-accent/20 scale-105" 
+                    : "bg-white/50 backdrop-blur-sm text-gray-500 hover:text-black"
                 }`}
               >
                 All Projects
@@ -88,10 +88,10 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                     setFilter(tag);
                     trackClick(tag, "project_filter");
                   }}
-                  className={`px-8 py-2.5 rounded-full font-blocky text-base uppercase tracking-[0.25rem] transition-all duration-300 border ${
+                  className={`px-8 py-2.5 rounded-full font-blocky text-base uppercase tracking-[0.25rem] transition-all duration-300 border-0 ${
                     tag === filter 
-                      ? "bg-accent border-accent text-white shadow-lg shadow-accent/30 scale-105" 
-                      : "bg-white/50 backdrop-blur-sm border-gray-200 text-gray-500 hover:border-black/50 hover:text-black"
+                      ? "bg-accent text-white shadow-lg shadow-accent/30 scale-105" 
+                      : "bg-white/50 backdrop-blur-sm text-gray-500 hover:text-black"
                   }`}
                 >
                   {tag}
