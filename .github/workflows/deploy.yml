@@ -124,18 +124,26 @@ jobs:
         run: |
           # Get the first changed blog file
           FILE=$(echo "${{ steps.changed-blog-files.outputs.all_changed_files }}" | awk '{print $1}')
-          # Extract title from frontmatter (removes 'title: ' and quotes)
+          # Extract title from frontmatter
           TITLE=$(grep -m 1 '^title:' "$FILE" | sed 's/title: //; s/"//g; s/'\''//g')
           SLUG=$(basename "$FILE" .md)
-          URL="https://nirmalhk7.com/blog/$SLUG"
-          MESSAGE="🚀 New blog post: \"$TITLE\"%0A%0ARead it here: $URL%0A%0A#webdev #softwareengineering #coding"
-          echo "message=$MESSAGE" >> $GITHUB_OUTPUT
+          BASE_URL="https://nirmalhk7.com/blog/$SLUG"
+          
+          # Twitter Message with UTMs
+          TWITTER_URL="$BASE_URL?utm_source=twitter&utm_medium=social&utm_campaign=blog_release&utm_content=$SLUG"
+          TWITTER_MESSAGE="🚀 New blog post: \"$TITLE\"%0A%0ARead it here: $TWITTER_URL%0A%0A#webdev #softwareengineering #coding"
+          echo "twitter_message=$TWITTER_MESSAGE" >> $GITHUB_OUTPUT
+          
+          # Bluesky Message with UTMs
+          BLUESKY_URL="$BASE_URL?utm_source=bluesky&utm_medium=social&utm_campaign=blog_release&utm_content=$SLUG"
+          BLUESKY_MESSAGE="🚀 New blog post: \"$TITLE\"%0A%0ARead it here: $BLUESKY_URL%0A%0A#webdev #softwareengineering #coding"
+          echo "bluesky_message=$BLUESKY_MESSAGE" >> $GITHUB_OUTPUT
 
       - name: Post to Twitter
         if: steps.changed-blog-files.outputs.any_changed == 'true'
         uses: ethomson/send-tweet-action@v1
         with:
-          status: ${{ steps.prepare.outputs.message }}
+          status: ${{ steps.prepare.outputs.twitter_message }}
           consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
           consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
@@ -145,6 +153,6 @@ jobs:
         if: steps.changed-blog-files.outputs.any_changed == 'true'
         uses: mary-ext/bluesky-post@v2
         with:
-          text: ${{ steps.prepare.outputs.message }}
+          text: ${{ steps.prepare.outputs.bluesky_message }}
           identifier: ${{ secrets.BLUESKY_IDENTIFIER }}
           password: ${{ secrets.BLUESKY_PASSWORD }}
