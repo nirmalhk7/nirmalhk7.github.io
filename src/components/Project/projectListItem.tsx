@@ -25,7 +25,7 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
     >
       <button
         onClick={onToggle}
-        className={`w-full py-8 px-8 flex flex-col md:flex-row md:items-center justify-between text-left transition-all duration-300 rounded-2xl group ${
+        className={`w-full py-8 px-8 flex flex-col md:flex-row md:items-center justify-between text-left transition-all duration-300 rounded-2xl group border-0 ${
           isExpanded ? "bg-gray-200" : "bg-gray-100 hover:bg-gray-200"
         }`}
       >
