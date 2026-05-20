@@ -62,13 +62,25 @@ export default function App({ Component, pageProps }: CustomAppProps) {
           type: "website",
           locale: "en_IN",
           url: "https://nirmalhk7.com",
-          
+          siteName: "Nirmal Khedkar",
+          images: [
+            {
+              url: "https://nirmalhk7.com/assets/images/BeachNK_1.jpg",
+              width: 1200,
+              height: 630,
+              alt: "Nirmal Khedkar",
+            },
+          ],
         }}
         canonical="https://nirmalhk7.com"
         additionalMetaTags={[
           {
             name: "robots",
             content: "noai, noimageai",
+          },
+          {
+            name: "theme-color",
+            content: "#000000",
           },
         ]}
         additionalLinkTags={[

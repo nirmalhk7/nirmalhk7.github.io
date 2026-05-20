@@ -232,8 +232,8 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
               {
                 url: `https://nirmalhk7.com${beachImage.src}`,
                 alt: "Hi, I'm Nirmal Khedkar",
-                width: 900,
-                height: 800
+                width: 1200,
+                height: 630
               },
             ],
           },
