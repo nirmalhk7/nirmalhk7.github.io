@@ -224,7 +224,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
         enableWrap: true,
         seoMetadata: {
           title: "Official Website of Nirmal Khedkar",
-          description: "Looking to boost your engineering team's performance and reliability? Hire Nirmal Khedkar. With two years of full-stack experience at Visa, he's your man to improve your system performance and handle any runtime errors.",
+          description: "Boost your team's performance with Nirmal Khedkar, a full-stack engineer with experience at Visa specializing in reliable, high-performance systems.",
           openGraph: {
             type: "website",
             url: `https://nirmalhk7.com`,
@@ -236,9 +236,6 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
                 height: 800
               },
             ],
-          },
-          twitter: {
-            site: `https://nirmalhk7.com`,
           },
         }
       }

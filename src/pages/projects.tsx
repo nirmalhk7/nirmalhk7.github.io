@@ -174,14 +174,11 @@ export const getStaticProps: GetStaticProps<ProjectPageProps> = async () => {
                 height: 800
               },
             ],
-          },
-          twitter: {
-            site: `https://nirmalhk7.com/projects`,
-          },
-        }
-      },
-    },
-  };
-};
+            },
+            },
+            },
+            },
+            };
+            };
 
 export default Projects;

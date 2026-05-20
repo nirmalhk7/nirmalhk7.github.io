@@ -366,10 +366,6 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
               },
             ],
           },
-          twitter: {
-            site: `https://nirmalhk7.com/blog/${blogId}`,
-            
-          },
         },
       },
     },

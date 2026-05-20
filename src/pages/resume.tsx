@@ -44,12 +44,9 @@ export const getStaticProps: GetStaticProps<ResumePageProps> = async () => {
                 height: 800
               },
             ],
-          },
-          twitter: {
-            site: `https://nirmalhk7.com/resume`,
-          },
-        }
-      }
-    },
-  };
-};
+            },
+            },
+            },
+            },
+            };
+            };
