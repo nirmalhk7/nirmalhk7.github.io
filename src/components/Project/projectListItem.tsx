@@ -42,18 +42,18 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
           )}
         </div>
         
-        <div className="flex flex-wrap gap-2 mt-4 md:mt-0 md:ml-6 items-center">
-          {project.frontmatter.tags?.map((tag) => (
-            <span
-              key={tag}
-              className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-blocky font-bold uppercase tracking-wider"
-            >
-              {tag}
-            </span>
-          ))}
+        <div className="flex flex-wrap gap-4 mt-4 md:mt-0 md:ml-6 items-center">
+          <div className="flex gap-3 text-xs font-blocky font-bold uppercase tracking-widest text-gray-400">
+            {project.frontmatter.tags?.map((tag, i, arr) => (
+              <React.Fragment key={tag}>
+                <span className="group-hover:text-gray-600 transition-colors">{tag}</span>
+                {i < arr.length - 1 && <span className="text-gray-200">/</span>}
+              </React.Fragment>
+            ))}
+          </div>
           <motion.span
             animate={{ rotate: isExpanded ? 180 : 0 }}
-            className="ml-4 text-accent text-2xl hidden md:block"
+            className="text-accent text-2xl hidden md:block opacity-50 group-hover:opacity-100 transition-opacity ml-4"
           >
             ↓
           </motion.span>
