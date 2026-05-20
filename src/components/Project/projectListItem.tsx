@@ -10,14 +10,15 @@ interface ProjectListItemProps {
   index: number;
 }
 
-export const ProjectListItem: React.FC<ProjectListItemProps> = ({
+export const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectListItemProps>(({
   project,
   isExpanded,
   onToggle,
   index,
-}) => {
+}, ref) => {
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.03 }}
@@ -91,4 +92,6 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
       </AnimatePresence>
     </motion.div>
   );
-};
+});
+
+ProjectListItem.displayName = "ProjectListItem";

@@ -138,20 +138,24 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                 <motion.div
                   layout
                   key={project.slug}
-                  ref={(el) => {
-                    projectRefs.current[project.slug] = el;
-                  }}
                 >
-                  <ProjectListItem
-                    project={project}
-                    isExpanded={expandedSlug === project.slug}
-                    onToggle={() => handleToggle(project.slug)}
-                    index={index}
-                  />
+                  <div
+                    ref={(el) => {
+                      projectRefs.current[project.slug] = el;
+                    }}
+                  >
+                    <ProjectListItem
+                      project={project}
+                      isExpanded={expandedSlug === project.slug}
+                      onToggle={() => handleToggle(project.slug)}
+                      index={index}
+                    />
+                  </div>
                 </motion.div>
               ))}
             </AnimatePresence>
             {filteredProjects.length === 0 && (
+
               <div className="py-32 text-center bg-gray-50 rounded-b-3xl">
                 <h3 className="text-gray-500 font-heading italic text-3xl mb-4 tracking-normal">Checking the archives... looks like I haven&apos;t tackled this one yet.</h3>
                 <p className="text-gray-400 text-lg">Maybe try a different search or clear the filters?</p>

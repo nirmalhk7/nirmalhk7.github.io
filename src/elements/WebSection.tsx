@@ -8,7 +8,7 @@ interface WebSectionProps {
   id: string; // Make id a required prop
 }
 
-const WebSection: React.FC<WebSectionProps> = ({ children, className = "", id }) => {
+const WebSection = React.forwardRef<HTMLElement, WebSectionProps>(({ children, className = "", id }, ref) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -20,6 +20,7 @@ const WebSection: React.FC<WebSectionProps> = ({ children, className = "", id })
 
   return (
     <motion.section
+      ref={ref}
       id={id}
       className={`${className} group relative`}
       onViewportEnter={() => trackView(id)}
@@ -35,7 +36,9 @@ const WebSection: React.FC<WebSectionProps> = ({ children, className = "", id })
       {children}
     </motion.section>
   );
-};
+});
+
+WebSection.displayName = "WebSection";
 
 function useTemplateStyle(mouseX: MotionValue<number>, mouseY: MotionValue<number>) {
   return useTransform(
