@@ -7,10 +7,10 @@ export interface QuoteInterface {
   saidby: string;
 }
 
-const QuoteSection = ({ quote }: { quote?: QuoteInterface }) => {
+const QuoteSection = React.forwardRef<HTMLElement, { quote?: QuoteInterface }>(({ quote }, ref) => {
   if (!quote) return null;
   return (
-    <WebSection className="bg-white" id="quote">
+    <WebSection className="bg-white" id="quote" ref={ref}>
       <div className="narrow m-auto text-center text-4xl pb-6 relative selection:bg-accent selection:text-white">
         <div>
           <blockquote>
@@ -21,5 +21,7 @@ const QuoteSection = ({ quote }: { quote?: QuoteInterface }) => {
       </div>
     </WebSection>
   );
-};
+});
+
+QuoteSection.displayName = "QuoteSection";
 export default QuoteSection;

@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 
 import { social } from "@/components/Social/socialSection";
 
-const FooterSection = () => {
+const FooterSection = React.forwardRef<HTMLElement, any>((props, ref) => {
   return (
     <motion.footer 
+      ref={ref}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -59,5 +60,7 @@ const FooterSection = () => {
       </div>
     </motion.footer>
   );
-};
+});
+
+FooterSection.displayName = "FooterSection";
 export default FooterSection;

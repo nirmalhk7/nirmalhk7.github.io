@@ -3,9 +3,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import WebSection from "@/elements/WebSection";
 
-const BlogIntroSection = ({ name }: { name: string }) => {
+const BlogIntroSection = React.forwardRef<HTMLElement, { name: string }>(({ name }, ref) => {
   return (
     <WebSection
+      ref={ref}
       className="bg-gradient-to-r from-accent/50 to-accent selection:bg-white selection:text-accent bg-white text-white overflow-hidden"
       id="blog"
     >
@@ -70,6 +71,8 @@ const BlogIntroSection = ({ name }: { name: string }) => {
       </div>
     </WebSection>
   );
-};
+});
+
+BlogIntroSection.displayName = "BlogIntroSection";
 
 export default BlogIntroSection;

@@ -6,13 +6,14 @@ import WebSection from "@/elements/WebSection";
 import { BlogMiniInterface } from "@/interfaces/blog";
 import { trackClick } from "@/util/analytics";
 
-const LatestBlogSection = ({
+const LatestBlogSection = React.forwardRef<HTMLElement, BlogMiniInterface>(({
   frontmatter,
   excerpt,
   slug
-}: BlogMiniInterface) => {
+}, ref) => {
   return (
     <WebSection
+      ref={ref}
       className="bg-gradient-to-r from-accent to-accentLight not-underline pt-8 pb-8 group"
       id="blog-first"
     >
@@ -52,6 +53,8 @@ const LatestBlogSection = ({
       </Link>
     </WebSection>
   );
-};
+});
+
+LatestBlogSection.displayName = "LatestBlogSection";
 
 export default LatestBlogSection;

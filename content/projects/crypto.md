@@ -28,7 +28,7 @@ On Cranberry (v3.01) edition, anybody who knew the names of the senders and reci
 The Movie _The Imitation Game_ ,based on Alan Turing's life, played by Benedict Cumberbatch and Keira Knightley.
 
 ##### Makers
-Nirmal Khedkar ([@nirmalhk7](www.github.com/nirmalhk7)) is the sole maker of this project.
+Nirmal Khedkar ([@nirmalhk7](https://www.github.com/nirmalhk7)) is the sole maker of this project.
 
 ##### Licences
 MIT License. Suggestions/Feedbacks welcomed.
