@@ -130,12 +130,12 @@ jobs:
           BASE_URL="https://nirmalhk7.com/blog/$SLUG"
           
           # Twitter Message with UTMs
-          TWITTER_URL="$BASE_URL?utm_source=twitter&utm_medium=social&utm_campaign=blog_release&utm_content=$SLUG"
+          TWITTER_URL="$BASE_URL?utm_source=twitter&utm_medium=social"
           TWITTER_MESSAGE="🚀 New blog post: \"$TITLE\"%0A%0ARead it here: $TWITTER_URL%0A%0A#webdev #softwareengineering #coding"
           echo "twitter_message=$TWITTER_MESSAGE" >> $GITHUB_OUTPUT
           
           # Bluesky Message with UTMs
-          BLUESKY_URL="$BASE_URL?utm_source=bluesky&utm_medium=social&utm_campaign=blog_release&utm_content=$SLUG"
+          BLUESKY_URL="$BASE_URL?utm_source=bluesky&utm_medium=social"
           BLUESKY_MESSAGE="🚀 New blog post: \"$TITLE\"%0A%0ARead it here: $BLUESKY_URL%0A%0A#webdev #softwareengineering #coding"
           echo "bluesky_message=$BLUESKY_MESSAGE" >> $GITHUB_OUTPUT
 
