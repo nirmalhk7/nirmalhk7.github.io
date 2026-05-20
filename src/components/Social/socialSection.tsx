@@ -54,16 +54,13 @@ const SocialSection = () => {
         <li className="relative h-20 group" key={index}>
           <Magnetic>
             <button
-              className="border-0 h-full text-3xl align-top flex items-center justify-end text-white/70 hover:text-white transition-colors duration-300"
+              className="border-0 h-full text-3xl align-top flex items-center justify-center text-white/70 hover:text-white transition-colors duration-300"
               onClick={() => {
                 trackClick(element.name, "social_link");
                 window.open(element.link, "_blank", "noopener,noreferrer");
               }}
               title={element.name}
             >
-              <span className="mr-6 text-xs uppercase tracking-[0.2em] opacity-0 -translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 pointer-events-none whitespace-nowrap text-accent">
-                {element.name}
-              </span>
               <FontAwesomeIcon
                 icon={element.class}
                 className="transition-transform duration-300 group-hover:scale-125"
