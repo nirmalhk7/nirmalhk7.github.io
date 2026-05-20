@@ -100,7 +100,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="border border-gray-100 rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50">
             <AnimatePresence mode="popLayout">
               {projects
                 .filter((project) =>

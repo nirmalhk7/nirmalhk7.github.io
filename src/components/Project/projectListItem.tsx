@@ -21,16 +21,16 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.03 }}
-      className="mb-4 last:mb-0"
+      className="border-b border-gray-300 last:border-0"
     >
       <button
         onClick={onToggle}
-        className={`w-full py-8 px-8 flex flex-col md:flex-row md:items-center justify-between text-left transition-all duration-300 rounded-2xl group border-0 ${
+        className={`w-full py-8 px-8 flex flex-col md:flex-row md:items-center justify-between text-left transition-all duration-300 group border-0 ${
           isExpanded ? "bg-gray-200" : "bg-gray-100 hover:bg-gray-200"
         }`}
       >
         <div className="flex-grow">
-          <h3 className={`text-2xl font-bold transition-colors ${
+          <h3 className={`text-3xl font-heading font-bold transition-colors ${
             isExpanded ? "text-black" : "text-gray-900 group-hover:text-black"
           }`}>
             {project.frontmatter.title}
@@ -69,7 +69,7 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="px-8 pb-8 bg-gray-200 rounded-b-2xl -mt-4">
+            <div className="px-8 pb-8 bg-gray-200">
               <div className="prose prose-lg max-w-none prose-neutral border-0 pt-8">
                 <ReactMarkdown>{project.content || ""}</ReactMarkdown>
               </div>
