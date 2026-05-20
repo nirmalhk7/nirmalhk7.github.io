@@ -82,11 +82,6 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
       <WebSection className="pt-16 pb-48" id="projectdetailed">
         <div className="container mx-auto">
           <div className="flex flex-col xl:flex-row xl:items-end justify-between mb-12 gap-8 px-4">
-            <div className="flex-shrink-0">
-              <h3 className="text-accent font-blocky uppercase tracking-widest text-sm mb-2">Portfolio</h3>
-              <h1 className="text-5xl font-bold">{filter === "X" ? "All" : filter} Projects</h1>
-            </div>
-            
             <div className="flex flex-col md:flex-row gap-6 items-start md:items-center w-full xl:justify-end">
               <div className="relative w-full md:max-w-md group">
                 <input
@@ -156,8 +151,9 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
               ))}
             </AnimatePresence>
             {filteredProjects.length === 0 && (
-              <div className="py-32 text-center bg-gray-50">
-                <h3 className="text-gray-400 font-heading italic text-2xl">No projects found matching your criteria.</h3>
+              <div className="py-32 text-center bg-gray-50 rounded-b-3xl">
+                <h3 className="text-gray-500 font-heading italic text-3xl mb-4 tracking-normal">Dayum, ig I didn&apos;t do this yet...</h3>
+                <p className="text-gray-400 text-lg">Maybe try a different search or clear the filters?</p>
               </div>
             )}
           </div>
