@@ -54,7 +54,7 @@ const SocialSection = () => {
         <li className="relative h-20 flex items-center justify-center" key={index}>
           <Magnetic>
             <button
-              className="w-14 h-14 rounded-full border-0 text-2xl flex items-center justify-center text-white/70 transition-all duration-300 hover:bg-white hover:text-accent hover:scale-110"
+              className="w-14 h-14 rounded-none border-0 text-2xl flex items-center justify-center text-white/70 transition-all duration-300 hover:bg-white hover:text-accent hover:scale-110"
               onClick={() => {
                 trackClick(element.name, "social_link");
                 window.open(element.link, "_blank", "noopener,noreferrer");
