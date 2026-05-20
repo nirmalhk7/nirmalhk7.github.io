@@ -70,7 +70,7 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
             className="overflow-hidden"
           >
             <div className="px-8 pb-8 bg-gray-200 rounded-b-2xl -mt-4">
-              <div className="prose prose-lg max-w-none prose-neutral border-t border-gray-300/50 pt-8">
+              <div className="prose prose-lg max-w-none prose-neutral border-0 pt-8">
                 <ReactMarkdown>{project.content || ""}</ReactMarkdown>
               </div>
             </div>
