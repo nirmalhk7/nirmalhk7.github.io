@@ -51,10 +51,10 @@ const SocialSection = () => {
   return (
     <ul className="pb-16 font-bold m-0 absolute bottom-0 right-16 font-blocky list-none after:block after:w-px after:bg-white after:bottom-0 after:content-[''] z-20">
       {social.map((element, index) => (
-        <li className="relative h-20 flex items-center justify-center" key={index}>
-          <Magnetic>
+        <li className="relative w-16 h-16" key={index}>
+          <Magnetic className="w-full h-full">
             <button
-              className="w-14 h-14 rounded-none border-0 text-2xl flex items-center justify-center text-white/70 transition-all duration-300 hover:bg-white hover:text-accent hover:scale-110"
+              className="w-full h-full rounded-none border-0 text-2xl flex items-center justify-center text-white/70 transition-all duration-300 hover:bg-white hover:text-accent hover:scale-110"
               onClick={() => {
                 trackClick(element.name, "social_link");
                 window.open(element.link, "_blank", "noopener,noreferrer");
