@@ -15,7 +15,7 @@ import loadYaml from "@/util/loadYaml";
 import path from "path";
 import { useRouter } from "next/router";
 
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ProjectPageProps extends DefaultPageProps {
   projects: ProjectInterface[];
@@ -135,7 +135,8 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
           <div className="border border-gray-100 rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, index) => (
-                <div
+                <motion.div
+                  layout
                   key={project.slug}
                   ref={(el) => {
                     projectRefs.current[project.slug] = el;
@@ -147,7 +148,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                     onToggle={() => handleToggle(project.slug)}
                     index={index}
                   />
-                </div>
+                </motion.div>
               ))}
             </AnimatePresence>
             {filteredProjects.length === 0 && (
