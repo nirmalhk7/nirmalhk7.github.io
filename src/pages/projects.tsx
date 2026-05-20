@@ -33,7 +33,19 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
     if (id && typeof id === "string") {
       setExpandedSlug(id);
       setTimeout(() => {
-        projectRefs.current[id]?.scrollIntoView({ behavior: "smooth", block: "start" });
+        const element = projectRefs.current[id];
+        if (element) {
+          const offset = 100; // Offset for navbar
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = element.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
       }, 100);
     }
   }, [router.query]);
