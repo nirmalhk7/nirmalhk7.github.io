@@ -4,7 +4,7 @@ import WebSection from "@/elements/WebSection";
 import { trackClick, trackFormFocus } from "@/util/analytics";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const ContactMeSection = React.forwardRef<HTMLDivElement, any>((props, ref) => {
+const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown>>((_props, ref) => {
   const [state, handleSubmit] = useForm("mgvwblra");
   const containerRef = React.useRef<HTMLDivElement>(null);
   
