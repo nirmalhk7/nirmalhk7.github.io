@@ -30,10 +30,10 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
         }`}
       >
         <div className="flex-grow">
-          <h3 className="text-3xl transition-colors normal-case text-black">
+          <h3 className="text-3xl transition-colors normal-case text-black tracking-normal">
             {project.frontmatter.title}
           </h3>
-          <div className="flex gap-3 text-lg font-blocky font-bold uppercase tracking-blocky text-gray-400 mt-1">
+          <div className="flex gap-3 text-lg font-blocky font-bold uppercase tracking-normal text-gray-400 mt-1">
             {project.frontmatter.tags?.map((tag, i, arr) => (
               <React.Fragment key={tag}>
                 <span className="group-hover:text-black transition-colors">{tag}</span>
