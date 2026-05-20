@@ -94,7 +94,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                   placeholder="Search projects, technologies..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-6 py-3 rounded-full bg-gray-50 border-2 border-gray-100 focus:border-accent focus:bg-white transition-all duration-300 outline-none text-lg font-medium"
+                  className="w-full px-6 py-3 rounded-full bg-white border-2 border-gray-200 shadow-sm focus:border-accent focus:shadow-md transition-all duration-300 outline-none text-lg font-medium text-black placeholder:text-gray-400"
                 />
                 <div className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-accent transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
