@@ -10,12 +10,12 @@ import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
 import { ProjectInterface } from "@/interfaces/projects";
 import { ProjectDescription } from "@/components/Project/projectDescription";
-import { ProjectCard } from "@/components/Project/projectCard";
+import { ProjectListItem } from "@/components/Project/projectListItem";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
 import { useRouter } from "next/router";
 
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 interface ProjectPageProps extends DefaultPageProps {
   projects: ProjectInterface[];
@@ -50,7 +50,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
   };
 
   return (
-    <main className="bg-gray-50">
+    <main className="bg-white">
       <Jumbotron.Mini
         backgroundImage={nasaGalaxy}
         backgroundImageAlt="Earth from Space"
@@ -61,7 +61,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
 
       <WebSection className="pt-16 pb-48" id="projectdetailed">
         <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6 px-4">
             <div>
               <h3 className="text-accent font-blocky uppercase tracking-widest text-sm mb-2">Portfolio</h3>
               <h1 className="text-5xl font-bold">{filter === "X" ? "All" : filter} Projects</h1>
@@ -76,7 +76,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                 className={`px-6 py-2 rounded-full font-bold transition-all ${
                   filter === "X" 
                     ? "bg-accent text-white shadow-lg shadow-accent/30" 
-                    : "bg-white text-gray-600 hover:bg-gray-100"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
                 All
@@ -91,7 +91,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                   className={`px-6 py-2 rounded-full font-bold transition-all ${
                     tag === filter 
                       ? "bg-accent text-white shadow-lg shadow-accent/30" 
-                      : "bg-white text-gray-600 hover:bg-gray-100"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
                   {tag}
@@ -100,42 +100,37 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
             </div>
           </div>
 
-          <LayoutGroup>
-            <motion.div 
-              layout
-              className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-8"
-            >
-              <AnimatePresence mode="popLayout">
-                {projects
-                  .filter((project) =>
-                    filter === "X"
-                      ? true
-                      : project.frontmatter.tags?.includes(filter)
-                  )
-                  .map((project, index) => (
-                    <div
-                      key={project.slug}
-                      ref={(el) => {
-                        projectRefs.current[project.slug] = el;
-                      }}
-                      className={expandedSlug === project.slug ? "col-span-full" : ""}
-                    >
-                      <ProjectCard
-                        project={project}
-                        isExpanded={expandedSlug === project.slug}
-                        onToggle={() => handleToggle(project.slug)}
-                        index={index}
-                      />
-                    </div>
-                  ))}
-              </AnimatePresence>
-            </motion.div>
-          </LayoutGroup>
+          <div className="bg-white rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50 border border-gray-100">
+            <AnimatePresence mode="popLayout">
+              {projects
+                .filter((project) =>
+                  filter === "X"
+                    ? true
+                    : project.frontmatter.tags?.includes(filter)
+                )
+                .map((project, index) => (
+                  <div
+                    key={project.slug}
+                    ref={(el) => {
+                      projectRefs.current[project.slug] = el;
+                    }}
+                  >
+                    <ProjectListItem
+                      project={project}
+                      isExpanded={expandedSlug === project.slug}
+                      onToggle={() => handleToggle(project.slug)}
+                      index={index}
+                    />
+                  </div>
+                ))}
+            </AnimatePresence>
+          </div>
         </div>
       </WebSection>
     </main>
   );
 };
+
 
 
 export const getStaticProps: GetStaticProps<ProjectPageProps> = async () => {
