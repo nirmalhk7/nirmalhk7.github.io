@@ -107,10 +107,22 @@ jobs:
     environment: Production
     needs: deploy
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    env:
+      TWITTER_APP_KEY: ${{ secrets.TWITTER_APP_KEY }}
+      TWITTER_APP_SECRET: ${{ secrets.TWITTER_APP_SECRET }}
+      TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+      TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+      BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
+      BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
 
       - name: Get changed blog files
         id: changed-blog-files
@@ -118,10 +130,8 @@ jobs:
         with:
           files: content/blog/**.md
 
-      - name: Trigger publicity for new blogs
+      - name: Post to Social Media
         if: steps.changed-blog-files.outputs.any_changed == 'true'
         run: |
-          echo "New blog(s) detected: ${{ steps.changed-blog-files.outputs.all_changed_files }}"
-          echo "Triggering publicity (Twitter, LinkedIn, etc.)..."
-          # Placeholder for actual publicity logic
-          # Example: python scripts/post_to_socials.py ${{ steps.changed-blog-files.outputs.all_changed_files }}
+          npm install twitter-api-v2 gray-matter
+          node scripts/post-to-socials.js ${{ steps.changed-blog-files.outputs.all_changed_files }}
