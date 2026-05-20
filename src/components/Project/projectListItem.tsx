@@ -31,12 +31,12 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
       >
         <div className="flex-grow">
           <h3 className={`text-2xl font-bold transition-colors ${
-            isExpanded ? "text-accent" : "text-gray-900 group-hover:text-accent"
+            isExpanded ? "text-black" : "text-gray-900 group-hover:text-black"
           }`}>
             {project.frontmatter.title}
           </h3>
           {!isExpanded && (
-            <p className="text-gray-500 mt-2 line-clamp-1 text-lg">
+            <p className="text-gray-500 mt-2 line-clamp-1 text-lg font-medium">
               {project.excerpt}
             </p>
           )}
@@ -46,14 +46,14 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
           <div className="flex gap-3 text-xs font-blocky font-bold uppercase tracking-widest text-gray-400">
             {project.frontmatter.tags?.map((tag, i, arr) => (
               <React.Fragment key={tag}>
-                <span className="group-hover:text-gray-600 transition-colors">{tag}</span>
+                <span className="group-hover:text-black transition-colors">{tag}</span>
                 {i < arr.length - 1 && <span className="text-gray-200">/</span>}
               </React.Fragment>
             ))}
           </div>
           <motion.span
             animate={{ rotate: isExpanded ? 180 : 0 }}
-            className="text-gray-400 text-2xl hidden md:block group-hover:text-accent transition-colors ml-4"
+            className="text-gray-400 text-2xl hidden md:block group-hover:text-black transition-colors ml-4"
           >
             ↓
           </motion.span>
@@ -70,7 +70,7 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
             className="overflow-hidden"
           >
             <div className="px-8 pb-8 bg-gray-100 rounded-b-2xl -mt-4">
-              <div className="prose prose-lg max-w-none prose-accent border-t border-gray-200 pt-8">
+              <div className="prose prose-lg max-w-none prose-neutral border-t border-gray-200 pt-8">
                 <ReactMarkdown>{project.content || ""}</ReactMarkdown>
               </div>
             </div>
