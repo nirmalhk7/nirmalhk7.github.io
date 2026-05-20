@@ -73,13 +73,13 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                   setFilter("X");
                   trackClick("clear_filter", "project_filter");
                 }}
-                className={`px-6 py-2 rounded-full font-bold transition-all ${
+                className={`px-8 py-2.5 rounded-full font-blocky text-xs uppercase tracking-widest transition-all duration-300 border ${
                   filter === "X" 
-                    ? "bg-accent text-white shadow-lg shadow-accent/30" 
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    ? "bg-accent border-accent text-white shadow-lg shadow-accent/20 scale-105" 
+                    : "bg-white/50 backdrop-blur-sm border-gray-200 text-gray-500 hover:border-accent/50 hover:text-accent"
                 }`}
               >
-                All
+                All Projects
               </button>
               {allTags.sort().map((tag) => (
                 <button
@@ -88,10 +88,10 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                     setFilter(tag);
                     trackClick(tag, "project_filter");
                   }}
-                  className={`px-6 py-2 rounded-full font-bold transition-all ${
+                  className={`px-8 py-2.5 rounded-full font-blocky text-xs uppercase tracking-widest transition-all duration-300 border ${
                     tag === filter 
-                      ? "bg-accent text-white shadow-lg shadow-accent/30" 
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      ? "bg-accent border-accent text-white shadow-lg shadow-accent/30 scale-105" 
+                      : "bg-white/50 backdrop-blur-sm border-gray-200 text-gray-500 hover:border-accent/50 hover:text-accent"
                   }`}
                 >
                   {tag}
