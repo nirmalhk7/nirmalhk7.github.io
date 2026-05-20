@@ -101,3 +101,27 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{"status":"deployed","commit":"'"${GITHUB_SHA}"'"}' \
             https://example.com/webhook
+
+  publicity:
+    runs-on: ubuntu-latest
+    environment: Production
+    needs: deploy
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed blog files
+        id: changed-blog-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files: content/blog/**.md
+
+      - name: Trigger publicity for new blogs
+        if: steps.changed-blog-files.outputs.any_changed == 'true'
+        run: |
+          echo "New blog(s) detected: ${{ steps.changed-blog-files.outputs.all_changed_files }}"
+          echo "Triggering publicity (Twitter, LinkedIn, etc.)..."
+          # Placeholder for actual publicity logic
+          # Example: python scripts/post_to_socials.py ${{ steps.changed-blog-files.outputs.all_changed_files }}
