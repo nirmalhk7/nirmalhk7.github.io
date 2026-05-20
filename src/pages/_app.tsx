@@ -89,9 +89,9 @@ export default function App({ Component, pageProps }: CustomAppProps) {
           },
         ]}
         twitter={{
-          cardType: "summary",
-          handle: "nirmalhk7",
-          site: "https://nirmalhk7.com",
+          cardType: "summary_large_image",
+          handle: "@nirmalhk7",
+          site: "@nirmalhk7",
         }}
         titleTemplate="%s | Nirmal Khedkar"
       />
