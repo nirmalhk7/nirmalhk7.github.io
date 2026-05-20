@@ -117,6 +117,8 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           files: content/blog/**.md
+          since_last_remote_commit: true
+          status: A
 
       - name: Prepare Social Media Message
         if: steps.changed-blog-files.outputs.any_changed == 'true'
