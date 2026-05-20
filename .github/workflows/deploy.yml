@@ -113,7 +113,7 @@ jobs:
 
       - name: Get changed blog files
         id: changed-blog-files
-        uses: tj-actions/changed-files@v44
+        uses: tj-actions/changed-files@v46
         with:
           files: content/blog/**.md
           since_last_remote_commit: true
