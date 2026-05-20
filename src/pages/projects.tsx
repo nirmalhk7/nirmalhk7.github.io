@@ -152,7 +152,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
             </AnimatePresence>
             {filteredProjects.length === 0 && (
               <div className="py-32 text-center bg-gray-50 rounded-b-3xl">
-                <h3 className="text-gray-500 font-heading italic text-3xl mb-4 tracking-normal">Dayum, ig I didn&apos;t do this yet...</h3>
+                <h3 className="text-gray-500 font-heading italic text-3xl mb-4 tracking-normal">Checking the archives... looks like I haven&apos;t tackled this one yet.</h3>
                 <p className="text-gray-400 text-lg">Maybe try a different search or clear the filters?</p>
               </div>
             )}
