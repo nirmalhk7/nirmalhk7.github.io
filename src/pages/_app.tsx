@@ -82,6 +82,10 @@ export default function App({ Component, pageProps }: CustomAppProps) {
             name: "theme-color",
             content: "#000000",
           },
+          {
+            name: "msapplication-TileColor",
+            content: "#000000",
+          },
         ]}
         additionalLinkTags={[
           {
@@ -98,6 +102,10 @@ export default function App({ Component, pageProps }: CustomAppProps) {
             rel: "alternate",
             type: "application/rss+xml",
             href: "https://nirmalhk7.com/api/rss",
+          },
+          {
+            rel: "manifest",
+            href: "/manifest.json",
           },
         ]}
         twitter={{

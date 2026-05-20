@@ -21,6 +21,7 @@ import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
 import { ProjectFrontmatterInterface, ProjectInterface } from "@/interfaces/projects";
 import { CommonHeader } from "@/components/header";
+import { SocialProfileJsonLd } from "next-seo";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
 import { trackClick, trackView } from "@/util/analytics";
@@ -45,7 +46,8 @@ const IndexPage = ({
   onlineCourses,
   collegeCourses,
   membership,
-  skills
+  skills,
+  cv
 }: IndexPageProps) => {
   
   React.useEffect(() => {
@@ -53,6 +55,13 @@ const IndexPage = ({
   }, []);
 
   return (
+    <>
+      <SocialProfileJsonLd
+        type="Person"
+        name="Nirmal Khedkar"
+        url="https://nirmalhk7.com"
+        sameAs={cv.map((profile) => profile.url)}
+      />
       <main>
       <Jumbotron.Max
         HeadingTextComponent={
@@ -186,6 +195,7 @@ const IndexPage = ({
       <ProjectIntroSection projects={projects} />
       <BlogIntroSection name="The Blue Green Manual" />
       </main>
+    </>
   );
 };
 

@@ -22,6 +22,7 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { BlogFrontmatterInterface, BlogInterface } from "@/interfaces/blog";
+import { ArticleJsonLd } from "next-seo";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import sampleSize from "lodash/sampleSize";
@@ -39,6 +40,69 @@ import { trackClick, trackView } from "@/util/analytics";
 interface BlogTemplatePageProps extends DefaultPageProps {
   current: BlogInterface;
 }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const blogs = loadMarkdownFiles("content/blog", {
+    getContent: false,
+    getExcerpt: false,
+  });
+
+  const paths = blogs.map((file) => {
+    return {
+      params: {
+        blogId: file.slug,
+      },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false, // false or "blocking"
+  };
+};
+
+export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
+  context
+) => {
+  const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
+  const blogId = context.params?.blogId as string;
+  const currentBlog = loadMarkdownFile<BlogFrontmatterInterface>(
+    "content/blog/" + blogId + ".md",
+    blogId,
+    { getContent: true, getExcerpt: false }
+  );
+
+  return {
+    props: {
+      current: currentBlog,
+      quote: sampleSize(allQuotesYaml)[0],
+      pageMetadata: {
+        enableWrap: true,
+        seoMetadata: {
+          title: currentBlog.frontmatter.title,
+          description: currentBlog.frontmatter.description,
+          openGraph: {
+            type: "article",
+            url: `https://nirmalhk7.com/blog/${blogId}`,
+            article: {
+              publishedTime: currentBlog.frontmatter.date,
+              authors: ["Nirmal Khedkar"],
+              tags: currentBlog.frontmatter.tags,
+            },
+            images: [
+              {
+                url: `https://nirmalhk7.com${currentBlog.frontmatter.img}`,
+                alt: currentBlog.frontmatter.title,
+                width: 1200,
+                height: 630
+              },
+            ],
+          },
+        },
+      },
+    },
+  };
+};
 
 const BlogTemplate = ({
   current,
@@ -129,7 +193,17 @@ const BlogTemplate = ({
   ];
 
   return (
-    <main>
+    <>
+      <ArticleJsonLd
+        useAppDir={false}
+        url={`https://nirmalhk7.com/blog/${current.slug}`}
+        title={current.frontmatter?.title || ""}
+        images={[`https://nirmalhk7.com${current.frontmatter?.img}`]}
+        datePublished={current.frontmatter?.date || ""}
+        authorName="Nirmal Khedkar"
+        description={current.frontmatter?.description || ""}
+      />
+      <main>
       <article className="bg-white has-bottom-sep">
         <Jumbotron.Mini
           backgroundImage={current.frontmatter?.img || ""}
@@ -311,70 +385,8 @@ const BlogTemplate = ({
         </div>
       </article>
     </main>
+    </>
   );
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const blogs = loadMarkdownFiles("content/blog", {
-    getContent: false,
-    getExcerpt: false,
-  });
-
-  const paths = blogs.map((file) => {
-    return {
-      params: {
-        blogId: file.slug,
-      },
-    };
-  });
-
-  return {
-    paths,
-    fallback: false, // false or "blocking"
-  };
-};
-
-export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
-  context
-) => {
-  const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
-  const blogId = context.params?.blogId as string;
-  const currentBlog = loadMarkdownFile<BlogFrontmatterInterface>(
-    "content/blog/" + blogId + ".md",
-    blogId,
-    { getContent: true, getExcerpt: false }
-  );
-
-  return {
-    props: {
-      current: currentBlog,
-      quote: sampleSize(allQuotesYaml)[0],
-      pageMetadata: {
-        enableWrap: true,
-        seoMetadata: {
-          title: currentBlog.frontmatter.title,
-          description: currentBlog.frontmatter.description,
-          openGraph: {
-            type: "article",
-            url: `https://nirmalhk7.com/blog/${blogId}`,
-            article: {
-              publishedTime: currentBlog.frontmatter.date,
-              authors: ["Nirmal Khedkar"],
-              tags: currentBlog.frontmatter.tags,
-            },
-            images: [
-              {
-                url: `https://nirmalhk7.com${currentBlog.frontmatter.img}`,
-                alt: currentBlog.frontmatter.title,
-                width: 1200,
-                height: 630
-              },
-            ],
-          },
-        },
-      },
-    },
-  };
 };
 
 export default BlogTemplate;
