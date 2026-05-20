@@ -26,7 +26,7 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
       <button
         onClick={onToggle}
         className={`w-full py-8 px-8 flex flex-col md:flex-row md:items-center justify-between text-left transition-all duration-300 rounded-2xl group ${
-          isExpanded ? "bg-gray-100" : "bg-gray-50 hover:bg-gray-100"
+          isExpanded ? "bg-gray-200" : "bg-gray-100 hover:bg-gray-200"
         }`}
       >
         <div className="flex-grow">
@@ -47,7 +47,7 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
             {project.frontmatter.tags?.map((tag, i, arr) => (
               <React.Fragment key={tag}>
                 <span className="group-hover:text-black transition-colors">{tag}</span>
-                {i < arr.length - 1 && <span className="text-gray-200">/</span>}
+                {i < arr.length - 1 && <span className="text-gray-300">/</span>}
               </React.Fragment>
             ))}
           </div>
@@ -69,8 +69,8 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="px-8 pb-8 bg-gray-100 rounded-b-2xl -mt-4">
-              <div className="prose prose-lg max-w-none prose-neutral border-t border-gray-200 pt-8">
+            <div className="px-8 pb-8 bg-gray-200 rounded-b-2xl -mt-4">
+              <div className="prose prose-lg max-w-none prose-neutral border-t border-gray-300/50 pt-8">
                 <ReactMarkdown>{project.content || ""}</ReactMarkdown>
               </div>
             </div>
