@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="4" failures="0" errors="0" time="1.337">
-  <testsuite name="Jumbotron Component" errors="0" failures="0" skipped="0" timestamp="2026-04-29T06:06:17" time="0.695" tests="1">
-    <testcase classname="Jumbotron Component renders Max Jumbotron correctly" name="Jumbotron Component renders Max Jumbotron correctly" time="0.155">
-    </testcase>
-  </testsuite>
-  <testsuite name="Navbar Component" errors="0" failures="0" skipped="0" timestamp="2026-04-29T06:06:18" time="0.088" tests="2">
-    <testcase classname="Navbar Component renders the brand name correctly" name="Navbar Component renders the brand name correctly" time="0.01">
-    </testcase>
-    <testcase classname="Navbar Component renders navigation links" name="Navbar Component renders navigation links" time="0.004">
-    </testcase>
-  </testsuite>
-  <testsuite name="loadMarkdown util" errors="0" failures="0" skipped="0" timestamp="2026-04-29T06:06:18" time="0.081" tests="1">
-    <testcase classname="loadMarkdown util loads every markdown file under content without throwing" name="loadMarkdown util loads every markdown file under content without throwing" time="0.01">
+<testsuites name="jest tests" tests="1" failures="0" errors="0" time="0.805">
+  <testsuite name="Jumbotron Component" errors="0" failures="0" skipped="0" timestamp="2026-05-20T05:21:23" time="0.487" tests="1">
+    <testcase classname="Jumbotron Component renders Max Jumbotron correctly" name="Jumbotron Component renders Max Jumbotron correctly" time="0.169">
     </testcase>
   </testsuite>
 </testsuites>
