@@ -5,8 +5,9 @@ import '@testing-library/jest-dom';
 
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: (props: unknown) => {
-    return <img {...props} alt="" />; // Mock next/image to standard img for testing
+  default: ({ src, alt, fill, priority, ...props }: any) => {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={typeof src === 'object' ? src.src : src} alt={alt || ''} {...props} />;
   },
 }));
 
