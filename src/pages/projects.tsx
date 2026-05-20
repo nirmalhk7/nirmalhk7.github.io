@@ -73,7 +73,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                   setFilter("X");
                   trackClick("clear_filter", "project_filter");
                 }}
-                className={`px-8 py-2.5 rounded-full font-blocky text-xs uppercase tracking-widest transition-all duration-300 border ${
+                className={`px-8 py-2.5 rounded-full font-blocky text-base uppercase tracking-[0.25rem] transition-all duration-300 border ${
                   filter === "X" 
                     ? "bg-accent border-accent text-white shadow-lg shadow-accent/20 scale-105" 
                     : "bg-white/50 backdrop-blur-sm border-gray-200 text-gray-500 hover:border-accent/50 hover:text-accent"
@@ -88,7 +88,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                     setFilter(tag);
                     trackClick(tag, "project_filter");
                   }}
-                  className={`px-8 py-2.5 rounded-full font-blocky text-xs uppercase tracking-widest transition-all duration-300 border ${
+                  className={`px-8 py-2.5 rounded-full font-blocky text-base uppercase tracking-[0.25rem] transition-all duration-300 border ${
                     tag === filter 
                       ? "bg-accent border-accent text-white shadow-lg shadow-accent/30 scale-105" 
                       : "bg-white/50 backdrop-blur-sm border-gray-200 text-gray-500 hover:border-accent/50 hover:text-accent"
