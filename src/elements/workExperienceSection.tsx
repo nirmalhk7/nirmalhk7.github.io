@@ -31,12 +31,13 @@ const itemVariants: Variants = {
   },
 };
 
-const WorkExperienceSection = ({
-  experience,
-}: {
+const WorkExperienceSection = React.forwardRef<HTMLElement, {
   experience: WorkExperienceType[];
-}) => (
+}>(({
+  experience,
+}, ref) => (
   <WebSection
+    ref={ref}
     className="pt-32 pb-32 bg-white relative selection:bg-accent selection:text-white"
     id="workexperience"
   >
@@ -87,5 +88,8 @@ const WorkExperienceSection = ({
       </motion.div>
     </div>
   </WebSection>
-);
+));
+
+WorkExperienceSection.displayName = "WorkExperienceSection";
+
 export default WorkExperienceSection;

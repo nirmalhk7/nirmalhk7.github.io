@@ -40,122 +40,129 @@ const slideUpItem: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-const Jumbotron = {
-  Mini: ({
-    backgroundImage,
-    backgroundImageAlt,
-    title,
-    subtitle,
-    DescriptionComponent,
-    centerAlign = false,
-  }: MiniJumbotronProps) => {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-      target: containerRef,
-      offset: ["start start", "end start"]
-    });
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+const Mini = React.forwardRef<HTMLElement, MiniJumbotronProps>(({
+  backgroundImage,
+  backgroundImageAlt,
+  title,
+  subtitle,
+  DescriptionComponent,
+  centerAlign = false,
+}, ref) => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
-    return (
-      <WebSection
-        className="page-header bg-fixed bg-center bg-no-repeat selection:bg-accent selection:text-white flex justify-center items-center overflow-hidden"
-        id={`${title}-header`}
+  return (
+    <WebSection
+      ref={ref}
+      className="page-header bg-fixed bg-center bg-no-repeat selection:bg-accent selection:text-white flex justify-center items-center overflow-hidden"
+      id={`${title}-header`}
+    >
+      <div ref={containerRef} className="absolute inset-0 z-0">
+        <motion.div style={{ y }} className="relative h-full w-full">
+          <Image
+            fill
+            priority={true}
+            className="object-center object-cover pointer-events-none !h2/5 brightness-25"
+            src={backgroundImage}
+            alt={backgroundImageAlt}
+            sizes="100vw"
+          />
+        </motion.div>
+      </div>
+      <div
+        className={`jumbotron container page-header__content z-10 ${
+          centerAlign ? "text-center" : ""
+        }`}
       >
-        <div ref={containerRef} className="absolute inset-0 z-0">
-          <motion.div style={{ y }} className="relative h-full w-full">
-            <Image
-              fill
-              priority={true}
-              className="object-center object-cover pointer-events-none !h2/5 brightness-25"
-              src={backgroundImage}
-              alt={backgroundImageAlt}
-              sizes="100vw"
-            />
-          </motion.div>
-        </div>
-        <div
-          className={`jumbotron container page-header__content z-10 ${
-            centerAlign ? "text-center" : ""
-          }`}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
         >
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="show"
-          >
-            <motion.h1 variants={slideUpItem} className="page-header__title text-white">{title}</motion.h1>
-            <motion.div variants={slideUpItem} className="page-header__info">
-              <div className="page-header__cat text-white inline-block uppercase">
-                {subtitle}
-              </div>
-            </motion.div>
-            <motion.div variants={slideUpItem}>
-              <DescriptionComponent />
-            </motion.div>
+          <motion.h1 variants={slideUpItem} className="page-header__title text-white">{title}</motion.h1>
+          <motion.div variants={slideUpItem} className="page-header__info">
+            <div className="page-header__cat text-white inline-block uppercase">
+              {subtitle}
+            </div>
           </motion.div>
-        </div>
-      </WebSection>
-    );
-  },
-  Max: ({
-    orangeText,
-    HeadingTextComponent,
-    buttonDetails,
-    bgImg,
-  }: MaxJumbotronProps) => {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-      target: containerRef,
-      offset: ["start start", "end start"]
-    });
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-    const textY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+          <motion.div variants={slideUpItem}>
+            <DescriptionComponent />
+          </motion.div>
+        </motion.div>
+      </div>
+    </WebSection>
+  );
+});
 
-    return (
-      <WebSection
-        id="max-jumbo"
-        className="s-home z-40 py-0 selection:bg-accent selection:text-white overflow-hidden snap-start"
-      >        <div ref={containerRef} className="absolute inset-0 z-0">
-          <motion.div style={{ y }} className="relative h-full w-full">
-            <Image
-              fill
-              priority={true}
-              className="object-right object-cover pointer-events-none laptop:object-center !h-screen brightness-50"
-              src={bgImg}
-              placeholder={typeof bgImg === "string" ? undefined : "blur"}
-              alt="Nirmal Khedkar - Software Engineer"
-              sizes="100vw"
-            />
+Mini.displayName = "Jumbotron.Mini";
+
+const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
+  orangeText,
+  HeadingTextComponent,
+  buttonDetails,
+  bgImg,
+}, ref) => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+
+  return (
+    <WebSection
+      ref={ref}
+      id="max-jumbo"
+      className="s-home z-40 py-0 selection:bg-accent selection:text-white overflow-hidden snap-start"
+    >        <div ref={containerRef} className="absolute inset-0 z-0">
+        <motion.div style={{ y }} className="relative h-full w-full">
+          <Image
+            fill
+            priority={true}
+            className="object-right object-cover pointer-events-none laptop:object-center !h-screen brightness-50"
+            src={bgImg}
+            placeholder={typeof bgImg === "string" ? undefined : "blur"}
+            alt="Nirmal Khedkar - Software Engineer"
+            sizes="100vw"
+          />
+        </motion.div>
+      </div>
+      <div className="jumbotron z-10 relative">
+        <motion.div 
+          style={{ y: textY }}
+          className="tablet:container mx-auto home-content__main"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.h3 variants={slideUpItem} className="ital-hover">{orangeText}</motion.h3>
+          <motion.div variants={slideUpItem}>{HeadingTextComponent}</motion.div>
+          <motion.div variants={slideUpItem} className="static text-left gap-4 right-0 bottom-8">
+            {buttonDetails.map((item) => (
+              <Link
+                className="button button-white inline-block mr-4"
+                key={item[0]}
+                href={item[1]}
+                onClick={() => trackClick(item[0], "jumbotron_cta")}
+              >
+                {item[0]}
+              </Link>
+            ))}
           </motion.div>
-        </div>
-        <div className="jumbotron z-10 relative">
-          <motion.div 
-            style={{ y: textY }}
-            className="tablet:container mx-auto home-content__main"
-            variants={staggerContainer}
-            initial="hidden"
-            animate="show"
-          >
-            <motion.h3 variants={slideUpItem} className="ital-hover">{orangeText}</motion.h3>
-            <motion.div variants={slideUpItem}>{HeadingTextComponent}</motion.div>
-            <motion.div variants={slideUpItem} className="static text-left gap-4 right-0 bottom-8">
-              {buttonDetails.map((item) => (
-                <Link
-                  className="button button-white inline-block mr-4"
-                  key={item[0]}
-                  href={item[1]}
-                  onClick={() => trackClick(item[0], "jumbotron_cta")}
-                >
-                  {item[0]}
-                </Link>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-        <SocialMediaIcons />
-      </WebSection>
-    );
-  },
-};
+        </motion.div>
+      </div>
+      <SocialMediaIcons />
+    </WebSection>
+  );
+});
+
+Max.displayName = "Jumbotron.Max";
+
+const Jumbotron = { Mini, Max };
 
 export default Jumbotron;
