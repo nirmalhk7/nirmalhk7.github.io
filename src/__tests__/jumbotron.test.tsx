@@ -5,10 +5,12 @@ import '@testing-library/jest-dom';
 
 jest.mock('next/image', () => ({
   __esModule: true,
+  /* eslint-disable */
   default: ({ src, alt, fill, priority, ...props }: any) => {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={typeof src === 'object' ? src.src : src} alt={alt || ''} {...props} />;
+    return <img src={typeof src === 'object' ? (src as any).src : src} alt={alt || ''} {...props} />;
   },
+  /* eslint-enable */
 }));
 
 describe('Jumbotron Component', () => {

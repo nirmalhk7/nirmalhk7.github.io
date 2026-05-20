@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 import { social } from "@/components/Social/socialSection";
 
-const FooterSection = React.forwardRef<HTMLElement, any>((props, ref) => {
+const FooterSection = React.forwardRef<HTMLElement, Record<string, unknown>>((_props, ref) => {
   return (
     <motion.footer 
       ref={ref}
