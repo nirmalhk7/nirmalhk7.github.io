@@ -21,12 +21,12 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.03 }}
-      className="border-b border-gray-200 last:border-0"
+      className="mb-4 last:mb-0"
     >
       <button
         onClick={onToggle}
-        className={`w-full py-8 px-4 flex flex-col md:flex-row md:items-center justify-between text-left transition-colors hover:bg-gray-50 group ${
-          isExpanded ? "bg-gray-50/50" : ""
+        className={`w-full py-8 px-8 flex flex-col md:flex-row md:items-center justify-between text-left transition-all duration-300 rounded-2xl group ${
+          isExpanded ? "bg-gray-100" : "bg-gray-50 hover:bg-gray-100"
         }`}
       >
         <div className="flex-grow">
@@ -53,7 +53,7 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
           </div>
           <motion.span
             animate={{ rotate: isExpanded ? 180 : 0 }}
-            className="text-accent text-2xl hidden md:block opacity-50 group-hover:opacity-100 transition-opacity ml-4"
+            className="text-gray-400 text-2xl hidden md:block group-hover:text-accent transition-colors ml-4"
           >
             ↓
           </motion.span>
@@ -69,7 +69,7 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="p-8 pt-0 bg-gray-50/50">
+            <div className="px-8 pb-8 bg-gray-100 rounded-b-2xl -mt-4">
               <div className="prose prose-lg max-w-none prose-accent border-t border-gray-200 pt-8">
                 <ReactMarkdown>{project.content || ""}</ReactMarkdown>
               </div>
