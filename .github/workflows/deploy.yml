@@ -139,6 +139,11 @@ jobs:
           BLUESKY_MESSAGE="🚀 New blog post: \"$TITLE\"%0A%0ARead it here: $BLUESKY_URL%0A%0A#webdev #softwareengineering #coding"
           echo "bluesky_message=$BLUESKY_MESSAGE" >> $GITHUB_OUTPUT
 
+          # Mastodon Message with UTMs
+          MASTODON_URL="$BASE_URL?utm_source=mastodon&utm_medium=social"
+          MASTODON_MESSAGE="🚀 New blog post: \"$TITLE\"%0A%0ARead it here: $MASTODON_URL%0A%0A#webdev #softwareengineering #coding"
+          echo "mastodon_message=$MASTODON_MESSAGE" >> $GITHUB_OUTPUT
+
       - name: Post to Twitter
         if: steps.changed-blog-files.outputs.any_changed == 'true'
         uses: ethomson/send-tweet-action@v1
@@ -156,3 +161,11 @@ jobs:
           text: ${{ steps.prepare.outputs.bluesky_message }}
           identifier: ${{ secrets.BLUESKY_IDENTIFIER }}
           password: ${{ secrets.BLUESKY_PASSWORD }}
+
+      - name: Post to Mastodon
+        if: steps.changed-blog-files.outputs.any_changed == 'true'
+        uses: rhoffmann/mastodon-post-action@v1
+        with:
+          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          instance-url: ${{ secrets.MASTODON_INSTANCE_URL }}
+          status: ${{ steps.prepare.outputs.mastodon_message }}
