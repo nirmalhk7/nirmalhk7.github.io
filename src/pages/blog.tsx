@@ -81,8 +81,8 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
               {
                 url: `https://nirmalhk7.com${blogWallpaper.src}`,
                 alt: "Hi, I'm Nirmal Khedkar",
-                width: 900,
-                height: 800,
+                width: 1200,
+                height: 630,
               },
             ],
           },

@@ -355,14 +355,19 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
           title: currentBlog.frontmatter.title,
           description: currentBlog.frontmatter.description,
           openGraph: {
-            type: "website",
+            type: "article",
             url: `https://nirmalhk7.com/blog/${blogId}`,
+            article: {
+              publishedTime: currentBlog.frontmatter.date,
+              authors: ["Nirmal Khedkar"],
+              tags: currentBlog.frontmatter.tags,
+            },
             images: [
               {
                 url: `https://nirmalhk7.com${currentBlog.frontmatter.img}`,
                 alt: currentBlog.frontmatter.title,
-                width: 900,
-                height: 800
+                width: 1200,
+                height: 630
               },
             ],
           },

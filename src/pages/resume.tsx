@@ -34,14 +34,20 @@ export const getStaticProps: GetStaticProps<ResumePageProps> = async () => {
           title: "Resume",
           description: "Looking to boost your engineering team's performance and reliability? Hire Nirmal Khedkar. With two years of full-stack experience at Visa, he's your man to improve your system performance and handle any runtime errors.",
           openGraph: {
-            type: "website",
+            type: "profile",
             url: `https://nirmalhk7.com/resume`,
+            profile: {
+              firstName: "Nirmal",
+              lastName: "Khedkar",
+              username: "nirmalhk7",
+              gender: "male",
+            },
             images: [
               {
                 url: `https://nirmalhk7.com/assets/images/BeachNK_1.jpg`,
                 alt: "Hi, I'm Nirmal Khedkar",
-                width: 900,
-                height: 800
+                width: 1200,
+                height: 630
               },
             ],
             },
