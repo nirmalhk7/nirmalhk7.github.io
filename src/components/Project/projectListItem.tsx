@@ -30,7 +30,7 @@ export const ProjectListItem: React.FC<ProjectListItemProps> = ({
         }`}
       >
         <div className="flex-grow">
-          <h3 className={`text-3xl font-heading font-bold transition-colors ${
+          <h3 className={`text-3xl font-heading font-bold transition-colors normal-case ${
             isExpanded ? "text-black" : "text-gray-900 group-hover:text-black"
           }`}>
             {project.frontmatter.title}
