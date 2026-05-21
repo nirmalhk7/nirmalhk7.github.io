@@ -55,10 +55,12 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                       fill
                       alt={element.frontmatter?.title || "Blog image"}
                       className="brightness-75 group-hover:brightness-50 group-hover:scale-105 transition duration-700 object-cover"
+                      sizes="(min-width: 1440px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                     />
                     <Link
                       title={element.excerpt ?? "The Blue Green Manual"}
                       href={`/blog/${element.slug}`}
+                      prefetch={false}
                       className="absolute inset-0 z-30"
                       onClick={() => trackClick(element.frontmatter?.title || "", "blog_list_link")}
                     >

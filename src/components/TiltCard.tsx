@@ -10,6 +10,7 @@ interface TiltCardProps {
 
 export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "", onClick, onKeyDown }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -20,10 +21,22 @@ export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "", on
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
 
+  React.useEffect(() => {
+    const resetRect = () => {
+      rectRef.current = null;
+    };
+
+    window.addEventListener("resize", resetRect);
+    return () => {
+      window.removeEventListener("resize", resetRect);
+    };
+  }, []);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (!ref.current) return;
 
-    const rect = ref.current.getBoundingClientRect();
+    const rect = rectRef.current ?? ref.current.getBoundingClientRect();
+    rectRef.current = rect;
 
     const width = rect.width;
     const height = rect.height;
@@ -39,6 +52,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "", on
   };
 
   const handleMouseLeave = () => {
+    rectRef.current = null;
     x.set(0);
     y.set(0);
   };

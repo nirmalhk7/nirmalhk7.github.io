@@ -11,13 +11,13 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/elements/navbar";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
-import ScrollToTop from "@/elements/scrollToTop";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, LazyMotion, domAnimation, m, useScroll, useSpring } from "framer-motion";
 import { useRouter } from "next/router";
 
 // Dynamic imports for performance
+const ScrollToTop = dynamic(() => import("@/elements/scrollToTop"), { ssr: false });
 const ContactMeSection = dynamic(() => import("@/components/ContactMe/contactMeSection"));
 const FooterSection = dynamic(() => import("@/components/Footer/footerSection"));
 const QuoteSection = dynamic(() => import("@/components/Quote/quoteSection"));
@@ -49,8 +49,9 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   useAnalytics();
 
   return (
+    <LazyMotion features={domAnimation}>
     <div className="min-h-screen">
-      <motion.div
+      <m.div
         className="fixed top-0 left-0 right-0 h-1 bg-accent z-[60] origin-left"
         style={{ scaleX }}
       />
@@ -129,7 +130,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
           ) : null}
           {pageProps.pageMetadata.enableWrap ? <Navbar /> : null}
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={router.route}
               initial={{ opacity: 0, y: 20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -144,10 +145,11 @@ export default function App({ Component, pageProps }: CustomAppProps) {
                   <FooterSection />
                 </>
               ) : null}
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
       ) : null}
     </div>
+    </LazyMotion>
   );
 }

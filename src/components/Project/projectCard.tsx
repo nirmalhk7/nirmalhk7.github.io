@@ -107,7 +107,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         onClick={!isExpanded && !href ? onToggle : undefined}
       >
         {href ? (
-          <Link href={href} className="h-full block">
+          <Link href={href} prefetch={false} className="h-full block">
             {CardContent}
           </Link>
         ) : (

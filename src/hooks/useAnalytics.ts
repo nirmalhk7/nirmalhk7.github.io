@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
-import throttle from "lodash/throttle";
 import { 
   trackView, 
   trackScrollDepth, 
@@ -9,6 +8,14 @@ import {
   trackTiming, 
   trackError 
 } from "@/util/analytics";
+
+const runAfterHydration = (callback: () => void) => {
+  const timer = window.setTimeout(callback, 1200);
+
+  return () => {
+    window.clearTimeout(timer);
+  };
+};
 
 export const useAnalytics = () => {
   const router = useRouter();
@@ -33,8 +40,13 @@ export const useAnalytics = () => {
   }, [router]);
 
   useEffect(() => {
-    // Scroll depth tracking
-    const handleScroll = throttle(() => {
+    let lastScrollCheck = 0;
+
+    const handleScroll = () => {
+      const now = Date.now();
+      if (now - lastScrollCheck < 500) return;
+      lastScrollCheck = now;
+
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (scrollHeight <= 0) return;
@@ -49,7 +61,7 @@ export const useAnalytics = () => {
           if (milestone === 75) setUserProperty("persona", "engaged_reader");
         }
       });
-    }, 500);
+    };
 
     // Global outbound link and resume tracking
     const handleGlobalClick = (e: MouseEvent) => {
@@ -81,16 +93,25 @@ export const useAnalytics = () => {
       trackClick(document.visibilityState, "visibility_change");
     };
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("click", handleGlobalClick);
-    window.addEventListener("error", handleGlobalError);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+    let removeDeferredListeners = () => {};
+
+    const cancelDeferredSetup = runAfterHydration(() => {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      window.addEventListener("click", handleGlobalClick);
+      window.addEventListener("error", handleGlobalError);
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
+      removeDeferredListeners = () => {
+        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("click", handleGlobalClick);
+        window.removeEventListener("error", handleGlobalError);
+        document.removeEventListener("visibilitychange", handleVisibilityChange);
+      };
+    });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("click", handleGlobalClick);
-      window.removeEventListener("error", handleGlobalError);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      cancelDeferredSetup();
+      removeDeferredListeners();
       
       const sessionTime = Date.now() - startTime.current;
       trackTiming("total_session_duration", sessionTime, "engagement");
