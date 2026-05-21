@@ -94,13 +94,6 @@ jobs:
       - name: Deploy with Vercel CLI
         run: npx vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
 
-      - name: Notify placeholder endpoint
-        run: |
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            -d '{"status":"deployed","commit":"'"${GITHUB_SHA}"'"}' \
-            https://example.com/webhook
-
   publicity:
     runs-on: ubuntu-latest
     environment: Production
@@ -147,6 +140,7 @@ jobs:
 
       - name: Post to Twitter
         if: steps.changed-blog-files.outputs.any_changed == 'true'
+        continue-on-error: true
         uses: ethomson/send-tweet-action@v1
         with:
           status: ${{ steps.prepare.outputs.twitter_message }}
@@ -157,6 +151,7 @@ jobs:
 
       - name: Post to Bluesky
         if: steps.changed-blog-files.outputs.any_changed == 'true'
+        continue-on-error: true
         uses: mary-ext/bluesky-post@v2
         with:
           text: ${{ steps.prepare.outputs.bluesky_message }}
@@ -165,6 +160,7 @@ jobs:
 
       - name: Post to Mastodon
         if: steps.changed-blog-files.outputs.any_changed == 'true'
+        continue-on-error: true
         uses: rhoffmann/mastodon-post-action@v1
         with:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
