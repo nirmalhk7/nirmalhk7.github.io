@@ -1,4 +1,5 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
@@ -8,18 +9,8 @@ import {
   faWhatsapp,
   faTelegram,
 } from "@fortawesome/free-brands-svg-icons";
-import {
-  EmailShareButton,
-  FacebookShareButton,
-  LinkedinShareButton,
-  PinterestShareButton,
-  TelegramShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-} from "react-share";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { BlogFrontmatterInterface, BlogInterface } from "@/interfaces/blog";
 import { ArticleJsonLd } from "next-seo";
@@ -36,6 +27,11 @@ import ProfileImage from "@/assets/images/profile.png";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
 import { trackClick, trackView } from "@/util/analytics";
+
+const SyntaxHighlighter = dynamic(
+  () => import("react-syntax-highlighter").then((mod) => mod.Prism),
+  { ssr: false }
+);
 
 interface BlogTemplatePageProps extends DefaultPageProps {
   current: BlogInterface;
@@ -108,6 +104,12 @@ const BlogTemplate = ({
   current,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
+  const absoluteUrl = `https://nirmalhk7.com${router.asPath}`;
+  const shareUrl = encodeURIComponent(absoluteUrl);
+  const shareTitle = encodeURIComponent(current.frontmatter?.title || "");
+  const shareSummary = encodeURIComponent(`${current.frontmatter?.title} by Nirmal Khedkar`);
+  const shareImage = encodeURIComponent(`https://nirmalhk7.com${current.frontmatter?.img || ""}`);
+  const shareTags = encodeURIComponent(current.frontmatter?.tags?.join(",") || "");
 
   React.useEffect(() => {
     trackView(`blog_post_${current.slug}`);
@@ -115,78 +117,44 @@ const BlogTemplate = ({
 
   const shareButtons = [
     {
-      Component: TwitterShareButton,
-      Payload: {
-        hashtags: current.frontmatter?.tags,
-        title: current.frontmatter?.title,
-        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
-        onClick: () => trackClick("twitter", "blog_share")
-      },
+      name: "twitter",
+      href: `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}&hashtags=${shareTags}`,
       Icon: faXTwitter,
       iconHoverClass: "hover:text-[#000000]"
     },
     {
-      Component: LinkedinShareButton,
-      Payload: {
-        summary: `${current.frontmatter?.title} by Nirmal Khedkar`,
-        source: `https://nirmalhk7.com`,
-        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
-        onClick: () => trackClick("linkedin", "blog_share")
-      },
+      name: "linkedin",
+      href: `https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${shareTitle}&summary=${shareSummary}&source=${encodeURIComponent("https://nirmalhk7.com")}`,
       Icon: faLinkedin,
       iconHoverClass: "hover:text-[#0077b5]"
     },
     {
-      Component: FacebookShareButton,
-      Payload: {
-        hashtag: `#${current.frontmatter?.category}`,
-        quote: `${current.frontmatter?.title} by Nirmal Khedkar`,
-        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
-        onClick: () => trackClick("facebook", "blog_share")
-      },
+      name: "facebook",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
       iconHoverClass: "hover:text-[#1877F2]",
       Icon: faFacebook,
     },
     {
-      Component: PinterestShareButton,
-      Payload: {
-        media: `https://nirmalhk7.com/assets/${current.frontmatter?.img}`,
-        description: `${current.frontmatter?.title} by Nirmal Khedkar`,
-        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-500",
-        onClick: () => trackClick("pinterest", "blog_share")
-      },
+      name: "pinterest",
+      href: `https://www.pinterest.com/pin/create/button/?url=${shareUrl}&media=${shareImage}&description=${shareSummary}`,
       iconHoverClass: "hover:text-[#E60023]",
       Icon: faPinterest,
     },
     {
-      Component: WhatsappShareButton,
-      Payload: {
-        separator: " ",
-        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
-        onClick: () => trackClick("whatsapp", "blog_share")
-      },
+      name: "whatsapp",
+      href: `https://api.whatsapp.com/send?text=${shareSummary}%20${shareUrl}`,
       iconHoverClass: "hover:text-[#25D366]",
       Icon: faWhatsapp,
     },
     {
-      Component: TelegramShareButton,
-      Payload: {
-        title: `${current.frontmatter?.title} by Nirmal Khedkar`,
-        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
-        onClick: () => trackClick("telegram", "blog_share")
-      },
+      name: "telegram",
+      href: `https://telegram.me/share/url?url=${shareUrl}&text=${shareSummary}`,
       iconHoverClass: "hover:text-[#0088cc]",
       Icon: faTelegram,
     },
     {
-      Component: EmailShareButton,
-      Payload: {
-        body: "Nirmal Khedkar is a fullstack software engineer. I this blog article he wrote online that you might like:",
-        subject: "Check out this blog article by Nirmal Khedkar",
-        separator: " ",
-        className: "hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200",
-        onClick: () => trackClick("email", "blog_share")
-      },
+      name: "email",
+      href: `mailto:?subject=${encodeURIComponent("Check out this blog article by Nirmal Khedkar")}&body=${encodeURIComponent(`Nirmal Khedkar wrote this blog article that you might like: ${absoluteUrl}`)}`,
       Icon: faEnvelope,
       iconHoverClass: "hover:text-[#FFC107]",
     },
@@ -302,19 +270,20 @@ const BlogTemplate = ({
                   Share the article
                 </h6>
                 {shareButtons.map((shareSocialMedia, index) => {
-                  const Component = shareSocialMedia.Component;
                   return (
-                    <Component
+                    <a
                       key={index}
-                      url={`https://nirmalhk7.com${router.asPath}`}
-                      media={`https://nirmalhk7.com${current.frontmatter?.img || ""}`}
-                      {...shareSocialMedia.Payload}
+                      href={shareSocialMedia.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200 inline-block"
+                      onClick={() => trackClick(shareSocialMedia.name, "blog_share")}
                     >
                       <FontAwesomeIcon
                         className={`mr-5 my-5 text-5xl text-accent ${shareSocialMedia.iconHoverClass}`}
                         icon={shareSocialMedia.Icon}
                       />
-                    </Component>
+                    </a>
                   );
                 })}
                 <p className="blog-content__tags">
