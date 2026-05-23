@@ -5,7 +5,7 @@ import { GetStaticProps } from "next";
 import { DefaultPageProps } from "./_app";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import sampleSize from "lodash/sampleSize";
-import { trackView, trackError, trackClick } from "@/util/analytics";
+import { trackView, trackError, trackClick, trackSearch, trackSelectContent } from "@/util/analytics";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
@@ -55,6 +55,22 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
     })).slice(0, 5);
   }, [query, searchIndex]);
 
+  useEffect(() => {
+    const searchTerm = query.trim();
+    if (searchTerm.length < 2) return;
+
+    const timer = window.setTimeout(() => {
+      trackSearch(searchTerm, {
+        search_scope: "404",
+        result_count: filteredItems.length,
+      });
+    }, 700);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [query, filteredItems.length]);
+
   return (
     <main className="min-h-screen bg-[#0d0a0b] text-white flex flex-col justify-center items-center py-20 px-4">
       <motion.div 
@@ -102,7 +118,12 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
                     <Link 
                       key={item.url} 
                       href={item.url}
-                      onClick={() => trackClick(item.title, "404_search_result")}
+                      onClick={() => {
+                        trackClick(item.title, "404_search_result");
+                        trackSelectContent(item.type, item.url, {
+                          source: "404_search_result",
+                        });
+                      }}
                       className="flex items-center gap-4 px-6 py-4 hover:bg-accent/20 transition-colors border-b border-white/5 last:border-0"
                     >
                       <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-accent">
