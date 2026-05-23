@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ProjectInterface } from "@/interfaces/projects";
 import { TiltCard } from "@/components/TiltCard";
 import ReactMarkdown from "react-markdown";
@@ -20,12 +20,32 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   index,
   href,
 }) => {
+  const shouldReduceMotion = useReducedMotion();
+
   const CardContent = (
     <div
-      className={`bg-white/40 backdrop-blur-md border border-white/20 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full ${
+      className={`relative overflow-hidden bg-white/60 backdrop-blur-md border border-white/20 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full ${
         isExpanded ? "ring-2 ring-accent/20" : ""
       }`}
     >
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100"
+        initial={false}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                backgroundPosition: ["160% 0%", "-60% 0%"],
+              }
+        }
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          backgroundImage:
+            "linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.42) 42%, rgba(217,56,56,0.14) 50%, transparent 62%)",
+          backgroundSize: "220% 100%",
+        }}
+      />
       <div className="flex justify-between items-start mb-4">
         <h3 className="text-2xl tablet:text-3xl font-bold group-hover:text-accent transition-colors">
           {project.frontmatter.title}
@@ -34,7 +54,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           {project.frontmatter.tags?.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-blocky font-bold uppercase tracking-wider"
+              className="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-blocky font-bold uppercase tracking-wider transition group-hover:bg-accent group-hover:text-white"
             >
               {tag}
             </span>
@@ -94,10 +114,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 28, rotateX: 8 }}
+      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, rotateX: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
       exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ delay: index * 0.05 }}
+      whileHover={isExpanded || shouldReduceMotion ? undefined : { y: -8 }}
+      whileTap={isExpanded || shouldReduceMotion ? undefined : { scale: 0.99 }}
+      transition={{
+        delay: index * 0.05,
+        layout: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+        y: { duration: 0.2, ease: "easeOut" },
+      }}
       className={`w-full h-full ${isExpanded ? "col-span-full" : ""}`}
     >
       <TiltCard
