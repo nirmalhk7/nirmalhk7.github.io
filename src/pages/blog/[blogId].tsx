@@ -26,7 +26,7 @@ import Image from "next/image";
 import ProfileImage from "@/assets/images/profile.png";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
-import { trackClick, trackView } from "@/util/analytics";
+import { trackClick, trackSelectContent, trackShare, trackView } from "@/util/analytics";
 
 const SyntaxHighlighter = dynamic(
   () => import("react-syntax-highlighter").then((mod) => mod.Prism),
@@ -277,7 +277,10 @@ const BlogTemplate = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200 inline-block"
-                      onClick={() => trackClick(shareSocialMedia.name, "blog_share")}
+                      onClick={() => {
+                        trackShare(shareSocialMedia.name, "blog_post", current.slug);
+                        trackClick(shareSocialMedia.name, "blog_share");
+                      }}
                     >
                       <FontAwesomeIcon
                         className={`mr-5 my-5 text-5xl text-accent ${shareSocialMedia.iconHoverClass}`}
@@ -309,7 +312,12 @@ const BlogTemplate = ({
                 <Link
                   className="block button button-accent w-full text-center h-fit my-2"
                   href="/blog"
-                  onClick={() => trackClick("view_all_posts", "navigation")}
+                  onClick={() => {
+                    trackSelectContent("navigation", "view_all_posts", {
+                      source: "blog_post",
+                    });
+                    trackClick("view_all_posts", "navigation");
+                  }}
                 >
                   View All Posts
                 </Link>
@@ -344,7 +352,12 @@ const BlogTemplate = ({
                 <Link
                   className="block button button-accent-fill hover:scale-50 w-full text-center h-fit my-2 animate-bounce"
                   href="/resume?utm_source=pitch"
-                  onClick={() => trackClick("hire_me_pitch", "engagement")}
+                  onClick={() => {
+                    trackSelectContent("resume", "hire_me_pitch", {
+                      source: "blog_post_pitch",
+                    });
+                    trackClick("hire_me_pitch", "engagement");
+                  }}
                 >
                   Hire Nirmal Now!
                 </Link>
