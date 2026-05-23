@@ -1,12 +1,13 @@
 import { useForm, ValidationError } from "@formspree/react";
 import React from "react";
 import WebSection from "@/elements/WebSection";
-import { trackClick, trackFormFocus } from "@/util/analytics";
+import { trackClick, trackFormFocus, trackFormStart, trackFormSubmit, trackGenerateLead } from "@/util/analytics";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown>>((_props, ref) => {
   const [state, handleSubmit] = useForm("mgvwblra");
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const hasTrackedFormStart = React.useRef(false);
   
   // Combine refs if needed, but here we can just use the internal one for scroll target
   // and pass the external ref to the outermost div
@@ -20,9 +21,22 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
 
   React.useEffect(() => {
     if (state.succeeded) {
+      trackGenerateLead("contact_form", {
+        form_id: "contact-form",
+        form_name: "Contact form",
+      });
       trackClick("success", "contact_form_submission");
     }
   }, [state.succeeded]);
+
+  const handleFormFocus = (fieldId: string) => {
+    if (!hasTrackedFormStart.current) {
+      trackFormStart("contact-form", "Contact form");
+      hasTrackedFormStart.current = true;
+    }
+
+    trackFormFocus(fieldId, "contact-form");
+  };
 
   if (state.succeeded) {
     return <p>Thanks for your submission!</p>;
@@ -70,14 +84,21 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
             </div>
             <div className="mt-24 grid gap-16 laptop:grid-cols-3 tablet:grid-cols-3 mobile-l:grid-cols-1">
               <div className="col-span-2">
-                <form onSubmit={handleSubmit}>
+                <form
+                  id="contact-form"
+                  name="Contact form"
+                  onSubmit={(event) => {
+                    trackFormSubmit("contact-form", "Contact form", "Submit");
+                    handleSubmit(event);
+                  }}
+                >
                   <input
                     className="w-full bg-transparent mb-4"
                     id="name"
                     name="NAME:"
                     placeholder="Name"
                     type="text"
-                    onFocus={() => trackFormFocus("name")}
+                    onFocus={() => handleFormFocus("name")}
                   />
 
                   <div className="form-field">
@@ -89,7 +110,7 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
                       placeholder="Email"
                       required
                       type="email"
-                      onFocus={() => trackFormFocus("email")}
+                      onFocus={() => handleFormFocus("email")}
                     />
                     <ValidationError
                       prefix="Email"
@@ -108,7 +129,7 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
                       placeholder="Message"
                       required
                       rows={10}
-                      onFocus={() => trackFormFocus("message")}
+                      onFocus={() => handleFormFocus("message")}
                     />
                   </div>
                   <button
