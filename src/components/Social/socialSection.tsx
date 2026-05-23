@@ -8,7 +8,7 @@ import {
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { trackClick } from "@/util/analytics";
+import { trackClick, trackSelectContent } from "@/util/analytics";
 import Magnetic from "@/components/Magnetic";
 
 export const social = [
@@ -56,6 +56,9 @@ const SocialSection = () => {
             <button
               className="w-14 h-14 rounded-none border-0 text-2xl flex items-center justify-center text-white/70 transition-all duration-200 hover:bg-white hover:text-accent hover:scale-110"
               onClick={() => {
+                trackSelectContent("social_profile", element.name, {
+                  link_url: element.link,
+                });
                 trackClick(element.name, "social_link");
                 window.open(element.link, "_blank", "noopener,noreferrer");
               }}

@@ -5,6 +5,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import { social } from "@/components/Social/socialSection";
+import { trackClick, trackSelectContent } from "@/util/analytics";
 
 const FooterSection = React.forwardRef<HTMLElement, Record<string, unknown>>((_props, ref) => {
   return (
@@ -27,6 +28,12 @@ const FooterSection = React.forwardRef<HTMLElement, Record<string, unknown>>((_p
                       className="no-underline	hover:text-accent"
                       href={element.link}
                       target="blank"
+                      onClick={() => {
+                        trackSelectContent("footer_social_profile", element.name, {
+                          link_url: element.link,
+                        });
+                        trackClick(element.name, "footer_social_link");
+                      }}
                     >
                       <FontAwesomeIcon icon={element.class} size="sm" />
                       <span>{element.name}</span>
