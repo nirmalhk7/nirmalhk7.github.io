@@ -14,7 +14,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { trackClick } from "@/util/analytics";
+import { trackClick, trackSelectContent } from "@/util/analytics";
 import Magnetic from "@/components/Magnetic";
 
 type MiniJumbotronProps = {
@@ -208,7 +208,12 @@ const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
                   <Link
                     className="button button-white inline-block"
                     href={item[1]}
-                    onClick={() => trackClick(item[0], "jumbotron_cta")}
+                    onClick={() => {
+                      trackSelectContent("hero_cta", item[0], {
+                        destination: item[1],
+                      });
+                      trackClick(item[0], "jumbotron_cta");
+                    }}
                   >
                     {item[0]}
                   </Link>
