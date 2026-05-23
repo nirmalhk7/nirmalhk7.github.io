@@ -6,7 +6,10 @@ import {
   trackClick, 
   setUserProperty, 
   trackTiming, 
-  trackError 
+  trackError,
+  trackEvent,
+  trackFileDownload,
+  trackSelectContent,
 } from "@/util/analytics";
 
 const runAfterHydration = (callback: () => void) => {
@@ -21,18 +24,33 @@ export const useAnalytics = () => {
   const router = useRouter();
   const trackedMilestones = useRef<Set<number>>(new Set());
   const startTime = useRef<number>(Date.now());
+  const currentPath = useRef<string>(router.asPath);
 
   useEffect(() => {
     // Track page views on route change
     const handleRouteChange = (url: string) => {
-      trackView(url);
+      const previousPath = currentPath.current;
+      const engagementTime = Date.now() - startTime.current;
+
+      trackTiming("page_engagement_duration", engagementTime, "engagement");
+      trackEvent("page_navigation", {
+        previous_page_path: previousPath,
+        destination_page_path: url,
+        navigation_type: "client_route",
+      });
+      trackView(url, {
+        view_type: "route",
+      });
       trackedMilestones.current.clear();
       startTime.current = Date.now();
+      currentPath.current = url;
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
     // Initial page view
-    trackView(router.asPath);
+    trackView(router.asPath, {
+      view_type: "route",
+    });
 
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
@@ -70,18 +88,55 @@ export const useAnalytics = () => {
       if (anchor && anchor.href) {
         try {
           const url = new URL(anchor.href);
+          const linkText = anchor.textContent?.trim().replace(/\s+/g, " ").slice(0, 120) || anchor.title || url.pathname;
+          const isOutbound = url.origin !== window.location.origin && !url.href.startsWith("mailto:");
+
+          trackEvent("link_click", {
+            link_url: url.href,
+            link_domain: url.hostname,
+            link_id: anchor.id,
+            link_text: linkText,
+            link_classes: anchor.className,
+            outbound: isOutbound,
+          });
+
           if (url.origin !== window.location.origin && !url.href.startsWith("mailto:")) {
-            trackClick(anchor.href, "outbound_link");
+            trackClick(anchor.href, "outbound_link", {
+              link_url: url.href,
+              link_domain: url.hostname,
+              link_text: linkText,
+              outbound: true,
+            });
             trackTiming("outbound_click_latency", Date.now() - startTime.current, "engagement");
           }
           
           if (anchor.href.includes("Resume.pdf")) {
             setUserProperty("persona", "recruiter");
-            trackClick("resume_download", "action");
+            trackFileDownload("Resume.pdf", anchor.href, {
+              link_text: linkText,
+              source: "anchor_click",
+            });
+            trackSelectContent("resume", "Resume.pdf", {
+              interaction_type: "download",
+            });
+            trackClick("resume_download", "action", {
+              link_url: anchor.href,
+            });
           }
         } catch (err) {
           // Ignore invalid URLs
         }
+      }
+
+      const button = target.closest("button");
+      if (button) {
+        trackEvent("button_click", {
+          button_id: button.id,
+          button_text: button.textContent?.trim().replace(/\s+/g, " ").slice(0, 120),
+          button_type: button.type,
+          button_classes: button.className,
+          form_id: button.form?.id,
+        });
       }
     };
 
@@ -90,7 +145,10 @@ export const useAnalytics = () => {
     };
 
     const handleVisibilityChange = () => {
-      trackClick(document.visibilityState, "visibility_change");
+      trackEvent("visibility_change", {
+        visibility_state: document.visibilityState,
+        engagement_time_msec: Date.now() - startTime.current,
+      });
     };
 
     let removeDeferredListeners = () => {};
