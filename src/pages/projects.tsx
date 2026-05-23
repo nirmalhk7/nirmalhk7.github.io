@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { trackClick } from "@/util/analytics";
+import { trackClick, trackSearch, trackSelectContent } from "@/util/analytics";
 import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
 import sampleSize from "lodash/sampleSize";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
@@ -58,6 +58,9 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
     } else {
       setExpandedSlug(slug);
       trackClick(slug, "project_expand");
+      trackSelectContent("project", slug, {
+        interaction_type: "expand",
+      });
       router.push(`/projects?id=${slug}`, undefined, { shallow: true });
     }
   };
@@ -68,6 +71,23 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
     const matchesSearch = searchQuery === "" || searchContent.includes(searchQuery.toLowerCase());
     return matchesFilter && matchesSearch;
   });
+
+  useEffect(() => {
+    const searchTerm = searchQuery.trim();
+    if (searchTerm.length < 2) return;
+
+    const timer = window.setTimeout(() => {
+      trackSearch(searchTerm, {
+        search_scope: "projects",
+        result_count: filteredProjects.length,
+        active_filter: filter,
+      });
+    }, 700);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [searchQuery, filteredProjects.length, filter]);
 
   return (
     <main className="bg-white">
@@ -103,6 +123,9 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                   onClick={() => {
                     setFilter("X");
                     trackClick("clear_filter", "project_filter");
+                    trackSelectContent("project_filter", "all", {
+                      result_count: projects.length,
+                    });
                   }}
                   className={`px-8 py-2.5 rounded-full font-blocky text-base uppercase tracking-normal transition-all duration-300 border-2 ${
                     filter === "X" 
@@ -118,6 +141,9 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                     onClick={() => {
                       setFilter(tag);
                       trackClick(tag, "project_filter");
+                      trackSelectContent("project_filter", tag, {
+                        result_count: projects.filter((project) => project.frontmatter.tags?.includes(tag)).length,
+                      });
                     }}
                     className={`px-8 py-2.5 rounded-full font-blocky text-base uppercase tracking-normal transition-all duration-300 border-2 ${
                       tag === filter 
