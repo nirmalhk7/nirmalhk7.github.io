@@ -2,13 +2,19 @@ import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
 import { DefaultPageProps } from './_app';
-import { trackView } from '@/util/analytics';
+import { trackFileDownload, trackSelectContent, trackView } from '@/util/analytics';
 
 interface ResumePageProps extends DefaultPageProps{}
 
 const ResumePage: React.FC<ResumePageProps> = () => {
   React.useEffect(() => {
     trackView("resume_page");
+    trackSelectContent("resume", "Resume.pdf", {
+      interaction_type: "view",
+    });
+    trackFileDownload("Resume.pdf", "/Resume.pdf", {
+      source: "resume_page_iframe",
+    });
   }, []);
 
   return (
