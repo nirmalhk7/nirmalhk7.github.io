@@ -5,7 +5,7 @@ import "@/assets/css/tailwind.scss";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 
-import type { AppProps } from "next/app";
+import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
@@ -13,6 +13,7 @@ import Navbar from "@/elements/navbar";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { trackWebVital } from "@/util/analytics";
 import { AnimatePresence, LazyMotion, domAnimation, m, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useRouter } from "next/router";
 
@@ -153,4 +154,8 @@ export default function App({ Component, pageProps }: CustomAppProps) {
     </div>
     </LazyMotion>
   );
+}
+
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  trackWebVital(metric);
 }
