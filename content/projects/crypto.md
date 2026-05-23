@@ -1,6 +1,7 @@
 ---
 title: Crypto
 tags: ['C++']
+url: https://github.com/nirmalhk7/crypto/releases
 ---
 Built with Diffie Hellman principles.
 
