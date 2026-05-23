@@ -4,7 +4,7 @@ import Image from "next/image";
 import WebSection from "@/elements/WebSection";
 import { BlogMiniInterface } from "@/interfaces/blog";
 import { motion, Variants } from "framer-motion";
-import { trackClick } from "@/util/analytics";
+import { trackClick, trackSelectContent } from "@/util/analytics";
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
@@ -69,7 +69,13 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                       href={`/blog/${element.slug}`}
                       prefetch={false}
                       className="absolute inset-0 z-30"
-                      onClick={() => trackClick(element.frontmatter?.title || "", "blog_list_link")}
+                      onClick={() => {
+                        trackSelectContent("blog_post", element.slug, {
+                          item_list_name: "blog_list",
+                          item_index: index,
+                        });
+                        trackClick(element.frontmatter?.title || "", "blog_list_link");
+                      }}
                     >
                       <span className="sr-only">Read {element.frontmatter?.title}</span>
                     </Link>

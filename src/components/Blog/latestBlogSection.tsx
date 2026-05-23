@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import WebSection from "@/elements/WebSection";
 import { BlogMiniInterface } from "@/interfaces/blog";
-import { trackClick } from "@/util/analytics";
+import { trackClick, trackSelectContent } from "@/util/analytics";
 import { SectionReveal } from "@/components/UI/SectionReveal";
 import { motion, useReducedMotion } from "framer-motion";
 
@@ -24,7 +24,12 @@ const LatestBlogSection = React.forwardRef<HTMLElement, BlogMiniInterface>(({
       <Link 
         href={`/blog/${slug}`}
         className="block no-underline"
-        onClick={() => trackClick(frontmatter?.title || "", "latest_blog_read_more")}
+        onClick={() => {
+          trackSelectContent("blog_post", slug, {
+            item_list_name: "latest_blog",
+          });
+          trackClick(frontmatter?.title || "", "latest_blog_read_more");
+        }}
       >
         <div className="container mx-auto">
           <SectionReveal
