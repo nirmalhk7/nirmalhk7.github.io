@@ -24,7 +24,7 @@ import { CommonHeader } from "@/components/header";
 import { SocialProfileJsonLd } from "next-seo";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
-import { trackClick, trackView } from "@/util/analytics";
+import { trackClick, trackSelectContent, trackView } from "@/util/analytics";
 import { TextReveal } from "@/components/TextReveal";
 import { TiltCard } from "@/components/TiltCard";
 
@@ -111,9 +111,15 @@ const IndexPage = ({
                   <TiltCard
                     key={index}
                     className="p-2 text-center text-2xl text-black uppercase font-blocky hover:font-bold hover:text-accent cursor-pointer border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white/50 backdrop-blur-sm"
-                    onClick={() => trackClick(element.name, "skill_click")}
+                    onClick={() => {
+                      trackSelectContent("skill", element.name);
+                      trackClick(element.name, "skill_click");
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
+                        trackSelectContent("skill", element.name, {
+                          interaction_type: "keyboard",
+                        });
                         trackClick(element.name, "skill_click");
                       }
                     }}
@@ -133,7 +139,12 @@ const IndexPage = ({
                       {element.name} by {element.provider} - (
                       <a
                         href={element.link}
-                        onClick={() => trackClick(element.name, "online_course_click")}
+                        onClick={() => {
+                          trackSelectContent("course", element.name, {
+                            provider: element.provider,
+                          });
+                          trackClick(element.name, "online_course_click");
+                        }}
                       >
                         link
                       </a>
@@ -175,14 +186,20 @@ const IndexPage = ({
                   href={"/resume"}
                   rel="noreferrer"
                   target="_blank"
-                  onClick={() => trackClick("download_resume", "engagement")}
+                  onClick={() => {
+                    trackSelectContent("resume", "home_resume_cta");
+                    trackClick("download_resume", "engagement");
+                  }}
                 >
                   Download My Resume
                 </Link>
                 <Link
                   className="button button-accent-fill w-full m-0"
                   href="#contact"
-                  onClick={() => trackClick("want_to_hire", "engagement")}
+                  onClick={() => {
+                    trackSelectContent("lead_cta", "want_to_hire");
+                    trackClick("want_to_hire", "engagement");
+                  }}
                 >
                   Want to Hire?
                 </Link>
