@@ -4,6 +4,7 @@ import WebSection from "@/elements/WebSection";
 import { ProjectInterface } from "@/interfaces/projects";
 import { motion, Variants, useReducedMotion } from "framer-motion";
 import { ProjectCard } from "./projectCard";
+import { trackClick, trackSelectContent } from "@/util/analytics";
 
 const ProjectIntroSection = ({
   projects,
@@ -85,6 +86,12 @@ const ProjectIntroSection = ({
           <Link 
             href="/projects" 
             className="button button-accent inline-block"
+            onClick={() => {
+              trackSelectContent("navigation", "view_all_projects", {
+                source: "home_project_section",
+              });
+              trackClick("view_all_projects", "navigation");
+            }}
           >
             View All Projects
           </Link>

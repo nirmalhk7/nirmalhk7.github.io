@@ -4,6 +4,7 @@ import { ProjectInterface } from "@/interfaces/projects";
 import { TiltCard } from "@/components/TiltCard";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
+import { trackClick, trackSelectContent } from "@/util/analytics";
 
 interface ProjectCardProps {
   project: ProjectInterface;
@@ -134,7 +135,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         onClick={!isExpanded && !href ? onToggle : undefined}
       >
         {href ? (
-          <Link href={href} prefetch={false} className="h-full block">
+          <Link
+            href={href}
+            prefetch={false}
+            className="h-full block"
+            onClick={() => {
+              trackSelectContent("project", project.slug, {
+                item_list_name: "project_card_grid",
+                item_index: index,
+              });
+              trackClick(project.slug, "project_card");
+            }}
+          >
             {CardContent}
           </Link>
         ) : (
