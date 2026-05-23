@@ -13,7 +13,7 @@ import Navbar from "@/elements/navbar";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { AnimatePresence, LazyMotion, domAnimation, m, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, LazyMotion, domAnimation, m, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useRouter } from "next/router";
 
 // Dynamic imports for performance
@@ -38,6 +38,7 @@ interface CustomAppProps extends AppProps {
 
 export default function App({ Component, pageProps }: CustomAppProps) {
   const router = useRouter();
+  const shouldReduceMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -52,7 +53,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
     <LazyMotion features={domAnimation}>
     <div className="min-h-screen">
       <m.div
-        className="fixed top-0 left-0 right-0 h-1 bg-accent z-[60] origin-left"
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-white to-accent z-[60] origin-left"
         style={{ scaleX }}
       />
       <ScrollToTop />
@@ -132,10 +133,10 @@ export default function App({ Component, pageProps }: CustomAppProps) {
           <AnimatePresence mode="wait">
             <m.div
               key={router.route}
-              initial={{ opacity: 0, y: 20, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 1.02 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 26, scale: 0.985, filter: "blur(8px)" }}
+              animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -20, scale: 1.015, filter: "blur(8px)" }}
+              transition={{ duration: shouldReduceMotion ? 0.18 : 0.48, ease: [0.22, 1, 0.36, 1] }}
             >
               <Component {...pageProps} />
               {pageProps.pageMetadata.enableWrap ? (
