@@ -44,7 +44,14 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
           >
             {blogItems.map((element, index) => {
               return (
-                <motion.div variants={slideUpItem} className="break-inside-avoid-column mb-8" key={index}>
+                <motion.div
+                  variants={slideUpItem}
+                  whileHover={{ y: -6 }}
+                  whileTap={{ scale: 0.99 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="break-inside-avoid-column mb-8"
+                  key={index}
+                >
                   <div 
                     className={`overflow-hidden relative rounded-3xl group shadow-md hover:shadow-2xl transition-all duration-500 bg-black flex flex-col justify-end ${
                       index % 3 === 0 ? "min-h-[450px]" : index % 3 === 1 ? "min-h-[350px]" : "min-h-[400px]"
