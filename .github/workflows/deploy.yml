@@ -89,7 +89,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: vercel-prebuilt
-          path: .
+          path: .vercel
 
       - name: Deploy with Vercel CLI
         run: npx vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
