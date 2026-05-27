@@ -1,9 +1,27 @@
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
+const { execSync } = require("child_process");
+
+const getGitCommitSha = () => {
+  try {
+    return execSync("git rev-parse --short HEAD", { encoding: "utf8" }).trim();
+  } catch {
+    return "";
+  }
+};
+
+const gitCommitSha =
+  process.env.NEXT_PUBLIC_GIT_COMMIT_SHA ||
+  process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ||
+  process.env.GITHUB_SHA?.slice(0, 7) ||
+  getGitCommitSha();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    NEXT_PUBLIC_GIT_COMMIT_SHA: gitCommitSha,
+  },
   async redirects() {
     if (process.env.NEXT_PUBLIC_LEANMODE && false) {
       return [

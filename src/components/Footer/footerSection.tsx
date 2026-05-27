@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { social } from "@/components/Social/socialSection";
 import { trackClick, trackSelectContent } from "@/util/analytics";
 
+const gitCommitSha = process.env.NEXT_PUBLIC_GIT_COMMIT_SHA;
+
 const FooterSection = React.forwardRef<HTMLElement, Record<string, unknown>>((_props, ref) => {
   return (
     <motion.footer 
@@ -60,7 +62,7 @@ const FooterSection = React.forwardRef<HTMLElement, Record<string, unknown>>((_p
               >
                 styleshout
               </a>
-              &nbsp;(Copyright Hola 2017)
+              &nbsp;(Copyright Hola 2017{gitCommitSha ? `, ${gitCommitSha}` : ""})
             </span>
           </div>
         </div>
