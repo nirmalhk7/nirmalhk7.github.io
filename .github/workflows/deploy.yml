@@ -167,17 +167,46 @@ jobs:
       - name: Post to Bluesky
         if: steps.changed-blog-files.outputs.any_changed == 'true'
         continue-on-error: true
-        uses: mary-ext/bluesky-post@v2
-        with:
-          text: ${{ steps.prepare.outputs.bluesky_message }}
-          identifier: ${{ secrets.BLUESKY_IDENTIFIER }}
-          password: ${{ secrets.BLUESKY_PASSWORD }}
+        env:
+          BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+          BLUESKY_MESSAGE: ${{ steps.prepare.outputs.bluesky_message }}
+        run: |
+          if [ -z "$BLUESKY_IDENTIFIER" ] || [ -z "$BLUESKY_PASSWORD" ]; then
+            echo "Skipping Bluesky post because credentials are not configured."
+            exit 0
+          fi
+
+          BLUESKY_MESSAGE="${BLUESKY_MESSAGE//%0A/$'\n'}"
+          SESSION_BODY=$(node -e 'console.log(JSON.stringify({identifier: process.env.BLUESKY_IDENTIFIER, password: process.env.BLUESKY_PASSWORD}))')
+          SESSION=$(curl --fail --silent --show-error \
+            -H "Content-Type: application/json" \
+            -d "$SESSION_BODY" \
+            https://bsky.social/xrpc/com.atproto.server.createSession)
+          ACCESS_JWT=$(SESSION="$SESSION" node -e 'console.log(JSON.parse(process.env.SESSION).accessJwt)')
+          RECORD_BODY=$(SESSION="$SESSION" BLUESKY_MESSAGE="$BLUESKY_MESSAGE" node -e 'const session = JSON.parse(process.env.SESSION); console.log(JSON.stringify({repo: session.did, collection: "app.bsky.feed.post", record: {text: process.env.BLUESKY_MESSAGE, createdAt: new Date().toISOString()}}))')
+
+          curl --fail --silent --show-error \
+            -H "Authorization: Bearer $ACCESS_JWT" \
+            -H "Content-Type: application/json" \
+            -d "$RECORD_BODY" \
+            https://bsky.social/xrpc/com.atproto.repo.createRecord
 
       - name: Post to Mastodon
         if: steps.changed-blog-files.outputs.any_changed == 'true'
         continue-on-error: true
-        uses: rhoffmann/mastodon-post-action@v1
-        with:
-          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-          instance-url: ${{ secrets.MASTODON_INSTANCE_URL }}
-          status: ${{ steps.prepare.outputs.mastodon_message }}
+        env:
+          MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          MASTODON_INSTANCE_URL: ${{ secrets.MASTODON_INSTANCE_URL }}
+          MASTODON_MESSAGE: ${{ steps.prepare.outputs.mastodon_message }}
+        run: |
+          if [ -z "$MASTODON_ACCESS_TOKEN" ] || [ -z "$MASTODON_INSTANCE_URL" ]; then
+            echo "Skipping Mastodon post because credentials are not configured."
+            exit 0
+          fi
+
+          MASTODON_MESSAGE="${MASTODON_MESSAGE//%0A/$'\n'}"
+          curl --fail --silent --show-error \
+            -H "Authorization: Bearer $MASTODON_ACCESS_TOKEN" \
+            -F "status=$MASTODON_MESSAGE" \
+            "${MASTODON_INSTANCE_URL%/}/api/v1/statuses"
