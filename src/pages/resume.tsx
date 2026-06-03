@@ -7,22 +7,24 @@ import { trackFileDownload, trackSelectContent, trackView } from '@/util/analyti
 interface ResumePageProps extends DefaultPageProps{}
 
 const ResumePage: React.FC<ResumePageProps> = () => {
+  const resumeUrl = `/Resume.pdf?v=${process.env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? "dev"}`;
+
   React.useEffect(() => {
     trackView("resume_page");
     trackSelectContent("resume", "Resume.pdf", {
       interaction_type: "view",
     });
-    trackFileDownload("Resume.pdf", "/Resume.pdf", {
+    trackFileDownload("Resume.pdf", resumeUrl, {
       source: "resume_page_iframe",
     });
-  }, []);
+  }, [resumeUrl]);
 
   return (
     <div className="h-screen w-screen flex justify-center items-center">
       <NextSeo title="Resume" description='Resume of Nirmal Khedkar' />
       <iframe
         title="Resume of Nirmal Khedkar"
-        src={`/Resume.pdf`}
+        src={resumeUrl}
         className="w-full h-full border-none"
       />
     </div>

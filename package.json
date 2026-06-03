@@ -10,7 +10,7 @@
     "gen-llms": "node scripts/generate-llms.js",
     "gen-sitemap": "node scripts/generate-sitemap.js",
     "get-rss": "node src/util/generateRss.js",
-    "get-resume": "curl -L -o public/Resume.pdf https://drive.google.com/uc?export=download&id=19hL9Zho2yynl-VBcfk6D5k88_L_ZlJnd && ls",
+    "get-resume": "curl -L -o public/Resume.pdf 'https://drive.google.com/uc?export=download&id=19hL9Zho2yynl-VBcfk6D5k88_L_ZlJnd' && ls -lh public/Resume.pdf",
     "test": "jest --passWithNoTests",
     "check-links": "blc http://localhost:3000 -ro --filter-level 3 --exclude https://nirmalhk7.com/ --exclude https://nirmalhk7.com/api/rss --exclude http://localhost:3000/_next/"
   },
