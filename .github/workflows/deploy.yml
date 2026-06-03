@@ -47,6 +47,9 @@ jobs:
           path: reports/jest-junit.xml
           retention-days: 14
 
+      - name: Download Resume PDF
+        run: npm run get-resume
+
       - name: Build Next.js
         run: npm run build
 
