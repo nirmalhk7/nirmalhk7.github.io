@@ -4,6 +4,8 @@ const yaml = require('js-yaml');
 const matter = require('gray-matter');
 
 const CONTENT_DIR = path.join(__dirname, '../content');
+const PROJECTS_DIR = path.join(CONTENT_DIR, 'projects');
+const PROJECT_SYNC_MANIFEST = path.join(PROJECTS_DIR, '.github-sync.json');
 const OUTPUT_FILE = path.join(__dirname, '../public/llms.txt');
 
 const REPLACEMENTS = {
@@ -35,6 +37,58 @@ function sanitize(text) {
     }
     return sanitized;
   }).join('').trim();
+}
+
+function cleanExcerpt(text) {
+  return text
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/\[(.*?)\]\((.*?)\)/g, '$1')
+    .replace(/[*_`]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getProjectExcerpt(body, summary) {
+  if (summary && summary.trim()) {
+    return cleanExcerpt(summary);
+  }
+
+  const paragraphs = body
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+
+  for (const paragraph of paragraphs) {
+    if (/^#{1,6}\s+.+$/.test(paragraph) && !paragraph.includes('\n')) {
+      continue;
+    }
+
+    const cleaned = cleanExcerpt(paragraph);
+    if (cleaned) {
+      return cleaned;
+    }
+  }
+
+  return '';
+}
+
+function loadProjectMarkdownFiles() {
+  const projectFiles = fs.readdirSync(PROJECTS_DIR).filter(f => f.endsWith('.md'));
+  const loaded = projectFiles.map(file => {
+    const parsed = matter(fs.readFileSync(path.join(PROJECTS_DIR, file), 'utf8'));
+    return {
+      file,
+      data: parsed.data || {},
+      body: parsed.content || '',
+    };
+  });
+
+  if (!fs.existsSync(PROJECT_SYNC_MANIFEST)) {
+    return loaded;
+  }
+
+  const generated = loaded.filter(project => project.data.source === 'github');
+  return generated.length > 0 ? generated : loaded;
 }
 
 function generateLLMS() {
@@ -82,16 +136,12 @@ function generateLLMS() {
 
   // 4. Load Projects
   try {
-    const projectsDir = path.join(CONTENT_DIR, 'projects');
-    const projectFiles = fs.readdirSync(projectsDir).filter(f => f.endsWith('.md'));
     content += '## Projects\n\n';
-    
-    projectFiles.forEach(file => {
-      const { data, content: body } = matter(fs.readFileSync(path.join(projectsDir, file), 'utf8'));
-      if (data.title) {
-        content += `### ${data.title}\n`;
-        // Take first paragraph or first 200 chars of body
-        const summary = body.split('\n\n')[0].replace(/[#*]/g, '').trim();
+
+    loadProjectMarkdownFiles().forEach(project => {
+      if (project.data.title) {
+        content += `### ${project.data.title}\n`;
+        const summary = getProjectExcerpt(project.body, project.data.summary);
         content += sanitize(summary) + '\n\n';
       }
     });

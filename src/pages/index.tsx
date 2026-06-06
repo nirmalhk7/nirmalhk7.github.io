@@ -5,7 +5,7 @@ import Jumbotron from "@/elements/jumbotron";
 import Link from "next/link";
 import sampleSize from "lodash/sampleSize";
 import { GetStaticProps } from "next";
-import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
+import { loadMarkdownFile, loadProjectMarkdownFiles } from "@/util/loadMarkdown";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import ReactMarkdown from "react-markdown";
 import ProjectIntroSection from "@/components/Project/projectIntroSection";
@@ -19,7 +19,7 @@ import {
 import beachImage from "../assets/images/BeachNK_1.jpg";
 import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
-import { ProjectFrontmatterInterface, ProjectInterface } from "@/interfaces/projects";
+import { ProjectInterface } from "@/interfaces/projects";
 import { CommonHeader } from "@/components/header";
 import { SocialProfileJsonLd } from "next-seo";
 import loadYaml from "@/util/loadYaml";
@@ -227,7 +227,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
   const allWorkExperiencesYaml = loadYaml<WorkExperienceInterface[]>(path.join(contentDir, "workexperiences.yaml"));
   const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(contentDir, "quotes.yaml"));
   const sixProjects = sampleSize(
-    loadMarkdownFiles<ProjectFrontmatterInterface>("content/projects", { getExcerpt: true, getContent: false }),
+    loadProjectMarkdownFiles("content/projects", { getExcerpt: true, getContent: false }),
     6
   );
 

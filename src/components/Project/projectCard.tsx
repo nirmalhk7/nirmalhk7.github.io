@@ -64,7 +64,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
 
       <p className="text-gray-600 leading-relaxed text-lg mb-6 line-clamp-3">
-        {project.excerpt}
+        {project.excerpt || project.frontmatter.summary || ""}
       </p>
 
       <AnimatePresence>
