@@ -36,14 +36,11 @@ C/C++, JAVA, Python, Javascript, GraphQL, MySQL, MongoDB, SpringBoot, Angular, J
 
 ## Projects
 
-### AgriBazaar
-E-Commerce website for farmers. [Link](https://github.com/nirmalhk7/agribazaar)
-
 ### AuthFather
 Description on AuthFather.
 
 ### Automatic Generation of Topic Labels
-[Link](https://github.com/nirmalhk7/ir)
+Link
 
 ### CollegeGO
 App to facilitate a college going student. Includes timetable, attendance logging and exam and holidays reminder.
@@ -51,44 +48,26 @@ App to facilitate a college going student. Includes timetable, attendance loggin
 ### Crypto
 Built with Diffie Hellman principles.
 
-### First Aid Man
-Built by Dialogflow, it makes life-saving first aid information only a "Hey Google" away.
-
 ### FOSS - JS Libraries
-Following are my Javascript FOSS contributions:
-- [@twzzr/authfather](https://gitlab.com/twzzr/authfather/) (Owner)
-- [@devfolio/react-otp-input/pull/228](https://github.com/devfolioco/react-otp-input/pull/228)
-- [@devfolio/react-otp-input/pull/227](https://github.com/devfolioco/react-otp-input/pull/227)
-- [@devfolio/scroll-in/pull/121](https://github.com/devfolioco/scrroll-in/pull/121)
-- [@devfolio/react-otp-input/pull/207](https://github.com/devfolioco/react-otp-input/pull/207)
+Following are my Javascript FOSS contributions: - @a technology startup/authfather (Owner) - @devfolio/react-otp-input/pull/228 - @devfolio/react-otp-input/pull/227 - @devfolio/scroll-in/pull/121 - @devfolio/react-otp-input/pull/207
 
 ### Handwriting Recognizer
-[Link](https://github.com/nirmalhk7/HandwritingRecognizer)
+Link
 
 ### IET Club Website
-Made a Jekyll website-cum-blog for my college club IET a technical institute.
-[Link](https://iet-nitk.github.io)
+Made a Jekyll website-cum-blog for my college club IET a technical institute. Link
 
 ### Preemptive Kubernetes Autoscaler
 Existing Kubernetes autoscalers are great but they are reactive in nature: it will only scale if your deployment has too much or too little traffic. Since human usage has patterns, deployment traffic will always have patterns, which is where our application comes in. We built a horizontal and vertical autoscaler that uses past historical data and accordingly adjust resources on the cluster.
 
-### AR Visualisation of Human Anatomy
-[Link](https://github.com/nirmalhk7/MedicalVR)
-
 ### FOSS- Mifos Initiative
-Find my contributions to Mifos Initiative here:
-- [mobile-wallet/644](https://github.com/openMF/mobile-wallet/pull/644)
-- [android-client/1371](https://github.com/openMF/android-client/pull/1371)
-- [mifos-mobile/1369](https://github.com/openMF/mifos-mobile/pull/1369)
+Find my contributions to Mifos Initiative here: - mobile-wallet/644 - android-client/1371 - mifos-mobile/1369
 
 ### nirmalhk7.github.io
 This very website, that is.
 
 ### Obscuring or deleting data from nodes in a Blockchain network
-[Link](https://github.com/nirmalhk7/mp)
-
-### Question Paper Generator
-[Link](https://github.com/nirmalhk7/dwdm)
+Link
 
 ### ScholarHub
 Linkedin for Research Students.
@@ -97,10 +76,10 @@ Linkedin for Research Students.
 Basic shell implementation using PThread libraries.
 
 ### Vehicle Reidentification using Convolutional Neural Network
-[Link](https://github.com/nirmalhk7/dwdm)
+Link
 
 ### YACC Parser for C
-[Link](https://github.com/nirmalhk7/yaccelent)
+Link
 
 ## Profiles
 - GitHub: https://www.github.com/nirmalhk7

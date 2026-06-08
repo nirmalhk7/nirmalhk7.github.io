@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { trackClick, trackSearch, trackSelectContent } from "@/util/analytics";
 import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
 import sampleSize from "lodash/sampleSize";
-import { loadMarkdownFiles } from "@/util/loadMarkdown";
+import { loadProjectMarkdownFiles } from "@/util/loadMarkdown";
 import { GetStaticProps } from "next";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import Jumbotron from "@/elements/jumbotron";
@@ -67,7 +67,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
 
   const filteredProjects = projects.filter((project) => {
     const matchesFilter = filter === "X" || project.frontmatter.tags?.includes(filter);
-    const searchContent = `${project.frontmatter.title} ${project.frontmatter.tags?.join(" ")} ${project.content || ""}`.toLowerCase();
+    const searchContent = `${project.frontmatter.title} ${project.frontmatter.tags?.join(" ")} ${project.frontmatter.summary || ""} ${project.excerpt || ""} ${project.content || ""}`.toLowerCase();
     const matchesSearch = searchQuery === "" || searchContent.includes(searchQuery.toLowerCase());
     return matchesFilter && matchesSearch;
   });
@@ -198,9 +198,9 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
 
 export const getStaticProps: GetStaticProps<ProjectPageProps> = async () => {
   const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
-  const projects = loadMarkdownFiles("content/projects", {
+  const projects = loadProjectMarkdownFiles("content/projects", {
     getContent: true,
-    getExcerpt: false,
+    getExcerpt: true,
   }) as unknown as ProjectInterface[];
   const allTags = Array.from(
     new Set(projects.flatMap((project) => project.frontmatter.tags || []))

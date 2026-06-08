@@ -50,6 +50,9 @@ jobs:
       - name: Download Resume PDF
         run: npm run get-resume
 
+      - name: Download Resume PDF
+        run: npm run sync-projects
+
       - name: Build Next.js
         run: npm run build
 

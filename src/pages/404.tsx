@@ -8,8 +8,7 @@ import sampleSize from "lodash/sampleSize";
 import { trackView, trackError, trackClick, trackSearch, trackSelectContent } from "@/util/analytics";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { loadMarkdownFiles } from "@/util/loadMarkdown";
-import { ProjectFrontmatterInterface } from "@/interfaces/projects";
+import { loadMarkdownFiles, loadProjectMarkdownFiles } from "@/util/loadMarkdown";
 import { BlogFrontmatterInterface } from "@/interfaces/blog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
@@ -175,7 +174,7 @@ export const getStaticProps: GetStaticProps<NotFoundPageProps> = async () => {
   const allQuotesYaml = loadYaml<QuoteInterface[]>(quotesPath);
 
   // Build Search Index
-  const projects = loadMarkdownFiles<ProjectFrontmatterInterface>("content/projects", {
+  const projects = loadProjectMarkdownFiles("content/projects", {
     getContent: false,
     getExcerpt: false,
   });

@@ -7,8 +7,6 @@
 
 A high-performance, SEO-optimized personal website and technical blog ("The Blue Green Manual") built with Next.js. This project showcases my engineering journey, professional projects, and deep dives into production-grade software reliability.
 
-## 🚀 Key Features
-
 - **The Blue Green Manual:** A technical blog focused on software reliability, distributed systems, and DevOps patterns.
 - **Project Showcase:** A dynamic portfolio of engineering projects with markdown-based case studies.
 - **Optimized Performance:** Leverages Next.js Static Site Generation (SSG) for near-instant load times and high Core Web Vitals.
@@ -125,3 +123,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 *Built with ❤️ by [Nirmal Khedkar](https://nirmalhk7.com)*
+
+
