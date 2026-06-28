@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="6" failures="0" errors="0" time="1.085">
-  <testsuite name="githubProjectSync" errors="0" failures="0" skipped="0" timestamp="2026-06-06T15:27:24" time="0.577" tests="4">
-    <testcase classname="githubProjectSync builds markdown from README frontmatter with topic tags" name="githubProjectSync builds markdown from README frontmatter with topic tags" time="0.006">
+<testsuites name="jest tests" tests="11" failures="0" errors="0" time="1.327">
+  <testsuite name="Jumbotron Component" errors="0" failures="0" skipped="0" timestamp="2026-06-28T21:20:28" time="0.637" tests="1">
+    <testcase classname="Jumbotron Component renders Max Jumbotron correctly" name="Jumbotron Component renders Max Jumbotron correctly" time="0.163">
+    </testcase>
+  </testsuite>
+  <testsuite name="loadMarkdown util" errors="0" failures="0" skipped="0" timestamp="2026-06-28T21:20:29" time="0.084" tests="2">
+    <testcase classname="loadMarkdown util loads every markdown file under content without throwing" name="loadMarkdown util loads every markdown file under content without throwing" time="0.019">
+    </testcase>
+    <testcase classname="loadMarkdown util derives a useful excerpt from body content when no summary is provided" name="loadMarkdown util derives a useful excerpt from body content when no summary is provided" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="githubProjectSync" errors="0" failures="0" skipped="0" timestamp="2026-06-28T21:20:29" time="0.05" tests="4">
+    <testcase classname="githubProjectSync builds markdown from README frontmatter with topic tags" name="githubProjectSync builds markdown from README frontmatter with topic tags" time="0.003">
     </testcase>
     <testcase classname="githubProjectSync falls back to repository metadata when README data is missing" name="githubProjectSync falls back to repository metadata when README data is missing" time="0">
     </testcase>
@@ -10,10 +20,16 @@
     <testcase classname="githubProjectSync excludes repos tagged with nirmalhk7" name="githubProjectSync excludes repos tagged with nirmalhk7" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="loadMarkdown util" errors="0" failures="0" skipped="0" timestamp="2026-06-06T15:27:25" time="0.063" tests="2">
-    <testcase classname="loadMarkdown util loads every markdown file under content without throwing" name="loadMarkdown util loads every markdown file under content without throwing" time="0.012">
+  <testsuite name="Navbar Component" errors="0" failures="0" skipped="0" timestamp="2026-06-28T21:20:29" time="0.099" tests="2">
+    <testcase classname="Navbar Component renders the brand name correctly" name="Navbar Component renders the brand name correctly" time="0.013">
     </testcase>
-    <testcase classname="loadMarkdown util derives a useful excerpt from body content when no summary is provided" name="loadMarkdown util derives a useful excerpt from body content when no summary is provided" time="0.001">
+    <testcase classname="Navbar Component renders navigation links" name="Navbar Component renders navigation links" time="0.008">
+    </testcase>
+  </testsuite>
+  <testsuite name="analytics utilities" errors="0" failures="0" skipped="0" timestamp="2026-06-28T21:20:29" time="0.052" tests="2">
+    <testcase classname="analytics utilities maps routes to stable page types" name="analytics utilities maps routes to stable page types" time="0.005">
+    </testcase>
+    <testcase classname="analytics utilities sends a GA page_view with page context in production" name="analytics utilities sends a GA page_view with page context in production" time="0.003">
     </testcase>
   </testsuite>
 </testsuites>
