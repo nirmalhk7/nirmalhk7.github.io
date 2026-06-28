@@ -31,7 +31,7 @@
     "dayjs": "^1.11.13",
     "framer-motion": "^12.38.0",
     "gray-matter": "^4.0.3",
-    "js-yaml": "^4.1.1",
+    "js-yaml": "^4.2.0",
     "js-yaml-loader": "^1.2.2",
     "lodash": "^4.17.21",
     "next": "14.2.35",
