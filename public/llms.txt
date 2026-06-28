@@ -36,20 +36,56 @@ C/C++, JAVA, Python, Javascript, GraphQL, MySQL, MongoDB, SpringBoot, Angular, J
 
 ## Projects
 
+### CP
+CP Repository for all CP Platforms/Interview Practice attempts.
+
+### HealthnFitness
+Develop fitness pseudo web application targeting health-conscious people to track their habits assisted by registered nutritionists, pathologists, and health coaches in order to ultimately lower the risk of lifestyle disorders.
+
+### ML-Coursera
+[ML-Coursera] This repo contains my solutions of Machine Learning by Andrew Ng, which is available on Coursera. Find the actual repo without my solutions here Coursera Machine Learning MOOC by Andrew Ng Python Programming Assignments
+
+### MedicalVR
+
+
+### TCP-ChatApp
+TCP-ChatApp Chat App with TCP Sockets, Multithreading, Diffie Hellman Encryption and Java 'coz its good.
+
+### Web-Complexity-Analysis
+Installation Guidelines - (optional) Activate your virtualenv - Install Selenium > pip install selenium - Install prettytable and browsermobproxy - Download the browsermobproxy executables from here. - Unzip the downloaded zip file in this project's root. - Install requests. BrowserMob-Proxy Installation Steps
+
+### atskit
+<p align="center"> <strong>ATSKit</strong><br> <em>A Python toolkit for listing jobs across applicant tracking systems.</em> </p>
+
 ### AuthFather
 Description on AuthFather.
 
 ### Automatic Generation of Topic Labels
 Link
 
+### bellman-ford
+bellman-ford Discrete Maths Project for a technical institute IT 3rd Semester
+
 ### CollegeGO
 App to facilitate a college going student. Includes timetable, attendance logging and exam and holidays reminder.
 
-### Crypto
-Built with Diffie Hellman principles.
+### crypto
+About The Crypto can be used to send information encrypted. Before you begin conversation, all you need is:- A Security Number and Security Passkey Your partner's Silver Key. Your Silver Key.
+
+### dotfiles
+Portable shell, Git, and helper configuration for my machines.
+
+### farmer-Market
+farmer-Market !Node.js CI --- Find an exhaustive todo list- here
+
+### firstaidman
+UK charity St. John Ambulance estimates that 150,000 people could be dying without appropriate first aid treatment every year. Their survey found that 59% of the people would not be confident while providing First Aid. Even more shocking is the fact that 24% of the people would ignore the patient in need.
 
 ### FOSS - JS Libraries
 Following are my Javascript FOSS contributions: - @a technology startup/authfather (Owner) - @devfolio/react-otp-input/pull/228 - @devfolio/react-otp-input/pull/227 - @devfolio/scroll-in/pull/121 - @devfolio/react-otp-input/pull/207
+
+### geth-testnet-box
+geth-testnet-box Inspired from freewil/bitcoin-testnet-box, but for Ethereum using Geth.
 
 ### Handwriting Recognizer
 Link
@@ -60,8 +96,20 @@ Made a Jekyll website-cum-blog for my college club IET a technical institute. Li
 ### Preemptive Kubernetes Autoscaler
 Existing Kubernetes autoscalers are great but they are reactive in nature: it will only scale if your deployment has too much or too little traffic. Since human usage has patterns, deployment traffic will always have patterns, which is where our application comes in. We built a horizontal and vertical autoscaler that uses past historical data and accordingly adjust resources on the cluster.
 
+### khan
+Khan is a local multi-agent decision system for software engineering work.
+
+### mean-crud
+Employee Appraisal Form This is a practical assignment done by me (Nirmal Khedkar) for Web Technologies and Applications (WTA).
+
 ### FOSS- Mifos Initiative
 Find my contributions to Mifos Initiative here: - mobile-wallet/644 - android-client/1371 - mifos-mobile/1369
+
+### nirmalhk7.github.io
+![Next.js](https://nextjs.org/) ![TypeScript](https://www.typescriptlang.org/) ![Tailwind CSS](https://tailwindcss.com/) ![License: MIT](https://opensource.org/licenses/MIT)
+
+### nirmalhk7
+!donuts redbull
 
 ### nirmalhk7.github.io
 This very website, that is.
@@ -78,8 +126,11 @@ Basic shell implementation using PThread libraries.
 ### Vehicle Reidentification using Convolutional Neural Network
 Link
 
-### YACC Parser for C
-Link
+### veronica-cli
+veronica-cli > Your faithful CLI Assistant.
+
+### yaccellent
+YACC Parser for C Language.
 
 ## Profiles
 - GitHub: https://www.github.com/nirmalhk7
