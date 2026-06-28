@@ -1,5 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
+import Script from "next/script";
 
 import "@/assets/css/tailwind.scss";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -7,7 +8,6 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/elements/navbar";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
@@ -40,6 +40,8 @@ interface CustomAppProps extends AppProps {
 export default function App({ Component, pageProps }: CustomAppProps) {
   const router = useRouter();
   const shouldReduceMotion = useReducedMotion();
+  const gaId = process.env.NEXT_PUBLIC_GOOGLETAG || "";
+  const hasGa = process.env.NODE_ENV === "production" && gaId.length > 0;
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -47,6 +49,24 @@ export default function App({ Component, pageProps }: CustomAppProps) {
     damping: 30,
     restDelta: 0.001
   });
+
+  React.useEffect(() => {
+    if (!hasGa || typeof window === "undefined") {
+      return;
+    }
+
+    const win = window as Window & {
+      dataLayer?: unknown[];
+      gtag?: (...args: unknown[]) => void;
+    };
+
+    win.dataLayer = win.dataLayer || [];
+    win.gtag = (...args: unknown[]) => {
+      win.dataLayer?.push(args);
+    };
+    win.gtag("js", new Date());
+    win.gtag("config", gaId, { send_page_view: false });
+  }, [gaId, hasGa]);
 
   useAnalytics();
 
@@ -118,9 +138,9 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         }}
         titleTemplate="%s | Nirmal Khedkar"
       />
-      {process.env.NODE_ENV === "production" && (
+      {hasGa && (
         <>
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLETAG || ""} />
+          <Script id="ga4-loader" strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
           <Analytics />
           <SpeedInsights />
         </>

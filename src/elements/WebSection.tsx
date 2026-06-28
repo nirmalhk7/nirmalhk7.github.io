@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useMotionValue, useTransform, MotionValue } from "framer-motion";
-import { trackView } from "@/util/analytics";
+import { trackSectionView } from "@/util/analytics";
 
 interface WebSectionProps {
   children: React.ReactNode;
@@ -23,7 +23,7 @@ const WebSection = React.forwardRef<HTMLElement, WebSectionProps>(({ children, c
       ref={ref}
       id={id}
       className={`${className} group relative`}
-      onViewportEnter={() => trackView(id)}
+      onViewportEnter={() => trackSectionView(id)}
       viewport={{ once: true, margin: "-50px" }}
       onMouseMove={handleMouseMove}
     >

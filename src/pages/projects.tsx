@@ -120,6 +120,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
 
               <div className="flex flex-wrap gap-3">
                 <button
+                  data-analytics-skip-global="true"
                   onClick={() => {
                     setFilter("X");
                     trackClick("clear_filter", "project_filter");
@@ -138,6 +139,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
                 {allTags.sort().map((tag) => (
                   <button
                     key={tag}
+                    data-analytics-skip-global="true"
                     onClick={() => {
                       setFilter(tag);
                       trackClick(tag, "project_filter");

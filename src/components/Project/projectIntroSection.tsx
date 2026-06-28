@@ -86,6 +86,7 @@ const ProjectIntroSection = ({
           <Link 
             href="/projects" 
             className="button button-accent inline-block"
+            data-analytics-skip-global="true"
             onClick={() => {
               trackSelectContent("navigation", "view_all_projects", {
                 source: "home_project_section",

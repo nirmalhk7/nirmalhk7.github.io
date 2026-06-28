@@ -177,6 +177,7 @@ const Navbar = () => {
                     }`}
                     title={element.label}
                     href={element.route}
+                    data-analytics-skip-global="true"
                     onClick={(e) => handleLinkClick(e, element.route)}
                   >
                     {element.label}
@@ -190,6 +191,7 @@ const Navbar = () => {
 
       <Link
         href="/"
+        data-analytics-skip-global="true"
         onClick={(e) => handleLinkClick(e, "/")}
         className={`text-white no-underline left-20 inline-block m-0 p-0 absolute hover:text-accent ${
           mobileMenuClick ? "opacity-0 invisible" : "opacity-100 visible"
@@ -213,6 +215,7 @@ const Navbar = () => {
                 }`}
                 title={element.label}
                 href={element.route}
+                data-analytics-skip-global="true"
                 onClick={(e) => handleLinkClick(e, element.route)}
               >
                 {element.label}

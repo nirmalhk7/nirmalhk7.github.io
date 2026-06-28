@@ -30,6 +30,7 @@ const FooterSection = React.forwardRef<HTMLElement, Record<string, unknown>>((_p
                       className="no-underline	hover:text-accent"
                       href={element.link}
                       target="blank"
+                      data-analytics-skip-global="true"
                       onClick={() => {
                         trackSelectContent("footer_social_profile", element.name, {
                           link_url: element.link,

@@ -1,13 +1,15 @@
 import { useForm, ValidationError } from "@formspree/react";
 import React from "react";
 import WebSection from "@/elements/WebSection";
-import { trackClick, trackFormFocus, trackFormStart, trackFormSubmit, trackGenerateLead } from "@/util/analytics";
+import { trackClick, trackEvent, trackFormFocus, trackFormStart, trackFormSubmit, trackGenerateLead } from "@/util/analytics";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown>>((_props, ref) => {
   const [state, handleSubmit] = useForm("mgvwblra");
   const containerRef = React.useRef<HTMLDivElement>(null);
   const hasTrackedFormStart = React.useRef(false);
+  const hasTrackedSubmission = React.useRef(false);
+  const hasTrackedAbandonment = React.useRef(false);
   
   // Combine refs if needed, but here we can just use the internal one for scroll target
   // and pass the external ref to the outermost div
@@ -21,6 +23,7 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
 
   React.useEffect(() => {
     if (state.succeeded) {
+      hasTrackedSubmission.current = true;
       trackGenerateLead("contact_form", {
         form_id: "contact-form",
         form_name: "Contact form",
@@ -28,6 +31,41 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
       trackClick("success", "contact_form_submission");
     }
   }, [state.succeeded]);
+
+  React.useEffect(() => {
+    const formErrors = state.errors?.getFormErrors() ?? [];
+    if (formErrors.length === 0) {
+      return;
+    }
+
+    trackEvent("form_error", {
+      form_id: "contact-form",
+      form_name: "Contact form",
+      error_count: formErrors.length,
+    });
+  }, [state.errors]);
+
+  React.useEffect(() => {
+    const handlePageHide = () => {
+      if (
+        hasTrackedFormStart.current &&
+        !hasTrackedSubmission.current &&
+        !hasTrackedAbandonment.current
+      ) {
+        hasTrackedAbandonment.current = true;
+        trackEvent("form_abandonment", {
+          form_id: "contact-form",
+          form_name: "Contact form",
+        });
+      }
+    };
+
+    window.addEventListener("pagehide", handlePageHide);
+
+    return () => {
+      window.removeEventListener("pagehide", handlePageHide);
+    };
+  }, []);
 
   const handleFormFocus = (fieldId: string) => {
     if (!hasTrackedFormStart.current) {
@@ -99,6 +137,13 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
                     placeholder="Name"
                     type="text"
                     onFocus={() => handleFormFocus("name")}
+                    onInvalid={() => {
+                      trackEvent("form_validation_error", {
+                        form_id: "contact-form",
+                        form_name: "Contact form",
+                        field_id: "name",
+                      });
+                    }}
                   />
 
                   <div className="form-field">
@@ -111,6 +156,13 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
                       required
                       type="email"
                       onFocus={() => handleFormFocus("email")}
+                      onInvalid={() => {
+                        trackEvent("form_validation_error", {
+                          form_id: "contact-form",
+                          form_name: "Contact form",
+                          field_id: "email",
+                        });
+                      }}
                     />
                     <ValidationError
                       prefix="Email"
@@ -130,12 +182,20 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
                       required
                       rows={10}
                       onFocus={() => handleFormFocus("message")}
+                      onInvalid={() => {
+                        trackEvent("form_validation_error", {
+                          form_id: "contact-form",
+                          form_name: "Contact form",
+                          field_id: "message",
+                        });
+                      }}
                     />
                   </div>
                   <button
                     className="button button-accent-fill w-full mt-32"
                     type="submit"
                     disabled={state.submitting}
+                    data-analytics-skip-global="true"
                     onClick={() => trackClick("submit", "contact_form")}
                   >
                     Submit
@@ -149,6 +209,7 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
                 <a 
                   className="" 
                   href="mailto:nirmalhk7@gmail.com"
+                  data-analytics-skip-global="true"
                   onClick={() => trackClick("email", "contact_link")}
                 >
                   nirmalhk7@gmail.com

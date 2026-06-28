@@ -208,6 +208,7 @@ const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
                   <Link
                     className="button button-white inline-block"
                     href={item[1]}
+                    data-analytics-skip-global="true"
                     onClick={() => {
                       trackSelectContent("hero_cta", item[0], {
                         destination: item[1],

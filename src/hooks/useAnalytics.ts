@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { 
-  trackView, 
+  trackPageView,
   trackScrollDepth, 
   trackClick, 
   setUserProperty, 
@@ -19,6 +19,9 @@ const runAfterHydration = (callback: () => void) => {
     window.clearTimeout(timer);
   };
 };
+
+const shouldSkipGlobalTracking = (target: Element) =>
+  Boolean(target.closest("[data-analytics-skip-global='true']"));
 
 export const useAnalytics = () => {
   const router = useRouter();
@@ -38,7 +41,7 @@ export const useAnalytics = () => {
         destination_page_path: url,
         navigation_type: "client_route",
       });
-      trackView(url, {
+      trackPageView(url, {
         view_type: "route",
       });
       trackedMilestones.current.clear();
@@ -48,7 +51,7 @@ export const useAnalytics = () => {
 
     router.events.on("routeChangeComplete", handleRouteChange);
     // Initial page view
-    trackView(router.asPath, {
+    trackPageView(router.asPath, {
       view_type: "route",
     });
 
@@ -83,7 +86,15 @@ export const useAnalytics = () => {
 
     // Global outbound link and resume tracking
     const handleGlobalClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
+      if (!(e.target instanceof Element)) {
+        return;
+      }
+
+      const target = e.target;
+      if (shouldSkipGlobalTracking(target)) {
+        return;
+      }
+
       const anchor = target.closest("a");
       if (anchor && anchor.href) {
         try {
@@ -144,6 +155,17 @@ export const useAnalytics = () => {
       trackError(event.message, false);
     };
 
+    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+      const reason =
+        event.reason instanceof Error
+          ? event.reason.message
+          : typeof event.reason === "string"
+            ? event.reason
+            : "Unhandled promise rejection";
+
+      trackError(reason, false);
+    };
+
     const handleVisibilityChange = () => {
       trackEvent("visibility_change", {
         visibility_state: document.visibilityState,
@@ -157,12 +179,14 @@ export const useAnalytics = () => {
       window.addEventListener("scroll", handleScroll, { passive: true });
       window.addEventListener("click", handleGlobalClick);
       window.addEventListener("error", handleGlobalError);
+      window.addEventListener("unhandledrejection", handleUnhandledRejection);
       document.addEventListener("visibilitychange", handleVisibilityChange);
 
       removeDeferredListeners = () => {
         window.removeEventListener("scroll", handleScroll);
         window.removeEventListener("click", handleGlobalClick);
         window.removeEventListener("error", handleGlobalError);
+        window.removeEventListener("unhandledrejection", handleUnhandledRejection);
         document.removeEventListener("visibilitychange", handleVisibilityChange);
       };
     });

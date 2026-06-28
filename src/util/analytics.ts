@@ -1,5 +1,3 @@
-import { sendGAEvent } from "@next/third-parties/google";
-
 type AnalyticsValue = string | number | boolean | null | undefined;
 type AnalyticsPayload = Record<string, AnalyticsValue>;
 
@@ -31,10 +29,41 @@ const sanitizePayload = (payload: AnalyticsPayload): AnalyticsPayload =>
     return cleaned;
   }, {});
 
+export const getRoutePageType = (routePath: string) => {
+  const normalizedPath = routePath.split("?")[0].split("#")[0];
+
+  if (normalizedPath === "/") return "home";
+  if (normalizedPath === "/projects") return "projects";
+  if (normalizedPath === "/blog") return "blog_index";
+  if (normalizedPath.startsWith("/blog/")) return "blog_post";
+  if (normalizedPath === "/resume") return "resume";
+  if (normalizedPath === "/404") return "404";
+  if (normalizedPath === "/design") return "design";
+
+  return "other";
+};
+
 const logDevelopmentEvent = (eventName: string, payload: AnalyticsPayload) => {
   if (!isProduction) {
     console.log(`[Analytics] ${eventName}`, payload);
   }
+};
+
+const pushGAEvent = (eventName: string, payload: AnalyticsPayload) => {
+  if (typeof window === "undefined") return;
+
+  const win = window as Window & {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  };
+
+  if (typeof win.gtag === "function") {
+    win.gtag("event", eventName, payload);
+    return;
+  }
+
+  win.dataLayer = win.dataLayer || [];
+  win.dataLayer.push(["event", eventName, payload]);
 };
 
 const getVercelAnalytics = () => {
@@ -71,7 +100,7 @@ export const trackEvent = (
     return;
   }
 
-  sendGAEvent("event", eventName, payload);
+  pushGAEvent(eventName, payload);
 
   getVercelAnalytics()?.("event", {
     name: eventName,
@@ -90,6 +119,16 @@ export const trackClick = (label: string, category: string, extra: AnalyticsPayl
 export const trackView = (sectionId: string, extra: AnalyticsPayload = {}) => {
   trackEvent("section_view", {
     section_id: sectionId,
+    ...extra,
+  });
+};
+
+export const trackSectionView = trackView;
+
+export const trackPageView = (pagePath: string, extra: AnalyticsPayload = {}) => {
+  trackEvent("page_view", {
+    page_path: pagePath,
+    page_type: getRoutePageType(pagePath),
     ...extra,
   });
 };

@@ -26,7 +26,7 @@ import Image from "next/image";
 import ProfileImage from "@/assets/images/profile.png";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
-import { trackClick, trackSelectContent, trackShare, trackView } from "@/util/analytics";
+import { trackClick, trackSelectContent, trackShare } from "@/util/analytics";
 
 const SyntaxHighlighter = dynamic(
   () => import("react-syntax-highlighter").then((mod) => mod.Prism),
@@ -110,10 +110,6 @@ const BlogTemplate = ({
   const shareSummary = encodeURIComponent(`${current.frontmatter?.title} by Nirmal Khedkar`);
   const shareImage = encodeURIComponent(`https://nirmalhk7.com${current.frontmatter?.img || ""}`);
   const shareTags = encodeURIComponent(current.frontmatter?.tags?.join(",") || "");
-
-  React.useEffect(() => {
-    trackView(`blog_post_${current.slug}`);
-  }, [current.slug]);
 
   const shareButtons = [
     {
@@ -277,6 +273,7 @@ const BlogTemplate = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200 inline-block"
+                      data-analytics-skip-global="true"
                       onClick={() => {
                         trackShare(shareSocialMedia.name, "blog_post", current.slug);
                         trackClick(shareSocialMedia.name, "blog_share");
@@ -312,6 +309,7 @@ const BlogTemplate = ({
                 <Link
                   className="block button button-accent w-full text-center h-fit my-2"
                   href="/blog"
+                  data-analytics-skip-global="true"
                   onClick={() => {
                     trackSelectContent("navigation", "view_all_posts", {
                       source: "blog_post",
@@ -352,6 +350,7 @@ const BlogTemplate = ({
                 <Link
                   className="block button button-accent-fill hover:scale-50 w-full text-center h-fit my-2 animate-bounce"
                   href="/resume?utm_source=pitch"
+                  data-analytics-skip-global="true"
                   onClick={() => {
                     trackSelectContent("resume", "hire_me_pitch", {
                       source: "blog_post_pitch",

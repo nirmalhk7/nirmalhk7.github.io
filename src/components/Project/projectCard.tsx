@@ -139,6 +139,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             href={href}
             prefetch={false}
             className="h-full block"
+            data-analytics-skip-global="true"
             onClick={() => {
               trackSelectContent("project", project.slug, {
                 item_list_name: "project_card_grid",

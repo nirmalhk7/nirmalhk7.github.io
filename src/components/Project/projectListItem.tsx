@@ -38,6 +38,7 @@ export const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectListItemP
     >
       <button
         onClick={onToggle}
+        data-analytics-skip-global="true"
         className={`relative w-full overflow-hidden py-8 px-8 flex flex-col md:flex-row md:items-center justify-between text-left transition-all duration-300 group border-0 ${
           isExpanded ? "bg-gray-200 text-black" : "bg-gray-100 hover:bg-gray-200 text-black"
         }`}

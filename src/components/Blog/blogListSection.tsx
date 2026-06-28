@@ -68,6 +68,7 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                       title={element.excerpt ?? "The Blue Green Manual"}
                       href={`/blog/${element.slug}`}
                       prefetch={false}
+                      data-analytics-skip-global="true"
                       className="absolute inset-0 z-30"
                       onClick={() => {
                         trackSelectContent("blog_post", element.slug, {

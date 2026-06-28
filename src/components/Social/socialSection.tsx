@@ -55,6 +55,7 @@ const SocialSection = () => {
           <Magnetic>
             <button
               className="w-14 h-14 rounded-none border-0 text-2xl flex items-center justify-center text-white/70 transition-all duration-200 hover:bg-white hover:text-accent hover:scale-110"
+              data-analytics-skip-global="true"
               onClick={() => {
                 trackSelectContent("social_profile", element.name, {
                   link_url: element.link,

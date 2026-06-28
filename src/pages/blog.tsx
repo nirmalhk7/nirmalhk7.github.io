@@ -13,7 +13,6 @@ import blogWallpaper from "@/assets/images/datacenter.jpg";
 import sortBy from "lodash/sortBy";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
-import { trackView } from "@/util/analytics";
 
 interface BlogPageProps extends DefaultPageProps {
   blogs: BlogInterface[];
@@ -21,10 +20,6 @@ interface BlogPageProps extends DefaultPageProps {
 }
 
 const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
-  React.useEffect(() => {
-    trackView("blog_index");
-  }, []);
-
   return (
     <main>
       <Jumbotron.Max

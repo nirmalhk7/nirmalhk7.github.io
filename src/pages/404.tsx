@@ -5,7 +5,7 @@ import { GetStaticProps } from "next";
 import { DefaultPageProps } from "./_app";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import sampleSize from "lodash/sampleSize";
-import { trackView, trackError, trackClick, trackSearch, trackSelectContent } from "@/util/analytics";
+import { trackError, trackClick, trackSearch, trackSelectContent } from "@/util/analytics";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { loadMarkdownFiles, loadProjectMarkdownFiles } from "@/util/loadMarkdown";
@@ -29,7 +29,6 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
   const [query, setQuery] = useState("");
   
   useEffect(() => {
-    trackView("404_page");
     trackError("404 Not Found", false);
   }, []);
 
@@ -123,6 +122,7 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
                           source: "404_search_result",
                         });
                       }}
+                      data-analytics-skip-global="true"
                       className="flex items-center gap-4 px-6 py-4 hover:bg-accent/20 transition-colors border-b border-white/5 last:border-0"
                     >
                       <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-accent">
@@ -157,6 +157,7 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
               key={link.url} 
               href={link.url}
               onClick={() => trackClick(link.title, "404_quick_link")}
+              data-analytics-skip-global="true"
               className="bg-white/5 hover:bg-white/10 border border-white/10 p-6 rounded-2xl transition-all hover:-translate-y-1 group"
             >
               <FontAwesomeIcon icon={link.icon} className="text-2xl mb-3 text-accent group-hover:scale-110 transition-transform" />

@@ -24,6 +24,7 @@ const LatestBlogSection = React.forwardRef<HTMLElement, BlogMiniInterface>(({
       <Link 
         href={`/blog/${slug}`}
         className="block no-underline"
+        data-analytics-skip-global="true"
         onClick={() => {
           trackSelectContent("blog_post", slug, {
             item_list_name: "latest_blog",

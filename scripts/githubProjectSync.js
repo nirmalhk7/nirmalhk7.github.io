@@ -6,6 +6,44 @@ const OWNER = "nirmalhk7";
 const API_BASE = "https://api.github.com";
 const CONTENT_DIR = path.join(__dirname, "../content/projects");
 const SYNC_MANIFEST_PATH = path.join(CONTENT_DIR, ".github-sync.json");
+const ENV_FILES = [
+  path.join(__dirname, "../.env.local"),
+  path.join(__dirname, "../.env"),
+];
+
+const loadLocalEnv = () => {
+  for (const envFile of ENV_FILES) {
+    if (!fs.existsSync(envFile)) {
+      continue;
+    }
+
+    const parsed = fs.readFileSync(envFile, "utf8").split(/\r?\n/);
+
+    for (const line of parsed) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) {
+        continue;
+      }
+
+      const equalsIndex = trimmed.indexOf("=");
+      if (equalsIndex === -1) {
+        continue;
+      }
+
+      const key = trimmed.slice(0, equalsIndex).replace(/^export\s+/, "").trim();
+      if (!key || process.env[key]) {
+        continue;
+      }
+
+      let value = trimmed.slice(equalsIndex + 1).trim();
+      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+        value = value.slice(1, -1);
+      }
+
+      process.env[key] = value;
+    }
+  }
+};
 
 const defaultHeaders = (token) => {
   const headers = {
@@ -243,10 +281,18 @@ const writeProjectFile = (project) => {
 };
 
 const syncGithubProjects = async () => {
-  const token = process.env.GITHUB_TOKEN || process.env.GITHUB_READ_TOKEN || "";
+  loadLocalEnv();
+  const token =
+    process.env.GITHUB_TOKEN ||
+    process.env.GH_TOKEN ||
+    process.env.GITHUB_READ_TOKEN ||
+    "";
 
   try {
-    removePreviouslyGeneratedProjects();
+    if (!token) {
+      console.log("GitHub project sync skipped; no token configured.");
+      return { ok: true, count: 0, skipped: true };
+    }
 
     const repos = await listPublicRepos(token);
     const generated = [];
@@ -263,6 +309,11 @@ const syncGithubProjects = async () => {
 
       const project = buildProjectMarkdown(repo, readme.frontmatter, readme.body, topics);
       generated.push(project);
+    }
+
+    removePreviouslyGeneratedProjects();
+
+    for (const project of generated) {
       writeProjectFile(project);
     }
 

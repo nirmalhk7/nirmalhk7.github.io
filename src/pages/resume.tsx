@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
 import { DefaultPageProps } from './_app';
-import { trackFileDownload, trackSelectContent, trackView } from '@/util/analytics';
+import { trackEvent, trackSelectContent } from '@/util/analytics';
 
 interface ResumePageProps extends DefaultPageProps{}
 
@@ -10,12 +10,12 @@ const ResumePage: React.FC<ResumePageProps> = () => {
   const resumeUrl = `/Resume.pdf?v=${process.env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? "dev"}`;
 
   React.useEffect(() => {
-    trackView("resume_page");
     trackSelectContent("resume", "Resume.pdf", {
       interaction_type: "view",
     });
-    trackFileDownload("Resume.pdf", resumeUrl, {
+    trackEvent("resume_preview", {
       source: "resume_page_iframe",
+      preview_type: "embedded_pdf",
     });
   }, [resumeUrl]);
 

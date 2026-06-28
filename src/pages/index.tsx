@@ -24,7 +24,7 @@ import { CommonHeader } from "@/components/header";
 import { SocialProfileJsonLd } from "next-seo";
 import loadYaml from "@/util/loadYaml";
 import path from "path";
-import { trackClick, trackSelectContent, trackView } from "@/util/analytics";
+import { trackClick, trackSelectContent } from "@/util/analytics";
 import { TextReveal } from "@/components/TextReveal";
 import { TiltCard } from "@/components/TiltCard";
 
@@ -50,10 +50,6 @@ const IndexPage = ({
   cv
 }: IndexPageProps) => {
   
-  React.useEffect(() => {
-    trackView("home_page");
-  }, []);
-
   return (
     <>
       <SocialProfileJsonLd
@@ -111,6 +107,7 @@ const IndexPage = ({
                   <TiltCard
                     key={index}
                     className="p-2 text-center text-2xl text-black uppercase font-blocky hover:font-bold hover:text-accent cursor-pointer border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white/50 backdrop-blur-sm"
+                    data-analytics-skip-global="true"
                     onClick={() => {
                       trackSelectContent("skill", element.name);
                       trackClick(element.name, "skill_click");
@@ -139,6 +136,7 @@ const IndexPage = ({
                       {element.name} by {element.provider} - (
                       <a
                         href={element.link}
+                        data-analytics-skip-global="true"
                         onClick={() => {
                           trackSelectContent("course", element.name, {
                             provider: element.provider,
@@ -186,6 +184,7 @@ const IndexPage = ({
                   href={"/resume"}
                   rel="noreferrer"
                   target="_blank"
+                  data-analytics-skip-global="true"
                   onClick={() => {
                     trackSelectContent("resume", "home_resume_cta");
                     trackClick("download_resume", "engagement");
@@ -196,6 +195,7 @@ const IndexPage = ({
                 <Link
                   className="button button-accent-fill w-full m-0"
                   href="#contact"
+                  data-analytics-skip-global="true"
                   onClick={() => {
                     trackSelectContent("lead_cta", "want_to_hire");
                     trackClick("want_to_hire", "engagement");
