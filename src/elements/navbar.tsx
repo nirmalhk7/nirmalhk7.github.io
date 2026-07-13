@@ -201,7 +201,7 @@ const Navbar = () => {
       </Link>
 
       <nav className="header-nav-wrap absolute right-20 hidden tablet:block">
-        <ul className="header-nav-wrap__navbar inline-block h-16 m-0 list-none">
+        <ul className="header-nav-wrap__navbar inline-flex items-center h-16 m-0 list-none">
           {navbarInternalData.map((element, index) => (
             <motion.li 
               onMouseEnter={() => setHoveredIndex(index)}
@@ -229,6 +229,17 @@ const Navbar = () => {
               )}
             </motion.li>
           ))}
+          <li className="pl-0 ml-2">
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event("open-command-palette"))}
+              className="!border !border-white/20 !leading-normal !tracking-normal !normal-case px-3 py-1.5 rounded-lg bg-white/10 hover:bg-accent hover:!border-accent text-white text-xs font-mono transition-all flex items-center space-x-1.5 shadow-sm"
+              title="Open Command Palette (Cmd + K)"
+            >
+              <span>⌘K</span>
+              <span className="hidden laptop:inline">Search</span>
+            </button>
+          </li>
         </ul>
       </nav>
       <div className="absolute right-10 top-0 h-full flex items-center tablet:hidden z-[60]">

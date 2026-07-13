@@ -85,13 +85,15 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
       <div ref={containerRef}>
         <WebSection
           id="contact"
-          className="relative overflow-hidden bg-black selection:bg-accent selection:text-white"
+          className="relative overflow-hidden bg-[#030408] selection:bg-accent selection:text-white"
         >
           <motion.div
             className="contact-shooting-stars pointer-events-none absolute -inset-y-24 inset-x-0 z-0"
             aria-hidden="true"
             style={{ y: skyY }}
           >
+            <div className="contact-twinkle-layer-mid absolute inset-0 pointer-events-none" />
+            <div className="contact-twinkle-layer-bright absolute inset-0 pointer-events-none" />
             <div className="contact-stars">
               {Array.from({ length: 9 }).map((_, index) => (
                 <span key={index} />

@@ -22,6 +22,8 @@ const ScrollToTop = dynamic(() => import("@/elements/scrollToTop"), { ssr: false
 const ContactMeSection = dynamic(() => import("@/components/ContactMe/contactMeSection"));
 const FooterSection = dynamic(() => import("@/components/Footer/footerSection"));
 const QuoteSection = dynamic(() => import("@/components/Quote/quoteSection"));
+const CommandPalette = dynamic(() => import("@/components/UI/CommandPalette"), { ssr: false });
+const CursorSpotlight = dynamic(() => import("@/components/UI/CursorSpotlight"), { ssr: false });
 
 config.autoAddCss = false;
 
@@ -78,6 +80,8 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         style={{ scaleX }}
       />
       <ScrollToTop />
+      <CursorSpotlight />
+      <CommandPalette />
       <DefaultSeo
         defaultTitle="Nirmal Khedkar | Official Website"
         description="Fortress Code, Lightning Fast: Hi, I'm Nirmal Khedkar."
