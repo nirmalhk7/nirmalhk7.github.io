@@ -1,8 +1,6 @@
 import React from "react";
-import dynamic from "next/dynamic";
 import BlogIntroSection from "@/components/Blog/blogIntroSection";
 import WorkExperience from "@/elements/workExperienceSection";
-const GitHubActivitySection = dynamic(() => import("@/components/GitHub/GitHubActivitySection"));
 import Jumbotron from "@/elements/jumbotron";
 import Link from "next/link";
 import sampleSize from "lodash/sampleSize";
@@ -215,7 +213,6 @@ const IndexPage = ({
           </div>
         </div>
       </WebSection>
-      <GitHubActivitySection />
       <WorkExperience experience={workexperience} />
       <ProjectIntroSection projects={projects} />
       <BlogIntroSection name="The Blue Green Manual" />
