@@ -24,6 +24,8 @@ const FooterSection = dynamic(() => import("@/components/Footer/footerSection"))
 const QuoteSection = dynamic(() => import("@/components/Quote/quoteSection"));
 const CommandPalette = dynamic(() => import("@/components/UI/CommandPalette"), { ssr: false });
 const CursorSpotlight = dynamic(() => import("@/components/UI/CursorSpotlight"), { ssr: false });
+const SmoothScroller = dynamic(() => import("@/components/UI/SmoothScroller"), { ssr: false });
+const SectionNavigator = dynamic(() => import("@/components/UI/SectionNavigator"), { ssr: false });
 
 config.autoAddCss = false;
 
@@ -80,6 +82,8 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         style={{ scaleX }}
       />
       <ScrollToTop />
+      <SmoothScroller />
+      <SectionNavigator />
       <CursorSpotlight />
       <CommandPalette />
       <DefaultSeo
