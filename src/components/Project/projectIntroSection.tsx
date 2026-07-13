@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import WebSection from "@/elements/WebSection";
 import { ProjectInterface } from "@/interfaces/projects";
+const ProjectDrawer = dynamic(() => import("./ProjectDrawer"), { ssr: false });
 import { motion, Variants, useReducedMotion } from "framer-motion";
 import { ProjectCard } from "./projectCard";
 import { trackClick, trackSelectContent } from "@/util/analytics";
@@ -12,6 +14,7 @@ const ProjectIntroSection = ({
   projects: ProjectInterface[];
 }) => {
   const shouldReduceMotion = useReducedMotion();
+  const [activeProject, setActiveProject] = useState<ProjectInterface | null>(null);
 
   const gridVariants: Variants = {
     hidden: {},
@@ -70,6 +73,7 @@ const ProjectIntroSection = ({
               project={element}
               index={index}
               href={`/projects?id=${element.slug}`}
+              onPreview={() => setActiveProject(element)}
             />
           ))}
         </motion.div>
@@ -98,6 +102,7 @@ const ProjectIntroSection = ({
           </Link>
         </motion.div>
       </div>
+      <ProjectDrawer project={activeProject} onClose={() => setActiveProject(null)} />
     </WebSection>
   );
 };

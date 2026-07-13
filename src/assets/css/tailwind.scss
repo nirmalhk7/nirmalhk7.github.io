@@ -2,8 +2,6 @@
 @import "./nirmalhk7.scss";
 @import "./index.scss";
 
-@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -484,4 +482,27 @@
     line-height: 4.8rem;
     color: black;
   }
+}
+
+@keyframes scrollProgressGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .native-scroll-progress {
+    transform-origin: left;
+    animation: scrollProgressGrow auto linear;
+    animation-timeline: scroll(root);
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }

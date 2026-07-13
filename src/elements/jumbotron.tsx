@@ -93,6 +93,7 @@ const Mini = React.forwardRef<HTMLElement, MiniJumbotronProps>(({
           <Image
             fill
             priority={true}
+            fetchPriority="high"
             className="object-center object-cover pointer-events-none !h2/5 brightness-25"
             src={backgroundImage}
             alt={backgroundImageAlt}
@@ -173,6 +174,7 @@ const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
           <Image
             fill
             priority={true}
+            fetchPriority="high"
             className="object-right object-cover pointer-events-none laptop:object-center !h-screen brightness-50"
             src={bgImg}
             placeholder={typeof bgImg === "string" ? undefined : "blur"}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useDeferredValue } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
@@ -140,10 +140,12 @@ export const CommandPalette: React.FC = () => {
     },
   ];
 
+  const deferredQuery = useDeferredValue(searchQuery);
+
   const filteredItems = commandItems.filter(
     (item) =>
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (item.subtitle && item.subtitle.toLowerCase().includes(searchQuery.toLowerCase()))
+      item.title.toLowerCase().includes(deferredQuery.toLowerCase()) ||
+      (item.subtitle && item.subtitle.toLowerCase().includes(deferredQuery.toLowerCase()))
   );
 
   const handleSearchKeyDown = (e: React.KeyboardEvent) => {

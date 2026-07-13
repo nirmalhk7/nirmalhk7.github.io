@@ -10,6 +10,7 @@ interface ProjectCardProps {
   project: ProjectInterface;
   isExpanded?: boolean;
   onToggle?: () => void;
+  onPreview?: (e: React.MouseEvent) => void;
   index: number;
   href?: string;
 }
@@ -18,6 +19,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
   isExpanded = false,
   onToggle,
+  onPreview,
   index,
   href,
 }) => {
@@ -102,10 +104,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               →
             </span>
           </span>
-          {project.frontmatter.tags && project.frontmatter.tags.length > 2 && (
-            <span className="text-gray-400 text-sm italic">
-              +{project.frontmatter.tags.length - 2} more
-            </span>
+          {onPreview && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onPreview(e);
+              }}
+              className="text-xs font-semibold px-3 py-1.5 rounded-full bg-gray-100 hover:bg-accent hover:text-white transition-colors"
+            >
+              Quick Preview
+            </button>
           )}
         </div>
       )}

@@ -90,9 +90,18 @@ const nextConfig = {
       },
     ];
   },
+  compress: true,
+  poweredByHeader: false,
+  swcMinify: true,
+  optimizeFonts: true,
+  productionBrowserSourceMaps: false,
   images: {
-    domains: ["localhost"],
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
       {
         protocol: "https",
         hostname: "avatars.githubusercontent.com",

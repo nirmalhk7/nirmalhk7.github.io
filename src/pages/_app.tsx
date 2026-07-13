@@ -1,6 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "@/assets/css/tailwind.scss";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -13,6 +13,7 @@ import Navbar from "@/elements/navbar";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useViewTransitions } from "@/hooks/useViewTransitions";
 import { trackWebVital } from "@/util/analytics";
 import { AnimatePresence, LazyMotion, domAnimation, m, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useRouter } from "next/router";
@@ -73,12 +74,13 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   }, [gaId, hasGa]);
 
   useAnalytics();
+  useViewTransitions();
 
   return (
     <LazyMotion features={domAnimation}>
     <div className="min-h-screen">
       <m.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-white to-accent z-[60] origin-left"
+        className="native-scroll-progress fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-white to-accent z-[60] origin-left"
         style={{ scaleX }}
       />
       <ScrollToTop />
@@ -146,9 +148,9 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         }}
         titleTemplate="%s | Nirmal Khedkar"
       />
-      {hasGa && (
+      {hasGa && gaId && (
         <>
-          <Script id="ga4-loader" strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+          <GoogleAnalytics gaId={gaId} />
           <Analytics />
           <SpeedInsights />
         </>
