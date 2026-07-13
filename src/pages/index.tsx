@@ -154,10 +154,15 @@ const IndexPage = ({
             </div>
             <div className="break-inside-avoid">
               <CommonHeader headerName="Prominent College Courses Taken" />
-              <div className="m-0">
-                <ul className="list-disc pl-5">
-                  {collegeCourses.map((element) => element.name).join(", ")}.
-                </ul>
+              <div className="m-0 flex flex-wrap gap-2.5">
+                {collegeCourses.map((element, index) => (
+                  <span
+                    key={index}
+                    className="px-3.5 py-1.5 border border-gray-200 rounded-full bg-gray-50/80 hover:bg-accent hover:text-white hover:border-accent transition-all text-xl font-medium text-gray-800"
+                  >
+                    {element.name}
+                  </span>
+                ))}
               </div>
             </div>
             <div className="break-inside-avoid">

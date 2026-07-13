@@ -61,7 +61,7 @@
     img { @apply border-none; }
   }
 
-  nav a, h1 a { @apply no-underline; }
+  nav a, h1 a, #project a { @apply no-underline; }
   nav a { @apply text-white; }
 
   b, strong { @apply font-heading font-bold; }
@@ -199,6 +199,7 @@
   }
 
   /* Contact Form */
+  /* Contact Form Realistic Starfield & Meteors */
   .contact-shooting-stars {
     isolation: isolate;
 
@@ -206,49 +207,43 @@
       @apply pointer-events-none absolute inset-0 z-0;
       content: "";
       background:
-        radial-gradient(circle at 12% 20%, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 2.6px),
-        radial-gradient(circle at 16% 44%, rgba(255, 255, 255, 0.52) 0 1.2px, transparent 2.2px),
-        radial-gradient(circle at 20% 66%, rgba(255, 255, 255, 0.58) 0 1.3px, transparent 2.3px),
-        radial-gradient(circle at 26% 12%, rgba(255, 255, 255, 0.68) 0 1.3px, transparent 2.4px),
-        radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.72) 0 1.4px, transparent 2.4px),
-        radial-gradient(circle at 40% 54%, rgba(255, 255, 255, 0.56) 0 1.2px, transparent 2.2px),
-        radial-gradient(circle at 48% 78%, rgba(255, 255, 255, 0.5) 0 1.2px, transparent 2.2px),
-        radial-gradient(circle at 56% 36%, rgba(255, 255, 255, 0.86) 0 1.5px, transparent 2.6px),
-        radial-gradient(circle at 64% 16%, rgba(255, 255, 255, 0.78) 0 1.4px, transparent 2.4px),
-        radial-gradient(circle at 68% 86%, rgba(255, 255, 255, 0.52) 0 1.2px, transparent 2.2px),
-        radial-gradient(circle at 76% 52%, rgba(255, 255, 255, 0.58) 0 1.3px, transparent 2.3px),
-        radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.64) 0 1.3px, transparent 2.3px),
-        radial-gradient(circle at 88% 32%, rgba(255, 255, 255, 0.74) 0 1.4px, transparent 2.4px),
-        radial-gradient(circle at 92% 72%, rgba(255, 255, 255, 0.48) 0 1.2px, transparent 2.2px),
-        linear-gradient(180deg, rgba(10, 18, 32, 0.7), rgba(0, 0, 0, 0) 68%);
-      animation: contact-starfield-twinkle 6s ease-in-out infinite alternate;
+        radial-gradient(circle at 12% 20%, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 18% 44%, rgba(210, 230, 255, 0.65) 0 1.2px, transparent 2.2px),
+        radial-gradient(circle at 25% 68%, rgba(255, 245, 230, 0.7) 0 1.3px, transparent 2.3px),
+        radial-gradient(circle at 31% 15%, rgba(255, 255, 255, 0.8) 0 1.4px, transparent 2.4px),
+        radial-gradient(circle at 38% 32%, rgba(220, 235, 255, 0.75) 0 1.3px, transparent 2.3px),
+        radial-gradient(circle at 45% 58%, rgba(255, 255, 255, 0.5) 0 1.1px, transparent 2.1px),
+        radial-gradient(circle at 52% 82%, rgba(255, 250, 240, 0.6) 0 1.2px, transparent 2.2px),
+        radial-gradient(circle at 58% 24%, rgba(255, 255, 255, 0.85) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 66% 48%, rgba(210, 235, 255, 0.7) 0 1.3px, transparent 2.3px),
+        radial-gradient(circle at 74% 18%, rgba(255, 255, 255, 0.75) 0 1.4px, transparent 2.4px),
+        radial-gradient(circle at 81% 62%, rgba(255, 255, 255, 0.55) 0 1.2px, transparent 2.2px),
+        radial-gradient(circle at 88% 35%, rgba(255, 245, 235, 0.8) 0 1.4px, transparent 2.4px),
+        radial-gradient(circle at 93% 76%, rgba(220, 235, 255, 0.5) 0 1.1px, transparent 2.1px),
+        linear-gradient(180deg, rgba(8, 12, 22, 0.6), rgba(0, 0, 0, 0) 75%);
+      animation: contact-starfield-twinkle 5s ease-in-out infinite alternate;
     }
 
     &::after {
-      @apply pointer-events-none absolute inset-0 z-0 opacity-100;
+      @apply pointer-events-none absolute inset-0 z-0 opacity-90;
       content: "";
       background:
-        radial-gradient(circle at 4% 74%, rgba(255, 255, 255, 0.44) 0 1px, transparent 1.9px),
-        radial-gradient(circle at 7% 38%, rgba(255, 255, 255, 0.62) 0 1.2px, transparent 2.1px),
-        radial-gradient(circle at 11% 86%, rgba(255, 255, 255, 0.32) 0 1px, transparent 1.8px),
-        radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.46) 0 1px, transparent 1.9px),
-        radial-gradient(circle at 23% 35%, rgba(255, 255, 255, 0.72) 0 1.3px, transparent 2.3px),
-        radial-gradient(circle at 29% 70%, rgba(255, 255, 255, 0.38) 0 1px, transparent 1.9px),
-        radial-gradient(circle at 33% 92%, rgba(255, 255, 255, 0.54) 0 1.1px, transparent 2px),
-        radial-gradient(circle at 37% 16%, rgba(255, 255, 255, 0.36) 0 1px, transparent 1.8px),
-        radial-gradient(circle at 43% 44%, rgba(255, 255, 255, 0.58) 0 1.2px, transparent 2.1px),
-        radial-gradient(circle at 51% 11%, rgba(255, 255, 255, 0.44) 0 1px, transparent 1.9px),
-        radial-gradient(circle at 53% 64%, rgba(255, 255, 255, 0.68) 0 1.3px, transparent 2.2px),
-        radial-gradient(circle at 59% 82%, rgba(255, 255, 255, 0.34) 0 1px, transparent 1.8px),
-        radial-gradient(circle at 61% 27%, rgba(255, 255, 255, 0.5) 0 1.1px, transparent 2px),
-        radial-gradient(circle at 69% 48%, rgba(255, 255, 255, 0.42) 0 1px, transparent 1.9px),
-        radial-gradient(circle at 73% 8%, rgba(255, 255, 255, 0.6) 0 1.2px, transparent 2.1px),
-        radial-gradient(circle at 78% 88%, rgba(255, 255, 255, 0.48) 0 1.1px, transparent 2px),
-        radial-gradient(circle at 84% 41%, rgba(255, 255, 255, 0.74) 0 1.3px, transparent 2.3px),
-        radial-gradient(circle at 89% 14%, rgba(255, 255, 255, 0.36) 0 1px, transparent 1.8px),
-        radial-gradient(circle at 94% 63%, rgba(255, 255, 255, 0.56) 0 1.2px, transparent 2.1px),
-        radial-gradient(circle at 97% 91%, rgba(255, 255, 255, 0.4) 0 1px, transparent 1.9px);
-      animation: contact-starfield-pulse 4.8s ease-in-out infinite alternate;
+        radial-gradient(circle at 6% 78%, rgba(255, 255, 255, 0.45) 0 1px, transparent 1.9px),
+        radial-gradient(circle at 9% 34%, rgba(215, 235, 255, 0.65) 0 1.2px, transparent 2.1px),
+        radial-gradient(circle at 14% 88%, rgba(255, 255, 255, 0.35) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 21% 11%, rgba(255, 250, 240, 0.5) 0 1.1px, transparent 2px),
+        radial-gradient(circle at 28% 42%, rgba(255, 255, 255, 0.75) 0 1.3px, transparent 2.3px),
+        radial-gradient(circle at 35% 74%, rgba(220, 235, 255, 0.4) 0 1px, transparent 1.9px),
+        radial-gradient(circle at 42% 18%, rgba(255, 255, 255, 0.55) 0 1.1px, transparent 2px),
+        radial-gradient(circle at 49% 52%, rgba(255, 255, 255, 0.6) 0 1.2px, transparent 2.1px),
+        radial-gradient(circle at 56% 86%, rgba(255, 245, 230, 0.4) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 63% 29%, rgba(215, 235, 255, 0.65) 0 1.2px, transparent 2.1px),
+        radial-gradient(circle at 71% 64%, rgba(255, 255, 255, 0.5) 0 1.1px, transparent 2px),
+        radial-gradient(circle at 78% 12%, rgba(255, 255, 255, 0.7) 0 1.3px, transparent 2.2px),
+        radial-gradient(circle at 84% 46%, rgba(255, 250, 240, 0.55) 0 1.2px, transparent 2.1px),
+        radial-gradient(circle at 91% 84%, rgba(220, 235, 255, 0.45) 0 1px, transparent 1.9px),
+        radial-gradient(circle at 96% 22%, rgba(255, 255, 255, 0.6) 0 1.2px, transparent 2.1px);
+      animation: contact-starfield-pulse 7s ease-in-out infinite alternate;
     }
   }
 
@@ -256,16 +251,16 @@
     @apply pointer-events-none absolute inset-0 z-0 overflow-hidden;
 
     span {
-      @apply absolute block h-px rounded-full;
+      @apply absolute block rounded-full;
+      height: 1.5px;
       width: var(--star-width);
       left: var(--star-left);
       top: var(--star-top);
       opacity: 0;
       transform: rotate(var(--star-angle)) translate3d(0, 0, 0);
       transform-origin: left center;
-      animation: contact-shooting-star var(--star-duration) ease-out var(--star-delay) infinite;
-      background: linear-gradient(90deg, transparent, rgba(217, 56, 56, 0.28) 52%, rgba(255, 255, 255, 0.9));
-      filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.36));
+      animation: contact-shooting-star var(--star-duration) cubic-bezier(0.25, 1, 0.5, 1) var(--star-delay) infinite;
+      background: linear-gradient(90deg, transparent 0%, rgba(180, 215, 255, 0.18) 55%, rgba(255, 255, 255, 0.95) 100%);
 
       &::before {
         @apply absolute right-0 top-1/2 rounded-full bg-white;
@@ -273,106 +268,106 @@
         width: var(--star-head);
         height: var(--star-head);
         transform: translate(50%, -50%);
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.85), 0 0 24px rgba(217, 56, 56, 0.3);
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.95), 0 0 14px rgba(180, 220, 255, 0.65);
       }
 
       &:nth-child(1) {
-        --star-left: 6%;
-        --star-top: 10%;
-        --star-angle: 34deg;
-        --star-width: 8rem;
-        --star-head: 0.42rem;
-        --star-distance: 34rem;
-        --star-duration: 9.4s;
-        --star-delay: 0.8s;
+        --star-left: 10%;
+        --star-top: 5%;
+        --star-angle: 32deg;
+        --star-width: 9rem;
+        --star-head: 0.28rem;
+        --star-distance: 38rem;
+        --star-duration: 7.5s;
+        --star-delay: 0.5s;
       }
 
       &:nth-child(2) {
-        --star-left: 82%;
-        --star-top: 12%;
-        --star-angle: 136deg;
+        --star-left: 65%;
+        --star-top: -5%;
+        --star-angle: 35deg;
         --star-width: 11rem;
-        --star-head: 0.5rem;
-        --star-distance: 42rem;
-        --star-duration: 11.8s;
-        --star-delay: 3.2s;
+        --star-head: 0.32rem;
+        --star-distance: 45rem;
+        --star-duration: 9.2s;
+        --star-delay: 2.1s;
       }
 
       &:nth-child(3) {
-        --star-left: 38%;
-        --star-top: 22%;
+        --star-left: 30%;
+        --star-top: 15%;
         --star-angle: 28deg;
-        --star-width: 6.5rem;
-        --star-head: 0.34rem;
-        --star-distance: 26rem;
-        --star-duration: 8.7s;
-        --star-delay: 6.4s;
+        --star-width: 7.5rem;
+        --star-head: 0.24rem;
+        --star-distance: 30rem;
+        --star-duration: 6.8s;
+        --star-delay: 4.3s;
       }
 
       &:nth-child(4) {
-        --star-left: 94%;
-        --star-top: 30%;
-        --star-angle: 148deg;
-        --star-width: 9rem;
-        --star-head: 0.44rem;
-        --star-distance: 36rem;
-        --star-duration: 10.6s;
-        --star-delay: 8.8s;
+        --star-left: 80%;
+        --star-top: 10%;
+        --star-angle: 34deg;
+        --star-width: 10rem;
+        --star-head: 0.3rem;
+        --star-distance: 40rem;
+        --star-duration: 8.5s;
+        --star-delay: 6.0s;
       }
 
       &:nth-child(5) {
-        --star-left: 14%;
-        --star-top: 42%;
-        --star-angle: 41deg;
-        --star-width: 12rem;
-        --star-head: 0.56rem;
-        --star-distance: 44rem;
-        --star-duration: 13.2s;
-        --star-delay: 4.9s;
+        --star-left: 5%;
+        --star-top: 35%;
+        --star-angle: 30deg;
+        --star-width: 8.5rem;
+        --star-head: 0.26rem;
+        --star-distance: 34rem;
+        --star-duration: 8.0s;
+        --star-delay: 8.4s;
       }
 
       &:nth-child(6) {
-        --star-left: 86%;
-        --star-top: 44%;
-        --star-angle: 132deg;
-        --star-width: 7.5rem;
-        --star-head: 0.38rem;
-        --star-distance: 30rem;
-        --star-duration: 9.9s;
-        --star-delay: 12.6s;
+        --star-left: 45%;
+        --star-top: 5%;
+        --star-angle: 33deg;
+        --star-width: 12rem;
+        --star-head: 0.34rem;
+        --star-distance: 48rem;
+        --star-duration: 10.5s;
+        --star-delay: 10.2s;
       }
 
       &:nth-child(7) {
-        --star-left: 28%;
-        --star-top: 58%;
-        --star-angle: 52deg;
-        --star-width: 5rem;
-        --star-head: 0.3rem;
-        --star-distance: 22rem;
-        --star-duration: 8.2s;
-        --star-delay: 15.4s;
+        --star-left: 20%;
+        --star-top: 45%;
+        --star-angle: 27deg;
+        --star-width: 6.5rem;
+        --star-head: 0.22rem;
+        --star-distance: 26rem;
+        --star-duration: 6.2s;
+        --star-delay: 12.8s;
       }
 
       &:nth-child(8) {
-        --star-left: 72%;
-        --star-top: 62%;
-        --star-angle: 144deg;
-        --star-width: 10rem;
-        --star-head: 0.46rem;
+        --star-left: 55%;
+        --star-top: 30%;
+        --star-angle: 36deg;
+        --star-width: 9.5rem;
+        --star-head: 0.28rem;
         --star-distance: 38rem;
-        --star-duration: 12.4s;
-        --star-delay: 18.8s;
+        --star-duration: 8.8s;
+        --star-delay: 15.1s;
       }
 
       &:nth-child(9) {
-        --star-left: 46%;
-        --star-top: 6%;
-        --star-angle: 36deg;
-        --star-width: 7rem;
-        --star-head: 0.36rem;
-        --star-distance: 28rem;
-        --star-duration: 10.8s;
-        --star-delay: 21.2s;
+        --star-left: 75%;
+        --star-top: 40%;
+        --star-angle: 31deg;
+        --star-width: 8rem;
+        --star-head: 0.25rem;
+        --star-distance: 32rem;
+        --star-duration: 7.2s;
+        --star-delay: 17.6s;
       }
     }
   }

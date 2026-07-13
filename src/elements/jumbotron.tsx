@@ -185,6 +185,28 @@ const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
         className="pointer-events-none absolute inset-0 z-[2] opacity-90"
         style={{ background: spotlight }}
       />
+      {!shouldReduceMotion && (
+        <div className="pointer-events-none absolute inset-0 z-[3] overflow-hidden">
+          <motion.div
+            className="absolute top-1/4 left-[15%] h-64 w-64 rounded-full bg-accent/10 blur-3xl"
+            animate={{
+              x: [0, 20, -15, 0],
+              y: [0, -25, 15, 0],
+              scale: [1, 1.1, 0.95, 1],
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute bottom-1/3 right-[18%] h-80 w-80 rounded-full bg-white/5 blur-3xl"
+            animate={{
+              x: [0, -30, 20, 0],
+              y: [0, 20, -20, 0],
+              scale: [1, 0.9, 1.15, 1],
+            }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          />
+        </div>
+      )}
       <div className="jumbotron z-10 relative">
         <motion.div 
           style={{ y: textY, opacity: textOpacity }}
@@ -195,14 +217,14 @@ const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
         >
           <motion.h3 variants={slideUpItem} className="ital-hover">{orangeText}</motion.h3>
           <motion.div variants={slideUpItem}>{HeadingTextComponent}</motion.div>
-          <motion.div variants={slideUpItem} className="static text-left gap-4 right-0 bottom-8">
+          <motion.div variants={slideUpItem} className="static text-left gap-4 right-0 bottom-8 flex flex-wrap items-center">
             {buttonDetails.map((item) => (
               <motion.span
                 key={item[0]}
                 variants={buttonVariants}
                 whileHover={shouldReduceMotion ? undefined : { y: -4, scale: 1.03 }}
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
-                className="inline-block mr-4"
+                className="inline-block mr-4 mb-4"
               >
                 <Magnetic className="inline-block">
                   <Link

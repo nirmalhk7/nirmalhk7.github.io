@@ -25,7 +25,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
   const CardContent = (
     <div
-      className={`relative overflow-hidden bg-white/60 backdrop-blur-md border border-white/20 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full ${
+      className={`relative overflow-hidden bg-white/60 backdrop-blur-md border border-white/20 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full no-underline ${
         isExpanded ? "ring-2 ring-accent/20" : ""
       }`}
     >
@@ -96,7 +96,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
       {!isExpanded && (
         <div className="mt-auto pt-6 border-t border-gray-200/50 flex justify-between items-center">
-          <span className="text-accent font-bold flex items-center gap-2 group/link">
+          <span className="text-accent font-bold flex items-center gap-2 group/link no-underline">
             {href ? "View Project" : "View Details"}
             <span className="group-hover:translate-x-1 transition-transform">
               →
@@ -138,7 +138,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <Link
             href={href}
             prefetch={false}
-            className="h-full block"
+            className="h-full block no-underline hover:no-underline"
             data-analytics-skip-global="true"
             onClick={() => {
               trackSelectContent("project", project.slug, {

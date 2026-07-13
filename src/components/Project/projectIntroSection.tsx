@@ -52,7 +52,7 @@ const ProjectIntroSection = ({
             See My Latest Projects
           </h1>
           <p className="lead">
-            Find my projects <Link href="/projects" className="text-accent hover:underline">categorized here</Link>.
+            Find my projects <Link href="/projects" className="text-accent no-underline hover:underline">categorized here</Link>.
           </p>
         </motion.div>
 
@@ -85,7 +85,7 @@ const ProjectIntroSection = ({
         >
           <Link 
             href="/projects" 
-            className="button button-accent inline-block"
+            className="button button-accent inline-block no-underline hover:no-underline"
             data-analytics-skip-global="true"
             onClick={() => {
               trackSelectContent("navigation", "view_all_projects", {
