@@ -19,8 +19,31 @@ const ResumePage: React.FC<ResumePageProps> = () => {
     });
   }, [resumeUrl]);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nirmalhk7.com",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Resume",
+        "item": "https://nirmalhk7.com/resume",
+      },
+    ],
+  };
+
   return (
     <div className="h-screen w-screen flex justify-center items-center">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <NextSeo title="Resume" description='Resume of Nirmal Khedkar' />
       <iframe
         title="Resume of Nirmal Khedkar"
@@ -41,6 +64,7 @@ export const getStaticProps: GetStaticProps<ResumePageProps> = async () => {
         seoMetadata: {
           title: "Resume",
           description: "Looking to boost your engineering team's performance and reliability? Hire Nirmal Khedkar. With two years of full-stack experience at Visa, he's your man to improve your system performance and handle any runtime errors.",
+          canonical: "https://nirmalhk7.com/resume",
           openGraph: {
             type: "profile",
             url: `https://nirmalhk7.com/resume`,

@@ -4,7 +4,7 @@ import Link from "next/link";
 import WebSection from "@/elements/WebSection";
 import { ProjectInterface } from "@/interfaces/projects";
 const ProjectDrawer = dynamic(() => import("./ProjectDrawer"), { ssr: false });
-import { motion, Variants, useReducedMotion } from "framer-motion";
+import { m, Variants, useReducedMotion } from "framer-motion";
 import { ProjectCard } from "./projectCard";
 import { trackClick, trackSelectContent } from "@/util/analytics";
 
@@ -32,7 +32,7 @@ const ProjectIntroSection = ({
       id="project"
     >
       <div className="container mx-auto relative">
-        <motion.div
+        <m.div
           aria-hidden="true"
           className="absolute -left-24 top-16 hidden h-px w-72 bg-accent/30 laptop:block"
           initial={shouldReduceMotion ? false : { scaleX: 0 }}
@@ -41,7 +41,7 @@ const ProjectIntroSection = ({
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
           style={{ originX: 0 }}
         />
-        <motion.div 
+        <m.div 
           className="text-center mb-16"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24, filter: "blur(8px)" }}
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -55,11 +55,11 @@ const ProjectIntroSection = ({
             See My Latest Projects
           </h1>
           <p className="lead">
-            Find my projects <Link href="/projects" className="text-accent no-underline hover:underline">categorized here</Link>.
+            Find my projects <Link href="/projects" className="text-accent no-underline hover:underline">by category on the Projects page</Link>.
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-8"
           variants={gridVariants}
           initial={shouldReduceMotion ? false : "hidden"}
@@ -76,9 +76,9 @@ const ProjectIntroSection = ({
               onPreview={() => setActiveProject(element)}
             />
           ))}
-        </motion.div>
+        </m.div>
         
-        <motion.div
+        <m.div
           className="mt-20 text-center"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -100,7 +100,7 @@ const ProjectIntroSection = ({
           >
             View All Projects
           </Link>
-        </motion.div>
+        </m.div>
       </div>
       <ProjectDrawer project={activeProject} onClose={() => setActiveProject(null)} />
     </WebSection>

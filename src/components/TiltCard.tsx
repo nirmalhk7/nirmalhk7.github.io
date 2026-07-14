@@ -1,14 +1,22 @@
 import React, { useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { m, useMotionValue, useSpring, useTransform } from "framer-motion";
 
-interface TiltCardProps {
+interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
-  onKeyDown?: (e: React.KeyboardEvent) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLDivElement>) => void;
 }
 
-export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "", onClick, onKeyDown }) => {
+export const TiltCard: React.FC<TiltCardProps> = ({
+  children,
+  className = "",
+  onClick,
+  onKeyDown,
+  role,
+  tabIndex,
+  ...props
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const rectRef = useRef<DOMRect | null>(null);
 
@@ -57,19 +65,31 @@ export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "", on
     y.set(0);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (onKeyDown) {
+      onKeyDown(e);
+    } else if (onClick && (e.key === "Enter" || e.key === " ")) {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   return (
-    <motion.div
+    <m.div
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      onKeyDown={onKeyDown}
+      onKeyDown={handleKeyDown}
+      role={role || (onClick ? "button" : undefined)}
+      tabIndex={tabIndex !== undefined ? tabIndex : (onClick ? 0 : undefined)}
       style={{
         rotateY,
         rotateX,
         transformStyle: "preserve-3d",
       }}
       className={`relative ${className}`}
+      {...props}
     >
       <div
         style={{
@@ -80,6 +100,6 @@ export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "", on
       >
         {children}
       </div>
-    </motion.div>
+    </m.div>
   );
 };

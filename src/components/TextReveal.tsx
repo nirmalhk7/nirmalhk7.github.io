@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { m, useScroll, useTransform, MotionValue } from "framer-motion";
 
 interface TextRevealProps {
   text: string;
@@ -11,7 +11,7 @@ const Word = ({ children, progress, range }: { children: string; progress: Motio
   return (
     <span className="relative inline-block mr-2">
       <span className="absolute opacity-20">{children}</span>
-      <motion.span style={{ opacity }}>{children}</motion.span>
+      <m.span style={{ opacity }}>{children}</m.span>
     </span>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ProjectInterface } from "@/interfaces/projects";
 import Image from "next/image";
 
@@ -14,7 +14,7 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
       {project && (
         <>
           {/* Backdrop */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -23,7 +23,7 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
           />
 
           {/* Drawer Panel */}
-          <motion.div
+          <m.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -48,21 +48,21 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
 
               {/* Title & Description */}
               <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
-                {project.name}
+                {project.frontmatter.title}
               </h2>
 
-              {project.description && (
+              {(project.frontmatter.summary || project.excerpt) && (
                 <p className="text-lg leading-relaxed text-gray-600 mb-8">
-                  {project.description}
+                  {project.frontmatter.summary || project.excerpt}
                 </p>
               )}
 
               {/* Hero Image if available */}
-              {project.heroImage && (
+              {project.frontmatter.heroImage && (
                 <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8 border border-gray-200 shadow-sm">
                   <Image
-                    src={project.heroImage}
-                    alt={project.name}
+                    src={project.frontmatter.heroImage}
+                    alt={project.frontmatter.title}
                     fill
                     className="object-cover"
                   />
@@ -70,13 +70,13 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
               )}
 
               {/* Highlights / Features */}
-              {project.highlights && project.highlights.length > 0 && (
+              {project.frontmatter.highlights && project.frontmatter.highlights.length > 0 && (
                 <div className="mb-8">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-gray-400 mb-3">
                     Architectural Highlights
                   </h4>
                   <ul className="space-y-2.5">
-                    {project.highlights.map((highlight, idx) => (
+                    {project.frontmatter.highlights.map((highlight, idx) => (
                       <li
                         key={idx}
                         className="flex items-start gap-2.5 text-base text-gray-700"
@@ -106,7 +106,7 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
                 View Full Project Page →
               </a>
             </div>
-          </motion.div>
+          </m.div>
         </>
       )}
     </AnimatePresence>

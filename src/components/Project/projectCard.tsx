@@ -1,9 +1,10 @@
 import React from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ProjectInterface } from "@/interfaces/projects";
 import { TiltCard } from "@/components/TiltCard";
-import ReactMarkdown from "react-markdown";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+const ReactMarkdown = dynamic(() => import("react-markdown") as unknown as Promise<{ default: React.ComponentType<{ children: string }> }>);
 import { trackClick, trackSelectContent } from "@/util/analytics";
 
 interface ProjectCardProps {
@@ -31,7 +32,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         isExpanded ? "ring-2 ring-accent/20" : ""
       }`}
     >
-      <motion.div
+      <m.div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100"
         initial={false}
@@ -71,7 +72,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
       <AnimatePresence>
         {isExpanded && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -92,7 +93,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               </span>
               Show Less
             </button>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
@@ -123,7 +124,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 
   return (
-    <motion.div
+    <m.div
       layout
       initial={shouldReduceMotion ? false : { opacity: 0, y: 28, rotateX: 8 }}
       whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, rotateX: 0 }}
@@ -164,6 +165,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           CardContent
         )}
       </TiltCard>
-    </motion.div>
+    </m.div>
   );
 };

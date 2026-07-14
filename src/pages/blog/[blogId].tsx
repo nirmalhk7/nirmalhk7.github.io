@@ -77,6 +77,7 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
         seoMetadata: {
           title: currentBlog.frontmatter.title,
           description: currentBlog.frontmatter.description,
+          canonical: `https://nirmalhk7.com/blog/${blogId}`,
           openGraph: {
             type: "article",
             url: `https://nirmalhk7.com/blog/${blogId}`,
@@ -156,8 +157,37 @@ const BlogTemplate = ({
     },
   ];
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nirmalhk7.com",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://nirmalhk7.com/blog",
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": current.frontmatter?.title || "Post",
+        "item": `https://nirmalhk7.com/blog/${current.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <ArticleJsonLd
         useAppDir={false}
         url={`https://nirmalhk7.com/blog/${current.slug}`}
@@ -254,6 +284,19 @@ const BlogTemplate = ({
                   const { children, node, ...rest } = props;
                   return <p className="mt-4 leading-relaxed text-3xl text-gray-800">{children}</p>;
                 },
+                img({ src, alt }) {
+                  return (
+                    <div className="relative w-full h-[400px] md:h-[500px] my-12 rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+                      <Image
+                        src={src || ""}
+                        alt={alt || "Blog image"}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 80vw"
+                      />
+                    </div>
+                  );
+                },
               }}
               skipHtml={false}
               className="text-black mb-14 blog-content"
@@ -274,6 +317,7 @@ const BlogTemplate = ({
                       rel="noopener noreferrer"
                       className="hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200 inline-block"
                       data-analytics-skip-global="true"
+                      aria-label={`Share on ${shareSocialMedia.name}`}
                       onClick={() => {
                         trackShare(shareSocialMedia.name, "blog_post", current.slug);
                         trackClick(shareSocialMedia.name, "blog_share");
@@ -290,9 +334,9 @@ const BlogTemplate = ({
                   <span></span>
                   <span className="blog-content__tag-list">
                     {current.frontmatter?.tags.map((element: string, index: number) => (
-                      <a href="#0" key={index}>
+                      <span className="tag-item" key={index}>
                         {element}
-                      </a>
+                      </span>
                     ))}
                   </span>
                 </p>

@@ -1,6 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Montserrat, Libre_Baskerville } from "next/font/google";
 
 import "@/assets/css/tailwind.scss";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -17,6 +18,21 @@ import { useViewTransitions } from "@/hooks/useViewTransitions";
 import { trackWebVital } from "@/util/analytics";
 import { AnimatePresence, LazyMotion, domAnimation, m, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useRouter } from "next/router";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const libreBaskerville = Libre_Baskerville({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-libre-baskerville",
+  display: "swap",
+});
 
 // Dynamic imports for performance
 const ScrollToTop = dynamic(() => import("@/elements/scrollToTop"), { ssr: false });
@@ -55,30 +71,12 @@ export default function App({ Component, pageProps }: CustomAppProps) {
     restDelta: 0.001
   });
 
-  React.useEffect(() => {
-    if (!hasGa || typeof window === "undefined") {
-      return;
-    }
-
-    const win = window as Window & {
-      dataLayer?: unknown[];
-      gtag?: (...args: unknown[]) => void;
-    };
-
-    win.dataLayer = win.dataLayer || [];
-    win.gtag = (...args: unknown[]) => {
-      win.dataLayer?.push(args);
-    };
-    win.gtag("js", new Date());
-    win.gtag("config", gaId, { send_page_view: false });
-  }, [gaId, hasGa]);
-
   useAnalytics();
   useViewTransitions();
 
   return (
     <LazyMotion features={domAnimation}>
-    <div className="min-h-screen">
+    <div className={`${montserrat.variable} ${libreBaskerville.variable} min-h-screen`}>
       <m.div
         className="native-scroll-progress fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-white to-accent z-[60] origin-left"
         style={{ scaleX }}

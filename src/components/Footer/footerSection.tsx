@@ -2,7 +2,7 @@
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 import { social } from "@/components/Social/socialSection";
 import { trackClick, trackSelectContent } from "@/util/analytics";
@@ -11,7 +11,7 @@ const gitCommitSha = process.env.NEXT_PUBLIC_GIT_COMMIT_SHA;
 
 const FooterSection = React.forwardRef<HTMLElement, Record<string, unknown>>((_props, ref) => {
   return (
-    <motion.footer 
+    <m.footer 
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -29,7 +29,8 @@ const FooterSection = React.forwardRef<HTMLElement, Record<string, unknown>>((_p
                     <a
                       className="no-underline flex items-center gap-2 text-neutral-400 hover:text-accent transition-colors"
                       href={element.link}
-                      target="blank"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       data-analytics-skip-global="true"
                       onClick={() => {
                         trackSelectContent("footer_social_profile", element.name, {
@@ -59,6 +60,8 @@ const FooterSection = React.forwardRef<HTMLElement, Record<string, unknown>>((_p
               Web theme heavily modified from &nbsp;
               <a
                 href="https://www.styleshout.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-neutral-400 hover:text-accent transition-colors underline"
               >
                 styleshout
@@ -68,7 +71,7 @@ const FooterSection = React.forwardRef<HTMLElement, Record<string, unknown>>((_p
           </div>
         </div>
       </div>
-    </motion.footer>
+    </m.footer>
   );
 });
 

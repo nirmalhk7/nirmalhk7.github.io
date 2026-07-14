@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
+import { m, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 
 export default function Magnetic({ 
   children, 
@@ -32,7 +32,7 @@ export default function Magnetic({
   };
 
   return (
-    <motion.div
+    <m.div
       style={{ position: "relative", x, y }}
       className={className}
       ref={ref}
@@ -40,6 +40,6 @@ export default function Magnetic({
       onMouseLeave={reset}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

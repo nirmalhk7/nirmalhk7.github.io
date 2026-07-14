@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const sections = [
   { id: "", label: "Home" },
@@ -72,7 +72,7 @@ export default function SectionNavigator() {
             </span>
 
             {/* Indicator Dot / Pill */}
-            <motion.div
+            <m.div
               animate={{
                 height: isActive ? 24 : 8,
                 backgroundColor: isActive ? "#ea580c" : "#9ca3af",

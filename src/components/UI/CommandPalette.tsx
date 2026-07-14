@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useDeferredValue } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
 interface CommandItem {
@@ -17,6 +17,8 @@ export const CommandPalette: React.FC = () => {
 
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -41,10 +43,42 @@ export const CommandPalette: React.FC = () => {
 
   useEffect(() => {
     if (isOpen) {
+      triggerRef.current = document.activeElement as HTMLElement;
       setTimeout(() => {
         inputRef.current?.focus();
       }, 50);
+    } else {
+      triggerRef.current?.focus();
     }
+  }, [isOpen]);
+
+  useEffect(() => {
+    const handleFocusTrap = (e: KeyboardEvent) => {
+      if (!isOpen || !containerRef.current) return;
+      if (e.key === "Tab") {
+        const focusableElements = containerRef.current.querySelectorAll(
+          'input, button, [tabindex="0"]'
+        );
+        if (focusableElements.length === 0) return;
+        const firstElement = focusableElements[0] as HTMLElement;
+        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            lastElement.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            firstElement.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleFocusTrap);
+    return () => window.removeEventListener("keydown", handleFocusTrap);
   }, [isOpen]);
 
   const commandItems: CommandItem[] = [
@@ -168,7 +202,7 @@ export const CommandPalette: React.FC = () => {
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-start justify-center pt-16 tablet:pt-24 px-4">
           {/* Backdrop */}
-          <motion.div
+          <m.div
             aria-hidden="true"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -178,7 +212,11 @@ export const CommandPalette: React.FC = () => {
           />
 
           {/* Modal Container: Bigger (max-w-4xl) with ultra-thin glass border */}
-          <motion.div
+          <m.div
+            ref={containerRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Command Palette"
             initial={{ opacity: 0, scale: 0.97, y: -12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: -12 }}
@@ -192,6 +230,15 @@ export const CommandPalette: React.FC = () => {
                 <input
                   ref={inputRef}
                   type="text"
+                  role="combobox"
+                  aria-expanded={isOpen}
+                  aria-autocomplete="list"
+                  aria-controls="command-palette-listbox"
+                  aria-activedescendant={
+                    filteredItems[selectedIndex]
+                      ? `cmd-item-${filteredItems[selectedIndex].id}`
+                      : undefined
+                  }
                   value={searchQuery}
                   onChange={(e) => {
                     setSearchQuery(e.target.value);
@@ -208,7 +255,12 @@ export const CommandPalette: React.FC = () => {
             </div>
 
             {/* Results List: Spacious & Clean */}
-            <div className="max-h-[480px] overflow-y-auto p-4 space-y-1.5">
+            <div
+              id="command-palette-listbox"
+              role="listbox"
+              aria-label="Search results"
+              className="max-h-[480px] overflow-y-auto p-4 space-y-1.5"
+            >
               {filteredItems.length === 0 ? (
                 <div className="py-16 text-center text-base text-gray-500">
                   No matching results found.
@@ -217,6 +269,9 @@ export const CommandPalette: React.FC = () => {
                 filteredItems.map((item, index) => (
                   <button
                     key={item.id}
+                    id={`cmd-item-${item.id}`}
+                    role="option"
+                    aria-selected={selectedIndex === index}
                     type="button"
                     onClick={item.action}
                     onMouseEnter={() => setSelectedIndex(index)}
@@ -249,7 +304,7 @@ export const CommandPalette: React.FC = () => {
               <span>Use arrow keys <strong className="text-gray-300">↑ ↓</strong> to navigate, <strong className="text-gray-300">Enter</strong> to select</span>
               <span>Command Palette</span>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       )}
     </AnimatePresence>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import WebSection from "@/elements/WebSection";
 
 const BlogIntroSection = React.forwardRef<HTMLElement, { name: string }>(({ name }, ref) => {
@@ -11,7 +11,7 @@ const BlogIntroSection = React.forwardRef<HTMLElement, { name: string }>(({ name
       id="blog"
     >
       <div className="absolute inset-0 pointer-events-none">
-        <motion.div
+        <m.div
           className="absolute inset-0 opacity-90"
           animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
@@ -21,7 +21,7 @@ const BlogIntroSection = React.forwardRef<HTMLElement, { name: string }>(({ name
             backgroundSize: "180% 180%",
           }}
         />
-        <motion.div
+        <m.div
           className="absolute inset-0 opacity-95"
           animate={{
             background: [
@@ -33,12 +33,12 @@ const BlogIntroSection = React.forwardRef<HTMLElement, { name: string }>(({ name
           }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
+        <m.div
           className="absolute -left-20 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-white/25 blur-2xl"
           animate={{ x: [0, 84, 22, 0], scale: [1, 1.2, 0.9, 1], opacity: [0.42, 0.78, 0.5, 0.42] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
+        <m.div
           className="absolute -right-20 top-6 h-80 w-80 rounded-full bg-accent/45 blur-2xl"
           animate={{ x: [0, -78, -28, 0], y: [0, 36, 64, 0], scale: [1, 0.86, 1.16, 1], opacity: [0.36, 0.68, 0.44, 0.36] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}

@@ -238,7 +238,7 @@ input, textarea, select, blockquote, table, p, ul, ol, dl, form, .video-containe
       @apply inline-block pr-0 mr-0;
       &::after { @apply hidden; }
 
-      a {
+      a, span.tag-item {
         @apply inline-block font-blocky font-normal text-[1.3rem] leading-[inherit] text-[#797979] border border-black/30 rounded-[3px] mr-[6px] mb-[6px] px-[10px];
         &:last-child { @apply mr-0; }
         &:hover, &:focus { @apply bg-[#0d0a0b] border-[#0d0a0b] text-white; }

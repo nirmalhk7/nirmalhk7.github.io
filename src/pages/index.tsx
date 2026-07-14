@@ -7,7 +7,20 @@ import sampleSize from "lodash/sampleSize";
 import { GetStaticProps } from "next";
 import { loadMarkdownFile, loadProjectMarkdownFiles } from "@/util/loadMarkdown";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
-import ReactMarkdown from "react-markdown";
+function compileBasicMarkdown(md: string): string {
+  const paragraphs = md
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  return paragraphs
+    .map((p) => {
+      let html = p.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+      html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+      return `<p>${html}</p>`;
+    })
+    .join("\n");
+}
 import ProjectIntroSection from "@/components/Project/projectIntroSection";
 import {
   CourseInterface,
@@ -29,7 +42,7 @@ import { TextReveal } from "@/components/TextReveal";
 import { TiltCard } from "@/components/TiltCard";
 
 interface IndexPageProps extends DefaultPageProps {
-  mainContent: string;
+  mainContentHtml: string;
   collegeCourses: CourseInterface[];
   onlineCourses: CourseInterface[];
   skills: SkillsInterface[];
@@ -40,7 +53,7 @@ interface IndexPageProps extends DefaultPageProps {
 }
 
 const IndexPage = ({
-  mainContent,
+  mainContentHtml,
   projects,
   workexperience,
   onlineCourses,
@@ -50,8 +63,25 @@ const IndexPage = ({
   cv
 }: IndexPageProps) => {
   
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nirmal Khedkar",
+    "jobTitle": "Software Engineer",
+    "url": "https://nirmalhk7.com",
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "University of Colorado Boulder",
+    },
+    "sameAs": cv.map((profile) => profile.url),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       <SocialProfileJsonLd
         type="Person"
         name="Nirmal Khedkar"
@@ -97,9 +127,7 @@ const IndexPage = ({
         </div>
         <div className="container mx-auto">
           <div className="columns-1 mobile-l:columns-2 gap-16 gap-y-16">
-            <ReactMarkdown>
-              {mainContent}
-            </ReactMarkdown>
+            <div dangerouslySetInnerHTML={{ __html: mainContentHtml }} />
             <div className="break-inside-avoid">
               <CommonHeader headerName="Familiar Languages, Frameworks and Libraries" />
               <div className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-4">
@@ -136,6 +164,9 @@ const IndexPage = ({
                       {element.name} by {element.provider} - (
                       <a
                         href={element.link}
+                        aria-label={`View certificate for ${element.name}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         data-analytics-skip-global="true"
                         onClick={() => {
                           trackSelectContent("course", element.name, {
@@ -187,7 +218,7 @@ const IndexPage = ({
                 <Link
                   className="button button-accent w-full m-0"
                   href={"/resume"}
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   target="_blank"
                   data-analytics-skip-global="true"
                   onClick={() => {
@@ -236,14 +267,15 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
     6
   );
 
+  const mainContentMd = loadMarkdownFile(
+    "content/yml/mainContent.md",
+    "mainContent",
+    { getContent: true, getExcerpt: false }
+  ).content || "";
   
   return {
     props: {
-      mainContent: loadMarkdownFile(
-        "content/yml/mainContent.md",
-        "mainContent",
-        { getContent: true, getExcerpt: false }
-      ).content || "",
+      mainContentHtml: compileBasicMarkdown(mainContentMd),
       collegeCourses: allCoursesYaml.filter((val) => !val.provider),
       onlineCourses: allCoursesYaml.filter((val) => val.provider),
       skills: allSkillsYaml,

@@ -4,16 +4,7 @@ import SocialMediaIcons from "../components/Social/socialSection";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import WebSection from "@/elements/WebSection";
-import {
-  motion,
-  Variants,
-  useMotionTemplate,
-  useMotionValue,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { m, Variants, useMotionTemplate, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform,  } from "framer-motion";
 import { trackClick, trackSelectContent } from "@/util/analytics";
 import Magnetic from "@/components/Magnetic";
 
@@ -89,7 +80,7 @@ const Mini = React.forwardRef<HTMLElement, MiniJumbotronProps>(({
       id={`${title}-header`}
     >
       <div ref={containerRef} className="absolute inset-0 z-0">
-        <motion.div style={{ y, scale: imageScale }} className="relative h-full w-full">
+        <m.div style={{ y, scale: imageScale }} className="relative h-full w-full">
           <Image
             fill
             priority={true}
@@ -99,7 +90,7 @@ const Mini = React.forwardRef<HTMLElement, MiniJumbotronProps>(({
             alt={backgroundImageAlt}
             sizes="100vw"
           />
-        </motion.div>
+        </m.div>
       </div>
       <HeroTexture shouldReduceMotion={shouldReduceMotion} />
       <div
@@ -107,21 +98,21 @@ const Mini = React.forwardRef<HTMLElement, MiniJumbotronProps>(({
           centerAlign ? "text-center" : ""
         }`}
       >
-        <motion.div
+        <m.div
           variants={staggerContainer}
           initial="hidden"
           animate="show"
         >
-          <motion.h1 variants={slideUpItem} className="page-header__title text-white">{title}</motion.h1>
-          <motion.div variants={slideUpItem} className="page-header__info">
+          <m.h1 variants={slideUpItem} className="page-header__title text-white">{title}</m.h1>
+          <m.div variants={slideUpItem} className="page-header__info">
             <div className="page-header__cat text-white inline-block uppercase">
               {subtitle}
             </div>
-          </motion.div>
-          <motion.div variants={slideUpItem}>
+          </m.div>
+          <m.div variants={slideUpItem}>
             <DescriptionComponent />
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
     </WebSection>
   );
@@ -170,7 +161,7 @@ const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
         onMouseMove={handleMouseMove}
         role="presentation"
       >
-        <motion.div style={{ y, scale: imageScale }} className="relative h-full w-full">
+        <m.div style={{ y, scale: imageScale }} className="relative h-full w-full">
           <Image
             fill
             priority={true}
@@ -181,15 +172,15 @@ const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
             alt="Nirmal Khedkar - Software Engineer"
             sizes="100vw"
           />
-        </motion.div>
+        </m.div>
       </div>
-      <motion.div
+      <m.div
         className="pointer-events-none absolute inset-0 z-[2] opacity-90"
         style={{ background: spotlight }}
       />
       {!shouldReduceMotion && (
         <div className="pointer-events-none absolute inset-0 z-[3] overflow-hidden">
-          <motion.div
+          <m.div
             className="absolute top-1/4 left-[15%] h-64 w-64 rounded-full bg-accent/10 blur-3xl"
             animate={{
               x: [0, 20, -15, 0],
@@ -198,7 +189,7 @@ const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
             }}
             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           />
-          <motion.div
+          <m.div
             className="absolute bottom-1/3 right-[18%] h-80 w-80 rounded-full bg-white/5 blur-3xl"
             animate={{
               x: [0, -30, 20, 0],
@@ -210,18 +201,18 @@ const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
         </div>
       )}
       <div className="jumbotron z-10 relative">
-        <motion.div 
+        <m.div 
           style={{ y: textY, opacity: textOpacity }}
           className="tablet:container mx-auto home-content__main"
           variants={staggerContainer}
           initial="hidden"
           animate="show"
         >
-          <motion.h3 variants={slideUpItem} className="ital-hover">{orangeText}</motion.h3>
-          <motion.div variants={slideUpItem}>{HeadingTextComponent}</motion.div>
-          <motion.div variants={slideUpItem} className="static text-left gap-4 right-0 bottom-8 flex flex-wrap items-center">
+          <m.h3 variants={slideUpItem} className="ital-hover">{orangeText}</m.h3>
+          <m.div variants={slideUpItem}>{HeadingTextComponent}</m.div>
+          <m.div variants={slideUpItem} className="static text-left gap-4 right-0 bottom-8 flex flex-wrap items-center">
             {buttonDetails.map((item) => (
-              <motion.span
+              <m.span
                 key={item[0]}
                 variants={buttonVariants}
                 whileHover={shouldReduceMotion ? undefined : { y: -4, scale: 1.03 }}
@@ -243,25 +234,25 @@ const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
                     {item[0]}
                   </Link>
                 </Magnetic>
-              </motion.span>
+              </m.span>
             ))}
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
       {showScrollDown && (
-        <motion.div
+        <m.div
           className="absolute bottom-10 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-3 text-white/80 tablet:flex"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
           animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           <span className="font-blocky text-[1rem] font-bold uppercase tracking-[0.25rem]">Scroll</span>
-          <motion.span
+          <m.span
             className="block h-16 w-px origin-top bg-white/70"
             animate={shouldReduceMotion ? undefined : { scaleY: [0.35, 1, 0.35], opacity: [0.35, 1, 0.35] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           />
-        </motion.div>
+        </m.div>
       )}
       <SocialMediaIcons />
     </WebSection>
@@ -277,7 +268,7 @@ export default Jumbotron;
 function HeroTexture({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
   return (
     <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
-      <motion.div
+      <m.div
         className="absolute inset-0 opacity-35 mix-blend-screen"
         animate={
           shouldReduceMotion
@@ -294,7 +285,7 @@ function HeroTexture({ shouldReduceMotion }: { shouldReduceMotion: boolean | nul
           maskImage: "linear-gradient(to bottom, transparent, black 24%, black 78%, transparent)",
         }}
       />
-      <motion.div
+      <m.div
         className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/10 via-transparent to-transparent"
         animate={shouldReduceMotion ? undefined : { y: ["-18%", "18%", "-18%"] }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}

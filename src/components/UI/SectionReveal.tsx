@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 
 type SectionRevealProps = {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ export const SectionReveal = ({
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       className={className}
       initial={shouldReduceMotion ? false : { opacity: 0, y }}
       whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -25,6 +25,6 @@ export const SectionReveal = ({
       transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };

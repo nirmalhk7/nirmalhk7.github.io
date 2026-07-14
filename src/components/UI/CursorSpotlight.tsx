@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { m, useMotionValue, useSpring } from "framer-motion";
 
 export const CursorSpotlight: React.FC = () => {
   const [isPointerDevice, setIsPointerDevice] = useState(false);
@@ -32,13 +32,13 @@ export const CursorSpotlight: React.FC = () => {
   if (!isPointerDevice) return null;
 
   return (
-    <motion.div
+    <m.div
       className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300"
       style={{
         background: "transparent",
       }}
     >
-      <motion.div
+      <m.div
         className="pointer-events-none absolute -inset-px rounded-full opacity-60 mix-blend-screen"
         style={{
           width: 650,
@@ -51,7 +51,7 @@ export const CursorSpotlight: React.FC = () => {
             "radial-gradient(circle, rgba(255, 115, 0, 0.12) 0%, rgba(255, 115, 0, 0.04) 40%, transparent 70%)",
         }}
       />
-    </motion.div>
+    </m.div>
   );
 };
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import WebSection from "@/elements/WebSection";
 import { BlogMiniInterface } from "@/interfaces/blog";
-import { motion, Variants } from "framer-motion";
+import { m, Variants } from "framer-motion";
 import { trackClick, trackSelectContent } from "@/util/analytics";
 
 const staggerContainer: Variants = {
@@ -35,7 +35,7 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
               <h1>All Articles</h1>
             </div>
           </div>
-          <motion.div 
+          <m.div 
             className="py-10 columns-1 tablet:columns-2 laptop:columns-3 desktop:columns-4 gap-8"
             variants={staggerContainer}
             initial="hidden"
@@ -44,7 +44,7 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
           >
             {blogItems.map((element, index) => {
               return (
-                <motion.div
+                <m.div
                   variants={slideUpItem}
                   whileHover={{ y: -6 }}
                   whileTap={{ scale: 0.99 }}
@@ -102,10 +102,10 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </m.div>
               );
             })}
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </WebSection>

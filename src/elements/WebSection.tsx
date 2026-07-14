@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, useMotionValue, useTransform, MotionValue } from "framer-motion";
+import { m, useMotionValue, useTransform, MotionValue } from "framer-motion";
 import { trackSectionView } from "@/util/analytics";
 
 interface WebSectionProps {
@@ -19,7 +19,7 @@ const WebSection = React.forwardRef<HTMLElement, WebSectionProps>(({ children, c
   }
 
   return (
-    <motion.section
+    <m.section
       ref={ref}
       id={id}
       className={`${className} group relative`}
@@ -27,14 +27,14 @@ const WebSection = React.forwardRef<HTMLElement, WebSectionProps>(({ children, c
       viewport={{ once: true, margin: "-50px" }}
       onMouseMove={handleMouseMove}
     >
-      <motion.div
+      <m.div
         className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           background: useTemplateStyle(mouseX, mouseY),
         }}
       />
       {children}
-    </motion.section>
+    </m.section>
   );
 });
 

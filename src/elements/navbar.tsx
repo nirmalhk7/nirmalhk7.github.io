@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { trackClick } from "@/util/analytics";
 
 type NavbarItem = {
@@ -142,7 +142,7 @@ const Navbar = () => {
   }, [router.pathname, navbarInternalData]);
 
   return (
-    <motion.header 
+    <m.header 
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -158,7 +158,7 @@ const Navbar = () => {
     >
       <AnimatePresence>
         {mobileMenuClick && (
-          <motion.nav
+          <m.nav
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -185,7 +185,7 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-          </motion.nav>
+          </m.nav>
         )}
       </AnimatePresence>
 
@@ -203,7 +203,7 @@ const Navbar = () => {
       <nav className="header-nav-wrap absolute right-20 hidden tablet:block">
         <ul className="header-nav-wrap__navbar inline-flex items-center h-16 m-0 list-none">
           {navbarInternalData.map((element, index) => (
-            <motion.li 
+            <m.li 
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               className="pl-0 mr-8 relative group" 
@@ -221,13 +221,13 @@ const Navbar = () => {
                 {element.label}
               </Link>
               {highlightedIndex === index && (
-                <motion.div
+                <m.div
                   layoutId="navbar-hover"
                   className="absolute inset-x-[-12px] inset-y-[-4px] bg-accent/20 rounded-lg z-0"
                   transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
                 />
               )}
-            </motion.li>
+            </m.li>
           ))}
           <li className="pl-0 ml-2">
             <button
@@ -254,7 +254,7 @@ const Navbar = () => {
           <span>Menu</span>
         </Link>
       </div>
-    </motion.header>
+    </m.header>
   );
 };
 export default Navbar;

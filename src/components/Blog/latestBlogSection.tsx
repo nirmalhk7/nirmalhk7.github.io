@@ -6,7 +6,7 @@ import WebSection from "@/elements/WebSection";
 import { BlogMiniInterface } from "@/interfaces/blog";
 import { trackClick, trackSelectContent } from "@/util/analytics";
 import { SectionReveal } from "@/components/UI/SectionReveal";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 
 const LatestBlogSection = React.forwardRef<HTMLElement, BlogMiniInterface>(({
   frontmatter,
@@ -37,13 +37,13 @@ const LatestBlogSection = React.forwardRef<HTMLElement, BlogMiniInterface>(({
             className="grid laptop:grid-cols-2 tablet:grid-cols-2 mobile-l:grid-cols-1"
             y={18}
           >
-            <motion.div
+            <m.div
               className="py-10"
               whileHover={shouldReduceMotion ? undefined : { rotate: -1.5, scale: 1.025 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="relative inline-block overflow-hidden rounded-3xl shadow-2xl shadow-black/20">
-                <motion.div
+                <m.div
                   aria-hidden="true"
                   className="absolute inset-0 z-10 bg-gradient-to-tr from-white/0 via-white/35 to-white/0 opacity-0 group-hover:opacity-100"
                   animate={shouldReduceMotion ? undefined : { x: ["-120%", "120%"] }}
@@ -57,9 +57,9 @@ const LatestBlogSection = React.forwardRef<HTMLElement, BlogMiniInterface>(({
                   className="transition duration-700 group-hover:scale-105"
                 />
               </div>
-            </motion.div>
+            </m.div>
             <div className="laptop:text-right tablet:text-right relative text-white py-10">
-              <motion.div
+              <m.div
                 initial={shouldReduceMotion ? false : { opacity: 0, x: 28 }}
                 whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
@@ -77,7 +77,7 @@ const LatestBlogSection = React.forwardRef<HTMLElement, BlogMiniInterface>(({
                 >
                   Read More
                 </div>
-              </motion.div>
+              </m.div>
             </div>
           </SectionReveal>
         </div>

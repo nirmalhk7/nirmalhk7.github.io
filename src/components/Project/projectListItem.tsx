@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ProjectInterface } from "@/interfaces/projects";
 import ReactMarkdown from "react-markdown";
 
@@ -19,7 +19,7 @@ export const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectListItemP
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={shouldReduceMotion ? false : { opacity: 0, y: 18, clipPath: "inset(0 0 22% 0)" }}
       whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" }}
@@ -43,7 +43,7 @@ export const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectListItemP
           isExpanded ? "bg-gray-200 text-black" : "bg-gray-100 hover:bg-gray-200 text-black"
         }`}
       >
-        <motion.span
+        <m.span
           aria-hidden="true"
           className="absolute inset-y-0 left-0 w-1 bg-accent"
           initial={false}
@@ -51,7 +51,7 @@ export const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectListItemP
           transition={{ type: "spring", stiffness: 260, damping: 28 }}
           style={{ originY: 0.5 }}
         />
-        <motion.span
+        <m.span
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-gradient-to-r from-accent/10 via-white/40 to-transparent opacity-0"
           animate={isExpanded ? { opacity: 1, x: "0%" } : { opacity: 0, x: "-8%" }}
@@ -85,20 +85,20 @@ export const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectListItemP
         </div>
 
         <div className="relative z-10 flex mt-4 md:mt-0 md:ml-6 items-center">
-          <motion.span
+          <m.span
             animate={{ rotate: isExpanded ? 180 : 0 }}
             className={`text-2xl hidden md:block transition-colors ${
               isExpanded ? "text-accent" : "text-gray-400 group-hover:text-black"
             }`}
           >
             ↓
-          </motion.span>
+          </m.span>
         </div>
       </button>
 
       <AnimatePresence>
         {isExpanded && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -110,10 +110,10 @@ export const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectListItemP
                 <ReactMarkdown>{project.content || ""}</ReactMarkdown>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </m.div>
   );
 });
 

@@ -50,6 +50,7 @@ const WorkExperienceSection = React.forwardRef<
     });
   };
 
+  /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
   return (
     <WebSection
       ref={ref}
@@ -80,13 +81,17 @@ const WorkExperienceSection = React.forwardRef<
             >
               →
             </button>
+
           </div>
         </div>
 
         {/* Horizontal Scrolling Track */}
         <div
           ref={scrollContainerRef}
-          className="w-full flex flex-row overflow-x-auto snap-x snap-mandatory gap-8 pb-8 pt-2 no-scrollbar scroll-smooth"
+          className="w-full flex flex-row overflow-x-auto snap-x snap-mandatory gap-8 pb-8 pt-2 no-scrollbar scroll-smooth focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-2xl"
+          tabIndex={0}
+          role="region"
+          aria-label="Work experience timeline (use arrow keys to scroll)"
         >
           {chronologicalExperience.map((element, index) => (
             <div
@@ -134,6 +139,7 @@ const WorkExperienceSection = React.forwardRef<
       </div>
     </WebSection>
   );
+  /* eslint-enable jsx-a11y/no-noninteractive-tabindex */
 });
 
 WorkExperienceSection.displayName = "WorkExperienceSection";

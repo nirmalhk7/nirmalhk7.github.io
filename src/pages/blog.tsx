@@ -20,8 +20,54 @@ interface BlogPageProps extends DefaultPageProps {
 }
 
 const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "The Blue Green Manual",
+    "description": "Dwelving into Production Scale Engineering with Nirmal Khedkar. This is The Blue Green Manual",
+    "url": "https://nirmalhk7.com/blog",
+    "hasPart": blogsMiniInformation.map((blog) => ({
+      "@type": "BlogPosting",
+      "headline": blog.frontmatter?.title || "",
+      "description": blog.excerpt || blog.frontmatter?.description || "",
+      "url": `https://nirmalhk7.com/blog/${blog.slug}`,
+      "datePublished": blog.frontmatter?.date || "",
+      "author": {
+        "@type": "Person",
+        "name": "Nirmal Khedkar",
+      },
+    })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nirmalhk7.com",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://nirmalhk7.com/blog",
+      },
+    ],
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Jumbotron.Max
         HeadingTextComponent={
           <h1 className="page-header__title text-white">
@@ -69,6 +115,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
           title: "The Blue Green Manual",
           description:
             "Dwelving into Production Scale Engineering with Nirmal Khedkar. This is The Blue Green Manual",
+          canonical: "https://nirmalhk7.com/blog",
           openGraph: {
             type: "website",
             url: `https://nirmalhk7.com/blog`,

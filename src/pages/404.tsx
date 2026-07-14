@@ -6,7 +6,7 @@ import { DefaultPageProps } from "./_app";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import sampleSize from "lodash/sampleSize";
 import { trackError, trackClick, trackSearch, trackSelectContent } from "@/util/analytics";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { loadMarkdownFiles, loadProjectMarkdownFiles } from "@/util/loadMarkdown";
 import { BlogFrontmatterInterface } from "@/interfaces/blog";
@@ -71,19 +71,19 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
 
   return (
     <main className="min-h-screen bg-[#0d0a0b] text-white flex flex-col justify-center items-center py-20 px-4">
-      <motion.div 
+      <m.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="max-w-2xl w-full text-center"
       >
-        <motion.h1 
+        <m.h1 
           className="text-[12rem] font-bold text-accent leading-none mb-4"
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 200, damping: 10 }}
         >
           404
-        </motion.h1>
+        </m.h1>
         <h2 className="text-4xl font-bold mb-8 uppercase tracking-widest">Lost in the sauce?</h2>
         <p className="text-gray-400 text-2xl mb-12">
           The page you&apos;re looking for has either moved to another dimension or never existed. 
@@ -105,7 +105,7 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
 
           <AnimatePresence>
             {query && (
-              <motion.div 
+              <m.div 
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
@@ -140,7 +140,7 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
                     No results found for &quot;{query}&quot;. Maybe try &quot;projects&quot; or &quot;blog&quot;?
                   </div>
                 )}
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
@@ -165,7 +165,7 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
             </Link>
           ))}
         </div>
-      </motion.div>
+      </m.div>
     </main>
   );
 };

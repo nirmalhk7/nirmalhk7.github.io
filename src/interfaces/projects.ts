@@ -6,6 +6,8 @@ export interface ProjectFrontmatterInterface {
   url?: string;
   homepage?: string;
   source?: "github" | "manual";
+  heroImage?: string;
+  highlights?: string[];
 }
 
 export interface ProjectInterface {

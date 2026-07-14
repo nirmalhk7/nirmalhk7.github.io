@@ -2,7 +2,7 @@ import { useForm, ValidationError } from "@formspree/react";
 import React from "react";
 import WebSection from "@/elements/WebSection";
 import { trackClick, trackEvent, trackFormFocus, trackFormStart, trackFormSubmit, trackGenerateLead } from "@/util/analytics";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 
 const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown>>((_props, ref) => {
   const [state, handleSubmit] = useForm("mgvwblra");
@@ -87,7 +87,7 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
           id="contact"
           className="relative overflow-hidden bg-[#030408] selection:bg-accent selection:text-white"
         >
-          <motion.div
+          <m.div
             className="contact-shooting-stars pointer-events-none absolute -inset-y-24 inset-x-0 z-0"
             aria-hidden="true"
             style={{ y: skyY }}
@@ -99,12 +99,12 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
                 <span key={index} />
               ))}
             </div>
-          </motion.div>
-          <motion.div
+          </m.div>
+          <m.div
             className="relative z-10"
             style={{ y: contentY }}
           >
-          <motion.div 
+          <m.div 
             className="container mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -218,8 +218,8 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
                 </a>
               </div>
             </div>
-          </motion.div>
-          </motion.div>
+          </m.div>
+          </m.div>
         </WebSection>
       </div>
     </div>
