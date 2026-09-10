@@ -25,8 +25,8 @@ module.exports = {
         nasaEarth: "url('../images/nasa-earth.jpg')",
       },
       fontFamily: {
-        blocky: ["var(--font-montserrat)", "sans-serif"],
-        heading: ["var(--font-libre-baskerville)", "serif"],
+        blocky: ["Montserrat", "sans-serif"],
+        heading: ["Libre Baskerville", "serif"],
       },
       letterSpacing: {
         widest: "0.25rem",
