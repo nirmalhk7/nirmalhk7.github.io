@@ -1,10 +1,13 @@
 import React from "react";
 import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ProjectInterface } from "@/interfaces/projects";
-import ReactMarkdown from "react-markdown";
+
+type ProjectListItemProject = Omit<ProjectInterface, "content"> & {
+  contentHtml: string;
+};
 
 interface ProjectListItemProps {
-  project: ProjectInterface;
+  project: ProjectListItemProject;
   isExpanded: boolean;
   onToggle: () => void;
   index: number;
@@ -107,7 +110,7 @@ export const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectListItemP
           >
             <div className="px-8 pb-8 bg-gray-200 text-black">
               <div className="prose prose-lg max-w-none prose-neutral border-0 pt-8">
-                <ReactMarkdown>{project.content || ""}</ReactMarkdown>
+                <div dangerouslySetInnerHTML={{ __html: project.contentHtml }} />
               </div>
             </div>
           </m.div>

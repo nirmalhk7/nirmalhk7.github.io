@@ -130,32 +130,3 @@
 .page-header__cat {
   @apply inline-block mr-8 mb-1 text-2xl leading-normal tracking-[0.16rem] font-blocky font-bold;
 }
-
-.page-header__meta {
-  @apply list-none ml-0 pt-10 text-2xl relative;
-
-  &::before {
-    @apply block content-[''] h-px w-[100px] bg-white/10 absolute top-0 left-1/2 -ml-[50px];
-  }
-
-  li {
-    @apply inline-block pl-0 mr-8;
-
-    &:last-child {
-      @apply mr-0;
-    }
-
-    span,
-    a {
-      @apply text-white;
-    }
-  }
-}
-
-.blog-content__main {
-  @apply px-24;
-
-  img {
-    @apply max-w-[1000px] my-12 mx-0 -ml-24;
-  }
-}

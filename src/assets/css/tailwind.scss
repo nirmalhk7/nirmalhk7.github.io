@@ -26,6 +26,11 @@
     word-wrap: break-word;
   }
 
+  .defer-render {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1000px;
+  }
+
   /* Layout Elements */
   article, aside, footer, header, nav, section, main, details, menu {
     @apply block;

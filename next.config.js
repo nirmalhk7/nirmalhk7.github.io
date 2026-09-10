@@ -23,25 +23,6 @@ const nextConfig = {
     NEXT_PUBLIC_GIT_COMMIT_SHA: gitCommitSha,
   },
   async redirects() {
-    if (process.env.NEXT_PUBLIC_LEANMODE && false) {
-      return [
-        {
-          source: "/projects",
-          destination: "/",
-          permanent: false,
-        },
-        {
-          source: "/blog",
-          destination: "/",
-          permanent: false,
-        },
-        {
-          source: "/blog/:id",
-          destination: "/",
-          permanent: false,
-        },
-      ];
-    }
     if (process.env.NODE_ENV!=="development") {
       return [
         {
@@ -71,17 +52,6 @@ const nextConfig = {
     ignoreBuildErrors: false,
   },
   reactStrictMode: true,
-  webpack: function (config) {
-    config.module.rules.push({
-      test: /\.ya?ml$/,
-      use: "js-yaml-loader",
-    });
-    config.module.rules.push({
-      test: /\.md$/,
-      use: "raw-loader",
-    });
-    return config;
-  },
   async rewrites() {
     return [
       {

@@ -33,9 +33,6 @@ jobs:
       - name: Install dependencies
         run: npm i -f
 
-      - name: Generate llms.txt
-        run: node scripts/generate-llms.js
-
       - name: Run tests
         run: npm test
 
@@ -50,11 +47,14 @@ jobs:
       - name: Download Resume PDF
         run: npm run get-resume
 
-      - name: Download Resume PDF
-        run: npm run sync-projects
-
       - name: Build Next.js
         run: npm run build
+
+      - name: Check performance budgets
+        run: npm run check-performance
+
+      - name: Check pre-rendered project Markdown
+        run: npm run check-project-markdown
 
       - name: Prepare Vercel project configuration
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

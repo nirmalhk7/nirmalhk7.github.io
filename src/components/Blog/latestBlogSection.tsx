@@ -66,9 +66,9 @@ const LatestBlogSection = React.forwardRef<HTMLElement, BlogMiniInterface>(({
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               >
                 <h3 className="text-white">Latest Article</h3>
-                <h1 className="font-bold leading-snug mt-20 font-heading text-7xl">
+                <h2 className="font-bold leading-snug mt-20 font-heading text-7xl">
                   {frontmatter?.title || ""}
-                </h1>
+                </h2>
                 <div className="entry-content no-underline mb-10 not-underline">
                   <p className="text-3xl">{excerpt}</p>
                 </div>

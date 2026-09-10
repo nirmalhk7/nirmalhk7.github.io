@@ -1,28 +1,38 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { m, useMotionValue, useTransform, MotionValue } from "framer-motion";
 import { trackSectionView } from "@/util/analytics";
+import { createRafThrottled } from "@/util/rafThrottle";
 
 interface WebSectionProps {
   children: React.ReactNode;
   className?: string;
   id: string; // Make id a required prop
+  deferRender?: boolean;
 }
 
-const WebSection = React.forwardRef<HTMLElement, WebSectionProps>(({ children, className = "", id }, ref) => {
+const WebSection = React.forwardRef<HTMLElement, WebSectionProps>(({ children, className = "", id, deferRender = false }, ref) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const updateSpotlight = useMemo(
+    () => createRafThrottled((x: number, y: number) => {
+      mouseX.set(x);
+      mouseY.set(y);
+    }),
+    [mouseX, mouseY]
+  );
 
-  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+  const handleMouseMove = ({ currentTarget, clientX, clientY }: React.MouseEvent) => {
     const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
+    updateSpotlight(clientX - left, clientY - top);
+  };
+
+  useEffect(() => updateSpotlight.cancel, [updateSpotlight]);
 
   return (
     <m.section
       ref={ref}
       id={id}
-      className={`${className} group relative`}
+      className={`${className} group relative${deferRender ? " defer-render" : ""}`}
       onViewportEnter={() => trackSectionView(id)}
       viewport={{ once: true, margin: "-50px" }}
       onMouseMove={handleMouseMove}

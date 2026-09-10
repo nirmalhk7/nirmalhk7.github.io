@@ -3,7 +3,7 @@ title: "Homelab Architecture: Planning Your Playground"
 category: ['Guides']
 tags: ["technology","project","personal","homelab"]
 img: /assets/datacenter_1.png
-description: "Are you interested in building a home server? Here's how to architect the software parts responsibly"
+description: "Plan a reliable homelab architecture with practical guidance on operating systems, environment isolation, access control, and Kubernetes infrastructure."
 date: "2025-04-10"
 draft: false
 ---

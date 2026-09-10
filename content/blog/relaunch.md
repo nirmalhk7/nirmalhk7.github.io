@@ -3,7 +3,7 @@ title: Err ... hello?
 category: ['Personal']
 tags: ["technology","critical","security","reliability","software"]
 img: /assets/paper_pen.jpeg
-description: "Blog Relaunch: Welcome to the BGM"
+description: "Welcome to The Blue Green Manual, Nirmal Khedkar's writing journal about production software, reliable infrastructure, security, and engineering practice."
 date: "2025-03-29"
 draft: false
 ---

@@ -3,7 +3,7 @@ title: One Small Step
 category: ['Future']
 tags: ["moon","space","technology"]
 img: /assets/onesmallstep.jpg
-description: 50 years since 1969! A review of the legacy and impact of Apollo 11.
+description: A reflection on Apollo 11 fifty years after the Moon landing, exploring the Space Race, its engineering legacy, and its enduring human inspiration.
 date: "2019-06-21"
 ---
 

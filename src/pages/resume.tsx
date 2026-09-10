@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next';
-import { NextSeo } from 'next-seo';
 import React from 'react';
 import { DefaultPageProps } from './_app';
 import { trackEvent, trackSelectContent } from '@/util/analytics';
@@ -8,6 +7,7 @@ interface ResumePageProps extends DefaultPageProps{}
 
 const ResumePage: React.FC<ResumePageProps> = () => {
   const resumeUrl = `/Resume.pdf?v=${process.env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? "dev"}`;
+  const [showPreview, setShowPreview] = React.useState(false);
 
   React.useEffect(() => {
     trackSelectContent("resume", "Resume.pdf", {
@@ -39,18 +39,55 @@ const ResumePage: React.FC<ResumePageProps> = () => {
   };
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
+    <main className="h-screen w-screen flex flex-col bg-black text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <NextSeo title="Resume" description='Resume of Nirmal Khedkar' />
-      <iframe
-        title="Resume of Nirmal Khedkar"
-        src={resumeUrl}
-        className="w-full h-full border-none"
-      />
-    </div>
+      <header className="flex items-center justify-between gap-6 px-6 py-4">
+        <div>
+          <h1 className="m-0 text-3xl text-white">Nirmal Khedkar&apos;s Resume</h1>
+          <p className="m-0 text-base text-gray-300">
+            Software engineering experience, skills, education, and selected projects.
+          </p>
+        </div>
+        <div className="flex gap-3">
+          <button
+            type="button"
+            className="button button-accent whitespace-nowrap"
+            onClick={() => setShowPreview((current) => !current)}
+          >
+            {showPreview ? "Hide preview" : "Preview PDF"}
+          </button>
+          <a
+            href={resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button button-accent-fill whitespace-nowrap"
+          >
+            Open PDF
+          </a>
+        </div>
+      </header>
+      {showPreview ? (
+        <iframe
+          title="Resume of Nirmal Khedkar"
+          src={resumeUrl}
+          className="w-full flex-1 border-none bg-white"
+        />
+      ) : (
+        <section className="flex flex-1 items-center justify-center px-6 text-center">
+          <div className="max-w-3xl">
+            <h2 className="mb-6 text-5xl text-white">Software Engineer</h2>
+            <p className="text-2xl leading-relaxed text-gray-300">
+              Experience building reliable distributed systems, cloud infrastructure,
+              full-stack products, automation, and developer tooling. Open the PDF for
+              complete work history, education, skills, and project details.
+            </p>
+          </div>
+        </section>
+      )}
+    </main>
   );
 };
 
@@ -62,8 +99,8 @@ export const getStaticProps: GetStaticProps<ResumePageProps> = async () => {
       pageMetadata: {
         enableWrap: false,
         seoMetadata: {
-          title: "Resume",
-          description: "Looking to boost your engineering team's performance and reliability? Hire Nirmal Khedkar. With two years of full-stack experience at Visa, he's your man to improve your system performance and handle any runtime errors.",
+          title: "Software Engineering Resume",
+          description: "Review Nirmal Khedkar's software engineering resume, including experience building reliable systems, cloud infrastructure, full-stack applications, and developer tools.",
           canonical: "https://nirmalhk7.com/resume",
           openGraph: {
             type: "profile",
@@ -76,7 +113,7 @@ export const getStaticProps: GetStaticProps<ResumePageProps> = async () => {
             },
             images: [
               {
-                url: `https://nirmalhk7.com/assets/images/BeachNK_1.jpg`,
+                url: "https://nirmalhk7.com/api/og?title=Nirmal%20Khedkar%27s%20Resume",
                 alt: "Hi, I'm Nirmal Khedkar",
                 width: 1200,
                 height: 630

@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { m, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { createRafThrottled } from "@/util/rafThrottle";
 
-interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TiltCardProps extends Omit<React.ComponentPropsWithoutRef<typeof m.div>, "ref" | "onClick" | "onKeyDown"> {
   children: React.ReactNode;
-  className?: string;
   onClick?: () => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLDivElement>) => void;
 }
@@ -25,6 +25,13 @@ export const TiltCard: React.FC<TiltCardProps> = ({
 
   const mouseXSpring = useSpring(x);
   const mouseYSpring = useSpring(y);
+  const updateTilt = React.useMemo(
+    () => createRafThrottled((xPercentage: number, yPercentage: number) => {
+      x.set(xPercentage);
+      y.set(yPercentage);
+    }),
+    [x, y]
+  );
 
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
@@ -39,6 +46,8 @@ export const TiltCard: React.FC<TiltCardProps> = ({
       window.removeEventListener("resize", resetRect);
     };
   }, []);
+
+  React.useEffect(() => updateTilt.cancel, [updateTilt]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (!ref.current) return;
@@ -55,12 +64,12 @@ export const TiltCard: React.FC<TiltCardProps> = ({
     const xPct = mouseX / width - 0.5;
     const yPct = mouseY / height - 0.5;
 
-    x.set(xPct);
-    y.set(yPct);
+    updateTilt(xPct, yPct);
   };
 
   const handleMouseLeave = () => {
     rectRef.current = null;
+    updateTilt.cancel();
     x.set(0);
     y.set(0);
   };

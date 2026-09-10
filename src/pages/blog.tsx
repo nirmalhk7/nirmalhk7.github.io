@@ -4,15 +4,12 @@ import LatestBlogSection from "@/components/Blog/latestBlogSection";
 import BlogListSection from "@/components/Blog/blogListSection";
 import Jumbotron from "../elements/jumbotron";
 import { GetStaticProps } from "next";
-import sampleSize from "lodash/sampleSize";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
-import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { DefaultPageProps } from "./_app";
 import { BlogFrontmatterInterface, BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
 import blogWallpaper from "@/assets/images/datacenter.jpg";
 import sortBy from "lodash/sortBy";
-import loadYaml from "@/util/loadYaml";
-import path from "path";
+import { loadRandomQuote } from "@/util/loadQuote";
 
 interface BlogPageProps extends DefaultPageProps {
   blogs: BlogInterface[];
@@ -24,7 +21,7 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "The Blue Green Manual",
-    "description": "Dwelving into Production Scale Engineering with Nirmal Khedkar. This is The Blue Green Manual",
+    "description": "Practical articles by Nirmal Khedkar about production engineering, homelabs, Kubernetes, GitOps, infrastructure reliability, and software systems.",
     "url": "https://nirmalhk7.com/blog",
     "hasPart": blogsMiniInformation.map((blog) => ({
       "@type": "BlogPosting",
@@ -89,8 +86,6 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
 };
 
 export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
-  const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
-
   const blogDetail = sortBy(
     loadMarkdownFiles<BlogFrontmatterInterface>("content/blog", {
       getContent: true,
@@ -108,20 +103,20 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
     props: {
       blogs: blogDetail,
       blogsMiniInformation: miniBlogInformation,
-      quote: sampleSize(allQuotesYaml)[0],
+      quote: loadRandomQuote(),
       pageMetadata: {
         enableWrap: true,
         seoMetadata: {
           title: "The Blue Green Manual",
           description:
-            "Dwelving into Production Scale Engineering with Nirmal Khedkar. This is The Blue Green Manual",
+            "Practical articles by Nirmal Khedkar about production engineering, homelabs, Kubernetes, GitOps, infrastructure reliability, and software systems.",
           canonical: "https://nirmalhk7.com/blog",
           openGraph: {
             type: "website",
             url: `https://nirmalhk7.com/blog`,
             images: [
               {
-                url: `https://nirmalhk7.com${blogWallpaper.src}`,
+                url: "https://nirmalhk7.com/assets/datacenter.jpg",
                 alt: "Hi, I'm Nirmal Khedkar",
                 width: 1200,
                 height: 630,

@@ -30,6 +30,7 @@ const ProjectIntroSection = ({
     <WebSection
       className="bg-gray-100 selection:bg-accent selection:text-white overflow-hidden"
       id="project"
+      deferRender
     >
       <div className="container mx-auto relative">
         <m.div
@@ -51,9 +52,9 @@ const ProjectIntroSection = ({
           <h3 className="font-blocky font-semibold mb-2 uppercase text-accent">
             Projects
           </h3>
-          <h1 className="font-bold font-heading leading-snug mt-0">
+          <h2 className="font-bold font-heading leading-snug mt-0">
             See My Latest Projects
-          </h1>
+          </h2>
           <p className="lead">
             Find my projects <Link href="/projects" className="text-accent no-underline hover:underline">by category on the Projects page</Link>.
           </p>

@@ -3,7 +3,7 @@ title: "Homelabs: Introduction to Hypervisors and Proxmox"
 category: ['Guides']
 tags: ["technology", "project", "personal", "homelab", "proxmox", "virtualization", "hypervisors", "kubernetes"]
 img: /assets/proxmox.jpeg
-description: "Discover the power of hypervisors and how Proxmox can transform your homelab into a robust virtualization environment."
+description: "Understand hypervisor types and learn how Proxmox can turn homelab hardware into an isolated, reliable virtualization platform for Kubernetes clusters."
 date: "2025-04-16"
 draft: false
 ---

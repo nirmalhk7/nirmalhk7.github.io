@@ -16,17 +16,19 @@ import { BlogFrontmatterInterface, BlogInterface } from "@/interfaces/blog";
 import { ArticleJsonLd } from "next-seo";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import sampleSize from "lodash/sampleSize";
-import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { DefaultPageProps } from "../_app";
 import Jumbotron from "@/elements/jumbotron";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import ProfileImage from "@/assets/images/profile.png";
-import loadYaml from "@/util/loadYaml";
-import path from "path";
+import { loadRandomQuote } from "@/util/loadQuote";
 import { trackClick, trackSelectContent, trackShare } from "@/util/analytics";
+
+const BLOG_SEO_TITLES: Record<string, string> = {
+  homelab_architect: "Planning a Reliable Homelab Architecture",
+  homelab_hypervisors: "Proxmox and Hypervisors for Homelabs",
+};
 
 const SyntaxHighlighter = dynamic(
   () => import("react-syntax-highlighter").then((mod) => mod.Prism),
@@ -60,7 +62,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
   context
 ) => {
-  const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
   const blogId = context.params?.blogId as string;
   const currentBlog = loadMarkdownFile<BlogFrontmatterInterface>(
     "content/blog/" + blogId + ".md",
@@ -71,11 +72,11 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
   return {
     props: {
       current: currentBlog,
-      quote: sampleSize(allQuotesYaml)[0],
+      quote: loadRandomQuote(),
       pageMetadata: {
         enableWrap: true,
         seoMetadata: {
-          title: currentBlog.frontmatter.title,
+          title: BLOG_SEO_TITLES[blogId] || currentBlog.frontmatter.title,
           description: currentBlog.frontmatter.description,
           canonical: `https://nirmalhk7.com/blog/${blogId}`,
           openGraph: {
@@ -201,7 +202,7 @@ const BlogTemplate = ({
       <article className="bg-white has-bottom-sep">
         <Jumbotron.Mini
           backgroundImage={current.frontmatter?.img || ""}
-          backgroundImageAlt="Earth from Space"
+          backgroundImageAlt={`Cover image for ${current.frontmatter?.title || "blog post"}`}
           title={current.frontmatter?.title || ""}
           centerAlign={true}
           subtitle=""
@@ -212,7 +213,7 @@ const BlogTemplate = ({
                   <React.Fragment key={category}>
                     <Link
                       className="text-white no-underline uppercase"
-                      href={`/blog#${category}`}
+                      href="/blog"
                     >
                       {category}
                     </Link>
@@ -228,7 +229,7 @@ const BlogTemplate = ({
             <ReactMarkdown
               components={{
                 h1: ({ children }) => (
-                  <h1 className="text-black mt-8 mb-4 text-7xl font-bold">{children}</h1>
+                  <h2 className="text-black mt-8 mb-4 text-7xl font-bold">{children}</h2>
                 ),
                 h2: ({ children }) => (
                   <h2 className="text-black mt-8 mb-4 text-6xl font-bold">{children}</h2>
@@ -373,6 +374,7 @@ const BlogTemplate = ({
                   height={500}
                   alt="Nirmal Khedkar's profile image"
                   className="rounded-full"
+                  sizes="(min-width: 768px) 8vw, 100vw"
                 />
               </div>
 

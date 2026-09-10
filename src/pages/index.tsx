@@ -34,8 +34,8 @@ import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
 import { ProjectInterface } from "@/interfaces/projects";
 import { CommonHeader } from "@/components/header";
-import { SocialProfileJsonLd } from "next-seo";
 import loadYaml from "@/util/loadYaml";
+import { loadRandomQuote } from "@/util/loadQuote";
 import path from "path";
 import { trackClick, trackSelectContent } from "@/util/analytics";
 import { TextReveal } from "@/components/TextReveal";
@@ -73,7 +73,9 @@ const IndexPage = ({
       "@type": "EducationalOrganization",
       "name": "University of Colorado Boulder",
     },
-    "sameAs": cv.map((profile) => profile.url),
+    "sameAs": cv
+      .map((profile) => profile.url)
+      .filter((url) => /^https?:\/\//.test(url)),
   };
 
   return (
@@ -81,12 +83,6 @@ const IndexPage = ({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />
-      <SocialProfileJsonLd
-        type="Person"
-        name="Nirmal Khedkar"
-        url="https://nirmalhk7.com"
-        sameAs={cv.map((profile) => profile.url)}
       />
       <main>
       <Jumbotron.Max
@@ -96,10 +92,9 @@ const IndexPage = ({
             Software Engineer.
           </h1>
         }
-        // bgImg="bg-milkyWay laptop:bg-beachNirmal"
         bgImg={beachImage}
         buttonDetails={[
-          ["Latest Projects", "#projects"],
+          ["Latest Projects", "#project"],
           ["More About Me", "#about"],
         ]}
         orangeText="Hey!"
@@ -108,6 +103,7 @@ const IndexPage = ({
       <WebSection
         className="pt-32 pb-32 bg-white relative selection:bg-accent selection:text-white"
         id="about"
+        deferRender
       >
         <div className="w-full text-center">
           <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
@@ -115,9 +111,9 @@ const IndexPage = ({
               <h3>
                 Nirmal Khedkar
               </h3>
-              <h1>
+              <h2>
                 More About Me
-              </h1>
+              </h2>
               <TextReveal 
                 className="font-lead font-blocky mb-16 text-3xl justify-center" 
                 text="Fortress code, lightning fast: Hi, I'm Nirmal Khedkar." 
@@ -162,21 +158,25 @@ const IndexPage = ({
                   {onlineCourses.map((element, index) => (
                     <li key={index} className="py-1">
                       {element.name} by {element.provider} - (
-                      <a
-                        href={element.link}
-                        aria-label={`View certificate for ${element.name}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-analytics-skip-global="true"
-                        onClick={() => {
-                          trackSelectContent("course", element.name, {
-                            provider: element.provider,
-                          });
-                          trackClick(element.name, "online_course_click");
-                        }}
-                      >
-                        link
-                      </a>
+                      {element.link ? (
+                        <a
+                          href={element.link}
+                          aria-label={`View certificate for ${element.name}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-analytics-skip-global="true"
+                          onClick={() => {
+                            trackSelectContent("course", element.name, {
+                              provider: element.provider,
+                            });
+                            trackClick(element.name, "online_course_click");
+                          }}
+                        >
+                          link
+                        </a>
+                      ) : (
+                        <span>certificate unavailable</span>
+                      )}
                       )
                     </li>
                   ))}
@@ -261,7 +261,6 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
   const allProfilesYaml = loadYaml<ProfilesInterface[]>(path.join(contentDir, "profiles.yaml"));
   const allMembershipsYaml = loadYaml<MembershipInterface[]>(path.join(contentDir, "memberships.yaml"));
   const allWorkExperiencesYaml = loadYaml<WorkExperienceInterface[]>(path.join(contentDir, "workexperiences.yaml"));
-  const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(contentDir, "quotes.yaml"));
   const sixProjects = sampleSize(
     loadProjectMarkdownFiles("content/projects", { getExcerpt: true, getContent: false }),
     6
@@ -283,18 +282,19 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
       membership: allMembershipsYaml,
       workexperience: allWorkExperiencesYaml,
       projects: sixProjects,
-      quote: sampleSize(allQuotesYaml)[0],
+      quote: loadRandomQuote<QuoteInterface>(),
       pageMetadata: {
         enableWrap: true,
         seoMetadata: {
           title: "Official Website of Nirmal Khedkar",
           description: "Boost your team's performance with Nirmal Khedkar, a full-stack engineer with experience at Visa specializing in reliable, high-performance systems.",
+          canonical: "https://nirmalhk7.com",
           openGraph: {
             type: "website",
             url: `https://nirmalhk7.com`,
             images: [
               {
-                url: `https://nirmalhk7.com${beachImage.src}`,
+                url: "https://nirmalhk7.com/api/og?title=Nirmal%20Khedkar",
                 alt: "Hi, I'm Nirmal Khedkar",
                 width: 1200,
                 height: 630

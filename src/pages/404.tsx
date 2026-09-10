@@ -1,10 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
-import loadYaml from "@/util/loadYaml";
-import path from "path";
 import { GetStaticProps } from "next";
 import { DefaultPageProps } from "./_app";
-import { QuoteInterface } from "@/components/Quote/quoteSection";
-import sampleSize from "lodash/sampleSize";
+import { loadRandomQuote } from "@/util/loadQuote";
 import { trackError, trackClick, trackSearch, trackSelectContent } from "@/util/analytics";
 import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -171,9 +168,6 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
 };
 
 export const getStaticProps: GetStaticProps<NotFoundPageProps> = async () => {
-  const quotesPath = path.join(process.cwd(), 'content/yml/quotes.yaml');
-  const allQuotesYaml = loadYaml<QuoteInterface[]>(quotesPath);
-
   // Build Search Index
   const projects = loadProjectMarkdownFiles("content/projects", {
     getContent: false,
@@ -207,12 +201,14 @@ export const getStaticProps: GetStaticProps<NotFoundPageProps> = async () => {
   return {
     props: {
       searchIndex,
-      quote: sampleSize(allQuotesYaml)[0],
+      quote: loadRandomQuote(),
       pageMetadata: {
         enableWrap: true,
         seoMetadata: {
           title: "Page not Found",
           description: "It's a 404! But let's find you something else interesting.",
+          noindex: true,
+          nofollow: true,
         },
       },
     },

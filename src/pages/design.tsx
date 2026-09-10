@@ -1,10 +1,7 @@
-import { QuoteInterface } from "@/components/Quote/quoteSection";
 import WebSection from "@/elements/WebSection";
-import sampleSize from "lodash/sampleSize";
 import { GetStaticProps } from "next";
 import React from "react";
-import loadYaml from "@/util/loadYaml";
-import path from "path";
+import { loadRandomQuote } from "@/util/loadQuote";
 
 const DesignPage: React.FC = () => {
   return (
@@ -41,11 +38,9 @@ const DesignPage: React.FC = () => {
 export default DesignPage;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
-
   return {
     props: {
-      quote: sampleSize(allQuotesYaml)[0],
+      quote: loadRandomQuote(),
       pageMetadata: {
         enableWrap: true,
         seoMetadata: {

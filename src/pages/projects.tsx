@@ -1,24 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import { trackClick, trackSearch, trackSelectContent } from "@/util/analytics";
 import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
-import sampleSize from "lodash/sampleSize";
 import { loadProjectMarkdownFiles } from "@/util/loadMarkdown";
 import { GetStaticProps } from "next";
-import { QuoteInterface } from "@/components/Quote/quoteSection";
 import Jumbotron from "@/elements/jumbotron";
 import WebSection from "@/elements/WebSection";
 import { DefaultPageProps } from "./_app";
 import { ProjectInterface } from "@/interfaces/projects";
 import { ProjectDescription } from "@/components/Project/projectDescription";
 import { ProjectListItem } from "@/components/Project/projectListItem";
-import loadYaml from "@/util/loadYaml";
-import path from "path";
+import { renderProjectMarkdown } from "@/util/renderMarkdown";
+import { loadRandomQuote } from "@/util/loadQuote";
 import { useRouter } from "next/router";
 
 import { m, AnimatePresence } from "framer-motion";
 
 interface ProjectPageProps extends DefaultPageProps {
-  projects: ProjectInterface[];
+  projects: Array<Omit<ProjectInterface, "content"> & { contentHtml: string }>;
   allTags: string[];
 }
 
@@ -67,7 +65,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
 
   const filteredProjects = projects.filter((project) => {
     const matchesFilter = filter === "X" || project.frontmatter.tags?.includes(filter);
-    const searchContent = `${project.frontmatter.title} ${project.frontmatter.tags?.join(" ")} ${project.frontmatter.summary || ""} ${project.excerpt || ""} ${project.content || ""}`.toLowerCase();
+    const searchContent = `${project.frontmatter.title} ${project.frontmatter.tags?.join(" ")} ${project.frontmatter.summary || ""} ${project.excerpt || ""} ${project.contentHtml}`.toLowerCase();
     const matchesSearch = searchQuery === "" || searchContent.includes(searchQuery.toLowerCase());
     return matchesFilter && matchesSearch;
   });
@@ -120,6 +118,11 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
     ? projects.find((p) => p.slug === expandedSlug)
     : null;
 
+  const filterOptions = [
+    { tag: "X", label: "All" },
+    ...allTags.slice().sort().map((tag) => ({ tag, label: tag })),
+  ];
+
   if (currentProject) {
     breadcrumbElements.push({
       "@type": "ListItem",
@@ -153,7 +156,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
         DescriptionComponent={ProjectDescription}
       />
 
-      <WebSection className="pt-16 pb-48" id="projectdetailed">
+      <WebSection className="pt-16 pb-48" id="projectdetailed" deferRender>
         <div className="container mx-auto">
           <div className="flex flex-col xl:flex-row xl:items-end justify-between mb-12 gap-8 px-4">
             <div className="flex flex-col md:flex-row gap-6 items-start md:items-center w-full xl:justify-end">
@@ -173,41 +176,27 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <button
-                  data-analytics-skip-global="true"
-                  onClick={() => {
-                    setFilter("X");
-                    trackClick("clear_filter", "project_filter");
-                    trackSelectContent("project_filter", "all", {
-                      result_count: projects.length,
-                    });
-                  }}
-                  className={`px-8 py-2.5 rounded-full font-blocky text-base uppercase tracking-normal transition-all duration-300 border-2 ${
-                    filter === "X" 
-                      ? "bg-accent border-accent text-white shadow-lg shadow-accent/20 scale-105" 
-                      : "bg-white/50 backdrop-blur-sm border-gray-200 text-gray-500 hover:border-black/50 hover:text-black"
-                  }`}
-                >
-                  All
-                </button>
-                {allTags.sort().map((tag) => (
+                {filterOptions.map(({ tag, label }) => (
                   <button
                     key={tag}
                     data-analytics-skip-global="true"
                     onClick={() => {
                       setFilter(tag);
-                      trackClick(tag, "project_filter");
-                      trackSelectContent("project_filter", tag, {
-                        result_count: projects.filter((project) => project.frontmatter.tags?.includes(tag)).length,
+                      const isAll = tag === "X";
+                      trackClick(isAll ? "clear_filter" : tag, "project_filter");
+                      trackSelectContent("project_filter", isAll ? "all" : tag, {
+                        result_count: isAll
+                          ? projects.length
+                          : projects.filter((project) => project.frontmatter.tags?.includes(tag)).length,
                       });
                     }}
                     className={`px-8 py-2.5 rounded-full font-blocky text-base uppercase tracking-normal transition-all duration-300 border-2 ${
                       tag === filter 
-                        ? "bg-accent border-accent text-white shadow-lg shadow-accent/30 scale-105" 
+                        ? `bg-accent border-accent text-white shadow-lg ${tag === "X" ? "shadow-accent/20" : "shadow-accent/30"} scale-105`
                         : "bg-white/50 backdrop-blur-sm border-gray-200 text-gray-500 hover:border-black/50 hover:text-black"
                     }`}
                   >
-                    {tag}
+                    {label}
                   </button>
                 ))}
               </div>
@@ -253,11 +242,14 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
 
 
 export const getStaticProps: GetStaticProps<ProjectPageProps> = async () => {
-  const allQuotesYaml = loadYaml<QuoteInterface[]>(path.join(process.cwd(), "content", "yml", "quotes.yaml"));
-  const projects = loadProjectMarkdownFiles("content/projects", {
+  const projectMarkdown = loadProjectMarkdownFiles("content/projects", {
     getContent: true,
     getExcerpt: true,
   }) as unknown as ProjectInterface[];
+  const projects = projectMarkdown.map(({ content, ...project }) => ({
+    ...project,
+    contentHtml: renderProjectMarkdown(content),
+  }));
   const allTags = Array.from(
     new Set(projects.flatMap((project) => project.frontmatter.tags || []))
   );
@@ -266,19 +258,19 @@ export const getStaticProps: GetStaticProps<ProjectPageProps> = async () => {
     props: {
       projects,
       allTags: allTags,
-      quote: sampleSize(allQuotesYaml)[0],
+      quote: loadRandomQuote(),
       pageMetadata: {
         enableWrap: true,
         seoMetadata: {
-          title: "Projects",
-          description: "I love what I do. Here's all I do.",
+          title: "Software Engineering Projects",
+          description: "Explore Nirmal Khedkar's software engineering projects across distributed systems, cloud infrastructure, machine learning, web development, and open source.",
           canonical: "https://nirmalhk7.com/projects",
           openGraph: {
             type: "website",
             url: `https://nirmalhk7.com/projects`,
             images: [
               {
-                url: `https://nirmalhk7.com${nasaGalaxy.src}`,
+                url: "https://nirmalhk7.com/api/og?title=Software%20Engineering%20Projects",
                 alt: "Hi, I'm Nirmal Khedkar",
                 width: 1200,
                 height: 630

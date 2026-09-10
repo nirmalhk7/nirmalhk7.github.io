@@ -96,17 +96,7 @@ export const loadProjectMarkdownFiles = (
   options: LoadMarkdownOptions = { getContent: true, getExcerpt: true }
 ): MarkdownObject<ProjectFrontmatterInterface>[] => {
   const projectPath = projectsDir.toString();
-  const projectFiles = fs
-    .readdirSync(projectPath)
-    .filter((fileName) => fileName.endsWith(".md"));
-
-  const markdownFiles = projectFiles.map((fileName) =>
-    loadMarkdownFile<ProjectFrontmatterInterface>(
-      path.join(projectPath, fileName),
-      fileName.replace(".md", ""),
-      options
-    )
-  );
+  const markdownFiles = loadMarkdownFiles<ProjectFrontmatterInterface>(projectPath, options);
 
   const syncManifestPath = path.join(projectPath, PROJECT_SYNC_MANIFEST);
   if (!fs.existsSync(syncManifestPath)) {

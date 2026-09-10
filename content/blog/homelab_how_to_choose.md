@@ -3,7 +3,7 @@ title: "Homelabs: How to start one"
 category: ['Guides']
 tags: ["technology","project","personal","homelab"]
 img: /assets/homelab.png
-description: "Interested in building a homelab: here's what you need to know"
+description: "Learn how to start a practical homelab, set a realistic budget, compare used computers and Raspberry Pis, and choose hardware for reliable services."
 date: "2025-04-01"
 draft: false
 ---

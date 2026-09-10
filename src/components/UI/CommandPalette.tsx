@@ -7,8 +7,21 @@ interface CommandItem {
   title: string;
   category: "Pages" | "Skills" | "Actions";
   subtitle?: string;
-  action: () => void;
+  href: string;
+  newTab?: boolean;
 }
+
+const commandItems: CommandItem[] = [
+  { id: "home", title: "Home", category: "Pages", subtitle: "Return to homepage", href: "/" },
+  { id: "about", title: "About Me", category: "Pages", subtitle: "Full-Stack Engineer specializing in high-performance systems", href: "/#about" },
+  { id: "projects", title: "Projects Catalogue", category: "Pages", subtitle: "Explore high-performance systems and full-stack projects", href: "/projects" },
+  { id: "blog", title: "Blog & Technical Manuals", category: "Pages", subtitle: "The Blue Green Manual", href: "/blog" },
+  { id: "contact", title: "Contact / Hire Nirmal", category: "Actions", subtitle: "Send a message or get in touch", href: "/#contact" },
+  { id: "resume-action", title: "Download Resume PDF", category: "Actions", subtitle: "Get official PDF resume", href: "/resume", newTab: true },
+  { id: "skill-go", title: "Golang / Systems Engineering", category: "Skills", subtitle: "High throughput backend APIs & concurrent systems", href: "/projects" },
+  { id: "skill-dist", title: "Distributed Systems & Scalability", category: "Skills", subtitle: "Experience at Visa building reliable payments systems", href: "/#about" },
+  { id: "skill-react", title: "React & Next.js Full-Stack", category: "Skills", subtitle: "Modern responsive web applications", href: "/projects" },
+];
 
 export const CommandPalette: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,99 +94,6 @@ export const CommandPalette: React.FC = () => {
     return () => window.removeEventListener("keydown", handleFocusTrap);
   }, [isOpen]);
 
-  const commandItems: CommandItem[] = [
-    {
-      id: "home",
-      title: "Home",
-      category: "Pages",
-      subtitle: "Return to homepage",
-      action: () => {
-        router.push("/");
-        setIsOpen(false);
-      },
-    },
-    {
-      id: "about",
-      title: "About Me",
-      category: "Pages",
-      subtitle: "Full-Stack Engineer specializing in high-performance systems",
-      action: () => {
-        router.push("/#about");
-        setIsOpen(false);
-      },
-    },
-    {
-      id: "projects",
-      title: "Projects Catalogue",
-      category: "Pages",
-      subtitle: "Explore high-performance systems and full-stack projects",
-      action: () => {
-        router.push("/projects");
-        setIsOpen(false);
-      },
-    },
-    {
-      id: "blog",
-      title: "Blog & Technical Manuals",
-      category: "Pages",
-      subtitle: "The Blue Green Manual",
-      action: () => {
-        router.push("/blog");
-        setIsOpen(false);
-      },
-    },
-    {
-      id: "contact",
-      title: "Contact / Hire Nirmal",
-      category: "Actions",
-      subtitle: "Send a message or get in touch",
-      action: () => {
-        router.push("/#contact");
-        setIsOpen(false);
-      },
-    },
-    {
-      id: "resume-action",
-      title: "Download Resume PDF",
-      category: "Actions",
-      subtitle: "Get official PDF resume",
-      action: () => {
-        window.open("/resume", "_blank");
-        setIsOpen(false);
-      },
-    },
-    {
-      id: "skill-go",
-      title: "Golang / Systems Engineering",
-      category: "Skills",
-      subtitle: "High throughput backend APIs & concurrent systems",
-      action: () => {
-        router.push("/projects");
-        setIsOpen(false);
-      },
-    },
-    {
-      id: "skill-dist",
-      title: "Distributed Systems & Scalability",
-      category: "Skills",
-      subtitle: "Experience at Visa building reliable payments systems",
-      action: () => {
-        router.push("/#about");
-        setIsOpen(false);
-      },
-    },
-    {
-      id: "skill-react",
-      title: "React & Next.js Full-Stack",
-      category: "Skills",
-      subtitle: "Modern responsive web applications",
-      action: () => {
-        router.push("/projects");
-        setIsOpen(false);
-      },
-    },
-  ];
-
   const deferredQuery = useDeferredValue(searchQuery);
 
   const filteredItems = commandItems.filter(
@@ -181,6 +101,15 @@ export const CommandPalette: React.FC = () => {
       item.title.toLowerCase().includes(deferredQuery.toLowerCase()) ||
       (item.subtitle && item.subtitle.toLowerCase().includes(deferredQuery.toLowerCase()))
   );
+
+  const selectItem = (item: CommandItem) => {
+    if (item.newTab) {
+      window.open(item.href, "_blank");
+    } else {
+      router.push(item.href);
+    }
+    setIsOpen(false);
+  };
 
   const handleSearchKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowDown") {
@@ -193,7 +122,7 @@ export const CommandPalette: React.FC = () => {
       );
     } else if (e.key === "Enter" && filteredItems[selectedIndex]) {
       e.preventDefault();
-      filteredItems[selectedIndex].action();
+      selectItem(filteredItems[selectedIndex]);
     }
   };
 
@@ -273,7 +202,7 @@ export const CommandPalette: React.FC = () => {
                     role="option"
                     aria-selected={selectedIndex === index}
                     type="button"
-                    onClick={item.action}
+                    onClick={() => selectItem(item)}
                     onMouseEnter={() => setSelectedIndex(index)}
                     className={`!border !leading-normal !tracking-normal !normal-case !font-sans w-full text-left flex items-center justify-between px-6 py-4 rounded-xl cursor-pointer transition-all duration-150 ${
                       selectedIndex === index

@@ -3,18 +3,18 @@ title: Rourkela Journal
 category: ['Personal']
 tags: ["hackathon","environment","technology","nirmal"]
 img: "/assets/nitrourkela.jpg"
-description: My account of the week I spent for NIT Conclave Hackathon at NITRKL.
+description: A personal account of NIT Conclave Hackathon week, including cross-country travel, team collaboration, and a second-place finish in Rourkela.
 date: "2019-09-24"
 draft: false
 ---
 
 So one week from the `21st August`, I was outside NITK to attend NIT Conclave in Rourkela. Me and 4 others of my College, managed to win overall 2nd position overall at the Conclave and 5th in the Hackathon. Here's my experience. 
 
-###### Our Submission
+## Our Submission
 Oh, the app is a portal for research scholars which includes a collaboration, events and grants on one platform. Its called ScholarHub. Here's a [link for more]({{site.url}}/project.html).
 
 
-#### Story
+## Story
 It appeared to happen out of nowhere. By `18th`, people began asking me whether I wanted to go for 2019's Hackathon in Rourkela. I said yes.
 
 But honestly I wasnt sure: 
@@ -27,17 +27,17 @@ But honestly I wasnt sure:
 
 It was too many first's for me. But it appeared to me that IRIS people were involved in my selection: so it was clear to me that the opportunity is too golden to back out. My understanding of NITK life is that IRIS people are the best and brightest developers on campus, and there's no way I'm going to leave this chance to impress this group.
 
-##### Namma Bengaluru
+### Namma Bengaluru
 Then things began happening lightning fast. I was paired with [Abhishek Kumar](https://abhishekkumar2718.github.io). Before I knew it,  I was on a bus trip to (my favorite city) Bangalore. After reaching Bangalore at `5AM`, we waited on Yeshwantpur Rlwy Station for 3 hours. 
 
 Bangalore is the best damn city in the whole wide world, period.
 
-##### Train to Rourkela
+### Train to Rourkela
 We got on the train at `8AM`. First 12 hours were uneventful. We ate, slept, watched movies, ate, slept and repeated. Just waiting for 33 hours to finish.
 
 I initially enjoyed the chaos of sleeper trains, but then I got bored too.
 
-##### Rourkela
+### Rourkela
 We reached there at the `22nd`. Rourkela is a hilly and beautiful place close to Orissa Jharkhand border. Small town, but NIT Rourkela is ***huge***. Huge hostels and parks. We reached our room, had dinner at one of the 3 restaurants on campus, walked around at night, came back to the room and made a demo version of our app for the hackathon.
 
 `23rd August, 7PM`: Hackathon begins 2 hours late. All we lived on for the next 24 hours was so-so food and coffee. We worked upto 3am together, after which I slept (my head fell on the desk). Abhishek finished his part by then. When I woke up, Abhishek slept for 3 hours, so I finished my half of the work and we had a website ready within 12-15 hours of the Hackathon.
@@ -63,10 +63,10 @@ Then they announced the overall results, which we lost all hope about, because w
 
 So with a feeling that last one week was definitely not a total waste and we defeated some 3rd and 4th years back there, we got on our train back to Surathkal.
 
-##### Stop at Bengaluru
+### Stop at Bengaluru
 We reached Bangalore, roamed in Cubbon Park, saw my old Bangalore home, got stuck in traffic, met my best friends in Bangalore, walked like hell and boarded a bus back to Surathkal. That day was a long day, but a very fun day.
 
-###### Final Conclusion
+## Final Conclusion
 The hackathon was fun. I loved meeting my NIT friends. I enjoyed lunch with my Bangalore buddies. But I'll sign off with something that I'd never seen before (in all its glory) and its something I think everybody should see:
 
 <div className="video-container">

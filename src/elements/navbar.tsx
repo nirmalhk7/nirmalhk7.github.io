@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { trackClick } from "@/util/analytics";
+import { createRafThrottled } from "@/util/rafThrottle";
 
 type NavbarItem = {
   label: string;
@@ -87,10 +88,12 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    const scheduledScroll = createRafThrottled(handleScroll);
+    window.addEventListener("scroll", scheduledScroll, { passive: true });
     handleScroll(); // Initial check
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", scheduledScroll);
+      scheduledScroll.cancel();
     };
   }, []);
 
@@ -131,13 +134,15 @@ const Navbar = () => {
 
     updateActiveSection();
     const timeoutId = window.setTimeout(updateActiveSection, 500);
-    window.addEventListener("scroll", updateActiveSection, { passive: true });
-    window.addEventListener("resize", updateActiveSection);
+    const scheduledUpdate = createRafThrottled(updateActiveSection);
+    window.addEventListener("scroll", scheduledUpdate, { passive: true });
+    window.addEventListener("resize", scheduledUpdate);
 
     return () => {
       window.clearTimeout(timeoutId);
-      window.removeEventListener("scroll", updateActiveSection);
-      window.removeEventListener("resize", updateActiveSection);
+      window.removeEventListener("scroll", scheduledUpdate);
+      window.removeEventListener("resize", scheduledUpdate);
+      scheduledUpdate.cancel();
     };
   }, [router.pathname, navbarInternalData]);
 
@@ -159,6 +164,7 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileMenuClick && (
           <m.nav
+            id="mobile-navigation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -243,16 +249,18 @@ const Navbar = () => {
         </ul>
       </nav>
       <div className="absolute right-10 top-0 h-full flex items-center tablet:hidden z-[60]">
-        <Link
+        <button
+          type="button"
           className={`header-menu-toggle !static !block ${
             mobileMenuClick ? "is-clicked" : ""
           }`}
           id="nav-button"
           onClick={() => mobileMenuSet(!mobileMenuClick)}
-          href="#0"
+          aria-expanded={mobileMenuClick}
+          aria-controls="mobile-navigation"
         >
           <span>Menu</span>
-        </Link>
+        </button>
       </div>
     </m.header>
   );

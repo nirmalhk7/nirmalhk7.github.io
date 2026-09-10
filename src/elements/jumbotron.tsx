@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 
 import SocialMediaIcons from "../components/Social/socialSection";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import WebSection from "@/elements/WebSection";
 import { m, Variants, useMotionTemplate, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform,  } from "framer-motion";
 import { trackClick, trackSelectContent } from "@/util/analytics";
 import Magnetic from "@/components/Magnetic";
+import { createRafThrottled } from "@/util/rafThrottle";
 
 type MiniJumbotronProps = {
   backgroundImage: StaticImageData | string;
@@ -143,11 +144,19 @@ const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
   const imageScale = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [1, 1] : [1.08, 1.22]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0.25]);
 
+  const updateSpotlight = useMemo(
+    () => createRafThrottled((x: number, y: number) => {
+      mouseX.set(x);
+      mouseY.set(y);
+    }),
+    [mouseX, mouseY]
+  );
   const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
-    mouseX.set(event.clientX - rect.left);
-    mouseY.set(event.clientY - rect.top);
+    updateSpotlight(event.clientX - rect.left, event.clientY - rect.top);
   };
+
+  useEffect(() => updateSpotlight.cancel, [updateSpotlight]);
 
   return (
     <WebSection

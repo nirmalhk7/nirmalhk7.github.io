@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { m, useMotionValue, useSpring } from "framer-motion";
+import { createRafThrottled } from "@/util/rafThrottle";
 
 export const CursorSpotlight: React.FC = () => {
   const [isPointerDevice, setIsPointerDevice] = useState(false);
@@ -9,6 +10,13 @@ export const CursorSpotlight: React.FC = () => {
   const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
+  const updatePointer = useMemo(
+    () => createRafThrottled((x: number, y: number) => {
+      mouseX.set(x);
+      mouseY.set(y);
+    }),
+    [mouseX, mouseY]
+  );
 
   useEffect(() => {
     // Only enable on desktop pointer devices
@@ -16,8 +24,7 @@ export const CursorSpotlight: React.FC = () => {
     setIsPointerDevice(matchMedia.matches);
 
     const handlePointerMove = (e: PointerEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+      updatePointer(e.clientX, e.clientY);
     };
 
     if (matchMedia.matches) {
@@ -26,8 +33,9 @@ export const CursorSpotlight: React.FC = () => {
 
     return () => {
       window.removeEventListener("pointermove", handlePointerMove);
+      updatePointer.cancel();
     };
-  }, [mouseX, mouseY]);
+  }, [updatePointer]);
 
   if (!isPointerDevice) return null;
 

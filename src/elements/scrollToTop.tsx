@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { createRafThrottled } from "@/util/rafThrottle";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,8 +16,12 @@ const ScrollToTop = () => {
       }
     };
 
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    const scheduledVisibility = createRafThrottled(toggleVisibility);
+    window.addEventListener("scroll", scheduledVisibility, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", scheduledVisibility);
+      scheduledVisibility.cancel();
+    };
   }, []);
 
   const scrollToTop = () => {

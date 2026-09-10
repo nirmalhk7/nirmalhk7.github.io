@@ -3,7 +3,7 @@ title: "How GitOps brings order to chaos"
 category: ['Guides']
 tags: ["technology","project","personal","homelab"]
 img: /assets/gitops.png
-description: "How adopting GitOps transformed my approach to infrastructure—making it reliable, auditable, and scalable."
+description: "Learn how GitOps makes infrastructure reliable, auditable, and scalable by replacing manual server changes with versioned, automated deployment workflows."
 date: "2025-12-22"
 draft: false
 ---

@@ -65,6 +65,7 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
                     alt={project.frontmatter.title}
                     fill
                     className="object-cover"
+                    sizes="(min-width: 768px) 672px, 100vw"
                   />
                 </div>
               )}

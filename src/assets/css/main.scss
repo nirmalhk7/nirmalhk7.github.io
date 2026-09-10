@@ -2,10 +2,6 @@
  * # Global / Helpers
  * ------------------------------------------------------------------- */
 
-#notfound {
-  @apply bg-[url('../images/f1car.jpg')];
-}
-
 @media only screen and (max-width: 480px) {
   #profiles { @apply hidden; }
 }
@@ -79,19 +75,12 @@ td { @apply leading-normal; }
 th:first-child, td:first-child { @apply pl-0; }
 th:last-child, td:last-child { @apply pr-0; }
 
-.table-responsive {
-  @apply overflow-x-auto;
-  -webkit-overflow-scrolling: touch;
-}
-
 /* ===================================================================
  * # Forms
  * ------------------------------------------------------------------- */
 fieldset {
   @apply border-none mb-6;
 }
-
-.oldie .ss-custom-select::after { @apply hidden; }
 
 textarea { @apply min-h-[25rem]; }
 
@@ -128,98 +117,14 @@ input:focus, textarea:focus, select:focus {
   @apply text-accent border-b-2 border-accent;
 }
 
-/* Custom Select */
-.ss-custom-select {
-  @apply relative p-0 mb-12;
-
-  select {
-    @apply appearance-none m-0 leading-[3rem] align-middle;
-    text-indent: 0.01px;
-    text-overflow: "";
-
-    option { @apply px-8; }
-    &::-ms-expand { @apply hidden; }
-  }
-
-  &::after {
-    @apply content-[''] block absolute right-[2.4rem] top-1/2 border-b-2 border-r-2 border-black/50 h-2 w-2 -mt-[7px];
-    transform-origin: 66% 66%;
-    transform: rotate(45deg);
-    transition: all 0.15s ease-in-out;
-  }
-}
-
 /* Spacing */
-input, textarea, select, blockquote, table, p, ul, ol, dl, form, .video-container, .ss-custom-select {
+input, textarea, select, blockquote, table, p, ul, ol, dl, form, .video-container {
   @apply mb-12;
 }
 
 /* ===================================================================
  * # Components
  * ------------------------------------------------------------------- */
-
-/* Alert Box */
-.alert-box {
-  @apply py-[2.1rem] pr-16 pl-12 relative mb-12 rounded-[3px] font-blocky font-normal text-[1.5rem] leading-[1.6];
-
-  &__close {
-    @apply absolute right-[1.8rem] top-[1.8rem] cursor-pointer;
-    &.im { @apply text-[12px]; }
-  }
-
-  &--error { @apply bg-[#ffd1d2] text-[#e65153]; }
-  &--success { @apply bg-[#c8e675] text-[#758c36]; }
-  &--info { @apply bg-[#d7ecfb] text-[#4a95cc]; }
-  &--notice { @apply bg-[#fff099] text-[#bba31b]; }
-}
-
-/* Blog List */
-.blog-list {
-  @apply mt-24 ml-0;
-
-  article {
-    @apply mb-[7.2rem];
-
-    &:nth-child(2n + 1) { @apply pr-[50px]; }
-    &:nth-child(2n + 2) { @apply pl-[50px]; }
-
-    @media only screen and (max-width: 1200px) {
-      &:nth-child(2n + 1) { @apply pr-[40px]; }
-      &:nth-child(2n + 2) { @apply pl-[40px]; }
-    }
-
-    @media only screen and (max-width: 768px) {
-      &:nth-child(n) { @apply px-[15px]; }
-    }
-
-    @media only screen and (max-width: 576px) {
-      &:nth-child(n) { @apply p-0; }
-    }
-
-    h2 {
-      @apply text-[#0d0a0b] mt-[0.3rem] mb-[2.1rem] pb-[2.4rem] relative;
-      @media only screen and (max-width: 576px) { @apply text-[2.7rem]; }
-
-      a { @apply text-[#0d0a0b]; }
-    }
-
-    .blog-date {
-      @apply text-accent;
-      a {
-        @apply text-accent hover:text-[#0d0a0b] focus:text-[#0d0a0b] active:text-[#0d0a0b];
-      }
-    }
-
-    .blog-cat {
-      @apply tracking-[0.2rem] text-[#0d0a0b] -mt-[0.9rem];
-
-      a {
-        @apply text-[#0d0a0b] hover:text-accent focus:text-accent active:text-accent;
-        &:not(:last-child)::after { content: ", "; }
-      }
-    }
-  }
-}
 
 /* Blog Content */
 .blog-content {
@@ -246,40 +151,6 @@ input, textarea, select, blockquote, table, p, ul, ol, dl, form, .video-containe
     }
   }
 
-  &__nav {
-    @apply pr-[220px];
-    @media only screen and (max-width: 768px) { @apply pr-0; }
-
-    &:after { @apply content-[''] table clear-both; }
-
-    span {
-      @apply block font-blocky font-normal text-[1.6rem] text-[#797979] mb-[1.2rem] transition-all duration-300 ease-in-out;
-    }
-
-    a {
-      @apply font-blocky font-bold text-[2.2rem] leading-[1.5] text-[#0d0a0b];
-      &:hover span, &:focus span { @apply text-[#0d0a0b]; }
-    }
-  }
-
-  &__prev, &__next {
-    @apply w-1/2 float-left pr-8;
-    @media only screen and (max-width: 1000px) { @apply w-full float-none p-0 text-left mb-[1.8rem]; }
-    @media only screen and (max-width: 576px) { @apply text-center; }
-  }
-
-  &__all {
-    @apply text-right w-[210px] absolute top-[2.1rem] right-0;
-    @media only screen and (max-width: 768px) { @apply static text-left w-auto mt-[1.8rem]; }
-    @media only screen and (max-width: 576px) { @apply text-center; }
-
-    .im { @apply text-[1.4rem] leading-none mr-2 relative top-[2px]; }
-  }
-}
-
-.blog-entries-nav {
-  @apply text-center max-w-[576px] pt-[3.6rem];
-  .im { @apply text-[1.3rem] leading-none relative top-[2px]; }
 }
 
 /* Home Section */
@@ -340,153 +211,12 @@ input, textarea, select, blockquote, table, p, ul, ol, dl, form, .video-containe
   @media only screen and (max-width: 400px) { @apply w-auto mx-[25px]; }
 }
 
-.home-content__buttons {
-  @media only screen and (max-width: 1600px) { @apply static text-left; }
-}
-
-.home-social {
-  @media only screen and (max-width: 576px) { @apply pb-[10.8rem]; }
-  @media only screen and (max-width: 400px) { @apply hidden; }
-
-  &::after {
-    @media only screen and (max-width: 576px) { @apply h-[10.2rem]; }
-  }
-}
-
-/* Timeline */
-.timeline {
-  @apply relative text-left;
-
-  &::before {
-    @apply content-[''] block w-px h-[120%] bg-black/10 absolute left-8 top-0;
-  }
-
-  &__block {
-    @apply relative pl-32 min-h-[28.8rem];
-  }
-
-  &__bullet {
-    @apply bg-[#0d0a0b] h-6 w-6 rounded-full -ml-3 shadow-[0_0_0_9px_#e9e9e9] absolute left-8 top-[0.3rem];
-    &[data-first="0"] { @apply bg-accent; }
-  }
-
-  &__header {
-    .timeline__timeframe {
-      @apply text-[1.4rem] leading-[1.5] uppercase tracking-[0.15rem] text-black/50 mb-[0.9rem] font-blocky font-bold;
-    }
-    h3 { @apply leading-[1.25] m-[0_0_0.3rem_0]; }
-    h5 { @apply mt-0; }
-  }
-
-  &__desc p { @apply m-0 pb-12; }
-}
-
-/* Works / Item Folio */
-.item-folio {
-  @apply relative overflow-hidden;
-
-  &__thumb {
-    img {
-      @apply align-top transition-all duration-500 ease-in-out;
-    }
-    .shadow-overlay {
-      @apply absolute top-0 left-0 w-full h-full opacity-80;
-      background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-    }
-
-    a {
-      @apply block;
-      &::before {
-        @apply block bg-black/80 content-[''] opacity-0 invisible absolute top-0 left-0 w-full h-full transition-all duration-500 ease-in-out z-[1];
-      }
-      &::after {
-        @apply font-heading text-[3rem] block h-[30px] w-[30px] leading-[30px] -ml-[15px] -mt-[15px] absolute left-1/2 top-1/2 text-center text-white opacity-0 invisible transition-all duration-500 ease-in-out scale-50 z-[1];
-      }
-    }
-  }
-
-  &__text {
-    @apply absolute left-0 bottom-12 px-12 z-[2];
-  }
-
-  &__title {
-    @apply text-white font-blocky font-semibold text-[1.4rem] uppercase tracking-[0.2rem] m-0;
-  }
-
-  &__cat {
-    @apply text-white/50 font-blocky font-normal text-[1.5rem] mb-0;
-  }
-
-  &__caption { @apply hidden; }
-
-  &__project-link {
-    @apply block text-white rounded-full h-[4.2rem] w-[4.2rem] text-center z-[500] absolute top-12 left-12 opacity-0 invisible -translate-x-full transition-all duration-500;
-    box-shadow: 0 0 0 1px #ffffff;
-
-    i { @apply text-[1.8rem] leading-[4.2rem]; }
-
-    &::before {
-      @apply block content-[''] h-px w-12 bg-white/10 absolute top-1/2 -left-12;
-    }
-
-    &:hover, &:focus, &:active {
-      @apply bg-white text-black;
-    }
-  }
-
-  /* Hover Effects */
-  &:hover {
-    .item-folio__thumb {
-      a::before { @apply opacity-100 visible; }
-      a::after { @apply opacity-100 visible scale-100; }
-      img { @apply scale-105; }
-    }
-    .item-folio__project-link {
-      @apply opacity-100 visible translate-x-0;
-    }
-  }
-}
-
-/* Stats */
-.s-stats {
-  @apply bg-[#f1f1f1] text-center;
-  @media only screen and (max-width: 576px) { @apply py-24; }
-
-  h4 {
-    @apply font-blocky font-semibold mt-[1.8rem] text-black/40 text-[1.8rem] relative;
-    @media only screen and (max-width: 1200px) { @apply text-[1.6rem]; }
-    @media only screen and (max-width: 1000px) { @apply text-[1.4rem]; }
-    @media only screen and (max-width: 768px) { @apply text-[1.8rem]; }
-  }
-}
-
-/* Contact */
-.contact__main {
-  @apply max-w-[992px] relative;
-  h4 { @apply text-white; }
-}
-
-.contact__infos { @apply text-[1.5rem]; }
-
 /* Footer */
 footer {
   @apply bg-black font-blocky font-normal text-[14px] py-[4.2rem] text-center text-white/20;
 
   a, a:visited { @apply text-accent; }
   a:hover, a:focus { @apply text-white; }
-}
-
-.footer-logo { @apply inline-block; }
-.footer-site-logo {
-  @apply block w-[130px];
-  @media only screen and (max-width: 400px) { @apply w-[100px]; }
-}
-
-.footer-social li {
-  @media only screen and (max-width: 400px) { @apply mr-[1.2rem]; }
-  svg {
-    @media only screen and (max-width: 400px) { @apply text-[2.2rem]; }
-  }
 }
 
 /* Pace.js */
@@ -496,20 +226,5 @@ footer {
   .pace-progress {
     @apply bg-accent fixed z-[900] top-0 right-full w-full h-1;
   }
-}
-.oldie .pace { @apply hidden; }
-
-/* Drop Cap */
-.drop-cap:first-letter {
-  @apply float-left m-0 pt-[1.5rem] pr-[0.6rem] pb-0 text-[8.4rem] font-blocky font-bold leading-[6rem] bg-transparent text-black;
-  text-indent: 0;
-}
-
-/* Lining Definition */
-.lining {
-  dt, dd { @apply inline m-0; }
-  dt + dt:before, dd + dt:before { content: "\A"; white-space: pre; }
-  dd + dd:before { content: ", "; }
-  dd:before { content: ": "; margin-left: -0.2em; }
 }
 

@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 jest.mock('next/image', () => ({
   __esModule: true,
   /* eslint-disable */
-  default: ({ src, alt, fill, priority, ...props }: any) => {
+  default: ({ src, alt, fill, priority, fetchPriority, ...props }: any) => {
     // eslint-disable-next-line @next/next/no-img-element
     return <img src={typeof src === 'object' ? (src as any).src : src} alt={alt || ''} {...props} />;
   },
@@ -20,7 +20,7 @@ describe('Jumbotron Component', () => {
         orangeText="Hello World"
         HeadingTextComponent={<h1>Main Title</h1>}
         buttonDetails={[['Click Me', '#click']]}
-        bgImg={{ src: '/test.jpg', height: 100, width: 100 } as unknown}
+        bgImg="/test.jpg"
       />
     );
 

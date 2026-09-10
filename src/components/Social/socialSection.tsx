@@ -56,7 +56,10 @@ const SocialSection = () => {
       {social.map((element, index) => (
         <li className="relative h-20 flex items-center justify-center" key={index}>
           <Magnetic>
-            <button
+            <a
+              href={element.link}
+              target={element.link.startsWith("mailto:") ? undefined : "_blank"}
+              rel={element.link.startsWith("mailto:") ? undefined : "noopener noreferrer me"}
               className="w-14 h-14 rounded-none border-0 text-2xl flex items-center justify-center text-white/70 transition-all duration-200 hover:bg-white hover:text-accent hover:scale-110"
               data-analytics-skip-global="true"
               onClick={() => {
@@ -64,13 +67,12 @@ const SocialSection = () => {
                   link_url: element.link,
                 });
                 trackClick(element.name, "social_link");
-                window.open(element.link, "_blank", "noopener,noreferrer");
               }}
               title={element.name}
               aria-label={element.name}
             >
               <FontAwesomeIcon icon={element.class} />
-            </button>
+            </a>
           </Magnetic>
         </li>
       ))}

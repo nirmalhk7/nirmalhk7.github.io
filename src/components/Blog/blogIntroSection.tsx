@@ -9,6 +9,7 @@ const BlogIntroSection = React.forwardRef<HTMLElement, { name: string }>(({ name
       ref={ref}
       className="bg-gradient-to-r from-accent/50 to-accent selection:bg-white selection:text-accent bg-white text-white overflow-hidden"
       id="blog"
+      deferRender
     >
       <div className="absolute inset-0 pointer-events-none">
         <m.div
@@ -52,9 +53,9 @@ const BlogIntroSection = React.forwardRef<HTMLElement, { name: string }>(({ name
           <h3 className="leading-tight text-white my-0">
             {name}
           </h3>
-          <h1 className="mt-0">
+          <h2 className="mt-0">
             Latest From The Blog
-          </h1>
+          </h2>
           <p className="text-center m-0 p-0 font-normal text-3xl">
             I have strong views on topics like Finance, Technology, Future and
             Environment. Find me&nbsp;

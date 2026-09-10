@@ -25,8 +25,9 @@ describe("analytics utilities", () => {
     const gtag = jest.fn();
     (window as Window & { gtag?: typeof gtag }).gtag = gtag;
 
-    const previousNodeEnv = process.env.NODE_ENV;
-    process.env.NODE_ENV = "production";
+    const environment = process.env as { NODE_ENV?: string };
+    const previousNodeEnv = environment.NODE_ENV;
+    environment.NODE_ENV = "production";
 
     try {
       const { trackPageView } = await import("@/util/analytics");
@@ -48,7 +49,7 @@ describe("analytics utilities", () => {
         })
       );
     } finally {
-      process.env.NODE_ENV = previousNodeEnv;
+      environment.NODE_ENV = previousNodeEnv;
     }
   });
 });

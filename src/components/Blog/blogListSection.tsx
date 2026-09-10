@@ -32,7 +32,7 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
           <div className="section_intro has-bottom-sep pt-20">
             <div className="text-center">
               <h3>The Blue Green Manual</h3>
-              <h1>All Articles</h1>
+              <h2>All Articles</h2>
             </div>
           </div>
           <m.div 

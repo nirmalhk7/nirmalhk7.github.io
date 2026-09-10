@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { m } from "framer-motion";
+import { createRafThrottled } from "@/util/rafThrottle";
 
 const sections = [
   { id: "", label: "Home" },
@@ -34,10 +35,14 @@ export default function SectionNavigator() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    const scheduledScroll = createRafThrottled(handleScroll);
+    window.addEventListener("scroll", scheduledScroll, { passive: true });
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", scheduledScroll);
+      scheduledScroll.cancel();
+    };
   }, []);
 
   const scrollToSection = (id: string) => {

@@ -116,7 +116,7 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, Record<string, unknown
                 <h3 className="my-0">
                   Contact Me
                 </h3>
-                <h1>Say Hi!</h1>
+                <h2>Say Hi!</h2>
                 <p className="font-blocky text-3xl">
                   I&apos;ll reach out to you as soon as I can.
                 </p>
