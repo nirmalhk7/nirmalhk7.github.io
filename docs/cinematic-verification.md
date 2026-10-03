@@ -2,6 +2,17 @@
 
 Branch: `codex/cinematic-portfolio`. The homepage and shared navigation/footer are the intended scope. No merge or deployment was performed.
 
+## Visual comparison
+
+The before images were captured from a temporary, unmodified `main` archive at the same viewport sizes as the after images. The live page on this branch supplied the after and scroll-stage captures.
+
+| View | Before | After |
+| --- | --- | --- |
+| Desktop, 1440 × 900 | [Before](screenshots/before-desktop.png) | [After](screenshots/cinematic-desktop.png) |
+| Mobile, 390 × 844 | [Before](screenshots/before-mobile.png) | [After](screenshots/cinematic-mobile.png) |
+
+The scroll sequence is shown at its [portrait handoff](screenshots/cinematic-transition.png) and [engineering scene](screenshots/cinematic-engineering.png).
+
 ## Behavior reviewed
 
 - Checked the live homepage at 390, 768, 1024, 1280, and 1440 px widths, including a 1280 × 680 short viewport. The face, positioning, proof, and primary links remain visible in the initial viewport. No horizontal body overflow was found at 390, 768, or 1024 px.
@@ -22,6 +33,8 @@ Branch: `codex/cinematic-portfolio`. The homepage and shared navigation/footer a
 | `git diff --check` | Passed |
 | Impeccable `detect` on changed home/contact/navbar files | No current findings; no suppressions added |
 
+An unmodified `main` archive was built separately with the same local dependency installation for comparison. Its homepage measured 191.8 KiB gzip in `check-performance`; this branch measured 187.5 KiB, a 4.3 KiB reduction. The shared `_app` route increased from 170.6 to 174.2 KiB gzip, leaving 0.8 KiB under its 175 KiB budget. Next.js reported homepage First Load JS of 181 kB on `main` and 178 kB on this branch.
+
 Local font files total 47,000 bytes (Outfit 32,292; IBM Plex Mono 14,708). The optimized hero AVIF observed in the local browser was 89,958 bytes. These assets are counted separately from the route JavaScript/CSS budget.
 
-Numeric LCP and CLS were not captured: the available browser instrumentation exposed FCP and TTFB but not those metrics. The homepage route remains within its gzip budget, but `_app` has only 0.8 KiB of headroom. Review route size after further shared-shell changes.
+Numeric LCP and CLS were not captured: the available browser instrumentation exposed FCP and TTFB but not those metrics. Review route size after further shared-shell changes.
