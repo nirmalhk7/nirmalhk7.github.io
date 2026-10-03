@@ -6,20 +6,24 @@ import { m } from "framer-motion";
 
 import { social } from "@/components/Social/socialSection";
 import { trackClick, trackSelectContent } from "@/util/analytics";
+import styles from "@/components/Home/portfolio.module.scss";
 
 const gitCommitSha = process.env.NEXT_PUBLIC_GIT_COMMIT_SHA;
 
-const FooterSection = React.forwardRef<HTMLElement, Record<string, unknown>>((_props, ref) => {
+type FooterSectionProps = { variant?: "default" | "portfolio" };
+
+const FooterSection = React.forwardRef<HTMLElement, FooterSectionProps>(({ variant = "default" }, ref) => {
+  const isPortfolio = variant === "portfolio";
   return (
     <m.footer 
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="selection:bg-accent selection:text-white pb-12"
+      initial={isPortfolio ? false : { opacity: 0, y: 20 }}
+      whileInView={isPortfolio ? undefined : { opacity: 1, y: 0 }}
+      viewport={isPortfolio ? undefined : { once: true }}
+      transition={isPortfolio ? undefined : { duration: 0.8, ease: "easeOut" }}
+      className={`${isPortfolio ? styles.portfolioFooter : ""} selection:bg-accent selection:text-white pb-12`}
     >
-      {process.env.NEXT_PUBLIC ? <div className="container mx-auto">
+      {isPortfolio || process.env.NEXT_PUBLIC ? <div className="container mx-auto">
         <div className="my-16">
           <ul className="list-none m-0 p-0 flex flex-wrap justify-center items-center gap-6 sm:gap-10 font-blocky font-medium text-xl uppercase tracking-[0.25rem]">
             {social.map((element, index) => {

@@ -10,11 +10,12 @@ import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/elements/navbar";
+import portfolioStyles from "@/components/Home/portfolio.module.scss";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { useViewTransitions } from "@/hooks/useViewTransitions";
 import { trackWebVital } from "@/util/analytics";
+import { useViewTransitions } from "@/hooks/useViewTransitions";
 import { AnimatePresence, LazyMotion, domAnimation, m, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useRouter } from "next/router";
 
@@ -33,6 +34,7 @@ config.autoAddCss = false;
 export interface DefaultPageProps {
   pageMetadata: {
     enableWrap: boolean,
+    layoutVariant?: "default" | "portfolio",
     seoMetadata: NextSeoProps
   }
   quote?: QuoteInterface;
@@ -47,28 +49,20 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   const shouldReduceMotion = useReducedMotion();
   const gaId = process.env.NEXT_PUBLIC_GOOGLETAG || "";
   const hasGa = process.env.NODE_ENV === "production" && gaId.length > 0;
-
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+  const layoutVariant = pageProps.pageMetadata?.layoutVariant ?? "default";
+  const isPortfolio = layoutVariant === "portfolio";
 
   useAnalytics();
-  useViewTransitions();
 
   return (
     <LazyMotion features={domAnimation}>
     <div className="min-h-screen">
-      <m.div
-        className="native-scroll-progress fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-white to-accent z-[60] origin-left"
-        style={{ scaleX }}
-      />
-      <ScrollToTop />
-      <SmoothScroller />
-      <SectionNavigator />
-      <CursorSpotlight />
+      {!isPortfolio && <ScrollProgress />}
+      {!isPortfolio && <LegacyViewTransition />}
+      {!isPortfolio && <ScrollToTop />}
+      {!isPortfolio && <SmoothScroller />}
+      {!isPortfolio && <SectionNavigator />}
+      {!isPortfolio && <CursorSpotlight />}
       <CommandPalette />
       <DefaultSeo
         defaultTitle="Nirmal Khedkar | Official Website"
@@ -90,7 +84,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         additionalMetaTags={[
           {
             name: "theme-color",
-            content: "#000000",
+            content: isPortfolio ? "#f6f5f1" : "#000000",
           },
           {
             name: "msapplication-TileColor",
@@ -133,12 +127,17 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         </>
       )}
       {pageProps.pageMetadata ? (
-        <div key="page-content">
+        <div key="page-content" className={isPortfolio ? portfolioStyles.shell : undefined}>
           {pageProps.pageMetadata.seoMetadata ? (
             <NextSeo {...pageProps.pageMetadata.seoMetadata} />
           ) : null}
-          {pageProps.pageMetadata.enableWrap ? <Navbar /> : null}
-          <AnimatePresence mode="wait">
+          {pageProps.pageMetadata.enableWrap ? <Navbar variant={layoutVariant} /> : null}
+          {isPortfolio ? (
+            <>
+              <Component {...pageProps} />
+              {pageProps.pageMetadata.enableWrap ? <FooterSection variant="portfolio" /> : null}
+            </>
+          ) : <AnimatePresence mode="wait">
             <m.div
               key={router.route}
               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 26, scale: 0.985, filter: "blur(8px)" }}
@@ -155,7 +154,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
                 </>
               ) : null}
             </m.div>
-          </AnimatePresence>
+          </AnimatePresence>}
         </div>
       ) : null}
     </div>
@@ -165,4 +164,19 @@ export default function App({ Component, pageProps }: CustomAppProps) {
 
 export function reportWebVitals(metric: NextWebVitalsMetric) {
   trackWebVital(metric);
+}
+
+function ScrollProgress() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+  return <m.div className="native-scroll-progress fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-white to-accent z-[60] origin-left" style={{ scaleX }} />;
+}
+
+function LegacyViewTransition() {
+  useViewTransitions();
+  return null;
 }
