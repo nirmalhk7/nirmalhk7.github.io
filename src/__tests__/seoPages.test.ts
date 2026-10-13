@@ -66,8 +66,8 @@ describe("page SEO contracts", () => {
 
     expect(result.props.pageMetadata.layoutVariant).toBe("portfolio");
     expect(result.props.projects.map((project) => project.slug)).toEqual([
-      "atskit",
       "k8-autoscaler",
+      "atskit",
       "scholarhub",
       "MedicalVR",
     ]);
@@ -106,12 +106,64 @@ describe("page SEO contracts", () => {
     }
   });
 
+  it("gives every shared route its own branded preview and route-specific copy", async () => {
+    const pages = [
+      [getHomeProps, "home"],
+      [getProjectsProps, "projects"],
+      [getBlogProps, "writing"],
+      [getResumeProps, "resume"],
+    ] as const;
+    const imageUrls = new Set<string>();
+    for (const [loader, section] of pages) {
+      const seo = await readSeo(loader as never);
+      const image = new URL(seo.openGraph?.images?.[0]?.url || "");
+      expect(image.pathname).toBe("/api/og");
+      expect(image.searchParams.get("section")).toBe(section);
+      expect(image.searchParams.get("title")).toBeTruthy();
+      expect(image.searchParams.get("subtitle")).toBeTruthy();
+      imageUrls.add(image.href);
+    }
+    const { paths } = await getBlogPaths(context);
+    for (const entry of paths) {
+      if (typeof entry === "string") continue;
+      const seo = await readSeo(getBlogPostProps as never, { params: entry.params } as never);
+      const image = new URL(seo.openGraph?.images?.[0]?.url || "");
+      expect(image.pathname).toBe("/api/og");
+      expect(image.searchParams.get("section")).toBe("article");
+      expect(image.searchParams.get("title")).toBe(seo.title);
+      expect(image.searchParams.get("subtitle")).toBeTruthy();
+      imageUrls.add(image.href);
+    }
+    expect(imageUrls.size).toBe(pages.length + paths.length);
+  });
+
+  it('keeps local article images renderable and legacy project links resolved', async () => {
+    const result = await getBlogPostProps({ params: { blogId: 'conclave' } } as never);
+    if (!('props' in result)) throw new Error('Missing article props');
+    const { current } = await result.props;
+    const images = Array.from((current.content || '').matchAll(/!\[[^\]]*\]\(([^)]*)\)/g));
+    expect(images.length).toBeGreaterThan(0);
+    for (const [, src] of images) {
+      expect(src).toMatch(/^\/assets\//);
+      expect(fs.existsSync(path.join(process.cwd(), 'public', src))).toBe(true);
+    }
+    expect(current.content).toContain('/projects?id=scholarhub');
+    expect(current.content).not.toContain('{{site.url}}');
+  });
+
   it("keeps the custom 404 out of search indexes", async () => {
     const seo = await readSeo(getNotFoundProps as never);
 
     expect(seo.noindex).toBe(true);
     expect(seo.nofollow).toBe(true);
     expect(seo.canonical).toBeUndefined();
+  });
+
+  it('keeps legacy article media in supported Markdown rather than displaying raw HTML', () => {
+    for (const file of fs.readdirSync(path.join(process.cwd(), 'content/blog'))) {
+      const content = fs.readFileSync(path.join(process.cwd(), 'content/blog', file), 'utf8');
+      expect(content).not.toMatch(/<(?:center|img|iframe)\b/i);
+    }
   });
 
   it("keeps the server error page out of search indexes", async () => {

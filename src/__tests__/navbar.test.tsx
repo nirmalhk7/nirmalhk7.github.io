@@ -1,17 +1,50 @@
 import React from 'react';
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import Navbar from '../elements/navbar';
 import '@testing-library/jest-dom';
 
+const mockRouter = { pathname: '/', push: jest.fn().mockResolvedValue(true) };
 jest.mock('next/router', () => ({
   useRouter() {
-    return {
-      pathname: '/',
-    };
+    return mockRouter;
   },
 }));
 
 describe('Navbar Component', () => {
+  beforeEach(() => { mockRouter.pathname = '/'; });
+  it('reveals after the hero boundary and hides again when returning to it', () => {
+    jest.useFakeTimers();
+    const story = document.createElement('div');
+    story.setAttribute('data-navigation-story', '');
+    const hero = document.createElement('section');
+    hero.id = 'max-jumbo';
+    Object.defineProperty(hero, 'offsetHeight', { value: 900 });
+    let top = 0;
+    story.getBoundingClientRect = () => ({ top } as DOMRect);
+    story.appendChild(hero);
+    document.body.appendChild(story);
+    const { container, unmount } = render(<Navbar variant="portfolio" />);
+    const header = container.querySelector('header');
+    expect(header).toHaveAttribute('data-visible', 'false');
+    top = -900;
+    act(() => { fireEvent.scroll(window); jest.runOnlyPendingTimers(); });
+    expect(header).toHaveAttribute('data-visible', 'true');
+    top = -899;
+    act(() => { fireEvent.scroll(window); jest.runOnlyPendingTimers(); });
+    expect(header).toHaveAttribute('data-visible', 'false');
+    unmount();
+    story.remove();
+    jest.useRealTimers();
+  });
+  it('keeps archive navigation and current page semantics correct on inner routes', () => {
+    mockRouter.pathname = '/projects';
+    render(<Navbar variant="portfolio" />);
+    expect(screen.getByRole('link', { name: 'Projects' })).toHaveAttribute('href', '/projects');
+    expect(screen.getByRole('link', { name: 'Projects' })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('link', { name: 'Blog' })).toHaveAttribute('href', '/blog');
+    expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('href', '/#about');
+    expect(screen.getByRole('link', { name: 'Resume' })).not.toHaveAttribute('target');
+  });
   it('renders the brand name correctly', () => {
     render(<Navbar />);
     const brandElement = screen.getByText(/nirmalhk7/i);

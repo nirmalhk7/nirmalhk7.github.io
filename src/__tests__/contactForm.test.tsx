@@ -58,9 +58,19 @@ it("shows the existing success message and lead event", () => {
 it("retains the form error analytics outcome", () => {
   mockUseForm.mockReturnValue([{ succeeded: false, submitting: false, errors: { getFormErrors: () => ["invalid"] } }, mockSubmit]);
   render(<ContactForm />);
+  expect(screen.getByRole('alert')).toHaveTextContent('Your message could not be sent');
+  expect(screen.getByRole('link', { name: 'email Nirmal directly' })).toHaveAttribute('href', 'mailto:nirmalhk7@gmail.com');
+  expect(screen.getByRole('button', { name: 'Submit' })).toBeEnabled();
   expect(trackEvent).toHaveBeenCalledWith("form_error", {
     form_id: "contact-form",
     form_name: "Contact form",
     error_count: 1,
   });
+});
+
+it('names the action and announces sending while preventing duplicate submission', () => {
+  mockUseForm.mockReturnValue([{ succeeded: false, submitting: true, errors: { getFormErrors: () => [] } }, mockSubmit]);
+  render(<ContactForm submitLabel="Send message" />);
+  expect(screen.getByRole('button', { name: 'Sending…' })).toBeDisabled();
+  expect(screen.getByRole('textbox', { name: 'Email' })).toHaveAttribute('autocomplete', 'email');
 });

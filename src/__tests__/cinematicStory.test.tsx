@@ -7,13 +7,18 @@ jest.mock("next/image", () => ({
   default: ({ src, alt }: { src: string | { src: string }; alt: string }) => React.createElement("img", { src: typeof src === "string" ? src : src.src, alt }),
 }));
 
-it("renders the hero and all engineering evidence in static HTML before motion loads", () => {
+it("renders the hero and every engineering chapter in static HTML before motion loads", () => {
   const html = renderToStaticMarkup(<CinematicStory />);
-  expect(html).toContain("NIRMAL.");
+  expect(html).toContain("I BUILD SYSTEMS BUSINESSES CAN RELY ON.");
+  expect(html).toContain(">Nirmal Khedkar</p>");
   expect(html).toContain("backend and infrastructure engineer");
-  expect(html).toContain("Visa · ZOLL Data Systems · MS CS, CU Boulder");
-  for (const heading of ["Interface", "Services", "Delivery", "Infrastructure"]) {
-    expect(html).toContain(`>${heading}</h3>`);
+  expect(html).toContain("Visa · ZOLL Data Systems · NITK Surathkal · MS CS, CU Boulder");
+  const document = new DOMParser().parseFromString(html, "text/html");
+  const chapters = document.querySelectorAll("[data-story-stage]");
+  expect(chapters).toHaveLength(4);
+  for (const chapter of chapters) {
+    expect(chapter.querySelector("h3")?.textContent).toBeTruthy();
+    expect(chapter.querySelector("p")?.textContent).toBeTruthy();
   }
   expect(html).not.toContain('data-cinematic="ready"');
   expect(html).not.toContain('style="opacity:0');

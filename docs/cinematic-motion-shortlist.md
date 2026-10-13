@@ -1,6 +1,6 @@
 # Cinematic homepage motion shortlist
 
-Reviewed against this site's Next.js 14 Pages Router, React 18, Tailwind 3, existing Framer Motion, and 200 KiB gzip initial-route budget. The chosen sequence is original code; no registry component is installed.
+Reviewed against this site's Next.js 14.2.35 Pages Router, React 18.2.0, Tailwind 3.3.3, Framer Motion 12.38.0, and 200 KiB gzip initial-route budget. GSAP 3.15.0 with ScrollTrigger is already installed. The chosen sequence is original code; no registry component is installed.
 
 | Source and candidate | Dependencies, access, and fit | Decision for this portfolio |
 | --- | --- | --- |
@@ -11,4 +11,4 @@ Reviewed against this site's Next.js 14 Pages Router, React 18, Tailwind 3, exis
 | [8bitcn/ui](https://www.8bitcn.com/docs) | Free core, [MIT license](https://github.com/TheOrcDev/8bitcn-ui/blob/main/README.md), shadcn/Tailwind React components; Pages Router integration is possible with setup. | **Reject.** Pixel borders and 8-bit texture conflict with the personal photograph and engineering editorial tone. |
 | [Kokonut UI](https://kokonutui.com/docs) | Free core, [MIT license](https://github.com/kokonut-labs/kokonutui/blob/main/README.md), React/Motion; current components require Tailwind 4. Pro components are separate. | **Reject.** This project uses Tailwind 3; migrating the site for a decorative component would add risk and weight. |
 
-Motion thesis: the coastline compresses to a narrow horizon, then a vermilion path carries the eye through Interface, Services, Delivery, and Infrastructure. The photo remains the first frame and the source of the visual transition. All text and links render in server HTML; motion is an enhancement on roomy desktop viewports. The motion controller loads separately and uses GSAP ScrollTrigger for a single scrubbed timeline. Navigation and form feedback stay short in the existing UI layer.
+Motion thesis: the beach photograph shifts into a portrait panel, then a vermilion path carries the eye through Product, Infrastructure, Security, and AI. Each chapter points to evidence already present in the experience history, coursework, and homelab writing. All text and links render in server HTML; motion is an enhancement on roomy desktop viewports. The motion controller loads separately and uses GSAP ScrollTrigger for a single scrubbed timeline. Navigation and form feedback stay short in the existing UI layer.

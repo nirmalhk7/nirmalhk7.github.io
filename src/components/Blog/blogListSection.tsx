@@ -1,114 +1,35 @@
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import WebSection from "@/elements/WebSection";
 import { BlogMiniInterface } from "@/interfaces/blog";
-import { m, Variants } from "framer-motion";
 import { trackClick, trackSelectContent } from "@/util/analytics";
+import { EditorialRow, PageSection } from "@/components/Site/Editorial";
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
+const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => (
+  <PageSection
+    id="blog-list"
+    eyebrow="The Blue Green Manual"
+    title="Notes from the work."
+    description="Architecture, GitOps, homelabs, and other systems worth explaining."
+  >
+    <div>
+      {blogItems.map((blog, index) => (
+        <EditorialRow
+          key={blog.slug}
+          index={index}
+          eyebrow={blog.frontmatter?.category?.join(" / ")}
+          title={blog.frontmatter?.title || "Article"}
+          description={blog.excerpt || blog.frontmatter?.description || ""}
+          meta={blog.frontmatter?.date}
+          image={blog.frontmatter?.img}
+          imageAlt={blog.frontmatter?.title || "Article cover"}
+          href={`/blog/${blog.slug}`}
+          onClick={() => {
+            trackSelectContent("blog_post", blog.slug, { item_list_name: "blog_list", item_index: index });
+            trackClick(blog.frontmatter?.title || "", "blog_list_link");
+          }}
+        />
+      ))}
+    </div>
+  </PageSection>
+);
 
-const slideUpItem: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
-const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => {
-  return (
-    <WebSection
-      className="bg-gray-100 selection:bg-accent selection:text-white"
-      id="blog-list"
-    >
-      <div>
-        <div className=" m-auto" style={{ maxWidth: "1500px" }}>
-          <div className="section_intro has-bottom-sep pt-20">
-            <div className="text-center">
-              <h3>The Blue Green Manual</h3>
-              <h2>All Articles</h2>
-            </div>
-          </div>
-          <m.div 
-            className="py-10 columns-1 tablet:columns-2 laptop:columns-3 desktop:columns-4 gap-8"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            {blogItems.map((element, index) => {
-              return (
-                <m.div
-                  variants={slideUpItem}
-                  whileHover={{ y: -6 }}
-                  whileTap={{ scale: 0.99 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="break-inside-avoid-column mb-8"
-                  key={index}
-                >
-                  <div 
-                    className={`overflow-hidden relative rounded-3xl group shadow-md hover:shadow-2xl transition-all duration-500 bg-black flex flex-col justify-end ${
-                      index % 3 === 0 ? "min-h-[450px]" : index % 3 === 1 ? "min-h-[350px]" : "min-h-[400px]"
-                    }`}
-                  >
-                    <Image
-                      src={element.frontmatter?.img || ""}
-                      fill
-                      alt={element.frontmatter?.title || "Blog image"}
-                      className="brightness-75 group-hover:brightness-50 group-hover:scale-105 transition duration-700 object-cover"
-                      sizes="(min-width: 1440px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    />
-                    <Link
-                      title={element.excerpt ?? "The Blue Green Manual"}
-                      href={`/blog/${element.slug}`}
-                      prefetch={false}
-                      data-analytics-skip-global="true"
-                      className="absolute inset-0 z-30"
-                      onClick={() => {
-                        trackSelectContent("blog_post", element.slug, {
-                          item_list_name: "blog_list",
-                          item_index: index,
-                        });
-                        trackClick(element.frontmatter?.title || "", "blog_list_link");
-                      }}
-                    >
-                      <span className="sr-only">Read {element.frontmatter?.title}</span>
-                    </Link>
-                    <div className={`p-10 z-20 relative w-full bg-gradient-to-t from-black via-black/95 to-transparent ${
-                      index % 2 === 0 ? "pt-48" : "pt-32"
-                    }`}>
-                      <div className="space-y-4">
-                        <strong className="text-accent uppercase font-blocky text-sm tracking-widest block font-bold">
-                          {element.frontmatter?.category}
-                        </strong>
-                        <h4 className="text-white text-5xl m-0 font-bold leading-tight">
-                          {element.frontmatter?.title}
-                        </h4>
-                        {element.excerpt && (
-                          <p className="text-gray-300 text-2xl leading-relaxed line-clamp-4">
-                            {element.excerpt}
-                          </p>
-                        )}
-                        <div className="flex justify-between items-center text-gray-300 uppercase font-blocky text-sm tracking-wider pt-6 border-t border-white/10 mt-8">
-                          <span className="font-bold">{element.frontmatter?.date}</span>
-                          <span className="text-accent font-bold group-hover:translate-x-2 transition-transform">READ MORE →</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </m.div>
-              );
-            })}
-          </m.div>
-        </div>
-      </div>
-    </WebSection>
-  );
-};
 export default BlogListSection;

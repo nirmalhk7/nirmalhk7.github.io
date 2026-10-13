@@ -1,12 +1,7 @@
 .page {
-  --portfolio-paper: #f6f5f1;
-  --portfolio-ink: #171717;
-  --portfolio-red: #c9362b;
-  --portfolio-muted: #595959;
-  --portfolio-sans: "Portfolio Outfit", "Avenir Next", sans-serif;
   color: var(--portfolio-ink);
   background: var(--portfolio-paper);
-  font-family: var(--portfolio-sans);
+  font-family: var(--portfolio-body);
   font-size: 16px;
   line-height: 1.55;
   overflow: clip;
@@ -27,9 +22,9 @@
   h3,
   h4 {
     color: inherit;
-    font-family: "Libre Baskerville", Georgia, serif;
-    font-weight: 400;
-    letter-spacing: -0.035em;
+    font-family: var(--portfolio-display);
+    font-weight: 600;
+    letter-spacing: -0.03em;
     line-height: 1.06;
     text-transform: none;
   }
@@ -88,7 +83,7 @@
 }
 
 .experience {
-  background: #fff;
+  background: var(--portfolio-paper);
 }
 
 .experienceList {
@@ -180,12 +175,16 @@
 }
 
 .afterHoursCopy h2 {
-  max-width: 9ch;
+  max-width: 13ch;
 }
 
 .afterHoursCopy p {
   max-width: 47ch;
   color: rgb(248 246 240 / 75%);
+}
+
+.afterHoursCopy p + p {
+  margin-top: 20px;
 }
 
 .articleLinks {
@@ -227,13 +226,6 @@
   font-size: 11px;
 }
 
-.infrastructureNote {
-  grid-column: 2;
-  margin-bottom: 0;
-  color: rgb(248 246 240 / 75%);
-  font-size: 14px !important;
-}
-
 .projects {
   background: var(--portfolio-paper);
 }
@@ -244,19 +236,33 @@
 }
 
 .projectRow {
+  position: relative;
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr) minmax(150px, 0.28fr) 32px;
   align-items: center;
   gap: 24px;
   min-height: 152px;
   padding: 28px 18px 28px 0;
-  border-top: 1px solid rgb(23 23 23 / 18%);
+  border-top: 1px solid rgb(32 35 33 / 18%);
   text-decoration: none;
-  transition: background-color 150ms ease-out;
+  transition: background-color 180ms ease-out;
+}
+
+.projectRow::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: var(--portfolio-red);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 420ms cubic-bezier(.16, 1, .3, 1);
 }
 
 .projectRow:last-child {
-  border-bottom: 1px solid rgb(23 23 23 / 18%);
+  border-bottom: 1px solid rgb(32 35 33 / 18%);
 }
 
 .projectIndex,
@@ -278,9 +284,10 @@
 }
 
 .projectTitle {
-  font-family: "Libre Baskerville", Georgia, serif;
+  font-family: var(--portfolio-display);
+  font-weight: 600;
   font-size: clamp(29px, 3.2vw, 48px);
-  letter-spacing: -0.045em;
+  letter-spacing: -0.03em;
   line-height: 1.14;
   transition: transform 150ms ease-out;
 }
@@ -310,7 +317,13 @@
 
 .projectRow:hover .projectTitle,
 .projectRow:focus-visible .projectTitle {
-  transform: translateX(7px);
+  transform: translateX(4px);
+  letter-spacing: -0.015em;
+}
+
+.projectRow:hover::after,
+.projectRow:focus-visible::after {
+  transform: scaleX(1);
 }
 
 .projectRow:focus-visible {
@@ -327,7 +340,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(270px, 0.62fr);
   gap: clamp(48px, 10vw, 160px);
-  color: #f6f5f1;
+  color: var(--portfolio-paper);
   background: #292827;
 }
 
@@ -370,7 +383,7 @@
 }
 
 .aboutDetails .disclosure summary {
-  color: #f6f5f1;
+  color: var(--portfolio-paper);
 }
 
 .aboutDetails .disclosure > ul,
@@ -396,7 +409,7 @@
   align-items: center;
   gap: 20px 50px;
   color: var(--portfolio-ink);
-  background: #fff;
+  background: var(--portfolio-paper);
 }
 
 .writing h2 {
@@ -407,7 +420,9 @@
 .writing > a:not(.allWritingLink) {
   max-width: 31ch;
   padding: 8px 0;
-  font-family: "Libre Baskerville", Georgia, serif;
+  font-family: var(--portfolio-display);
+  font-weight: 500;
+  letter-spacing: -0.025em;
   font-size: clamp(21px, 2vw, 28px);
   text-decoration: none;
 }
@@ -473,10 +488,6 @@
     min-height: 260px;
   }
 
-  .infrastructureNote {
-    grid-column: auto;
-  }
-
   .projectRow {
     grid-template-columns: 30px minmax(0, 1fr) 22px;
     gap: 9px;
@@ -515,7 +526,8 @@
   .page a,
   .projectArrow,
   .projectTitle,
-  .projectRow {
+  .projectRow,
+  .projectRow::after {
     transition: none;
   }
 }

@@ -18,6 +18,7 @@ import { trackWebVital } from "@/util/analytics";
 import { useViewTransitions } from "@/hooks/useViewTransitions";
 import { AnimatePresence, LazyMotion, domAnimation, m, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useRouter } from "next/router";
+import { openGraphImage } from "@/util/openGraph";
 
 // Dynamic imports for performance
 const ScrollToTop = dynamic(() => import("@/elements/scrollToTop"), { ssr: false });
@@ -28,6 +29,7 @@ const CommandPalette = dynamic(() => import("@/components/UI/CommandPalette"), {
 const CursorSpotlight = dynamic(() => import("@/components/UI/CursorSpotlight"), { ssr: false });
 const SmoothScroller = dynamic(() => import("@/components/UI/SmoothScroller"), { ssr: false });
 const SectionNavigator = dynamic(() => import("@/components/UI/SectionNavigator"), { ssr: false });
+const ContactBand = dynamic(() => import("@/components/Site/Editorial").then((module) => module.ContactBand));
 
 config.autoAddCss = false;
 
@@ -49,7 +51,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   const shouldReduceMotion = useReducedMotion();
   const gaId = process.env.NEXT_PUBLIC_GOOGLETAG || "";
   const hasGa = process.env.NODE_ENV === "production" && gaId.length > 0;
-  const layoutVariant = pageProps.pageMetadata?.layoutVariant ?? "default";
+  const layoutVariant = pageProps.pageMetadata?.layoutVariant ?? "portfolio";
   const isPortfolio = layoutVariant === "portfolio";
 
   useAnalytics();
@@ -65,26 +67,19 @@ export default function App({ Component, pageProps }: CustomAppProps) {
       {!isPortfolio && <CursorSpotlight />}
       <CommandPalette />
       <DefaultSeo
-        defaultTitle="Nirmal Khedkar | Official Website"
-        description="Fortress Code, Lightning Fast: Hi, I'm Nirmal Khedkar."
+        defaultTitle="Nirmal Khedkar | Software Engineer"
+        description="Nirmal Khedkar builds backend services, infrastructure, and products across the stack."
         openGraph={{
           type: "website",
           locale: "en_US",
           url: "https://nirmalhk7.com",
           siteName: "Nirmal Khedkar",
-          images: [
-            {
-              url: "https://nirmalhk7.com/api/og",
-              width: 1200,
-              height: 630,
-              alt: "Nirmal Khedkar",
-            },
-          ],
+          images: [openGraphImage("Built for the real world.", "Product thinking. Engineering depth.", "home")],
         }}
         additionalMetaTags={[
           {
             name: "theme-color",
-            content: isPortfolio ? "#f6f5f1" : "#000000",
+            content: isPortfolio ? "#f5f2eb" : "#000000",
           },
           {
             name: "msapplication-TileColor",
@@ -133,10 +128,19 @@ export default function App({ Component, pageProps }: CustomAppProps) {
           ) : null}
           {pageProps.pageMetadata.enableWrap ? <Navbar variant={layoutVariant} /> : null}
           {isPortfolio ? (
-            <>
-              <Component {...pageProps} />
-              {pageProps.pageMetadata.enableWrap ? <FooterSection variant="portfolio" /> : null}
-            </>
+            <AnimatePresence mode="wait" initial={false}>
+              <m.div
+                key={router.pathname}
+                initial={shouldReduceMotion ? false : { clipPath: "inset(0 0 0 100%)" }}
+                animate={{ clipPath: "inset(0 0 0 0)", opacity: 1 }}
+                exit={shouldReduceMotion ? { opacity: 0.96 } : { clipPath: "inset(0 100% 0 0)" }}
+                transition={{ duration: shouldReduceMotion ? 0.12 : 0.34, ease: [0.76, 0, 0.24, 1] }}
+              >
+                <Component {...pageProps} />
+                {pageProps.pageMetadata.enableWrap && router.pathname !== "/" ? <ContactBand /> : null}
+                {pageProps.pageMetadata.enableWrap ? <FooterSection variant="portfolio" /> : null}
+              </m.div>
+            </AnimatePresence>
           ) : <AnimatePresence mode="wait">
             <m.div
               key={router.route}

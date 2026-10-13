@@ -13,12 +13,12 @@ interface CommandItem {
 
 const commandItems: CommandItem[] = [
   { id: "home", title: "Home", category: "Pages", subtitle: "Return to homepage", href: "/" },
-  { id: "about", title: "About Me", category: "Pages", subtitle: "Full-Stack Engineer specializing in high-performance systems", href: "/#about" },
+  { id: "about", title: "About Me", category: "Pages", subtitle: "Backend, infrastructure, and broader product engineering", href: "/#about" },
   { id: "projects", title: "Projects Catalogue", category: "Pages", subtitle: "Explore high-performance systems and full-stack projects", href: "/projects" },
   { id: "blog", title: "Blog & Technical Manuals", category: "Pages", subtitle: "The Blue Green Manual", href: "/blog" },
   { id: "contact", title: "Contact / Hire Nirmal", category: "Actions", subtitle: "Send a message or get in touch", href: "/#contact" },
-  { id: "resume-action", title: "Download Resume PDF", category: "Actions", subtitle: "Get official PDF resume", href: "/resume", newTab: true },
-  { id: "skill-go", title: "Golang / Systems Engineering", category: "Skills", subtitle: "High throughput backend APIs & concurrent systems", href: "/projects" },
+  { id: "resume-action", title: "View résumé", category: "Actions", subtitle: "Experience, education, and PDF download", href: "/resume" },
+  { id: "skill-java", title: "Java / Reactive services", category: "Skills", subtitle: "Spring Boot to Project Reactor migration at Visa", href: "/#workexperience" },
   { id: "skill-dist", title: "Distributed Systems & Scalability", category: "Skills", subtitle: "Experience at Visa building reliable payments systems", href: "/#about" },
   { id: "skill-react", title: "React & Next.js Full-Stack", category: "Skills", subtitle: "Modern responsive web applications", href: "/projects" },
 ];

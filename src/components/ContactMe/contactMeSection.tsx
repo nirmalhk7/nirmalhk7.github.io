@@ -2,6 +2,7 @@ import React from "react";
 import WebSection from "@/elements/WebSection";
 import { trackClick } from "@/util/analytics";
 import ContactForm from "./ContactForm";
+import HiringLinks from '@/components/Site/HiringLinks';
 import { m, useScroll, useTransform } from "framer-motion";
 
 type ContactMeSectionProps = {
@@ -50,12 +51,12 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, ContactMeSectionProps>
           >
             <div className="narrow m-auto text-white">
               <div className={variant === "portfolio" ? "portfolio-contact-heading" : "text-center"}>
-                {variant === "portfolio" ? <h2>LET&apos;S BUILD.</h2> : <><h3 className="my-0">Contact Me</h3><h2>Say Hi!</h2><p className="font-blocky text-3xl">I&apos;ll reach out to you as soon as I can.</p></>}
+                {variant === "portfolio" ? <><h2>LET&apos;S BUILD.</h2><p className="portfolio-contact-invitation">Hiring for backend, infrastructure, or a broader engineering role? Tell me what your team is building.</p></> : <><h3 className="my-0">Contact Me</h3><h2>Say Hi!</h2><p className="font-blocky text-3xl">I&apos;ll reach out to you as soon as I can.</p></>}
               </div>
             </div>
             <div className={`mt-24 grid gap-16 laptop:grid-cols-3 tablet:grid-cols-3 mobile-l:grid-cols-1 ${variant === "portfolio" ? "portfolio-contact-grid" : ""}`}>
               <div className="col-span-2">
-                <ContactForm />
+                <ContactForm submitLabel={variant === 'portfolio' ? 'Send message' : 'Submit'} />
               </div>
               <div className={`w-full contact__infos ${variant === "portfolio" ? "portfolio-contact-info" : ""}`}>
                 <h5 className="text-white font-blocky uppercase text-base leading-[7.2rem] tracking-[0.25rem] font-bold my-0">
@@ -69,6 +70,7 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, ContactMeSectionProps>
                 >
                   nirmalhk7@gmail.com
                 </a>
+                {variant === 'portfolio' && <HiringLinks />}
               </div>
             </div>
           </m.div>

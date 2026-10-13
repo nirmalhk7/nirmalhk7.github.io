@@ -1,35 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="11" failures="0" errors="0" time="2.517">
-  <testsuite name="analytics utilities" errors="0" failures="0" skipped="0" timestamp="2026-07-14T00:27:35" time="0.698" tests="2">
-    <testcase classname="analytics utilities maps routes to stable page types" name="analytics utilities maps routes to stable page types" time="0.02">
+<testsuites name="jest tests" tests="23" failures="0" errors="0" time="2.923">
+  <testsuite name="page SEO contracts" errors="0" failures="0" skipped="0" timestamp="2026-09-10T01:32:09" time="0.992" tests="5">
+    <testcase classname="page SEO contracts publishes complete, unique metadata for every indexable top-level page" name="page SEO contracts publishes complete, unique metadata for every indexable top-level page" time="0.038">
     </testcase>
-    <testcase classname="analytics utilities sends a GA page_view with page context in production" name="analytics utilities sends a GA page_view with page context in production" time="0.007">
+    <testcase classname="page SEO contracts publishes complete metadata for every blog post" name="page SEO contracts publishes complete metadata for every blog post" time="0.007">
+    </testcase>
+    <testcase classname="page SEO contracts keeps the custom 404 out of search indexes" name="page SEO contracts keeps the custom 404 out of search indexes" time="0.003">
+    </testcase>
+    <testcase classname="page SEO contracts keeps the server error page out of search indexes" name="page SEO contracts keeps the server error page out of search indexes" time="0.001">
+    </testcase>
+    <testcase classname="sitemap generator excludes redirects and emits last modification dates" name="sitemap generator excludes redirects and emits last modification dates" time="0.016">
     </testcase>
   </testsuite>
-  <testsuite name="githubProjectSync" errors="0" failures="0" skipped="0" timestamp="2026-07-14T00:27:35" time="0.75" tests="4">
-    <testcase classname="githubProjectSync builds markdown from README frontmatter with topic tags" name="githubProjectSync builds markdown from README frontmatter with topic tags" time="0.021">
+  <testsuite name="ProjectListItem" errors="0" failures="0" skipped="0" timestamp="2026-09-10T01:32:10" time="0.316" tests="2">
+    <testcase classname="ProjectListItem shows build-rendered project content when expanded" name="ProjectListItem shows build-rendered project content when expanded" time="0.039">
     </testcase>
-    <testcase classname="githubProjectSync falls back to repository metadata when README data is missing" name="githubProjectSync falls back to repository metadata when README data is missing" time="0.002">
+    <testcase classname="ProjectListItem keeps project toggle clickable" name="ProjectListItem keeps project toggle clickable" time="0.086">
+    </testcase>
+  </testsuite>
+  <testsuite name="Jumbotron Component" errors="0" failures="0" skipped="0" timestamp="2026-09-10T01:32:10" time="0.359" tests="1">
+    <testcase classname="Jumbotron Component renders Max Jumbotron correctly" name="Jumbotron Component renders Max Jumbotron correctly" time="0.18">
+    </testcase>
+  </testsuite>
+  <testsuite name="Navbar Component" errors="0" failures="0" skipped="0" timestamp="2026-09-10T01:32:11" time="0.165" tests="2">
+    <testcase classname="Navbar Component renders the brand name correctly" name="Navbar Component renders the brand name correctly" time="0.019">
+    </testcase>
+    <testcase classname="Navbar Component renders navigation links" name="Navbar Component renders navigation links" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="githubProjectSync" errors="0" failures="0" skipped="0" timestamp="2026-09-10T01:32:11" time="0.084" tests="4">
+    <testcase classname="githubProjectSync builds markdown from README frontmatter with topic tags" name="githubProjectSync builds markdown from README frontmatter with topic tags" time="0.003">
+    </testcase>
+    <testcase classname="githubProjectSync falls back to repository metadata when README data is missing" name="githubProjectSync falls back to repository metadata when README data is missing" time="0">
     </testcase>
     <testcase classname="githubProjectSync extracts an excerpt from the first meaningful paragraph" name="githubProjectSync extracts an excerpt from the first meaningful paragraph" time="0">
     </testcase>
     <testcase classname="githubProjectSync excludes repos tagged with nirmalhk7" name="githubProjectSync excludes repos tagged with nirmalhk7" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="loadMarkdown util" errors="0" failures="0" skipped="0" timestamp="2026-07-14T00:27:35" time="0.775" tests="2">
-    <testcase classname="loadMarkdown util loads every markdown file under content without throwing" name="loadMarkdown util loads every markdown file under content without throwing" time="0.052">
+  <testsuite name="loadRandomQuote" errors="0" failures="0" skipped="0" timestamp="2026-09-10T01:32:11" time="0.041" tests="1">
+    <testcase classname="loadRandomQuote returns a quote from the supplied YAML file" name="loadRandomQuote returns a quote from the supplied YAML file" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="loadMarkdown util" errors="0" failures="0" skipped="0" timestamp="2026-09-10T01:32:11" time="0.047" tests="2">
+    <testcase classname="loadMarkdown util loads every markdown file under content without throwing" name="loadMarkdown util loads every markdown file under content without throwing" time="0.008">
     </testcase>
     <testcase classname="loadMarkdown util derives a useful excerpt from body content when no summary is provided" name="loadMarkdown util derives a useful excerpt from body content when no summary is provided" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Navbar Component" errors="0" failures="0" skipped="0" timestamp="2026-07-14T00:27:35" time="1.065" tests="2">
-    <testcase classname="Navbar Component renders the brand name correctly" name="Navbar Component renders the brand name correctly" time="0.072">
+  <testsuite name="analytics utilities" errors="0" failures="0" skipped="0" timestamp="2026-09-10T01:32:11" time="0.04" tests="2">
+    <testcase classname="analytics utilities maps routes to stable page types" name="analytics utilities maps routes to stable page types" time="0.002">
     </testcase>
-    <testcase classname="Navbar Component renders navigation links" name="Navbar Component renders navigation links" time="0.066">
+    <testcase classname="analytics utilities sends a GA page_view with page context in production" name="analytics utilities sends a GA page_view with page context in production" time="0.003">
     </testcase>
   </testsuite>
-  <testsuite name="Jumbotron Component" errors="0" failures="0" skipped="0" timestamp="2026-07-14T00:27:35" time="1.577" tests="1">
-    <testcase classname="Jumbotron Component renders Max Jumbotron correctly" name="Jumbotron Component renders Max Jumbotron correctly" time="0.194">
+  <testsuite name="renderProjectMarkdown" errors="0" failures="0" skipped="0" timestamp="2026-09-10T01:32:11" time="0.058" tests="2">
+    <testcase classname="renderProjectMarkdown renders project markdown to static HTML at build time" name="renderProjectMarkdown renders project markdown to static HTML at build time" time="0.001">
+    </testcase>
+    <testcase classname="renderProjectMarkdown returns empty HTML when a project has no body content" name="renderProjectMarkdown returns empty HTML when a project has no body content" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="createRafThrottled" errors="0" failures="0" skipped="0" timestamp="2026-09-10T01:32:11" time="0.044" tests="2">
+    <testcase classname="createRafThrottled runs once per frame with the latest event arguments" name="createRafThrottled runs once per frame with the latest event arguments" time="0.001">
+    </testcase>
+    <testcase classname="createRafThrottled cancels a queued callback during cleanup" name="createRafThrottled cancels a queued callback during cleanup" time="0">
     </testcase>
   </testsuite>
 </testsuites>

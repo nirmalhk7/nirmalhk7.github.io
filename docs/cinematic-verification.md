@@ -1,40 +1,37 @@
-# Cinematic homepage verification
+# Cinematic portfolio verification
 
-Branch: `codex/cinematic-portfolio`. The homepage and shared navigation/footer are the intended scope. No merge or deployment was performed.
+Branch: `codex/cinematic-portfolio`. The homepage and shared portfolio system were reviewed; no merge or deployment was performed. Navigation, typography, contact band, and footer now share the same visual language on project, blog, article, resume, utility, and error pages.
 
-## Visual comparison
+## Visual review
 
-The before images were captured from a temporary, unmodified `main` archive at the same viewport sizes as the after images. The live page on this branch supplied the after and scroll-stage captures.
+The before images came from an unmodified `main` archive. Current after images were captured from the live branch at the same viewport sizes.
 
 | View | Before | After |
 | --- | --- | --- |
 | Desktop, 1440 × 900 | [Before](screenshots/before-desktop.png) | [After](screenshots/cinematic-desktop.png) |
 | Mobile, 390 × 844 | [Before](screenshots/before-mobile.png) | [After](screenshots/cinematic-mobile.png) |
 
-The scroll sequence is shown at its [portrait handoff](screenshots/cinematic-transition.png) and [engineering scene](screenshots/cinematic-engineering.png).
+The sequence also has captures for the [portrait-to-engineering transition](screenshots/cinematic-transition.png) and a settled [engineering chapter](screenshots/cinematic-engineering.png).
 
 ## Behavior reviewed
 
-- Checked the live homepage at 390, 768, 1024, 1280, and 1440 px widths, including a 1280 × 680 short viewport. The face, positioning, proof, and primary links remain visible in the initial viewport. No horizontal body overflow was found at 390, 768, or 1024 px.
-- Scrolled through the desktop photo-to-portrait transition and all four engineering stages. The compact navbar and mobile menu were reviewed visually. Mobile menu selection closes it; its focus trap, Escape behavior, and scroll lock have focused tests.
-- Verified `/projects?id=atskit` loads and browser Back returns to `/#project`. Checked that the homepage renders one contact form and that its success/error behavior is covered by tests.
-- Static server-rendered markup contains the hero copy and all engineering stages without waiting for animation. Reduced-motion and smaller/shorter viewport paths use the static layout in code. Browser-level JavaScript-disabled, reduced-motion, 200% zoom, and slow-network emulation were not available in the browser tooling used for this pass.
+- Reviewed at 390, 768, 1024, and 1440 px widths, plus a 1280 × 680 short laptop viewport. The hero keeps Nirmal’s face, name, backend/infrastructure positioning, proof, and hiring links visible without waiting for JavaScript. No horizontal overflow at 390, 768, or 1024 px.
+- Scrolled the large-screen image handoff and all four chapters. Smaller and short viewports retain a normal static story. Reduced-motion styles keep content visible and disable scroll choreography.
+- Checked project archive and detail expansion, blog list and article, résumé, About anchor from `/projects`, and browser Back. Route changes use a single short clip wipe; hash navigation bypasses it and lands at the requested section.
+- Verified NITK Surathkal undergraduate education appears in About and Person JSON-LD. “After hours, still building.” is replaced by a factual homelab introduction. The homepage renders one contact form; success and error paths remain covered by tests.
+- The navbar focus trap, Escape close, focus return, and selection close are covered by `navbar.test.tsx`. JavaScript-disabled, 200% zoom, reduced-motion override, and slow-network browser emulation were unavailable in this pass; server-rendered tests confirm the story text is present before animation.
 
 ## Checks
 
 | Check | Result |
 | --- | --- |
-| `npm run lint` | Passed |
+| `npm run lint` | Passed, no warnings |
 | `npx tsc --noEmit --incremental false` | Passed |
-| `npx jest --runInBand --reporters=default` | 12 suites, 29 tests passed |
+| `npx jest --runInBand --reporters=default --coverage=false` | 12 suites, 29 tests passed |
 | `npx next build` | Passed |
-| `npm run check-performance` | Homepage 187.5 KiB gzip against 200 KiB budget; `_app` 174.2 KiB against 175 KiB budget |
+| `npm run check-performance` | `_app` 173.2 KiB gzip / 175 KiB; `/` 186.9 / 200 KiB; `/projects` 184.6 / 200 KiB; `/blog` 184.2 / 195 KiB; `/blog/[blogId]` 240.8 / 245 KiB |
 | `npm run check-project-markdown` | 32 projects passed |
 | `git diff --check` | Passed |
-| Impeccable `detect` on changed home/contact/navbar files | No current findings; no suppressions added |
+| Impeccable `detect` on changed UI files | No current findings; no suppressions added |
 
-An unmodified `main` archive was built separately with the same local dependency installation for comparison. Its homepage measured 191.8 KiB gzip in `check-performance`; this branch measured 187.5 KiB, a 4.3 KiB reduction. The shared `_app` route increased from 170.6 to 174.2 KiB gzip, leaving 0.8 KiB under its 175 KiB budget. Next.js reported homepage First Load JS of 181 kB on `main` and 178 kB on this branch.
-
-Local font files total 47,000 bytes (Outfit 32,292; IBM Plex Mono 14,708). The optimized hero AVIF observed in the local browser was 89,958 bytes. These assets are counted separately from the route JavaScript/CSS budget.
-
-Numeric LCP and CLS were not captured: the available browser instrumentation exposed FCP and TTFB but not those metrics. Review route size after further shared-shell changes.
+The shared `_app` route remains 1.8 KiB under its gzip budget. Blog article routes have 4.2 KiB remaining. Added route choreography is loaded with the portfolio UI; GSAP/ScrollTrigger remains lazy-loaded only for the large-screen homepage sequence. Local portrait font files and optimized hero image are separate from route JS/CSS budget.

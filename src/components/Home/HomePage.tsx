@@ -11,6 +11,7 @@ import {
   WorkExperienceInterface,
 } from "@/interfaces";
 import { ProjectInterface } from "@/interfaces/projects";
+import { experienceHighlights } from "@/util/experienceHighlights";
 import CinematicStory from "./CinematicStory";
 import treesPhoto from "@/assets/images/TreesNK_1.jpg";
 import styles from "./portfolioHome.module.scss";
@@ -55,6 +56,8 @@ export default function HomePage({
                   const descriptions = Array.isArray(role.description)
                     ? role.description
                     : [role.description];
+                  const highlights = experienceHighlights(role.company, role.post, descriptions);
+                  const remaining = descriptions.filter(description => !highlights.includes(description));
                   return (
                     <div className={styles.role} key={`${role.post}-${role.timeframe}`}>
                       <div className={styles.roleTitle}>
@@ -62,12 +65,12 @@ export default function HomePage({
                         <p>{role.timeframe}</p>
                       </div>
                       <ul>
-                        {descriptions.slice(0, 2).map((description) => <li key={description}>{description}</li>)}
+                        {highlights.map((description) => <li key={description}>{description}</li>)}
                       </ul>
-                      {descriptions.length > 2 && (
+                      {remaining.length > 0 && (
                         <details className={styles.disclosure}>
                           <summary>More from this role</summary>
-                          <ul>{descriptions.slice(2).map((description) => <li key={description}>{description}</li>)}</ul>
+                          <ul>{remaining.map((description) => <li key={description}>{description}</li>)}</ul>
                         </details>
                       )}
                     </div>
@@ -79,13 +82,13 @@ export default function HomePage({
         </div>
       </section>
 
-      <section className={styles.afterHours} aria-labelledby="after-hours-heading">
+      <section className={styles.afterHours} aria-labelledby="perspective-heading">
         <div className={styles.afterHoursCopy}>
-          <h2 id="after-hours-heading">After hours, still building.</h2>
-          <p>I run a Kubernetes focused homelab and write about the choices behind it, from architecture to GitOps.</p>
+          <h2 id="perspective-heading">I see the whole system.</h2>
+          <p>I care about how a product feels, how its services behave, and what keeps it dependable. I connect the details to the bigger picture.</p>
+          <p>Product judgment. Systems thinking. The curiosity to keep building.</p>
           <div className={styles.articleLinks}>
-            <Link href="/blog/homelab_architect">Homelab architecture <span aria-hidden="true">↗</span></Link>
-            <Link href="/blog/homelab_gitops">How GitOps brings order to chaos <span aria-hidden="true">↗</span></Link>
+            <Link href="/projects" onClick={() => trackSelectContent("profile_cta", "Explore my projects")}>Explore my projects</Link>
           </div>
         </div>
         <div className={styles.infrastructureImage}>
@@ -96,11 +99,8 @@ export default function HomePage({
             sizes="(max-width: 767px) 100vw, 46vw"
             loading="lazy"
           />
-          <span>Off the clock, still curious</span>
+          <span>Curiosity beyond the screen.</span>
         </div>
-        <p className={styles.infrastructureNote}>
-          Terraform provisions the machines. Ansible is still a work in progress. FluxCD keeps cluster configuration in sync with Git.
-        </p>
       </section>
 
       <section className={styles.projects} id="project" aria-labelledby="projects-heading">
@@ -136,7 +136,7 @@ export default function HomePage({
         <div className={styles.aboutCopy}>
           <h2 id="about-heading">A broad engineer with systems at the center.</h2>
           <p>
-            I have worked across backend services, production systems, web applications, and mobile development. I earned a Master of Science in Computer Science at the University of Colorado Boulder.
+            I completed my undergraduate studies at NITK Surathkal before earning a Master of Science in Computer Science at the University of Colorado Boulder. My work spans backend services, production systems, web applications, and mobile development.
           </p>
           <ul className={styles.socialLinks} aria-label="Professional profiles">
             {socialLinks.map((profile) => (

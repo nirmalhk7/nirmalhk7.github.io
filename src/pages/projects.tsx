@@ -1,19 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { trackClick, trackSearch, trackSelectContent } from "@/util/analytics";
 import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
-import { loadProjectMarkdownFiles } from "@/util/loadMarkdown";
+import { loadMarkdownFiles } from "@/util/loadMarkdown";
+import { cleanProjectSummary, normalizeTags, projectCategory, selectedProjects } from "@/util/projectCuration";
 import { GetStaticProps } from "next";
-import Jumbotron from "@/elements/jumbotron";
-import WebSection from "@/elements/WebSection";
+import { PageHero, PageSection, editorialStyles as styles } from "@/components/Site/Editorial";
 import { DefaultPageProps } from "./_app";
 import { ProjectInterface } from "@/interfaces/projects";
-import { ProjectDescription } from "@/components/Project/projectDescription";
 import { ProjectListItem } from "@/components/Project/projectListItem";
 import { renderProjectMarkdown } from "@/util/renderMarkdown";
-import { loadRandomQuote } from "@/util/loadQuote";
 import { useRouter } from "next/router";
+import { openGraphImage } from "@/util/openGraph";
 
-import { m, AnimatePresence } from "framer-motion";
 
 interface ProjectPageProps extends DefaultPageProps {
   projects: Array<Omit<ProjectInterface, "content"> & { contentHtml: string }>;
@@ -24,14 +22,21 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
   const [filter, setFilter] = useState("X");
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
+  const [showArchive, setShowArchive] = useState(false);
+  const [category, setCategory] = useState('All work');
   const router = useRouter();
+  const projectId = router.query.id;
   const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
-    const { id } = router.query;
+    const id = projectId;
+    setExpandedSlug(typeof id === 'string' ? id : null);
     if (id && typeof id === "string") {
-      setExpandedSlug(id);
-      setTimeout(() => {
+      if (!selectedProjects[id]) setShowArchive(true);
+      setCategory('All work');
+      setFilter('X');
+      setSearchQuery('');
+      const timer = setTimeout(() => {
         const element = projectRefs.current[id];
         if (element) {
           const offset = 100; // Offset for navbar
@@ -42,33 +47,39 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
 
           window.scrollTo({
             top: offsetPosition,
-            behavior: "smooth"
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
           });
         }
       }, 100);
+      return () => clearTimeout(timer);
     }
-  }, [router.query]);
+  }, [projectId]);
 
   const handleToggle = (slug: string) => {
     if (expandedSlug === slug) {
       setExpandedSlug(null);
-      router.push("/projects", undefined, { shallow: true });
+      router.push("/projects", undefined, { shallow: true, scroll: false });
     } else {
       setExpandedSlug(slug);
       trackClick(slug, "project_expand");
       trackSelectContent("project", slug, {
         interaction_type: "expand",
       });
-      router.push(`/projects?id=${slug}`, undefined, { shallow: true });
+      router.push(`/projects?id=${encodeURIComponent(slug)}`, undefined, { shallow: true, scroll: false });
     }
   };
 
+  const browsingAll = showArchive || searchQuery.trim().length > 0 || filter !== 'X' || category !== 'All work';
   const filteredProjects = projects.filter((project) => {
+    const matchesScope = browsingAll || Boolean(selectedProjects[project.slug]);
+    const matchesCategory = category === 'All work' || projectCategory(project) === category;
     const matchesFilter = filter === "X" || project.frontmatter.tags?.includes(filter);
     const searchContent = `${project.frontmatter.title} ${project.frontmatter.tags?.join(" ")} ${project.frontmatter.summary || ""} ${project.excerpt || ""} ${project.contentHtml}`.toLowerCase();
     const matchesSearch = searchQuery === "" || searchContent.includes(searchQuery.toLowerCase());
-    return matchesFilter && matchesSearch;
+    return matchesScope && matchesCategory && matchesFilter && matchesSearch;
   });
+
+  const clearFilters = () => { setSearchQuery(''); setFilter('X'); setCategory('All work'); };
 
   useEffect(() => {
     const searchTerm = searchQuery.trim();
@@ -139,102 +150,74 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
   };
 
   return (
-    <main className="bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+    <main className={styles.page}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <PageHero
+        eyebrow=""
+        title="Systems, tools, and the work behind them."
+        description="Start with eight selected projects in infrastructure, developer tooling, and product engineering. The full archive is here when you need it."
+        image={nasaGalaxy}
+        imageAlt="Earth seen from space"
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <Jumbotron.Mini
-        backgroundImage={nasaGalaxy}
-        backgroundImageAlt="Earth from Space"
-        title="Projects"
-        subtitle="Projects Catalogue of Nirmal Khedkar"
-        DescriptionComponent={ProjectDescription}
-      />
-
-      <WebSection className="pt-16 pb-48" id="projectdetailed" deferRender>
-        <div className="container mx-auto">
-          <div className="flex flex-col xl:flex-row xl:items-end justify-between mb-12 gap-8 px-4">
-            <div className="flex flex-col md:flex-row gap-6 items-start md:items-center w-full xl:justify-end">
-              <div className="relative w-full md:max-w-md group">
-                <input
-                  type="text"
-                  placeholder="Search projects, technologies..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-6 py-3 rounded-full bg-white border-2 border-gray-200 shadow-sm focus:border-accent focus:shadow-md transition-all duration-300 outline-none text-lg font-medium text-black placeholder:text-gray-400"
-                />
-                <div className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-accent transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                {filterOptions.map(({ tag, label }) => (
-                  <button
-                    key={tag}
-                    data-analytics-skip-global="true"
-                    onClick={() => {
-                      setFilter(tag);
-                      const isAll = tag === "X";
-                      trackClick(isAll ? "clear_filter" : tag, "project_filter");
-                      trackSelectContent("project_filter", isAll ? "all" : tag, {
-                        result_count: isAll
-                          ? projects.length
-                          : projects.filter((project) => project.frontmatter.tags?.includes(tag)).length,
-                      });
-                    }}
-                    className={`px-8 py-2.5 rounded-full font-blocky text-base uppercase tracking-normal transition-all duration-300 border-2 ${
-                      tag === filter 
-                        ? `bg-accent border-accent text-white shadow-lg ${tag === "X" ? "shadow-accent/20" : "shadow-accent/30"} scale-105`
-                        : "bg-white/50 backdrop-blur-sm border-gray-200 text-gray-500 hover:border-black/50 hover:text-black"
-                    }`}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="border border-gray-100 rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50">
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, index) => (
-                <m.div
-                  layout
-                  key={project.slug}
-                >
-                  <div
-                    ref={(el) => {
-                      projectRefs.current[project.slug] = el;
-                    }}
-                  >
-                    <ProjectListItem
-                      project={project}
-                      isExpanded={expandedSlug === project.slug}
-                      onToggle={() => handleToggle(project.slug)}
-                      index={index}
-                    />
-                  </div>
-                </m.div>
-              ))}
-            </AnimatePresence>
-            {filteredProjects.length === 0 && (
-
-              <div className="py-32 text-center bg-gray-50 rounded-b-3xl">
-                <h3 className="text-gray-500 font-heading italic text-3xl mb-4 tracking-normal">Checking the archives... looks like I haven&apos;t tackled this one yet.</h3>
-                <p className="text-gray-400 text-lg">Maybe try a different search or clear the filters?</p>
-              </div>
-            )}
-          </div>
+      <PageSection id="projectdetailed" title={browsingAll ? 'Explore the work.' : 'Selected work.'} description="Open a project for my contribution and technical details. Search covers the entire archive.">
+        <div role="search" aria-label="Search projects">
+          <label htmlFor="project-search" className="sr-only">Search projects and technologies</label>
+          <input
+            id="project-search"
+            type="search"
+            placeholder="Search projects and technologies"
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+            className={styles.searchInput}
+          />
         </div>
-      </WebSection>
+        <div className={styles.searchStatus}>
+          <p role="status">{filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} · {browsingAll ? 'Full archive' : 'Selected work'}</p>
+          {(searchQuery || filter !== 'X' || category !== 'All work') && <button type="button" className={styles.filterButton} onClick={clearFilters}>Clear search and filters</button>}
+        </div>
+        {filteredProjects.length === 0 && <p className={styles.emptyState}>No matching projects. Try another term or clear the filters above.</p>}
+        <div className={styles.filterBar} aria-label="Filter projects by area">
+          {['All work', 'Systems', 'Product', 'Research'].map(area => <button key={area} type="button" aria-pressed={area === category} className={`${styles.filterButton} ${area === category ? styles.filterButtonActive : ''}`} onClick={() => { setCategory(area); trackClick(area, 'project_filter'); }}>{area}</button>)}
+        </div>
+        <details className={styles.technologyFilters}>
+          <summary>Filter by technology{filter !== 'X' ? ` · ${filter}` : ''}</summary>
+          <div className={styles.filterBar} aria-label="Filter projects by technology">
+          {filterOptions.map(({ tag, label }) => (
+            <button
+              key={tag}
+              type="button"
+              aria-pressed={tag === filter}
+              data-analytics-skip-global="true"
+              onClick={() => {
+                setFilter(tag);
+                const isAll = tag === "X";
+                trackClick(isAll ? "clear_filter" : tag, "project_filter");
+                trackSelectContent("project_filter", isAll ? "all" : tag, {
+                  result_count: isAll ? projects.length : projects.filter((project) => project.frontmatter.tags?.includes(tag)).length,
+                });
+              }}
+              className={`${styles.filterButton} ${tag === filter ? styles.filterButtonActive : ""}`}
+            >
+              {label}
+            </button>
+          ))}
+          </div>
+        </details>
+        <div>
+          {filteredProjects.map((project, index) => (
+            <div key={project.slug} ref={(element) => { projectRefs.current[project.slug] = element; }}>
+              <ProjectListItem
+                project={project}
+                isExpanded={expandedSlug === project.slug}
+                onToggle={() => handleToggle(project.slug)}
+                index={index}
+              />
+            </div>
+          ))}
+        </div>
+        {!searchQuery && filter === 'X' && category === 'All work' && <button className={styles.action} type="button" onClick={() => setShowArchive(current => !current)}>{showArchive ? 'Return to selected work' : `View all ${projects.length} projects`}</button>}
+      </PageSection>
     </main>
   );
 };
@@ -242,14 +225,24 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
 
 
 export const getStaticProps: GetStaticProps<ProjectPageProps> = async () => {
-  const projectMarkdown = loadProjectMarkdownFiles("content/projects", {
+  const projectMarkdown = loadMarkdownFiles("content/projects", {
     getContent: true,
     getExcerpt: true,
   }) as unknown as ProjectInterface[];
+  const order = Object.keys(selectedProjects);
+  for (const slug of order) {
+    if (!projectMarkdown.some((project) => project.slug === slug)) {
+      throw new Error(`Missing selected project: ${slug}`);
+    }
+  }
   const projects = projectMarkdown.map(({ content, ...project }) => ({
     ...project,
+    frontmatter: { ...project.frontmatter, title: selectedProjects[project.slug]?.title || project.frontmatter.title, tags: normalizeTags(selectedProjects[project.slug]?.tags || project.frontmatter.tags), summary: selectedProjects[project.slug]?.summary || cleanProjectSummary(project.frontmatter.summary || project.excerpt || '') },
     contentHtml: renderProjectMarkdown(content),
-  }));
+  })).sort((a, b) => {
+    const rank = (slug: string) => order.includes(slug) ? order.indexOf(slug) : order.length;
+    return rank(a.slug) - rank(b.slug) || a.frontmatter.title.localeCompare(b.frontmatter.title);
+  });
   const allTags = Array.from(
     new Set(projects.flatMap((project) => project.frontmatter.tags || []))
   );
@@ -258,7 +251,6 @@ export const getStaticProps: GetStaticProps<ProjectPageProps> = async () => {
     props: {
       projects,
       allTags: allTags,
-      quote: loadRandomQuote(),
       pageMetadata: {
         enableWrap: true,
         seoMetadata: {
@@ -268,14 +260,7 @@ export const getStaticProps: GetStaticProps<ProjectPageProps> = async () => {
           openGraph: {
             type: "website",
             url: `https://nirmalhk7.com/projects`,
-            images: [
-              {
-                url: "https://nirmalhk7.com/api/og?title=Software%20Engineering%20Projects",
-                alt: "Hi, I'm Nirmal Khedkar",
-                width: 1200,
-                height: 630
-              },
-            ],
+            images: [openGraphImage("Across the stack.", "Selected projects. From infrastructure to experience.", "projects")],
             },
             },
             },

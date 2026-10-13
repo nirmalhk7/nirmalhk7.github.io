@@ -63,7 +63,11 @@ const pushGAEvent = (eventName: string, payload: AnalyticsPayload) => {
   }
 
   win.dataLayer = win.dataLayer || [];
-  win.dataLayer.push(["event", eventName, payload]);
+  // gtag's command queue consumes Arguments objects, including before initialization.
+  function queueCommand(..._args: unknown[]) {
+    win.dataLayer!.push(arguments);
+  }
+  queueCommand("event", eventName, payload);
 };
 
 const getVercelAnalytics = () => {

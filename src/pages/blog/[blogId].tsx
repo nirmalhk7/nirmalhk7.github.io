@@ -1,15 +1,5 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLinkedin,
-  faPinterest,
-  faFacebook,
-  faXTwitter,
-  faWhatsapp,
-  faTelegram,
-} from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import ReactMarkdown from "react-markdown";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { BlogFrontmatterInterface, BlogInterface } from "@/interfaces/blog";
@@ -18,12 +8,11 @@ import Link from "next/link";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { DefaultPageProps } from "../_app";
-import Jumbotron from "@/elements/jumbotron";
-import { useRouter } from "next/router";
+import { PageHero, PageSection, editorialStyles as styles } from "@/components/Site/Editorial";
 import Image from "next/image";
-import ProfileImage from "@/assets/images/profile.png";
-import { loadRandomQuote } from "@/util/loadQuote";
-import { trackClick, trackSelectContent, trackShare } from "@/util/analytics";
+import BlogShare from "@/components/Blog/BlogShare";
+import { openGraphImage } from "@/util/openGraph";
+import { markdownHeadings } from "@/util/markdownHeadings";
 
 const BLOG_SEO_TITLES: Record<string, string> = {
   homelab_architect: "Planning a Reliable Homelab Architecture",
@@ -72,7 +61,6 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
   return {
     props: {
       current: currentBlog,
-      quote: loadRandomQuote(),
       pageMetadata: {
         enableWrap: true,
         seoMetadata: {
@@ -87,14 +75,7 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
               authors: ["Nirmal Khedkar"],
               tags: currentBlog.frontmatter.tags,
             },
-            images: [
-              {
-                url: `https://nirmalhk7.com${currentBlog.frontmatter.img}`,
-                alt: currentBlog.frontmatter.title,
-                width: 1200,
-                height: 630
-              },
-            ],
+            images: [openGraphImage(BLOG_SEO_TITLES[blogId] || currentBlog.frontmatter.title, currentBlog.frontmatter.description || "Notes from the work. The Blue Green Manual.", "article")],
           },
         },
       },
@@ -105,59 +86,6 @@ export const getStaticProps: GetStaticProps<BlogTemplatePageProps> = async (
 const BlogTemplate = ({
   current,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const router = useRouter();
-  const absoluteUrl = `https://nirmalhk7.com${router.asPath}`;
-  const shareUrl = encodeURIComponent(absoluteUrl);
-  const shareTitle = encodeURIComponent(current.frontmatter?.title || "");
-  const shareSummary = encodeURIComponent(`${current.frontmatter?.title} by Nirmal Khedkar`);
-  const shareImage = encodeURIComponent(`https://nirmalhk7.com${current.frontmatter?.img || ""}`);
-  const shareTags = encodeURIComponent(current.frontmatter?.tags?.join(",") || "");
-
-  const shareButtons = [
-    {
-      name: "twitter",
-      href: `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}&hashtags=${shareTags}`,
-      Icon: faXTwitter,
-      iconHoverClass: "hover:text-[#000000]"
-    },
-    {
-      name: "linkedin",
-      href: `https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${shareTitle}&summary=${shareSummary}&source=${encodeURIComponent("https://nirmalhk7.com")}`,
-      Icon: faLinkedin,
-      iconHoverClass: "hover:text-[#0077b5]"
-    },
-    {
-      name: "facebook",
-      href: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
-      iconHoverClass: "hover:text-[#1877F2]",
-      Icon: faFacebook,
-    },
-    {
-      name: "pinterest",
-      href: `https://www.pinterest.com/pin/create/button/?url=${shareUrl}&media=${shareImage}&description=${shareSummary}`,
-      iconHoverClass: "hover:text-[#E60023]",
-      Icon: faPinterest,
-    },
-    {
-      name: "whatsapp",
-      href: `https://api.whatsapp.com/send?text=${shareSummary}%20${shareUrl}`,
-      iconHoverClass: "hover:text-[#25D366]",
-      Icon: faWhatsapp,
-    },
-    {
-      name: "telegram",
-      href: `https://telegram.me/share/url?url=${shareUrl}&text=${shareSummary}`,
-      iconHoverClass: "hover:text-[#0088cc]",
-      Icon: faTelegram,
-    },
-    {
-      name: "email",
-      href: `mailto:?subject=${encodeURIComponent("Check out this blog article by Nirmal Khedkar")}&body=${encodeURIComponent(`Nirmal Khedkar wrote this blog article that you might like: ${absoluteUrl}`)}`,
-      Icon: faEnvelope,
-      iconHoverClass: "hover:text-[#FFC107]",
-    },
-  ];
-
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -185,10 +113,7 @@ const BlogTemplate = ({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <ArticleJsonLd
         useAppDir={false}
         url={`https://nirmalhk7.com/blog/${current.slug}`}
@@ -198,220 +123,62 @@ const BlogTemplate = ({
         authorName="Nirmal Khedkar"
         description={current.frontmatter?.description || ""}
       />
-      <main>
-      <article className="bg-white has-bottom-sep">
-        <Jumbotron.Mini
-          backgroundImage={current.frontmatter?.img || ""}
-          backgroundImageAlt={`Cover image for ${current.frontmatter?.title || "blog post"}`}
-          title={current.frontmatter?.title || ""}
-          centerAlign={true}
-          subtitle=""
-          DescriptionComponent={() => (
-            <div className="page-header__info">
-              <div className="page-header__cat">
-                {current.frontmatter?.category?.map((category: string) => (
-                  <React.Fragment key={category}>
-                    <Link
-                      className="text-white no-underline uppercase"
-                      href="/blog"
-                    >
-                      {category}
-                    </Link>
-                    <div>{current.frontmatter?.date}</div>
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-          )}
-        />
-        <div className="container mx-auto pt-20">
-          <div className="w-full">
-            <ReactMarkdown
-              components={{
-                h1: ({ children }) => (
-                  <h2 className="text-black mt-8 mb-4 text-7xl font-bold">{children}</h2>
-                ),
-                h2: ({ children }) => (
-                  <h2 className="text-black mt-8 mb-4 text-6xl font-bold">{children}</h2>
-                ),
-                h3: ({ children }) => (
-                  <h3 className="text-black mt-6 mb-3 text-5xl font-bold">{children}</h3>
-                ),
-                h4: ({ children }) => (
-                  <h4 className="text-black mt-4 mb-2 text-4xl font-bold">{children}</h4>
-                ),
-                code({ inline, className, children, ...props }) {
-                  const match = /language-(\w+)/.exec(className || "");
-                  return !inline && match ? (
-                    <SyntaxHighlighter
-                      {...props}
-                      // eslint-disable-next-line react/no-children-prop
-                      children={String(children).replace(/\n$/, "")}
-                      style={atomDark}
-                      language={match[1]}
-                      PreTag="div"
-                    />
-                  ) : (
-                    <code {...props} className={className}>
-                      {children}
-                    </code>
-                  );
-                },
-                blockquote(props) {
-                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                  const { children, node, ...rest } = props;
-                  return (
-                    <blockquote {...rest} className="border-l-4 border-accent pl-4 italic my-6 text-gray-700 text-3xl">
-                      {children}
-                    </blockquote>
-                  );
-                },
-                ul(props) {
-                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                  const { children, node, ...rest } = props;
-                  return (
-                    <ul className="list-disc pl-5 my-4 leading-relaxed space-y-2 text-3xl">{children}</ul>
-                  );
-                },
-                ol(props) {
-                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                  const { children, node, ...rest } = props;
-                  return (
-                    <ol className="list-decimal pl-5 my-4 leading-relaxed space-y-2 text-3xl">{children}</ol>
-                  );
-                },
-                p(props) {
-                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                  const { children, node, ...rest } = props;
-                  return <p className="mt-4 leading-relaxed text-3xl text-gray-800">{children}</p>;
-                },
-                img({ src, alt }) {
-                  return (
-                    <div className="relative w-full h-[400px] md:h-[500px] my-12 rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
-                      <Image
-                        src={src || ""}
-                        alt={alt || "Blog image"}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 80vw"
-                      />
-                    </div>
-                  );
-                },
-              }}
-              skipHtml={false}
-              className="text-black mb-14 blog-content"
-            >
-              {current.content || ""}
-            </ReactMarkdown>
-            <div className="relative border-y-2 border-gray-100 my-24 py-5 grid grid-cols-8 gap-5">
-              <div className="col-span-8 tablet:col-span-6 ">
-                <h6 className="boxfont text-uppercase mt-0">
-                  Share the article
-                </h6>
-                {shareButtons.map((shareSocialMedia, index) => {
-                  return (
-                    <a
-                      key={index}
-                      href={shareSocialMedia.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:shadow-none hover:scale-110 cursor-pointer text-accent transition-colors duration-200 inline-block"
-                      data-analytics-skip-global="true"
-                      aria-label={`Share on ${shareSocialMedia.name}`}
-                      onClick={() => {
-                        trackShare(shareSocialMedia.name, "blog_post", current.slug);
-                        trackClick(shareSocialMedia.name, "blog_share");
-                      }}
-                    >
-                      <FontAwesomeIcon
-                        className={`mr-5 my-5 text-5xl text-accent ${shareSocialMedia.iconHoverClass}`}
-                        icon={shareSocialMedia.Icon}
-                      />
-                    </a>
-                  );
-                })}
-                <p className="blog-content__tags">
-                  <span></span>
-                  <span className="blog-content__tag-list">
-                    {current.frontmatter?.tags.map((element: string, index: number) => (
-                      <span className="tag-item" key={index}>
-                        {element}
-                      </span>
-                    ))}
-                  </span>
-                </p>
-              </div>
-
-              <div className="col-span-8 tablet:col-span-2 pr-5">
-                <button
-                  disabled
-                  className="button-accent-fill w-full text-center h-fit my-2"
-                  onClick={() => alert("Yes!")}
-                >
-                  Subscribe (WIP)
-                </button>
-                <Link
-                  className="block button button-accent w-full text-center h-fit my-2"
-                  href="/blog"
-                  data-analytics-skip-global="true"
-                  onClick={() => {
-                    trackSelectContent("navigation", "view_all_posts", {
-                      source: "blog_post",
-                    });
-                    trackClick("view_all_posts", "navigation");
-                  }}
-                >
-                  View All Posts
-                </Link>
-              </div>
-            </div>
-            <div className="relative bg-gray-100 p-5 grid grid-cols-12 gap-5">
-              <div className="col-span-12 tablet:col-span-1">
-                <Image
-                  src={ProfileImage}
-                  width={500}
-                  height={500}
-                  alt="Nirmal Khedkar's profile image"
-                  className="rounded-full"
-                  sizes="(min-width: 768px) 8vw, 100vw"
-                />
-              </div>
-
-              <div className="col-span-12 tablet:col-span-8 pl-10 text-3xl">
-                Looking to boost your engineering team&apos;s performance and
-                reliability? Hire Nirmal Khedkar. With two years of full-stack
-                experience at Visa,{" "}
-                <u>
-                  he&apos;s your man to improve your system performance and handle
-                  any runtime errors
-                </u>
-                . Nirmal is passionate about writing secure and efficient
-                &quot;fortress&quot; code, and has a track record of working in all major
-                languages (Java, JS, Python) and all major frameworks
-                (Springboot, MERN/MEAN, NextJS, etc). Nirmal is ready than ever
-                to make an immediate and positive impact to your team.
-              </div>
-              <div className="col-span-12 tablet:col-span-3">
-                <Link
-                  className="block button button-accent-fill hover:scale-50 w-full text-center h-fit my-2 animate-bounce"
-                  href="/resume?utm_source=pitch"
-                  data-analytics-skip-global="true"
-                  onClick={() => {
-                    trackSelectContent("resume", "hire_me_pitch", {
-                      source: "blog_post_pitch",
-                    });
-                    trackClick("hire_me_pitch", "engagement");
-                  }}
-                >
-                  Hire Nirmal Now!
-                </Link>
-              </div>
-            </div>
+      <main className={styles.page}>
+        <PageHero
+          variant="article"
+          eyebrow="The Blue Green Manual / Article"
+          title={current.frontmatter?.title || "Article"}
+          description={current.frontmatter?.description}
+          image={current.frontmatter?.img}
+          imageAlt={`Cover image for ${current.frontmatter?.title || "this article"}`}
+          compact
+        >
+          <Link href="/blog">← All writing</Link>
+        </PageHero>
+        <PageSection>
+          <div className={styles.articleMeta}>
+            <span>{current.frontmatter?.date}</span>
+            <span>{current.frontmatter?.category?.join(" / ")}</span>
+            <span>By Nirmal Khedkar</span>
           </div>
-        </div>
-      </article>
-    </main>
+          <ReactMarkdown
+            className={styles.articleBody}
+            components={{
+              ...markdownHeadings,
+              code({ inline, className, children, ...props }) {
+                const match = /language-(\w+)/.exec(className || "");
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    {...props}
+                    // eslint-disable-next-line react/no-children-prop
+                    children={String(children).replace(/\n$/, "")}
+                    style={atomDark}
+                    language={match[1]}
+                    PreTag="div"
+                  />
+                ) : <code {...props} className={className}>{children}</code>;
+              },
+              img({ src, alt }) {
+                return (
+                  <span className={styles.articleImage}>
+                    <Image src={src || ""} alt={alt || "Article image"} fill sizes="(max-width: 767px) calc(100vw - 44px), (max-width: 1612px) 84vw, 1360px" />
+                  </span>
+                );
+              },
+            }}
+          >
+            {current.content || ""}
+          </ReactMarkdown>
+          <div className={styles.articleFooter}>
+            <p>Share this article</p>
+            <BlogShare slug={current.slug} title={current.frontmatter?.title || "Article"} />
+            <ul className={styles.tagList} aria-label="Article tags">
+              {current.frontmatter?.tags?.map((tag) => <li key={tag}>{tag}</li>)}
+            </ul>
+            <Link href="/blog" className={styles.textLink}>Read all writing <span aria-hidden="true">↗</span></Link>
+          </div>
+        </PageSection>
+      </main>
     </>
   );
 };

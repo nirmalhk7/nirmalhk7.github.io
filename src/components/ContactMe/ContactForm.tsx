@@ -9,7 +9,7 @@ import {
   trackGenerateLead,
 } from "@/util/analytics";
 
-export default function ContactForm() {
+export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: string }) {
   const [state, handleSubmit] = useForm("mgvwblra");
   const hasTrackedFormStart = React.useRef(false);
   const hasTrackedSubmission = React.useRef(false);
@@ -76,6 +76,7 @@ export default function ContactForm() {
         placeholder="Name"
         type="text"
         aria-label="Name"
+        autoComplete="name"
         onFocus={() => handleFormFocus("name")}
         onInvalid={() => trackEvent("form_validation_error", {
           form_id: "contact-form",
@@ -94,6 +95,7 @@ export default function ContactForm() {
           required
           type="email"
           aria-label="Email"
+          autoComplete="email"
           onFocus={() => handleFormFocus("email")}
           onInvalid={() => trackEvent("form_validation_error", {
             form_id: "contact-form",
@@ -124,6 +126,13 @@ export default function ContactForm() {
         />
       </div>
 
+      {!!state.errors?.getFormErrors().length && (
+        <p role="alert">
+          Your message could not be sent. Please try again, or{' '}
+          <a href="mailto:nirmalhk7@gmail.com">email Nirmal directly</a>.
+        </p>
+      )}
+
       <button
         className="button button-accent-fill w-full mt-32"
         type="submit"
@@ -131,7 +140,7 @@ export default function ContactForm() {
         data-analytics-skip-global="true"
         onClick={() => trackClick("submit", "contact_form")}
       >
-        Submit
+        {state.submitting ? 'Sending…' : submitLabel}
       </button>
     </form>
   );

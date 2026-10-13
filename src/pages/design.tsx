@@ -1,54 +1,54 @@
-import WebSection from "@/elements/WebSection";
-import { GetStaticProps } from "next";
 import React from "react";
-import { loadRandomQuote } from "@/util/loadQuote";
+import Link from "next/link";
+import { GetStaticProps } from "next";
+import { DefaultPageProps } from "./_app";
+import { EditorialRow, PageHero, PageSection, editorialStyles as styles } from "@/components/Site/Editorial";
 
-const DesignPage: React.FC = () => {
-  return (
-    <WebSection className="relative" id="about">
-      {[
-        "bg-white text-black selection:bg-accent selection:text-white",
-        "bg-black text-white selection:bg-accent selection:text-white",
-        "bg-accent text-white selection:bg-white selection:text-accent",
-      ].map((color) => (
-        <div className={`${color} pt-32 pb-32`} key={color}>
-          <div className="container mx-auto">
-            <h1>Heading One</h1>
-            <h2>Heading Two</h2>
-            <h3 className="hover:shadow-accent hover:shadow-md">Heading Three</h3>
-            <h4>Heading Four</h4>
-            <h5>Heading Five</h5>
-            <h6>Heading Six</h6>
-            <p>Dummy paragraph. New Line</p>
-            <hr />
-            <code>CODE1</code>
-            <code>CODE1</code>
-            <code>CODE1</code>
-            <a href="#0"> Custom Link One</a>
-            <button className="button button-white">Button One</button>
-            <button className="button button-accent">Button One</button>
-            <button className="button button-accent-fill">Button One</button>
-          </div>
-        </div>
-      ))}
-    </WebSection>
-  );
-};
+const DesignPage: React.FC = () => (
+  <main className={styles.page}>
+    <PageHero
+      eyebrow="Design system / Shared components"
+      title="One system, across the stack."
+      description="Outfit headlines, Plex Mono labels, warm paper, deep ink, and vermilion connect the controls, section rhythm, and content patterns on this site."
+      compact
+    >
+      <Link href="/projects">See the project archive <span aria-hidden="true">↗</span></Link>
+    </PageHero>
+    <PageSection eyebrow="Interface foundations" title="Quiet structure. Clear actions." description="Warm paper, ink, and vermilion carry a consistent visual language across every route.">
+      <div className={styles.filterBar} aria-label="Button examples">
+        <span className={`${styles.filterButton} ${styles.filterButtonActive}`}>Selected control example</span>
+        <span className={styles.filterButton}>Secondary control example</span>
+        <Link href="/resume" className={styles.action}>Open résumé ↗</Link>
+      </div>
+      <EditorialRow
+        index={0}
+        eyebrow="Reusable content row"
+        title="A shared pattern for projects and writing."
+        description="The same spacing, hierarchy, metadata, and interaction cues appear in the project archive, article list, and case details."
+        meta="Pattern 01"
+        href="/blog"
+      />
+    </PageSection>
+    <PageSection tone="ink" eyebrow="Palette" title="Paper. Ink. Vermilion." description="A small color set keeps attention on the work and the people behind it.">
+      <ul className={styles.tagList}>
+        <li>Paper · #F5F2EB</li><li>Ink · #202321</li><li>Night · #19211F</li><li>Vermilion · #C43B31</li><li>Muted · #565C58</li>
+      </ul>
+    </PageSection>
+  </main>
+);
 
 export default DesignPage;
 
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {
-      quote: loadRandomQuote(),
-      pageMetadata: {
-        enableWrap: true,
-        seoMetadata: {
-          defaultTitle: "Official Website of Nirmal Khedkar",
-          description:
-            "Fortress Code Lightning Fast. This is Nirmal Khedkar's Official Website",
-        },
+export const getStaticProps: GetStaticProps<DefaultPageProps> = async () => ({
+  props: {
+    pageMetadata: {
+      enableWrap: true,
+      seoMetadata: {
+        title: "Site Design System",
+        description: "Shared visual components and design tokens used across Nirmal Khedkar's portfolio.",
+        noindex: true,
+        nofollow: true,
       },
     },
-  };
-};
+  },
+});

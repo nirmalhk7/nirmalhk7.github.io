@@ -18,6 +18,21 @@ const project = {
 };
 
 describe("ProjectListItem", () => {
+  it("shows original notes immediately for selected projects without a second disclosure", () => {
+    render(
+      <ProjectListItem
+        project={{ ...project, slug: "k8-autoscaler", contentHtml: "<p>Original autoscaler implementation notes.</p>" } as never}
+        isExpanded
+        onToggle={jest.fn()}
+        index={0}
+      />
+    );
+
+    expect(screen.getByText("Original autoscaler implementation notes.")).toBeVisible();
+    expect(screen.queryByText("Infrastructure · Capacity planning")).not.toBeInTheDocument();
+    expect(screen.queryByText("Original project notes")).not.toBeInTheDocument();
+  });
+
   it("shows build-rendered project content when expanded", () => {
     render(
       <ProjectListItem

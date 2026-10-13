@@ -37,12 +37,12 @@ const Navbar = ({ variant = "default" }: { variant?: "default" | "portfolio" }) 
       },
       {
         label: "Projects",
-        route: router.pathname === "/" ? "#project" : "/#project",
+        route: router.pathname === "/" ? "#project" : "/projects",
         sectionId: "project",
       },
       {
         label: "Blog",
-        route: router.pathname === "/" ? "#blog" : "/#blog",
+        route: router.pathname === "/" ? "#blog" : "/blog",
         sectionId: "blog",
       },
       {
@@ -87,6 +87,7 @@ const Navbar = ({ variant = "default" }: { variant?: "default" | "portfolio" }) 
 
   useEffect(() => {
     if (isPortfolio) {
+      if (router.pathname !== "/") return;
       const observer = new IntersectionObserver((entries) => {
         const visible = entries.filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -117,7 +118,7 @@ const Navbar = ({ variant = "default" }: { variant?: "default" | "portfolio" }) 
       window.removeEventListener("scroll", scheduledScroll);
       scheduledScroll.cancel();
     };
-  }, [isPortfolio]);
+  }, [isPortfolio, router.pathname]);
 
   useEffect(() => {
     if (isPortfolio) {
@@ -307,11 +308,71 @@ const Navbar = ({ variant = "default" }: { variant?: "default" | "portfolio" }) 
 };
 
 function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; activeSectionId: string }) {
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const visibilityRef = useRef(true);
+  const headerRef = useRef<HTMLElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLElement>(null);
   const wasOpenRef = useRef(false);
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const hero = document.getElementById("max-jumbo") || document.querySelector<HTMLElement>("[data-navigation-hero]");
+    const updateVisibility = () => {
+      // The cinematic hero stays pinned. Its first viewport is the navigation boundary,
+      // rather than its sticky rectangle, which remains onscreen through the whole story.
+      const story = hero?.closest<HTMLElement>("[data-navigation-story]");
+      const boundary = story && hero
+        ? story.getBoundingClientRect().top + hero.offsetHeight
+        : hero?.getBoundingClientRect().bottom;
+      const nextVisible = menuOpen || boundary === undefined || boundary <= 0;
+      if (visibilityRef.current !== nextVisible) {
+        visibilityRef.current = nextVisible;
+        setVisible(nextVisible);
+      }
+      if (headerRef.current) headerRef.current.inert = !nextVisible;
+    };
+    const scheduledUpdate = createRafThrottled(updateVisibility);
+    updateVisibility();
+    window.addEventListener("scroll", scheduledUpdate, { passive: true });
+    window.addEventListener("resize", scheduledUpdate);
+    return () => {
+      window.removeEventListener("scroll", scheduledUpdate);
+      window.removeEventListener("resize", scheduledUpdate);
+      scheduledUpdate.cancel();
+    };
+  }, [router.pathname, menuOpen]);
+
+  const handleSectionLink = (event: React.MouseEvent<HTMLAnchorElement>, route: string) => {
+    trackClick(route, "navbar_link");
+    if (
+      !route.startsWith("/#") ||
+      router.pathname === "/" ||
+      event.button !== 0 ||
+      event.metaKey || event.ctrlKey || event.shiftKey || event.altKey
+    ) return;
+
+    event.preventDefault();
+    const targetId = route.slice(2);
+    void router.push(route).then(() => {
+      let attempts = 0;
+      const alignWhenReady = () => {
+        const target = document.getElementById(targetId);
+        if (target) {
+          const rootStyle = document.documentElement.style;
+          const previousScrollBehavior = rootStyle.scrollBehavior;
+          rootStyle.scrollBehavior = "auto";
+          target.scrollIntoView({ behavior: "auto", block: "start" });
+          requestAnimationFrame(() => { rootStyle.scrollBehavior = previousScrollBehavior; });
+        } else if (attempts++ < 120) {
+          requestAnimationFrame(alignWhenReady);
+        }
+      };
+      requestAnimationFrame(alignWhenReady);
+    });
+  };
 
   useEffect(() => {
     if (!menuOpen) {
@@ -351,20 +412,20 @@ function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; 
   }, [menuOpen]);
 
   return (
-    <header className={styles.portfolioNav}>
+    <header ref={headerRef} className={styles.portfolioNav} data-visible={visible} aria-hidden={!visible}>
       <Link href="/" className={styles.portfolioBrand} aria-label="Nirmal Khedkar, home">nirmalhk7</Link>
       <nav className={styles.portfolioDesktopNav} aria-label="Main navigation">
         {items.map((item) => (
           <Link
             key={item.label}
             href={item.route}
-            aria-current={activeSectionId === item.sectionId && item.sectionId ? "location" : undefined}
-            onClick={() => trackClick(item.route, "navbar_link")}
+            aria-current={activeSectionId === item.sectionId && item.sectionId ? router.pathname === '/' ? 'location' : 'page' : undefined}
+            onClick={(event) => handleSectionLink(event, item.route)}
           >
             {item.label}
           </Link>
         ))}
-        <Link className={styles.portfolioResume} href="/resume" target="_blank" rel="noopener noreferrer" onClick={() => trackClick("download_resume", "engagement")}>Resume</Link>
+        <Link className={styles.portfolioResume} href="/resume" aria-current={router.pathname === '/resume' ? 'page' : undefined} onClick={() => trackClick("download_resume", "engagement")}>Resume</Link>
         <button type="button" className={styles.portfolioSearch} onClick={() => window.dispatchEvent(new Event("open-command-palette"))} aria-label="Search, Command K">
           <span>Search</span><kbd>⌘ K</kbd>
         </button>
@@ -399,8 +460,8 @@ function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; 
                   <li key={item.label}>
                     <Link
                       href={item.route}
-                      aria-current={activeSectionId === item.sectionId && item.sectionId ? "location" : undefined}
-                      onClick={() => { trackClick(item.route, "navbar_link"); setMenuOpen(false); }}
+                      aria-current={activeSectionId === item.sectionId && item.sectionId ? router.pathname === '/' ? 'location' : 'page' : undefined}
+                      onClick={(event) => { handleSectionLink(event, item.route); setMenuOpen(false); }}
                     >
                       <span className={styles.portfolioMenuIndex}>0{index + 1}</span>{item.label}<span aria-hidden="true">↗</span>
                     </Link>
@@ -408,7 +469,7 @@ function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; 
                 ))}
               </ul>
               <div className={styles.portfolioMenuActions}>
-                <Link href="/resume" target="_blank" rel="noopener noreferrer" onClick={() => { trackClick("download_resume", "engagement"); setMenuOpen(false); }}>Resume <span aria-hidden="true">↗</span></Link>
+                <Link href="/resume" aria-current={router.pathname === '/resume' ? 'page' : undefined} onClick={() => { trackClick("download_resume", "engagement"); setMenuOpen(false); }}>Resume</Link>
                 <button type="button" onClick={() => { setMenuOpen(false); window.dispatchEvent(new Event("open-command-palette")); }}>Search <kbd>⌘ K</kbd></button>
               </div>
             </nav>

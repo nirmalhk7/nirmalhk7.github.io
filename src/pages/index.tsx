@@ -13,6 +13,8 @@ import { ProjectInterface } from "@/interfaces/projects";
 import { DefaultPageProps } from "./_app";
 import loadYaml from "@/util/loadYaml";
 import { loadMarkdownFile } from "@/util/loadMarkdown";
+import { selectedProjects } from "@/util/projectCuration";
+import { openGraphImage } from "@/util/openGraph";
 
 interface IndexPageProps extends DefaultPageProps {
   collegeCourses: CourseInterface[];
@@ -46,10 +48,16 @@ export default function IndexPage({
     name: "Nirmal Khedkar",
     jobTitle: "Software Engineer",
     url: "https://nirmalhk7.com",
-    alumniOf: {
-      "@type": "EducationalOrganization",
-      name: "University of Colorado Boulder",
-    },
+    alumniOf: [
+      {
+        "@type": "EducationalOrganization",
+        name: "National Institute of Technology Karnataka, Surathkal",
+      },
+      {
+        "@type": "EducationalOrganization",
+        name: "University of Colorado Boulder",
+      },
+    ],
     sameAs: cv.map((profile) => profile.url).filter((url) => /^https?:\/\//.test(url)),
   };
 
@@ -74,7 +82,7 @@ export default function IndexPage({
 
 export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
   const contentDir = path.join(process.cwd(), "content", "yml");
-  const featuredProjectSlugs = ["atskit", "k8-autoscaler", "scholarhub", "MedicalVR"];
+  const featuredProjectSlugs = ["k8-autoscaler", "atskit", "scholarhub", "MedicalVR"];
   const projects = featuredProjectSlugs.map((slug) => {
     const projectPath = path.join(process.cwd(), "content", "projects", `${slug}.md`);
     try {
@@ -84,7 +92,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
       });
       return {
         ...project,
-        frontmatter: { ...project.frontmatter, summary: featuredProjectCopy[slug] },
+        frontmatter: { ...project.frontmatter, title: selectedProjects[slug].title, tags: selectedProjects[slug].tags, summary: featuredProjectCopy[slug] },
       } as ProjectInterface;
     } catch (error) {
       throw new Error(`Homepage featured project "${slug}" could not be loaded from ${projectPath}: ${String(error)}`);
@@ -111,12 +119,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
           openGraph: {
             type: "website",
             url: "https://nirmalhk7.com",
-            images: [{
-              url: "https://nirmalhk7.com/api/og?title=Nirmal%20Khedkar",
-              alt: "Nirmal Khedkar, software engineer",
-              width: 1200,
-              height: 630,
-            }],
+            images: [openGraphImage("Built for the real world.", "Product thinking. Engineering depth.", "home")],
           },
         },
       },

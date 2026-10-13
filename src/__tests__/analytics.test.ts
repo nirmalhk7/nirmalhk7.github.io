@@ -52,4 +52,26 @@ describe("analytics utilities", () => {
       environment.NODE_ENV = previousNodeEnv;
     }
   });
+
+  it("queues share commands before the Google tag loads in gtag arguments format", async () => {
+    const environment = process.env as { NODE_ENV?: string };
+    const previousNodeEnv = environment.NODE_ENV;
+    environment.NODE_ENV = "production";
+    try {
+      const { trackShare } = await import("@/util/analytics");
+      trackShare("bluesky", "blog_post", "homelab_architect", {
+        share_action: "composer_opened",
+      });
+      const command = (window as Window & { dataLayer?: IArguments[] }).dataLayer![0];
+      expect(Object.prototype.toString.call(command)).toBe("[object Arguments]");
+      expect(Array.from(command)).toEqual([
+        "event", "share", expect.objectContaining({
+          method: "bluesky", content_type: "blog_post", item_id: "homelab_architect",
+          share_action: "composer_opened",
+        }),
+      ]);
+    } finally {
+      environment.NODE_ENV = previousNodeEnv;
+    }
+  });
 });
