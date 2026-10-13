@@ -18,8 +18,8 @@ describe('blog sharing', () => {
       ['X', 'x', 'url'], ['Facebook', 'facebook', 'u'], ['LinkedIn', 'linkedin', 'url'], ['Bluesky', 'bluesky', 'text'],
     ]) {
       const link = screen.getByRole('link', { name: `Share on ${name}` });
-      const composer = new URL(link.getAttribute('href')!);
-      const value = composer.searchParams.get(parameter)!;
+      const composer = new URL(link.getAttribute('href') || '');
+      const value = composer.searchParams.get(parameter) || '';
       const shared = new URL(source === 'bluesky' ? value.split('\n\n')[1] : value);
       expect(shared.origin + shared.pathname).toBe('https://nirmalhk7.com/blog/homelab_architect');
       expect(Object.fromEntries(shared.searchParams)).toEqual({

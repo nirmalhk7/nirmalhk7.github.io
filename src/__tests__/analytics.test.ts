@@ -62,8 +62,9 @@ describe("analytics utilities", () => {
       trackShare("bluesky", "blog_post", "homelab_architect", {
         share_action: "composer_opened",
       });
-      const command = (window as Window & { dataLayer?: IArguments[] }).dataLayer![0];
+      const command = (window as Window & { dataLayer?: IArguments[] }).dataLayer?.[0];
       expect(Object.prototype.toString.call(command)).toBe("[object Arguments]");
+      if (!command) throw new Error("Expected queued share event");
       expect(Array.from(command)).toEqual([
         "event", "share", expect.objectContaining({
           method: "bluesky", content_type: "blog_post", item_id: "homelab_architect",
