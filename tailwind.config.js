@@ -25,8 +25,9 @@ module.exports = {
         nasaEarth: "url('../images/nasa-earth.jpg')",
       },
       fontFamily: {
-        blocky: ["Montserrat", "sans-serif"],
-        heading: ["Libre Baskerville", "serif"],
+        blocky: ["Portfolio Outfit", "Avenir Next", "sans-serif"],
+        heading: ["Portfolio Outfit", "Avenir Next", "sans-serif"],
+        mono: ["Portfolio Plex Mono", "ui-monospace", "monospace"],
       },
       letterSpacing: {
         widest: "0.25rem",

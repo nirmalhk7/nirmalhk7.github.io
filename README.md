@@ -109,13 +109,11 @@ The project employs a robust CI/CD pipeline via GitHub Actions:
 - **Link Checker:** Weekly scheduled checks to identify and fix broken external links.
 - **Vercel Deployment:** Automated production deployments with preview environments for PRs.
 
-## 📈 Surveillance & Analytics
+## 📈 Analytics
 
-This site uses a custom tracking hook `useAnalytics` that integrates with Google Analytics 4 (GA4) to monitor:
-- **Scroll Depth:** Milestone tracking at 25%, 50%, 75%, and 90%.
-- **Persona Tagging:** Automatically identifies "Recruiters" (resume downloads) and "Engaged Readers" (75%+ scroll depth).
-- **Engagement Metrics:** Tracks outbound link latency, session duration, and document visibility changes.
-- **Error Capturing:** Global error boundary for tracking client-side exceptions.
+GA4 measures acquisition, page/content engagement, project discovery, résumé interactions, sharing, contact-form outcomes, errors, and available Web Vitals. Advanced Consent Mode v2 provides independent Analytics and Advertising choices; Vercel Analytics and Speed Insights require Analytics acceptance. Visitor form values, raw searches, arbitrary URL queries, and raw error messages are excluded.
+
+See [GA4 coverage and property setup](docs/ga4-coverage.md) for event ownership, reporting definitions, limits, testing, and required stream settings before deployment.
 
 ## 📄 License
 

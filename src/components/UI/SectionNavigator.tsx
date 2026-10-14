@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { m } from "framer-motion";
+import { trackEvent } from "@/util/analytics";
 import { createRafThrottled } from "@/util/rafThrottle";
 
 const sections = [
@@ -46,6 +47,7 @@ export default function SectionNavigator() {
   }, []);
 
   const scrollToSection = (id: string) => {
+    trackEvent("section_navigation",{section_id:id||"home"});
     if (!id) {
       window.scrollTo({ top: 0, behavior: "smooth" });
       setActiveSection("");
@@ -64,9 +66,10 @@ export default function SectionNavigator() {
       {sections.map((sec) => {
         const isActive = activeSection === sec.id;
         return (
-          <button
+          <button data-analytics-id="sectionnavigator_control_1"
             key={sec.label}
             type="button"
+            data-analytics-skip-global="true"
             onClick={() => scrollToSection(sec.id)}
             className="group relative flex items-center justify-center p-1.5 focus:outline-none"
             aria-label={`Jump to ${sec.label}`}

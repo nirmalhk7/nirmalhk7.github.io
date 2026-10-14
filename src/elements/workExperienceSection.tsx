@@ -126,7 +126,7 @@ const WorkExperienceSection = React.forwardRef<
           </h3>
 
           <div className="flex items-center space-x-4">
-            <button
+            <button data-analytics-id="scroll_left"
               type="button"
               onClick={() => scrollByAmount("left")}
               className="!border-0 !leading-normal !tracking-normal !normal-case !font-sans w-12 h-12 rounded-full bg-gray-100 hover:bg-accent hover:text-white text-gray-700 flex items-center justify-center transition-all text-xl"
@@ -134,7 +134,7 @@ const WorkExperienceSection = React.forwardRef<
             >
               ←
             </button>
-            <button
+            <button data-analytics-id="scroll_right"
               type="button"
               onClick={() => scrollByAmount("right")}
               className="!border-0 !leading-normal !tracking-normal !normal-case !font-sans w-12 h-12 rounded-full bg-gray-100 hover:bg-accent hover:text-white text-gray-700 flex items-center justify-center transition-all text-xl"
@@ -165,7 +165,7 @@ const WorkExperienceSection = React.forwardRef<
                 const isPast = index <= activeIndex;
 
                 return (
-                  <button
+                  <button data-analytics-id="workexperiencesection_control_3"
                     key={`${element.company}-node-${index}`}
                     type="button"
                     onClick={() => scrollToCard(index)}

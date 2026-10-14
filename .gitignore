@@ -38,3 +38,8 @@ next-env.d.ts
 .env\nreports/
 
 .env
+
+# Local tooling and documentation
+/.codegraph/
+/.impeccable/
+/docs/
