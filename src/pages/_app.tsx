@@ -50,6 +50,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   const shouldReduceMotion = useReducedMotion();
   const layoutVariant = pageProps.pageMetadata?.layoutVariant ?? "portfolio";
   const isPortfolio = layoutVariant === "portfolio";
+  const isResume = router.pathname === "/resume";
 
   useAnalytics();
 
@@ -62,7 +63,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
       {!isPortfolio && <SmoothScroller />}
       {!isPortfolio && <SectionNavigator />}
       {!isPortfolio && <CursorSpotlight />}
-      <CommandPalette />
+      {!isResume && <CommandPalette />}
       <DefaultSeo
         defaultTitle="Nirmal Khedkar | Software Engineer"
         description="Nirmal Khedkar builds backend services, infrastructure, and products across the stack."
@@ -111,7 +112,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         }}
         titleTemplate="%s | Nirmal Khedkar"
       />
-      <AnalyticsProvider />
+      <AnalyticsProvider hideBanner={isResume} />
       {pageProps.pageMetadata ? (
         <div key="page-content" className={isPortfolio ? portfolioStyles.shell : undefined}>
           {pageProps.pageMetadata.seoMetadata ? (

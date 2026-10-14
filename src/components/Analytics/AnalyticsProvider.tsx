@@ -8,7 +8,7 @@ import { CONSENT_KEY, CONSENT_EVENT, ConsentState, initializeAnalytics, readCons
 import { sanitizeAnalyticsUrl } from '@/util/analyticsPrivacy';
 import styles from './consent.module.scss';
 
-export function AnalyticsProvider() {
+export function AnalyticsProvider({ hideBanner = false }: { hideBanner?: boolean }) {
   const [state, setState] = useState<ConsentState>({analytics:false, advertising:false, decided:false});
   const [ready, setReady] = useState(false);
   const [open, setOpen] = useState(false);
@@ -37,7 +37,7 @@ export function AnalyticsProvider() {
   return <>
     {ready && enabled && <Script id="google-analytics" src={`https://www.googletagmanager.com/gtag/js?id=${id}`} strategy="afterInteractive" />}
     {ready && enabled && state.analytics && <><Analytics beforeSend={event=>readConsent().analytics ? {...event,url:sanitizeAnalyticsUrl(event.url)} : null} /><SpeedInsights beforeSend={event=>readConsent().analytics ? {...event,url:sanitizeAnalyticsUrl(event.url)} : null} /></>}
-    {ready && open && <section aria-label="Privacy preferences" className={styles.banner} data-analytics-exposure-ignore="true" data-analytics-skip-global="true">
+    {ready && open && !hideBanner && <section aria-label="Privacy preferences" className={styles.banner} data-analytics-exposure-ignore="true" data-analytics-skip-global="true">
       <h2>Privacy preferences</h2>
       <p>Google Analytics measures visits and interactions. Before you accept, Google receives cookieless measurement signals. Optional cookies help recognize repeat visits; advertising features add eligible demographics and interests. <Link href="/privacy">Privacy details</Link></p>
       {customize && <div className={styles.options}>
