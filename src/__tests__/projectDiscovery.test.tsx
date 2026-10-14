@@ -4,7 +4,9 @@ import Projects from '@/pages/projects';
 import { normalizeTags, selectedProjects } from '@/util/projectCuration';
 
 jest.mock('react-markdown', () => ({ __esModule: true, default: () => null }));
-jest.mock('next/router', () => ({ useRouter: () => ({ query: {}, push: jest.fn() }) }));
+const mockRouter = { query: {} as { id?: string }, push: jest.fn() };
+jest.mock('next/router', () => ({ useRouter: () => mockRouter }));
+beforeEach(() => { mockRouter.query = {}; mockRouter.push.mockClear(); });
 
 const projects = [...Object.entries(selectedProjects).map(([slug, brief]) => ({ slug, frontmatter: { title: brief.title, tags: brief.tags, summary: brief.summary }, excerpt: '', contentHtml: '<p>Original source</p>' })), {
   slug: 'legacy', frontmatter: { title: 'Legacy experiment', tags: ['C'], summary: 'Earlier work.' }, excerpt: '', contentHtml: '',
@@ -43,4 +45,15 @@ test('records project collapse, archive and clear state, and search catalog resu
   fireEvent.click(screen.getByRole('button',{name:'Clear search and filters'}));
   expect(spy).toHaveBeenCalledWith('[Analytics] project_filter',expect.objectContaining({action:'clear'}));
   spy.mockRestore(); jest.useRealTimers();
+});
+
+test('opening a search result preserves search when its shallow URL update arrives', () => {
+  const props = { projects: projects as never, allTags: ['C', 'Docker'], pageMetadata: { enableWrap: true, seoMetadata: { title: 'Projects' } } };
+  const { rerender } = render(<Projects {...props} />);
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'legacy' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Expand Legacy experiment details' }));
+  mockRouter.query = { id: 'legacy' };
+  rerender(<Projects {...props} />);
+  expect(screen.getByRole('searchbox')).toHaveValue('legacy');
+  expect(screen.getByRole('status')).toHaveTextContent('1 project');
 });

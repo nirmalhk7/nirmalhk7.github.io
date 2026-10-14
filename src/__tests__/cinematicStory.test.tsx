@@ -9,9 +9,9 @@ jest.mock("next/image", () => ({
 
 it("renders the hero and every engineering chapter in static HTML before motion loads", () => {
   const html = renderToStaticMarkup(<CinematicStory />);
-  expect(html).toContain("I BUILD SYSTEMS BUSINESSES CAN RELY ON.");
+  expect(html).toContain("I BUILD &amp; SHIP BACKEND SYSTEMS.");
   expect(html).toContain(">Nirmal Khedkar</p>");
-  expect(html).toContain("backend and infrastructure engineer");
+  expect(html).toContain("Backend &amp; infrastructure engineer.");
   expect(html).toContain("Visa · ZOLL Data Systems · NITK Surathkal · MS CS, CU Boulder");
   const document = new DOMParser().parseFromString(html, "text/html");
   const chapters = document.querySelectorAll("[data-story-stage]");

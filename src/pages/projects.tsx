@@ -26,11 +26,17 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
   const [category, setCategory] = useState('All work');
   const router = useRouter();
   const projectId = router.query.id;
+  const localToggleId = useRef<string | null | undefined>(undefined);
   const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
     const id = projectId;
-    setExpandedSlug(typeof id === 'string' ? id : null);
+    const normalizedId = typeof id === 'string' ? id : null;
+    setExpandedSlug(normalizedId);
+    if (localToggleId.current === normalizedId) {
+      localToggleId.current = undefined;
+      return;
+    }
     if (id && typeof id === "string") {
       if (!selectedProjects[id]) setShowArchive(true);
       setCategory('All work');
@@ -56,6 +62,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
   }, [projectId]);
 
   const handleToggle = (slug: string) => {
+    localToggleId.current = expandedSlug === slug ? null : slug;
     trackEvent("project_toggle", {content_id:slug,action:expandedSlug===slug?"collapse":"expand"});
     if (expandedSlug === slug) {
       setExpandedSlug(null);
