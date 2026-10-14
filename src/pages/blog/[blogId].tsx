@@ -141,6 +141,7 @@ const BlogTemplate = ({
             <span>{current.frontmatter?.category?.join(" / ")}</span>
             <span>By Nirmal Khedkar</span>
           </div>
+          <div data-analytics-exposure={current.slug}>
           <ReactMarkdown
             className={styles.articleBody}
             components={{
@@ -169,6 +170,7 @@ const BlogTemplate = ({
           >
             {current.content || ""}
           </ReactMarkdown>
+          </div>
           <div className={styles.articleFooter}>
             <p>Share this article</p>
             <BlogShare slug={current.slug} title={current.frontmatter?.title || "Article"} />

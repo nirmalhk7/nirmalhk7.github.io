@@ -28,3 +28,19 @@ test('leads with eight selected projects, searches the whole archive, and recove
   fireEvent.click(screen.getByRole('button', { name: 'View all 9 projects' }));
   expect(screen.getByRole('status')).toHaveTextContent('9 projects · Full archive');
 });
+
+test('records project collapse, archive and clear state, and search catalog results without free text', () => {
+  jest.useFakeTimers(); const spy=jest.spyOn(console,'log').mockImplementation(()=>{});
+  render(<Projects projects={projects as never} allTags={['C','Docker']} pageMetadata={{enableWrap:true,seoMetadata:{title:'Projects'}}} />);
+  fireEvent.click(screen.getByRole('button',{name:'View all 9 projects'}));
+  expect(spy).toHaveBeenCalledWith('[Analytics] project_archive',expect.objectContaining({action:'show'}));
+  fireEvent.click(screen.getByRole('button',{name:'Expand Legacy experiment details'}));
+  fireEvent.click(screen.getByRole('button',{name:'Collapse Legacy experiment details'}));
+  expect(spy).toHaveBeenCalledWith('[Analytics] project_toggle',expect.objectContaining({content_id:'legacy',action:'collapse'}));
+  fireEvent.change(screen.getByRole('searchbox'),{target:{value:'legacy'}});
+  jest.advanceTimersByTime(700);
+  expect(spy).toHaveBeenCalledWith('[Analytics] site_search',expect.objectContaining({query_length:6,matched_ids:'legacy',result_count:1}));
+  fireEvent.click(screen.getByRole('button',{name:'Clear search and filters'}));
+  expect(spy).toHaveBeenCalledWith('[Analytics] project_filter',expect.objectContaining({action:'clear'}));
+  spy.mockRestore(); jest.useRealTimers();
+});

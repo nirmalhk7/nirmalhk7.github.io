@@ -43,15 +43,15 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, ContactMeSectionProps>
             style={variant === "default" ? { y: contentY } : undefined}
           >
           <m.div 
-            className="container mx-auto"
+            className={variant === "portfolio" ? "portfolio-contact-layout" : "container mx-auto"}
             initial={variant === "default" ? { opacity: 0, y: 30 } : false}
             whileInView={variant === "default" ? { opacity: 1, y: 0 } : undefined}
             viewport={variant === "default" ? { once: true, amount: 0.2 } : undefined}
             transition={variant === "default" ? { duration: 0.8, ease: "easeOut" } : undefined}
           >
-            <div className="narrow m-auto text-white">
+            <div className={variant === "portfolio" ? "portfolio-contact-intro" : "narrow m-auto text-white"}>
               <div className={variant === "portfolio" ? "portfolio-contact-heading" : "text-center"}>
-                {variant === "portfolio" ? <><h2>LET&apos;S BUILD.</h2><p className="portfolio-contact-invitation">Hiring for backend, infrastructure, or a broader engineering role? Tell me what your team is building.</p></> : <><h3 className="my-0">Contact Me</h3><h2>Say Hi!</h2><p className="font-blocky text-3xl">I&apos;ll reach out to you as soon as I can.</p></>}
+                {variant === "portfolio" ? <><h2>Let&apos;s talk engineering.</h2><p className="portfolio-contact-invitation">Hiring for backend or infrastructure work? Let’s talk about your team and the systems you’re building.</p></> : <><h3 className="my-0">Contact Me</h3><h2>Say Hi!</h2><p className="font-blocky text-3xl">I&apos;ll reach out to you as soon as I can.</p></>}
               </div>
             </div>
             <div className={`mt-24 grid gap-16 laptop:grid-cols-3 tablet:grid-cols-3 mobile-l:grid-cols-1 ${variant === "portfolio" ? "portfolio-contact-grid" : ""}`}>

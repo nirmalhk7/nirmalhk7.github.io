@@ -2,20 +2,19 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BlogMiniInterface } from "@/interfaces/blog";
-import { trackClick, trackSelectContent } from "@/util/analytics";
+import { trackSelectContent } from "@/util/analytics";
 import { PageSection, editorialStyles as styles } from "@/components/Site/Editorial";
 
 const LatestBlogSection = ({ frontmatter, excerpt, slug }: BlogMiniInterface) => (
     <PageSection id="blog-first" tone="ink">
       <div className={styles.featured}>
-        <Link
+        <Link data-analytics-exposure={slug} data-analytics-skip-global="true"
           href={`/blog/${slug}`}
           prefetch={false}
           className={styles.featuredImage}
           aria-label={`Read ${frontmatter?.title || "the latest article"}`}
           onClick={() => {
             trackSelectContent("blog_post", slug, { item_list_name: "latest_blog" });
-            trackClick(frontmatter?.title || "", "latest_blog_read_more");
           }}
         >
           <Image src={frontmatter?.img || ""} alt={frontmatter?.title || "Article cover"} fill sizes="(max-width: 767px) 100vw, 48vw" />

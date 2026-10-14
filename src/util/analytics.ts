@@ -1,6 +1,7 @@
-type AnalyticsValue = string | number | boolean | null | undefined;
-type AnalyticsPayload = Record<string, AnalyticsValue>;
-
+import { analyticsEvents, AnalyticsEventName } from './analyticsEvents';
+import { AnalyticsPayload, sanitizeAnalyticsPayload, sanitizeAnalyticsUrl, sanitizeAnalyticsReferrer } from './analyticsPrivacy';
+import { gaCommand, initializeAnalytics, readConsent, validMeasurementId } from './analyticsConsent';
+export { sanitizeAnalyticsPayload, sanitizeAnalyticsUrl } from './analyticsPrivacy';
 type AnalyticsEventOptions = {
   includePageContext?: boolean;
 };
@@ -11,26 +12,18 @@ const getPageContext = (): AnalyticsPayload => {
   if (typeof window === "undefined") return {};
 
   return {
-    page_location: window.location.href,
-    page_path: window.location.pathname + window.location.search,
+    page_location: sanitizeAnalyticsUrl(window.location.href),
+    page_path: sanitizeAnalyticsUrl(window.location.pathname + window.location.search),
     page_title: document.title,
     viewport_width: window.innerWidth,
     viewport_height: window.innerHeight,
-    device_type: window.innerWidth < 768 ? "mobile" : window.innerWidth < 1024 ? "tablet" : "desktop",
+    page_referrer: sanitizeAnalyticsReferrer(document.referrer),
     language: navigator.language,
   };
 };
 
-const sanitizePayload = (payload: AnalyticsPayload): AnalyticsPayload =>
-  Object.entries(payload).reduce<AnalyticsPayload>((cleaned, [key, value]) => {
-    if (value !== undefined) {
-      cleaned[key] = value;
-    }
-    return cleaned;
-  }, {});
-
 export const getRoutePageType = (routePath: string) => {
-  const normalizedPath = routePath.split("?")[0].split("#")[0];
+  const normalizedPath = (routePath.split("?")[0].split("#")[0].replace(/^\/en-US(?=\/|$)/,"") || "/");
 
   if (normalizedPath === "/") return "home";
   if (normalizedPath === "/projects") return "projects";
@@ -39,6 +32,8 @@ export const getRoutePageType = (routePath: string) => {
   if (normalizedPath === "/resume") return "resume";
   if (normalizedPath === "/404") return "404";
   if (normalizedPath === "/design") return "design";
+  if (normalizedPath === "/privacy") return "privacy";
+  if (normalizedPath === "/500") return "500";
 
   return "other";
 };
@@ -47,28 +42,6 @@ const logDevelopmentEvent = (eventName: string, payload: AnalyticsPayload) => {
   if (!isProduction) {
     console.log(`[Analytics] ${eventName}`, payload);
   }
-};
-
-const pushGAEvent = (eventName: string, payload: AnalyticsPayload) => {
-  if (typeof window === "undefined") return;
-
-  const win = window as Window & {
-    gtag?: (...args: unknown[]) => void;
-    dataLayer?: unknown[];
-  };
-
-  if (typeof win.gtag === "function") {
-    win.gtag("event", eventName, payload);
-    return;
-  }
-
-  win.dataLayer = win.dataLayer || [];
-  // gtag's command queue consumes Arguments objects, including before initialization.
-  const command = Reflect.apply(function () {
-    // eslint-disable-next-line prefer-rest-params -- Google requires an Arguments command.
-    return arguments;
-  }, undefined, ["event", eventName, payload]);
-  win.dataLayer.push(command);
 };
 
 const getVercelAnalytics = () => {
@@ -80,6 +53,8 @@ const getVercelAnalytics = () => {
   };
 
   if (!vercelWindow.va) {
+    vercelWindow.vaq = vercelWindow.vaq || [];
+    vercelWindow.vaq.unshift(['beforeSend',(event: {url:string}) => readConsent().analytics ? {...event,url:sanitizeAnalyticsUrl(event.url)} : null]);
     vercelWindow.va = (event, properties) => {
       vercelWindow.vaq = vercelWindow.vaq || [];
       vercelWindow.vaq.push([event, properties]);
@@ -90,12 +65,13 @@ const getVercelAnalytics = () => {
 };
 
 export const trackEvent = (
-  eventName: string,
+  eventName: AnalyticsEventName,
   properties: AnalyticsPayload = {},
   options: AnalyticsEventOptions = {}
 ) => {
+  if (!Object.prototype.hasOwnProperty.call(analyticsEvents,eventName) || (typeof document!=='undefined' && (document as Document & {prerendering?:boolean}).prerendering)) return;
   const includePageContext = options.includePageContext ?? true;
-  const payload = sanitizePayload({
+  const payload = sanitizeAnalyticsPayload({
     ...(includePageContext ? getPageContext() : {}),
     ...properties,
   });
@@ -105,16 +81,19 @@ export const trackEvent = (
     return;
   }
 
-  pushGAEvent(eventName, payload);
+  const id = process.env.NEXT_PUBLIC_GOOGLETAG || "";
+  if (!validMeasurementId(id)) return;
+  initializeAnalytics(id);
+  gaCommand("event", eventName, payload);
 
-  getVercelAnalytics()?.("event", {
+  if (readConsent().analytics) getVercelAnalytics()?.("event", {
     name: eventName,
     data: payload,
   });
 };
 
 export const trackClick = (label: string, category: string, extra: AnalyticsPayload = {}) => {
-  trackEvent("click", {
+  trackEvent("ui_action", {
     event_category: category,
     event_label: label,
     ...extra,
@@ -131,10 +110,13 @@ export const trackView = (sectionId: string, extra: AnalyticsPayload = {}) => {
 export const trackSectionView = trackView;
 
 export const trackPageView = (pagePath: string, extra: AnalyticsPayload = {}) => {
+  const id=process.env.NEXT_PUBLIC_GOOGLETAG || "";
+  if (isProduction && validMeasurementId(id)) { initializeAnalytics(id); gaCommand("set", sanitizeAnalyticsPayload(getPageContext())); }
   trackEvent("page_view", {
     page_path: pagePath,
     page_type: getRoutePageType(pagePath),
     ...extra,
+    page_location: sanitizeAnalyticsUrl(typeof window === "undefined" ? pagePath : new URL(pagePath,window.location.origin).href),
   });
 };
 
@@ -179,9 +161,12 @@ export const trackSearch = (searchTerm: string, extra: AnalyticsPayload = {}) =>
   const trimmedSearchTerm = searchTerm.trim();
   if (!trimmedSearchTerm) return;
 
-  trackEvent("search", {
-    search_term: trimmedSearchTerm,
+  const matches=typeof extra.matched_ids==="string" ? extra.matched_ids.split(",").slice(0,5) : [];
+  const matchFields=Object.fromEntries(matches.map((id,index)=>[`matched_id_${index+1}`,id]));
+  trackEvent("site_search", {
+    query_length: trimmedSearchTerm.length,
     ...extra,
+    ...matchFields,
   });
 };
 
@@ -228,25 +213,9 @@ export const trackFileDownload = (
 
 export const trackError = (message: string, fatal: boolean = false) => {
   trackEvent("exception", {
-    description: message,
+    error_category: message === "404 Not Found" ? "not_found" : "runtime",
     fatal: fatal,
   });
-};
-
-export const setUserProperty = (key: string, value: string) => {
-  if (!isProduction) {
-    console.log(`[Analytics] user_property ${key} = ${value}`);
-    return;
-  }
-  // GA4 uses 'set' command for user properties via gtag
-  if (typeof window !== "undefined") {
-    const win = window as Window & {
-      gtag?: (command: "set", target: "user_properties", properties: Record<string, string>) => void;
-    };
-    if (win.gtag) {
-      win.gtag("set", "user_properties", { [key]: value });
-    }
-  }
 };
 
 export const trackTiming = (name: string, value: number, category?: string) => {
@@ -275,4 +244,9 @@ export const trackWebVital = (metric: {
     metric_rating: metric.rating,
     navigation_type: metric.navigationType,
   });
+};
+
+/** Opening the résumé page is a content view, not a PDF download. */
+export const trackResumeOpen = (source: string, extra: AnalyticsPayload = {}) => {
+  trackSelectContent("resume", "resume", { source, link_url: "/resume", interaction_type: "view", ...extra });
 };

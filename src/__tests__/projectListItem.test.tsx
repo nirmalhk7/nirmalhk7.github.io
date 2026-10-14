@@ -73,3 +73,13 @@ describe("ProjectListItem", () => {
     expect(onToggle).toHaveBeenCalledTimes(1);
   });
 });
+
+test("connects the toggle to its detail panel and hides closing content from assistive technology", () => {
+  const { rerender } = render(<ProjectListItem project={project as never} isExpanded onToggle={jest.fn()} index={0} />);
+  const toggle = screen.getByRole("button", { name: /Collapse Atlas/ });
+  const panel = screen.getByRole("region", { name: /Collapse Atlas/ });
+  expect(toggle).toHaveAttribute("aria-controls", panel.id);
+  rerender(<ProjectListItem project={project as never} isExpanded={false} onToggle={jest.fn()} index={0} />);
+  expect(screen.queryByRole("region")).not.toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /Expand Atlas/ })).toHaveAttribute("aria-expanded", "false");
+});

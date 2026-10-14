@@ -74,3 +74,51 @@ it('names the action and announces sending while preventing duplicate submission
   expect(screen.getByRole('button', { name: 'Sending…' })).toBeDisabled();
   expect(screen.getByRole('textbox', { name: 'Email' })).toHaveAttribute('autocomplete', 'email');
 });
+
+it('records first edit without values and deduplicates success across Strict Mode effect replay', () => {
+  const { rerender }=render(<React.StrictMode><ContactForm /></React.StrictMode>);
+  fireEvent.change(screen.getByRole('textbox', {name:'Email'}), {target:{value:'private@example.com'}});
+  fireEvent.change(screen.getByRole('textbox', {name:'Email'}), {target:{value:'other@example.com'}});
+  expect(trackEvent).toHaveBeenCalledWith('form_engagement', {action:'first_edit', field_id:'email', form_id:'contact-form'});
+  expect((trackEvent as jest.Mock).mock.calls.filter(call=>call[1].action==='first_edit')).toHaveLength(1);
+  mockUseForm.mockReturnValue([{succeeded:true, submitting:false, errors:{getFormErrors:()=>[]}},mockSubmit]);
+  rerender(<React.StrictMode><ContactForm /></React.StrictMode>);
+  expect(trackGenerateLead).toHaveBeenCalledTimes(1);
+});
+
+it('does not abandon after success and includes pending duration on failure', () => {
+  const {container,rerender}=render(<ContactForm />);
+  fireEvent.change(screen.getByRole('textbox', {name:'Message'}), {target:{value:'private'}});
+  const form=container.querySelector('form'); if (!form) throw new Error('Missing form');
+  fireEvent.submit(form);
+  mockUseForm.mockReturnValue([{succeeded:false, submitting:false, errors:{getFormErrors:()=>['failed']}},mockSubmit]);
+  rerender(<ContactForm />);
+  expect(trackEvent).toHaveBeenCalledWith('form_pending', expect.objectContaining({interaction_type:'failure',duration_msec:expect.any(Number)}));
+  mockUseForm.mockReturnValue([{succeeded:true, submitting:false, errors:{getFormErrors:()=>[]}},mockSubmit]);
+  rerender(<ContactForm />);
+  fireEvent(window,new Event('pagehide'));
+  expect((trackEvent as jest.Mock).mock.calls.filter(call=>call[0]==='form_abandonment')).toHaveLength(0);
+});
+
+it('records server field errors and pending failure without copying error text',()=>{
+  const {container,rerender}=render(<ContactForm />);const form=container.querySelector('form');if (!form) throw new Error('Missing form');
+  fireEvent.submit(form);
+  mockUseForm.mockReturnValue([{succeeded:false,submitting:false,errors:{getFormErrors:()=>[],getAllFieldErrors:()=>[['contactEmail: ',[{code:'TYPE_EMAIL',message:'private@example.com'}]]]}},mockSubmit]);
+  rerender(<ContactForm />);
+  expect(trackEvent).toHaveBeenCalledWith('form_pending',expect.objectContaining({interaction_type:'failure'}));
+  expect(trackEvent).toHaveBeenCalledWith('form_validation_error',expect.objectContaining({field_id:'email',interaction_type:'server'}));
+  expect(JSON.stringify((trackEvent as jest.Mock).mock.calls)).not.toContain('private@example.com');
+});
+
+it('abandons an edited form once across repeated pagehide and unmount',()=>{
+  const {unmount}=render(<ContactForm />);
+  fireEvent.change(screen.getByRole('textbox',{name:'Message'}),{target:{value:'Private'}});
+  fireEvent(window,new Event('pagehide'));fireEvent(window,new Event('pagehide'));unmount();
+  expect((trackEvent as jest.Mock).mock.calls.filter(call=>call[0]==='form_abandonment')).toHaveLength(1);
+});
+
+it('deduplicates a server failure during Strict Mode effect replay',()=>{
+  mockUseForm.mockReturnValue([{succeeded:false,submitting:false,errors:{getFormErrors:()=>['failed']}},mockSubmit]);
+  render(<React.StrictMode><ContactForm /></React.StrictMode>);
+  expect((trackEvent as jest.Mock).mock.calls.filter(call=>call[0]==='form_error')).toHaveLength(1);
+});

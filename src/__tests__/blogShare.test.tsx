@@ -44,6 +44,13 @@ describe('blog sharing', () => {
     }));
   });
 
+  it('encodes email subject spaces for mail clients and retains tagged link in body', () => {
+    render(<BlogShare slug="homelab_architect" title="Homelab & architecture" />);
+    const href = screen.getByRole('link', { name: 'Share on Email' }).getAttribute('href') || '';
+    expect(href).toContain('subject=Homelab%20%26%20architecture');
+    expect(decodeURIComponent(href)).toContain('utm_source=email&utm_medium=email&utm_campaign=blog_share');
+  });
+
   it('copies Instagram-tagged link and announces manual posting instructions', async () => {
     render(<BlogShare slug="homelab_architect" title="Homelab" />);
     fireEvent.click(screen.getByRole('button', { name: 'Copy link for Instagram' }));

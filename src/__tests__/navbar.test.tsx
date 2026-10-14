@@ -44,6 +44,7 @@ describe('Navbar Component', () => {
     expect(screen.getByRole('link', { name: 'Blog' })).toHaveAttribute('href', '/blog');
     expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('href', '/#about');
     expect(screen.getByRole('link', { name: 'Resume' })).not.toHaveAttribute('target');
+    expect(screen.getByRole('link', { name: 'Resume' })).toHaveAttribute('href','/resume');
   });
   it('renders the brand name correctly', () => {
     render(<Navbar />);
@@ -76,8 +77,20 @@ describe('Navbar Component', () => {
     expect(searchButton).toHaveFocus();
 
     fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.queryByRole('navigation', { name: 'Mobile navigation' })).not.toBeInTheDocument();
     await waitFor(() => expect(menuButton).toHaveFocus());
     expect(menuButton).toHaveAttribute('aria-expanded', 'false');
     expect(document.body.style.overflow).toBe('');
   });
+});
+
+test('records mobile navigation opening and Escape closure',()=>{
+  mockRouter.pathname='/projects';
+  const spy=jest.spyOn(console,'log').mockImplementation(()=>{});
+  render(<Navbar variant="portfolio" />);
+  fireEvent.click(screen.getByRole('button',{name:'Open navigation menu'}));
+  expect(spy).toHaveBeenCalledWith('[Analytics] navigation_menu',expect.objectContaining({action:'open',placement:'portfolio'}));
+  fireEvent.keyDown(document,{key:'Escape'});
+  expect(spy).toHaveBeenCalledWith('[Analytics] navigation_menu',expect.objectContaining({action:'close',placement:'portfolio'}));
+  spy.mockRestore();
 });

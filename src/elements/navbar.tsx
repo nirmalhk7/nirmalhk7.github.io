@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
-import { m, AnimatePresence, useReducedMotion } from "framer-motion";
-import { trackClick } from "@/util/analytics";
+import { m, AnimatePresence, useReducedMotion, useIsPresent } from "framer-motion";
+import { trackClick, trackEvent, trackResumeOpen } from "@/util/analytics";
 import { createRafThrottled } from "@/util/rafThrottle";
 import styles from "@/components/Home/portfolio.module.scss";
 
@@ -53,6 +53,8 @@ const Navbar = ({ variant = "default" }: { variant?: "default" | "portfolio" }) 
     ],
     [router.pathname]
   );
+  const previousLegacyMenu = useRef(false);
+  useEffect(() => { if (previousLegacyMenu.current!==mobileMenuClick) { trackEvent('navigation_menu',{action:mobileMenuClick?'open':'close',placement:'legacy'}); previousLegacyMenu.current=mobileMenuClick; } },[mobileMenuClick]);
   const activeIndex = navbarInternalData.findIndex((item) => item.sectionId === activeSectionId);
   const highlightedIndex = hoveredIndex ?? activeIndex;
 
@@ -225,8 +227,8 @@ const Navbar = ({ variant = "default" }: { variant?: "default" | "portfolio" }) 
                   </Link>
                 </li>
               ))}
-              {isPortfolio && <li><Link href="/resume" target="_blank" rel="noopener noreferrer" onClick={() => { mobileMenuSet(false); trackClick("download_resume", "engagement"); }}>Resume</Link></li>}
-              {isPortfolio && <li><button type="button" className="portfolio-mobile-search" onClick={() => { mobileMenuSet(false); window.dispatchEvent(new Event("open-command-palette")); }}>Search <span>⌘K</span></button></li>}
+              {isPortfolio && <li><Link data-analytics-skip-global="true" href="/resume" target="_blank" rel="noopener noreferrer" onClick={() => { mobileMenuSet(false); trackResumeOpen("navigation"); }}>Resume</Link></li>}
+              {isPortfolio && <li><button data-analytics-id="navbar_control_3" data-analytics-skip-global="true" type="button" className="portfolio-mobile-search" onClick={() => { mobileMenuSet(false); window.dispatchEvent(new Event("open-command-palette")); }}>Search <span>⌘K</span></button></li>}
             </ul>
           </m.nav>
         )}
@@ -274,9 +276,9 @@ const Navbar = ({ variant = "default" }: { variant?: "default" | "portfolio" }) 
               )}
             </m.li>
           ))}
-          {isPortfolio && <li className="pl-0 mr-5 relative"><Link className="portfolio-resume-link" href="/resume" target="_blank" rel="noopener noreferrer" onClick={() => trackClick("download_resume", "engagement")}>Resume</Link></li>}
+          {isPortfolio && <li className="pl-0 mr-5 relative"><Link data-analytics-skip-global="true" className="portfolio-resume-link" href="/resume" target="_blank" rel="noopener noreferrer" onClick={() => trackResumeOpen("navigation")}>Resume</Link></li>}
           <li className="pl-0 ml-2">
-            <button
+            <button data-analytics-id="navbar_control_7" data-analytics-skip-global="true"
               type="button"
               onClick={() => window.dispatchEvent(new Event("open-command-palette"))}
               className="!border !border-white/20 !leading-normal !tracking-normal !normal-case px-3 py-1.5 rounded-lg bg-white/10 hover:bg-accent hover:!border-accent text-white text-xs font-mono transition-all flex items-center space-x-1.5 shadow-sm"
@@ -289,7 +291,7 @@ const Navbar = ({ variant = "default" }: { variant?: "default" | "portfolio" }) 
         </ul>
       </nav>
       <div className="absolute right-10 top-0 h-full flex items-center tablet:hidden z-[60]">
-        <button
+        <button data-analytics-skip-global="true"
           type="button"
           className={`header-menu-toggle !static !block ${
             mobileMenuClick ? "is-clicked" : ""
@@ -316,6 +318,8 @@ function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; 
   const triggerRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLElement>(null);
   const wasOpenRef = useRef(false);
+  const previousMenu = useRef(false);
+  useEffect(() => { if (previousMenu.current!==menuOpen) { trackEvent('navigation_menu',{action:menuOpen?'open':'close',placement:'portfolio'}); previousMenu.current=menuOpen; } },[menuOpen]);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -420,63 +424,106 @@ function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; 
             key={item.label}
             href={item.route}
             aria-current={activeSectionId === item.sectionId && item.sectionId ? router.pathname === '/' ? 'location' : 'page' : undefined}
+            data-analytics-skip-global="true"
             onClick={(event) => handleSectionLink(event, item.route)}
           >
             {item.label}
           </Link>
         ))}
-        <Link className={styles.portfolioResume} href="/resume" aria-current={router.pathname === '/resume' ? 'page' : undefined} onClick={() => trackClick("download_resume", "engagement")}>Resume</Link>
-        <button type="button" className={styles.portfolioSearch} onClick={() => window.dispatchEvent(new Event("open-command-palette"))} aria-label="Search, Command K">
+        <Link data-analytics-skip-global="true" className={styles.portfolioResume} href="/resume" onClick={() => trackResumeOpen("navigation")}>Resume</Link>
+        <button data-analytics-id="search_command_k" data-analytics-skip-global="true" type="button" className={styles.portfolioSearch} onClick={() => window.dispatchEvent(new Event("open-command-palette"))} aria-label="Search, Command K">
           <span>Search</span><kbd>⌘ K</kbd>
         </button>
       </nav>
-      <button
+      <button data-analytics-id="open_navigation_menu"
         type="button"
         className={styles.portfolioMenuTrigger}
         ref={triggerRef}
-        onClick={() => setMenuOpen(true)}
+        data-analytics-skip-global="true" onClick={() => setMenuOpen(true)}
         aria-expanded={menuOpen}
         aria-controls="portfolio-mobile-navigation"
         aria-label="Open navigation menu"
       >
-        <span>Menu</span><i aria-hidden="true" />
+        <span>Menu</span><MenuGlyph open={menuOpen} reduceMotion={Boolean(reduceMotion)} />
       </button>
       <AnimatePresence>
         {menuOpen && (
-          <m.div
-            className={styles.portfolioMenuOverlay}
-            initial={reduceMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={reduceMotion ? undefined : { opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-          >
-            <nav id="portfolio-mobile-navigation" ref={menuRef} className={styles.portfolioMenuPanel} aria-label="Mobile navigation">
+          <PortfolioMenuOverlay reduceMotion={Boolean(reduceMotion)}>
+            <m.nav
+              id="portfolio-mobile-navigation" ref={menuRef} className={styles.portfolioMenuPanel} aria-label="Mobile navigation"
+              initial="closed" animate="open" exit="closed"
+              variants={{
+                closed: { y: reduceMotion ? 0 : -12, transition: { duration: 0.18 } },
+                open: { y: 0, transition: { duration: reduceMotion ? 0.1 : 0.36, ease: [0.16, 1, 0.3, 1], staggerChildren: reduceMotion ? 0 : 0.035, delayChildren: reduceMotion ? 0 : 0.04 } },
+              }}
+            >
               <div className={styles.portfolioMenuHeader}>
                 <span>nirmalhk7</span>
-                <button type="button" onClick={() => setMenuOpen(false)} aria-label="Close navigation menu">Close <span aria-hidden="true">×</span></button>
+                <button data-analytics-id="close_navigation_menu" type="button" data-analytics-skip-global="true" onClick={() => setMenuOpen(false)} aria-label="Close navigation menu">Close <MenuGlyph open={menuOpen} reduceMotion={Boolean(reduceMotion)} /></button>
               </div>
               <ul>
                 {items.map((item, index) => (
-                  <li key={item.label}>
+                  <m.li key={item.label} variants={{
+                    closed: { opacity: 0, y: reduceMotion ? 0 : 8, transition: { duration: 0.1 } },
+                    open: { opacity: 1, y: 0, transition: { duration: reduceMotion ? 0.1 : 0.3, ease: [0.16, 1, 0.3, 1] } },
+                  }}>
                     <Link
                       href={item.route}
                       aria-current={activeSectionId === item.sectionId && item.sectionId ? router.pathname === '/' ? 'location' : 'page' : undefined}
+                      data-analytics-skip-global="true"
                       onClick={(event) => { handleSectionLink(event, item.route); setMenuOpen(false); }}
                     >
                       <span className={styles.portfolioMenuIndex}>0{index + 1}</span>{item.label}<span aria-hidden="true">↗</span>
                     </Link>
-                  </li>
+                  </m.li>
                 ))}
               </ul>
               <div className={styles.portfolioMenuActions}>
-                <Link href="/resume" aria-current={router.pathname === '/resume' ? 'page' : undefined} onClick={() => { trackClick("download_resume", "engagement"); setMenuOpen(false); }}>Resume</Link>
-                <button type="button" onClick={() => { setMenuOpen(false); window.dispatchEvent(new Event("open-command-palette")); }}>Search <kbd>⌘ K</kbd></button>
+                <Link data-analytics-skip-global="true" href="/resume" onClick={() => { trackResumeOpen("navigation"); setMenuOpen(false); }}>Resume</Link>
+                <button data-analytics-id="navbar_control_17" data-analytics-skip-global="true" type="button" onClick={() => { setMenuOpen(false); window.dispatchEvent(new Event("open-command-palette")); }}>Search <kbd>⌘ K</kbd></button>
               </div>
-            </nav>
-          </m.div>
+            </m.nav>
+          </PortfolioMenuOverlay>
         )}
       </AnimatePresence>
     </header>
+  );
+}
+
+function PortfolioMenuOverlay({ children, reduceMotion }: { children: React.ReactNode; reduceMotion: boolean }) {
+  const isPresent = useIsPresent();
+  const overlayRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (overlayRef.current) overlayRef.current.inert = !isPresent;
+  }, [isPresent]);
+  return (
+    <m.div
+      ref={overlayRef}
+      className={styles.portfolioMenuOverlay}
+      aria-hidden={!isPresent}
+      style={{ pointerEvents: isPresent ? "auto" : "none" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: reduceMotion ? 0.1 : 0.18 } }}
+      transition={{ duration: reduceMotion ? 0.1 : 0.24, ease: "easeOut" }}
+    >
+      {children}
+    </m.div>
+  );
+}
+
+function MenuGlyph({ open, reduceMotion }: { open: boolean; reduceMotion: boolean }) {
+  return (
+    <span className={styles.portfolioMenuGlyph} aria-hidden="true">
+      {[0, 1].map((line) => (
+        <m.span
+          key={line}
+          initial={{ y: line === 0 ? -3 : 3, rotate: 0 }}
+          animate={{ y: open ? 0 : line === 0 ? -3 : 3, rotate: open ? line === 0 ? 45 : -45 : 0 }}
+          transition={{ duration: reduceMotion ? 0 : open ? 0.28 : 0.2, ease: [0.16, 1, 0.3, 1] }}
+        />
+      ))}
+    </span>
   );
 }
 export default Navbar;

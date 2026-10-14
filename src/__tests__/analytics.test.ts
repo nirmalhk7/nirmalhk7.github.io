@@ -2,6 +2,7 @@ describe("analytics utilities", () => {
   beforeEach(() => {
     jest.resetModules();
     jest.clearAllMocks();
+    process.env.NEXT_PUBLIC_GOOGLETAG="G-TEST123";
     document.title = "";
     window.history.pushState({}, "", "/");
     delete (window as Window & { gtag?: unknown }).gtag;
@@ -43,7 +44,7 @@ describe("analytics utilities", () => {
         "event",
         "page_view",
         expect.objectContaining({
-          page_path: "/projects?filter=ai",
+          page_path: "/projects",
           page_type: "projects",
           view_type: "route",
         })
@@ -62,7 +63,7 @@ describe("analytics utilities", () => {
       trackShare("bluesky", "blog_post", "homelab_architect", {
         share_action: "composer_opened",
       });
-      const command = (window as Window & { dataLayer?: IArguments[] }).dataLayer?.[0];
+      const command = (window as Window & { dataLayer?: IArguments[] }).dataLayer?.find(entry=>entry[0]==="event");
       expect(Object.prototype.toString.call(command)).toBe("[object Arguments]");
       if (!command) throw new Error("Expected queued share event");
       expect(Array.from(command)).toEqual([

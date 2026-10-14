@@ -13,7 +13,6 @@ import {
   getStaticPaths as getBlogPaths,
   getStaticProps as getBlogPostProps,
 } from "../pages/blog/[blogId]";
-import { getStaticProps as getResumeProps } from "../pages/resume";
 import { getStaticProps as getNotFoundProps } from "../pages/404";
 import { getStaticProps as getServerErrorProps } from "../pages/500";
 
@@ -80,7 +79,6 @@ describe("page SEO contracts", () => {
       [getHomeProps, "https://nirmalhk7.com"],
       [getProjectsProps, "https://nirmalhk7.com/projects"],
       [getBlogProps, "https://nirmalhk7.com/blog"],
-      [getResumeProps, "https://nirmalhk7.com/resume"],
     ] as const;
 
     for (const [loader, canonical] of pages) {
@@ -111,7 +109,6 @@ describe("page SEO contracts", () => {
       [getHomeProps, "home"],
       [getProjectsProps, "projects"],
       [getBlogProps, "writing"],
-      [getResumeProps, "resume"],
     ] as const;
     const imageUrls = new Set<string>();
     for (const [loader, section] of pages) {

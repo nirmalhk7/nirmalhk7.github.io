@@ -1,18 +1,17 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { AnalyticsProvider } from "@/components/Analytics/AnalyticsProvider";
 
 import "@/assets/css/tailwind.scss";
+import "@/assets/css/reveal.scss";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo";
-import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/elements/navbar";
 import portfolioStyles from "@/components/Home/portfolio.module.scss";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { trackWebVital } from "@/util/analytics";
 import { useViewTransitions } from "@/hooks/useViewTransitions";
@@ -49,8 +48,6 @@ interface CustomAppProps extends AppProps {
 export default function App({ Component, pageProps }: CustomAppProps) {
   const router = useRouter();
   const shouldReduceMotion = useReducedMotion();
-  const gaId = process.env.NEXT_PUBLIC_GOOGLETAG || "";
-  const hasGa = process.env.NODE_ENV === "production" && gaId.length > 0;
   const layoutVariant = pageProps.pageMetadata?.layoutVariant ?? "portfolio";
   const isPortfolio = layoutVariant === "portfolio";
 
@@ -114,13 +111,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
         }}
         titleTemplate="%s | Nirmal Khedkar"
       />
-      {hasGa && gaId && (
-        <>
-          <GoogleAnalytics gaId={gaId} />
-          <Analytics />
-          <SpeedInsights />
-        </>
-      )}
+      <AnalyticsProvider />
       {pageProps.pageMetadata ? (
         <div key="page-content" className={isPortfolio ? portfolioStyles.shell : undefined}>
           {pageProps.pageMetadata.seoMetadata ? (
@@ -130,11 +121,12 @@ export default function App({ Component, pageProps }: CustomAppProps) {
           {isPortfolio ? (
             <AnimatePresence mode="wait" initial={false}>
               <m.div
+                data-analytics-page={router.asPath.split("?")[0].split("#")[0]}
                 key={router.pathname}
-                initial={shouldReduceMotion ? false : { clipPath: "inset(0 0 0 100%)" }}
+                initial={shouldReduceMotion ? { opacity: 0.8 } : { clipPath: "inset(0 0 0 100%)" }}
                 animate={{ clipPath: "inset(0 0 0 0)", opacity: 1 }}
-                exit={shouldReduceMotion ? { opacity: 0.96 } : { clipPath: "inset(0 100% 0 0)" }}
-                transition={{ duration: shouldReduceMotion ? 0.12 : 0.34, ease: [0.76, 0, 0.24, 1] }}
+                exit={shouldReduceMotion ? { opacity: 0.8 } : { clipPath: "inset(0 100% 0 0)" }}
+                transition={{ duration: shouldReduceMotion ? 0.1 : 0.34, ease: [0.76, 0, 0.24, 1] }}
               >
                 <Component {...pageProps} />
                 {pageProps.pageMetadata.enableWrap && router.pathname !== "/" ? <ContactBand /> : null}
@@ -143,6 +135,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
             </AnimatePresence>
           ) : <AnimatePresence mode="wait">
             <m.div
+              data-analytics-page={router.asPath.split("?")[0].split("#")[0]}
               key={router.route}
               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 26, scale: 0.985, filter: "blur(8px)" }}
               animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}

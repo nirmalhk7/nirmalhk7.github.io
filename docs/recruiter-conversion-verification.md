@@ -2,6 +2,8 @@
 
 Branch: `codex/cinematic-portfolio`. No merge or deployment.
 
+Update: `/resume` hosts an embedded PDF immediately. All site résumé navigation points to `/resume`; `/Resume.pdf` remains the underlying embedded asset. Earlier HTML summary evidence below describes the previous implementation.
+
 ## Changes
 
 - Inner-route navigation now opens `/projects` and `/blog`, with current-page semantics. Home retains its section anchors. Résumé navigation stays in the same tab.

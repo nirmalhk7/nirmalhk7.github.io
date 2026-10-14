@@ -1,33 +1,30 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import ResumePage, { getStaticProps } from '@/pages/resume';
+import HiringLinks from '@/components/Site/HiringLinks';
+import ResumePage from '@/pages/resume';
 
-jest.mock('@/util/analytics', () => ({ trackEvent: jest.fn(), trackSelectContent: jest.fn() }));
+// eslint-disable-next-line @typescript-eslint/no-var-requires -- Exercise the same configuration Next loads.
+const nextConfig = require('../../next.config.js');
 
-test('keeps sourced experience and education readable without a PDF preview', async () => {
-  window.matchMedia = jest.fn().mockReturnValue({ matches: false, addEventListener: jest.fn(), removeEventListener: jest.fn() });
-  const result = await getStaticProps({});
-  if (!('props' in result)) throw new Error('Missing résumé props');
-  const props = await result.props;
-  render(<ResumePage {...props} />);
-  expect(screen.getByRole('heading', { name: 'ZOLL Data Systems' })).toBeInTheDocument();
-  expect(screen.getByText('National Institute of Technology Karnataka, Surathkal')).toBeInTheDocument();
-  expect(screen.getByText('Bachelor of Technology in Information Technology')).toBeInTheDocument();
-  expect(screen.getByText('July 2018 – May 2022')).toBeInTheDocument();
-  expect(screen.getByText(/Kubernetes, Terraform, and FluxCD/)).toBeInTheDocument();
-  expect(screen.getByRole('link', { name: 'Download PDF' })).toHaveAttribute('download', 'Nirmal-Khedkar-Resume.pdf');
-  expect(screen.queryByTitle('Resume of Nirmal Khedkar')).not.toBeInTheDocument();
+test.each(['development', 'production'])('/resume stays an embedded page in %s', async environment => {
+  const env = process.env as { NODE_ENV?: string }; const previous = env.NODE_ENV; env.NODE_ENV = environment;
+  try {
+    const redirects = await nextConfig.redirects();
+    expect(redirects.some((redirect: { source: string }) => ['/resume', '/en-US/resume'].includes(redirect.source))).toBe(false);
+  } finally { env.NODE_ENV = previous; }
 });
 
-test('offers permanent PDF fallback while the optional preview loads', async () => {
-  window.matchMedia = jest.fn().mockReturnValue({ matches: true, addEventListener: jest.fn(), removeEventListener: jest.fn() });
-  const result = await getStaticProps({});
-  if (!('props' in result)) throw new Error('Missing résumé props');
-  render(<ResumePage {...await result.props} />);
-  fireEvent.click(screen.getByRole('button', { name: 'Preview PDF' }));
-  expect(screen.getByRole('status')).toHaveTextContent('Loading PDF preview');
-  expect(screen.getByText(/Some browsers cannot display embedded PDFs/)).toBeInTheDocument();
-  fireEvent.load(screen.getByTitle('Resume of Nirmal Khedkar'));
-  expect(screen.getByRole('status')).toHaveTextContent('Preview loaded');
-  expect(screen.getByText(/Some browsers cannot display embedded PDFs/)).toBeInTheDocument();
+test('shows embedded résumé immediately', () => {
+  render(<ResumePage />);
+  expect(screen.getByTitle('Nirmal Khedkar résumé')).toHaveAttribute('src', expect.stringContaining('/Resume.pdf'));
+});
+
+test('hiring résumé link opens /resume and records a view instead of a download', () => {
+  const spy = jest.spyOn(console, 'log').mockImplementation(() => {});
+  render(<HiringLinks />); const link = screen.getByRole('link', { name: 'View résumé' });
+  expect(link).toHaveAttribute('href', '/resume');
+  link.addEventListener('click', event => event.preventDefault()); fireEvent.click(link);
+  expect(spy).toHaveBeenCalledWith('[Analytics] select_content', expect.objectContaining({ content_type: 'resume', source: 'contact_link' }));
+  expect(spy.mock.calls.filter(call => call[0] === '[Analytics] file_download')).toHaveLength(0);
+  spy.mockRestore();
 });

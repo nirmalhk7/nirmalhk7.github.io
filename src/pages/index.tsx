@@ -30,7 +30,7 @@ const featuredProjectCopy: Record<string, string> = {
   atskit: "A Python toolkit that streams job listings from public applicant tracking system APIs.",
   "k8-autoscaler": "A Kubernetes autoscaler that uses historical traffic patterns to plan resource capacity.",
   scholarhub: "A research and collaboration portal for NIT students. Nirmal contributed all frontend work.",
-  MedicalVR: "A browser based medical learning experience built with JavaScript and WebGL.",
+  MedicalVR: "A browser project using HTML, JavaScript, and WebGL.",
 };
 
 export default function IndexPage({
@@ -114,12 +114,12 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
         layoutVariant: "portfolio",
         seoMetadata: {
           title: "Nirmal Khedkar | Backend & Infrastructure Software Engineer",
-          description: "Nirmal Khedkar is a software engineer with experience building backend services, production systems, and full stack applications at Visa and ZOLL Data Systems.",
+          description: "Nirmal Khedkar is a software engineer whose portfolio includes backend services at Visa, dispatch software at ZOLL Data Systems, and Kubernetes tooling.",
           canonical: "https://nirmalhk7.com",
           openGraph: {
             type: "website",
             url: "https://nirmalhk7.com",
-            images: [openGraphImage("Built for the real world.", "Product thinking. Engineering depth.", "home")],
+            images: [openGraphImage("I build & ship backend systems.", "Nirmal Khedkar | Backend and infrastructure experience at Visa and ZOLL", "home")],
           },
         },
       },

@@ -62,13 +62,13 @@ export default function BlogShare({ slug, title }: { slug: string; title: string
     { name: 'Facebook', method: 'facebook', icon: faFacebook, href: `https://www.facebook.com/sharer/sharer.php?${new URLSearchParams({ u: getShare('facebook').url })}` },
     { name: 'LinkedIn', method: 'linkedin', icon: faLinkedin, href: `https://www.linkedin.com/sharing/share-offsite/?${new URLSearchParams({ url: getShare('linkedin').url })}` },
     { name: 'Bluesky', method: 'bluesky', icon: faBluesky, href: `https://bsky.app/intent/compose?${new URLSearchParams({ text: `${title}\n\n${getShare('bluesky').url}` })}` },
-    { name: 'Email', method: 'email', icon: faEnvelope, href: `mailto:?${new URLSearchParams({ subject: title, body: `${title}\n\n${getShare('email').url}` })}` },
+    { name: 'Email', method: 'email', icon: faEnvelope, href: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`${title}\n\n${getShare('email').url}`)}` },
   ];
 
   return (
     <div data-analytics-skip-global="true">
       <div className={styles.shareLinks} aria-label="Share this article">
-        <button type="button" disabled={copying} onClick={() => copyLink('copy')}>Copy link</button>
+        <button data-analytics-id="blogshare_control_1" type="button" disabled={copying} onClick={() => copyLink('copy')}>Copy link</button>
         {buttons.map(share => (
           <a key={share.method} href={share.href} target="_blank" rel="noopener noreferrer"
             aria-label={`Share on ${share.name}`} title={`Share on ${share.name}`}
@@ -77,7 +77,7 @@ export default function BlogShare({ slug, title }: { slug: string; title: string
             <span className="sr-only">{share.name}</span>
           </a>
         ))}
-        <button type="button" disabled={copying} aria-label="Copy link for Instagram"
+        <button data-analytics-id="copy_link_for_instagram" type="button" disabled={copying} aria-label="Copy link for Instagram"
           onClick={() => copyLink('instagram')}>
           <FontAwesomeIcon icon={faInstagram} aria-hidden="true" /> Instagram
         </button>

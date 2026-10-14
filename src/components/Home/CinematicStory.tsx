@@ -1,7 +1,8 @@
+import { useContentReveal } from "@/hooks/useContentReveal";
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { trackClick, trackSelectContent } from "@/util/analytics";
+import { trackSelectContent, trackResumeOpen } from "@/util/analytics";
 import beachPhoto from "@/assets/images/BeachNK_1.jpg";
 import styles from "./cinematicStory.module.scss";
 
@@ -34,6 +35,7 @@ const stages = [
 
 export default function CinematicStory() {
   const storyRef = useRef<HTMLDivElement>(null);
+  useContentReveal(storyRef);
 
   useEffect(() => {
     const story = storyRef.current;
@@ -48,7 +50,11 @@ export default function CinematicStory() {
       dispose = undefined;
       if (!query.matches) return;
       import("./CinematicMotion").then(({ mountCinematicMotion }) => {
-        if (currentRequest === request && query.matches) dispose = mountCinematicMotion(story);
+        if (currentRequest === request && query.matches) {
+          dispose = mountCinematicMotion(story);
+          // Anchor positions change when the optional cinematic layout expands.
+          window.dispatchEvent(new Event("portfolio-layout-ready"));
+        }
       }).catch(() => {
         // Static content remains visible if the optional motion chunk fails to load.
       });
@@ -70,40 +76,35 @@ export default function CinematicStory() {
           <div className={styles.photograph} data-story-photo aria-hidden="true">
             <Image src={beachPhoto} alt="" fill priority sizes="100vw" className={styles.heroImage} />
           </div>
-          <div className={styles.heroCopy} data-story-copy>
+          <div data-reveal className={styles.heroCopy} data-story-copy>
             <p className={styles.heroName}>Nirmal Khedkar</p>
             <h1 id="hero-heading">
-              <span className={styles.displayName} aria-hidden="true">I BUILD SYSTEMS BUSINESSES CAN RELY ON.</span>
-              <span className={styles.srOnly}>Nirmal Khedkar, backend and infrastructure engineer.</span>
+              <span className={styles.displayName} aria-hidden="true">I BUILD &amp; SHIP BACKEND SYSTEMS.</span>
+              <span className={styles.srOnly}>Nirmal Khedkar. I build and ship backend systems.</span>
             </h1>
             <p className={styles.positioning}>Backend &amp; infrastructure engineer.</p>
-            <p className={styles.range}>From product thinking to production systems.</p>
+            <p className={styles.range}>Production services at Visa. Dispatch software at ZOLL. Kubernetes tooling in my projects.</p>
             <p className={styles.proof}>Visa · ZOLL Data Systems · NITK Surathkal · MS CS, CU Boulder</p>
             <div className={styles.actions}>
-              <Link
+              <Link data-analytics-skip-global="true"
                 className={styles.primaryAction}
                 href="#workexperience"
                 onClick={() => {
                   trackSelectContent("hero_cta", "View work", { destination: "#workexperience" });
-                  trackClick("View work", "jumbotron_cta");
                 }}
               >
                 View work
               </Link>
-              <Link
+              <Link data-analytics-skip-global="true"
                 href="/resume"
-                onClick={() => {
-                  trackSelectContent("resume", "home_resume_cta");
-                  trackClick("download_resume", "engagement");
-                }}
+                onClick={() => trackResumeOpen("hero_cta")}
               >
                 Resume
               </Link>
-              <Link
+              <Link data-analytics-skip-global="true"
                 href="#contact"
                 onClick={() => {
                   trackSelectContent("lead_cta", "want_to_hire");
-                  trackClick("want_to_hire", "engagement");
                 }}
               >
                 Contact
@@ -114,7 +115,7 @@ export default function CinematicStory() {
         </section>
 
         <section className={styles.engineering} aria-labelledby="engineering-heading" data-story-engineering>
-          <header className={styles.engineeringHeader}>
+          <header data-reveal className={styles.engineeringHeader}>
             <h2 id="engineering-heading">Built for the real world.</h2>
             <p>I connect product thinking with engineering depth. From the first idea to the systems behind it.</p>
           </header>
@@ -130,15 +131,15 @@ export default function CinematicStory() {
           </div>
           <ol className={styles.stages}>
             {stages.map((stage) => (
-              <li className={styles.stage} data-story-stage key={stage.name}>
+              <li data-reveal className={styles.stage} data-story-stage key={stage.name}>
                 <h3>{stage.headline}<span>{stage.emphasis}</span></h3>
                 <p>{stage.detail}</p>
               </li>
             ))}
           </ol>
-          <div className={styles.engineeringFoot}>
+          <div data-reveal className={styles.engineeringFoot}>
             <p>Big-picture thinking. Hands-on building.</p>
-            <Link href="#workexperience" onClick={() => trackSelectContent("engineering_cta", "See my experience", { destination: "#workexperience" })}>
+            <Link data-analytics-skip-global="true" href="#workexperience" onClick={() => trackSelectContent("engineering_cta", "See my experience", { destination: "#workexperience" })}>
               See my experience
             </Link>
           </div>

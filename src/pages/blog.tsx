@@ -68,8 +68,8 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
       />
       <PageHero
         eyebrow="Writing / The Blue Green Manual"
-        title="Notes from the work."
-        description="Field notes on backend systems, infrastructure, homelabs, and the decisions behind them."
+        title="The Blue Green Manual"
+        description="Named after the blue-green deployment process. A place for my notes on backend systems, infrastructure, homelabs, and the decisions behind them."
         image={blogWallpaper}
         imageAlt="Rows of servers in a data center"
       >
@@ -113,7 +113,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
           openGraph: {
             type: "website",
             url: `https://nirmalhk7.com/blog`,
-            images: [openGraphImage("Notes from the work.", "The Blue Green Manual. Systems, homelabs, and lessons learned.", "writing")],
+            images: [openGraphImage("The Blue Green Manual", "The Blue Green Manual. Systems, homelabs, and lessons learned.", "writing")],
           },
         },
       },

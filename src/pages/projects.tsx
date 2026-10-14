@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { trackClick, trackSearch, trackSelectContent } from "@/util/analytics";
+import React, { useEffect, useRef, useState, useMemo } from "react";
+import { trackSearch, trackSelectContent, trackEvent } from "@/util/analytics";
 import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
 import { cleanProjectSummary, normalizeTags, projectCategory, selectedProjects } from "@/util/projectCuration";
@@ -56,12 +56,12 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
   }, [projectId]);
 
   const handleToggle = (slug: string) => {
+    trackEvent("project_toggle", {content_id:slug,action:expandedSlug===slug?"collapse":"expand"});
     if (expandedSlug === slug) {
       setExpandedSlug(null);
       router.push("/projects", undefined, { shallow: true, scroll: false });
     } else {
       setExpandedSlug(slug);
-      trackClick(slug, "project_expand");
       trackSelectContent("project", slug, {
         interaction_type: "expand",
       });
@@ -70,16 +70,16 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
   };
 
   const browsingAll = showArchive || searchQuery.trim().length > 0 || filter !== 'X' || category !== 'All work';
-  const filteredProjects = projects.filter((project) => {
+  const filteredProjects = useMemo(() => projects.filter((project) => {
     const matchesScope = browsingAll || Boolean(selectedProjects[project.slug]);
     const matchesCategory = category === 'All work' || projectCategory(project) === category;
     const matchesFilter = filter === "X" || project.frontmatter.tags?.includes(filter);
     const searchContent = `${project.frontmatter.title} ${project.frontmatter.tags?.join(" ")} ${project.frontmatter.summary || ""} ${project.excerpt || ""} ${project.contentHtml}`.toLowerCase();
     const matchesSearch = searchQuery === "" || searchContent.includes(searchQuery.toLowerCase());
     return matchesScope && matchesCategory && matchesFilter && matchesSearch;
-  });
+  }), [projects,browsingAll,category,filter,searchQuery]);
 
-  const clearFilters = () => { setSearchQuery(''); setFilter('X'); setCategory('All work'); };
+  const clearFilters = () => { trackEvent('project_filter',{action:'clear'}); setSearchQuery(''); setFilter('X'); setCategory('All work'); };
 
   useEffect(() => {
     const searchTerm = searchQuery.trim();
@@ -90,13 +90,14 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
         search_scope: "projects",
         result_count: filteredProjects.length,
         active_filter: filter,
+        matched_ids: filteredProjects.slice(0,5).map(project=>project.slug).join(","),
       });
     }, 700);
 
     return () => {
       window.clearTimeout(timer);
     };
-  }, [searchQuery, filteredProjects.length, filter]);
+  }, [searchQuery, filteredProjects, filter]);
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -156,11 +157,11 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
       <PageHero
         eyebrow=""
         title="Systems, tools, and the work behind them."
-        description="Start with eight selected projects in infrastructure, developer tooling, and product engineering. The full archive is here when you need it."
+        description="A collection of systems, tools, and applications I’ve built to explore ideas and solve practical problems. Each project shows the thinking behind the design and the engineering that brings it to life."
         image={nasaGalaxy}
         imageAlt="Earth seen from space"
       />
-      <PageSection id="projectdetailed" title={browsingAll ? 'Explore the work.' : 'Selected work.'} description="Open a project for my contribution and technical details. Search covers the entire archive.">
+      <PageSection id="projectdetailed" title={browsingAll ? 'Explore the work.' : 'My Projects'} description="Open a project for my contribution and technical details. Search covers the entire archive.">
         <div role="search" aria-label="Search projects">
           <label htmlFor="project-search" className="sr-only">Search projects and technologies</label>
           <input
@@ -174,17 +175,17 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
         </div>
         <div className={styles.searchStatus}>
           <p role="status">{filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} · {browsingAll ? 'Full archive' : 'Selected work'}</p>
-          {(searchQuery || filter !== 'X' || category !== 'All work') && <button type="button" className={styles.filterButton} onClick={clearFilters}>Clear search and filters</button>}
+          {(searchQuery || filter !== 'X' || category !== 'All work') && <button data-analytics-id="projects_control_1" data-analytics-skip-global="true" type="button" className={styles.filterButton} onClick={clearFilters}>Clear search and filters</button>}
         </div>
         {filteredProjects.length === 0 && <p className={styles.emptyState}>No matching projects. Try another term or clear the filters above.</p>}
         <div className={styles.filterBar} aria-label="Filter projects by area">
-          {['All work', 'Systems', 'Product', 'Research'].map(area => <button key={area} type="button" aria-pressed={area === category} className={`${styles.filterButton} ${area === category ? styles.filterButtonActive : ''}`} onClick={() => { setCategory(area); trackClick(area, 'project_filter'); }}>{area}</button>)}
+          {['All work', 'Systems', 'Product', 'Research'].map(area => <button data-analytics-id="projects_control_2" data-analytics-skip-global="true" key={area} type="button" aria-pressed={area === category} className={`${styles.filterButton} ${area === category ? styles.filterButtonActive : ''}`} onClick={() => { setCategory(area); trackEvent('project_filter',{category:area,action:'category'}); }}>{area}</button>)}
         </div>
-        <details className={styles.technologyFilters}>
+        <details data-analytics-id="project_technology_filters" className={styles.technologyFilters}>
           <summary>Filter by technology{filter !== 'X' ? ` · ${filter}` : ''}</summary>
           <div className={styles.filterBar} aria-label="Filter projects by technology">
           {filterOptions.map(({ tag, label }) => (
-            <button
+            <button data-analytics-id="projects_control_3"
               key={tag}
               type="button"
               aria-pressed={tag === filter}
@@ -192,10 +193,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
               onClick={() => {
                 setFilter(tag);
                 const isAll = tag === "X";
-                trackClick(isAll ? "clear_filter" : tag, "project_filter");
-                trackSelectContent("project_filter", isAll ? "all" : tag, {
-                  result_count: isAll ? projects.length : projects.filter((project) => project.frontmatter.tags?.includes(tag)).length,
-                });
+                trackEvent("project_filter",{active_filter:isAll?"all":tag,action:"technology"});
               }}
               className={`${styles.filterButton} ${tag === filter ? styles.filterButtonActive : ""}`}
             >
@@ -216,7 +214,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
             </div>
           ))}
         </div>
-        {!searchQuery && filter === 'X' && category === 'All work' && <button className={styles.action} type="button" onClick={() => setShowArchive(current => !current)}>{showArchive ? 'Return to selected work' : `View all ${projects.length} projects`}</button>}
+        {!searchQuery && filter === 'X' && category === 'All work' && <button data-analytics-id="projects_control_4" data-analytics-skip-global="true" className={styles.action} type="button" onClick={() => { trackEvent('project_archive',{action:showArchive?'hide':'show'}); setShowArchive(current => !current); }}>{showArchive ? 'Return to selected work' : `View all ${projects.length} projects`}</button>}
       </PageSection>
     </main>
   );

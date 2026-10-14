@@ -23,16 +23,9 @@ const nextConfig = {
     NEXT_PUBLIC_GIT_COMMIT_SHA: gitCommitSha,
   },
   async redirects() {
-    if (process.env.NODE_ENV!=="development") {
-      return [
-        {
-          source: "/design",
-          destination: "/",
-          permanent: true,
-        },
-      ];
-    }
-    return [];
+    return [
+      ...(process.env.NODE_ENV !== "development" ? [{ source: "/design", destination: "/", permanent: true }] : []),
+    ];
   },
   async headers() {
     return [

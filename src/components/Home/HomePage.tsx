@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useRouter } from "next/router";
+import { useHashScroll } from "@/hooks/useHashScroll";
+import { useContentReveal } from "@/hooks/useContentReveal";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { trackClick, trackSelectContent } from "@/util/analytics";
+import { trackSelectContent } from "@/util/analytics";
 import {
   CourseInterface,
   MembershipInterface,
@@ -13,6 +16,7 @@ import {
 import { ProjectInterface } from "@/interfaces/projects";
 import { experienceHighlights } from "@/util/experienceHighlights";
 import CinematicStory from "./CinematicStory";
+import RotatingTopics from "./RotatingTopics";
 import treesPhoto from "@/assets/images/TreesNK_1.jpg";
 import styles from "./portfolioHome.module.scss";
 
@@ -37,19 +41,22 @@ export default function HomePage({
   skills,
   profiles,
 }: HomePageProps) {
+  const pageRef = useRef<HTMLElement>(null);
+  useContentReveal(pageRef);
+  useHashScroll(useRouter().asPath);
   const socialLinks = profiles.filter((profile) => ["LinkedIn", "GitHub"].includes(profile.name));
   return (
-    <main className={styles.page}>
+    <main className={styles.page} ref={pageRef}>
       <CinematicStory />
 
       <section className={styles.experience} id="workexperience" aria-labelledby="experience-heading">
-        <div className={styles.sectionHeading}>
-          <h2 id="experience-heading">Experience that runs in production.</h2>
-          <p>Backend services, product systems, and the work that keeps them moving.</p>
+        <div data-reveal className={styles.sectionHeading}>
+          <h2 id="experience-heading">From development to deployment.</h2>
+          <p>At Visa, my work covered service migrations, testing, infrastructure, and production releases. At ZOLL, I worked on dispatch scheduling and AI models.</p>
         </div>
         <div className={styles.experienceList}>
           {groupExperience(workexperience).map(({ company, roles }) => (
-            <article className={styles.experienceRow} key={company}>
+            <article data-reveal className={styles.experienceRow} key={company}>
               <h3>{company}</h3>
               <div className={styles.roleList}>
                 {roles.map((role) => {
@@ -68,7 +75,7 @@ export default function HomePage({
                         {highlights.map((description) => <li key={description}>{description}</li>)}
                       </ul>
                       {remaining.length > 0 && (
-                        <details className={styles.disclosure}>
+                        <details data-analytics-id={`role_${company.toLowerCase().replace(/[^a-z0-9]+/g,"_")}`} className={styles.disclosure}>
                           <summary>More from this role</summary>
                           <ul>{remaining.map((description) => <li key={description}>{description}</li>)}</ul>
                         </details>
@@ -83,15 +90,15 @@ export default function HomePage({
       </section>
 
       <section className={styles.afterHours} aria-labelledby="perspective-heading">
-        <div className={styles.afterHoursCopy}>
-          <h2 id="perspective-heading">I see the whole system.</h2>
-          <p>I care about how a product feels, how its services behave, and what keeps it dependable. I connect the details to the bigger picture.</p>
-          <p>Product judgment. Systems thinking. The curiosity to keep building.</p>
+        <div data-reveal className={styles.afterHoursCopy}>
+          <h2 id="perspective-heading">The whole system matters.</h2>
+          <p>I connect product thinking with hands-on engineering, from shaping an idea to building the systems behind it.</p>
+          <p>I think about how it feels to use, how its parts fit together, and how it holds up over time. Clear experiences and reliable foundations guide the choices I make.</p>
           <div className={styles.articleLinks}>
-            <Link href="/projects" onClick={() => trackSelectContent("profile_cta", "Explore my projects")}>Explore my projects</Link>
+            <Link data-analytics-skip-global="true" href="/projects" onClick={() => trackSelectContent("profile_cta", "Explore my projects")}>Explore my projects</Link>
           </div>
         </div>
-        <div className={styles.infrastructureImage}>
+        <div data-reveal className={styles.infrastructureImage}>
           <Image
             src={treesPhoto}
             alt="Nirmal outdoors beneath trees"
@@ -99,27 +106,27 @@ export default function HomePage({
             sizes="(max-width: 767px) 100vw, 46vw"
             loading="lazy"
           />
-          <span>Curiosity beyond the screen.</span>
+          <span>Nirmal outdoors.</span>
         </div>
       </section>
 
       <section className={styles.projects} id="project" aria-labelledby="projects-heading">
-        <div className={styles.sectionHeading}>
-          <h2 id="projects-heading">Across the stack.</h2>
-          <p>Selected work, from infrastructure tooling to browser based experiences.</p>
+        <div data-reveal className={styles.sectionHeading}>
+          <h2 id="projects-heading">Selected projects.</h2>
+          <p>From planning cluster capacity to building a research portal: tools and applications with specific problems to solve.</p>
         </div>
         <div className={styles.projectList}>
-          {projects.map((project, index) => (
-            <Link
+          {projects.map((project) => (
+            <Link data-analytics-skip-global="true"
+              data-analytics-exposure={project.slug}
+              data-reveal
               className={styles.projectRow}
               href={`/projects?id=${encodeURIComponent(project.slug)}`}
               key={project.slug}
               onClick={() => {
                 trackSelectContent("project", project.slug, { item_list_name: "home_featured_projects" });
-                trackClick(project.slug, "project_card");
               }}
             >
-              <span className={styles.projectIndex} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
               <span className={styles.projectMain}>
                 <span className={styles.projectTitle}>{project.slug === "atskit" ? "ATSKit" : project.frontmatter.title}</span>
                 <span className={styles.projectSummary}>{project.frontmatter.summary || project.excerpt}</span>
@@ -133,10 +140,10 @@ export default function HomePage({
       </section>
 
       <section className={styles.about} id="about" aria-labelledby="about-heading">
-        <div className={styles.aboutCopy}>
-          <h2 id="about-heading">A broad engineer with systems at the center.</h2>
+        <div data-reveal className={styles.aboutCopy}>
+          <h2 id="about-heading">Systems focus. Full-stack experience.</h2>
           <p>
-            I completed my undergraduate studies at NITK Surathkal before earning a Master of Science in Computer Science at the University of Colorado Boulder. My work spans backend services, production systems, web applications, and mobile development.
+            I completed my undergraduate studies at NITK Surathkal before earning a Master of Science in Computer Science at the University of Colorado Boulder. My experience connects backend and infrastructure work with hands-on frontend development, including the entire ScholarHub frontend.
           </p>
           <ul className={styles.socialLinks} aria-label="Professional profiles">
             {socialLinks.map((profile) => (
@@ -144,7 +151,7 @@ export default function HomePage({
             ))}
           </ul>
         </div>
-        <div className={styles.aboutDetails}>
+        <div data-reveal className={styles.aboutDetails}>
           <Disclosure title="Languages and tools">
             <ul className={styles.tagList}>{skills.map((skill) => <li key={skill.name}>{skill.name}</li>)}</ul>
           </Disclosure>
@@ -162,10 +169,10 @@ export default function HomePage({
         </div>
       </section>
 
-      <section className={styles.writing} id="blog" aria-labelledby="writing-heading">
-        <h2 id="writing-heading">Notes from the work.</h2>
-        <Link href="/blog/homelab_gitops">How GitOps brings order to chaos <span aria-hidden="true">↗</span></Link>
-        <Link href="/blog/homelab_architect">Homelab architecture: planning your playground <span aria-hidden="true">↗</span></Link>
+      <section data-reveal className={styles.writing} id="blog" aria-labelledby="writing-heading">
+        <h2 id="writing-heading">How I approach <RotatingTopics /></h2>
+        <Link href="/blog/homelab_gitops">Homelab configuration with GitOps <span aria-hidden="true">↗</span></Link>
+        <Link href="/blog/homelab_architect">Homelab architecture and access control <span aria-hidden="true">↗</span></Link>
         <Link href="/blog" className={styles.allWritingLink}>Read all writing <span aria-hidden="true">↗</span></Link>
       </section>
 
@@ -186,7 +193,7 @@ function groupExperience(experience: WorkExperienceInterface[]) {
 
 function Disclosure({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <details className={styles.disclosure}>
+    <details data-analytics-id={`profile_${title.toLowerCase().replace(/[^a-z0-9]+/g,"_")}`} className={styles.disclosure}>
       <summary>{title}</summary>
       {children}
     </details>

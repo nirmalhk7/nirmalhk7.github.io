@@ -1,6 +1,6 @@
 import React from "react";
 import { BlogMiniInterface } from "@/interfaces/blog";
-import { trackClick, trackSelectContent } from "@/util/analytics";
+import { trackSelectContent } from "@/util/analytics";
 import { EditorialRow, PageSection } from "@/components/Site/Editorial";
 
 const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => (
@@ -13,6 +13,7 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => (
     <div>
       {blogItems.map((blog, index) => (
         <EditorialRow
+          contentId={blog.slug}
           key={blog.slug}
           index={index}
           eyebrow={blog.frontmatter?.category?.join(" / ")}
@@ -24,7 +25,6 @@ const BlogListSection = ({ blogItems }: { blogItems: BlogMiniInterface[] }) => (
           href={`/blog/${blog.slug}`}
           onClick={() => {
             trackSelectContent("blog_post", blog.slug, { item_list_name: "blog_list", item_index: index });
-            trackClick(blog.frontmatter?.title || "", "blog_list_link");
           }}
         />
       ))}

@@ -33,6 +33,17 @@
   line-height: 1.55;
 }
 
+.shell ::selection {
+  color: #fff;
+  background: var(--portfolio-red);
+}
+
+.shell :global(.portfolio-contact-heading h2)::selection,
+.shell :global(.portfolio-contact-heading h2) ::selection {
+  color: var(--portfolio-red);
+  background: #fff;
+}
+
 .shell :global(.portfolio-contact) {
   padding: 108px clamp(28px, 10vw, 160px) 94px !important;
   color: #fff !important;
@@ -44,19 +55,29 @@
   transform: none !important;
 }
 
+.shell :global(.portfolio-contact-layout) {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.shell :global(.portfolio-contact-intro) {
+  width: 100%;
+}
+
 .shell :global(.portfolio-contact-heading) {
   max-width: 1360px;
   margin: 0 auto;
 }
 
 .shell :global(.portfolio-contact-heading h2) {
-  margin-bottom: 12px;
+  margin: 0 0 24px;
   color: #fff;
-  font-family: var(--portfolio-sans);
-  font-size: clamp(60px, 12vw, 164px);
-  font-weight: 700;
-  letter-spacing: -0.075em;
-  line-height: 0.95;
+  font-family: var(--portfolio-display);
+  font-size: clamp(38px, 5.3vw, 78px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
 }
 
 .shell :global(.portfolio-contact-grid) {
@@ -291,10 +312,12 @@
 
 .portfolioMenuPanel {
   width: 100%;
-  min-height: 100dvh;
+  height: 100dvh;
+  min-height: 0;
   padding: 18px 24px max(36px, env(safe-area-inset-bottom));
   background: var(--portfolio-paper);
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .portfolioMenuHeader {
@@ -320,9 +343,22 @@
   cursor: pointer;
 }
 
-.portfolioMenuHeader button span {
-  font-size: 24px;
-  font-weight: 300;
+.portfolioMenuGlyph {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+}
+
+.portfolioMenuGlyph > span {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  transform-origin: center;
 }
 
 .portfolioMenuPanel ul {
@@ -356,19 +392,6 @@
     background: transparent;
     font: 12px var(--portfolio-sans);
     cursor: pointer;
-  }
-
-  .portfolioMenuTrigger i,
-  .portfolioMenuTrigger i::after {
-    display: block;
-    width: 12px;
-    height: 1px;
-    background: currentColor;
-    content: "";
-  }
-
-  .portfolioMenuTrigger i::after {
-    transform: translateY(4px);
   }
 
   .portfolioMenuOverlay {

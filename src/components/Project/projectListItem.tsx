@@ -14,7 +14,7 @@ interface ProjectListItemProps {
 export const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectListItemProps>(({
   project, isExpanded, onToggle, index,
 }, ref) => (
-  <div ref={ref}>
+  <div ref={ref} data-analytics-exposure={project.slug}>
     <EditorialRow
       index={index}
       eyebrow={project.frontmatter.tags?.slice(0, 3).join(" / ")}

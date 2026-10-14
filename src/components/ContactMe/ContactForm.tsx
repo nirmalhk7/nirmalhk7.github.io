@@ -15,24 +15,36 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
   const hasTrackedSubmission = React.useRef(false);
   const hasTrackedAbandonment = React.useRef(false);
 
+  const editedFields = React.useRef(new Set<string>());
+  const pendingSince = React.useRef<number | null>(null);
+  const lastError = React.useRef<typeof state.errors>(null);
+
   React.useEffect(() => {
-    if (state.succeeded) {
+    if (state.succeeded && !hasTrackedSubmission.current) {
       hasTrackedSubmission.current = true;
+      if (pendingSince.current !== null) { trackEvent("form_pending",{form_id:"contact-form",interaction_type:"success",duration_msec:Date.now()-pendingSince.current}); pendingSince.current=null; }
       trackGenerateLead("contact_form", {
         form_id: "contact-form",
         form_name: "Contact form",
       });
-      trackClick("success", "contact_form_submission");
     }
   }, [state.succeeded]);
 
   React.useEffect(() => {
     const formErrors = state.errors?.getFormErrors() ?? [];
-    if (formErrors.length === 0) return;
+    const fieldErrors = state.errors?.getAllFieldErrors?.() ?? [];
+    const errorCount = formErrors.length + fieldErrors.reduce((count, [,errors]) => count+errors.length,0);
+    if (errorCount === 0 || lastError.current===state.errors) return;
+    lastError.current=state.errors;
+    if (pendingSince.current !== null) { trackEvent("form_pending",{form_id:"contact-form",interaction_type:"failure",duration_msec:Date.now()-pendingSince.current}); pendingSince.current=null; }
+    for (const [field,errors] of fieldErrors) {
+      const fieldId = ({'NAME:':'name','contactEmail: ':'email','contactMessage: ':'message'} as Record<string,string>)[field];
+      if (fieldId) trackEvent('form_validation_error',{form_id:'contact-form',field_id:fieldId,interaction_type:'server',error_count:errors.length});
+    }
     trackEvent("form_error", {
       form_id: "contact-form",
       form_name: "Contact form",
-      error_count: formErrors.length,
+      error_count: errorCount,
     });
   }, [state.errors]);
 
@@ -47,7 +59,7 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
       }
     };
     window.addEventListener("pagehide", handlePageHide);
-    return () => window.removeEventListener("pagehide", handlePageHide);
+    return () => { handlePageHide(); window.removeEventListener("pagehide", handlePageHide); };
   }, []);
 
   const handleFormFocus = (fieldId: string) => {
@@ -58,14 +70,24 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
     trackFormFocus(fieldId, "contact-form");
   };
 
+  const handleFirstEdit = (fieldId: string) => {
+    if (!hasTrackedFormStart.current) { trackFormStart('contact-form','Contact form'); hasTrackedFormStart.current=true; }
+    if (!editedFields.current.has(fieldId)) { editedFields.current.add(fieldId); trackEvent('form_engagement',{action:'first_edit',field_id:fieldId,form_id:'contact-form'}); }
+  };
+
   if (state.succeeded) return <p role="status">Thanks for your submission!</p>;
 
   return (
     <form
+      data-analytics-skip-global="true"
       id="contact-form"
       name="Contact form"
       onSubmit={(event) => {
-        trackFormSubmit("contact-form", "Contact form", "Submit");
+        if (state.submitting) return;
+        pendingSince.current=Date.now();
+        hasTrackedAbandonment.current=false;
+        hasTrackedFormStart.current=true;
+        trackFormSubmit("contact-form", "Contact form", submitLabel);
         handleSubmit(event);
       }}
     >
@@ -77,6 +99,7 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
         type="text"
         aria-label="Name"
         autoComplete="name"
+        onChange={() => handleFirstEdit("name")}
         onFocus={() => handleFormFocus("name")}
         onInvalid={() => trackEvent("form_validation_error", {
           form_id: "contact-form",
@@ -96,7 +119,8 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
           type="email"
           aria-label="Email"
           autoComplete="email"
-          onFocus={() => handleFormFocus("email")}
+          onChange={() => handleFirstEdit("email")}
+        onFocus={() => handleFormFocus("email")}
           onInvalid={() => trackEvent("form_validation_error", {
             form_id: "contact-form",
             form_name: "Contact form",
@@ -117,7 +141,8 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
           required
           rows={10}
           aria-label="Message"
-          onFocus={() => handleFormFocus("message")}
+          onChange={() => handleFirstEdit("message")}
+        onFocus={() => handleFormFocus("message")}
           onInvalid={() => trackEvent("form_validation_error", {
             form_id: "contact-form",
             form_name: "Contact form",
@@ -133,7 +158,7 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
         </p>
       )}
 
-      <button
+      <button data-analytics-id="contactform_control_2"
         className="button button-accent-fill w-full mt-32"
         type="submit"
         disabled={state.submitting}

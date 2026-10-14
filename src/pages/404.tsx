@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { GetStaticProps } from "next";
 import { DefaultPageProps } from "./_app";
-import { trackError, trackClick, trackSearch, trackSelectContent } from "@/util/analytics";
+import { trackClick, trackSearch, trackSelectContent, trackResumeOpen } from "@/util/analytics";
 import Link from "next/link";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
 import { selectedProjects } from '@/util/projectCuration';
@@ -12,7 +12,7 @@ import { PageHero, PageSection, editorialStyles as styles } from "@/components/S
 interface SearchItem {
   title: string;
   url: string;
-  type: "page" | "project" | "blog";
+  type: "page" | "project" | "blog" | "document";
 }
 
 interface NotFoundPageProps extends DefaultPageProps {
@@ -21,10 +21,6 @@ interface NotFoundPageProps extends DefaultPageProps {
 
 const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
   const [query, setQuery] = useState("");
-
-  useEffect(() => {
-    trackError("404 Not Found", false);
-  }, []);
 
   const filteredItems = useMemo(() => {
     if (!query) return [];
@@ -38,10 +34,10 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
     const searchTerm = query.trim();
     if (searchTerm.length < 2) return;
     const timer = window.setTimeout(() => {
-      trackSearch(searchTerm, { search_scope: "404", result_count: filteredItems.length });
+      trackSearch(searchTerm, { search_scope: "404", result_count: filteredItems.length, matched_ids: filteredItems.slice(0,5).map(item=>item.url).join(",") });
     }, 700);
     return () => window.clearTimeout(timer);
-  }, [query, filteredItems.length]);
+  }, [query, filteredItems]);
 
   return (
     <main className={styles.page}>
@@ -64,14 +60,14 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
           />
           {query && (
             <div className={styles.searchResults} aria-live="polite">
-              {filteredItems.length ? filteredItems.map((item) => (
-                <Link key={item.url} href={item.url} onClick={() => {
-                  trackClick(item.title, "404_search_result");
-                  trackSelectContent(item.type, item.url, { source: "404_search_result" });
+              {filteredItems.length ? filteredItems.map((item) => { const ResultLink=Link; return (
+                <ResultLink key={item.url} href={item.url} onClick={() => {
+                  if (item.url==="/resume") trackResumeOpen("404_search_result");
+                  else trackSelectContent(item.type, item.url, { source: "404_search_result" });
                 }} data-analytics-skip-global="true">
                   <span>{item.title}</span><span className={styles.rowEyebrow}>{item.type} ↗</span>
-                </Link>
-              )) : <p>No results for “{query}”. Try another search.</p>}
+                </ResultLink>
+              ); }) : <p>No results for “{query}”. Try another search.</p>}
             </div>
           )}
           <nav className={styles.errorLinks} aria-label="Suggested pages">
@@ -81,11 +77,11 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
               { title: "Blog", url: "/blog" },
               { title: "Resume", url: "/resume" },
               { title: "Contact", url: "/#contact" },
-            ].map((item) => (
-              <Link key={item.url} href={item.url} onClick={() => trackClick(item.title, "404_quick_link")}>
+            ].map((item) => { const QuickLink=Link; return (
+              <QuickLink data-analytics-skip-global="true" key={item.url} href={item.url} onClick={() => item.url==="/resume" ? trackResumeOpen("404_quick_link") : trackClick(item.title, "404_quick_link")}>
                 {item.title} ↗
-              </Link>
-            ))}
+              </QuickLink>
+            ); })}
           </nav>
         </div>
       </PageSection>
@@ -109,7 +105,7 @@ export const getStaticProps: GetStaticProps<NotFoundPageProps> = async () => {
     { title: "Home", url: "/", type: "page" },
     { title: "Projects", url: "/projects", type: "page" },
     { title: "Blog", url: "/blog", type: "page" },
-    { title: "Resume", url: "/resume", type: "page" },
+    { title: "Resume", url: "/resume", type: "document" },
     ...projects.map(p => ({
       title: selectedProjects[p.slug]?.title || p.frontmatter.title,
       url: `/projects?id=${encodeURIComponent(p.slug)}`,
