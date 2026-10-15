@@ -1,0 +1,410 @@
+.page {
+  @apply text-portfolio-ink;
+  background: var(--portfolio-paper);
+  @apply font-body text-body-px leading-[1.55] overflow-clip;
+}
+.page h1,
+.page h2,
+.page h3,
+.page h4,
+.page p,
+.page figure,
+.page ul,
+.page ol {
+  @apply mt-[0];
+}
+.page h1,
+.page h2,
+.page h3,
+.page h4 {
+  @apply text-inherit font-display font-semibold tracking-[-0.03em] leading-[1.06] normal-case;
+}
+.page h2 {
+  @apply mb-[22px] text-[clamp(38px,_5.3vw,_78px)];
+}
+.page p {
+  @apply max-w-[68ch] text-[clamp(16px,_1.35vw,_20px)] leading-[1.65];
+}
+.page a {
+  @apply text-inherit underline-offset-[0.22em];
+  transition: color 160ms ease-out, background-color 160ms ease-out;
+}
+.page a:focus-visible,
+.page summary:focus-visible,
+.page button:focus-visible {
+  outline: 3px solid var(--portfolio-red);
+  @apply outline-offset-4;
+}
+
+.experience,
+.projects,
+.about,
+.writing {
+  @apply p-[118px_clamp(28px,_10vw,_160px)];
+  scroll-margin-top: 70px;
+}
+
+.sectionHeading {
+  @apply max-w-content m-[0_auto_70px];
+}
+
+.sectionHeading h2 {
+  @apply max-w-[12ch] mb-[0];
+}
+
+.sectionHeading p {
+  @apply mb-[5px] text-portfolio-muted;
+}
+
+.experience {
+  background: var(--portfolio-paper);
+}
+
+.experienceList {
+  @apply max-w-content m-[0_auto];
+}
+
+.experienceRow {
+  @apply grid grid-cols-[minmax(190px,_0.52fr)_minmax(0,_1fr)] gap-[clamp(30px,_8vw,_120px)] p-[36px_0];
+  border-top: 1px solid rgba(23, 23, 23, 0.17);
+}
+
+.experienceRow > h3 {
+  @apply m-[2px_0_0] text-[clamp(33px,_4vw,_58px)];
+}
+
+.roleList {
+  @apply grid gap-[34px];
+}
+
+.role + .role {
+  @apply pt-[28px];
+  border-top: 1px solid rgba(23, 23, 23, 0.1);
+}
+
+.roleTitle {
+  @apply flex justify-between items-baseline gap-[20px];
+}
+
+.roleTitle h4 {
+  @apply mb-[7px] font-portfolio-sans text-[19px] font-semibold tracking-tight;
+}
+
+.roleTitle p {
+  @apply flex-[0_0_auto] m-[0] text-portfolio-muted text-[13px];
+}
+
+.role ul,
+.aboutDetails ul {
+  @apply pl-[20px] mb-[0];
+}
+
+.role li,
+.aboutDetails li {
+  @apply max-w-[75ch] p-[3px_0] text-[15px] leading-[1.65];
+}
+
+.disclosure {
+  @apply mt-[13px];
+}
+
+.disclosure summary {
+  @apply w-fit min-h-[36px] p-[5px_0] text-portfolio-ink cursor-pointer text-[14px] font-semibold;
+}
+
+.afterHours {
+  @apply grid grid-cols-[minmax(0,_0.9fr)_minmax(0,_1.1fr)] items-center gap-[28px_clamp(40px,_8vw,_120px)] p-[120px_clamp(28px,_10vw,_160px)];
+  color: #f8f6f0;
+  background: #20201f;
+}
+
+.afterHoursCopy h2 {
+  @apply max-w-[13ch];
+}
+
+.afterHoursCopy p {
+  @apply max-w-[47ch];
+  color: rgba(248, 246, 240, 0.75);
+}
+
+.afterHoursCopy p + p {
+  @apply mt-[20px];
+}
+
+.articleLinks {
+  @apply grid gap-[7px] mt-[28px];
+}
+
+.articleLinks a,
+.allProjectsLink,
+.allWritingLink {
+  @apply w-fit min-h-[40px] content-center text-[15px] decoration-1;
+}
+
+.infrastructureImage {
+  @apply relative min-h-[410px] aspect-[1.12] overflow-hidden;
+  background: #12181d;
+}
+
+.infrastructureImage img {
+  @apply object-cover object-[38%_center];
+}
+
+.infrastructureImage span {
+  @apply absolute right-[14px] bottom-[12px] p-[4px_8px];
+  color: #fff;
+  background: rgba(0, 0, 0, 0.72);
+  @apply text-[11px];
+}
+
+.projects {
+  background: var(--portfolio-paper);
+}
+
+.projectList {
+  @apply max-w-content m-[0_auto];
+}
+
+.projectRow {
+  @apply relative grid grid-cols-[minmax(0,_1fr)_minmax(150px,_0.28fr)_32px] items-center gap-[24px] min-h-[152px] p-[28px_18px_28px_0];
+  border-top: 1px solid rgba(32, 35, 33, 0.18);
+  text-decoration: none;
+  transition: background-color 180ms ease-out;
+}
+
+.projectRow::after {
+  @apply absolute right-[0] bottom-[-1px] left-[0] h-px;
+  background: var(--portfolio-red);
+  content: "";
+  transform: scaleX(0);
+  @apply origin-[left_center];
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.projectRow:last-child {
+  border-bottom: 1px solid rgba(32, 35, 33, 0.18);
+}
+
+.projectTags {
+  @apply text-portfolio-muted;
+  font-family: "Portfolio Plex Mono", ui-monospace, monospace;
+  @apply text-label-px;
+}
+
+.projectMain {
+  @apply grid gap-[4px];
+}
+
+.projectTitle {
+  @apply font-display font-semibold text-[clamp(29px,_3.2vw,_48px)] tracking-[-0.03em] leading-[1.14];
+  transition: transform 150ms ease-out;
+}
+
+.projectSummary {
+  @apply max-w-[68ch] text-portfolio-muted text-[15px] leading-normal;
+}
+
+.projectArrow {
+  @apply justify-self-end text-portfolio-red text-[22px];
+  transition: transform 160ms ease-out;
+}
+
+.projectRow:hover .projectArrow {
+  transform: translate(3px, -3px);
+}
+
+.projectRow:hover,
+.projectRow:focus-visible {
+  background: #eceae4;
+}
+
+.projectRow:hover .projectTitle,
+.projectRow:focus-visible .projectTitle {
+  transform: translateX(4px);
+  @apply tracking-[-0.015em];
+}
+
+.projectRow:hover::after,
+.projectRow:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.projectRow:focus-visible {
+  outline: 2px solid var(--portfolio-red);
+  @apply outline-offset-[-2px];
+}
+
+.allProjectsLink {
+  @apply flex m-[30px_0_0_auto];
+}
+
+.about {
+  @apply grid grid-cols-[minmax(0,_1fr)_minmax(270px,_0.62fr)] gap-[clamp(48px,_10vw,_160px)] text-portfolio-paper;
+  background: #292827;
+}
+
+.aboutCopy h2 {
+  @apply max-w-[11ch];
+}
+
+.aboutCopy p {
+  color: rgba(246, 245, 241, 0.76);
+}
+
+.socialLinks {
+  @apply flex flex-wrap gap-[10px_22px] m-[30px_0_0] p-[0];
+  list-style: none;
+}
+
+.socialLinks a {
+  @apply inline-flex min-h-[42px] items-center gap-[5px] text-[14px];
+}
+
+.aboutDetails {
+  @apply self-center;
+}
+
+.aboutDetails .disclosure {
+  @apply p-[13px_0];
+  border-top: 1px solid rgba(246, 245, 241, 0.24);
+}
+
+.aboutDetails .disclosure:last-child {
+  border-bottom: 1px solid rgba(246, 245, 241, 0.24);
+}
+
+.aboutDetails .disclosure summary {
+  @apply text-portfolio-paper;
+}
+
+.aboutDetails .disclosure > ul,
+.aboutDetails .disclosure > .tagList {
+  @apply pt-[10px];
+}
+
+.aboutDetails .disclosure a {
+  @apply decoration-1;
+}
+
+.tagList {
+  @apply flex flex-wrap gap-[5px_14px];
+  @apply pl-[0] !important;
+  list-style: none;
+}
+
+.writing {
+  @apply grid grid-cols-[1fr_1fr] items-center gap-[20px_50px] text-portfolio-ink;
+  background: var(--portfolio-paper);
+}
+
+.writing h2 {
+  @apply col-[1/-1] mb-[24px];
+}
+
+.writing > a:not(.allWritingLink) {
+  @apply max-w-[31ch] p-[8px_0] font-display font-medium tracking-tight text-[clamp(21px,_2vw,_28px)];
+  text-decoration: none;
+}
+
+.allWritingLink {
+  @apply col-[1/-1] mt-[16px];
+}
+
+@media (max-width: 1023px) {
+  .experience,
+  .projects,
+  .about,
+  .writing,
+  .afterHours {
+    @apply pr-[6vw] pl-[6vw];
+  }
+}
+@media (max-width: 767px) {
+  .experience,
+  .projects,
+  .about,
+  .writing,
+  .afterHours {
+    @apply p-[76px_22px];
+  }
+  .sectionHeading,
+  .experienceRow,
+  .afterHours,
+  .about {
+    @apply grid-cols-[1fr] gap-[30px];
+  }
+  .sectionHeading {
+    @apply mb-[42px];
+  }
+  .sectionHeading h2,
+  .afterHoursCopy h2,
+  .aboutCopy h2 {
+    @apply max-w-[13ch];
+  }
+  .experienceRow {
+    @apply p-[28px_0];
+  }
+  .experienceRow > h3 {
+    @apply text-[42px];
+  }
+  .roleTitle {
+    @apply items-start flex-col gap-[0];
+  }
+  .infrastructureImage {
+    @apply min-h-[260px];
+  }
+  .projectRow {
+    @apply grid-cols-[minmax(0,_1fr)_22px] gap-[9px] min-h-[130px] p-[22px_0];
+  }
+  .projectTags {
+    @apply col-[1];
+    grid-row: 2;
+    @apply text-[10px] leading-[1.4];
+  }
+  .projectArrow {
+    @apply col-[2];
+    grid-row: 1/3;
+  }
+  .projectSummary {
+    @apply text-[13px];
+  }
+  .writing {
+    @apply grid-cols-[1fr] gap-[14px];
+  }
+  .writing h2,
+  .allWritingLink {
+    @apply col-auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page a,
+  .projectArrow,
+  .projectTitle,
+  .projectRow,
+  .projectRow::after {
+    transition: none;
+  }
+}
+.topicWindow {
+  @apply relative block w-fit max-w-full overflow-hidden leading-[1.16];
+}
+
+.topicMeasure {
+  @apply block invisible;
+}
+
+.topicWord {
+  @apply absolute inset-[0] block text-portfolio-red;
+}
+
+.topicAccessible {
+  @apply absolute w-px h-px p-[0] overflow-hidden;
+  clip-path: inset(50%);
+  @apply whitespace-nowrap;
+}
+
+@media (max-width: 767px) {
+  .topicWindow {
+    @apply text-[clamp(26px,_7.6vw,_38px)];
+  }
+}

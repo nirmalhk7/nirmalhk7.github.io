@@ -1,0 +1,45 @@
+.banner {
+  @apply fixed z-[110] bottom-[16px] left-[16px] right-[16px] max-w-[768px] m-[0_auto] p-[20px] text-body-px;
+  color: #25241f;
+  background: #f5f2eb;
+  border: 1px solid #b8b4a8;
+  @apply max-h-[calc(100dvh_-_32px)] overflow-auto;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+.banner h2 {
+  @apply text-[20px] m-[0_0_8px];
+}
+.banner p {
+  @apply text-[14px] leading-[1.6] m-[0_0_16px];
+}
+.banner a {
+  @apply text-inherit;
+  text-decoration: underline;
+}
+.banner button {
+  font: inherit;
+  @apply text-[14px] normal-case tracking-[normal];
+  border: 1px solid #777469;
+  @apply p-[10px_14px] min-h-[44px];
+  background: transparent;
+  @apply text-inherit;
+}
+.banner button:focus-visible, .banner input:focus-visible, .banner a:focus-visible {
+  outline: 2px solid #a44125;
+  @apply outline-offset-[3px];
+}
+
+.actions {
+  @apply flex flex-wrap gap-[8px];
+}
+
+.options {
+  @apply flex gap-[24px] mb-[16px] text-[14px];
+}
+.options label {
+  @apply flex items-center gap-[8px];
+}
+.options input {
+  @apply w-[18px] h-[18px];
+  accent-color: #a44125;
+}

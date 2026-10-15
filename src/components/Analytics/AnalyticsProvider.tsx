@@ -6,7 +6,7 @@ const Analytics = dynamic(()=>import('@vercel/analytics/react').then(module=>mod
 const SpeedInsights = dynamic(()=>import('@vercel/speed-insights/next').then(module=>module.SpeedInsights),{ssr:false});
 import { CONSENT_KEY, CONSENT_EVENT, ConsentState, initializeAnalytics, readConsent, updateConsent, synchronizeConsent, validMeasurementId } from '@/util/analyticsConsent';
 import { sanitizeAnalyticsUrl } from '@/util/analyticsPrivacy';
-import styles from './consent.module.scss';
+import styles from './consent.module.css';
 
 export function AnalyticsProvider({ hideBanner = false }: { hideBanner?: boolean }) {
   const [state, setState] = useState<ConsentState>({analytics:false, advertising:false, decided:false});

@@ -15,7 +15,8 @@
     "test": "jest --passWithNoTests",
     "check-performance": "node scripts/check-performance-budgets.js",
     "check-project-markdown": "node scripts/check-project-markdown.js",
-    "check-links": "blc http://localhost:3000 -ro --filter-level 3 --exclude https://nirmalhk7.com/ --exclude https://nirmalhk7.com/api/rss --exclude http://localhost:3000/_next/ --exclude https://www.linkedin.com/in/ --exclude https://twitter.com/intent/tweet --exclude https://bsky.app/intent/compose --exclude https://formspree.io/legal/privacy-policy/"
+    "check-links": "blc http://localhost:3000 -ro --filter-level 3 --exclude https://nirmalhk7.com/ --exclude https://nirmalhk7.com/api/rss --exclude http://localhost:3000/_next/ --exclude https://www.linkedin.com/in/ --exclude https://twitter.com/intent/tweet --exclude https://bsky.app/intent/compose --exclude https://formspree.io/legal/privacy-policy/",
+    "check-style-parity": "node scripts/check-style-parity.js"
   },
   "dependencies": {
     "@formspree/react": "^2.5.1",

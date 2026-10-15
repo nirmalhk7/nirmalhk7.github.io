@@ -1,0 +1,831 @@
+.page {
+  @apply text-portfolio-ink;
+  background: var(--portfolio-paper);
+  @apply font-body text-body-px leading-normal;
+}
+
+.page :where(h1, h2, h3, h4, h5, p) {
+  @apply m-[0];
+}
+
+.page :where(a, button) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page :where(a, button):focus-visible {
+  outline: 2px solid var(--portfolio-red);
+  @apply outline-offset-4;
+}
+
+.hero {
+  @apply relative flex min-h-[min(680px,_76svh)] items-end overflow-hidden p-[160px_clamp(24px,_8vw,_126px)_76px];
+  color: #fff;
+  background: #202628;
+  @apply isolate;
+}
+
+.heroCompact {
+  @apply min-h-[460px];
+}
+
+.heroImage {
+  @apply z-[-2] object-cover object-center;
+}
+
+.heroShade {
+  @apply absolute z-[-1] inset-[0];
+  background: linear-gradient(90deg, rgba(13, 20, 24, 0.88) 0%, rgba(13, 20, 24, 0.66) 45%, rgba(13, 20, 24, 0.18) 100%), linear-gradient(0deg, rgba(13, 20, 24, 0.42), transparent 50%);
+}
+
+.heroContent {
+  @apply w-[min(100%,_1120px)];
+}
+
+.eyebrow {
+  @apply text-portfolio-red;
+  font-family: "Portfolio Plex Mono", ui-monospace, monospace;
+  @apply text-label-px font-normal tracking-[0.16em] leading-normal uppercase;
+}
+
+.hero .eyebrow {
+  color: #ff776b;
+}
+
+.hero h1 {
+  @apply max-w-[1050px] m-[18px_0_0];
+  color: #fff;
+  @apply font-display text-[clamp(54px,_8vw,_96px)] font-bold tracking-[-0.035em] leading-[0.94];
+  text-wrap: balance;
+}
+
+.heroCompact h1 {
+  @apply text-[clamp(48px,_7.2vw,_96px)];
+}
+
+.hero.heroArticle {
+  @apply pt-[128px] pb-[56px];
+}
+
+.hero.heroArticle h1 {
+  @apply max-w-[24ch] text-[clamp(36px,_4.5vw,_64px)] leading-[1.08];
+}
+
+.heroArticle .heroDescription {
+  @apply max-w-[60ch] text-[clamp(17px,_1.6vw,_21px)];
+  @apply leading-normal !important;
+}
+
+.heroDescription {
+  @apply max-w-[700px];
+  @apply mt-[26px] !important;
+  color: rgba(255, 255, 255, 0.85);
+  @apply text-[clamp(17px,_2vw,_24px)];
+  @apply leading-[1.35] !important;
+}
+
+.heroActions {
+  @apply flex flex-wrap gap-[16px] mt-[34px];
+}
+
+.heroActions :where(a, button), .action {
+  @apply inline-flex min-h-[48px] items-center justify-center gap-[18px] p-[0_20px];
+  border: 1px solid currentColor;
+  @apply text-inherit;
+  background: transparent;
+  font: 700 14px var(--portfolio-sans);
+  text-decoration: none;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.heroActions :where(a, button):hover {
+  @apply text-portfolio-ink;
+  background: #fff;
+  text-decoration: none;
+}
+
+.actionPrimary, .heroActions .actionPrimary {
+  @apply border-portfolio-red;
+  color: #fff;
+  background: var(--portfolio-red);
+}
+
+.actionPrimary:hover, .heroActions .actionPrimary:hover {
+  @apply border-portfolio-red-hover;
+  color: #fff;
+  background: var(--portfolio-red-hover);
+}
+
+.section {
+  @apply p-[100px_clamp(24px,_8vw,_126px)] !important;
+  scroll-margin-top: 64px;
+}
+
+.sectionInner {
+  @apply max-w-content m-[0_auto];
+}
+
+.tonepaper {
+  background: var(--portfolio-paper);
+  @apply text-portfolio-ink;
+}
+
+.tonemuted {
+  background: var(--portfolio-muted-surface);
+  @apply text-portfolio-ink;
+}
+
+.toneink {
+  background: var(--portfolio-night);
+  color: #fff;
+}
+
+.sectionHeading {
+  @apply grid grid-cols-[minmax(0,_1.4fr)_minmax(200px,_0.6fr)] items-end gap-[48px] mb-[52px];
+}
+
+.sectionHeading .eyebrow {
+  @apply col-[1/-1] mb-[-30px];
+}
+
+.sectionHeading h2 {
+  @apply max-w-[850px] text-inherit font-display text-[clamp(48px,_6vw,_82px)] font-[650] tracking-[-0.035em] leading-[1.01];
+  text-wrap: balance;
+}
+
+.sectionHeading > p:last-child {
+  @apply max-w-[420px] text-portfolio-muted text-[18px] leading-[1.45];
+}
+
+.toneink .sectionHeading > p:last-child {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.row {
+  border-top: 1px solid rgba(32, 35, 33, 0.18);
+  transition: background-color 280ms ease-out;
+}
+
+.row:last-child {
+  border-bottom: 1px solid rgba(32, 35, 33, 0.18);
+}
+
+.rowControl {
+  @apply grid relative w-full min-h-[156px] grid-cols-[54px_minmax(0,_1fr)_auto_minmax(100px,_200px)_30px] items-center gap-[clamp(14px,_2vw,_34px)] p-[24px_8px];
+  border: 0;
+  @apply text-inherit;
+  background: transparent;
+  font: inherit;
+  @apply text-left;
+  text-decoration: none;
+  @apply cursor-pointer;
+  transition: background 150ms ease;
+}
+
+.rowControl::after {
+  @apply absolute right-[8px] bottom-[0] left-[8px] h-px;
+  background: var(--portfolio-red);
+  content: "";
+  transform: scaleX(0);
+  @apply origin-[left_center];
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  @apply pointer-events-none;
+}
+
+.rowControl:hover,
+.rowControl:focus-visible {
+  background: rgba(196, 59, 49, 0.04);
+  text-decoration: none;
+}
+
+.rowControl:hover::after,
+.rowControl:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.rowControl:hover .rowArrow {
+  transform: translate(3px, -3px);
+}
+
+.rowIndex, .rowEyebrow, .rowMeta {
+  @apply text-portfolio-muted;
+  font-family: "Portfolio Plex Mono", ui-monospace, monospace;
+  @apply text-[11px] tracking-[0.06em] leading-normal uppercase;
+}
+
+.rowCopy {
+  @apply grid gap-[6px] min-w-[0];
+}
+
+.rowEyebrow {
+  @apply text-portfolio-red;
+}
+
+.rowTitle {
+  @apply text-inherit font-display text-[clamp(27px,_3vw,_43px)] font-semibold tracking-[-0.03em] leading-[1.04];
+  transition: letter-spacing 220ms ease;
+}
+
+.rowControl:hover .rowTitle,
+.rowControl:focus-visible .rowTitle {
+  @apply tracking-[-0.015em];
+}
+
+.rowDescription {
+  @apply max-w-[68ch] text-portfolio-muted text-body-px leading-[1.55];
+}
+
+.rowMeta {
+  @apply max-w-[200px];
+  overflow-wrap: anywhere;
+}
+
+.rowArrow {
+  @apply col-[-2/-1] justify-self-end text-portfolio-red text-[24px];
+  transition: transform 150ms ease;
+}
+
+.rowImage {
+  @apply relative w-[140px] h-[90px] overflow-hidden;
+  background: #242b2e;
+}
+
+.rowImage img {
+  @apply object-cover;
+  transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rowControl:hover .rowImage img,
+.rowControl:focus-visible .rowImage img {
+  transform: scale(1.045);
+}
+
+.rowDetailMotion {
+  @apply overflow-hidden;
+}
+
+.rowToggle {
+  @apply col-[-2/-1] justify-self-end w-[24px] h-[24px] text-portfolio-red;
+}
+
+.rowToggleVertical {
+  @apply origin-[12px_12px];
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rowExpanded .rowToggleVertical {
+  transform: rotate(90deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row, .rowToggleVertical {
+    transition: none;
+  }
+}
+.rowExpanded {
+  background: var(--portfolio-muted-surface);
+}
+
+.rowDetail {
+  @apply p-[0_40px_50px_62px];
+}
+
+.rowDetail :where(h1, h2, h3, h4, h5, h6) {
+  @apply max-w-[45ch] m-[32px_0_12px] text-portfolio-ink font-display font-semibold tracking-[-0.02em] leading-tight normal-case;
+  text-wrap: balance;
+}
+
+.rowDetail :where(h1, h2) {
+  @apply text-[clamp(25px,_2.2vw,_30px)];
+}
+
+.rowDetail h3 {
+  @apply text-[clamp(22px,_2vw,_26px)];
+}
+
+.rowDetail h4 {
+  @apply text-[clamp(20px,_1.8vw,_23px)];
+}
+
+.rowDetail h5 {
+  @apply text-[19px];
+}
+
+.rowDetail h6 {
+  @apply text-[18px];
+}
+
+.rowDetail :where(p, li) {
+  @apply m-[0_0_14px] text-portfolio-ink text-[17px] leading-[1.65];
+}
+
+.rowDetail :where(p, ul, ol, blockquote) {
+  @apply max-w-[72ch];
+}
+
+.rowDetail :where(ul, ol) {
+  @apply pl-[22px];
+  list-style: disc;
+}
+
+.rowDetail a {
+  @apply text-portfolio-red;
+}
+
+.rowDetail :where(pre, img) {
+  @apply max-w-full overflow-x-auto;
+}
+
+.searchInput {
+  @apply w-full;
+  @apply h-[56px] !important;
+  @apply p-[0_16px] !important;
+  border: 1px solid rgba(23, 23, 23, 0.32) !important;
+  border-radius: 0;
+  @apply text-portfolio-ink !important;
+  background: #fff !important;
+  font: 16px var(--portfolio-sans) !important;
+}
+
+.searchInput::placeholder {
+  color: #666;
+}
+
+.searchInput:focus {
+  outline: 2px solid var(--portfolio-red) !important;
+  @apply outline-offset-2;
+}
+
+.filterBar {
+  @apply flex flex-wrap gap-[8px] m-[20px_0_44px];
+}
+
+.filterButton {
+  @apply min-h-[44px] p-[0_14px];
+  border: 1px solid rgba(23, 23, 23, 0.24);
+  @apply text-portfolio-ink;
+  background: transparent;
+  font: 12px var(--portfolio-body);
+  @apply cursor-pointer;
+}
+
+.filterButton:hover, .filterButtonActive {
+  @apply border-portfolio-ink;
+  color: #fff;
+  background: var(--portfolio-ink);
+}
+
+.emptyState {
+  @apply p-[70px_0] text-portfolio-muted text-[20px];
+}
+
+.searchStatus {
+  @apply flex min-h-[56px] justify-between items-center gap-[16px] text-portfolio-muted text-[14px];
+}
+
+.technologyFilters {
+  @apply m-[-20px_0_32px];
+}
+
+.technologyFilters summary, .sourceNotes summary {
+  @apply w-fit min-h-[44px] p-[12px_0] cursor-pointer text-[15px];
+}
+
+.technologyFilters summary:focus-visible, .sourceNotes summary:focus-visible {
+  outline: 2px solid var(--portfolio-red);
+  @apply outline-offset-4;
+}
+
+.sourceNotes {
+  @apply mt-[24px];
+}
+
+.sourceNotes > div {
+  @apply pt-[12px];
+}
+
+.featured {
+  @apply grid grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)] gap-[clamp(28px,_6vw,_100px)] items-center;
+}
+
+.featuredImage {
+  @apply relative block min-h-[410px] overflow-hidden;
+  background: #252d2f;
+}
+
+.featuredImage img {
+  @apply object-cover;
+  transition: transform 500ms ease;
+}
+
+.featuredImage:hover img {
+  transform: scale(1.025);
+}
+
+.featuredCopy h2 {
+  @apply m-[20px_0] text-inherit font-display text-[clamp(40px,_5vw,_72px)] font-semibold tracking-[-0.035em] leading-[1.03];
+}
+
+.featuredCopy > p {
+  color: rgba(255, 255, 255, 0.72);
+  @apply text-[18px] leading-normal;
+}
+
+.textLink {
+  @apply inline-flex items-center gap-[28px] mt-[28px] text-inherit text-body-px font-bold;
+  text-decoration: underline;
+  @apply decoration-1 underline-offset-[6px];
+}
+
+.textLink:hover {
+  @apply text-portfolio-red;
+}
+
+.articleMeta {
+  @apply flex flex-wrap gap-[12px_24px] mb-[34px] text-portfolio-muted;
+  font: 12px "Portfolio Plex Mono", ui-monospace, monospace;
+  @apply uppercase;
+}
+
+.articleBody {
+  @apply w-full m-[0] text-portfolio-ink text-[clamp(17px,_1.5vw,_20px)] leading-[1.7];
+}
+
+.articleBody :where(p, ul, ol, blockquote, pre, figure) {
+  @apply m-[0_0_1.4em];
+}
+
+.articleBody :where(h1, h2, h3, h4, h5, h6) {
+  @apply m-[1.7em_0_0.6em] text-portfolio-ink font-display font-semibold tracking-[-0.02em] leading-tight normal-case;
+  text-wrap: balance;
+}
+
+.articleBody :where(h1, h2) {
+  @apply text-[clamp(30px,_2.7vw,_36px)];
+}
+
+.articleBody h3 {
+  @apply text-[clamp(25px,_2.3vw,_30px)];
+}
+
+.articleBody h4 {
+  @apply text-[clamp(22px,_2vw,_25px)];
+}
+
+.articleBody h5 {
+  @apply text-[20px];
+}
+
+.articleBody h6 {
+  @apply text-[18px];
+}
+
+.articleBody :where(ul, ol) {
+  @apply pl-[1.4em];
+  list-style: revert;
+}
+
+.articleBody li {
+  @apply mb-[0.65em] leading-[inherit];
+}
+
+.articleBody li:last-child {
+  @apply mb-[0];
+}
+
+.articleBody li > p {
+  @apply m-[0] leading-[inherit];
+}
+
+.articleBody li > p + p {
+  @apply mt-[0.65em];
+}
+
+.articleBody li > :where(ul, ol) {
+  @apply m-[0.65em_0_0];
+}
+
+.articleBody a {
+  @apply text-portfolio-red-hover;
+  text-decoration: underline;
+  @apply underline-offset-[3px];
+}
+
+.articleBody a:hover {
+  @apply text-portfolio-ink;
+}
+
+.articleBody blockquote {
+  @apply m-[2em_0] p-[8px_0_8px_28px];
+  border-left: 1px solid rgba(201, 54, 43, 0.48);
+  color: #4c4c4c;
+  @apply italic;
+}
+
+.articleBody blockquote::before {
+  @apply hidden;
+}
+
+.articleBody blockquote p {
+  @apply text-inherit;
+  font: inherit;
+  @apply leading-[inherit];
+}
+
+.articleBody :where(pre, code) {
+  @apply overflow-x-auto;
+  font-family: "Portfolio Plex Mono", ui-monospace, monospace;
+  @apply text-[0.82em];
+}
+
+.articleBody pre {
+  @apply p-[20px];
+  background: var(--portfolio-night);
+  color: #fff;
+}
+
+.articleBody code {
+  border: 0;
+  background: #e7e4dd;
+  @apply text-inherit;
+}
+
+.articleImage {
+  @apply relative block w-full aspect-[16/9] m-[36px_0] overflow-hidden;
+  background: #d7d4cd;
+}
+
+.articleImage img {
+  @apply object-contain;
+}
+
+.articleFooter {
+  @apply m-[70px_0_0] pt-[24px];
+  border-top: 1px solid rgba(23, 23, 23, 0.2);
+}
+
+.articleFooter p {
+  @apply text-portfolio-muted text-[13px];
+}
+
+.articleFooter a {
+  @apply text-portfolio-ink;
+}
+
+.shareLinks {
+  @apply flex flex-wrap gap-[8px] m-[16px_0_30px];
+}
+
+.shareLinks a {
+  @apply inline-flex min-w-[44px] min-h-[44px] items-center justify-center;
+  border: 1px solid rgba(23, 23, 23, 0.24);
+  @apply text-portfolio-ink text-body-px;
+}
+
+.shareLinks a:hover {
+  @apply border-portfolio-red text-portfolio-red;
+}
+
+.shareLinks button {
+  @apply min-h-[44px] p-[0_16px];
+  border: 1px solid rgba(23, 23, 23, 0.24);
+  @apply text-portfolio-ink;
+  background: transparent;
+  font: inherit;
+  @apply cursor-pointer;
+}
+
+.shareLinks button:hover {
+  @apply border-portfolio-red text-portfolio-red;
+}
+
+.shareLinks :is(a, button):focus-visible, .shareCopyInput:focus-visible {
+  outline: 2px solid var(--portfolio-red);
+  @apply outline-offset-4;
+}
+
+.shareLinks button:disabled {
+  @apply opacity-60 cursor-wait;
+}
+
+.shareCopyInput {
+  @apply w-full min-h-[44px] p-[8px] mt-[8px];
+  border: 1px solid var(--portfolio-ink);
+  background: transparent;
+  @apply text-portfolio-ink;
+  font: inherit;
+}
+
+.tagList {
+  @apply flex flex-wrap gap-[8px] m-[20px_0] p-[0];
+  list-style: none;
+}
+
+.tagList li {
+  @apply p-[5px_9px];
+  border: 1px solid rgba(23, 23, 23, 0.2);
+  @apply text-portfolio-muted;
+  font: 11px "Portfolio Plex Mono", ui-monospace, monospace;
+  @apply uppercase;
+}
+
+.toneink .tagList li {
+  border-color: rgba(245, 242, 235, 0.28);
+  color: rgba(245, 242, 235, 0.82);
+}
+
+.resumeFrame {
+  @apply w-full min-h-[80vh];
+  border: 1px solid rgba(23, 23, 23, 0.2);
+  background: #fff;
+}
+
+.resumeNote {
+  @apply max-w-[760px] text-portfolio-muted text-[18px] leading-[1.6];
+}
+
+.errorSearch {
+  @apply max-w-[760px];
+}
+
+.errorLinks {
+  @apply flex flex-wrap gap-[12px] mt-[24px];
+}
+
+.errorLinks a {
+  @apply inline-flex min-h-[44px] items-center p-[0_14px];
+  border: 1px solid rgba(23, 23, 23, 0.25);
+  @apply text-portfolio-ink text-[14px];
+  text-decoration: none;
+}
+
+.errorLinks a:hover {
+  color: #fff;
+  background: var(--portfolio-ink);
+}
+
+.searchResults {
+  @apply max-w-[760px] mt-[20px];
+}
+
+.searchResults a {
+  @apply flex justify-between gap-[20px] p-[16px_0];
+  border-bottom: 1px solid rgba(23, 23, 23, 0.2);
+  @apply text-portfolio-ink;
+  text-decoration: none;
+}
+
+.searchResults a:hover {
+  @apply text-portfolio-red;
+}
+
+.contactBand {
+  @apply flex items-end justify-between gap-[48px] p-[88px_clamp(24px,_8vw,_126px)];
+  color: #fff;
+  background: var(--portfolio-red);
+}
+
+.contactBand .eyebrow {
+  color: #fff;
+}
+
+.contactBand h2 {
+  @apply max-w-[860px] m-[14px_0_0];
+  color: #fff;
+  @apply font-display text-[clamp(48px,_6vw,_88px)] font-[650] tracking-[-0.035em] leading-[0.98];
+}
+
+.contactBand > a {
+  @apply inline-flex min-w-[180px] min-h-[50px] items-center justify-between gap-[20px] p-[0_18px];
+  border: 1px solid #fff;
+  color: #fff;
+  @apply text-[15px] font-bold;
+  text-decoration: none;
+}
+
+.contactBand > a:hover {
+  @apply text-portfolio-red;
+  background: #fff;
+}
+
+.contactBand p {
+  @apply max-w-[52ch] m-[22px_0_0];
+  color: #fff;
+  @apply text-[18px] leading-normal;
+}
+
+.hiringLinks {
+  @apply flex flex-wrap items-center gap-[8px_20px];
+}
+
+.hiringLinks a {
+  @apply inline-flex min-h-[44px] items-center text-inherit text-body-px font-semibold;
+  text-decoration: underline;
+  @apply underline-offset-[5px];
+}
+
+.hiringLinks a:focus-visible {
+  outline: 2px solid currentColor;
+  @apply outline-offset-4;
+}
+
+.contactBand .hiringLinks {
+  @apply flex-shrink-0 flex-col items-start;
+}
+
+.contactBand .hiringLinks a:first-child {
+  @apply min-h-[50px] p-[0_18px];
+  border: 1px solid #fff;
+  text-decoration: none;
+}
+
+.contactBand .hiringLinks a:first-child:hover {
+  @apply text-portfolio-red;
+  background: #fff;
+}
+
+@media (max-width: 767px) {
+  .hero {
+    @apply min-h-[560px] p-[120px_22px_50px];
+  }
+  .heroCompact {
+    @apply min-h-[430px];
+  }
+  .heroShade {
+    background: linear-gradient(0deg, rgba(13, 20, 24, 0.92) 0%, rgba(13, 20, 24, 0.6) 50%, rgba(13, 20, 24, 0.18) 100%);
+  }
+  .hero h1 {
+    @apply text-[clamp(50px,_13vw,_75px)];
+  }
+  .hero.heroArticle h1 {
+    @apply text-[clamp(32px,_8.5vw,_44px)];
+  }
+  .heroDescription {
+    @apply text-[17px];
+  }
+  .section {
+    @apply p-[70px_22px] !important;
+  }
+  .sectionHeading {
+    @apply grid-cols-[1fr] gap-[18px] mb-[34px];
+  }
+  .sectionHeading .eyebrow {
+    @apply mb-[0];
+  }
+  .sectionHeading h2 {
+    @apply text-[clamp(42px,_10vw,_64px)];
+  }
+  .rowControl {
+    @apply grid-cols-[30px_minmax(0,_1fr)_24px] min-h-[140px] gap-[12px] p-[20px_0];
+  }
+  .rowImage, .rowMeta {
+    @apply hidden;
+  }
+  .rowTitle {
+    @apply text-[clamp(27px,_8vw,_36px)];
+  }
+  .rowDescription {
+    @apply text-[15px];
+  }
+  .rowDetail {
+    @apply p-[0_16px_34px_42px];
+  }
+  .featured {
+    @apply grid-cols-[1fr];
+  }
+  .featuredImage {
+    @apply min-h-[300px];
+  }
+  .featuredCopy > p:not(.eyebrow) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    @apply overflow-hidden;
+  }
+  .featuredCopy .eyebrow {
+    @apply tracking-[0.04em];
+  }
+  .searchStatus {
+    @apply items-start flex-col pt-[16px];
+  }
+  .contactBand {
+    @apply block p-[70px_22px];
+  }
+  .contactBand > a {
+    @apply w-fit mt-[30px];
+  }
+  .contactBand .hiringLinks {
+    @apply mt-[30px];
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page *, .page *::before, .page *::after {
+    @apply scroll-auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+.resumePreview {
+  @apply block w-full h-[100dvh];
+  border: 0;
+  background: var(--portfolio-night);
+}

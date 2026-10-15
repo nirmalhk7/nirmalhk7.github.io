@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
-import styles from "./portfolioHome.module.scss";
+import styles from "./portfolioHome.module.css";
 
 const topics = ["infrastructure", "products", "software engineering", "AI", "agents", "backend", "fullstack", "security"];
 

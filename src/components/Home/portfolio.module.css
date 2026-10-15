@@ -1,0 +1,431 @@
+@font-face {
+  font-family: "Portfolio Outfit";
+  src: url("/fonts/outfit-latin-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Portfolio Plex Mono";
+  src: url("/fonts/ibm-plex-mono-latin-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+.shell {
+  --portfolio-paper: #f5f2eb;
+  --portfolio-ink: #202321;
+  --portfolio-night: #19211f;
+  --portfolio-red: #c43b31;
+  --portfolio-red-hover: #a92f27;
+  --portfolio-muted: #565c58;
+  --portfolio-muted-surface: #e9e6de;
+  --portfolio-sans: "Portfolio Outfit", "Avenir Next", sans-serif;
+  --portfolio-display: "Portfolio Outfit", "Avenir Next", sans-serif;
+  --portfolio-body: "Portfolio Outfit", "Avenir Next", sans-serif;
+  --portfolio-mono: "Portfolio Plex Mono", ui-monospace, monospace;
+  @apply text-portfolio-ink;
+  background: var(--portfolio-paper);
+  @apply font-body text-body-px leading-[1.55];
+}
+
+.shell ::selection {
+  color: #fff;
+  background: var(--portfolio-red);
+}
+
+.shell :global(.portfolio-contact-heading h2)::selection,
+.shell :global(.portfolio-contact-heading h2) ::selection {
+  @apply text-portfolio-red;
+  background: #fff;
+}
+
+.shell :global(.portfolio-contact) {
+  @apply p-[108px_clamp(28px,_10vw,_160px)_94px] !important;
+  color: #fff !important;
+  background: var(--portfolio-red) !important;
+  scroll-margin-top: 72px;
+}
+
+.shell :global(.portfolio-contact-content) {
+  @apply transform-none !important;
+}
+
+.shell :global(.portfolio-contact-layout) {
+  @apply w-full max-w-content m-[0_auto];
+}
+
+.shell :global(.portfolio-contact-intro) {
+  @apply w-full;
+}
+
+.shell :global(.portfolio-contact-heading) {
+  @apply max-w-content m-[0_auto];
+}
+
+.shell :global(.portfolio-contact-heading h2) {
+  @apply m-[0_0_24px];
+  color: #fff;
+  @apply font-display text-[clamp(38px,_5.3vw,_78px)] font-semibold tracking-[-0.03em] leading-[1.06];
+}
+
+.shell :global(.portfolio-contact-grid) {
+  @apply max-w-content m-[32px_auto_0] grid-cols-[minmax(0,_1.2fr)_minmax(220px,_0.8fr)];
+  align-items: start;
+  @apply gap-[60px];
+}
+
+.shell :global(.portfolio-contact) form {
+  @apply grid grid-cols-[1fr_1fr] gap-[18px];
+}
+
+.shell :global(.portfolio-contact) form > input,
+.shell :global(.portfolio-contact) form > .form-field:last-of-type,
+.shell :global(.portfolio-contact) form > button {
+  @apply col-[1/-1];
+}
+
+.shell :global(.portfolio-contact) form .form-field {
+  @apply m-[0];
+}
+
+.shell :global(.portfolio-contact) input,
+.shell :global(.portfolio-contact) textarea {
+  @apply min-h-[54px] m-[0] p-[10px_2px];
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 0;
+  color: #fff;
+  background: transparent;
+  @apply font-portfolio-sans text-body-px;
+}
+
+.shell :global(.portfolio-contact) textarea {
+  @apply min-h-[100px] resize-y;
+}
+
+.shell :global(.portfolio-contact) input::placeholder,
+.shell :global(.portfolio-contact) textarea::placeholder {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.shell :global(.portfolio-contact) input:focus,
+.shell :global(.portfolio-contact) textarea:focus {
+  outline: 2px solid #fff;
+  @apply outline-offset-4;
+}
+
+.shell :global(.portfolio-contact) form button {
+  @apply w-fit min-h-[48px] m-[8px_0_0] p-[0_24px];
+  border: 0;
+  @apply text-portfolio-red;
+  background: #fff;
+  @apply font-portfolio-sans text-[14px] font-bold tracking-[0.01em] normal-case;
+}
+
+.shell :global(.portfolio-contact) form button:disabled {
+  @apply cursor-wait opacity-[0.65];
+}
+
+.shell :global(.portfolio-contact-info h5) {
+  @apply m-[0_0_8px];
+  color: rgba(255, 255, 255, 0.8);
+  font-family: ui-monospace, "SFMono-Regular", monospace;
+  @apply text-label-px leading-[1.4];
+}
+
+.shell :global(.portfolio-contact-info a) {
+  color: #fff;
+  @apply text-[clamp(18px,_2vw,_26px)];
+}
+
+.shell :global(.portfolio-contact-invitation) {
+  @apply max-w-[58ch] m-[24px_0_0];
+  color: #fff;
+  @apply text-[clamp(18px,_2vw,_23px)] leading-normal;
+}
+
+.shell :global(.portfolio-contact-info) nav {
+  @apply mt-[24px] flex-col items-start;
+}
+
+.shell :global(.portfolio-contact-info) nav a {
+  @apply text-[17px];
+}
+
+.shell :global(.portfolio-contact) :global(.contact-shooting-stars) {
+  @apply hidden;
+}
+
+.portfolioNav {
+  @apply fixed z-50 top-[0] left-[0] flex w-full h-[64px] items-center justify-between p-[0_clamp(24px,_7.8vw,_126px)];
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+  color: #fff;
+  background: rgba(18, 23, 26, 0.73);
+  @apply font-portfolio-sans text-[13px] tracking-[0.015em] leading-none;
+  backdrop-filter: blur(22px) saturate(1.15);
+  -webkit-backdrop-filter: blur(22px) saturate(1.15);
+  transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1), opacity 220ms ease, visibility 0s;
+}
+
+.portfolioNav[data-visible=false] {
+  transform: translateY(-100%);
+  @apply opacity-0 invisible pointer-events-none;
+  transition: transform 180ms ease-in, opacity 140ms ease, visibility 0s 180ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolioNav,
+  .portfolioNav[data-visible=false] {
+    @apply transform-none;
+    transition: none;
+  }
+}
+.portfolioBrand {
+  @apply inline-flex min-h-[44px] items-center;
+  color: #fff;
+  @apply text-body-px font-bold tracking-[-0.035em];
+  text-decoration: none;
+}
+
+.portfolioDesktopNav {
+  @apply flex h-full items-center gap-[clamp(14px,_2vw,_28px)];
+}
+
+.portfolioDesktopNav a {
+  @apply inline-flex min-h-[44px] items-center;
+  color: rgba(255, 255, 255, 0.86);
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+
+.portfolioDesktopNav a:hover,
+.portfolioDesktopNav a[aria-current] {
+  color: #fff;
+  text-decoration: underline;
+  @apply decoration-portfolio-red decoration-2 underline-offset-8;
+}
+
+.portfolioResume {
+  @apply inline-flex min-h-[44px] items-center p-[0_16px];
+  border: 1px solid rgba(255, 255, 255, 0.53);
+  color: #fff !important;
+  background: transparent;
+}
+
+.portfolioDesktopNav .portfolioResume:hover {
+  color: #fff;
+  @apply border-portfolio-red;
+  background: var(--portfolio-red);
+  text-decoration: none;
+}
+
+.portfolioSearch {
+  @apply inline-flex min-h-[44px] items-center gap-[14px] p-[0_10px];
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #fff;
+  background: transparent;
+  font: inherit;
+  @apply cursor-pointer;
+}
+
+.portfolioSearch kbd {
+  color: rgba(255, 255, 255, 0.65);
+  font: 11px ui-monospace, "SFMono-Regular", monospace;
+}
+
+.portfolioMenuActions kbd {
+  color: #666;
+  font: 11px ui-monospace, "SFMono-Regular", monospace;
+}
+
+.portfolioNav a:focus-visible,
+.portfolioNav button:focus-visible {
+  outline: 2px solid var(--portfolio-red);
+  @apply outline-offset-[3px];
+}
+
+.portfolioMenuTrigger {
+  @apply hidden;
+}
+
+.portfolioMenuOverlay {
+  @apply fixed z-[60] inset-[0] grid place-items-stretch text-portfolio-ink;
+  background: rgba(20, 21, 22, 0.44);
+  backdrop-filter: blur(8px);
+}
+
+.portfolioMenuPanel {
+  @apply w-full h-[100dvh] min-h-[0] p-[18px_24px_max(36px,_env(safe-area-inset-bottom))];
+  background: var(--portfolio-paper);
+  @apply overflow-y-auto overscroll-contain;
+}
+
+.portfolioMenuHeader {
+  @apply flex h-[52px] items-center justify-between text-[14px] font-bold;
+}
+
+.portfolioMenuHeader button {
+  @apply inline-flex min-w-[48px] min-h-[44px] items-center justify-center gap-[8px];
+  border: 0;
+  @apply text-portfolio-ink;
+  background: transparent;
+  font: inherit;
+  @apply cursor-pointer;
+}
+
+.portfolioMenuGlyph {
+  @apply relative inline-block w-[18px] h-[18px] flex-[0_0_18px];
+}
+
+.portfolioMenuGlyph > span {
+  @apply absolute top-[8px] left-[0] w-[18px] h-[2px];
+  background: currentColor;
+  @apply origin-center;
+}
+
+.portfolioMenuPanel ul {
+  @apply grid m-[clamp(45px,_10vh,_100px)_0_30px] p-[0];
+  border-top: 1px solid rgba(23, 23, 23, 0.16);
+  list-style: none;
+}
+
+@media (max-width: 1023px) {
+  .portfolioNav {
+    @apply h-[60px] p-[0_22px];
+  }
+  .portfolioDesktopNav {
+    @apply hidden;
+  }
+  .portfolioMenuTrigger {
+    @apply inline-flex min-w-[74px] min-h-[44px] items-center justify-center gap-[10px] p-[0_10px];
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    color: #fff;
+    background: transparent;
+    font: 12px var(--portfolio-sans);
+    @apply cursor-pointer;
+  }
+  .portfolioMenuOverlay {
+    @apply top-[0] left-[0] w-full h-[100dvh];
+  }
+}
+@media (max-width: 767px) {
+  .portfolioNav {
+    @apply p-[0_18px];
+  }
+}
+.portfolioMenuPanel li {
+  border-bottom: 1px solid rgba(23, 23, 23, 0.16);
+}
+
+.portfolioMenuPanel li a {
+  @apply grid min-h-[76px] grid-cols-[38px_1fr_24px] items-center text-portfolio-ink text-[clamp(28px,_8vw,_42px)] tracking-[-0.045em];
+  text-decoration: none;
+}
+
+.portfolioMenuIndex {
+  @apply self-center;
+  color: #74716d;
+  font: 10px ui-monospace, "SFMono-Regular", monospace;
+  @apply tracking-[0];
+}
+
+.portfolioMenuPanel li a > span:last-child {
+  @apply text-portfolio-red;
+  font: 16px ui-monospace, "SFMono-Regular", monospace;
+}
+
+.portfolioMenuActions {
+  @apply flex gap-[14px];
+}
+
+.portfolioMenuActions a,
+.portfolioMenuActions button {
+  @apply flex min-h-[48px] flex-[1] items-center justify-between p-[0_14px];
+  border: 1px solid rgba(23, 23, 23, 0.19);
+  @apply text-portfolio-ink;
+  background: transparent;
+  font: 13px var(--portfolio-sans);
+  text-decoration: none;
+}
+
+.shell :global(.portfolio-resume-link) {
+  @apply inline-flex min-h-[38px] items-center p-[0_13px];
+  color: #fff !important;
+  background: var(--portfolio-red);
+  text-decoration: none;
+}
+
+.shell :global(.portfolio-resume-link:hover) {
+  background: #a92c24;
+}
+
+.shell .portfolioFooter {
+  @apply p-[48px_clamp(24px,_8vw,_126px)_28px] !important;
+  @apply text-portfolio-ink;
+  background: var(--portfolio-paper);
+  @apply font-portfolio-sans text-left;
+}
+
+.footerInner {
+  @apply max-w-content m-[0_auto];
+}
+
+.footerTop {
+  @apply flex justify-between gap-[24px] items-baseline pb-[32px];
+  border-bottom: 1px solid rgba(23, 23, 23, 0.2);
+}
+
+.footerTop p {
+  @apply m-[0] text-portfolio-muted text-[14px];
+}
+
+.footerBrand {
+  @apply text-portfolio-ink !important;
+  @apply text-[22px] font-bold tracking-[-0.055em];
+  text-decoration: none;
+}
+
+.footerLinks {
+  @apply flex flex-wrap gap-[12px_28px];
+  @apply m-[28px_0] !important;
+  @apply p-[0];
+  list-style: none;
+}
+
+.footerLinks a {
+  @apply inline-flex min-h-[44px] items-center gap-[8px];
+  @apply text-portfolio-ink !important;
+  @apply text-[14px];
+  text-decoration: none;
+}
+
+.footerLinks a:hover {
+  @apply text-portfolio-red !important;
+}
+
+.footerInner small {
+  @apply text-portfolio-muted;
+  font: 11px "Portfolio Plex Mono", ui-monospace, monospace;
+}
+
+@media (max-width: 767px) {
+  .footerTop {
+    @apply block;
+  }
+  .footerTop p {
+    @apply mt-[12px];
+  }
+  .footerLinks {
+    @apply gap-[4px_18px];
+  }
+  .shell :global(.portfolio-contact) {
+    @apply p-[78px_22px_60px] !important;
+  }
+  .shell :global(.portfolio-contact-grid) {
+    @apply grid-cols-[1fr] gap-[38px];
+  }
+  .shell :global(.portfolio-contact) form {
+    @apply grid-cols-[1fr];
+  }
+}

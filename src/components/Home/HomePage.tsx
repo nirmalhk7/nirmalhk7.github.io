@@ -18,7 +18,7 @@ import { experienceHighlights } from "@/util/experienceHighlights";
 import CinematicStory from "./CinematicStory";
 import RotatingTopics from "./RotatingTopics";
 import treesPhoto from "@/assets/images/TreesNK_1.jpg";
-import styles from "./portfolioHome.module.scss";
+import styles from "./portfolioHome.module.css";
 
 const ContactMeSection = dynamic(() => import("@/components/ContactMe/contactMeSection"));
 

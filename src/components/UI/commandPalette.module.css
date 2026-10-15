@@ -1,0 +1,163 @@
+.overlay {
+  @apply fixed z-[100] inset-[0] flex items-start justify-center p-[clamp(24px,_10vh,_96px)_24px];
+  background: transparent;
+}
+
+.backdrop {
+  @apply absolute inset-[0];
+  background: rgba(25, 33, 31, 0.68);
+}
+
+.panel {
+  @apply relative flex flex-col w-full max-w-[820px] max-h-[calc(100dvh_-_clamp(24px,_10vh,_96px)_*_2)] overflow-hidden text-portfolio-ink;
+  background: var(--portfolio-paper);
+  box-shadow: 0 24px 72px rgba(25, 33, 31, 0.28);
+}
+
+.header {
+  @apply flex flex-shrink-0 items-center gap-[16px] p-[22px_28px];
+  border-bottom: 1px solid rgba(32, 35, 33, 0.24);
+}
+
+.inputGroup {
+  @apply flex flex-[1] min-w-[0] items-center gap-[16px];
+}
+
+.searchIcon {
+  @apply w-[24px] h-[24px] flex-shrink-0 text-portfolio-red;
+}
+
+.panel .input {
+  @apply w-full min-w-[0] h-auto min-h-[48px] m-[0] p-[8px_0];
+  border: 0;
+  border-radius: 0;
+  @apply text-portfolio-ink;
+  background: transparent;
+  @apply caret-portfolio-red;
+  font: 400 clamp(18px, 2.3vw, 24px)/1.35 var(--portfolio-body);
+  box-shadow: none;
+}
+
+.panel .input::placeholder {
+  @apply text-portfolio-muted opacity-100;
+}
+
+.panel .input:focus {
+  outline: none;
+  box-shadow: inset 0 -2px var(--portfolio-red);
+}
+
+.panel .close {
+  @apply inline-flex min-w-[44px] min-h-[44px] items-center gap-[8px] m-[0] p-[0_10px];
+  border: 1px solid rgba(32, 35, 33, 0.24);
+  border-radius: 0;
+  @apply text-portfolio-muted;
+  background: transparent;
+  font: 400 13px/1 var(--portfolio-body);
+  @apply tracking-[normal] normal-case cursor-pointer;
+}
+
+.close kbd {
+  font: 11px var(--portfolio-mono);
+}
+
+.panel .close:hover {
+  @apply border-portfolio-red text-portfolio-red;
+}
+
+.panel button:focus-visible {
+  outline: 2px solid var(--portfolio-red);
+  @apply outline-offset-[-4px];
+}
+
+.results {
+  @apply min-h-[0] p-[0_28px] overflow-y-auto overscroll-contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--portfolio-red) var(--portfolio-muted-surface);
+}
+
+.panel .result {
+  @apply flex w-full min-h-[86px] items-center justify-between gap-[24px] m-[0] p-[18px_12px];
+  border: 0;
+  border-bottom: 1px solid rgba(32, 35, 33, 0.18);
+  border-radius: 0;
+  @apply text-portfolio-ink;
+  background: transparent;
+  font: 400 16px/1.4 var(--portfolio-body);
+  @apply tracking-[normal] text-left normal-case cursor-pointer;
+  transition: background-color 160ms ease-out, color 160ms ease-out;
+}
+
+.panel .result[aria-selected=true],
+.panel .result:hover {
+  @apply text-portfolio-red;
+  background: var(--portfolio-muted-surface);
+}
+
+.resultCopy {
+  @apply min-w-[0];
+}
+
+.title {
+  @apply text-[clamp(20px,_2.5vw,_27px)] font-semibold tracking-[-0.02em] leading-[1.15];
+}
+
+.subtitle {
+  @apply max-w-[68ch] mt-[6px] text-portfolio-muted text-[14px] leading-[1.45];
+}
+
+.category {
+  @apply flex-shrink-0 text-portfolio-muted text-label-px;
+}
+
+.empty {
+  @apply p-[64px_12px] text-portfolio-muted text-[18px] text-center;
+}
+
+.footer {
+  @apply flex flex-shrink-0 justify-between gap-[20px] p-[16px_28px];
+  border-top: 1px solid rgba(32, 35, 33, 0.24);
+  @apply text-portfolio-muted text-label-px leading-normal;
+}
+
+.footer strong {
+  @apply text-portfolio-ink font-semibold;
+}
+
+@media (max-width: 600px) {
+  .overlay {
+    @apply p-[16px_12px];
+  }
+  .panel {
+    @apply max-h-[calc(100dvh_-_32px)];
+  }
+  .header {
+    @apply gap-[8px] p-[12px_16px];
+  }
+  .inputGroup {
+    @apply gap-[10px];
+  }
+  .close span {
+    @apply hidden;
+  }
+  .results {
+    @apply p-[0_12px];
+  }
+  .panel .result {
+    @apply gap-[12px] p-[16px_10px];
+  }
+  .category {
+    @apply text-[11px];
+  }
+  .footer {
+    @apply p-[14px_16px];
+  }
+  .footer > span:last-child {
+    @apply hidden;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .panel .result {
+    transition: none;
+  }
+}
