@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { trackSelectContent, trackResumeOpen } from "@/util/analytics";
 import beachPhoto from "@/assets/images/BeachNK_1.jpg";
-import styles from "./cinematicStory.module.css";
+import styles from "./cinematicStory.styles";
 
 const stages = [
   {

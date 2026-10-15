@@ -1,0 +1,278 @@
+{
+  "baselineRevision": "2621bf2ebe81889b055442606c66fd918d2599f8",
+  "scenarios": [
+    {
+      "label": "home-1440-consent",
+      "elements": 344,
+      "differences": 0
+    },
+    {
+      "label": "home-1440-consent-options",
+      "elements": 349,
+      "differences": 0
+    },
+    {
+      "label": "home-1440-default",
+      "elements": 336,
+      "differences": 0
+    },
+    {
+      "label": "home-1440-contact-focus",
+      "elements": 336,
+      "differences": 0
+    },
+    {
+      "label": "home-1440-search",
+      "elements": 399,
+      "differences": 0
+    },
+    {
+      "label": "projects-1440-default",
+      "elements": 238,
+      "differences": 0
+    },
+    {
+      "label": "projects-1440-row-hover",
+      "elements": 238,
+      "differences": 0
+    },
+    {
+      "label": "projects-1440-expanded",
+      "elements": 241,
+      "differences": 0
+    },
+    {
+      "label": "projects-1440-empty-search",
+      "elements": 143,
+      "differences": 0
+    },
+    {
+      "label": "blog-1440-default",
+      "elements": 175,
+      "differences": 0
+    },
+    {
+      "label": "blog-homelab_gitops-1440-default",
+      "elements": 161,
+      "differences": 0
+    },
+    {
+      "label": "blog-homelab_gitops-1440-article-link-hover",
+      "elements": 161,
+      "differences": 0
+    },
+    {
+      "label": "privacy-1440-default",
+      "elements": 102,
+      "differences": 0
+    },
+    {
+      "label": "resume-1440-default",
+      "elements": 6,
+      "differences": 0
+    },
+    {
+      "label": "404-1440-default",
+      "elements": 89,
+      "differences": 0
+    },
+    {
+      "label": "500-1440-default",
+      "elements": 86,
+      "differences": 0
+    },
+    {
+      "label": "home-768-consent",
+      "elements": 344,
+      "differences": 0
+    },
+    {
+      "label": "home-768-consent-options",
+      "elements": 349,
+      "differences": 0
+    },
+    {
+      "label": "home-768-default",
+      "elements": 336,
+      "differences": 0
+    },
+    {
+      "label": "home-768-contact-focus",
+      "elements": 336,
+      "differences": 0
+    },
+    {
+      "label": "home-768-search",
+      "elements": 399,
+      "differences": 0
+    },
+    {
+      "label": "home-768-navigation",
+      "elements": 369,
+      "differences": 0
+    },
+    {
+      "label": "projects-768-default",
+      "elements": 238,
+      "differences": 0
+    },
+    {
+      "label": "projects-768-row-hover",
+      "elements": 238,
+      "differences": 0
+    },
+    {
+      "label": "projects-768-expanded",
+      "elements": 241,
+      "differences": 0
+    },
+    {
+      "label": "projects-768-empty-search",
+      "elements": 143,
+      "differences": 0
+    },
+    {
+      "label": "blog-768-default",
+      "elements": 175,
+      "differences": 0
+    },
+    {
+      "label": "blog-homelab_gitops-768-default",
+      "elements": 161,
+      "differences": 0
+    },
+    {
+      "label": "blog-homelab_gitops-768-article-link-hover",
+      "elements": 161,
+      "differences": 0
+    },
+    {
+      "label": "privacy-768-default",
+      "elements": 102,
+      "differences": 0
+    },
+    {
+      "label": "resume-768-default",
+      "elements": 6,
+      "differences": 0
+    },
+    {
+      "label": "404-768-default",
+      "elements": 89,
+      "differences": 0
+    },
+    {
+      "label": "500-768-default",
+      "elements": 86,
+      "differences": 0
+    },
+    {
+      "label": "home-390-consent",
+      "elements": 344,
+      "differences": 0
+    },
+    {
+      "label": "home-390-consent-options",
+      "elements": 349,
+      "differences": 0
+    },
+    {
+      "label": "home-390-default",
+      "elements": 336,
+      "differences": 0
+    },
+    {
+      "label": "home-390-contact-focus",
+      "elements": 336,
+      "differences": 0
+    },
+    {
+      "label": "home-390-search",
+      "elements": 399,
+      "differences": 0
+    },
+    {
+      "label": "home-390-navigation",
+      "elements": 369,
+      "differences": 0
+    },
+    {
+      "label": "projects-390-default",
+      "elements": 238,
+      "differences": 0
+    },
+    {
+      "label": "projects-390-row-hover",
+      "elements": 238,
+      "differences": 0
+    },
+    {
+      "label": "projects-390-expanded",
+      "elements": 241,
+      "differences": 0
+    },
+    {
+      "label": "projects-390-empty-search",
+      "elements": 143,
+      "differences": 0
+    },
+    {
+      "label": "blog-390-default",
+      "elements": 175,
+      "differences": 0
+    },
+    {
+      "label": "blog-homelab_gitops-390-default",
+      "elements": 161,
+      "differences": 0
+    },
+    {
+      "label": "blog-homelab_gitops-390-article-link-hover",
+      "elements": 161,
+      "differences": 0
+    },
+    {
+      "label": "privacy-390-default",
+      "elements": 102,
+      "differences": 0
+    },
+    {
+      "label": "resume-390-default",
+      "elements": 6,
+      "differences": 0
+    },
+    {
+      "label": "404-390-default",
+      "elements": 89,
+      "differences": 0
+    },
+    {
+      "label": "500-390-default",
+      "elements": 86,
+      "differences": 0
+    },
+    {
+      "label": "home-motion-1000-top",
+      "elements": 336,
+      "differences": 0
+    },
+    {
+      "label": "home-motion-1000-scroll",
+      "elements": 336,
+      "differences": 0
+    },
+    {
+      "label": "home-motion-700-top",
+      "elements": 336,
+      "differences": 0
+    },
+    {
+      "label": "home-motion-700-scroll",
+      "elements": 336,
+      "differences": 0
+    }
+  ],
+  "differences": [],
+  "status": "passed",
+  "comparison": "DOM structure and all computed properties of elements and pseudo-elements, excluding animation, transition, and custom properties"
+}

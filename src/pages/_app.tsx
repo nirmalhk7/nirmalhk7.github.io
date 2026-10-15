@@ -10,7 +10,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo";
 import Navbar from "@/elements/navbar";
-import portfolioStyles from "@/components/Home/portfolio.module.css";
+import portfolioStyles from "@/components/Home/portfolio.styles";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { trackWebVital } from "@/util/analytics";

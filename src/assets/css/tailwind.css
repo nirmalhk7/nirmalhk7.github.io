@@ -1,4 +1,34 @@
-@charset "UTF-8";
+/* Runtime palette is shared by the shell and its portals. */
+.portfolio-theme {
+  --portfolio-paper: #f5f2eb;
+  --portfolio-ink: #202321;
+  --portfolio-night: #19211f;
+  --portfolio-red: #c43b31;
+  --portfolio-red-hover: #a92f27;
+  --portfolio-muted: #565c58;
+  --portfolio-muted-surface: #e9e6de;
+  --portfolio-sans: "Portfolio Outfit", "Avenir Next", sans-serif;
+  --portfolio-display: "Portfolio Outfit", "Avenir Next", sans-serif;
+  --portfolio-body: "Portfolio Outfit", "Avenir Next", sans-serif;
+  --portfolio-mono: "Portfolio Plex Mono", ui-monospace, monospace;
+}
+
+@font-face {
+  font-family: "Portfolio Outfit";
+  src: url("/fonts/outfit-latin-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Portfolio Plex Mono";
+  src: url("/fonts/ibm-plex-mono-latin-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 /* ===================================================================
  * # Global / Helpers
  * ------------------------------------------------------------------- */
@@ -1000,4 +1030,18 @@ footer a:hover, footer a:focus {
 ::view-transition-new(root) {
   animation-duration: 0.35s;
   animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Document defaults stay in the component layer so element utilities can override them. */
+@layer components {
+  .editorial-page :where(h1, h2, h3, h4, h5, p) { @apply m-0; }
+  .home-page :is(h1, h2, h3, h4, p, figure, ul, ol) { @apply mt-0; }
+  .home-page :is(h1, h2, h3, h4) { @apply text-inherit font-display font-semibold tracking-[-0.03em] leading-[1.06] normal-case; }
+  .home-page h2 { @apply mb-[22px] text-[clamp(38px,_5.3vw,_78px)]; }
+  .home-page p { @apply max-w-[68ch] text-[clamp(16px,_1.35vw,_20px)] leading-[1.65]; }
+  .home-page a { @apply text-inherit underline-offset-[0.22em]; transition: color 160ms ease-out, background-color 160ms ease-out; }
+  .home-page :is(a, summary, button):focus-visible { outline: 3px solid var(--portfolio-red); @apply outline-offset-4; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-page a { transition: none; }
 }

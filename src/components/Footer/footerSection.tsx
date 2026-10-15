@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { social } from "@/components/Social/socialSection";
 import { trackSelectContent } from "@/util/analytics";
-import styles from "@/components/Home/portfolio.module.css";
+import styles from "@/components/Home/portfolio.styles";
 
 type FooterSectionProps = { variant?: "default" | "portfolio" };
 
