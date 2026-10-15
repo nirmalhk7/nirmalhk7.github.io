@@ -4,7 +4,7 @@ import { AnimatePresence, m, useReducedMotion, useIsPresent } from "framer-motio
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import HiringLinks from './HiringLinks';
-import styles from "./editorial.module.scss";
+import styles from "./editorial.styles";
 
 type PageHeroProps = {
   eyebrow: string;

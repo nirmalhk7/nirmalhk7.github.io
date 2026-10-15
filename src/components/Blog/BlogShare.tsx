@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter, faFacebook, faLinkedin, faBluesky, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { trackEvent, trackShare } from '@/util/analytics';
-import styles from '@/components/Site/editorial.module.scss';
+import styles from '@/components/Site/editorial.styles';
 
 export default function BlogShare({ slug, title }: { slug: string; title: string }) {
   const [status, setStatus] = React.useState('');
