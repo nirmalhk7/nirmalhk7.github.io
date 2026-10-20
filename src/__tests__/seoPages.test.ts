@@ -93,7 +93,12 @@ describe("page SEO contracts", () => {
         typeof entry !== "string" && typeof entry.params?.blogId === "string"
     );
 
-    expect(blogPaths).toHaveLength(7);
+    const expectedSlugs = fs
+      .readdirSync(path.join(process.cwd(), "content/blog"))
+      .filter((file) => file.endsWith(".md"))
+      .map((file) => file.slice(0, -3))
+      .sort();
+    expect(blogPaths.map(({ params }) => params.blogId).sort()).toEqual(expectedSlugs);
     for (const { params } of blogPaths) {
       const canonical = `https://nirmalhk7.com/blog/${params.blogId}`;
       const seo = await readSeo(
