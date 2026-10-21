@@ -98,6 +98,11 @@
 .experienceRow > h3 {
   margin: 2px 0 0;
   font-size: clamp(33px, 4vw, 58px);
+  transition: color 180ms ease;
+}
+
+.experienceRow:hover > h3 {
+  color: var(--portfolio-red);
 }
 
 .roleList {
@@ -512,6 +517,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .experienceRow > h3,
   .page a,
   .projectArrow,
   .projectTitle,
