@@ -8,7 +8,7 @@ import {
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { trackClick, trackSelectContent } from "@/util/analytics";
+import { trackSelectContent } from "@/util/analytics";
 import Magnetic from "@/components/Magnetic";
 
 export const social = [
@@ -66,7 +66,6 @@ const SocialSection = () => {
                 trackSelectContent("social_profile", element.name, {
                   link_url: element.link,
                 });
-                trackClick(element.name, "social_link");
               }}
               title={element.name}
               aria-label={element.name}

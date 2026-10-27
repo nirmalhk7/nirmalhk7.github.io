@@ -1,0 +1,37 @@
+// Animate on arrival, never hide content while waiting for JavaScript or scrolling.
+@keyframes content-arrival {
+  from { opacity: 0.2; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes content-fade {
+  from { opacity: 0.65; }
+  to { opacity: 1; }
+}
+
+[data-reveal][data-revealed="true"] {
+  animation: content-arrival 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+// GSAP owns these elements only in the desktop cinematic layout.
+[data-cinematic="ready"] [data-reveal] {
+  animation: none;
+}
+
+@media (max-width: 767px) {
+  @keyframes content-arrival-mobile {
+    from { opacity: 0.3; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  [data-reveal][data-revealed="true"] {
+    animation-name: content-arrival-mobile;
+    animation-duration: 420ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal][data-revealed="true"] {
+    animation: content-fade 160ms ease-out both;
+  }
+}

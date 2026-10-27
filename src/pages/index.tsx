@@ -1,27 +1,7 @@
 import React from "react";
-import BlogIntroSection from "@/components/Blog/blogIntroSection";
-import WorkExperience from "@/elements/workExperienceSection";
-import Jumbotron from "@/elements/jumbotron";
-import Link from "next/link";
-import sampleSize from "lodash/sampleSize";
+import path from "path";
 import { GetStaticProps } from "next";
-import { loadMarkdownFile, loadProjectMarkdownFiles } from "@/util/loadMarkdown";
-import { QuoteInterface } from "@/components/Quote/quoteSection";
-function compileBasicMarkdown(md: string): string {
-  const paragraphs = md
-    .split(/\n\s*\n/)
-    .map((p) => p.trim())
-    .filter(Boolean);
-
-  return paragraphs
-    .map((p) => {
-      let html = p.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
-      html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
-      return `<p>${html}</p>`;
-    })
-    .join("\n");
-}
-import ProjectIntroSection from "@/components/Project/projectIntroSection";
+import HomePage from "@/components/Home/HomePage";
 import {
   CourseInterface,
   MembershipInterface,
@@ -29,20 +9,14 @@ import {
   SkillsInterface,
   WorkExperienceInterface,
 } from "@/interfaces";
-import beachImage from "../assets/images/BeachNK_1.jpg";
-import WebSection from "@/elements/WebSection";
-import { DefaultPageProps } from "./_app";
 import { ProjectInterface } from "@/interfaces/projects";
-import { CommonHeader } from "@/components/header";
+import { DefaultPageProps } from "./_app";
 import loadYaml from "@/util/loadYaml";
-import { loadRandomQuote } from "@/util/loadQuote";
-import path from "path";
-import { trackClick, trackSelectContent } from "@/util/analytics";
-import { TextReveal } from "@/components/TextReveal";
-import { TiltCard } from "@/components/TiltCard";
+import { loadMarkdownFile } from "@/util/loadMarkdown";
+import { selectedProjects } from "@/util/projectCuration";
+import { openGraphImage } from "@/util/openGraph";
 
 interface IndexPageProps extends DefaultPageProps {
-  mainContentHtml: string;
   collegeCourses: CourseInterface[];
   onlineCourses: CourseInterface[];
   skills: SkillsInterface[];
@@ -52,30 +26,39 @@ interface IndexPageProps extends DefaultPageProps {
   projects: ProjectInterface[];
 }
 
-const IndexPage = ({
-  mainContentHtml,
+const featuredProjectCopy: Record<string, string> = {
+  atskit: "A Python toolkit that streams job listings from public applicant tracking system APIs.",
+  "k8-autoscaler": "A Kubernetes autoscaler that uses historical traffic patterns to plan resource capacity.",
+  scholarhub: "A research and collaboration portal for NIT students. Nirmal contributed all frontend work.",
+  MedicalVR: "A browser project using HTML, JavaScript, and WebGL.",
+};
+
+export default function IndexPage({
   projects,
   workexperience,
   onlineCourses,
   collegeCourses,
   membership,
   skills,
-  cv
-}: IndexPageProps) => {
-  
+  cv,
+}: IndexPageProps) {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Nirmal Khedkar",
-    "jobTitle": "Software Engineer",
-    "url": "https://nirmalhk7.com",
-    "alumniOf": {
-      "@type": "EducationalOrganization",
-      "name": "University of Colorado Boulder",
-    },
-    "sameAs": cv
-      .map((profile) => profile.url)
-      .filter((url) => /^https?:\/\//.test(url)),
+    name: "Nirmal Khedkar",
+    jobTitle: "Software Engineer",
+    url: "https://nirmalhk7.com",
+    alumniOf: [
+      {
+        "@type": "EducationalOrganization",
+        name: "National Institute of Technology Karnataka, Surathkal",
+      },
+      {
+        "@type": "EducationalOrganization",
+        name: "University of Colorado Boulder",
+      },
+    ],
+    sameAs: cv.map((profile) => profile.url).filter((url) => /^https?:\/\//.test(url)),
   };
 
   return (
@@ -84,225 +67,62 @@ const IndexPage = ({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      <main>
-      <Jumbotron.Max
-        HeadingTextComponent={
-          <h1 className="text-white">
-            I&apos;m Nirmal Khedkar, <br />
-            Software Engineer.
-          </h1>
-        }
-        bgImg={beachImage}
-        buttonDetails={[
-          ["Latest Projects", "#project"],
-          ["More About Me", "#about"],
-        ]}
-        orangeText="Hey!"
-        showScrollDown={true}
+      <HomePage
+        projects={projects}
+        workexperience={workexperience}
+        onlineCourses={onlineCourses}
+        collegeCourses={collegeCourses}
+        membership={membership}
+        skills={skills}
+        profiles={cv}
       />
-      <WebSection
-        className="pt-32 pb-32 bg-white relative selection:bg-accent selection:text-white"
-        id="about"
-        deferRender
-      >
-        <div className="w-full text-center">
-          <div className="narrow text-center relative section-intro has-bottom-sep m-auto">
-            <div className="w-full text-center">
-              <h3>
-                Nirmal Khedkar
-              </h3>
-              <h2>
-                More About Me
-              </h2>
-              <TextReveal 
-                className="font-lead font-blocky mb-16 text-3xl justify-center" 
-                text="Fortress code, lightning fast: Hi, I'm Nirmal Khedkar." 
-              />
-            </div>
-          </div>
-        </div>
-        <div className="container mx-auto">
-          <div className="columns-1 mobile-l:columns-2 gap-16 gap-y-16">
-            <div dangerouslySetInnerHTML={{ __html: mainContentHtml }} />
-            <div className="break-inside-avoid">
-              <CommonHeader headerName="Familiar Languages, Frameworks and Libraries" />
-              <div className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-4">
-                {skills.map((element, index) => (
-                  <TiltCard
-                    key={index}
-                    className="p-2 text-center text-2xl text-black uppercase font-blocky hover:font-bold hover:text-accent cursor-pointer border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white/50 backdrop-blur-sm"
-                    data-analytics-skip-global="true"
-                    onClick={() => {
-                      trackSelectContent("skill", element.name);
-                      trackClick(element.name, "skill_click");
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        trackSelectContent("skill", element.name, {
-                          interaction_type: "keyboard",
-                        });
-                        trackClick(element.name, "skill_click");
-                      }
-                    }}
-                  >
-                    {element.name}
-                  </TiltCard>
-                ))}
-              </div>
-            </div>
-            <div className="break-inside-avoid">
-              {/* TODO NK  This looks too wordy */}
-              <CommonHeader headerName="Online Certification and Courses Taken" />
-              <div className="m-0">
-                <ul className="list-disc pl-5">
-                  {onlineCourses.map((element, index) => (
-                    <li key={index} className="py-1">
-                      {element.name} by {element.provider} - (
-                      {element.link ? (
-                        <a
-                          href={element.link}
-                          aria-label={`View certificate for ${element.name}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          data-analytics-skip-global="true"
-                          onClick={() => {
-                            trackSelectContent("course", element.name, {
-                              provider: element.provider,
-                            });
-                            trackClick(element.name, "online_course_click");
-                          }}
-                        >
-                          link
-                        </a>
-                      ) : (
-                        <span>certificate unavailable</span>
-                      )}
-                      )
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="break-inside-avoid">
-              <CommonHeader headerName="Prominent College Courses Taken" />
-              <div className="m-0 flex flex-wrap gap-2.5">
-                {collegeCourses.map((element, index) => (
-                  <span
-                    key={index}
-                    className="px-3.5 py-1.5 border border-gray-200 rounded-full bg-gray-50/80 hover:bg-accent hover:text-white hover:border-accent transition-all text-xl font-medium text-gray-800"
-                  >
-                    {element.name}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="break-inside-avoid">
-              <CommonHeader headerName="Volunteer Experience" />
-              <div className="m-0">
-                <ul className="list-disc pl-5">
-                  {membership.map((element, index) => (
-                    <li key={index} className="py-1">
-                      {element.position} at&nbsp;
-                      <a
-                        href={element.clubwebsite}
-                      >
-                        {element.club}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="break-inside-avoid pt-16">
-              <div className="flex flex-col gap-4 font-blocky uppercase text-center text-xl tracking-[0.3rem] font-bold">
-                <Link
-                  className="button button-accent w-full m-0"
-                  href={"/resume"}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  data-analytics-skip-global="true"
-                  onClick={() => {
-                    trackSelectContent("resume", "home_resume_cta");
-                    trackClick("download_resume", "engagement");
-                  }}
-                >
-                  Download My Resume
-                </Link>
-                <Link
-                  className="button button-accent-fill w-full m-0"
-                  href="#contact"
-                  data-analytics-skip-global="true"
-                  onClick={() => {
-                    trackSelectContent("lead_cta", "want_to_hire");
-                    trackClick("want_to_hire", "engagement");
-                  }}
-                >
-                  Want to Hire?
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </WebSection>
-      <WorkExperience experience={workexperience} />
-      <ProjectIntroSection projects={projects} />
-      <BlogIntroSection name="The Blue Green Manual" />
-      </main>
     </>
   );
-};
-
-export default IndexPage;
+}
 
 export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
   const contentDir = path.join(process.cwd(), "content", "yml");
-  const allCoursesYaml = loadYaml<CourseInterface[]>(path.join(contentDir, "courses.yaml"));
-  const allSkillsYaml = loadYaml<SkillsInterface[]>(path.join(contentDir, "skills.yaml"));
-  const allProfilesYaml = loadYaml<ProfilesInterface[]>(path.join(contentDir, "profiles.yaml"));
-  const allMembershipsYaml = loadYaml<MembershipInterface[]>(path.join(contentDir, "memberships.yaml"));
-  const allWorkExperiencesYaml = loadYaml<WorkExperienceInterface[]>(path.join(contentDir, "workexperiences.yaml"));
-  const sixProjects = sampleSize(
-    loadProjectMarkdownFiles("content/projects", { getExcerpt: true, getContent: false }),
-    6
-  );
+  const featuredProjectSlugs = ["k8-autoscaler", "atskit", "scholarhub", "MedicalVR"];
+  const projects = featuredProjectSlugs.map((slug) => {
+    const projectPath = path.join(process.cwd(), "content", "projects", `${slug}.md`);
+    try {
+      const project = loadMarkdownFile<ProjectInterface["frontmatter"]>(projectPath, slug, {
+        getContent: false,
+        getExcerpt: true,
+      });
+      return {
+        ...project,
+        frontmatter: { ...project.frontmatter, title: selectedProjects[slug].title, tags: selectedProjects[slug].tags, summary: featuredProjectCopy[slug] },
+      } as ProjectInterface;
+    } catch (error) {
+      throw new Error(`Homepage featured project "${slug}" could not be loaded from ${projectPath}: ${String(error)}`);
+    }
+  });
 
-  const mainContentMd = loadMarkdownFile(
-    "content/yml/mainContent.md",
-    "mainContent",
-    { getContent: true, getExcerpt: false }
-  ).content || "";
-  
+  const allCourses = loadYaml<CourseInterface[]>(path.join(contentDir, "courses.yaml"));
   return {
     props: {
-      mainContentHtml: compileBasicMarkdown(mainContentMd),
-      collegeCourses: allCoursesYaml.filter((val) => !val.provider),
-      onlineCourses: allCoursesYaml.filter((val) => val.provider),
-      skills: allSkillsYaml,
-      cv: allProfilesYaml,
-      membership: allMembershipsYaml,
-      workexperience: allWorkExperiencesYaml,
-      projects: sixProjects,
-      quote: loadRandomQuote<QuoteInterface>(),
+      collegeCourses: allCourses.filter((course) => !course.provider),
+      onlineCourses: allCourses.filter((course) => course.provider),
+      skills: loadYaml<SkillsInterface[]>(path.join(contentDir, "skills.yaml")),
+      cv: loadYaml<ProfilesInterface[]>(path.join(contentDir, "profiles.yaml")),
+      membership: loadYaml<MembershipInterface[]>(path.join(contentDir, "memberships.yaml")),
+      workexperience: loadYaml<WorkExperienceInterface[]>(path.join(contentDir, "workexperiences.yaml")),
+      projects,
       pageMetadata: {
         enableWrap: true,
+        layoutVariant: "portfolio",
         seoMetadata: {
-          title: "Official Website of Nirmal Khedkar",
-          description: "Boost your team's performance with Nirmal Khedkar, a full-stack engineer with experience at Visa specializing in reliable, high-performance systems.",
+          title: "Nirmal Khedkar | Backend & Infrastructure Software Engineer",
+          description: "Nirmal Khedkar is a software engineer whose portfolio includes backend services at Visa, dispatch software at ZOLL Data Systems, and Kubernetes tooling.",
           canonical: "https://nirmalhk7.com",
           openGraph: {
             type: "website",
-            url: `https://nirmalhk7.com`,
-            images: [
-              {
-                url: "https://nirmalhk7.com/api/og?title=Nirmal%20Khedkar",
-                alt: "Hi, I'm Nirmal Khedkar",
-                width: 1200,
-                height: 630
-              },
-            ],
+            url: "https://nirmalhk7.com",
+            images: [openGraphImage("I build & ship backend systems.", "Nirmal Khedkar | Backend and infrastructure experience at Visa and ZOLL", "home")],
           },
-        }
-      }
+        },
+      },
     },
   };
 };

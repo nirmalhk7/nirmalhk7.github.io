@@ -18,6 +18,21 @@ const project = {
 };
 
 describe("ProjectListItem", () => {
+  it("shows original notes immediately for selected projects without a second disclosure", () => {
+    render(
+      <ProjectListItem
+        project={{ ...project, slug: "k8-autoscaler", contentHtml: "<p>Original autoscaler implementation notes.</p>" } as never}
+        isExpanded
+        onToggle={jest.fn()}
+        index={0}
+      />
+    );
+
+    expect(screen.getByText("Original autoscaler implementation notes.")).toBeVisible();
+    expect(screen.queryByText("Infrastructure · Capacity planning")).not.toBeInTheDocument();
+    expect(screen.queryByText("Original project notes")).not.toBeInTheDocument();
+  });
+
   it("shows build-rendered project content when expanded", () => {
     render(
       <ProjectListItem
@@ -57,4 +72,14 @@ describe("ProjectListItem", () => {
 
     expect(onToggle).toHaveBeenCalledTimes(1);
   });
+});
+
+test("connects the toggle to its detail panel and hides closing content from assistive technology", () => {
+  const { rerender } = render(<ProjectListItem project={project as never} isExpanded onToggle={jest.fn()} index={0} />);
+  const toggle = screen.getByRole("button", { name: /Collapse Atlas/ });
+  const panel = screen.getByRole("region", { name: /Collapse Atlas/ });
+  expect(toggle).toHaveAttribute("aria-controls", panel.id);
+  rerender(<ProjectListItem project={project as never} isExpanded={false} onToggle={jest.fn()} index={0} />);
+  expect(screen.queryByRole("region")).not.toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /Expand Atlas/ })).toHaveAttribute("aria-expanded", "false");
 });

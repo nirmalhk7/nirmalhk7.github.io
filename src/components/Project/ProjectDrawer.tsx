@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { trackEvent } from "@/util/analytics";
 import { m, AnimatePresence } from "framer-motion";
 import { ProjectInterface } from "@/interfaces/projects";
 import Image from "next/image";
@@ -9,6 +10,14 @@ interface ProjectDrawerProps {
 }
 
 export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
+  const previous = useRef<string | null>(null);
+  const slug = project?.slug ?? null;
+  useEffect(() => {
+    if (previous.current === slug) return;
+    if (previous.current) trackEvent("project_drawer",{action:"close",content_id:previous.current});
+    if (slug) trackEvent("project_drawer",{action:"open",content_id:slug});
+    previous.current=slug;
+  },[slug]);
   return (
     <AnimatePresence>
       {project && (
@@ -36,7 +45,7 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
                 <span className="text-xs font-bold uppercase tracking-widest text-accent">
                   Project Quick Preview
                 </span>
-                <button
+                <button data-analytics-id="close_project_preview"
                   type="button"
                   onClick={onClose}
                   className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700 font-bold transition-colors"
@@ -93,7 +102,7 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
 
             {/* Footer Action Bar */}
             <div className="pt-8 border-t border-gray-200 flex items-center justify-between gap-4">
-              <button
+              <button data-analytics-id="projectdrawer_control_2"
                 type="button"
                 onClick={onClose}
                 className="px-6 py-3 rounded-xl border border-gray-300 font-semibold text-gray-700 hover:bg-gray-100 transition-colors"

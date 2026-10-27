@@ -24,7 +24,12 @@ const main = async () => {
   for (const project of pageProps.projects) {
     const sourcePath = path.join(process.cwd(), "content", "projects", `${project.slug}.md`);
     const markdown = matter(fs.readFileSync(sourcePath, "utf8")).content;
-    const expectedHtml = renderToStaticMarkup(React.createElement(ReactMarkdown, null, markdown));
+    // Project headings sit below the page title, matching the renderer contract.
+    const headings = Object.fromEntries(
+      [["h1", "h2"], ["h2", "h3"], ["h3", "h4"], ["h4", "h5"], ["h5", "h6"], ["h6", "h6"]]
+        .map(([source, target]) => [source, ({ children }) => React.createElement(target, null, children)])
+    );
+    const expectedHtml = renderToStaticMarkup(React.createElement(ReactMarkdown, { components: headings }, markdown));
 
     if (project.contentHtml !== expectedHtml) {
       throw new Error(`Pre-rendered Markdown differs from ReactMarkdown output for ${project.slug}.`);

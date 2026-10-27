@@ -1,6 +1,10 @@
-import React, { useEffect, useState, useRef, useDeferredValue } from "react";
-import { m, AnimatePresence } from "framer-motion";
+import React, { useEffect, useState, useRef, useDeferredValue, useMemo } from "react";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useRouter } from "next/router";
+import { trackEvent, trackSearch, trackSelectContent, trackResumeOpen } from "@/util/analytics";
+
+import portfolioStyles from "@/components/Home/portfolio.module.scss";
+import styles from "./commandPalette.module.scss";
 
 interface CommandItem {
   id: string;
@@ -13,12 +17,12 @@ interface CommandItem {
 
 const commandItems: CommandItem[] = [
   { id: "home", title: "Home", category: "Pages", subtitle: "Return to homepage", href: "/" },
-  { id: "about", title: "About Me", category: "Pages", subtitle: "Full-Stack Engineer specializing in high-performance systems", href: "/#about" },
+  { id: "about", title: "About Me", category: "Pages", subtitle: "Backend, infrastructure, and broader product engineering", href: "/#about" },
   { id: "projects", title: "Projects Catalogue", category: "Pages", subtitle: "Explore high-performance systems and full-stack projects", href: "/projects" },
   { id: "blog", title: "Blog & Technical Manuals", category: "Pages", subtitle: "The Blue Green Manual", href: "/blog" },
   { id: "contact", title: "Contact / Hire Nirmal", category: "Actions", subtitle: "Send a message or get in touch", href: "/#contact" },
-  { id: "resume-action", title: "Download Resume PDF", category: "Actions", subtitle: "Get official PDF resume", href: "/resume", newTab: true },
-  { id: "skill-go", title: "Golang / Systems Engineering", category: "Skills", subtitle: "High throughput backend APIs & concurrent systems", href: "/projects" },
+  { id: "resume-action", title: "View résumé", category: "Actions", subtitle: "View embedded résumé", href: "/resume" },
+  { id: "skill-java", title: "Java / Reactive services", category: "Skills", subtitle: "Spring Boot to Project Reactor migration at Visa", href: "/#workexperience" },
   { id: "skill-dist", title: "Distributed Systems & Scalability", category: "Skills", subtitle: "Experience at Visa building reliable payments systems", href: "/#about" },
   { id: "skill-react", title: "React & Next.js Full-Stack", category: "Skills", subtitle: "Modern responsive web applications", href: "/projects" },
 ];
@@ -29,21 +33,25 @@ export const CommandPalette: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const router = useRouter();
+  const reduceMotion = useReducedMotion();
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
+
+  const close = (reason: string) => { trackEvent('command_palette',{action:'close',interaction_type:reason}); setIsOpen(false); };
+  const open = (method: string) => { trackEvent('command_palette',{action:'open',action_method:method}); setIsOpen(true); };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setIsOpen((prev) => !prev);
+        if (isOpen) close('shortcut'); else open('keyboard');
       } else if (e.key === "Escape" && isOpen) {
-        setIsOpen(false);
+        close('escape');
       }
     };
 
-    const handleCustomOpen = () => setIsOpen(true);
+    const handleCustomOpen = () => open('control');
 
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("open-command-palette", handleCustomOpen);
@@ -57,9 +65,8 @@ export const CommandPalette: React.FC = () => {
   useEffect(() => {
     if (isOpen) {
       triggerRef.current = document.activeElement as HTMLElement;
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 50);
+      const timer=window.setTimeout(() => inputRef.current?.focus(),50);
+      return () => window.clearTimeout(timer);
     } else {
       triggerRef.current?.focus();
     }
@@ -96,19 +103,29 @@ export const CommandPalette: React.FC = () => {
 
   const deferredQuery = useDeferredValue(searchQuery);
 
-  const filteredItems = commandItems.filter(
+  const filteredItems = useMemo(() => commandItems.filter(
     (item) =>
       item.title.toLowerCase().includes(deferredQuery.toLowerCase()) ||
       (item.subtitle && item.subtitle.toLowerCase().includes(deferredQuery.toLowerCase()))
-  );
+  ), [deferredQuery]);
 
-  const selectItem = (item: CommandItem) => {
-    if (item.newTab) {
+  useEffect(() => {
+    if (!isOpen || !searchQuery.trim()) return;
+    const timer=window.setTimeout(()=>trackSearch(searchQuery,{search_scope:'command_palette',result_count:filteredItems.length,matched_ids:filteredItems.slice(0,5).map(item=>item.id).join(',')}),700);
+    return ()=>window.clearTimeout(timer);
+  }, [isOpen,searchQuery,filteredItems]);
+
+  const selectItem = (item: CommandItem, method: string) => {
+    trackSelectContent('command',item.id,{action_method:method,placement:'command_palette'});
+    if (item.href === "/resume") {
+      trackResumeOpen("command_palette",{action_method:method});
+      router.push(item.href);
+    } else if (item.newTab) {
       window.open(item.href, "_blank");
     } else {
       router.push(item.href);
     }
-    setIsOpen(false);
+    close('selection');
   };
 
   const handleSearchKeyDown = (e: React.KeyboardEvent) => {
@@ -122,44 +139,45 @@ export const CommandPalette: React.FC = () => {
       );
     } else if (e.key === "Enter" && filteredItems[selectedIndex]) {
       e.preventDefault();
-      selectItem(filteredItems[selectedIndex]);
+      selectItem(filteredItems[selectedIndex],'keyboard');
     }
   };
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-start justify-center pt-16 tablet:pt-24 px-4">
+        <div data-analytics-skip-global="true" className={`${portfolioStyles.shell} ${styles.overlay}`}>
           {/* Backdrop */}
           <m.div
             aria-hidden="true"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-black/75 backdrop-blur-md transition-opacity"
+            onClick={() => close('backdrop')}
+            className={styles.backdrop}
           />
 
-          {/* Modal Container: Bigger (max-w-4xl) with ultra-thin glass border */}
+          {/* Search panel */}
           <m.div
             ref={containerRef}
             role="dialog"
             aria-modal="true"
             aria-label="Command Palette"
-            initial={{ opacity: 0, scale: 0.97, y: -12 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.97, y: -12 }}
-            transition={{ type: "spring", damping: 28, stiffness: 320 }}
-            className="relative w-full max-w-4xl rounded-2xl bg-[#0e0e12]/95 border border-white/10 shadow-[0_25px_80px_rgba(0,0,0,0.9)] overflow-hidden text-white"
+            initial={{ opacity: 0, y: reduceMotion ? 0 : -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: reduceMotion ? 0 : -12 }}
+            transition={{ duration: reduceMotion ? 0.1 : 0.18, ease: "easeOut" }}
+            className={styles.panel}
           >
             {/* Search Header */}
-            <div className="flex items-center justify-between border-b border-white/10 px-6 py-2">
-              <div className="flex items-center flex-1 mr-4">
-                <span className="text-gray-400 text-xl mr-4 select-none">🔍</span>
+            <div className={styles.header}>
+              <div className={styles.inputGroup}>
+                <svg className={styles.searchIcon} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg>
                 <input
                   ref={inputRef}
                   type="text"
                   role="combobox"
+                  aria-label="Search pages, skills, or quick actions"
                   aria-expanded={isOpen}
                   aria-autocomplete="list"
                   aria-controls="command-palette-listbox"
@@ -175,23 +193,23 @@ export const CommandPalette: React.FC = () => {
                   }}
                   onKeyDown={handleSearchKeyDown}
                   placeholder="Search pages, skills, or quick actions..."
-                  className="w-full bg-transparent py-4 text-xl text-white placeholder-gray-500 focus:outline-none"
+                  className={styles.input}
                 />
               </div>
-              <span className="px-2.5 py-1 rounded border border-white/15 bg-white/5 font-mono text-xs text-gray-400 select-none">
-                ESC
-              </span>
+              <button type="button" className={styles.close} onClick={() => close("control")} aria-label="Close search">
+                <span>Close</span><kbd>Esc</kbd>
+              </button>
             </div>
 
-            {/* Results List: Spacious & Clean */}
+            {/* Search results */}
             <div
               id="command-palette-listbox"
               role="listbox"
               aria-label="Search results"
-              className="max-h-[480px] overflow-y-auto p-4 space-y-1.5"
+              className={styles.results}
             >
               {filteredItems.length === 0 ? (
-                <div className="py-16 text-center text-base text-gray-500">
+                <div className={styles.empty}>
                   No matching results found.
                 </div>
               ) : (
@@ -202,25 +220,21 @@ export const CommandPalette: React.FC = () => {
                     role="option"
                     aria-selected={selectedIndex === index}
                     type="button"
-                    onClick={() => selectItem(item)}
+                    onClick={(event) => selectItem(item,event.detail===0?'keyboard':'pointer')}
                     onMouseEnter={() => setSelectedIndex(index)}
-                    className={`!border !leading-normal !tracking-normal !normal-case !font-sans w-full text-left flex items-center justify-between px-6 py-4 rounded-xl cursor-pointer transition-all duration-150 ${
-                      selectedIndex === index
-                        ? "bg-white/10 !border-white/15 shadow-sm"
-                        : "hover:bg-white/5 !border-transparent"
-                    }`}
+                    className={styles.result}
                   >
-                    <div>
-                      <div className="text-base font-semibold text-white">
+                    <div className={styles.resultCopy}>
+                      <div className={styles.title}>
                         {item.title}
                       </div>
                       {item.subtitle && (
-                        <div className="text-sm text-gray-400 mt-0.5">
+                        <div className={styles.subtitle}>
                           {item.subtitle}
                         </div>
                       )}
                     </div>
-                    <span className="text-xs px-3 py-1 rounded-md bg-white/5 border border-white/10 text-gray-300 uppercase tracking-wider font-mono">
+                    <span className={styles.category}>
                       {item.category}
                     </span>
                   </button>
@@ -229,8 +243,8 @@ export const CommandPalette: React.FC = () => {
             </div>
 
             {/* Footer Tip */}
-            <div className="flex items-center justify-between border-t border-white/10 px-6 py-3 bg-white/[0.02] text-xs text-gray-400">
-              <span>Use arrow keys <strong className="text-gray-300">↑ ↓</strong> to navigate, <strong className="text-gray-300">Enter</strong> to select</span>
+            <div className={styles.footer}>
+              <span>Use arrow keys <strong >↑ ↓</strong> to navigate, <strong >Enter</strong> to select</span>
               <span>Command Palette</span>
             </div>
           </m.div>

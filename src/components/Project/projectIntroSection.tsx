@@ -6,7 +6,7 @@ import { ProjectInterface } from "@/interfaces/projects";
 const ProjectDrawer = dynamic(() => import("./ProjectDrawer"), { ssr: false });
 import { m, Variants, useReducedMotion } from "framer-motion";
 import { ProjectCard } from "./projectCard";
-import { trackClick, trackSelectContent } from "@/util/analytics";
+import { trackSelectContent } from "@/util/analytics";
 
 const ProjectIntroSection = ({
   projects,
@@ -96,7 +96,6 @@ const ProjectIntroSection = ({
               trackSelectContent("navigation", "view_all_projects", {
                 source: "home_project_section",
               });
-              trackClick("view_all_projects", "navigation");
             }}
           >
             View All Projects
