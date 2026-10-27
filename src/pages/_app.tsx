@@ -2,15 +2,15 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { AnalyticsProvider } from "@/components/Analytics/AnalyticsProvider";
 
-import "@/assets/css/tailwind.scss";
-import "@/assets/css/reveal.scss";
+import "@/assets/css/tailwind.css";
+import "@/assets/css/reveal.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo";
 import Navbar from "@/elements/navbar";
-import portfolioStyles from "@/components/Home/portfolio.module.scss";
+import portfolioStyles from "@/components/Home/portfolio.styles";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { trackWebVital } from "@/util/analytics";

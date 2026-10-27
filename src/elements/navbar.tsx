@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { m, AnimatePresence, useReducedMotion, useIsPresent } from "framer-motion";
 import { trackClick, trackEvent, trackResumeOpen } from "@/util/analytics";
 import { createRafThrottled } from "@/util/rafThrottle";
-import styles from "@/components/Home/portfolio.module.scss";
+import styles from "@/components/Home/portfolio.styles";
 
 type NavbarItem = {
   label: string;

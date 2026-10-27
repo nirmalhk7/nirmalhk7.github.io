@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from 'react';
 import { trackClick, trackResumeOpen } from '@/util/analytics';
-import styles from './editorial.module.scss';
+import styles from './editorial.styles';
 
 export default function HiringLinks() {
   return (

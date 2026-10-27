@@ -3,8 +3,8 @@ import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useRouter } from "next/router";
 import { trackEvent, trackSearch, trackSelectContent, trackResumeOpen } from "@/util/analytics";
 
-import portfolioStyles from "@/components/Home/portfolio.module.scss";
-import styles from "./commandPalette.module.scss";
+import portfolioStyles from "@/components/Home/portfolio.styles";
+import styles from "./commandPalette.styles";
 
 interface CommandItem {
   id: string;

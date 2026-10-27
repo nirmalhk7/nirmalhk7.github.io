@@ -9,10 +9,25 @@ module.exports = {
       "laptop-l": { min: "1440px" },
     },
     extend: {
+      // Preserve the portfolio's scoped runtime tokens in reusable utilities.
+      fontSize: {
+        'body-px': '16px',
+        'label-px': '12px',
+      },
+      maxWidth: { content: '1360px' },
       brightness: {
         25: '.25'
       },
       colors: {
+        portfolio: {
+          paper: 'var(--portfolio-paper)',
+          ink: 'var(--portfolio-ink)',
+          night: 'var(--portfolio-night)',
+          red: 'var(--portfolio-red)',
+          'red-hover': 'var(--portfolio-red-hover)',
+          muted: 'var(--portfolio-muted)',
+          surface: 'var(--portfolio-muted-surface)',
+        },
         accent: "#D93838",
         accentLight: "#D9A9A9",
       },
@@ -25,6 +40,10 @@ module.exports = {
         nasaEarth: "url('../images/nasa-earth.jpg')",
       },
       fontFamily: {
+        body: ['var(--portfolio-body)'],
+        display: ['var(--portfolio-display)'],
+        'portfolio-sans': ['var(--portfolio-sans)'],
+        'portfolio-mono': ['var(--portfolio-mono)'],
         blocky: ["Portfolio Outfit", "Avenir Next", "sans-serif"],
         heading: ["Portfolio Outfit", "Avenir Next", "sans-serif"],
         mono: ["Portfolio Plex Mono", "ui-monospace", "monospace"],
