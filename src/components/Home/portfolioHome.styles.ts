@@ -53,7 +53,9 @@ const styles = {
   "experienceRow": [
     "home-experienceRow",
     "grid grid-cols-[minmax(190px,_0.52fr)_minmax(0,_1fr)] gap-[clamp(30px,_8vw,_120px)] p-[36px_0] [border-top:1px_solid_rgba(23,_23,_23,_0.17)]",
-    "[&_>_h3]:m-[2px_0_0] [&_>_h3]:text-[clamp(33px,_4vw,_58px)]",
+    "[&_>_h3]:m-[2px_0_0] [&_>_h3]:text-[clamp(33px,_4vw,_58px)] [&_>_h3]:[transition:color_180ms_ease]",
+    "[&:hover_>_h3]:text-portfolio-red",
+    "[@media(prefers-reduced-motion:_reduce)]:[&_>_h3]:[transition:none]",
     "[@media(max-width:_767px)]:grid-cols-[1fr] [@media(max-width:_767px)]:gap-[30px]",
     "[@media(max-width:_767px)]:p-[28px_0]",
     "[@media(max-width:_767px)]:[&_>_h3]:text-[42px]",

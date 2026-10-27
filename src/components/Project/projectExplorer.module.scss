@@ -1,0 +1,23 @@
+.explorer {
+  button[aria-pressed] {
+    transition: color 140ms ease, background-color 140ms ease, border-color 140ms ease, transform 120ms ease;
+
+    &:active { transform: translateY(1px); }
+    &:focus-visible { outline: 2px solid var(--portfolio-red); outline-offset: 3px; }
+  }
+
+  input[type="search"] { caret-color: var(--portfolio-red); }
+}
+
+.project {
+  button[aria-expanded] {
+    transition: background-color 150ms ease, color 150ms ease;
+
+    &:focus-visible { outline: 2px solid var(--portfolio-red); outline-offset: -2px; }
+    &::after { transition-duration: 160ms; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explorer button[aria-pressed]:active { transform: none; }
+}

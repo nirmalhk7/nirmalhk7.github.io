@@ -290,6 +290,7 @@ const styles = {
     "[&_:where(pre,_code)]:overflow-x-auto [&_:where(pre,_code)]:[font-family:'Portfolio_Plex_Mono',_ui-monospace,_monospace] [&_:where(pre,_code)]:text-[0.82em]",
     "[&_pre]:p-[20px] [&_pre]:bg-portfolio-night [&_pre]:text-white",
     "[&_code]:[border:0] [&_code]:bg-[#e7e4dd] [&_code]:text-inherit",
+    "[&_pre_code]:p-0 [&_pre_code]:rounded-none [&_pre_code]:bg-transparent [&_pre_code]:text-inherit",
   ].join(" "),
   "articleImage": [
     "editorial-articleImage",

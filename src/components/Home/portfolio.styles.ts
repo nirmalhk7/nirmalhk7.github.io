@@ -46,10 +46,9 @@ const styles = {
   ].join(" "),
   "portfolioNav": [
     "shell-portfolioNav",
-    "fixed z-50 top-[0] left-[0] flex w-full h-[64px] items-center justify-between p-[0_clamp(24px,_7.8vw,_126px)] [border-bottom:1px_solid_rgba(255,_255,_255,_0.13)] text-white bg-[rgba(18,_23,_26,_0.73)] font-portfolio-sans text-[13px] tracking-[0.015em] leading-none [backdrop-filter:blur(22px)_saturate(1.15)] [-webkit-backdrop-filter:blur(22px)_saturate(1.15)] [transition:transform_340ms_cubic-bezier(0.16,_1,_0.3,_1),_opacity_220ms_ease,_visibility_0s]",
-    "[&[data-visible=false]]:[transform:translateY(-100%)] [&[data-visible=false]]:opacity-0 [&[data-visible=false]]:invisible [&[data-visible=false]]:pointer-events-none [&[data-visible=false]]:[transition:transform_180ms_ease-in,_opacity_140ms_ease,_visibility_0s_180ms]",
-    "[@media(prefers-reduced-motion:_reduce)]:transform-none [@media(prefers-reduced-motion:_reduce)]:[transition:none]",
-    "[@media(prefers-reduced-motion:_reduce)]:[&[data-visible=false]]:transform-none [@media(prefers-reduced-motion:_reduce)]:[&[data-visible=false]]:[transition:none]",
+    "fixed z-50 top-[0] left-[0] flex w-full h-[64px] items-center justify-between p-[0_clamp(24px,_7.8vw,_126px)] [border-bottom:1px_solid_rgba(255,_255,_255,_0.13)] text-white bg-[rgba(18,_23,_26,_0.73)] font-portfolio-sans text-[13px] tracking-[0.015em] leading-none [backdrop-filter:blur(22px)_saturate(1.15)] [-webkit-backdrop-filter:blur(22px)_saturate(1.15)] [transition:background-color_220ms_ease,_border-color_220ms_ease,_backdrop-filter_220ms_ease]",
+    "[&[data-over-hero=true]]:border-b-transparent [&[data-over-hero=true]]:bg-transparent [&[data-over-hero=true]]:[backdrop-filter:none] [&[data-over-hero=true]]:[-webkit-backdrop-filter:none]",
+    "[@media(prefers-reduced-motion:_reduce)]:[transition:none]",
     "[&_a:focus-visible]:[outline:2px_solid_var(--portfolio-red)] [&_a:focus-visible]:outline-offset-[3px]",
     "[&_button:focus-visible]:[outline:2px_solid_var(--portfolio-red)] [&_button:focus-visible]:outline-offset-[3px]",
     "[@media(max-width:_1023px)]:h-[60px] [@media(max-width:_1023px)]:p-[0_22px]",

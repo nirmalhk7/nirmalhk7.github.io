@@ -11,6 +11,8 @@ import { ProjectListItem } from "@/components/Project/projectListItem";
 import { renderProjectMarkdown } from "@/util/renderMarkdown";
 import { useRouter } from "next/router";
 import { openGraphImage } from "@/util/openGraph";
+import { useProjectListMotion } from "@/hooks/useProjectListMotion";
+import motionStyles from "@/components/Project/projectExplorer.module.scss";
 
 
 interface ProjectPageProps extends DefaultPageProps {
@@ -27,6 +29,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
   const router = useRouter();
   const projectId = router.query.id;
   const localToggleId = useRef<string | null | undefined>(undefined);
+  const listRef = useRef<HTMLDivElement>(null);
   const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
@@ -86,7 +89,9 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
     return matchesScope && matchesCategory && matchesFilter && matchesSearch;
   }), [projects,browsingAll,category,filter,searchQuery]);
 
-  const clearFilters = () => { trackEvent('project_filter',{action:'clear'}); setSearchQuery(''); setFilter('X'); setCategory('All work'); };
+  const prepareListMotion = useProjectListMotion(listRef);
+
+  const clearFilters = () => { prepareListMotion(); trackEvent('project_filter',{action:'clear'}); setSearchQuery(''); setFilter('X'); setCategory('All work'); };
 
   useEffect(() => {
     const searchTerm = searchQuery.trim();
@@ -168,7 +173,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
         image={nasaGalaxy}
         imageAlt="Earth seen from space"
       />
-      <PageSection id="projectdetailed" title={browsingAll ? 'Explore the work.' : 'My Projects'} description="Open a project for my contribution and technical details. Search covers the entire archive.">
+      <PageSection id="projectdetailed" title={browsingAll ? 'Explore the work.' : 'My Projects'} description="Open a project for my contribution and technical details. Search covers the entire archive." className={motionStyles.explorer}>
         <div role="search" aria-label="Search projects">
           <label htmlFor="project-search" className="sr-only">Search projects and technologies</label>
           <input
@@ -176,7 +181,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
             type="search"
             placeholder="Search projects and technologies"
             value={searchQuery}
-            onChange={(event) => setSearchQuery(event.target.value)}
+            onChange={(event) => { prepareListMotion(); setSearchQuery(event.target.value); }}
             className={styles.searchInput}
           />
         </div>
@@ -186,7 +191,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
         </div>
         {filteredProjects.length === 0 && <p className={styles.emptyState}>No matching projects. Try another term or clear the filters above.</p>}
         <div className={styles.filterBar} aria-label="Filter projects by area">
-          {['All work', 'Systems', 'Product', 'Research'].map(area => <button data-analytics-id="projects_control_2" data-analytics-skip-global="true" key={area} type="button" aria-pressed={area === category} className={`${styles.filterButton} ${area === category ? styles.filterButtonActive : ''}`} onClick={() => { setCategory(area); trackEvent('project_filter',{category:area,action:'category'}); }}>{area}</button>)}
+          {['All work', 'Systems', 'Product', 'Research'].map(area => <button data-analytics-id="projects_control_2" data-analytics-skip-global="true" key={area} type="button" aria-pressed={area === category} className={`${styles.filterButton} ${area === category ? styles.filterButtonActive : ''}`} onClick={() => { prepareListMotion(); setCategory(area); trackEvent('project_filter',{category:area,action:'category'}); }}>{area}</button>)}
         </div>
         <details data-analytics-id="project_technology_filters" className={styles.technologyFilters}>
           <summary>Filter by technology{filter !== 'X' ? ` · ${filter}` : ''}</summary>
@@ -198,6 +203,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
               aria-pressed={tag === filter}
               data-analytics-skip-global="true"
               onClick={() => {
+                prepareListMotion();
                 setFilter(tag);
                 const isAll = tag === "X";
                 trackEvent("project_filter",{active_filter:isAll?"all":tag,action:"technology"});
@@ -209,9 +215,9 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
           ))}
           </div>
         </details>
-        <div>
+        <div ref={listRef}>
           {filteredProjects.map((project, index) => (
-            <div key={project.slug} ref={(element) => { projectRefs.current[project.slug] = element; }}>
+            <div className={motionStyles.project} data-project-motion-key={project.slug} key={project.slug} ref={(element) => { projectRefs.current[project.slug] = element; }}>
               <ProjectListItem
                 project={project}
                 isExpanded={expandedSlug === project.slug}
@@ -221,7 +227,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
             </div>
           ))}
         </div>
-        {!searchQuery && filter === 'X' && category === 'All work' && <button data-analytics-id="projects_control_4" data-analytics-skip-global="true" className={styles.action} type="button" onClick={() => { trackEvent('project_archive',{action:showArchive?'hide':'show'}); setShowArchive(current => !current); }}>{showArchive ? 'Return to selected work' : `View all ${projects.length} projects`}</button>}
+        {!searchQuery && filter === 'X' && category === 'All work' && <button data-analytics-id="projects_control_4" data-analytics-skip-global="true" className={styles.action} type="button" onClick={() => { prepareListMotion(); trackEvent('project_archive',{action:showArchive?'hide':'show'}); setShowArchive(current => !current); }}>{showArchive ? 'Return to selected work' : `View all ${projects.length} projects`}</button>}
       </PageSection>
     </main>
   );
