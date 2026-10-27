@@ -34,7 +34,7 @@ const ScrollToTop = () => {
   return (
     <AnimatePresence>
       {isVisible && (
-        <m.button
+        <m.button data-analytics-id="scroll_to_top"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}

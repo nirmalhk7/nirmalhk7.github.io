@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import WebSection from "@/elements/WebSection";
 import { m, Variants, useMotionTemplate, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform,  } from "framer-motion";
-import { trackClick, trackSelectContent } from "@/util/analytics";
+import { trackSelectContent } from "@/util/analytics";
 import Magnetic from "@/components/Magnetic";
 import { createRafThrottled } from "@/util/rafThrottle";
 
@@ -237,7 +237,6 @@ const Max = React.forwardRef<HTMLElement, MaxJumbotronProps>(({
                       trackSelectContent("hero_cta", item[0], {
                         destination: item[1],
                       });
-                      trackClick(item[0], "jumbotron_cta");
                     }}
                   >
                     {item[0]}

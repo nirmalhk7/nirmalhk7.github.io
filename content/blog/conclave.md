@@ -3,7 +3,7 @@ title: Rourkela Journal
 category: ['Personal']
 tags: ["hackathon","environment","technology","nirmal"]
 img: "/assets/nitrourkela.jpg"
-description: A personal account of NIT Conclave Hackathon week, including cross-country travel, team collaboration, and a second-place finish in Rourkela.
+description: "A personal account of NIT Conclave week: cross-country travel, building ScholarHub, fifth place in the hackathon, and second place overall for NITK."
 date: "2019-09-24"
 draft: false
 ---
@@ -11,7 +11,7 @@ draft: false
 So one week from the `21st August`, I was outside NITK to attend NIT Conclave in Rourkela. Me and 4 others of my College, managed to win overall 2nd position overall at the Conclave and 5th in the Hackathon. Here's my experience. 
 
 ## Our Submission
-Oh, the app is a portal for research scholars which includes a collaboration, events and grants on one platform. Its called ScholarHub. Here's a [link for more]({{site.url}}/project.html).
+Oh, the app is a portal for research scholars which includes a collaboration, events and grants on one platform. Its called ScholarHub. Here's a [link for more](/projects?id=scholarhub).
 
 
 ## Story
@@ -59,7 +59,7 @@ We knew that although we had the best looking product, we wont be able to make i
 
 Then they announced the overall results, which we lost all hope about, because we didnt make into top 3 in Hackathon. And they said, "Second Position goes to NIT Surathkal". *Damn we made it!*. I didnt even bother coming in better clothes: I was in my old trackpants for the awards event, because I wanted to save the only better one I had for flight travel, in case if we'd be travelling that way.
 
-![alt text]("/Conclave.jpeg")
+![NIT Conclave 2019](/assets/Conclave.jpeg)
 
 So with a feeling that last one week was definitely not a total waste and we defeated some 3rd and 4th years back there, we got on our train back to Surathkal.
 
@@ -69,9 +69,7 @@ We reached Bangalore, roamed in Cubbon Park, saw my old Bangalore home, got stuc
 ## Final Conclusion
 The hackathon was fun. I loved meeting my NIT friends. I enjoyed lunch with my Bangalore buddies. But I'll sign off with something that I'd never seen before (in all its glory) and its something I think everybody should see:
 
-<div className="video-container">
-                <iframe src="https://player.vimeo.com/video/359937237?title=0&amp;byline=0&amp;portrait=0&amp;color=F64B39" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
-                </div>
+[Watch the journey video on Vimeo](https://vimeo.com/359937237).
 
 Greenery in India. 
 

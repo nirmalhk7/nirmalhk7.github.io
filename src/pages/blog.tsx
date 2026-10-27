@@ -1,15 +1,16 @@
-import React from "react";
 
+import React from "react";
 import LatestBlogSection from "@/components/Blog/latestBlogSection";
 import BlogListSection from "@/components/Blog/blogListSection";
-import Jumbotron from "../elements/jumbotron";
+import Link from "next/link";
+import { PageHero, editorialStyles as styles } from "@/components/Site/Editorial";
 import { GetStaticProps } from "next";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
 import { DefaultPageProps } from "./_app";
 import { BlogFrontmatterInterface, BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
 import blogWallpaper from "@/assets/images/datacenter.jpg";
 import sortBy from "lodash/sortBy";
-import { loadRandomQuote } from "@/util/loadQuote";
+import { openGraphImage } from "@/util/openGraph";
 
 interface BlogPageProps extends DefaultPageProps {
   blogs: BlogInterface[];
@@ -56,7 +57,7 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
   };
 
   return (
-    <main>
+    <main className={styles.page}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
@@ -65,16 +66,15 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <Jumbotron.Max
-        HeadingTextComponent={
-          <h1 className="page-header__title text-white">
-            The Blue Green Manual
-          </h1>
-        }
-        bgImg={blogWallpaper}
-        buttonDetails={[["Explore", "#blog-first"]]}
-        orangeText="The Official Blog of Nirmal Khedkar"
-      />
+      <PageHero
+        eyebrow="Writing / The Blue Green Manual"
+        title="The Blue Green Manual"
+        description="Named after the blue-green deployment process. A place for my notes on backend systems, infrastructure, homelabs, and the decisions behind them."
+        image={blogWallpaper}
+        imageAlt="Rows of servers in a data center"
+      >
+        <Link href="#blog-first">Explore the writing <span aria-hidden="true">↓</span></Link>
+      </PageHero>
       <LatestBlogSection
         frontmatter={blogs[0].frontmatter}
         excerpt={blogs[0].excerpt}
@@ -103,7 +103,6 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
     props: {
       blogs: blogDetail,
       blogsMiniInformation: miniBlogInformation,
-      quote: loadRandomQuote(),
       pageMetadata: {
         enableWrap: true,
         seoMetadata: {
@@ -114,14 +113,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
           openGraph: {
             type: "website",
             url: `https://nirmalhk7.com/blog`,
-            images: [
-              {
-                url: "https://nirmalhk7.com/assets/datacenter.jpg",
-                alt: "Hi, I'm Nirmal Khedkar",
-                width: 1200,
-                height: 630,
-              },
-            ],
+            images: [openGraphImage("The Blue Green Manual", "The Blue Green Manual. Systems, homelabs, and lessons learned.", "writing")],
           },
         },
       },

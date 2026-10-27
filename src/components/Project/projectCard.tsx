@@ -3,7 +3,7 @@ import { m, useReducedMotion } from "framer-motion";
 import { ProjectInterface } from "@/interfaces/projects";
 import { TiltCard } from "@/components/TiltCard";
 import Link from "next/link";
-import { trackClick, trackSelectContent } from "@/util/analytics";
+import { trackSelectContent } from "@/util/analytics";
 
 interface ProjectCardProps {
   project: ProjectInterface;
@@ -66,7 +66,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <span className="group-hover:translate-x-1 transition-transform">→</span>
         </span>
         {onPreview && (
-          <button
+          <button data-analytics-id="projectcard_control_1"
             type="button"
             onClick={(e) => {
               e.preventDefault();
@@ -84,6 +84,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
   return (
     <m.div
+      data-analytics-exposure={project.slug}
       layout
       initial={shouldReduceMotion ? false : { opacity: 0, y: 28, rotateX: 8 }}
       whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, rotateX: 0 }}
@@ -111,7 +112,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               item_list_name: "project_card_grid",
               item_index: index,
             });
-            trackClick(project.slug, "project_card");
           }}
         >
           {CardContent}

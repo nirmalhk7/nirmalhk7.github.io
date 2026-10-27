@@ -10,7 +10,7 @@ date: "2019-06-21"
 
 I'm really an outer space guy. When I see any planet in sky, I stop whatever I'm doing and can't help but stare at the planet thinking that what must life outside Earth look like. Sky really fires me up in this way.
 
-~~(Too many space movies? Maybe xD)~~
+*(Too many space movies? Maybe xD)*
 
 # 1969
 
@@ -29,4 +29,4 @@ I'll sign of with the plaque on the Lunar Plaque which Neil and Buzz left on moo
 
 > Here men from the planet Earth first set foot upon the Moon July 1969, A.D. We came in peace for all mankind.
 
-<center><img src="https://pbs.twimg.com/media/D_7dMFEWkAEkmZN.jpg:large" alt="Moon Plaque"></center>
+[View the Moon plaque photograph](https://pbs.twimg.com/media/D_7dMFEWkAEkmZN.jpg:large)
