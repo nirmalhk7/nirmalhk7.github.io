@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import { openGraphImage } from "@/util/openGraph";
 import { useProjectListMotion } from "@/hooks/useProjectListMotion";
 import motionStyles from "@/components/Project/projectExplorer.module.scss";
+import { useSearchClear } from '@/hooks/useSearchClear';
 
 
 interface ProjectPageProps extends DefaultPageProps {
@@ -23,6 +24,7 @@ interface ProjectPageProps extends DefaultPageProps {
 const Projects = ({ projects, allTags }: ProjectPageProps) => {
   const [filter, setFilter] = useState("X");
   const [searchQuery, setSearchQuery] = useState("");
+  useSearchClear(searchQuery, 'projects');
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
   const [showArchive, setShowArchive] = useState(false);
   const [category, setCategory] = useState('All work');
@@ -95,7 +97,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
 
   useEffect(() => {
     const searchTerm = searchQuery.trim();
-    if (searchTerm.length < 2) return;
+    if (!searchTerm) return;
 
     const timer = window.setTimeout(() => {
       trackSearch(searchTerm, {

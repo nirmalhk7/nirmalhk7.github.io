@@ -1,4 +1,6 @@
 const nextJest = require('next/jest');
+// Match the public catalog injected into browser bundles by Next.
+process.env.NEXT_PUBLIC_BLOG_IDS = require('./next.config').env.NEXT_PUBLIC_BLOG_IDS;
 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment

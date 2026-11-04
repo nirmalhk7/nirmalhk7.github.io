@@ -14,6 +14,8 @@ export const useAnalytics = () => {
     let timer: number | undefined;
     let stop: (()=>void) | undefined;
     let current = '';
+    let pending: {url: string; since: number} | undefined;
+    const begin = (url: string, options?: {shallow?:boolean}) => { if (!options?.shallow) pending={url,since:Date.now()}; };
     const visit = (url: string, options?: {shallow?:boolean}) => {
       if (options?.shallow || (current && current.split('?')[0]===url.split('?')[0])) {
         trackEvent('page_navigation',{interaction_type:'state_change',destination_page_path:url}); return;
@@ -26,21 +28,27 @@ export const useAnalytics = () => {
         const pages=Array.from(document.querySelectorAll('[data-analytics-page]'));
         if (pages.length && !pages.some(page=>page.getAttribute('data-analytics-page')===expectedPath) && attempts++ < 125) { timer=window.setTimeout(settled,16); return; }
         if ((document as Document & {prerendering?:boolean}).prerendering) return;
+        const previous=current;
         current=url.split('#')[0];
-        trackPageView(current,{view_type:'route',...(latest.current.pathname==='/404'||latest.current.pathname==='/500'?{page_type:latest.current.pathname.slice(1)}:{})});
+        trackPageView(current,{view_type:'route',...(previous?{page_referrer:new URL(previous,window.location.origin).href,previous_page_path:previous}:{}),...(latest.current.pathname==='/404'||latest.current.pathname==='/500'?{page_type:latest.current.pathname.slice(1)}:{})});
+        if (pending?.url===url) { trackEvent('navigation_timing',{action:'complete',destination_page_path:current,previous_page_path:previous,duration_msec:Date.now()-pending.since}); pending=undefined; }
         if (latest.current.pathname==='/404' || latest.current.pathname==='/500') trackEvent('error_page',{error_category:latest.current.pathname==='/404'?'not_found':'server'});
         stop=startPageTracking(current);
       };
       timer=window.setTimeout(settled,0);
     };
     const hash = (url: string) => trackEvent('page_navigation',{interaction_type:'anchor',destination_page_path:url});
-    const error = (failure: {cancelled?:boolean}) => { if (!failure.cancelled) trackEvent('exception',{error_category:'navigation',fatal:false}); };
+    const error = (failure: {cancelled?:boolean}, url?: string) => {
+      if (pending && (!url || pending.url===url)) { trackEvent('navigation_timing',{action:failure.cancelled?'cancelled':'error',destination_page_path:pending.url,previous_page_path:current,duration_msec:Date.now()-pending.since}); pending=undefined; }
+      if (!failure.cancelled) trackEvent('exception',{error_category:'navigation',fatal:false});
+    };
     const activate = () => visit(latest.current.asPath);
     if (!(document as Document & {prerendering?:boolean}).prerendering) activate();
     document.addEventListener('prerenderingchange',activate);
     events.on('routeChangeComplete',visit);
+    events.on('routeChangeStart',begin);
     events.on('hashChangeComplete',hash);
     events.on('routeChangeError',error);
-    return () => { if (timer !== undefined) window.clearTimeout(timer); stop?.(); document.removeEventListener('prerenderingchange',activate); events.off('routeChangeComplete',visit); events.off('hashChangeComplete',hash); events.off('routeChangeError',error); };
+    return () => { if (timer !== undefined) window.clearTimeout(timer); stop?.(); document.removeEventListener('prerenderingchange',activate); events.off('routeChangeComplete',visit); events.off('routeChangeStart',begin); events.off('hashChangeComplete',hash); events.off('routeChangeError',error); };
   }, [events,ready]);
 };

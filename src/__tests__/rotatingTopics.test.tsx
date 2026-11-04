@@ -14,7 +14,7 @@ test('cycles requested topics vertically and returns to infrastructure', () => {
   const { unmount } = render(<RotatingTopics />);
   expect(screen.getByTestId('rotating-topic')).toHaveTextContent('infrastructure');
   for (const topic of ['products', 'software engineering', 'AI', 'agents', 'backend', 'fullstack', 'security', 'infrastructure']) {
-    act(() => { jest.advanceTimersByTime(2600); });
+    act(() => { jest.advanceTimersByTime(1600); });
     expect(screen.getByTestId('rotating-topic')).toHaveTextContent(topic);
   }
   unmount();

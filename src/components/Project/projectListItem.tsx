@@ -25,7 +25,7 @@ export const ProjectListItem = React.forwardRef<HTMLDivElement, ProjectListItemP
       onClick={onToggle}
     >
       {isExpanded && (
-        <div className={styles.rowDetail} dangerouslySetInnerHTML={{ __html: project.contentHtml }} />
+        <div data-analytics-exposure={`project_detail_${project.slug}`} data-analytics-reading="true" className={styles.rowDetail} dangerouslySetInnerHTML={{ __html: project.contentHtml }} />
       )}
     </EditorialRow>
   </div>

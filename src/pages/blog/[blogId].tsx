@@ -141,7 +141,7 @@ const BlogTemplate = ({
             <span>{current.frontmatter?.category?.join(" / ")}</span>
             <span>By Nirmal Khedkar</span>
           </div>
-          <div data-analytics-exposure={current.slug}>
+          <div data-analytics-exposure={current.slug} data-analytics-reading="true">
           <ReactMarkdown
             className={styles.articleBody}
             components={{

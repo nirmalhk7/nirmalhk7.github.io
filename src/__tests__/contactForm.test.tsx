@@ -122,3 +122,15 @@ it('deduplicates a server failure during Strict Mode effect replay',()=>{
   render(<React.StrictMode><ContactForm /></React.StrictMode>);
   expect((trackEvent as jest.Mock).mock.calls.filter(call=>call[0]==='form_error')).toHaveLength(1);
 });
+
+it('records field completion state and email fallback without field values', () => {
+  mockUseForm.mockReturnValue([{succeeded:false,submitting:false,errors:{getFormErrors:()=>['failed']}},mockSubmit]);
+  render(<ContactForm />);
+  const email=screen.getByRole('textbox',{name:'Email'});
+  fireEvent.focus(email);fireEvent.change(email,{target:{value:'private@example.com'}});fireEvent.blur(email);
+  expect(trackEvent).toHaveBeenCalledWith('form_engagement',expect.objectContaining({action:'blur',field_id:'email',field_state:'valid',duration_msec:expect.any(Number)}));
+  const link=screen.getByRole('link',{name:'email Nirmal directly'});
+  link.addEventListener('click',event=>event.preventDefault());fireEvent.click(link);
+  expect(trackEvent).toHaveBeenCalledWith('ui_action',expect.objectContaining({interaction_type:'email',source:'contact_form_fallback'}));
+  expect(JSON.stringify((trackEvent as jest.Mock).mock.calls)).not.toContain('private@example.com');
+});

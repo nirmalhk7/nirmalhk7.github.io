@@ -70,7 +70,7 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, ContactMeSectionProps>
                 >
                   nirmalhk7@gmail.com
                 </a>
-                {variant === 'portfolio' && <HiringLinks />}
+                {variant === 'portfolio' && <HiringLinks showEmail={false} />}
               </div>
             </div>
           </m.div>

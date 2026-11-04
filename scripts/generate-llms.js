@@ -10,8 +10,10 @@ const OUTPUT_FILE = path.join(__dirname, '../public/llms.txt');
 
 const REPLACEMENTS = {
   'University of Colorado Boulder': 'a major US University',
+  'Visa Inc.': 'a global financial services company',
   'Visa Inc': 'a global financial services company',
   'ZOLL Data Systems': 'a healthcare data systems company',
+  'Twizzr.com': 'a technology startup',
   'Twzzr': 'a technology startup',
   'Boulder, CO': 'USA',
   'NITK': 'a technical institute',

@@ -18,8 +18,16 @@ const waitEvent = async (page, name, predicate = () => true) => {
 const vercelStub = `(()=>{let beforeSend;const queue=window.vaq||[];window.__vercelSent=[];window.va=(type,payload)=>{if(type==='beforeSend'){beforeSend=payload;return;}if(type==='event'){const data={type:'event',url:location.href,...payload};const clean=beforeSend?beforeSend(data):data;if(clean)window.__vercelSent.push(clean)}};queue.forEach(args=>window.va(...args));window.vaq=[]})()`;
 
 (async () => {
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({ headless: true, ...(process.env.GA4_CHROMIUM_EXECUTABLE ? {executablePath:process.env.GA4_CHROMIUM_EXECUTABLE} : {}) });
   const requests = [];
+  const wireNames=()=>new Set(requests.flatMap(request=>{
+    const query=new URL(request.url).searchParams;
+    return [query.get('en'),...request.body.split('\n').map(line=>new URLSearchParams(line).get('en'))].filter(Boolean);
+  }));
+  const waitWire=async name=>{
+    for(let attempt=0;attempt<100 && !wireNames().has(name);attempt++) await new Promise(resolve=>setTimeout(resolve,100));
+    assert.ok(wireNames().has(name),`Missing real Google collection request for ${name}`);
+  };
   const vendorLoads = [];
   let formOutcome = 'success';
   const setup = async (options = {}) => {
@@ -27,7 +35,7 @@ const vercelStub = `(()=>{let beforeSend;const queue=window.vaq||[];window.__ver
     await context.route('**/*', async route => {
       const url = route.request().url();
       if (url.startsWith('https://www.googletagmanager.com/gtag/js')) return route.fulfill({ contentType: 'application/javascript', body: googleTag });
-      if (url.includes('formspree.io/')) return route.fulfill({ status: formOutcome === 'success' ? 200 : 422, contentType: 'application/json', body: formOutcome === 'success' ? '{"next":"/mock-success"}' : '{"errors":[{"code":"TYPE_EMAIL","field":"contactEmail: ","message":"private@example.com"}]}' });
+      if (url.includes('formspree.io/')) return route.fulfill({ status: formOutcome === 'success' ? 200 : 422, contentType: 'application/json', body: formOutcome === 'success' ? '{"next":"/mock-success"}' : '{"errors":[{"code":"TYPE_EMAIL","field":"contactEmail: ","message":"private@example.com"},{"message":"Test form failure"}]}' });
       if (/google-analytics\.com|analytics\.google\.com|doubleclick\.net|googleadservices\.com|googlesyndication\.com|google\.com/.test(url)) { requests.push({ url, body: route.request().postData() || '' }); return route.fulfill({ status: 204 }); }
       if (url.includes('/_vercel/')) { vendorLoads.push(url); return route.fulfill({contentType:'application/javascript',body:url.includes('/insights/')?vercelStub:'window.si=function(){};'}); }
       if (url.startsWith(base)) return route.continue();
@@ -82,10 +90,27 @@ const vercelStub = `(()=>{let beforeSend;const queue=window.vaq||[];window.__ver
     await waitEvent(page,'project_archive');
     const expand=page.getByRole('button',{name:/^Expand .* details$/}).first();
     await expand.click(); await waitEvent(page,'project_toggle',event=>event.action==='expand');
+    await page.locator('[data-analytics-reading="true"]').scrollIntoViewIfNeeded();
+    await waitEvent(page,'content_view',event=>event.content_id?.startsWith('project_detail_'));
     await page.getByRole('button',{name:/^Collapse .* details$/}).click();
     await waitEvent(page,'project_toggle',event=>event.action==='collapse');
     assert.equal((await events(page,'page_view')).length,1);
     record('project filters, archive, search without raw text, expand/collapse and shallow navigation without extra page views');
+
+    await waitEvent(page,'search_clear',event=>event.search_scope==='projects');
+    await page.getByRole('searchbox').fill('c');
+    await waitEvent(page,'site_search',event=>event.query_length===1);
+    await page.getByRole('searchbox').fill('');
+    const writing=page.locator('a[href="/blog"]').first();
+    await writing.hover();await waitEvent(page,'control_engagement',event=>event.action_method==='hover');
+    await writing.focus();await waitEvent(page,'control_engagement',event=>event.action_method==='focus');
+    const newTabPromise=context.waitForEvent('page');
+    await writing.click({button:'middle'});const opened=await newTabPromise;await opened.close();
+    await waitEvent(page,'link_click',event=>event.action_method==='middle_click');
+    await page.setViewportSize({width:1380,height:950});await waitEvent(page,'viewport_change');
+    await context.setOffline(true);await waitEvent(page,'connection_change',event=>event.action==='offline');
+    await context.setOffline(false);await waitEvent(page,'connection_change',event=>event.action==='online');
+    record('single-character searches, clearing, hover/focus, real middle-click, viewport and connection changes');
 
     await page.keyboard.press('Control+k');
     await page.getByRole('combobox').fill('Java');
@@ -95,6 +120,9 @@ const vercelStub = `(()=>{let beforeSend;const queue=window.vaq||[];window.__ver
     await waitEvent(page,'page_view',event=>event.page_type==='home');
     assert.equal((await events(page,'page_view')).length,2);
     assert.ok((await events(page,'page_view')).at(-1).page_title.startsWith('Nirmal Khedkar'));
+    await waitEvent(page,'navigation_timing',event=>event.action==='complete');
+    await waitWire('navigation_timing');
+    assert.ok((await events(page,'page_view')).at(-1).page_referrer.includes('/projects'));
     record('palette keyboard search/selection and SPA navigation with settled title and one destination page view');
 
     await page.getByRole('button',{name:'Privacy preferences',exact:true}).click();
@@ -127,6 +155,15 @@ const vercelStub = `(()=>{let beforeSend;const queue=window.vaq||[];window.__ver
     await page.goto(`${base}/blog/relaunch`);
     await waitEvent(page,'page_view',event=>event.page_type==='blog_post');
     assert.equal(await page.locator('[data-analytics-exposure="relaunch"]').count(),1);
+    await page.locator('[data-analytics-exposure="relaunch"]').scrollIntoViewIfNeeded();
+    await page.evaluate(()=>{
+      const content=document.querySelector('[data-analytics-reading="true"]');
+      const text=content.querySelector('p');const range=document.createRange();range.selectNodeContents(text);
+      const selection=getSelection();selection.removeAllRanges();selection.addRange(range);
+    });
+    await waitEvent(page,'content_selection',event=>event.content_id==='relaunch' && event.selection_length>0);
+    await waitEvent(page,'content_progress',event=>event.content_id==='relaunch');
+    await page.waitForTimeout(1250);
     await page.getByRole('button',{name:'Reject optional',exact:true}).waitFor({state:'hidden'});
     await page.getByRole('button',{name:'Copy link',exact:true}).click();
     await waitEvent(page,'share',event=>event.share_action==='link_copied');
@@ -144,15 +181,21 @@ const vercelStub = `(()=>{let beforeSend;const queue=window.vaq||[];window.__ver
     await page.getByRole('link',{name:'View résumé',exact:true}).click();
     await page.waitForURL(`${base}/resume`);
     await page.getByTitle('Nirmal Khedkar résumé').waitFor({state:'visible'});
+    await waitEvent(page,'embed_status',event=>event.content_id==='resume' && event.action==='load');
+    await waitWire('embed_status');
     record('embedded résumé page, canonical résumé links, and real PDF response');
 
     await page.goto(`${base}/#contact`);
     await page.getByRole('textbox',{name:'Email',exact:true}).fill('private@example.com');
     await page.getByRole('textbox',{name:'Message',exact:true}).fill('Private contact message');
+    await waitEvent(page,'form_engagement',event=>event.action==='blur' && event.field_id==='email' && event.field_state==='valid');
     formOutcome='failure';
     await page.locator('#contact-form button[type="submit"]').click();
     await waitEvent(page,'form_pending',event=>event.interaction_type==='failure');
     await waitEvent(page,'form_validation_error',event=>event.interaction_type==='server');
+    await page.getByRole('link',{name:'email Nirmal directly'}).evaluate(element=>element.addEventListener('click',event=>event.preventDefault(),{once:true}));
+    await page.getByRole('link',{name:'email Nirmal directly'}).click();
+    await waitEvent(page,'ui_action',event=>event.source==='contact_form_fallback');
     formOutcome='success';
     await page.locator('#contact-form button[type="submit"]').click();
     await page.getByRole('status').filter({hasText:'Thanks for your submission!'}).waitFor();
@@ -163,6 +206,19 @@ const vercelStub = `(()=>{let beforeSend;const queue=window.vaq||[];window.__ver
     await waitEvent(page,'error_page',event=>event.error_category==='not_found');
     await page.goto(`${base}/500`);await waitEvent(page,'error_page',event=>event.error_category==='server');
     record('404 and 500 exposure');
+
+    await page.goto(`${base}/blog`);await waitEvent(page,'page_view',event=>event.page_type==='blog_index');
+    for(const filename of fs.readdirSync('content/blog').filter(file=>file.endsWith('.md'))) {
+      const slug=filename.slice(0,-3);await page.goto(`${base}/blog/${slug}`);
+      await waitEvent(page,'page_view',event=>event.page_path===`${base}/blog/${slug}`.replace(base,''));
+      assert.equal((await events(page,'page_view')).length,1);
+      assert.equal(await page.locator(`[data-analytics-exposure="${slug}"][data-analytics-reading="true"]`).count(),1);
+    }
+    record('blog index and every published article have one page view and a matching reading identity');
+    const expectedWire=['control_engagement','content_selection','content_progress','content_summary','viewport_change','connection_change','navigation_timing','embed_status','search_clear'];
+    for(let attempt=0;attempt<100 && expectedWire.some(name=>!wireNames().has(name));attempt++) await page.waitForTimeout(100);
+    assert.deepEqual(expectedWire.filter(name=>!wireNames().has(name)),[],'New events must reach real Google tag collection requests');
+    record('all new event types appear in intercepted real Google collection requests');
 
     for (const request of requests) {
       const decoded=decodeURIComponent(`${request.url}\n${request.body}`);

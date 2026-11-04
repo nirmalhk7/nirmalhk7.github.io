@@ -11,5 +11,7 @@ export const analyticsEvents = {
   form_engagement: 'contact', form_start: 'contact', form_submit: 'contact', form_validation_error: 'contact',
   form_error: 'contact', form_pending: 'contact', form_abandonment: 'contact', generate_lead: 'contact',
   exception: 'technical', web_vital: 'technical', timing_complete: 'technical',
+  control_engagement: 'engagement', content_selection: 'content', content_progress: 'engagement', content_summary: 'engagement',
+  viewport_change: 'technical', connection_change: 'technical', navigation_timing: 'technical', embed_status: 'content', search_clear: 'discovery',
 } as const;
 export type AnalyticsEventName = keyof typeof analyticsEvents;

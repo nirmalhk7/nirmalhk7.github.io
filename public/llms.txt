@@ -13,26 +13,23 @@ C/C++, JAVA, Python, Javascript, GraphQL, MySQL, MongoDB, SpringBoot, Angular, J
 
 ## Experience
 
-### Software Engineering Intern | a healthcare data systems company | May 2025 - August 2025
-- Engineered an automated scheduling algorithm to process and prioritize pending and live dispatch trips, enhancing operational efficiency and optimizing resource allocation.
-- Introduced AI models & implementations to better suggest operators about their decisions.
+### Software Engineer Intern (During MS) | a healthcare data systems company | May 2025 - Aug 2025
+- Tuned and integrated a recommendation model into a C#/.NET ambulance dispatch engine, cutting assignment time approximately 30% while refactoring scheduling logic and data-access components.
 
-### Software Engineer | a global financial services company | June 2022 - July 2024
-- Successfully migrated Springboot services to asynchronous Reactor architecture for performance improvements.
-- Handled all test, infra and deployment issues for release of these components in internal test environments and production.
-- Proficient in handling unpredictable client and production errors.
-- Introduced test coverage practices and end-to-end Jenkins pipelines, thus improving engineering practices at my team and reduced development time.
+### Software Engineer | a global financial services company | Jun 2022 - Jul 2024
+- Rearchitected multiple Developer Platform authentication and transaction-processing services from blocking request flows to non-blocking Reactor pipelines, redesigning downstream API integrations and improving per-instance throughput by 30% in equivalent pre-production load tests.
+- Built Jenkins CI/CD security gates across 8 services using SAST, DAST, dependency scanning, and SonarQube to block failing deployments; contributed to an estimated 35% reduction in reported vulnerabilities.
+- Owned Java 8-to-17 migration across 4 production Spring Boot services, benchmarking JVM configurations, presenting data-backed tuning recommendations, and deploying without performance regressions.
+- Triaged live production incidents across payment APIs, using Splunk, Grafana, and Jenkins history to diagnose deployment, configuration, and customer-reported issues and coordinate cross-service fixes.
 
-### Software Engineer Intern | a global financial services company | May 2021 - July 2021
-- Analyzed several data points within Visa Developer Platform ecosystem to gather data on route, API, product and client level.
-- Merged the above data into a single portal and developed a frontend panel to query said data. Also provided an API access to query generated data using GraphQL.
-- Angular, GraphQL, Springboot, Hibernate, MySQL, Prometheus.
+### Founding Software Engineer (Part Time / Undergrad) | a technology startup | Oct 2019 - May 2021
+- Owned end-to-end engineering for an electronics repair marketplace, selecting the technology stack and building web/mobile applications and backend services from scratch.
+- Integrated Razorpay payments and launched the marketplace to production, supporting 25–30 paid orders/week.
+- Built reusable shared libraries and CI/CD pipelines to streamline cross-platform development, automate build and release workflows, and keep web/mobile delivery consistent as the engineering team expanded from 2 to 5 engineers.
 
-### Tech Lead | a technology startup | Oct 2019 - April 2021
-- Restructured code to make it more scalable and compatible with future requirements.
-- Brainstormed business requirements, design plans and translated them into development tasks.
-- Introduced linters, automated version bumps, CI-CD pipelines to improve development experience and quality of code.
-- Implemented customer engagement and analytics tools, such as chatbots, log metrics and web traffic analysis to gain insights into customer experience and proactively address errors.
+### Software Engineering Intern | a global financial services company | May 2021 - Jul 2021
+- Analyzed Visa Developer Platform API, product, route, and client traffic using SQL and GraphQL to identify adoption, throttling, and load patterns for product stakeholders.
+- Built a unified backend and React analytics dashboard with load-prediction logic; evaluated API gateway endpoint performance and observed a 15% latency improvement in production-environment testing.
 
 ## Projects
 

@@ -1,0 +1,7 @@
+# Configure this policy for your repository before registering with Khan.
+# Fill in checks, allowed_paths and risk_rules; review and commit this file.
+# See docs/go-backend.md in Khan for a complete policy example.
+checks: []
+allowed_paths: []
+commands: []
+risk_rules: []

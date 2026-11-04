@@ -19,6 +19,14 @@ test('shows embedded résumé immediately', () => {
   expect(screen.getByTitle('Nirmal Khedkar résumé')).toHaveAttribute('src', expect.stringContaining('/Resume.pdf'));
 });
 
+test('records PDF embed load without claiming a completed download', () => {
+  const spy=jest.spyOn(console,'log').mockImplementation(()=>{});
+  render(<ResumePage />);const frame=screen.getByTitle('Nirmal Khedkar résumé');
+  fireEvent.load(frame);
+  expect(spy).toHaveBeenCalledWith('[Analytics] embed_status',expect.objectContaining({content_id:'resume',action:'load',duration_msec:expect.any(Number)}));
+  expect(spy.mock.calls.filter(call=>call[0]==='[Analytics] file_download')).toHaveLength(0);spy.mockRestore();
+});
+
 test('hiring résumé link opens /resume and records a view instead of a download', () => {
   const spy = jest.spyOn(console, 'log').mockImplementation(() => {});
   render(<HiringLinks />); const link = screen.getByRole('link', { name: 'View résumé' });

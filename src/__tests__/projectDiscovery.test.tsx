@@ -57,3 +57,13 @@ test('opening a search result preserves search when its shallow URL update arriv
   expect(screen.getByRole('searchbox')).toHaveValue('legacy');
   expect(screen.getByRole('status')).toHaveTextContent('1 project');
 });
+
+test('measures settled single-character searches and clearing without raw query text', () => {
+  jest.useFakeTimers();const spy=jest.spyOn(console,'log').mockImplementation(()=>{});
+  render(<Projects projects={projects as never} allTags={['C']} pageMetadata={{enableWrap:true,seoMetadata:{title:'Projects'}}} />);
+  fireEvent.change(screen.getByRole('searchbox'),{target:{value:'c'}});jest.advanceTimersByTime(700);
+  expect(spy).toHaveBeenCalledWith('[Analytics] site_search',expect.objectContaining({search_scope:'projects',query_length:1}));
+  fireEvent.change(screen.getByRole('searchbox'),{target:{value:''}});
+  expect(spy).toHaveBeenCalledWith('[Analytics] search_clear',expect.objectContaining({search_scope:'projects'}));
+  spy.mockRestore();jest.useRealTimers();
+});

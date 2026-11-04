@@ -34,17 +34,13 @@
 }
 
 .shell ::selection {
-  color: #fff;
-  background: var(--portfolio-red);
-}
-
-.shell :global(.portfolio-contact-heading h2)::selection,
-.shell :global(.portfolio-contact-heading h2) ::selection {
-  color: var(--portfolio-red);
-  background: #fff;
+  color: var(--portfolio-selection-color, #fff);
+  background: var(--portfolio-selection-background, var(--portfolio-red));
 }
 
 .shell :global(.portfolio-contact) {
+  --portfolio-selection-color: var(--portfolio-red);
+  --portfolio-selection-background: #fff;
   padding: 108px clamp(28px, 10vw, 160px) 94px !important;
   color: #fff !important;
   background: var(--portfolio-red) !important;
@@ -453,6 +449,23 @@
   background: transparent;
   font: 13px var(--portfolio-sans);
   text-decoration: none;
+}
+
+.portfolioMenuPanel :is(li a, button, .portfolioMenuActions a),
+.portfolioMenuIndex {
+  transition: color 180ms ease-out;
+}
+
+.portfolioMenuPanel :is(li a, button, .portfolioMenuActions a):is(:hover, :focus-visible),
+.portfolioMenuPanel li a:is(:hover, :focus-visible) .portfolioMenuIndex {
+  color: var(--portfolio-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolioMenuPanel :is(li a, button, .portfolioMenuActions a),
+  .portfolioMenuIndex {
+    transition: none;
+  }
 }
 
 .shell :global(.portfolio-resume-link) {

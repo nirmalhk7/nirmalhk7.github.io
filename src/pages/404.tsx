@@ -8,6 +8,7 @@ import { selectedProjects } from '@/util/projectCuration';
 import { BlogFrontmatterInterface } from "@/interfaces/blog";
 import { ProjectInterface } from '@/interfaces/projects';
 import { PageHero, PageSection, editorialStyles as styles } from "@/components/Site/Editorial";
+import { useSearchClear } from '@/hooks/useSearchClear';
 
 interface SearchItem {
   title: string;
@@ -21,6 +22,7 @@ interface NotFoundPageProps extends DefaultPageProps {
 
 const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
   const [query, setQuery] = useState("");
+  useSearchClear(query, '404');
 
   const filteredItems = useMemo(() => {
     if (!query) return [];
@@ -32,7 +34,7 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
 
   useEffect(() => {
     const searchTerm = query.trim();
-    if (searchTerm.length < 2) return;
+    if (!searchTerm) return;
     const timer = window.setTimeout(() => {
       trackSearch(searchTerm, { search_scope: "404", result_count: filteredItems.length, matched_ids: filteredItems.slice(0,5).map(item=>item.url).join(",") });
     }, 700);

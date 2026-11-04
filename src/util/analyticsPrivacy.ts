@@ -11,7 +11,7 @@ const urlKeys = new Set(['page_location', 'page_referrer', 'link_url', 'destinat
 const fields = ['page_location', 'page_referrer', 'page_path', 'page_title', 'page_type', 'content_id', 'viewport_width', 'viewport_height', 'language',
   'view_type', 'navigation_type', 'interaction_type', 'action', 'action_method', 'placement', 'source', 'section_id', 'content_type', 'item_id', 'item_list_name', 'item_index',
   'event_category', 'event_label', 'link_url', 'link_domain', 'link_id', 'outbound', 'destination', 'destination_page_path', 'previous_page_path',
-  'button_id', 'button_type', 'form_id', 'form_name', 'form_submit_text', 'field_id', 'lead_source', 'error_count', 'error_category', 'fatal',
+  'button_id', 'button_type', 'target_id', 'selection_length', 'form_id', 'form_name', 'form_submit_text', 'field_id', 'field_state', 'lead_source', 'error_count', 'error_category', 'fatal',
   'depth_percentage', 'milestone_seconds', 'engagement_time_msec', 'active_time_msec', 'visibility_state', 'max_scroll_percentage',
   'search_scope', 'query_length', 'result_count', 'matched_ids', 'matched_id_1', 'matched_id_2', 'matched_id_3', 'matched_id_4', 'matched_id_5', 'active_filter', 'category', 'method', 'share_action', 'share_placement', 'shared_path', 'shared_at',
   'file_name', 'file_extension', 'name', 'value', 'duration_msec', 'metric_id', 'metric_name', 'metric_value', 'metric_label', 'metric_start_time', 'metric_rating',

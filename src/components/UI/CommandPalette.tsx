@@ -5,6 +5,7 @@ import { trackEvent, trackSearch, trackSelectContent, trackResumeOpen } from "@/
 
 import portfolioStyles from "@/components/Home/portfolio.module.scss";
 import styles from "./commandPalette.module.scss";
+import { useSearchClear } from '@/hooks/useSearchClear';
 
 interface CommandItem {
   id: string;
@@ -30,6 +31,7 @@ const commandItems: CommandItem[] = [
 export const CommandPalette: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  useSearchClear(searchQuery, 'command_palette');
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const router = useRouter();

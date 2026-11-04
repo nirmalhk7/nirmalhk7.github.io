@@ -18,6 +18,7 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
   const editedFields = React.useRef(new Set<string>());
   const pendingSince = React.useRef<number | null>(null);
   const lastError = React.useRef<typeof state.errors>(null);
+  const focusedAt = React.useRef(new Map<string, number>());
 
   React.useEffect(() => {
     if (state.succeeded && !hasTrackedSubmission.current) {
@@ -63,11 +64,19 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
   }, []);
 
   const handleFormFocus = (fieldId: string) => {
+    focusedAt.current.set(fieldId, Date.now());
     if (!hasTrackedFormStart.current) {
       trackFormStart("contact-form", "Contact form");
       hasTrackedFormStart.current = true;
     }
     trackFormFocus(fieldId, "contact-form");
+  };
+
+  const handleFormBlur = (fieldId: string, field: HTMLInputElement | HTMLTextAreaElement) => {
+    const since=focusedAt.current.get(fieldId);
+    focusedAt.current.delete(fieldId);
+    if (since === undefined) return;
+    trackEvent('form_engagement',{action:'blur',field_id:fieldId,form_id:'contact-form',field_state:!field.value?'empty':field.validity.valid?'valid':'invalid',duration_msec:Date.now()-since});
   };
 
   const handleFirstEdit = (fieldId: string) => {
@@ -101,6 +110,7 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
         autoComplete="name"
         onChange={() => handleFirstEdit("name")}
         onFocus={() => handleFormFocus("name")}
+        onBlur={event => handleFormBlur('name',event.currentTarget)}
         onInvalid={() => trackEvent("form_validation_error", {
           form_id: "contact-form",
           form_name: "Contact form",
@@ -121,6 +131,7 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
           autoComplete="email"
           onChange={() => handleFirstEdit("email")}
         onFocus={() => handleFormFocus("email")}
+          onBlur={event => handleFormBlur('email',event.currentTarget)}
           onInvalid={() => trackEvent("form_validation_error", {
             form_id: "contact-form",
             form_name: "Contact form",
@@ -143,6 +154,7 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
           aria-label="Message"
           onChange={() => handleFirstEdit("message")}
         onFocus={() => handleFormFocus("message")}
+          onBlur={event => handleFormBlur('message',event.currentTarget)}
           onInvalid={() => trackEvent("form_validation_error", {
             form_id: "contact-form",
             form_name: "Contact form",
@@ -154,7 +166,7 @@ export default function ContactForm({ submitLabel = 'Submit' }: { submitLabel?: 
       {!!state.errors?.getFormErrors().length && (
         <p role="alert">
           Your message could not be sent. Please try again, or{' '}
-          <a href="mailto:nirmalhk7@gmail.com">email Nirmal directly</a>.
+          <a href="mailto:nirmalhk7@gmail.com" onClick={() => trackEvent('ui_action',{interaction_type:'email',source:'contact_form_fallback',form_id:'contact-form'})}>email Nirmal directly</a>.
         </p>
       )}
 

@@ -2,6 +2,8 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 const { execSync } = require("child_process");
+const fs = require("fs");
+const path = require("path");
 
 const getGitCommitSha = () => {
   try {
@@ -21,6 +23,12 @@ const gitCommitSha =
 const nextConfig = {
   env: {
     NEXT_PUBLIC_GIT_COMMIT_SHA: gitCommitSha,
+    NEXT_PUBLIC_BLOG_IDS: JSON.stringify(
+      fs.readdirSync(path.join(__dirname, "content/blog"))
+        .filter((file) => file.endsWith(".md"))
+        .map((file) => file.slice(0, -3))
+        .sort()
+    ),
   },
   async redirects() {
     return [
