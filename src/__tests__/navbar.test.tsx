@@ -12,7 +12,7 @@ jest.mock('next/router', () => ({
 
 describe('Navbar Component', () => {
   beforeEach(() => { mockRouter.pathname = '/'; });
-  it('reveals after the hero boundary and hides again when returning to it', () => {
+  it('keeps navigation accessible over the hero and changes its surface at the hero boundary', () => {
     jest.useFakeTimers();
     const story = document.createElement('div');
     story.setAttribute('data-navigation-story', '');
@@ -25,16 +25,25 @@ describe('Navbar Component', () => {
     document.body.appendChild(story);
     const { container, unmount } = render(<Navbar variant="portfolio" />);
     const header = container.querySelector('header');
-    expect(header).toHaveAttribute('data-visible', 'false');
+    expect(header).toHaveAttribute('data-over-hero', 'true');
+    expect(screen.getByRole('navigation', { name: 'Main navigation' })).toBeVisible();
     top = -900;
     act(() => { fireEvent.scroll(window); jest.runOnlyPendingTimers(); });
-    expect(header).toHaveAttribute('data-visible', 'true');
+    expect(header).toHaveAttribute('data-over-hero', 'false');
+    expect(screen.getByRole('navigation', { name: 'Main navigation' })).toBeVisible();
     top = -899;
     act(() => { fireEvent.scroll(window); jest.runOnlyPendingTimers(); });
-    expect(header).toHaveAttribute('data-visible', 'false');
+    expect(header).toHaveAttribute('data-over-hero', 'true');
+    expect(screen.getByRole('navigation', { name: 'Main navigation' })).toBeVisible();
     unmount();
     story.remove();
     jest.useRealTimers();
+  });
+  it('uses the solid navigation surface when no hero is present', () => {
+    mockRouter.pathname = '/projects';
+    const { container } = render(<Navbar variant="portfolio" />);
+    expect(container.querySelector('header')).toHaveAttribute('data-over-hero', 'false');
+    expect(screen.getByRole('navigation', { name: 'Main navigation' })).toBeVisible();
   });
   it('keeps archive navigation and current page semantics correct on inner routes', () => {
     mockRouter.pathname = '/projects';

@@ -312,9 +312,7 @@ const Navbar = ({ variant = "default" }: { variant?: "default" | "portfolio" }) 
 function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; activeSectionId: string }) {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [visible, setVisible] = useState(true);
-  const visibilityRef = useRef(true);
-  const headerRef = useRef<HTMLElement>(null);
+  const [overHero, setOverHero] = useState(true);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLElement>(null);
   const wasOpenRef = useRef(false);
@@ -324,22 +322,17 @@ function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; 
 
   useEffect(() => {
     const hero = document.getElementById("max-jumbo") || document.querySelector<HTMLElement>("[data-navigation-hero]");
-    const updateVisibility = () => {
+    const updateSurface = () => {
       // The cinematic hero stays pinned. Its first viewport is the navigation boundary,
       // rather than its sticky rectangle, which remains onscreen through the whole story.
       const story = hero?.closest<HTMLElement>("[data-navigation-story]");
       const boundary = story && hero
         ? story.getBoundingClientRect().top + hero.offsetHeight
         : hero?.getBoundingClientRect().bottom;
-      const nextVisible = menuOpen || boundary === undefined || boundary <= 0;
-      if (visibilityRef.current !== nextVisible) {
-        visibilityRef.current = nextVisible;
-        setVisible(nextVisible);
-      }
-      if (headerRef.current) headerRef.current.inert = !nextVisible;
+      setOverHero(!menuOpen && boundary !== undefined && boundary > 0);
     };
-    const scheduledUpdate = createRafThrottled(updateVisibility);
-    updateVisibility();
+    const scheduledUpdate = createRafThrottled(updateSurface);
+    updateSurface();
     window.addEventListener("scroll", scheduledUpdate, { passive: true });
     window.addEventListener("resize", scheduledUpdate);
     return () => {
@@ -416,7 +409,7 @@ function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; 
   }, [menuOpen]);
 
   return (
-    <header ref={headerRef} className={styles.portfolioNav} data-visible={visible} aria-hidden={!visible}>
+    <header className={styles.portfolioNav} data-over-hero={overHero}>
       <Link href="/" className={styles.portfolioBrand} aria-label="Nirmal Khedkar, home">nirmalhk7</Link>
       <nav className={styles.portfolioDesktopNav} aria-label="Main navigation">
         {items.map((item) => (
