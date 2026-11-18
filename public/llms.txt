@@ -93,9 +93,6 @@ Made a Jekyll website-cum-blog for my college club IET a technical institute. Li
 ### Preemptive Kubernetes Autoscaler
 Existing Kubernetes autoscalers are great but they are reactive in nature: it will only scale if your deployment has too much or too little traffic. Since human usage has patterns, deployment traffic will always have patterns, which is where our application comes in. We built a horizontal and vertical autoscaler that uses past historical data and accordingly adjust resources on the cluster.
 
-### khan
-Khan is a local multi-agent decision system for software engineering work.
-
 ### mean-crud
 Employee Appraisal Form This is a practical assignment done by me (Nirmal Khedkar) for Web Technologies and Applications (WTA).
 
@@ -125,6 +122,9 @@ Link
 
 ### veronica-cli
 veronica-cli > Your faithful CLI Assistant.
+
+### Whirlwind
+An open-source, agent-agnostic engineering harness that turns goals into verified software through autonomous execution loops.
 
 ### yaccellent
 YACC Parser for C Language.

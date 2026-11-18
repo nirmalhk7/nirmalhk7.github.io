@@ -12,7 +12,7 @@ Getting an agent to write code is a satisfying demo. Deciding what it should do 
 
 Suppose the agent has finished implementation. Tests have passed. Review is done. Then publishing the pull request fails. When I press Resume, should it write the code again?
 
-That question became very concrete while building **Whirlwind**, my local engineering orchestrator, originally called Khan. I wanted it to take work through planning, implementation, verification, review, and a GitHub PR. It also needed to stop for questions and approvals, switch providers when appropriate, and remember enough to continue after an interruption.
+That question became very concrete while building **Whirlwind**, my local engineering orchestrator. I wanted it to take work through planning, implementation, verification, review, and a GitHub PR. It also needed to stop for questions and approvals, switch providers when appropriate, and remember enough to continue after an interruption.
 
 During the backend work, I found two recovery gaps: resuming a paused planner could skip its unanswered questions, and a publication failure could send a task back into coding. Neither required a more capable model. Both required a better answer to “where were we?”
 

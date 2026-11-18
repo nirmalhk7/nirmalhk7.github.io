@@ -55,7 +55,7 @@ const expectIndexableMetadata = (
 };
 
 describe("page SEO contracts", () => {
-  it("loads the four fixed, source-backed homepage projects in editorial order", async () => {
+  it("loads Whirlwind followed by the four source-backed homepage projects", async () => {
     const result = (await getHomeProps(context)) as {
       props: {
         projects: Array<{ slug: string; frontmatter: { summary?: string }; content?: string | null }>;
@@ -65,13 +65,14 @@ describe("page SEO contracts", () => {
 
     expect(result.props.pageMetadata.layoutVariant).toBe("portfolio");
     expect(result.props.projects.map((project) => project.slug)).toEqual([
+      "whirlwind",
       "k8-autoscaler",
       "atskit",
       "scholarhub",
       "MedicalVR",
     ]);
     expect(result.props.projects.every((project) => !project.content)).toBe(true);
-    expect(result.props.projects[2].frontmatter.summary).toContain("Nirmal contributed all frontend work");
+    expect(result.props.projects[3].frontmatter.summary).toContain("Nirmal contributed all frontend work");
   });
 
   it("publishes complete, unique metadata for every indexable top-level page", async () => {

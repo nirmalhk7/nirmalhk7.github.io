@@ -409,7 +409,7 @@ function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; 
   }, [menuOpen]);
 
   return (
-    <header className={styles.portfolioNav} data-over-hero={overHero}>
+    <header className={styles.portfolioNav} data-over-hero={overHero} data-home={router.pathname === "/"}>
       <Link href="/" className={styles.portfolioBrand} aria-label="Nirmal Khedkar, home">nirmalhk7</Link>
       <nav className={styles.portfolioDesktopNav} aria-label="Main navigation">
         {items.map((item) => (

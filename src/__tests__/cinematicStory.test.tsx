@@ -1,25 +1,21 @@
-import React from "react";
-import { renderToStaticMarkup } from "react-dom/server";
-import CinematicStory from "@/components/Home/CinematicStory";
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import CinematicStory from '@/components/Home/CinematicStory';
 
-jest.mock("next/image", () => ({
-  __esModule: true,
-  default: ({ src, alt }: { src: string | { src: string }; alt: string }) => React.createElement("img", { src: typeof src === "string" ? src : src.src, alt }),
-}));
+jest.mock('next/image', () => ({ __esModule: true, default: () => null }));
 
-it("renders the hero and every engineering chapter in static HTML before motion loads", () => {
-  const html = renderToStaticMarkup(<CinematicStory />);
-  expect(html).toContain("I BUILD &amp; SHIP BACKEND SYSTEMS.");
-  expect(html).toContain(">Nirmal Khedkar</p>");
-  expect(html).toContain("Backend &amp; infrastructure engineer.");
-  expect(html).toContain("Visa · ZOLL Data Systems · NITK Surathkal · MS CS, CU Boulder");
-  const document = new DOMParser().parseFromString(html, "text/html");
-  const chapters = document.querySelectorAll("[data-story-stage]");
-  expect(chapters).toHaveLength(4);
-  for (const chapter of chapters) {
-    expect(chapter.querySelector("h3")?.textContent).toBeTruthy();
-    expect(chapter.querySelector("p")?.textContent).toBeTruthy();
-  }
-  expect(html).not.toContain('data-cinematic="ready"');
-  expect(html).not.toContain('style="opacity:0');
+// Catches missing static positioning, duplicate positioning, or broken hero destinations.
+it('renders a concise hero with work, résumé, and contact actions before motion loads', () => {
+  const document = new DOMParser().parseFromString(renderToStaticMarkup(<CinematicStory />), 'text/html');
+  const hero = document.querySelector('#max-jumbo');
+  if (!hero) throw new Error('Missing hero');
+  expect(hero.querySelectorAll('h1')).toHaveLength(1);
+  expect(hero.querySelector('h1')?.textContent).toContain('I BUILD & SHIP BACKEND SYSTEMS.');
+  expect(hero.textContent).toContain('Visa · ZOLL Data Systems · NITK Surathkal · MS CS, CU Boulder');
+  expect(hero.textContent).not.toContain('Backend & infrastructure engineer.');
+  expect(Array.from(hero.querySelectorAll('a')).map(link => [link.textContent, link.getAttribute('href')])).toEqual([
+    ['View work', '#workexperience'], ['Résumé', '/resume'], ['Contact', '#contact'],
+  ]);
+  expect(document.querySelectorAll('section')).toHaveLength(1);
+  expect(document.querySelector('[style*="opacity:0"]')).toBeNull();
 });

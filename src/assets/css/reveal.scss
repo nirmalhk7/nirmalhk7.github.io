@@ -13,11 +13,6 @@
   animation: content-arrival 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-// GSAP owns these elements only in the desktop cinematic layout.
-[data-cinematic="ready"] [data-reveal] {
-  animation: none;
-}
-
 @media (max-width: 767px) {
   @keyframes content-arrival-mobile {
     from { opacity: 0.3; transform: translateY(8px); }

@@ -512,3 +512,12 @@
     grid-template-columns: 1fr;
   }
 }
+
+// Align only the homepage navigation with its editorial content measure.
+.portfolioNav[data-home="true"] {
+  padding-right: max(32px, calc((100vw - 1200px) / 2));
+  padding-left: max(32px, calc((100vw - 1200px) / 2));
+}
+@media (max-width: 767px) {
+  .portfolioNav[data-home="true"] { padding-right: 22px; padding-left: 22px; }
+}

@@ -16,8 +16,8 @@ export const selectedProjects: Record<string, ProjectBrief> = {
     focus: 'Developer tooling · API integration',
     notes: ['Streams normalized results as each portal finishes, rather than waiting for the whole batch.', 'Uses caller-owned SQLite metadata, per-host rate limits, and retry handling.'],
   },
-  khan: {
-    title: 'Khan', tags: ['Python', 'SQLite', 'CLI'],
+  whirlwind: {
+    title: 'Whirlwind', tags: ['Go', 'SQLite', 'CLI'],
     summary: 'An inspectable pipeline for AI engineering work, from implementation brief to human approval.',
     focus: 'Developer tooling · Agent orchestration',
     notes: ['Tracks tasks, sessions, reviews, and adoption decisions in SQLite.', 'Runs candidates in isolated worktrees and keeps adoption under explicit human control.', 'Early infrastructure: the public API and storage schema may evolve.'],

@@ -10,9 +10,11 @@ import {
   WorkExperienceInterface,
 } from "@/interfaces";
 import { ProjectInterface } from "@/interfaces/projects";
+import { BlogFrontmatterInterface, BlogInterface } from "@/interfaces/blog";
+import sortBy from "lodash/sortBy";
 import { DefaultPageProps } from "./_app";
 import loadYaml from "@/util/loadYaml";
-import { loadMarkdownFile } from "@/util/loadMarkdown";
+import { loadMarkdownFile, loadMarkdownFiles } from "@/util/loadMarkdown";
 import { selectedProjects } from "@/util/projectCuration";
 import { openGraphImage } from "@/util/openGraph";
 
@@ -24,9 +26,11 @@ interface IndexPageProps extends DefaultPageProps {
   membership: MembershipInterface[];
   workexperience: WorkExperienceInterface[];
   projects: ProjectInterface[];
+  latestBlogs: BlogInterface[];
 }
 
 const featuredProjectCopy: Record<string, string> = {
+  whirlwind: "A local engineering harness that coordinates coding agents, verification, and human approvals with durable SQLite state.",
   atskit: "A Python toolkit that streams job listings from public applicant tracking system APIs.",
   "k8-autoscaler": "A Kubernetes autoscaler that uses historical traffic patterns to plan resource capacity.",
   scholarhub: "A research and collaboration portal for NIT students. Nirmal contributed all frontend work.",
@@ -35,6 +39,7 @@ const featuredProjectCopy: Record<string, string> = {
 
 export default function IndexPage({
   projects,
+  latestBlogs,
   workexperience,
   onlineCourses,
   collegeCourses,
@@ -69,6 +74,7 @@ export default function IndexPage({
       />
       <HomePage
         projects={projects}
+        latestBlogs={latestBlogs}
         workexperience={workexperience}
         onlineCourses={onlineCourses}
         collegeCourses={collegeCourses}
@@ -82,7 +88,7 @@ export default function IndexPage({
 
 export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
   const contentDir = path.join(process.cwd(), "content", "yml");
-  const featuredProjectSlugs = ["k8-autoscaler", "atskit", "scholarhub", "MedicalVR"];
+  const featuredProjectSlugs = ["whirlwind", "k8-autoscaler", "atskit", "scholarhub", "MedicalVR"];
   const projects = featuredProjectSlugs.map((slug) => {
     const projectPath = path.join(process.cwd(), "content", "projects", `${slug}.md`);
     try {
@@ -99,6 +105,11 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
     }
   });
 
+  const latestBlogs = sortBy(
+    loadMarkdownFiles<BlogFrontmatterInterface>(path.join(process.cwd(), "content/blog"), { getContent: false, getExcerpt: true }),
+    (blog) => blog.frontmatter.date
+  ).reverse().slice(0, 2);
+
   const allCourses = loadYaml<CourseInterface[]>(path.join(contentDir, "courses.yaml"));
   return {
     props: {
@@ -109,6 +120,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
       membership: loadYaml<MembershipInterface[]>(path.join(contentDir, "memberships.yaml")),
       workexperience: loadYaml<WorkExperienceInterface[]>(path.join(contentDir, "workexperiences.yaml")),
       projects,
+      latestBlogs,
       pageMetadata: {
         enableWrap: true,
         layoutVariant: "portfolio",
