@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-18T06:16:21.759Z",
+  "title": "Design System: Nirmal Khedkar Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "red": {
+        "role": "primary",
+        "displayName": "Red",
+        "tonalRamp": [
+          "oklch(15% 0.17537 28.35)",
+          "oklch(26.4% 0.17537 28.35)",
+          "oklch(37.9% 0.17537 28.35)",
+          "oklch(49.3% 0.17537 28.35)",
+          "oklch(60.7% 0.17537 28.35)",
+          "oklch(72.1% 0.17537 28.35)",
+          "oklch(83.6% 0.17537 28.35)",
+          "oklch(95% 0.17537 28.35)"
+        ]
+      },
+      "red-hover": {
+        "role": "primary",
+        "displayName": "Deep red",
+        "tonalRamp": [
+          "oklch(15% 0.15977 28.22)",
+          "oklch(26.4% 0.15977 28.22)",
+          "oklch(37.9% 0.15977 28.22)",
+          "oklch(49.3% 0.15977 28.22)",
+          "oklch(60.7% 0.15977 28.22)",
+          "oklch(72.1% 0.15977 28.22)",
+          "oklch(83.6% 0.15977 28.22)",
+          "oklch(95% 0.15977 28.22)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "tonalRamp": [
+          "oklch(15% 0.00984 87.47)",
+          "oklch(26.4% 0.00984 87.47)",
+          "oklch(37.9% 0.00984 87.47)",
+          "oklch(49.3% 0.00984 87.47)",
+          "oklch(60.7% 0.00984 87.47)",
+          "oklch(72.1% 0.00984 87.47)",
+          "oklch(83.6% 0.00984 87.47)",
+          "oklch(95% 0.00984 87.47)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.00576 156.79)",
+          "oklch(26.4% 0.00576 156.79)",
+          "oklch(37.9% 0.00576 156.79)",
+          "oklch(49.3% 0.00576 156.79)",
+          "oklch(60.7% 0.00576 156.79)",
+          "oklch(72.1% 0.00576 156.79)",
+          "oklch(83.6% 0.00576 156.79)",
+          "oklch(95% 0.00576 156.79)"
+        ]
+      },
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "tonalRamp": [
+          "oklch(15% 0.01217 178.33)",
+          "oklch(26.4% 0.01217 178.33)",
+          "oklch(37.9% 0.01217 178.33)",
+          "oklch(49.3% 0.01217 178.33)",
+          "oklch(60.7% 0.01217 178.33)",
+          "oklch(72.1% 0.01217 178.33)",
+          "oklch(83.6% 0.01217 178.33)",
+          "oklch(95% 0.01217 178.33)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted ink",
+        "tonalRamp": [
+          "oklch(15% 0.00987 156.83)",
+          "oklch(26.4% 0.00987 156.83)",
+          "oklch(37.9% 0.00987 156.83)",
+          "oklch(49.3% 0.00987 156.83)",
+          "oklch(60.7% 0.00987 156.83)",
+          "oklch(72.1% 0.00987 156.83)",
+          "oklch(83.6% 0.00987 156.83)",
+          "oklch(95% 0.00987 156.83)"
+        ]
+      },
+      "muted-surface": {
+        "role": "neutral",
+        "displayName": "Muted paper",
+        "tonalRamp": [
+          "oklch(15% 0.01119 89.73)",
+          "oklch(26.4% 0.01119 89.73)",
+          "oklch(37.9% 0.01119 89.73)",
+          "oklch(49.3% 0.01119 89.73)",
+          "oklch(60.7% 0.01119 89.73)",
+          "oklch(72.1% 0.01119 89.73)",
+          "oklch(83.6% 0.01119 89.73)",
+          "oklch(95% 0.01119 89.73)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15% 0.00000 89.88)",
+          "oklch(26.4% 0.00000 89.88)",
+          "oklch(37.9% 0.00000 89.88)",
+          "oklch(49.3% 0.00000 89.88)",
+          "oklch(60.7% 0.00000 89.88)",
+          "oklch(72.1% 0.00000 89.88)",
+          "oklch(83.6% 0.00000 89.88)",
+          "oklch(95% 0.00000 89.88)"
+        ]
+      },
+      "route-active": {
+        "role": "primary",
+        "displayName": "Route red",
+        "tonalRamp": [
+          "oklch(15% 0.15442 27.24)",
+          "oklch(26.4% 0.15442 27.24)",
+          "oklch(37.9% 0.15442 27.24)",
+          "oklch(49.3% 0.15442 27.24)",
+          "oklch(60.7% 0.15442 27.24)",
+          "oklch(72.1% 0.15442 27.24)",
+          "oklch(83.6% 0.15442 27.24)",
+          "oklch(95% 0.15442 27.24)"
+        ]
+      },
+      "story-secondary": {
+        "role": "neutral",
+        "displayName": "Story secondary",
+        "tonalRamp": [
+          "oklch(15% 0.01139 149.82)",
+          "oklch(26.4% 0.01139 149.82)",
+          "oklch(37.9% 0.01139 149.82)",
+          "oklch(49.3% 0.01139 149.82)",
+          "oklch(60.7% 0.01139 149.82)",
+          "oklch(72.1% 0.01139 149.82)",
+          "oklch(83.6% 0.01139 149.82)",
+          "oklch(95% 0.01139 149.82)"
+        ]
+      },
+      "story-body": {
+        "role": "neutral",
+        "displayName": "Story body",
+        "tonalRamp": [
+          "oklch(15% 0.00975 140.51)",
+          "oklch(26.4% 0.00975 140.51)",
+          "oklch(37.9% 0.00975 140.51)",
+          "oklch(49.3% 0.00975 140.51)",
+          "oklch(60.7% 0.00975 140.51)",
+          "oklch(72.1% 0.00975 140.51)",
+          "oklch(83.6% 0.00975 140.51)",
+          "oklch(95% 0.00975 140.51)"
+        ]
+      },
+      "route-base": {
+        "role": "neutral",
+        "displayName": "Route base",
+        "tonalRamp": [
+          "oklch(15% 0.02167 152.51)",
+          "oklch(26.4% 0.02167 152.51)",
+          "oklch(37.9% 0.02167 152.51)",
+          "oklch(49.3% 0.02167 152.51)",
+          "oklch(60.7% 0.02167 152.51)",
+          "oklch(72.1% 0.02167 152.51)",
+          "oklch(83.6% 0.02167 152.51)",
+          "oklch(95% 0.02167 152.51)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Name display",
+        "purpose": "Desktop portrait-led opening; responsive overrides documented in DESIGN.md."
+      },
+      "headline": {
+        "displayName": "Section headline",
+        "purpose": "Homepage editorial section titles."
+      },
+      "title": {
+        "displayName": "Project title",
+        "purpose": "Flat homepage project rows."
+      },
+      "body": {
+        "displayName": "Reading body",
+        "purpose": "Homepage reading paragraphs."
+      },
+      "label": {
+        "displayName": "Technical metadata",
+        "purpose": "Technical tags and compact dates."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "action-color",
+        "value": "160ms ease-out",
+        "purpose": "Homepage action and link color transitions."
+      },
+      {
+        "name": "chapter-opacity",
+        "value": "360ms ease-out",
+        "purpose": "Cinematic chapter visibility transition."
+      },
+      {
+        "name": "chapter-transform",
+        "value": "500ms cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Cinematic chapter arrival from 18px below."
+      },
+      {
+        "name": "navigation-tone",
+        "value": "220ms ease",
+        "purpose": "Navigation background, border, and backdrop changes; disabled with reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "768px"
+      },
+      {
+        "name": "desktop",
+        "value": "1024px"
+      },
+      {
+        "name": "cinematic-min-height",
+        "value": "680px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Opening View work action on paper.",
+      "html": "<a class=\"ds-primary\" href=\"#workexperience\">View work</a>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;background:#c43b31;color:#fff;font:500 15px \"Portfolio Outfit\", \"Avenir Next\", sans-serif;text-decoration:none;border-radius:0;transition:background-color 160ms ease-out}.ds-primary:hover{background:#a92f27;color:#fff}.ds-primary:focus-visible,.ds-inverse:focus-visible,.ds-text:focus-visible{outline:3px solid #c43b31;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Inverse submission",
+      "kind": "button",
+      "refersTo": "button-inverse",
+      "description": "Contact action on the red closing surface.",
+      "html": "<div class=\"ds-contact\"><button class=\"ds-inverse\">Send message</button></div>",
+      "css": ".ds-contact{padding:20px;background:#c43b31}.ds-inverse{min-height:48px;padding:0 24px;border:0;border-radius:0;color:#c43b31;background:#fff;font:700 14px \"Portfolio Outfit\", \"Avenir Next\", sans-serif;letter-spacing:.01em}.ds-inverse:disabled{opacity:.65;cursor:wait}.ds-inverse:focus-visible{outline:3px solid #c43b31;outline-offset:5px}"
+    },
+    {
+      "name": "Secondary text action",
+      "kind": "button",
+      "description": "Quiet résumé or contact link beside the primary action.",
+      "html": "<a class=\"ds-text\" href=\"/resume\">Résumé</a>",
+      "css": ".ds-text{display:inline-flex;align-items:center;min-height:48px;color:#202321;font:500 15px \"Portfolio Outfit\", \"Avenir Next\", sans-serif;text-underline-offset:5px;transition:color 160ms ease-out}.ds-text:hover{color:#c43b31}.ds-primary:focus-visible,.ds-inverse:focus-visible,.ds-text:focus-visible{outline:3px solid #c43b31;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-text{transition:none}}"
+    },
+    {
+      "name": "Contact field",
+      "kind": "input",
+      "refersTo": "contact-field",
+      "description": "Transparent lower-rule field on the contact red.",
+      "html": "<div class=\"ds-field-wrap\"><label class=\"ds-field-label\" for=\"ds-email\">Email</label><input class=\"ds-field\" id=\"ds-email\" type=\"email\" placeholder=\"you@example.com\"></div>",
+      "css": ".ds-field-wrap{padding:20px;background:#c43b31;color:#fff;font:16px \"Portfolio Outfit\", \"Avenir Next\", sans-serif}.ds-field-label{display:block}.ds-field{width:100%;min-height:54px;padding:10px 2px;border:0;border-bottom:1px solid rgb(255 255 255 / 75%);border-radius:0;color:#fff;background:transparent;font:16px \"Portfolio Outfit\", \"Avenir Next\", sans-serif}.ds-field::placeholder{color:rgb(255 255 255 / 86%)}.ds-field:focus{outline:2px solid #fff;outline-offset:4px}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "description": "Fixed homepage navigation with a light-opening tone and red active underline.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Sample navigation\"><a class=\"ds-brand\" href=\"#max-jumbo\">nirmalhk7</a><a href=\"#workexperience\" aria-current=\"page\">Experience</a><a href=\"/projects\">Projects</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:28px;min-height:64px;background:#f5f2eb;color:#202321;font:13px \"Portfolio Outfit\", \"Avenir Next\", sans-serif;letter-spacing:.015em}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-decoration:none}.ds-nav .ds-brand{margin-right:auto;font-size:16px;font-weight:700;letter-spacing:-.035em}.ds-nav a:hover,.ds-nav a[aria-current]{text-decoration:underline;text-decoration-color:#c43b31;text-decoration-thickness:2px;text-underline-offset:8px}.ds-nav a:focus-visible{outline:2px solid #c43b31;outline-offset:3px}"
+    },
+    {
+      "name": "Technology tag",
+      "kind": "chip",
+      "refersTo": "technology-tag",
+      "description": "Outlined technical metadata on existing project routes; not an action.",
+      "html": "<span class=\"ds-tag\">TypeScript</span>",
+      "css": ".ds-tag{display:inline-block;padding:5px 9px;border:1px solid rgb(23 23 23 / 20%);border-radius:0;color:#565c58;background:#f5f2eb;font:11px \"Portfolio Plex Mono\", ui-monospace, monospace;text-transform:uppercase}"
+    },
+    {
+      "name": "Editorial project row",
+      "kind": "card",
+      "refersTo": "project-row",
+      "description": "Flat evidence row with mono technology and an inline SVG arrow.",
+      "html": "<a class=\"ds-row\" href=\"/projects?id=scholarhub\"><span><span class=\"ds-row-title\">ScholarHub</span><span class=\"ds-row-description\">Research and collaboration portal for NIT students.</span></span><span class=\"ds-row-tags\">Web development</span><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(140px,.27fr) 24px;gap:24px;align-items:center;min-height:116px;padding:24px 0;border-top:1px solid rgb(32 35 33 / 20%);color:#202321;background:#e9e6de;text-decoration:none;font-family:\"Portfolio Outfit\", \"Avenir Next\", sans-serif}.ds-row-title{display:block;font-size:clamp(24px,2.4vw,32px);font-weight:600;letter-spacing:-.025em;line-height:1.15}.ds-row-description{display:block;margin-top:8px;max-width:68ch;color:#565c58;font-size:15px;line-height:1.55}.ds-row-tags{color:#565c58;font:12px/1.7 \"Portfolio Plex Mono\", ui-monospace, monospace}.ds-row svg{color:#c43b31}.ds-row:hover{color:#c43b31}.ds-row:focus-visible{outline:3px solid #c43b31;outline-offset:5px}@media(max-width:767px){.ds-row{grid-template-columns:minmax(0,1fr) 22px;gap:10px}.ds-row-tags{grid-column:1;grid-row:2}.ds-row svg{grid-column:2;grid-row:1/3}}"
+    },
+    {
+      "name": "Engineering proof",
+      "kind": "custom",
+      "description": "Static chapter typography and proof link, also the baseline of the cinematic story.",
+      "html": "<article class=\"ds-proof\"><h3>AI with purpose.<span>Possibility, applied.</span></h3><p>Whirlwind coordinates coding agents, verification, and human approvals, with durable state in SQLite.</p><a href=\"/projects?id=whirlwind\">Explore Whirlwind</a></article>",
+      "css": ".ds-proof{padding:32px;background:#19211f;color:#f5f2eb;font-family:\"Portfolio Outfit\", \"Avenir Next\", sans-serif}.ds-proof h3{margin:0 0 24px;font-size:clamp(36px,3.6vw,52px);font-weight:500;line-height:1.06}.ds-proof h3 span{display:block;color:#b6bdb7}.ds-proof p{max-width:40ch;margin:0 0 20px;color:#d4d9d3;font-size:17px;line-height:1.6}.ds-proof a{display:inline-flex;align-items:center;min-height:44px;color:#f5f2eb;font-size:15px;text-decoration-color:#c43b31;text-decoration-thickness:2px;text-underline-offset:7px}.ds-proof a:hover{text-decoration-color:currentColor}.ds-proof a:focus-visible{outline:3px solid #c43b31;outline-offset:5px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Portrait to Engineering",
+    "overview": "Personal photography introduces the person behind the engineering. Warm paper, charcoal, and a single red identity carry both the quiet editorial sections and the cinematic desktop opening. Outfit gives the name and chapter statements scale; Plex Mono keeps technical metadata compact.\n\nDepth comes from photography, contrasting surfaces, and a continuous scroll composition rather than decorative cards. Motion is progressive enhancement: the portrait and engineering story remain readable in normal flow without JavaScript, on smaller screens, and with reduced motion.",
+    "keyCharacteristics": [
+      "Existing personal photography and red identity.",
+      "Large, closely spaced Outfit headings; compact Plex Mono metadata.",
+      "Flat ruled rows and precise workflow geometry.",
+      "Scroll-driven storytelling with an equally readable static form."
+    ],
+    "rules": [
+      {
+        "name": "The Evidence Rule",
+        "body": "Route diagrams and engineering chapters point to real project or experience evidence; geometry explains the work.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Registers Rule",
+        "body": "Use Outfit for names, claims, and reading; reserve Plex Mono for technical tags, dates, and compact metadata.",
+        "section": "typography"
+      },
+      {
+        "name": "The Readable Baseline Rule",
+        "body": "Keep the complete introduction and all four engineering chapters in normal flow until the desktop enhancement is ready. Reduced motion stays static.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve the existing beach and trees photographs and the paper, charcoal, red identity.",
+      "Do keep actions, proof links, and visible keyboard focus accessible throughout both story modes.",
+      "Do use flat rules, generous section spacing, and real engineering geometry to organize content."
+    ],
+    "donts": [
+      "Don't hide required content behind animation or require the cinematic route to reach work, résumé, or contact.",
+      "Don't turn the portrait radius into a rounded-card system; editorial rows and controls stay square.",
+      "Don't replace existing photographs or invent project claims, metrics, testimonials, or product interfaces."
+    ]
+  }
+}

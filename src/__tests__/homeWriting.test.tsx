@@ -77,12 +77,12 @@ it.each([
 });
 
 // Catches an interstitial pushing experience away, reordered sections, or lost anchors.
-it('puts experience immediately after the hero and keeps the agreed section sequence', async () => {
+it('keeps the restored cinematic story before experience and preserves the remaining sequence', async () => {
   const document = await renderHome();
   expect(Array.from(document.querySelectorAll('main section[id]:not(#contact)')).map(section => section.id)).toEqual([
-    'max-jumbo', 'workexperience', 'project', 'blog', 'about',
+    'max-jumbo', 'engineering', 'workexperience', 'project', 'blog', 'about',
   ]);
-  expect(document.querySelector('#max-jumbo')?.nextElementSibling?.id).toBe('workexperience');
+  expect(document.querySelector('[data-navigation-story]')?.nextElementSibling?.id).toBe('workexperience');
 });
 
 // Catches a missing featured project, duplicate entry, or wrong navigation destination.

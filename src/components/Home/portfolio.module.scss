@@ -521,3 +521,12 @@
 @media (max-width: 767px) {
   .portfolioNav[data-home="true"] { padding-right: 22px; padding-left: 22px; }
 }
+
+.portfolioNav[data-light-hero="true"] {
+  color: var(--portfolio-ink);
+  .portfolioBrand, .portfolioDesktopNav a, .portfolioSearch, .portfolioMenuTrigger { color: var(--portfolio-ink); }
+  .portfolioResume { color: var(--portfolio-ink) !important; border-color: rgb(32 35 33 / 32%); }
+  .portfolioResume:hover { color: #fff !important; }
+  .portfolioSearch, .portfolioMenuTrigger { border-color: rgb(32 35 33 / 24%); }
+  .portfolioSearch kbd { color: var(--portfolio-muted); }
+}

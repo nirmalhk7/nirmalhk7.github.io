@@ -313,6 +313,7 @@ function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; 
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [overHero, setOverHero] = useState(true);
+  const [lightHero, setLightHero] = useState(router.pathname === "/");
   const triggerRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLElement>(null);
   const wasOpenRef = useRef(false);
@@ -329,21 +330,32 @@ function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; 
       const boundary = story && hero
         ? story.getBoundingClientRect().top + hero.offsetHeight
         : hero?.getBoundingClientRect().bottom;
-      setOverHero(!menuOpen && boundary !== undefined && boundary > 0);
+      const introVisible = !story?.dataset.cinematic || story.dataset.storyPhase === "intro";
+      setOverHero(!menuOpen && boundary !== undefined && boundary > 0 && introVisible);
+      setLightHero(hero?.dataset.navigationTone === "light");
     };
     const scheduledUpdate = createRafThrottled(updateSurface);
     updateSurface();
     window.addEventListener("scroll", scheduledUpdate, { passive: true });
     window.addEventListener("resize", scheduledUpdate);
+    window.addEventListener("portfolio-hero-tone", scheduledUpdate);
     return () => {
       window.removeEventListener("scroll", scheduledUpdate);
       window.removeEventListener("resize", scheduledUpdate);
+      window.removeEventListener("portfolio-hero-tone", scheduledUpdate);
       scheduledUpdate.cancel();
     };
   }, [router.pathname, menuOpen]);
 
   const handleSectionLink = (event: React.MouseEvent<HTMLAnchorElement>, route: string) => {
     trackClick(route, "navbar_link");
+    const plainClick = event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey;
+    if (route === "/" && router.pathname === "/" && plainClick) {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "instant" : "smooth" });
+      if (window.location.hash) void router.push("/", undefined, { scroll: false });
+      return;
+    }
     if (
       !route.startsWith("/#") ||
       router.pathname === "/" ||
@@ -409,8 +421,8 @@ function PortfolioNavigation({ items, activeSectionId }: { items: NavbarItem[]; 
   }, [menuOpen]);
 
   return (
-    <header className={styles.portfolioNav} data-over-hero={overHero} data-home={router.pathname === "/"}>
-      <Link href="/" className={styles.portfolioBrand} aria-label="Nirmal Khedkar, home">nirmalhk7</Link>
+    <header className={styles.portfolioNav} data-over-hero={overHero} data-light-hero={overHero && lightHero} data-home={router.pathname === "/"}>
+      <Link href="/" className={styles.portfolioBrand} aria-label="Nirmal Khedkar, home" data-analytics-skip-global="true" onClick={(event) => handleSectionLink(event, "/")}>nirmalhk7</Link>
       <nav className={styles.portfolioDesktopNav} aria-label="Main navigation">
         {items.map((item) => (
           <Link

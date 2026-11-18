@@ -1,51 +1,48 @@
-# Hiring-focused portfolio verification
+# Cinematic portfolio verification
 
-## Workspace
+Branch: `codex/hiring-portfolio-red`, worktree `/private/tmp/hiring-portfolio-red`.
 
-Branch: `codex/hiring-portfolio-red`.
-Worktree: `/private/tmp/hiring-portfolio-red`.
-Base: `375fce89`, with the earlier uncommitted Whirlwind/latest-blog changes copied into this checkout. The original checkout remains intact.
-
-The managed-worktree tool failed both with an explicit source path and with the chat default: it could not identify the repository. A standard Git worktree was created using `git worktree add -b codex/hiring-portfolio-red /private/tmp/hiring-portfolio-red HEAD`. This worktree is not registered as an app-managed attachment.
+This iteration replaces the rejected background-photo banner with the user-confirmed portrait-led opening and restores the Apple-product-like engineering story. It retains the previous Whirlwind feature, five selected projects, newest-two-blog listing, biography, photography, contact form, SEO, and analytics. Source checkout remains separate.
 
 ## Test-first evidence
 
-Before implementation, `npm test -- --runInBand --coverage=false src/__tests__/homeWriting.test.tsx src/__tests__/cinematicStory.test.tsx src/__tests__/seoPages.test.ts` produced 6 expected failures and 9 passes: Whirlwind was absent, the hero repeated its positioning, article presentation lacked the new structure, and the old section order remained.
+- `npm test -- --runInBand --coverage=false src/__tests__/cinematicStory.test.tsx src/__tests__/homeWriting.test.tsx`: 3 expected failures before implementation (missing four-chapter story, old hero identity, and old section sequence).
+- `npm test -- --runInBand --coverage=false src/__tests__/cinematicMotion.test.ts src/__tests__/navbar.test.tsx`: 10 expected failures against the empty motion skeleton and old navigation theme; 7 existing tests passed.
+- Home/brand regression: browser Home activation left the page in the engineering phase after a section jump. Both new header regression cases failed with zero scroll requests before the explicit same-page scroll behavior was added.
+- Logs are preserved under `.impeccable/verification/cinematic-*-red.log`.
 
-After implementation, the same command passed all 15 tests. Logs are under `.impeccable/verification/tdd-red.log` and `tdd-green.log`.
+## Final commands
 
-The responsive browser check initially returned `mobileOverflowPass: false` (424px content in a 390px viewport). After constraining the About image, it returned true with a 346px image inside the 390px viewport.
-
-## Final checks
-
-| Command / check | Result |
+| Command | Result |
 | --- | --- |
-| `npm test -- --runInBand` | 28 suites, 134 tests passed |
+| `npm test -- --runInBand` | 29 suites, 148 tests passed |
 | `npm run lint` | No warnings or errors |
-| `npm run build` | Passed; all 21 static pages generated |
-| `npm run check-performance` | All five budgets passed; homepage 187.5 KiB gzip against 200 KiB budget |
-| `npm run check-project-markdown` | Verified all 32 projects |
+| `npm run build` | Passed; 21 static pages generated |
+| `npm run check-performance` | All five route budgets passed; homepage 189.8 KiB gzip / 200 KiB budget |
+| `npm run check-project-markdown` | All 32 projects verified |
 | `git diff --check` | Passed |
-| Impeccable `detect --json` over the homepage components/styles | Empty findings array; run once before the responsive correction batch |
-| Built-page Node assertions | Passed section order, five-project order, unique Whirlwind destination, newest two articles, diagram accessibility, and Whirlwind naming |
+| Impeccable detector on changed frontend targets | Empty findings array; run once |
 
-A menu-focus test exceeded its 5-second timeout while a build ran concurrently. Its isolated rerun passed all 7 navigation tests, and the final full-suite rerun passed all 134 tests. No timeout or assertion was relaxed.
-
-Build output retains existing Browserslist staleness warnings. GitHub project synchronization skipped because this checkout has no token configured; checked-in project content was used.
+Build retains existing Browserslist staleness warnings. GitHub content sync skips without a local token, using checked-in content. Jest's static navigation rendering produces React layout-effect warnings from browser motion dependencies; interactive and production rendering were checked separately.
 
 ## Acceptance coverage
 
-- Preserved red #c43b31, paper #f5f2eb, ink #202321, existing fonts, beach photograph, and trees photograph.
-- Static hero test checks positioning, original employer/education evidence, and work/résumé/contact destinations. Experience immediately follows hero. Pinned cinematic and rotating-topic components are removed.
-- Homepage loader test checks Whirlwind followed by Autoscaler, ATSKit, ScholarHub, and MedicalVR. The featured project appears once. Diagram has an accessible title/description and a simplified-workflow caption.
-- Real browser navigation to `/projects?id=whirlwind` opens Whirlwind's details panel.
-- Writing tests cover newest-first selection, two-post limit, dates, descriptions, excerpt fallback, empty collections, one undated article, and a long full title. Actual built articles are Sentry (2026-11-13) and LiveKit (2026-10-26).
-- Biography, source experience descriptions, professional links, and disclosure contents are preserved. Browser keyboard interaction expands Languages and tools. Existing contact form tests remain passing; no message was sent.
-- Browser checks at 1440×960, 834×1112, and 390×844 showed no horizontal overflow after correction. Navigation/content gutters are 120px at 1440, 32px at 834, and 22px at 390. Section spacing is 88px desktop and 56px mobile; desktop section headings are 56px.
-- Keyboard Tab reaches Résumé from View work with a red focus outline. Mobile keyboard menu navigation closes the menu and reaches Projects at approximately 72px below the viewport top.
-- Reduced-motion behavior was checked through the compiled CSSOM: homepage reveals use no animation and link transitions are disabled. Static HTML remains readable without motion. Browser tooling did not expose reduced-motion emulation, so OS-preference emulation was not performed.
-- Desktop, tablet, and mobile screenshots were captured in one inspection round plus one confirmation round. Screenshots and logs are stored locally under `.impeccable/verification/` (gitignored).
+- One visible primary name heading, concise role/evidence, original photo, red action, résumé/contact destinations: static hero tests plus desktop and mobile captures.
+- Product, Infrastructure, Security, and AI chapters with real ScholarHub/Visa/Whirlwind evidence: static content tests. Content is readable before enhancement.
+- Pure scroll-frame tests cover clamping, invalid input, transition boundaries, and all four chapters. Real DOM controller tests cover forward/backward scroll, inert states, event cleanup, and restoration to static content.
+- Desktop browser: sticky frame at top 0, phases change from intro to engineering, chapters 1 and 3 were observed, exactly one visible/interactive chapter, red path progression, and readable light/dark navigation.
+- Direct Continue-to-experience lands at approximately 72px below viewport top. Home from an active chapter, brand from a section jump, and Home after resize return to scroll 0, phase intro, light navigation true. At the resized experience start, viewport was 1280×720, scroll 3240, and experience top 72px before Home.
+- Same-page Home handler preserves modified clicks by only intercepting a plain left click. Reduced motion requests an instant return.
+- Mobile 390×844 and tablet 834×1112 restore all four chapters to normal flow, with no cinematic state or inert chapters. No horizontal overflow at 390, 834, 1280, or 1440 widths.
+- Reduced-motion browser emulation is unavailable in the current browser tool. The matchMedia gate, static CSS fallback, and teardown logic were checked in source/tests; native OS-preference emulation was not performed.
+- Existing SEO, article ordering/metadata, project selection, navigation, contact form, and privacy/analytics suites pass. No contact message was sent.
 
-## Delivery limits
+## Review artifacts
 
-No PR, push, or deployment. Worktree changes are uncommitted. Original checkout was not modified by this implementation. The local production server used for inspection is stopped after verification.
+Valid screenshots under `.impeccable/review/`: `desktop.jpg` (1440×960), `desktop-story.jpg`, `desktop-ai.jpg`, `user-1280.jpg` (1280×720), `mobile-hero.jpg` (390×844), full `mobile.jpg` and `tablet.jpg`. No new shipping raster assets; existing repository photography is unchanged.
+
+Independent Impeccable review found the opening, type, material, palette, thesis, and story form match the confirmed direction. It required explicit Home/brand return and removal of contradictory old design documentation. The Home/brand fix was implemented and verified; documentation and final fix scoring are recorded by the finish handoffs. The review is against the scoped direction contract and craft floor; no separate comp or QUALITY BAR card was selected.
+
+## Workspace and delivery
+
+The original app-managed worktree tool could not identify this repository, so this is a standard Git worktree. The existing Vercel feature-branch preview was deployed from the preceding commit. Publishing this iteration updates only that same feature branch and preview; production promotion and PR creation are outside scope.

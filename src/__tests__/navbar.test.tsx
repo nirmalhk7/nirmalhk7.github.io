@@ -1,4 +1,5 @@
 import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import Navbar from '../elements/navbar';
 import '@testing-library/jest-dom';
@@ -102,4 +103,50 @@ test('records mobile navigation opening and Escape closure',()=>{
   fireEvent.keyDown(document,{key:'Escape'});
   expect(spy).toHaveBeenCalledWith('[Analytics] navigation_menu',expect.objectContaining({action:'close',placement:'portfolio'}));
   spy.mockRestore();
+});
+
+it('keeps navigation readable over the paper introduction and the dark engineering reveal', () => {
+  jest.useFakeTimers();
+  mockRouter.pathname = '/';
+  const story = document.createElement('div');
+  story.dataset.navigationStory = '';
+  story.dataset.cinematic = 'ready';
+  story.dataset.storyPhase = 'intro';
+  story.getBoundingClientRect = () => ({ top: 0 } as DOMRect);
+  const hero = document.createElement('section');
+  hero.id = 'max-jumbo';
+  hero.dataset.navigationTone = 'light';
+  Object.defineProperty(hero, 'offsetHeight', { value: 900 });
+  story.appendChild(hero);
+  document.body.appendChild(story);
+  const { container, unmount } = render(<Navbar variant="portfolio" />);
+  try {
+    expect(container.querySelector('header')).toHaveAttribute('data-light-hero', 'true');
+    story.dataset.storyPhase = 'engineering';
+    act(() => { window.dispatchEvent(new Event('portfolio-hero-tone')); jest.runOnlyPendingTimers(); });
+    expect(container.querySelector('header')).toHaveAttribute('data-light-hero', 'false');
+  } finally {
+    unmount(); story.remove(); jest.useRealTimers();
+  }
+});
+
+// Catches white navigation text flashing over the paper hero before hydration.
+it('ships the readable light-hero navigation surface in static HTML', () => {
+  mockRouter.pathname = '/';
+  const html = renderToStaticMarkup(<Navbar variant="portfolio" />);
+  const document = new DOMParser().parseFromString(html, 'text/html');
+  expect(document.querySelector('header')?.getAttribute('data-light-hero')).toBe('true');
+});
+
+// Catches Home leaving the viewport inside the pinned story after a section jump.
+it.each(['Home', 'Nirmal Khedkar, home'])('returns to the introduction when %s is activated from another homepage section', (name) => {
+  mockRouter.pathname = '/';
+  const scroll = jest.spyOn(window, 'scrollTo').mockImplementation(() => {});
+  const { unmount } = render(<Navbar variant="portfolio" />);
+  try {
+    fireEvent.click(screen.getByRole('link', { name, exact: true }));
+    expect(scroll).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
+  } finally {
+    unmount(); scroll.mockRestore();
+  }
 });
