@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useRef } from "react";
 import { m, AnimatePresence, useReducedMotion, useIsPresent } from "framer-motion";
 import { trackResumeOpen } from "@/util/analytics";
-import styles from "@/components/Home/portfolio.module.scss";
+import styles from "@/components/Home/portfolio.styles";
 import type { NavbarItem } from "./navbar";
 import { visitPortfolioSection } from "./navigationInteraction";
 import { usePortfolioMenu } from "./usePortfolioMenu";

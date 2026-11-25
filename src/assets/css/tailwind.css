@@ -1,0 +1,1047 @@
+/* Runtime palette is shared by the shell and its portals. */
+.portfolio-theme {
+  --portfolio-paper: #f5f2eb;
+  --portfolio-ink: #202321;
+  --portfolio-night: #19211f;
+  --portfolio-red: #c43b31;
+  --portfolio-red-hover: #a92f27;
+  --portfolio-muted: #565c58;
+  --portfolio-muted-surface: #e9e6de;
+  --portfolio-sans: "Portfolio Outfit", "Avenir Next", sans-serif;
+  --portfolio-display: "Portfolio Outfit", "Avenir Next", sans-serif;
+  --portfolio-body: "Portfolio Outfit", "Avenir Next", sans-serif;
+  --portfolio-mono: "Portfolio Plex Mono", ui-monospace, monospace;
+}
+
+@font-face {
+  font-family: "Portfolio Outfit";
+  src: url("/fonts/outfit-latin-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Portfolio Plex Mono";
+  src: url("/fonts/ibm-plex-mono-latin-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* ===================================================================
+ * # Global / Helpers
+ * ------------------------------------------------------------------- */
+@media only screen and (max-width: 480px) {
+  #profiles {
+    @apply hidden;
+  }
+}
+@media only screen and (min-width: 480px) {
+  #smalldevice {
+    @apply hidden;
+  }
+}
+/* Links */
+a:focus {
+  @apply outline-none;
+}
+
+nav a, h1 a {
+  @apply no-underline;
+}
+
+p img {
+  @apply m-0;
+}
+
+em, i, strong, b {
+  @apply text-inherit leading-[inherit] not-italic font-normal;
+}
+
+small {
+  @apply text-[1.2rem] leading-[inherit];
+}
+
+/* Lists */
+ol {
+  @apply list-decimal;
+}
+
+ul {
+  @apply list-disc;
+}
+
+li {
+  @apply list-item leading-[1.2];
+}
+
+ol, ul {
+  @apply ml-[1.7rem];
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  @apply my-[0.6rem] ml-[1.7rem];
+}
+
+ul.disc li {
+  @apply list-none pl-[0.8rem] relative;
+}
+ul.disc li::before {
+  @apply content-[""] inline-block w-2 h-2 rounded-full bg-accent absolute -left-[10px] top-[11px] align-middle;
+}
+
+/* Video Container */
+.video-container {
+  @apply relative pb-[56.25%] h-0 overflow-hidden mb-12;
+}
+.video-container iframe, .video-container object, .video-container embed, .video-container video {
+  @apply absolute top-0 left-0 w-full h-full;
+}
+
+/* Floated Images */
+img.pull-right {
+  @apply mt-6 mb-0 ml-12;
+}
+
+img.pull-left {
+  @apply mt-6 mr-12 mb-0;
+}
+
+/* Tables */
+table {
+  @apply border-0 w-full max-w-full font-heading font-normal mb-12;
+}
+
+th, td {
+  @apply py-6 px-12 text-left border-b border-[#e8e8e8];
+}
+
+th {
+  @apply text-[#0d0a0b] font-blocky font-bold;
+}
+
+td {
+  @apply leading-normal;
+}
+
+th:first-child, td:first-child {
+  @apply pl-0;
+}
+
+th:last-child, td:last-child {
+  @apply pr-0;
+}
+
+/* ===================================================================
+ * # Forms
+ * ------------------------------------------------------------------- */
+fieldset {
+  @apply border-none mb-6;
+}
+
+textarea {
+  @apply min-h-[25rem];
+}
+
+label, legend {
+  @apply font-blocky font-bold text-[1.4rem] mb-[0.9rem] leading-[1.714] text-[#0d0a0b] block;
+}
+
+input[type=checkbox], input[type=radio] {
+  @apply inline;
+}
+
+label > .label-text {
+  @apply inline-block ml-4 font-blocky font-normal leading-[inherit];
+}
+
+label > input[type=checkbox], label > input[type=radio] {
+  @apply m-0 relative top-[0.15rem];
+}
+
+.placeholder {
+  @apply text-[#6c6c6c];
+}
+
+/* Autocomplete styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #cf3e3e;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:focus, textarea:focus, select:focus {
+  @apply text-accent border-b-2 border-accent;
+}
+
+/* Spacing */
+input, textarea, select, blockquote, table, p, ul, ol, dl, form, .video-container {
+  @apply mb-12;
+}
+
+/* ===================================================================
+ * # Components
+ * ------------------------------------------------------------------- */
+/* Blog Content */
+@media only screen and (max-width: 1200px) {
+  .blog-content {
+    @apply max-w-[992px];
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .blog-content {
+    @apply max-w-[768px];
+  }
+}
+.blog-content__tags {
+  @apply font-normal;
+}
+.blog-content__tags span {
+  @apply font-bold relative pr-[55px] mr-6 mt-[1.2rem];
+}
+.blog-content__tags span::after {
+  @apply inline-block content-[""] h-px w-[40px] bg-black/20 absolute top-1/2 right-0;
+}
+.blog-content__tags .blog-content__tag-list {
+  @apply inline-block pr-0 mr-0;
+}
+.blog-content__tags .blog-content__tag-list::after {
+  @apply hidden;
+}
+.blog-content__tags .blog-content__tag-list a, .blog-content__tags .blog-content__tag-list span.tag-item {
+  @apply inline-block font-blocky font-normal text-[1.3rem] leading-[inherit] text-[#797979] border border-black/30 rounded-[3px] mr-[6px] mb-[6px] px-[10px];
+}
+.blog-content__tags .blog-content__tag-list a:last-child, .blog-content__tags .blog-content__tag-list span.tag-item:last-child {
+  @apply mr-0;
+}
+.blog-content__tags .blog-content__tag-list a:hover, .blog-content__tags .blog-content__tag-list a:focus, .blog-content__tags .blog-content__tag-list span.tag-item:hover, .blog-content__tags .blog-content__tag-list span.tag-item:focus {
+  @apply bg-[#0d0a0b] border-[#0d0a0b] text-white;
+}
+
+/* Home Section */
+.s-home {
+  @apply w-full h-screen bg-transparent relative table;
+}
+@media only screen and (max-width: 500px) {
+  .s-home {
+    @apply min-h-[654px];
+  }
+}
+.s-home .shadow-overlay {
+  @apply absolute top-0 left-0 w-full h-full opacity-80;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+.s-home .overlay {
+  @apply absolute top-0 left-0 w-full h-full opacity-50 bg-[#111111];
+}
+
+.no-js .s-home {
+  @apply bg-[#0d0a0b];
+}
+
+.jumbotron {
+  @apply table-cell w-full h-full align-middle relative;
+}
+.jumbotron h3 {
+  @apply font-blocky font-bold text-[1.8rem] text-accent uppercase tracking-[0.5rem] relative pl-[80px] -ml-[30px] mb-[0.6rem];
+}
+@media only screen and (max-width: 500px) {
+  .jumbotron h3 {
+    @apply text-[1.5rem];
+  }
+}
+@media only screen and (max-width: 768px) {
+  .jumbotron h3 {
+    @apply text-[1.6rem] pl-[50px] -ml-[10px];
+  }
+}
+.jumbotron h3::before {
+  @apply block content-[""] w-[60px] h-[2px] bg-accent -mt-[1.5px] absolute left-0 top-1/2;
+}
+@media only screen and (max-width: 768px) {
+  .jumbotron h3::before {
+    @apply w-[40px];
+  }
+}
+.jumbotron h1 {
+  @apply text-[6rem];
+}
+@media only screen and (max-width: 1600px) {
+  .jumbotron h1 {
+    @apply text-[4.8rem];
+  }
+}
+@media only screen and (max-width: 1500px) {
+  .jumbotron h1 {
+    @apply text-[5.2rem];
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .jumbotron h1 {
+    @apply text-[5rem];
+  }
+}
+@media only screen and (max-width: 768px) {
+  .jumbotron h1 {
+    @apply text-[4.4rem];
+  }
+}
+@media only screen and (max-width: 576px) {
+  .jumbotron h1 {
+    @apply text-[4.2rem];
+  }
+}
+@media only screen and (max-width: 500px) {
+  .jumbotron h1 {
+    @apply text-[3.8rem];
+  }
+}
+@media only screen and (max-width: 400px) {
+  .jumbotron h1 {
+    @apply text-[3.5rem];
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .jumbotron br {
+    @apply hidden;
+  }
+}
+
+.home-content__main {
+  @apply pr-[300px] relative;
+}
+@media only screen and (max-width: 1600px) {
+  .home-content__main {
+    @apply pr-[40px] max-w-[680px];
+  }
+}
+@media only screen and (max-width: 1500px) {
+  .home-content__main {
+    @apply max-w-[1000px];
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .home-content__main {
+    @apply max-w-[768px];
+  }
+}
+@media only screen and (max-width: 768px) {
+  .home-content__main {
+    @apply max-w-[500px];
+  }
+}
+@media only screen and (max-width: 576px) {
+  .home-content__main {
+    @apply max-w-[380px] p-0;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .home-content__main {
+    @apply max-w-none w-[85%] mt-[150px];
+  }
+}
+@media only screen and (max-width: 400px) {
+  .home-content__main {
+    @apply w-auto mx-[25px];
+  }
+}
+
+/* Footer */
+footer {
+  @apply bg-black font-blocky font-normal text-[14px] py-[4.2rem] text-center text-white/20;
+}
+footer a, footer a:visited {
+  @apply text-accent;
+}
+footer a:hover, footer a:focus {
+  @apply text-white;
+}
+
+/* Pace.js */
+.pace {
+  @apply pointer-events-none select-none;
+}
+.pace-inactive {
+  @apply hidden;
+}
+.pace .pace-progress {
+  @apply bg-accent fixed z-[900] top-0 right-full w-full h-1;
+}
+
+/* -------------------------------------------------------------------
+ * ## Mobile Menu Toggle
+ * ------------------------------------------------------------------- */
+.header-menu-toggle {
+  @apply h-[48px] w-[48px] leading-[48px] font-blocky font-normal text-[1.4rem] uppercase tracking-[.2rem] text-white transition-all duration-300 ease-in-out relative bg-white/5 rounded-lg focus:outline-none;
+}
+.header-menu-toggle:hover, .header-menu-toggle:focus {
+  @apply text-accent bg-white/10;
+}
+.header-menu-toggle span {
+  @apply block w-6 h-[2px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white transition-all duration-500 ease-in-out text-transparent;
+  font: 0/0 a;
+  text-shadow: none;
+}
+.header-menu-toggle span::before, .header-menu-toggle span::after {
+  @apply content-[""] w-full h-full bg-inherit absolute left-0 transition-all duration-500 ease-in-out;
+}
+.header-menu-toggle span::before {
+  @apply -top-[8px];
+}
+.header-menu-toggle span::after {
+  @apply -bottom-[8px];
+}
+.header-menu-toggle.is-clicked span {
+  @apply bg-transparent;
+}
+.header-menu-toggle.is-clicked span::before, .header-menu-toggle.is-clicked span::after {
+  @apply bg-white;
+}
+.header-menu-toggle.is-clicked span::before {
+  @apply top-0 rotate-[45deg];
+}
+.header-menu-toggle.is-clicked span::after {
+  @apply bottom-0 rotate-[-45deg];
+}
+
+.narrow {
+  @apply max-w-[768px] w-[90%];
+}
+
+.section-intro h1 {
+  @apply text-[4.8rem] font-bold leading-snug mt-0;
+}
+.section-intro h3 {
+  @apply font-semibold text-3xl tracking-[0.15rem];
+}
+.section-intro.has-bottom-sep {
+  @apply pb-6 relative;
+}
+.section-intro.has-bottom-sep::after {
+  @apply inline-block h-px w-[240px] bg-black/10 text-center;
+}
+
+@media only screen and (max-width: 768px) {
+  .section-intro h1 {
+    @apply text-[4.2rem];
+  }
+  .section-intro h3 {
+    @apply text-[1.8rem];
+  }
+  .page-header__title {
+    @apply text-[5.4rem];
+  }
+}
+@media only screen and (max-width: 576px) {
+  .section-intro h1 {
+    @apply text-6xl;
+  }
+  .section-intro h3 {
+    @apply text-[1.7rem];
+  }
+  .page-header {
+    @apply pt-[18rem];
+  }
+  .page-header__content p {
+    @apply pr-0;
+  }
+  .page-header__title {
+    @apply text-[4.8rem];
+  }
+}
+@media only screen and (max-width: 400px) {
+  .section-intro h1 {
+    @apply text-[3.3rem];
+  }
+  .section-intro h3 {
+    @apply text-2xl;
+  }
+  .page-header__content {
+    @apply text-2xl leading-[1.875];
+  }
+  .page-header__title {
+    @apply text-[3.8rem];
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .page-header__content {
+    @apply max-w-[768px] text-[1.7rem];
+  }
+  .page-header__cat {
+    @apply text-[1.3rem];
+  }
+  .page-header__title {
+    @apply text-6xl;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .page-header__content {
+    @apply max-w-[700px];
+  }
+}
+@media only screen and (max-width: 500px) {
+  .page-header__title {
+    @apply text-[4.2rem];
+  }
+}
+.page-header {
+  @apply bg-[#0d0a0b] bg-no-repeat bg-center pt-[20.4rem] pb-[7.2rem] relative text-white/50 min-h-[50.4rem];
+}
+.page-header::before, .page-header::after {
+  @apply block content-[""] absolute top-0 left-0 w-full h-full;
+}
+.page-header::before {
+  @apply opacity-75 bg-[#0d0a0b];
+}
+
+.page-header__content {
+  @apply font-blocky font-normal text-3xl leading-[1.8] relative max-w-[992px] z-[2];
+}
+.page-header__content p {
+  @apply pr-12;
+}
+
+.page-header__title {
+  @apply text-[6.6rem];
+}
+
+.page-header__info {
+  @apply mb-5;
+}
+.page-header__info .div:last-child {
+  @apply mr-0;
+}
+
+.page-header__cat {
+  @apply inline-block mr-8 mb-1 text-2xl leading-normal tracking-[0.16rem] font-blocky font-bold;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    @apply scroll-auto !important;
+  }
+}
+@layer base {
+  /* Global Resets & Base Styles */
+  html {
+    @apply text-[10px] leading-[1.15] scroll-smooth scroll-pt-[72px];
+    -webkit-text-size-adjust: 100%;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  html::-webkit-scrollbar {
+    @apply hidden; /* Chrome, Safari and Opera */
+  }
+  body {
+    @apply m-0 bg-black p-0 font-blocky text-2xl font-normal leading-7;
+    text-rendering: optimizeLegibility;
+    word-wrap: break-word;
+  }
+  .defer-render {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1000px;
+  }
+  /* Layout Elements */
+  article, aside, footer, header, nav, section, main, details, menu {
+    @apply block;
+  }
+  .container {
+    @apply w-[90%] !important;
+  }
+  section {
+    @apply py-28;
+  }
+  /* Typography */
+  h1 {
+    @apply my-8 font-heading text-6xl font-semibold leading-tight;
+  }
+  h2 {
+    @apply my-8 text-5xl leading-[3.25rem];
+  }
+  h3 {
+    @apply font-blocky text-4xl font-semibold uppercase text-accent;
+  }
+  h4 {
+    @apply my-4 text-4xl;
+  }
+  h5 {
+    @apply my-4 text-2xl;
+  }
+  h6 {
+    @apply font-blocky text-2xl uppercase;
+  }
+  p {
+    @apply leading-[1.875];
+  }
+  a {
+    @apply bg-transparent text-accent underline transition-all duration-300 ease-in-out hover:decoration-dotted;
+  }
+  a:focus {
+    @apply outline-none;
+  }
+  a.text-white {
+    @apply hover:decoration-dotted;
+  }
+  a img {
+    @apply border-none;
+  }
+  nav a, h1 a, #project a {
+    @apply no-underline;
+  }
+  nav a {
+    @apply text-white;
+  }
+  b, strong {
+    @apply font-heading font-bold;
+  }
+  em, i {
+    @apply font-heading italic font-normal;
+  }
+  hr {
+    @apply box-content h-0 clear-both border-solid border-accent;
+  }
+  code {
+    @apply relative rounded-md border border-neutral-500 bg-neutral-100 px-2 py-1 text-2xl transition duration-500 hover:bg-neutral-500 hover:text-gray-100;
+    font-family: monospace, monospace;
+  }
+  code.code-selected {
+    @apply bg-neutral-500 text-white;
+  }
+  blockquote {
+    @apply relative my-[3.9rem] pl-16;
+  }
+  blockquote::before {
+    @apply absolute left-0 top-[3.6rem] m-0 font-sans text-[10rem] leading-none text-accent transition duration-300 hover:scale-110;
+    content: "“";
+  }
+  blockquote p {
+    @apply p-0 font-blocky text-4xl font-normal text-black;
+    @apply leading-[1.857];
+  }
+  blockquote cite {
+    @apply block font-blocky text-2xl font-normal not-italic leading-normal;
+  }
+  blockquote cite::before {
+    content: "— ";
+  }
+  blockquote cite a, blockquote cite a:visited {
+    @apply border-none text-gray-100;
+    color: #6c6c6c;
+  }
+  /* Forms */
+  fieldset {
+    @apply m-0 border border-[#c0c0c0] p-[0.35em_0.625em_0.75em];
+  }
+  legend {
+    @apply box-border table max-w-full whitespace-normal p-0 text-inherit;
+  }
+  input, textarea, select {
+    @apply m-0 block h-[6rem] w-full max-w-full border-0 border-b-2 border-gray-500 bg-transparent p-[1.5rem_0] font-blocky text-[1.5rem] font-normal leading-[3rem] text-gray-100 outline-none transition-all duration-300 ease-in-out;
+  }
+  input {
+    @apply overflow-visible;
+  }
+  textarea {
+    @apply overflow-auto;
+  }
+  select {
+    @apply normal-case;
+  }
+  [type=checkbox], [type=radio] {
+    @apply box-border p-0;
+  }
+  [type=search] {
+    -webkit-appearance: textfield;
+    @apply outline-offset-[-2px];
+  }
+  /* Buttons */
+  .button {
+    @apply border-4 border-accent px-4 font-blocky text-xl font-bold uppercase leading-[4.8rem] tracking-[0.3rem] no-underline transition duration-300 hover:shadow-lg hover:shadow-accent/50;
+  }
+  .button:disabled {
+    @apply border-gray-400 bg-gray-400 hover:shadow-none;
+  }
+  .button-accent-fill:not([disabled]) {
+    @apply border-accent bg-accent text-white hover:scale-105 hover:shadow-accent/50;
+  }
+  .button-white:not([disabled]) {
+    @apply border-white text-white hover:bg-white hover:text-black hover:shadow-white/50;
+  }
+  /* Lists & Misc */
+  ol, ul {
+    list-style: none;
+  }
+  li::marker {
+    @apply text-accent;
+  }
+  img, video {
+    @apply h-auto max-w-full border-none;
+  }
+  svg:not(:root) {
+    @apply overflow-hidden;
+  }
+  progress {
+    @apply inline-block align-baseline;
+  }
+  template, [hidden] {
+    @apply hidden;
+  }
+  /* Component-specific (Consider moving to component files) */
+  /* Header/Nav */
+  @media only screen and (max-width: 766px) {
+    .header-nav-wrap {
+      @apply fixed left-0 top-0 w-full h-screen bg-black p-10 transition duration-300;
+    }
+  }
+  @media only screen and (max-width: 766px) {
+    .header-nav-wrap__navbar {
+      @apply leading-[6rem] text-[2rem];
+    }
+  }
+  .header-nav-wrap__navbar li {
+    @apply inline-block;
+  }
+  @media only screen and (max-width: 766px) {
+    .header-nav-wrap__navbar li {
+      @apply block !important;
+      @apply py-6 border-b border-white/5;
+      @apply mr-[0] !important;
+    }
+  }
+  /* Footer */
+  footer {
+    @apply bg-black py-[4.2rem] text-center font-blocky font-normal text-white;
+  }
+  footer a {
+    @apply text-accent hover:text-white focus:text-white;
+  }
+  .footer-logo {
+    @apply inline-block;
+  }
+  .footer-site-logo {
+    @apply block w-32;
+  }
+  @media (max-width: 400px) {
+    .footer-site-logo {
+      @apply w-24;
+    }
+  }
+  @media (max-width: 400px) {
+    .footer_social li {
+      @apply mr-3;
+    }
+    .footer_social li svg {
+      @apply text-2xl;
+    }
+  }
+  /* Contact Form */
+  /* Contact Form Realistic Black Night Sky & Twinkling Stars */
+  .contact-shooting-stars {
+    @apply isolate;
+    background: radial-gradient(ellipse at 50% 15%, rgba(18, 28, 48, 0.45) 0%, rgba(5, 8, 16, 0.85) 55%, #020307 100%);
+    /* Layer 1: Dense Faint Distant Pinprick Stars (Fast Twinkle) */
+    /* Layer 2: Medium Scatter Stars (Smooth Medium Twinkle) */
+  }
+  .contact-shooting-stars::before {
+    @apply pointer-events-none absolute inset-0 z-0;
+    content: "";
+    background: radial-gradient(circle at 8% 14%, rgba(255, 255, 255, 0.85) 0 0.8px, transparent 1.6px), radial-gradient(circle at 15% 38%, rgba(210, 230, 255, 0.65) 0 0.7px, transparent 1.5px), radial-gradient(circle at 22% 67%, rgba(255, 248, 240, 0.75) 0 0.9px, transparent 1.7px), radial-gradient(circle at 29% 12%, rgba(255, 255, 255, 0.9) 0 0.8px, transparent 1.6px), radial-gradient(circle at 36% 45%, rgba(200, 225, 255, 0.7) 0 0.8px, transparent 1.6px), radial-gradient(circle at 43% 81%, rgba(255, 255, 255, 0.6) 0 0.7px, transparent 1.5px), radial-gradient(circle at 51% 23%, rgba(255, 250, 245, 0.85) 0 0.9px, transparent 1.8px), radial-gradient(circle at 58% 54%, rgba(255, 255, 255, 0.75) 0 0.8px, transparent 1.6px), radial-gradient(circle at 64% 16%, rgba(215, 235, 255, 0.8) 0 0.9px, transparent 1.7px), radial-gradient(circle at 71% 73%, rgba(255, 255, 255, 0.65) 0 0.7px, transparent 1.5px), radial-gradient(circle at 78% 34%, rgba(255, 245, 235, 0.85) 0 0.8px, transparent 1.6px), radial-gradient(circle at 85% 59%, rgba(210, 230, 255, 0.7) 0 0.9px, transparent 1.7px), radial-gradient(circle at 92% 19%, rgba(255, 255, 255, 0.9) 0 0.8px, transparent 1.6px), radial-gradient(circle at 96% 85%, rgba(255, 255, 255, 0.6) 0 0.7px, transparent 1.5px);
+    animation: contact-star-twinkle-fast 3.2s ease-in-out infinite alternate;
+  }
+  .contact-shooting-stars::after {
+    @apply pointer-events-none absolute inset-0 z-0;
+    content: "";
+    background: radial-gradient(circle at 5% 76%, rgba(255, 255, 255, 0.8) 0 1.1px, transparent 2.1px), radial-gradient(circle at 12% 28%, rgba(215, 235, 255, 0.9) 0 1.2px, transparent 2.2px), radial-gradient(circle at 19% 88%, rgba(255, 250, 240, 0.7) 0 1.1px, transparent 2.1px), radial-gradient(circle at 26% 18%, rgba(255, 255, 255, 0.95) 0 1.3px, transparent 2.3px), radial-gradient(circle at 33% 52%, rgba(210, 230, 255, 0.75) 0 1.1px, transparent 2.1px), radial-gradient(circle at 41% 72%, rgba(255, 255, 255, 0.85) 0 1.2px, transparent 2.2px), radial-gradient(circle at 48% 25%, rgba(255, 248, 238, 0.9) 0 1.3px, transparent 2.3px), radial-gradient(circle at 56% 61%, rgba(255, 255, 255, 0.75) 0 1.1px, transparent 2.1px), radial-gradient(circle at 63% 14%, rgba(220, 235, 255, 0.85) 0 1.2px, transparent 2.2px), radial-gradient(circle at 72% 47%, rgba(255, 255, 255, 0.9) 0 1.3px, transparent 2.3px), radial-gradient(circle at 81% 83%, rgba(255, 250, 240, 0.75) 0 1.1px, transparent 2.1px), radial-gradient(circle at 89% 31%, rgba(215, 235, 255, 0.85) 0 1.2px, transparent 2.2px), radial-gradient(circle at 95% 64%, rgba(255, 255, 255, 0.9) 0 1.2px, transparent 2.2px);
+    animation: contact-star-twinkle-mid 4.6s ease-in-out infinite alternate -1.4s;
+  }
+  /* Layer 3: Prominent Mid-Distance Stars */
+  .contact-twinkle-layer-mid {
+    background: radial-gradient(circle at 10% 48%, rgba(255, 255, 255, 0.9) 0 1.4px, transparent 2.5px), radial-gradient(circle at 23% 32%, rgba(195, 225, 255, 0.85) 0 1.5px, transparent 2.6px), radial-gradient(circle at 37% 78%, rgba(255, 250, 242, 0.8) 0 1.3px, transparent 2.4px), radial-gradient(circle at 49% 11%, rgba(255, 255, 255, 0.95) 0 1.5px, transparent 2.6px), radial-gradient(circle at 62% 69%, rgba(210, 235, 255, 0.85) 0 1.4px, transparent 2.5px), radial-gradient(circle at 76% 22%, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 2.6px), radial-gradient(circle at 87% 74%, rgba(255, 248, 238, 0.85) 0 1.3px, transparent 2.4px), radial-gradient(circle at 93% 41%, rgba(255, 255, 255, 0.95) 0 1.4px, transparent 2.5px);
+    animation: contact-star-twinkle-slow 6.1s ease-in-out infinite alternate -2.8s;
+  }
+  /* Layer 4: Major Constellation Bright Stars with Soft Glow Halos */
+  .contact-twinkle-layer-bright {
+    background: radial-gradient(circle at 17% 18%, rgb(255, 255, 255) 0 1.8px, rgba(180, 220, 255, 0.4) 3px, transparent 5px), radial-gradient(circle at 34% 62%, rgb(255, 250, 240) 0 1.7px, rgba(255, 235, 210, 0.35) 3px, transparent 5px), radial-gradient(circle at 54% 28%, rgb(255, 255, 255) 0 1.9px, rgba(190, 225, 255, 0.4) 3px, transparent 5px), radial-gradient(circle at 73% 81%, rgb(255, 255, 255) 0 1.7px, rgba(200, 230, 255, 0.35) 3px, transparent 5px), radial-gradient(circle at 84% 15%, rgb(255, 248, 238) 0 1.8px, rgba(255, 230, 200, 0.4) 3px, transparent 5px);
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.75));
+    animation: contact-star-twinkle-bright 7.8s ease-in-out infinite alternate -0.9s;
+  }
+  .contact-stars {
+    @apply pointer-events-none absolute inset-0 z-0 overflow-hidden;
+  }
+  .contact-stars span {
+    @apply absolute block rounded-full h-[1.5px] w-[var(--star-width)] left-[var(--star-left)] top-[var(--star-top)] opacity-0;
+    transform: rotate(var(--star-angle)) translate3d(0, 0, 0);
+    @apply origin-[left_center];
+    animation: contact-shooting-star var(--star-duration) cubic-bezier(0.25, 1, 0.5, 1) var(--star-delay) infinite;
+    background: linear-gradient(90deg, transparent 0%, rgba(130, 185, 255, 0.2) 60%, rgba(255, 255, 255, 0.98) 100%);
+  }
+  .contact-stars span::before {
+    @apply absolute right-0 top-1/2 rounded-full bg-white;
+    content: "";
+    @apply w-[var(--star-head)] h-[var(--star-head)];
+    transform: translate(50%, -50%);
+    box-shadow: 0 0 5px #ffffff, 0 0 12px rgba(160, 210, 255, 0.9), 0 0 20px rgba(96, 165, 250, 0.7);
+  }
+  .contact-stars span:nth-child(1) {
+    --star-left: 8%;
+    --star-top: 6%;
+    --star-angle: 31deg;
+    --star-width: 9rem;
+    --star-head: 0.28rem;
+    --star-distance: 38rem;
+    --star-duration: 7.2s;
+    --star-delay: 0.6s;
+  }
+  .contact-stars span:nth-child(2) {
+    --star-left: 62%;
+    --star-top: -4%;
+    --star-angle: 34deg;
+    --star-width: 11rem;
+    --star-head: 0.32rem;
+    --star-distance: 44rem;
+    --star-duration: 9.0s;
+    --star-delay: 2.2s;
+  }
+  .contact-stars span:nth-child(3) {
+    --star-left: 28%;
+    --star-top: 14%;
+    --star-angle: 28deg;
+    --star-width: 7.5rem;
+    --star-head: 0.24rem;
+    --star-distance: 30rem;
+    --star-duration: 6.5s;
+    --star-delay: 4.1s;
+  }
+  .contact-stars span:nth-child(4) {
+    --star-left: 78%;
+    --star-top: 8%;
+    --star-angle: 33deg;
+    --star-width: 10rem;
+    --star-head: 0.3rem;
+    --star-distance: 40rem;
+    --star-duration: 8.2s;
+    --star-delay: 5.8s;
+  }
+  .contact-stars span:nth-child(5) {
+    --star-left: 4%;
+    --star-top: 32%;
+    --star-angle: 29deg;
+    --star-width: 8.5rem;
+    --star-head: 0.26rem;
+    --star-distance: 34rem;
+    --star-duration: 7.8s;
+    --star-delay: 8.1s;
+  }
+  .contact-stars span:nth-child(6) {
+    --star-left: 46%;
+    --star-top: 4%;
+    --star-angle: 33deg;
+    --star-width: 12rem;
+    --star-head: 0.34rem;
+    --star-distance: 48rem;
+    --star-duration: 10.2s;
+    --star-delay: 9.9s;
+  }
+  .contact-stars span:nth-child(7) {
+    --star-left: 18%;
+    --star-top: 42%;
+    --star-angle: 27deg;
+    --star-width: 6.8rem;
+    --star-head: 0.23rem;
+    --star-distance: 28rem;
+    --star-duration: 6.0s;
+    --star-delay: 12.4s;
+  }
+  .contact-stars span:nth-child(8) {
+    --star-left: 54%;
+    --star-top: 28%;
+    --star-angle: 35deg;
+    --star-width: 9.5rem;
+    --star-head: 0.28rem;
+    --star-distance: 38rem;
+    --star-duration: 8.5s;
+    --star-delay: 14.8s;
+  }
+  .contact-stars span:nth-child(9) {
+    --star-left: 74%;
+    --star-top: 38%;
+    --star-angle: 31deg;
+    --star-width: 8.2rem;
+    --star-head: 0.25rem;
+    --star-distance: 32rem;
+    --star-duration: 7.0s;
+    --star-delay: 17.2s;
+  }
+  @keyframes contact-star-twinkle-fast {
+    0% {
+      opacity: 0.25;
+      transform: scale(0.96);
+    }
+    35% {
+      opacity: 0.95;
+      transform: scale(1.05);
+    }
+    65% {
+      opacity: 0.38;
+      transform: scale(0.98);
+    }
+    100% {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+  }
+  @keyframes contact-star-twinkle-mid {
+    0% {
+      opacity: 0.88;
+    }
+    40% {
+      opacity: 0.28;
+    }
+    75% {
+      opacity: 0.96;
+    }
+    100% {
+      opacity: 0.45;
+    }
+  }
+  @keyframes contact-star-twinkle-slow {
+    0% {
+      opacity: 0.35;
+    }
+    45% {
+      opacity: 0.95;
+    }
+    80% {
+      opacity: 0.48;
+    }
+    100% {
+      opacity: 0.85;
+    }
+  }
+  @keyframes contact-star-twinkle-bright {
+    0% {
+      opacity: 0.95;
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+    }
+    50% {
+      opacity: 0.55;
+      filter: drop-shadow(0 0 2px rgba(180, 220, 255, 0.4));
+    }
+    100% {
+      opacity: 1;
+      filter: drop-shadow(0 0 6px rgb(255, 255, 255));
+    }
+  }
+  @keyframes contact-shooting-star {
+    0% {
+      opacity: 0;
+      transform: rotate(var(--star-angle)) translate3d(0, 0, 0);
+    }
+    3% {
+      opacity: 0;
+    }
+    7% {
+      opacity: 0.95;
+    }
+    14% {
+      opacity: 0.88;
+    }
+    24% {
+      opacity: 0;
+      transform: rotate(var(--star-angle)) translate3d(var(--star-distance), 0, 0);
+    }
+    100% {
+      opacity: 0;
+      transform: rotate(var(--star-angle)) translate3d(var(--star-distance), 0, 0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contact-shooting-stars::before,
+    .contact-shooting-stars::after,
+    .contact-twinkle-layer-mid,
+    .contact-twinkle-layer-bright,
+    .contact-stars span {
+      @apply animate-none;
+    }
+  }
+  .contact__form {
+    @apply pr-10;
+  }
+  @media (max-width: 800px) {
+    .contact__form {
+      @apply pr-4;
+    }
+  }
+  @media (max-width: 600px) {
+    .contact__form {
+      @apply pr-2.5;
+    }
+  }
+  @media (max-width: 400px) {
+    .contact__form {
+      @apply pr-0;
+    }
+  }
+  .contact__form input, .contact__form textarea {
+    @apply mb-2.5 border-b border-white/10 bg-transparent text-white/75;
+  }
+  .contact__form input:focus, .contact__form textarea:focus {
+    @apply border-b-white text-white;
+  }
+  .contact__form button {
+    @apply mt-16 border-accent bg-accent;
+  }
+  @media (max-width: 800px) {
+    .contact__infos {
+      @apply pt-12;
+    }
+  }
+  .rm-article {
+    @apply leading-[4.8rem];
+    color: black;
+  }
+}
+@keyframes scrollProgressGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@supports (animation-timeline: scroll()) {
+  .native-scroll-progress {
+    @apply origin-left;
+    animation: scrollProgressGrow auto linear;
+    animation-timeline: scroll(root);
+  }
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Document defaults stay in the component layer so element utilities can override them. */
+@layer components {
+  .editorial-page :where(h1, h2, h3, h4, h5, p) { @apply m-0; }
+  .home-page :is(h1, h2, h3, h4, p, figure, ul, ol) { @apply mt-0; }
+  .home-page :is(h1, h2, h3, h4) { @apply text-inherit font-display font-semibold tracking-[-0.03em] leading-[1.06] normal-case; }
+  .home-page h2 { @apply mb-[22px] text-[clamp(38px,_5.3vw,_78px)]; }
+  .home-page p { @apply max-w-[68ch] text-[clamp(16px,_1.35vw,_20px)] leading-[1.65]; }
+  .home-page a { @apply text-inherit underline-offset-[0.22em]; transition: color 160ms ease-out, background-color 160ms ease-out; }
+  .home-page :is(a, summary, button):focus-visible { outline: 3px solid var(--portfolio-red); @apply outline-offset-4; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-page a { transition: none; }
+}

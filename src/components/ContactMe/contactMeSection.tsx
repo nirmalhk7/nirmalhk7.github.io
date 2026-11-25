@@ -23,7 +23,7 @@ const ContactMeSection = React.forwardRef<HTMLDivElement, ContactMeSectionProps>
       <div ref={containerRef}>
         <WebSection
           id="contact"
-          className={`relative overflow-hidden selection:bg-accent selection:text-white ${variant === "portfolio" ? "portfolio-contact" : "bg-[#030408]"}`}
+          className={`relative overflow-hidden ${variant === "portfolio" ? "portfolio-contact" : "bg-[#030408] selection:bg-accent selection:text-white"}`}
         >
           {variant === "default" && <m.div
             className="contact-shooting-stars pointer-events-none absolute -inset-y-24 inset-x-0 z-0"

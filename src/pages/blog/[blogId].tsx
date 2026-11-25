@@ -11,6 +11,7 @@ import { DefaultPageProps } from "../_app";
 import { PageHero, PageSection, editorialStyles as styles } from "@/components/Site/Editorial";
 import Image from "next/image";
 import BlogShare from "@/components/Blog/BlogShare";
+import articleStyles from "@/components/Blog/article.styles";
 import { openGraphImage } from "@/util/openGraph";
 import { markdownHeadings } from "@/util/markdownHeadings";
 
@@ -136,14 +137,14 @@ const BlogTemplate = ({
           <Link href="/blog">← All writing</Link>
         </PageHero>
         <PageSection>
-          <div className={styles.articleMeta}>
+          <div className={articleStyles.articleMeta}>
             <span>{current.frontmatter?.date}</span>
             <span>{current.frontmatter?.category?.join(" / ")}</span>
             <span>By Nirmal Khedkar</span>
           </div>
           <div data-analytics-exposure={current.slug} data-analytics-reading="true">
           <ReactMarkdown
-            className={styles.articleBody}
+            className={articleStyles.articleBody}
             components={{
               ...markdownHeadings,
               code({ inline, className, children, ...props }) {
@@ -161,7 +162,7 @@ const BlogTemplate = ({
               },
               img({ src, alt }) {
                 return (
-                  <span className={styles.articleImage}>
+                  <span className={articleStyles.articleImage}>
                     <Image src={src || ""} alt={alt || "Article image"} fill sizes="(max-width: 767px) calc(100vw - 44px), (max-width: 1612px) 84vw, 1360px" />
                   </span>
                 );
@@ -171,7 +172,7 @@ const BlogTemplate = ({
             {current.content || ""}
           </ReactMarkdown>
           </div>
-          <div className={styles.articleFooter}>
+          <div className={articleStyles.articleFooter}>
             <p>Share this article</p>
             <BlogShare slug={current.slug} title={current.frontmatter?.title || "Article"} />
             <ul className={styles.tagList} aria-label="Article tags">

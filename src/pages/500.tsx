@@ -4,6 +4,7 @@ import React from "react";
 
 import { DefaultPageProps } from "./_app";
 import { PageHero, PageSection, editorialStyles as styles } from "@/components/Site/Editorial";
+import errorStyles from "@/components/Site/error.styles";
 
 const ServerErrorPage = () => (
   <main className={styles.page}>
@@ -11,7 +12,7 @@ const ServerErrorPage = () => (
       <Link href="/">Return home <span aria-hidden="true">↗</span></Link>
     </PageHero>
     <PageSection eyebrow="Still looking?" title="Explore the work.">
-      <div className={styles.errorLinks}>
+      <div className={errorStyles.errorLinks}>
         <Link href="/projects">Projects ↗</Link>
         <Link href="/blog">Writing ↗</Link>
       </div>

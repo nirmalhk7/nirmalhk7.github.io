@@ -8,6 +8,7 @@ import { selectedProjects } from '@/util/projectCuration';
 import { BlogFrontmatterInterface } from "@/interfaces/blog";
 import { ProjectInterface } from '@/interfaces/projects';
 import { PageHero, PageSection, editorialStyles as styles } from "@/components/Site/Editorial";
+import errorStyles from "@/components/Site/error.styles";
 import { useSearchClear } from '@/hooks/useSearchClear';
 
 interface SearchItem {
@@ -22,7 +23,7 @@ interface NotFoundPageProps extends DefaultPageProps {
 
 function SearchResults({ query, items }: { query: string; items: SearchItem[] }) {
   return (
-    <div className={styles.searchResults} aria-live="polite">
+    <div className={errorStyles.searchResults} aria-live="polite">
       {items.length ? items.map((item) => (
         <Link key={item.url} href={item.url} onClick={() => {
           if (item.url === "/resume") trackResumeOpen("404_search_result");
@@ -65,7 +66,7 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
         compact
       />
       <PageSection eyebrow="Find your way" title="Search the site.">
-        <div className={styles.errorSearch} role="search">
+        <div className={errorStyles.errorSearch} role="search">
           <label htmlFor="not-found-search" className="sr-only">Search projects, articles, and pages</label>
           <input
             id="not-found-search"
@@ -76,7 +77,7 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
             onChange={(event) => setQuery(event.target.value)}
           />
           {query && <SearchResults query={query} items={filteredItems} />}
-          <nav className={styles.errorLinks} aria-label="Suggested pages">
+          <nav className={errorStyles.errorLinks} aria-label="Suggested pages">
             {[
               { title: "Home", url: "/" },
               { title: "Projects", url: "/projects" },
