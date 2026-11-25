@@ -1,6 +1,8 @@
 {
   "recurse": true,
   "timeout": 20000,
+  "urlRewriteSearch": "^https://(?:www\\.)?nirmalhk7\\.com(?=/|$)",
+  "urlRewriteReplace": "http://localhost:3000",
   "skip": [
     "^https://nirmalhk7\\.com/$",
     "^https://nirmalhk7\\.com/api/rss$",
