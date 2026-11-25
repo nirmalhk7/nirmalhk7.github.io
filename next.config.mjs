@@ -58,6 +58,7 @@ const nextConfig = {
   reactStrictMode: true,
   async rewrites() {
     return [
+      { source: "/rss.xml", destination: "/api/rss" },
       {
         source: "/.well-known/webfinger",
         destination: "/api/.well-known/webfinger",

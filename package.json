@@ -15,6 +15,7 @@
     "test": "jest --passWithNoTests",
     "check-performance": "node scripts/check-performance-budgets.mjs",
     "check-project-markdown": "node scripts/check-project-markdown.mjs",
+    "check-rss-package": "node scripts/check-rss-package.mjs",
     "check-links": "linkinator http://localhost:3000 --config linkinator.config.json",
     "check-style-budget": "node scripts/check-style-budget.mjs",
     "check-ui-parity": "node scripts/check-ui-parity.mjs"
