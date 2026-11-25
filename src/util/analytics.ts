@@ -22,20 +22,20 @@ const getPageContext = (): AnalyticsPayload => {
   };
 };
 
+const routeTypes = new Map([
+  ["/", "home"],
+  ["/projects", "projects"],
+  ["/blog", "blog_index"],
+  ["/resume", "resume"],
+  ["/404", "404"],
+  ["/design", "design"],
+  ["/privacy", "privacy"],
+  ["/500", "500"],
+]);
+
 export const getRoutePageType = (routePath: string) => {
-  const normalizedPath = (routePath.split("?")[0].split("#")[0].replace(/^\/en-US(?=\/|$)/,"") || "/");
-
-  if (normalizedPath === "/") return "home";
-  if (normalizedPath === "/projects") return "projects";
-  if (normalizedPath === "/blog") return "blog_index";
-  if (normalizedPath.startsWith("/blog/")) return "blog_post";
-  if (normalizedPath === "/resume") return "resume";
-  if (normalizedPath === "/404") return "404";
-  if (normalizedPath === "/design") return "design";
-  if (normalizedPath === "/privacy") return "privacy";
-  if (normalizedPath === "/500") return "500";
-
-  return "other";
+  const normalizedPath = routePath.split("?")[0].split("#")[0].replace(/^\/en-US(?=\/|$)/, "") || "/";
+  return routeTypes.get(normalizedPath) ?? (normalizedPath.startsWith("/blog/") ? "blog_post" : "other");
 };
 
 const logDevelopmentEvent = (eventName: string, payload: AnalyticsPayload) => {

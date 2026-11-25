@@ -1,7 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import ReactMarkdown from "react-markdown";
-import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import atomDark from "react-syntax-highlighter/dist/cjs/styles/prism/atom-dark";
 import { BlogFrontmatterInterface, BlogInterface } from "@/interfaces/blog";
 import { ArticleJsonLd } from "next-seo";
 import Link from "next/link";
