@@ -4,7 +4,7 @@ import HiringLinks from '@/components/Site/HiringLinks';
 import ResumePage from '@/pages/resume';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires -- Exercise the same configuration Next loads.
-const nextConfig = require('../../next.config.js');
+const nextConfig = require('../../next.config.mjs').default;
 
 test.each(['development', 'production'])('/resume stays an embedded page in %s', async environment => {
   const env = process.env as { NODE_ENV?: string }; const previous = env.NODE_ENV; env.NODE_ENV = environment;
