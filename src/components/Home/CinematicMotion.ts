@@ -12,9 +12,8 @@ export function mountCinematicMotion(story: HTMLDivElement): () => void {
   const nodes = Array.from(story.querySelectorAll<SVGCircleElement>("[data-story-node]"));
   const stages = Array.from(story.querySelectorAll<HTMLElement>("[data-story-stage]"));
 
-  if (!photo || !copy || !engineering || !path || nodes.length !== 4 || stages.length !== 4) {
-    return () => undefined;
-  }
+  if (!photo || !copy || !engineering || !path) return () => undefined;
+  if (nodes.length !== 4 || stages.length !== 4) return () => undefined;
 
   story.dataset.cinematic = "ready";
 
