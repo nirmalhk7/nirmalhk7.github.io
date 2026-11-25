@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import sortBy from "lodash/sortBy";
+import { BlogFrontmatterInterface } from "@/interfaces/blog";
 import { ProjectFrontmatterInterface } from "@/interfaces/projects";
 
 interface LoadMarkdownOptions {
@@ -90,6 +92,12 @@ export const loadMarkdownFiles = <T = Record<string, unknown>>(
       return loadMarkdownFile<T>(`${path}/${fileName}`, slug, options);
     });
 };
+
+export const loadBlogMarkdownFiles = () =>
+  sortBy(
+    loadMarkdownFiles<BlogFrontmatterInterface>("content/blog"),
+    (post) => post.frontmatter.date
+  ).reverse();
 
 export const loadProjectMarkdownFiles = (
   projectsDir: fs.PathLike,
