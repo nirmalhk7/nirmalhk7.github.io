@@ -16,3 +16,5 @@ export interface ProjectInterface {
   excerpt: string | null;
   slug: string;
 }
+
+export type ProjectListEntry = Omit<ProjectInterface, 'content'> & { contentHtml: string };

@@ -14,20 +14,16 @@ import portfolioStyles from "@/components/Home/portfolio.module.scss";
 import { QuoteInterface } from "@/components/Quote/quoteSection";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { trackWebVital } from "@/util/analytics";
-import { useViewTransitions } from "@/hooks/useViewTransitions";
-import { AnimatePresence, LazyMotion, domAnimation, m, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
 import { useRouter } from "next/router";
 import { openGraphImage } from "@/util/openGraph";
 
 // Dynamic imports for performance
-const ScrollToTop = dynamic(() => import("@/elements/scrollToTop"), { ssr: false });
 const ContactMeSection = dynamic(() => import("@/components/ContactMe/contactMeSection"));
 const FooterSection = dynamic(() => import("@/components/Footer/footerSection"));
 const QuoteSection = dynamic(() => import("@/components/Quote/quoteSection"));
 const CommandPalette = dynamic(() => import("@/components/UI/CommandPalette"), { ssr: false });
-const CursorSpotlight = dynamic(() => import("@/components/UI/CursorSpotlight"), { ssr: false });
-const SmoothScroller = dynamic(() => import("@/components/UI/SmoothScroller"), { ssr: false });
-const SectionNavigator = dynamic(() => import("@/components/UI/SectionNavigator"), { ssr: false });
+const LegacyEffects = dynamic(() => import("@/components/Site/LegacyEffects"));
 const ContactBand = dynamic(() => import("@/components/Site/Editorial").then((module) => module.ContactBand));
 
 config.autoAddCss = false;
@@ -57,12 +53,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   return (
     <LazyMotion features={domAnimation}>
     <div className="min-h-screen">
-      {!isPortfolio && <ScrollProgress />}
-      {!isPortfolio && <LegacyViewTransition />}
-      {!isPortfolio && <ScrollToTop />}
-      {!isPortfolio && <SmoothScroller />}
-      {!isPortfolio && <SectionNavigator />}
-      {!isPortfolio && <CursorSpotlight />}
+      {!isPortfolio && <LegacyEffects />}
       {!isResume && <CommandPalette />}
       <DefaultSeo
         defaultTitle="Nirmal Khedkar | Software Engineer"
@@ -119,40 +110,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
             <NextSeo {...pageProps.pageMetadata.seoMetadata} />
           ) : null}
           {pageProps.pageMetadata.enableWrap ? <Navbar variant={layoutVariant} /> : null}
-          {isPortfolio ? (
-            <AnimatePresence mode="wait" initial={false}>
-              <m.div
-                data-analytics-page={router.asPath.split("?")[0].split("#")[0]}
-                key={router.pathname}
-                initial={shouldReduceMotion ? { opacity: 0.8 } : { clipPath: "inset(0 0 0 100%)" }}
-                animate={{ clipPath: "inset(0 0 0 0)", opacity: 1 }}
-                exit={shouldReduceMotion ? { opacity: 0.8 } : { clipPath: "inset(0 100% 0 0)" }}
-                transition={{ duration: shouldReduceMotion ? 0.1 : 0.34, ease: [0.76, 0, 0.24, 1] }}
-              >
-                <Component {...pageProps} />
-                {pageProps.pageMetadata.enableWrap && router.pathname !== "/" ? <ContactBand /> : null}
-                {pageProps.pageMetadata.enableWrap ? <FooterSection variant="portfolio" /> : null}
-              </m.div>
-            </AnimatePresence>
-          ) : <AnimatePresence mode="wait">
-            <m.div
-              data-analytics-page={router.asPath.split("?")[0].split("#")[0]}
-              key={router.route}
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 26, scale: 0.985, filter: "blur(8px)" }}
-              animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -20, scale: 1.015, filter: "blur(8px)" }}
-              transition={{ duration: shouldReduceMotion ? 0.18 : 0.48, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Component {...pageProps} />
-              {pageProps.pageMetadata.enableWrap ? (
-                <>
-                  <QuoteSection quote={pageProps.quote} />
-                  <ContactMeSection />
-                  <FooterSection />
-                </>
-              ) : null}
-            </m.div>
-          </AnimatePresence>}
+          {renderPage({ Component, pageProps, router, isPortfolio, shouldReduceMotion })}
         </div>
       ) : null}
     </div>
@@ -160,21 +118,59 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   );
 }
 
+interface PageLayoutProps extends Pick<CustomAppProps, "Component" | "pageProps"> {
+  router: ReturnType<typeof useRouter>;
+  shouldReduceMotion: boolean | null;
+}
+
+function renderPage({ Component, pageProps, router, isPortfolio, shouldReduceMotion }: PageLayoutProps & { isPortfolio: boolean }) {
+  const props = { Component, pageProps, router, shouldReduceMotion };
+  return isPortfolio ? renderPortfolioPage(props) : renderLegacyPage(props);
+}
+
+function renderPortfolioPage({ Component, pageProps, router, shouldReduceMotion }: PageLayoutProps) {
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <m.div
+        data-analytics-page={router.asPath.split("?")[0].split("#")[0]}
+        key={router.pathname}
+        initial={shouldReduceMotion ? { opacity: 0.8 } : { clipPath: "inset(0 0 0 100%)" }}
+        animate={{ clipPath: "inset(0 0 0 0)", opacity: 1 }}
+        exit={shouldReduceMotion ? { opacity: 0.8 } : { clipPath: "inset(0 100% 0 0)" }}
+        transition={{ duration: shouldReduceMotion ? 0.1 : 0.34, ease: [0.76, 0, 0.24, 1] }}
+      >
+        <Component {...pageProps} />
+        {pageProps.pageMetadata.enableWrap && router.pathname !== "/" ? <ContactBand /> : null}
+        {pageProps.pageMetadata.enableWrap ? <FooterSection variant="portfolio" /> : null}
+      </m.div>
+    </AnimatePresence>
+  );
+}
+
+function renderLegacyPage({ Component, pageProps, router, shouldReduceMotion }: PageLayoutProps) {
+  return (
+    <AnimatePresence mode="wait">
+      <m.div
+        data-analytics-page={router.asPath.split("?")[0].split("#")[0]}
+        key={router.route}
+        initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 26, scale: 0.985, filter: "blur(8px)" }}
+        animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -20, scale: 1.015, filter: "blur(8px)" }}
+        transition={{ duration: shouldReduceMotion ? 0.18 : 0.48, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Component {...pageProps} />
+        {pageProps.pageMetadata.enableWrap ? (
+          <>
+            <QuoteSection quote={pageProps.quote} />
+            <ContactMeSection />
+            <FooterSection />
+          </>
+        ) : null}
+      </m.div>
+    </AnimatePresence>
+  );
+}
+
 export function reportWebVitals(metric: NextWebVitalsMetric) {
   trackWebVital(metric);
-}
-
-function ScrollProgress() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-  return <m.div className="native-scroll-progress fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-white to-accent z-[60] origin-left" style={{ scaleX }} />;
-}
-
-function LegacyViewTransition() {
-  useViewTransitions();
-  return null;
 }

@@ -1,7 +1,6 @@
 /* Isolated production verification. All Google collection is intercepted; Formspree is stubbed. */
-const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const { chromium } = require(process.env.GA4_PLAYWRIGHT_MODULE || 'playwright');
+const assert = process.getBuiltinModule('node:assert/strict');
+const fs = process.getBuiltinModule('node:fs');
 const base = process.env.GA4_TEST_URL || 'http://127.0.0.1:3100';
 if (!['127.0.0.1', 'localhost'].includes(new URL(base).hostname)) throw new Error('GA4_TEST_URL must be a local loopback server');
 if (!process.env.GA4_GOOGLE_TAG_PATH) throw new Error('Set GA4_GOOGLE_TAG_PATH to a local copy of the public Google tag script for G-TEST123');
@@ -17,7 +16,17 @@ const waitEvent = async (page, name, predicate = () => true) => {
 };
 const vercelStub = `(()=>{let beforeSend;const queue=window.vaq||[];window.__vercelSent=[];window.va=(type,payload)=>{if(type==='beforeSend'){beforeSend=payload;return;}if(type==='event'){const data={type:'event',url:location.href,...payload};const clean=beforeSend?beforeSend(data):data;if(clean)window.__vercelSent.push(clean)}};queue.forEach(args=>window.va(...args));window.vaq=[]})()`;
 
+function interceptAnalytics(request, formOutcome, requests) {
+  const url = request.url();
+  if (url.startsWith('https://www.googletagmanager.com/gtag/js')) return { contentType: 'application/javascript', body: googleTag };
+  if (url.includes('formspree.io/')) return { status: formOutcome === 'success' ? 200 : 422, contentType: 'application/json', body: formOutcome === 'success' ? '{"next":"/mock-success"}' : '{"errors":[{"code":"TYPE_EMAIL","field":"contactEmail: ","message":"private@example.com"},{"message":"Test form failure"}]}' };
+  if (/google-analytics\.com|analytics\.google\.com|doubleclick\.net|googleadservices\.com|googlesyndication\.com|google\.com/.test(url)) { requests.push({ url, body: request.postData() || '' }); return { status: 204 }; }
+  return undefined;
+}
+
 (async () => {
+  const playwright = await import(process.env.GA4_PLAYWRIGHT_MODULE || 'playwright');
+  const { chromium } = playwright.default ?? playwright;
   const browser = await chromium.launch({ headless: true, ...(process.env.GA4_CHROMIUM_EXECUTABLE ? {executablePath:process.env.GA4_CHROMIUM_EXECUTABLE} : {}) });
   const requests = [];
   const wireNames=()=>new Set(requests.flatMap(request=>{
@@ -34,9 +43,8 @@ const vercelStub = `(()=>{let beforeSend;const queue=window.vaq||[];window.__ver
     const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, ...options });
     await context.route('**/*', async route => {
       const url = route.request().url();
-      if (url.startsWith('https://www.googletagmanager.com/gtag/js')) return route.fulfill({ contentType: 'application/javascript', body: googleTag });
-      if (url.includes('formspree.io/')) return route.fulfill({ status: formOutcome === 'success' ? 200 : 422, contentType: 'application/json', body: formOutcome === 'success' ? '{"next":"/mock-success"}' : '{"errors":[{"code":"TYPE_EMAIL","field":"contactEmail: ","message":"private@example.com"},{"message":"Test form failure"}]}' });
-      if (/google-analytics\.com|analytics\.google\.com|doubleclick\.net|googleadservices\.com|googlesyndication\.com|google\.com/.test(url)) { requests.push({ url, body: route.request().postData() || '' }); return route.fulfill({ status: 204 }); }
+      const response = interceptAnalytics(route.request(), formOutcome, requests);
+      if (response) return route.fulfill(response);
       if (url.includes('/_vercel/')) { vendorLoads.push(url); return route.fulfill({contentType:'application/javascript',body:url.includes('/insights/')?vercelStub:'window.si=function(){};'}); }
       if (url.startsWith(base)) return route.continue();
       return route.abort();

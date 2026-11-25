@@ -14,7 +14,7 @@ test('analytics discovers added posts and rejects removed posts at config load',
   const previous = process.env.NEXT_PUBLIC_BLOG_IDS;
   const loadSanitizer = () => {
     jest.resetModules();
-    const config = jest.requireActual('../../next.config.js');
+    const config = jest.requireActual('../../next.config.mjs').default;
     process.env.NEXT_PUBLIC_BLOG_IDS = config.env.NEXT_PUBLIC_BLOG_IDS;
     return jest.requireActual('@/util/analyticsPrivacy').sanitizeAnalyticsUrl;
   };
