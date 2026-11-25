@@ -1,43 +1,287 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="18" failures="0" errors="0" time="1.698">
-  <testsuite name="page SEO contracts" errors="0" failures="0" skipped="0" timestamp="2026-10-13T22:09:20" time="0.553" tests="9">
-    <testcase classname="page SEO contracts loads the four fixed, source-backed homepage projects in editorial order" name="page SEO contracts loads the four fixed, source-backed homepage projects in editorial order" time="0.011">
+<testsuites name="jest tests" tests="114" failures="0" errors="0" time="7.968">
+  <testsuite name="page SEO contracts" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:14" time="1.628" tests="9">
+    <testcase classname="page SEO contracts loads the four fixed, source-backed homepage projects in editorial order" name="page SEO contracts loads the four fixed, source-backed homepage projects in editorial order" time="0.035">
     </testcase>
-    <testcase classname="page SEO contracts publishes complete, unique metadata for every indexable top-level page" name="page SEO contracts publishes complete, unique metadata for every indexable top-level page" time="0.024">
+    <testcase classname="page SEO contracts publishes complete, unique metadata for every indexable top-level page" name="page SEO contracts publishes complete, unique metadata for every indexable top-level page" time="0.049">
     </testcase>
-    <testcase classname="page SEO contracts publishes complete metadata for every blog post" name="page SEO contracts publishes complete metadata for every blog post" time="0.009">
+    <testcase classname="page SEO contracts publishes complete metadata for every blog post" name="page SEO contracts publishes complete metadata for every blog post" time="0.007">
     </testcase>
-    <testcase classname="page SEO contracts gives every shared route its own branded preview and route-specific copy" name="page SEO contracts gives every shared route its own branded preview and route-specific copy" time="0.01">
+    <testcase classname="page SEO contracts gives every shared route its own branded preview and route-specific copy" name="page SEO contracts gives every shared route its own branded preview and route-specific copy" time="0.015">
     </testcase>
     <testcase classname="page SEO contracts keeps local article images renderable and legacy project links resolved" name="page SEO contracts keeps local article images renderable and legacy project links resolved" time="0.001">
     </testcase>
-    <testcase classname="page SEO contracts keeps the custom 404 out of search indexes" name="page SEO contracts keeps the custom 404 out of search indexes" time="0.002">
+    <testcase classname="page SEO contracts keeps the custom 404 out of search indexes" name="page SEO contracts keeps the custom 404 out of search indexes" time="0.006">
     </testcase>
-    <testcase classname="page SEO contracts keeps legacy article media in supported Markdown rather than displaying raw HTML" name="page SEO contracts keeps legacy article media in supported Markdown rather than displaying raw HTML" time="0.001">
+    <testcase classname="page SEO contracts keeps legacy article media in supported Markdown rather than displaying raw HTML" name="page SEO contracts keeps legacy article media in supported Markdown rather than displaying raw HTML" time="0.003">
     </testcase>
-    <testcase classname="page SEO contracts keeps the server error page out of search indexes" name="page SEO contracts keeps the server error page out of search indexes" time="0">
+    <testcase classname="page SEO contracts keeps the server error page out of search indexes" name="page SEO contracts keeps the server error page out of search indexes" time="0.001">
     </testcase>
-    <testcase classname="sitemap generator excludes redirects and emits last modification dates" name="sitemap generator excludes redirects and emits last modification dates" time="0.003">
+    <testcase classname="sitemap generator excludes redirects and emits last modification dates" name="sitemap generator excludes redirects and emits last modification dates" time="0.013">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-13T22:09:21" time="0.691" tests="9">
-    <testcase classname=" keeps one form with the existing Formspree fields and submission event" name=" keeps one form with the existing Formspree fields and submission event" time="0.064">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:16" time="0.45" tests="9">
+    <testcase classname=" keeps one form with the existing Formspree fields and submission event" name=" keeps one form with the existing Formspree fields and submission event" time="0.082">
     </testcase>
-    <testcase classname=" shows the existing success message and lead event" name=" shows the existing success message and lead event" time="0.003">
+    <testcase classname=" shows the existing success message and lead event" name=" shows the existing success message and lead event" time="0.006">
     </testcase>
-    <testcase classname=" retains the form error analytics outcome" name=" retains the form error analytics outcome" time="0.008">
+    <testcase classname=" retains the form error analytics outcome" name=" retains the form error analytics outcome" time="0.014">
     </testcase>
-    <testcase classname=" names the action and announces sending while preventing duplicate submission" name=" names the action and announces sending while preventing duplicate submission" time="0.007">
+    <testcase classname=" names the action and announces sending while preventing duplicate submission" name=" names the action and announces sending while preventing duplicate submission" time="0.01">
     </testcase>
-    <testcase classname=" records first edit without values and deduplicates success across Strict Mode effect replay" name=" records first edit without values and deduplicates success across Strict Mode effect replay" time="0.009">
+    <testcase classname=" records first edit without values and deduplicates success across Strict Mode effect replay" name=" records first edit without values and deduplicates success across Strict Mode effect replay" time="0.015">
     </testcase>
-    <testcase classname=" does not abandon after success and includes pending duration on failure" name=" does not abandon after success and includes pending duration on failure" time="0.007">
+    <testcase classname=" does not abandon after success and includes pending duration on failure" name=" does not abandon after success and includes pending duration on failure" time="0.016">
     </testcase>
-    <testcase classname=" records server field errors and pending failure without copying error text" name=" records server field errors and pending failure without copying error text" time="0.002">
+    <testcase classname=" records server field errors and pending failure without copying error text" name=" records server field errors and pending failure without copying error text" time="0.006">
     </testcase>
-    <testcase classname=" abandons an edited form once across repeated pagehide and unmount" name=" abandons an edited form once across repeated pagehide and unmount" time="0.004">
+    <testcase classname=" abandons an edited form once across repeated pagehide and unmount" name=" abandons an edited form once across repeated pagehide and unmount" time="0.009">
     </testcase>
-    <testcase classname=" deduplicates a server failure during Strict Mode effect replay" name=" deduplicates a server failure during Strict Mode effect replay" time="0.002">
+    <testcase classname=" deduplicates a server failure during Strict Mode effect replay" name=" deduplicates a server failure during Strict Mode effect replay" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:16" time="0.216" tests="9">
+    <testcase classname=" counts visible time only and flushes lifecycle summary once" name=" counts visible time only and flushes lifecycle summary once" time="0.011">
+    </testcase>
+    <testcase classname=" qualifies oversized section exposure for one second, deduplicates and cleans up" name=" qualifies oversized section exposure for one second, deduplicates and cleans up" time="0.011">
+    </testcase>
+    <testcase classname=" never copies visitor text from controls and distinguishes email actions" name=" never copies visitor text from controls and distinguishes email actions" time="0.01">
+    </testcase>
+    <testcase classname=" emits each scroll threshold once and restarts milestones on a new visit" name=" emits each scroll threshold once and restarts milestones on a new visit" time="0.012">
+    </testcase>
+    <testcase classname=" suppresses generic events for explicitly instrumented controls" name=" suppresses generic events for explicitly instrumented controls" time="0.009">
+    </testcase>
+    <testcase classname=" restored BFCache visit emits a new page view and resets engagement milestones" name=" restored BFCache visit emits a new page view and resets engagement milestones" time="0.016">
+    </testcase>
+    <testcase classname=" records disclosure state changes once without copying summary text" name=" records disclosure state changes once without copying summary text" time="0.005">
+    </testcase>
+    <testcase classname=" records article copy intent and printing without collecting copied text" name=" records article copy intent and printing without collecting copied text" time="0.006">
+    </testcase>
+    <testcase classname=" categorizes runtime, resource and rejected-promise errors without their messages" name=" categorizes runtime, resource and rejected-promise errors without their messages" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:17" time="0.212" tests="5">
+    <testcase classname=" moves surviving arbitrary slugs, fades new results, and removes filtered content immediately" name=" moves surviving arbitrary slugs, fades new results, and removes filtered content immediately" time="0.037">
+    </testcase>
+    <testcase classname=" cancels interrupted work and releases animations on unmount" name=" cancels interrupted work and releases animations on unmount" time="0.009">
+    </testcase>
+    <testcase classname=" uses immediate results for reduced motion and cancels when preference changes" name=" uses immediate results for reduced motion and cancels when preference changes" time="0.01">
+    </testcase>
+    <testcase classname=" keeps filtering usable without Web Animations support" name=" keeps filtering usable without Web Animations support" time="0.004">
+    </testcase>
+    <testcase classname=" restarts an interrupted survivor from its current visual position" name=" restarts an interrupted survivor from its current visual position" time="0.008">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:17" time="0.061" tests="12">
+    <testcase classname=" denies all consent before config and sends no automatic page view" name=" denies all consent before config and sends no automatic page view" time="0.003">
+    </testcase>
+    <testcase classname=" restores a valid choice before measurement configuration" name=" restores a valid choice before measurement configuration" time="0.002">
+    </testcase>
+    <testcase classname=" rejects malformed or expired preference {}" name=" rejects malformed or expired preference {}" time="0.001">
+    </testcase>
+    <testcase classname=" rejects malformed or expired preference invalid" name=" rejects malformed or expired preference invalid" time="0.001">
+    </testcase>
+    <testcase classname=" rejects malformed or expired preference {&quot;version&quot;:1,&quot;expires&quot;:1,&quot;analytics&quot;:true,&quot;advertising&quot;:true}" name=" rejects malformed or expired preference {&quot;version&quot;:1,&quot;expires&quot;:1,&quot;analytics&quot;:true,&quot;advertising&quot;:true}" time="0.001">
+    </testcase>
+    <testcase classname=" rejects malformed or expired preference {&quot;version&quot;:1,&quot;expires&quot;:1792263327454,&quot;analytics&quot;:&quot;yes&quot;,&quot;advertising&quot;:false}" name=" rejects malformed or expired preference {&quot;version&quot;:1,&quot;expires&quot;:1792263327454,&quot;analytics&quot;:&quot;yes&quot;,&quot;advertising&quot;:false}" time="0.001">
+    </testcase>
+    <testcase classname=" updates, persists for 180 days, and withdraws independently" name=" updates, persists for 180 days, and withdraws independently" time="0.002">
+    </testcase>
+    <testcase classname=" keeps choice in memory when browser storage unavailable" name=" keeps choice in memory when browser storage unavailable" time="0.001">
+    </testcase>
+    <testcase classname=" invalid measurement ID does not configure a tag or queue measurements" name=" invalid measurement ID does not configure a tag or queue measurements" time="0.001">
+    </testcase>
+    <testcase classname=" new in-memory preference wins over stale stored value when storage writes fail" name=" new in-memory preference wins over stale stored value when storage writes fail" time="0">
+    </testcase>
+    <testcase classname=" clearing preferences in another tab restores denied defaults" name=" clearing preferences in another tab restores denied defaults" time="0">
+    </testcase>
+    <testcase classname=" does not initialize measurement for speculative prerenders before activation" name=" does not initialize measurement for speculative prerenders before activation" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:17" time="0.055" tests="10">
+    <testcase classname=" removes personal data, unsupported fields, and arbitrary URL query strings" name=" removes personal data, unsupported fields, and arbitrary URL query strings" time="0.003">
+    </testcase>
+    <testcase classname=" keeps acquisition parameters and removes unsafe attribution and unknown landing paths" name=" keeps acquisition parameters and removes unsafe attribution and unknown landing paths" time="0.001">
+    </testcase>
+    <testcase classname=" enforces GA4 payload size, retaining required context before extras" name=" enforces GA4 payload size, retaining required context before extras" time="0.001">
+    </testcase>
+    <testcase classname=" search event records query length rather than text" name=" search event records query length rather than text" time="0.002">
+    </testcase>
+    <testcase classname=" recognizes configured locale and strips credentials from external referrers" name=" recognizes configured locale and strips credentials from external referrers" time="0">
+    </testcase>
+    <testcase classname=" retains SDK-generated Web Vital identifiers without allowing raw error descriptions" name=" retains SDK-generated Web Vital identifiers without allowing raw error descriptions" time="0.001">
+    </testcase>
+    <testcase classname=" external referrer context preserves acquisition domain without private path text" name=" external referrer context preserves acquisition domain without private path text" time="0">
+    </testcase>
+    <testcase classname=" internal UI actions use a custom event rather than claiming an enhanced outbound click" name=" internal UI actions use a custom event rather than claiming an enhanced outbound click" time="0.001">
+    </testcase>
+    <testcase classname=" preserves all five catalog matches even when the combined list exceeds GA4 string length" name=" preserves all five catalog matches even when the combined list exceeds GA4 string length" time="0">
+    </testcase>
+    <testcase classname=" preserves opaque advertising IDs longer than custom parameter values in native landing URLs" name=" preserves opaque advertising IDs longer than custom parameter values in native landing URLs" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Navbar Component" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:17" time="0.365" tests="6">
+    <testcase classname="Navbar Component reveals after the hero boundary and hides again when returning to it" name="Navbar Component reveals after the hero boundary and hides again when returning to it" time="0.017">
+    </testcase>
+    <testcase classname="Navbar Component keeps archive navigation and current page semantics correct on inner routes" name="Navbar Component keeps archive navigation and current page semantics correct on inner routes" time="0.013">
+    </testcase>
+    <testcase classname="Navbar Component renders the brand name correctly" name="Navbar Component renders the brand name correctly" time="0.007">
+    </testcase>
+    <testcase classname="Navbar Component renders navigation links" name="Navbar Component renders navigation links" time="0.004">
+    </testcase>
+    <testcase classname="Navbar Component traps focus in the portfolio menu and restores focus when Escape closes it" name="Navbar Component traps focus in the portfolio menu and restores focus when Escape closes it" time="0.055">
+    </testcase>
+    <testcase classname=" records mobile navigation opening and Escape closure" name=" records mobile navigation opening and Escape closure" time="0.038">
+    </testcase>
+  </testsuite>
+  <testsuite name="blog sharing" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:17" time="0.222" tests="5">
+    <testcase classname="blog sharing provides platform composers with fresh campaign tags on canonical production URLs" name="blog sharing provides platform composers with fresh campaign tags on canonical production URLs" time="0.04">
+    </testcase>
+    <testcase classname="blog sharing records article, destination, placement and time for composer clicks" name="blog sharing records article, destination, placement and time for composer clicks" time="0.01">
+    </testcase>
+    <testcase classname="blog sharing encodes email subject spaces for mail clients and retains tagged link in body" name="blog sharing encodes email subject spaces for mail clients and retains tagged link in body" time="0.006">
+    </testcase>
+    <testcase classname="blog sharing copies Instagram-tagged link and announces manual posting instructions" name="blog sharing copies Instagram-tagged link and announces manual posting instructions" time="0.024">
+    </testcase>
+    <testcase classname="blog sharing offers selectable tagged URL when clipboard fails without reporting a successful share" name="blog sharing offers selectable tagged URL when clipboard fails without reporting a successful share" time="0.047">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:18" time="0.439" tests="4">
+    <testcase classname=" normalizes duplicate technology aliases into one option" name=" normalizes duplicate technology aliases into one option" time="0">
+    </testcase>
+    <testcase classname=" leads with eight selected projects, searches the whole archive, and recovers from empty results" name=" leads with eight selected projects, searches the whole archive, and recovers from empty results" time="0.135">
+    </testcase>
+    <testcase classname=" records project collapse, archive and clear state, and search catalog results without free text" name=" records project collapse, archive and clear state, and search catalog results without free text" time="0.115">
+    </testcase>
+    <testcase classname=" opening a search result preserves search when its shallow URL update arrives" name=" opening a search result preserves search when its shallow URL update arrives" time="0.05">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:18" time="0.167" tests="2">
+    <testcase classname=" owns exactly one page view through Strict Mode, route, hash, shallow and failed transitions" name=" owns exactly one page view through Strict Mode, route, hash, shallow and failed transitions" time="0.025">
+    </testcase>
+    <testcase classname=" waits for animated page replacement before capturing the next page title" name=" waits for animated page replacement before capturing the next page title" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="analytics utilities" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:18" time="0.073" tests="3">
+    <testcase classname="analytics utilities maps routes to stable page types" name="analytics utilities maps routes to stable page types" time="0.007">
+    </testcase>
+    <testcase classname="analytics utilities sends a GA page_view with page context in production" name="analytics utilities sends a GA page_view with page context in production" time="0.004">
+    </testcase>
+    <testcase classname="analytics utilities queues share commands before the Google tag loads in gtag arguments format" name="analytics utilities queues share commands before the Google tag loads in gtag arguments format" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:19" time="0.121" tests="5">
+    <testcase classname=" aligns a direct hash URL once the page has mounted without smooth-scroll competition" name=" aligns a direct hash URL once the page has mounted without smooth-scroll competition" time="0.006">
+    </testcase>
+    <testcase classname=" aligns native hash changes and ignores missing or malformed targets" name=" aligns native hash changes and ignores missing or malformed targets" time="0.01">
+    </testcase>
+    <testcase classname=" cancels pending alignment on unmount" name=" cancels pending alignment on unmount" time="0.004">
+    </testcase>
+    <testcase classname=" aligns client route changes after the entering page commits" name=" aligns client route changes after the entering page commits" time="0.006">
+    </testcase>
+    <testcase classname=" realigns when the cinematic intro finishes expanding" name=" realigns when the cinematic intro finishes expanding" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="ProjectListItem" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:19" time="0.167" tests="4">
+    <testcase classname="ProjectListItem shows original notes immediately for selected projects without a second disclosure" name="ProjectListItem shows original notes immediately for selected projects without a second disclosure" time="0.011">
+    </testcase>
+    <testcase classname="ProjectListItem shows build-rendered project content when expanded" name="ProjectListItem shows build-rendered project content when expanded" time="0.006">
+    </testcase>
+    <testcase classname="ProjectListItem keeps project toggle clickable" name="ProjectListItem keeps project toggle clickable" time="0.004">
+    </testcase>
+    <testcase classname=" connects the toggle to its detail panel and hides closing content from assistive technology" name=" connects the toggle to its detail panel and hides closing content from assistive technology" time="0.02">
+    </testcase>
+  </testsuite>
+  <testsuite name="githubProjectSync" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:19" time="0.096" tests="4">
+    <testcase classname="githubProjectSync builds markdown from README frontmatter with topic tags" name="githubProjectSync builds markdown from README frontmatter with topic tags" time="0.005">
+    </testcase>
+    <testcase classname="githubProjectSync falls back to repository metadata when README data is missing" name="githubProjectSync falls back to repository metadata when README data is missing" time="0.002">
+    </testcase>
+    <testcase classname="githubProjectSync extracts an excerpt from the first meaningful paragraph" name="githubProjectSync extracts an excerpt from the first meaningful paragraph" time="0.001">
+    </testcase>
+    <testcase classname="githubProjectSync excludes repos tagged with nirmalhk7" name="githubProjectSync excludes repos tagged with nirmalhk7" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:19" time="0.15" tests="2">
+    <testcase classname=" records palette keyboard journey and safe settled results" name=" records palette keyboard journey and safe settled results" time="0.022">
+    </testcase>
+    <testcase classname=" résumé command routes to the embedded résumé page" name=" résumé command routes to the embedded résumé page" time="0.016">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:19" time="0.09" tests="2">
+    <testcase classname=" reveals intersecting content once without hiding content before observation" name=" reveals intersecting content once without hiding content before observation" time="0.007">
+    </testcase>
+    <testcase classname=" keeps content readable when IntersectionObserver is unavailable" name=" keeps content readable when IntersectionObserver is unavailable" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:19" time="0.141" tests="1">
+    <testcase classname=" keeps server and initial browser page structure identical for direct anchor URLs" name=" keeps server and initial browser page structure identical for direct anchor URLs" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:19" time="0.17" tests="2">
+    <testcase classname=" offers independent consent, remembers choice and allows withdrawal through preferences" name=" offers independent consent, remembers choice and allows withdrawal through preferences" time="0.029">
+    </testcase>
+    <testcase classname=" synchronizes consent changed in another tab" name=" synchronizes consent changed in another tab" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="renderProjectMarkdown" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:20" time="1.182" tests="3">
+    <testcase classname="renderProjectMarkdown renders project prose without competing with the page heading" name="renderProjectMarkdown renders project prose without competing with the page heading" time="0.401">
+    </testcase>
+    <testcase classname="renderProjectMarkdown downlevels nested headings and caps the deepest level at h6" name="renderProjectMarkdown downlevels nested headings and caps the deepest level at h6" time="0.395">
+    </testcase>
+    <testcase classname="renderProjectMarkdown returns empty HTML when a project has no body content" name="renderProjectMarkdown returns empty HTML when a project has no body content" time="0.306">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:21" time="0.147" tests="4">
+    <testcase classname=" /resume stays an embedded page in development" name=" /resume stays an embedded page in development" time="0.001">
+    </testcase>
+    <testcase classname=" /resume stays an embedded page in production" name=" /resume stays an embedded page in production" time="0">
+    </testcase>
+    <testcase classname=" shows embedded résumé immediately" name=" shows embedded résumé immediately" time="0.009">
+    </testcase>
+    <testcase classname=" hiring résumé link opens /resume and records a view instead of a download" name=" hiring résumé link opens /resume and records a view instead of a download" time="0.011">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:21" time="0.1" tests="2">
+    <testcase classname=" cycles requested topics vertically and returns to infrastructure" name=" cycles requested topics vertically and returns to infrastructure" time="0.01">
+    </testcase>
+    <testcase classname=" keeps infrastructure static when reduced motion is requested" name=" keeps infrastructure static when reduced motion is requested" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="loadMarkdown util" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:21" time="0.052" tests="2">
+    <testcase classname="loadMarkdown util loads every markdown file under content without throwing" name="loadMarkdown util loads every markdown file under content without throwing" time="0.008">
+    </testcase>
+    <testcase classname="loadMarkdown util derives a useful excerpt from body content when no summary is provided" name="loadMarkdown util derives a useful excerpt from body content when no summary is provided" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="createRafThrottled" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:21" time="0.04" tests="2">
+    <testcase classname="createRafThrottled runs once per frame with the latest event arguments" name="createRafThrottled runs once per frame with the latest event arguments" time="0.001">
+    </testcase>
+    <testcase classname="createRafThrottled cancels a queued callback during cleanup" name="createRafThrottled cancels a queued callback during cleanup" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:21" time="0.122" tests="2">
+    <testcase classname=" records drawer opening and closure by catalog ID" name=" records drawer opening and closure by catalog ID" time="0.007">
+    </testcase>
+    <testcase classname=" records section navigator destination without DOM text" name=" records section navigator destination without DOM text" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:21" time="0.048" tests="1">
+    <testcase classname=" renders the hero and every engineering chapter in static HTML before motion loads" name=" renders the hero and every engineering chapter in static HTML before motion loads" time="0.009">
+    </testcase>
+  </testsuite>
+  <testsuite name="Jumbotron Component" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:21" time="0.24" tests="1">
+    <testcase classname="Jumbotron Component renders Max Jumbotron correctly" name="Jumbotron Component renders Max Jumbotron correctly" time="0.11">
+    </testcase>
+  </testsuite>
+  <testsuite name="loadRandomQuote" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:22" time="0.068" tests="1">
+    <testcase classname="loadRandomQuote returns a quote from the supplied YAML file" name="loadRandomQuote returns a quote from the supplied YAML file" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-10-17T18:55:22" time="0.056" tests="2">
+    <testcase classname=" tracking catalog covers published blog content" name=" tracking catalog covers published blog content" time="0.001">
+    </testcase>
+    <testcase classname=" tracking catalog covers published projects content" name=" tracking catalog covers published projects content" time="0">
     </testcase>
   </testsuite>
 </testsuites>

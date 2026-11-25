@@ -1,17 +1,19 @@
-const fs = require('fs');
-const path = require('path');
-const yaml = require('js-yaml');
-const matter = require('gray-matter');
+import fs from 'node:fs';
+import path from 'node:path';
+import yaml from 'js-yaml';
+import matter from 'gray-matter';
 
-const CONTENT_DIR = path.join(__dirname, '../content');
+const CONTENT_DIR = path.join(import.meta.dirname, '../content');
 const PROJECTS_DIR = path.join(CONTENT_DIR, 'projects');
 const PROJECT_SYNC_MANIFEST = path.join(PROJECTS_DIR, '.github-sync.json');
-const OUTPUT_FILE = path.join(__dirname, '../public/llms.txt');
+const OUTPUT_FILE = path.join(import.meta.dirname, '../public/llms.txt');
 
 const REPLACEMENTS = {
   'University of Colorado Boulder': 'a major US University',
+  'Visa Inc.': 'a global financial services company',
   'Visa Inc': 'a global financial services company',
   'ZOLL Data Systems': 'a healthcare data systems company',
+  'Twizzr.com': 'a technology startup',
   'Twzzr': 'a technology startup',
   'Boulder, CO': 'USA',
   'NITK': 'a technical institute',
@@ -91,63 +93,73 @@ function loadProjectMarkdownFiles() {
   return generated.length > 0 ? generated : loaded;
 }
 
-function generateLLMS() {
-  let content = '# Nirmal Khedkar\n\n';
-  content += 'Expert Software Engineer specializing in full-stack development, distributed systems, and mobile applications.\n\n';
-
-  // 1. Load Main Content / Summary
+function appendSummary(append) {
   try {
     const mainContentPath = path.join(CONTENT_DIR, 'yml/mainContent.md');
     const mainContentRaw = fs.readFileSync(mainContentPath, 'utf8');
     const { content: mainBody } = matter(mainContentRaw);
-    content += '## Summary\n' + sanitize(mainBody) + '\n\n';
+    append('## Summary\n' + sanitize(mainBody) + '\n\n');
   } catch (e) {
     console.error('Error loading mainContent.md', e);
   }
+}
 
-  // 2. Load Skills
+function appendSkills(append) {
   try {
     const skillsPath = path.join(CONTENT_DIR, 'yml/skills.yaml');
     const skills = yaml.load(fs.readFileSync(skillsPath, 'utf8'));
-    content += '## Skills\n';
+    append('## Skills\n');
     const skillList = skills.map(s => s.name).join(', ');
-    content += skillList + '\n\n';
+    append(skillList + '\n\n');
   } catch (e) {
     console.error('Error loading skills.yaml', e);
   }
+}
 
-  // 3. Load Work Experience
+function appendExperience(append) {
   try {
     const workPath = path.join(CONTENT_DIR, 'yml/workexperiences.yaml');
     const experiences = yaml.load(fs.readFileSync(workPath, 'utf8'));
-    content += '## Experience\n\n';
+    append('## Experience\n\n');
     experiences.forEach(exp => {
-      content += `### ${sanitize(exp.post)} | ${sanitize(exp.company)} | ${exp.timeframe}\n`;
+      append(`### ${sanitize(exp.post)} | ${sanitize(exp.company)} | ${exp.timeframe}\n`);
       if (Array.isArray(exp.description)) {
         exp.description.forEach(bullet => {
-          content += `- ${sanitize(bullet)}\n`;
+          append(`- ${sanitize(bullet)}\n`);
         });
       }
-      content += '\n';
+      append('\n');
     });
   } catch (e) {
     console.error('Error loading workexperiences.yaml', e);
   }
+}
 
-  // 4. Load Projects
+function appendProjects(append) {
   try {
-    content += '## Projects\n\n';
+    append('## Projects\n\n');
 
     loadProjectMarkdownFiles().forEach(project => {
       if (project.data.title) {
-        content += `### ${project.data.title}\n`;
+        append(`### ${project.data.title}\n`);
         const summary = getProjectExcerpt(project.body, project.data.summary);
-        content += sanitize(summary) + '\n\n';
+        append(sanitize(summary) + '\n\n');
       }
     });
   } catch (e) {
     console.error('Error loading projects', e);
   }
+}
+
+function generateLLMS() {
+  let content = '# Nirmal Khedkar\n\n';
+  content += 'Expert Software Engineer specializing in full-stack development, distributed systems, and mobile applications.\n\n';
+  const append = (chunk) => { content += chunk; };
+
+  appendSummary(append);
+  appendSkills(append);
+  appendExperience(append);
+  appendProjects(append);
 
   // 5. Hardcoded Links (Safe)
   content += '## Profiles\n';

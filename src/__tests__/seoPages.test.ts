@@ -178,7 +178,7 @@ describe("page SEO contracts", () => {
 describe("sitemap generator", () => {
   it("excludes redirects and emits last modification dates", () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { buildSitemap } = require("../../scripts/generate-sitemap");
+    const { buildSitemap } = require("../../scripts/generate-sitemap.mjs");
     const xml = buildSitemap({
       pagesDir: path.join(process.cwd(), "src/pages"),
       blogDir: path.join(process.cwd(), "content/blog"),

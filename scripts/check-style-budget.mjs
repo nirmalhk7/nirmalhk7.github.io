@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /** Enforce the migration's actual goal: fewer handwritten stylesheet lines. */
-const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const path = require('node:path');
-const { execFileSync } = require('node:child_process');
-const root = path.resolve(__dirname, '..');
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+const root = path.resolve(import.meta.dirname, '..');
 const revision = process.argv[2] || '2621bf2ebe81889b055442606c66fd918d2599f8';
 const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' });
 const baselineFiles = git('ls-tree', '-r', '--name-only', revision, 'src').trim().split('\n').filter(file => /\.(css|scss)$/.test(file));

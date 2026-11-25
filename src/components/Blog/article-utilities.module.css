@@ -1,0 +1,40 @@
+.articleMeta {
+  @apply flex flex-wrap gap-[12px_24px] mb-[34px] text-portfolio-muted [font:12px_'Portfolio_Plex_Mono',_ui-monospace,_monospace] uppercase;
+}
+
+.articleBody {
+  @apply w-full m-[0] text-portfolio-ink text-[clamp(17px,_1.5vw,_20px)] leading-[1.7] [&_:where(p,_ul,_ol,_blockquote,_pre,_figure)]:m-[0_0_1.4em]
+    [&_:where(h1,_h2,_h3,_h4,_h5,_h6)]:m-[1.7em_0_0.6em] [&_:where(h1,_h2,_h3,_h4,_h5,_h6)]:text-portfolio-ink [&_:where(h1,_h2,_h3,_h4,_h5,_h6)]:font-display
+    [&_:where(h1,_h2,_h3,_h4,_h5,_h6)]:font-semibold [&_:where(h1,_h2,_h3,_h4,_h5,_h6)]:tracking-[-0.02em] [&_:where(h1,_h2,_h3,_h4,_h5,_h6)]:leading-tight
+    [&_:where(h1,_h2,_h3,_h4,_h5,_h6)]:normal-case [&_:where(h1,_h2,_h3,_h4,_h5,_h6)]:[text-wrap:balance] [&_:where(h1,_h2)]:text-[clamp(30px,_2.7vw,_36px)]
+    [&_h3]:text-[clamp(25px,_2.3vw,_30px)] [&_h4]:text-[clamp(22px,_2vw,_25px)] [&_h5]:text-[20px] [&_h6]:text-[18px] [&_:where(ul,_ol)]:pl-[1.4em]
+    [&_:where(ul,_ol)]:[list-style:revert] [&_li]:mb-[0.65em] [&_li]:leading-[inherit] [&_li:last-child]:mb-[0] [&_li_>_p]:m-[0] [&_li_>_p]:leading-[inherit]
+    [&_li_>_p_+_p]:mt-[0.65em] [&_li_>_:where(ul,_ol)]:m-[0.65em_0_0] [&_a]:text-portfolio-red-hover [&_a]:underline [&_a]:underline-offset-[3px]
+    [&_a:hover]:text-portfolio-ink [&_blockquote]:m-[2em_0] [&_blockquote]:p-[8px_0_8px_28px] [&_blockquote]:[border-left:1px_solid_rgba(201,_54,_43,_0.48)]
+    [&_blockquote]:text-[#4c4c4c] [&_blockquote]:italic [&_blockquote::before]:hidden [&_blockquote_p]:text-inherit [&_blockquote_p]:[font:inherit]
+    [&_blockquote_p]:leading-[inherit] [&_:where(pre,_code)]:overflow-x-auto [&_:where(pre,_code)]:[font-family:'Portfolio_Plex_Mono',_ui-monospace,_monospace]
+    [&_:where(pre,_code)]:text-[0.82em] [&_pre]:p-[20px] [&_pre]:bg-portfolio-night [&_pre]:text-white [&_code]:[border:0] [&_code]:bg-[#e7e4dd] [&_code]:text-inherit
+    [&_pre_code]:p-0 [&_pre_code]:rounded-none [&_pre_code]:bg-transparent [&_pre_code]:text-inherit;
+}
+
+.articleImage {
+  @apply relative block w-full aspect-[16/9] m-[36px_0] overflow-hidden bg-[#d7d4cd] [&_img]:object-contain;
+}
+
+.articleFooter {
+  @apply m-[70px_0_0] pt-[24px] [border-top:1px_solid_rgba(23,_23,_23,_0.2)] [&_p]:text-portfolio-muted [&_p]:text-[13px] [&_a]:text-portfolio-ink;
+}
+
+.shareLinks {
+  @apply flex flex-wrap gap-[8px] m-[16px_0_30px] [&_a]:inline-flex [&_a]:min-w-[44px] [&_a]:min-h-[44px] [&_a]:items-center [&_a]:justify-center
+    [&_a]:[border:1px_solid_rgba(23,_23,_23,_0.24)] [&_a]:text-portfolio-ink [&_a]:text-body-px [&_a:hover]:border-portfolio-red [&_a:hover]:text-portfolio-red
+    [&_button]:min-h-[44px] [&_button]:p-[0_16px] [&_button]:[border:1px_solid_rgba(23,_23,_23,_0.24)] [&_button]:text-portfolio-ink [&_button]:bg-transparent
+    [&_button]:[font:inherit] [&_button]:cursor-pointer [&_button:hover]:border-portfolio-red [&_button:hover]:text-portfolio-red
+    [&_:is(a,_button):focus-visible]:[outline:2px_solid_var(--portfolio-red)] [&_:is(a,_button):focus-visible]:outline-offset-4 [&_button:disabled]:opacity-60
+    [&_button:disabled]:cursor-wait;
+}
+
+.shareCopyInput {
+  @apply [&:focus-visible]:[outline:2px_solid_var(--portfolio-red)] [&:focus-visible]:outline-offset-4 w-full min-h-[44px] p-[8px] mt-[8px] [border:1px_solid_var(--portfolio-ink)]
+    bg-transparent text-portfolio-ink [font:inherit];
+}

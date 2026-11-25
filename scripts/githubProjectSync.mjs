@@ -1,49 +1,17 @@
-const fs = require("fs");
-const path = require("path");
-const matter = require("gray-matter");
+import fs from "node:fs";
+import path from "node:path";
+import matter from "gray-matter";
+import { loadEnvironmentFiles } from "./projectSyncEnvironment.mjs";
+import { buildProjectMarkdown, extractExcerpt, resolveProjectFrontmatter, shouldIncludeRepo } from "./projectMarkdown.mjs";
 
 const OWNER = "nirmalhk7";
 const API_BASE = "https://api.github.com";
-const CONTENT_DIR = path.join(__dirname, "../content/projects");
+const CONTENT_DIR = path.join(import.meta.dirname, "../content/projects");
 const SYNC_MANIFEST_PATH = path.join(CONTENT_DIR, ".github-sync.json");
 const ENV_FILES = [
-  path.join(__dirname, "../.env.local"),
-  path.join(__dirname, "../.env"),
+  path.join(import.meta.dirname, "../.env.local"),
+  path.join(import.meta.dirname, "../.env"),
 ];
-
-const loadLocalEnv = () => {
-  for (const envFile of ENV_FILES) {
-    if (!fs.existsSync(envFile)) {
-      continue;
-    }
-
-    const parsed = fs.readFileSync(envFile, "utf8").split(/\r?\n/);
-
-    for (const line of parsed) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith("#")) {
-        continue;
-      }
-
-      const equalsIndex = trimmed.indexOf("=");
-      if (equalsIndex === -1) {
-        continue;
-      }
-
-      const key = trimmed.slice(0, equalsIndex).replace(/^export\s+/, "").trim();
-      if (!key || process.env[key]) {
-        continue;
-      }
-
-      let value = trimmed.slice(equalsIndex + 1).trim();
-      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
-        value = value.slice(1, -1);
-      }
-
-      process.env[key] = value;
-    }
-  }
-};
 
 const defaultHeaders = (token) => {
   const headers = {
@@ -57,65 +25,6 @@ const defaultHeaders = (token) => {
   }
 
   return headers;
-};
-
-const isString = (value) => typeof value === "string" && value.trim().length > 0;
-
-const asString = (value, fallback = "") => (isString(value) ? value.trim() : fallback);
-
-const asBoolean = (value, fallback = false) => {
-  if (typeof value === "boolean") {
-    return value;
-  }
-
-  if (typeof value === "string") {
-    if (value.toLowerCase() === "true") return true;
-    if (value.toLowerCase() === "false") return false;
-  }
-
-  return fallback;
-};
-
-const asStringArray = (value) => {
-  if (!Array.isArray(value)) {
-    return [];
-  }
-
-  return value.filter(isString).map((item) => item.trim());
-};
-
-const shouldIncludeRepo = (topics) => !asStringArray(topics).includes("nirmalhk7");
-
-const cleanExcerptText = (value) =>
-  value
-    .replace(/^#{1,6}\s+/gm, "")
-    .replace(/\[(.*?)\]\((.*?)\)/g, "$1")
-    .replace(/[*_`]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-
-const extractExcerpt = (content) => {
-  if (!isString(content)) {
-    return "";
-  }
-
-  const paragraphs = content
-    .split(/\n\s*\n/)
-    .map((paragraph) => paragraph.trim())
-    .filter(Boolean);
-
-  for (const paragraph of paragraphs) {
-    if (/^#{1,6}\s+.+$/.test(paragraph) && !paragraph.includes("\n")) {
-      continue;
-    }
-
-    const cleaned = cleanExcerptText(paragraph);
-    if (cleaned) {
-      return cleaned;
-    }
-  }
-
-  return "";
 };
 
 const fetchMaybeJson = async (url, token) => {
@@ -205,54 +114,6 @@ const fetchTopics = async (owner, repoName, token) => {
   return payload?.names || [];
 };
 
-const resolveProjectFrontmatter = (repo, readmeFrontmatter, topics) => {
-  const title = asString(readmeFrontmatter.title, repo.name);
-  const summary = asString(readmeFrontmatter.summary);
-  const special = asBoolean(readmeFrontmatter.special, false);
-  const url = asString(readmeFrontmatter.url);
-  const homepage = asString(readmeFrontmatter.homepage);
-
-  const frontmatter = {
-    title,
-    tags: asStringArray(topics),
-    special,
-    source: "github",
-  };
-
-  if (summary) {
-    frontmatter.summary = summary;
-  }
-
-  if (url) {
-    frontmatter.url = url;
-  } else if (homepage) {
-    frontmatter.homepage = homepage;
-  } else if (isString(repo.homepage)) {
-    frontmatter.homepage = repo.homepage.trim();
-  } else {
-    frontmatter.url = repo.html_url;
-  }
-
-  return frontmatter;
-};
-
-const buildProjectMarkdown = (repo, readmeFrontmatter, readmeBody, topics) => {
-  const frontmatter = resolveProjectFrontmatter(repo, readmeFrontmatter, topics);
-  const body = isString(readmeBody) && readmeBody.trim().length > 0
-    ? readmeBody.trim()
-    : (isString(repo.description) ? repo.description.trim() : "");
-
-  const markdown = matter.stringify(body, frontmatter).trimEnd() + "\n";
-
-  return {
-    fileName: `${repo.name}.md`,
-    frontmatter,
-    body,
-    markdown,
-    excerpt: extractExcerpt(body),
-  };
-};
-
 const removePreviouslyGeneratedProjects = () => {
   if (!fs.existsSync(CONTENT_DIR)) {
     return;
@@ -281,7 +142,7 @@ const writeProjectFile = (project) => {
 };
 
 const syncGithubProjects = async () => {
-  loadLocalEnv();
+  loadEnvironmentFiles(ENV_FILES);
   const token =
     process.env.GITHUB_TOKEN ||
     process.env.GH_TOKEN ||
@@ -333,7 +194,7 @@ const syncGithubProjects = async () => {
   }
 };
 
-module.exports = {
+export {
   syncGithubProjects,
   buildProjectMarkdown,
   resolveProjectFrontmatter,

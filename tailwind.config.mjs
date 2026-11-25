@@ -1,5 +1,18 @@
+import plugin from "tailwindcss/plugin.js";
+import { componentUtilities } from "./tailwind-component-utilities.mjs";
+
+const composedUtilities = plugin(({ addUtilities }) => {
+  const rules = Object.fromEntries(
+    Object.entries(componentUtilities).map(([name, utilities]) => [
+      `.${name}`,
+      { [`@apply ${utilities.join(" ")}`]: {} },
+    ]),
+  );
+  addUtilities(rules);
+});
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const tailwindConfig = {
   content: ["src/**/*.{js,tsx,ts,jsx}"],
   theme: {
     screens: {
@@ -69,5 +82,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [composedUtilities],
 };
+
+export default tailwindConfig;

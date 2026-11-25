@@ -8,6 +8,8 @@ import { selectedProjects } from '@/util/projectCuration';
 import { BlogFrontmatterInterface } from "@/interfaces/blog";
 import { ProjectInterface } from '@/interfaces/projects';
 import { PageHero, PageSection, editorialStyles as styles } from "@/components/Site/Editorial";
+import errorStyles from "@/components/Site/error.styles";
+import { useSearchClear } from '@/hooks/useSearchClear';
 
 interface SearchItem {
   title: string;
@@ -19,8 +21,24 @@ interface NotFoundPageProps extends DefaultPageProps {
   searchIndex: SearchItem[];
 }
 
+function SearchResults({ query, items }: { query: string; items: SearchItem[] }) {
+  return (
+    <div className={errorStyles.searchResults} aria-live="polite">
+      {items.length ? items.map((item) => (
+        <Link key={item.url} href={item.url} onClick={() => {
+          if (item.url === "/resume") trackResumeOpen("404_search_result");
+          else trackSelectContent(item.type, item.url, { source: "404_search_result" });
+        }} data-analytics-skip-global="true">
+          <span>{item.title}</span><span className={styles.rowEyebrow}>{item.type} ↗</span>
+        </Link>
+      )) : <p>No results for “{query}”. Try another search.</p>}
+    </div>
+  );
+}
+
 const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
   const [query, setQuery] = useState("");
+  useSearchClear(query, '404');
 
   const filteredItems = useMemo(() => {
     if (!query) return [];
@@ -32,7 +50,7 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
 
   useEffect(() => {
     const searchTerm = query.trim();
-    if (searchTerm.length < 2) return;
+    if (!searchTerm) return;
     const timer = window.setTimeout(() => {
       trackSearch(searchTerm, { search_scope: "404", result_count: filteredItems.length, matched_ids: filteredItems.slice(0,5).map(item=>item.url).join(",") });
     }, 700);
@@ -48,7 +66,7 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
         compact
       />
       <PageSection eyebrow="Find your way" title="Search the site.">
-        <div className={styles.errorSearch} role="search">
+        <div className={errorStyles.errorSearch} role="search">
           <label htmlFor="not-found-search" className="sr-only">Search projects, articles, and pages</label>
           <input
             id="not-found-search"
@@ -58,19 +76,8 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
           />
-          {query && (
-            <div className={styles.searchResults} aria-live="polite">
-              {filteredItems.length ? filteredItems.map((item) => { const ResultLink=Link; return (
-                <ResultLink key={item.url} href={item.url} onClick={() => {
-                  if (item.url==="/resume") trackResumeOpen("404_search_result");
-                  else trackSelectContent(item.type, item.url, { source: "404_search_result" });
-                }} data-analytics-skip-global="true">
-                  <span>{item.title}</span><span className={styles.rowEyebrow}>{item.type} ↗</span>
-                </ResultLink>
-              ); }) : <p>No results for “{query}”. Try another search.</p>}
-            </div>
-          )}
-          <nav className={styles.errorLinks} aria-label="Suggested pages">
+          {query && <SearchResults query={query} items={filteredItems} />}
+          <nav className={errorStyles.errorLinks} aria-label="Suggested pages">
             {[
               { title: "Home", url: "/" },
               { title: "Projects", url: "/projects" },

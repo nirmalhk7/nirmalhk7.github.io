@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter, faFacebook, faLinkedin, faBluesky, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { trackEvent, trackShare } from '@/util/analytics';
-import styles from '@/components/Site/editorial.styles';
+import styles from './article.styles';
 
 export default function BlogShare({ slug, title }: { slug: string; title: string }) {
   const [status, setStatus] = React.useState('');
@@ -77,9 +77,9 @@ export default function BlogShare({ slug, title }: { slug: string; title: string
             <span className="sr-only">{share.name}</span>
           </a>
         ))}
-        <button data-analytics-id="copy_link_for_instagram" type="button" disabled={copying} aria-label="Copy link for Instagram"
+        <button data-analytics-id="copy_link_for_instagram" type="button" disabled={copying} aria-label="Copy link for Instagram" title="Copy link for Instagram"
           onClick={() => copyLink('instagram')}>
-          <FontAwesomeIcon icon={faInstagram} aria-hidden="true" /> Instagram
+          <FontAwesomeIcon icon={faInstagram} aria-hidden="true" />
         </button>
       </div>
       <p role="status">{status}</p>

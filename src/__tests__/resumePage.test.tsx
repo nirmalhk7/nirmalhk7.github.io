@@ -4,7 +4,7 @@ import HiringLinks from '@/components/Site/HiringLinks';
 import ResumePage from '@/pages/resume';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires -- Exercise the same configuration Next loads.
-const nextConfig = require('../../next.config.js');
+const nextConfig = require('../../next.config.mjs').default;
 
 test.each(['development', 'production'])('/resume stays an embedded page in %s', async environment => {
   const env = process.env as { NODE_ENV?: string }; const previous = env.NODE_ENV; env.NODE_ENV = environment;
@@ -17,6 +17,14 @@ test.each(['development', 'production'])('/resume stays an embedded page in %s',
 test('shows embedded résumé immediately', () => {
   render(<ResumePage />);
   expect(screen.getByTitle('Nirmal Khedkar résumé')).toHaveAttribute('src', expect.stringContaining('/Resume.pdf'));
+});
+
+test('records PDF embed load without claiming a completed download', () => {
+  const spy=jest.spyOn(console,'log').mockImplementation(()=>{});
+  render(<ResumePage />);const frame=screen.getByTitle('Nirmal Khedkar résumé');
+  fireEvent.load(frame);
+  expect(spy).toHaveBeenCalledWith('[Analytics] embed_status',expect.objectContaining({content_id:'resume',action:'load',duration_msec:expect.any(Number)}));
+  expect(spy.mock.calls.filter(call=>call[0]==='[Analytics] file_download')).toHaveLength(0);spy.mockRestore();
 });
 
 test('hiring résumé link opens /resume and records a view instead of a download', () => {

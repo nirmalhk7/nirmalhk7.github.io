@@ -1,12 +1,13 @@
-import React, { useEffect, useState, useRef, useDeferredValue, useMemo } from "react";
-import { m, AnimatePresence, useReducedMotion } from "framer-motion";
-import { useRouter } from "next/router";
-import { trackEvent, trackSearch, trackSelectContent, trackResumeOpen } from "@/util/analytics";
+import React, { useEffect, useState, useDeferredValue, useMemo } from "react";
+import { AnimatePresence } from "framer-motion";
+import { useRouter, type NextRouter } from "next/router";
+import { trackSearch, trackSelectContent, trackResumeOpen } from "@/util/analytics";
 
-import portfolioStyles from "@/components/Home/portfolio.styles";
-import styles from "./commandPalette.styles";
+import { CommandPalettePanel } from "./CommandPalettePanel";
+import { useCommandDialog } from "./useCommandDialog";
+import { useSearchClear } from '@/hooks/useSearchClear';
 
-interface CommandItem {
+export interface CommandItem {
   id: string;
   title: string;
   category: "Pages" | "Skills" | "Actions";
@@ -27,79 +28,26 @@ const commandItems: CommandItem[] = [
   { id: "skill-react", title: "React & Next.js Full-Stack", category: "Skills", subtitle: "Modern responsive web applications", href: "/projects" },
 ];
 
+function followCommand(item: CommandItem, method: string, router: NextRouter) {
+  trackSelectContent('command',item.id,{action_method:method,placement:'command_palette'});
+  if (item.href === "/resume") {
+    trackResumeOpen("command_palette",{action_method:method});
+    router.push(item.href);
+  } else if (item.newTab) {
+    window.open(item.href, "_blank");
+  } else {
+    router.push(item.href);
+  }
+}
+
 export const CommandPalette: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  useSearchClear(searchQuery, 'command_palette');
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const router = useRouter();
-  const reduceMotion = useReducedMotion();
-  const inputRef = useRef<HTMLInputElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLElement | null>(null);
-
-  const close = (reason: string) => { trackEvent('command_palette',{action:'close',interaction_type:reason}); setIsOpen(false); };
-  const open = (method: string) => { trackEvent('command_palette',{action:'open',action_method:method}); setIsOpen(true); };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-        e.preventDefault();
-        if (isOpen) close('shortcut'); else open('keyboard');
-      } else if (e.key === "Escape" && isOpen) {
-        close('escape');
-      }
-    };
-
-    const handleCustomOpen = () => open('control');
-
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("open-command-palette", handleCustomOpen);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("open-command-palette", handleCustomOpen);
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (isOpen) {
-      triggerRef.current = document.activeElement as HTMLElement;
-      const timer=window.setTimeout(() => inputRef.current?.focus(),50);
-      return () => window.clearTimeout(timer);
-    } else {
-      triggerRef.current?.focus();
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
-    const handleFocusTrap = (e: KeyboardEvent) => {
-      if (!isOpen || !containerRef.current) return;
-      if (e.key === "Tab") {
-        const focusableElements = containerRef.current.querySelectorAll(
-          'input, button, [tabindex="0"]'
-        );
-        if (focusableElements.length === 0) return;
-        const firstElement = focusableElements[0] as HTMLElement;
-        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
-
-        if (e.shiftKey) {
-          if (document.activeElement === firstElement) {
-            lastElement.focus();
-            e.preventDefault();
-          }
-        } else {
-          if (document.activeElement === lastElement) {
-            firstElement.focus();
-            e.preventDefault();
-          }
-        }
-      }
-    };
-
-    window.addEventListener("keydown", handleFocusTrap);
-    return () => window.removeEventListener("keydown", handleFocusTrap);
-  }, [isOpen]);
+  const { inputRef, containerRef, close } = useCommandDialog(isOpen, setIsOpen);
 
   const deferredQuery = useDeferredValue(searchQuery);
 
@@ -116,15 +64,7 @@ export const CommandPalette: React.FC = () => {
   }, [isOpen,searchQuery,filteredItems]);
 
   const selectItem = (item: CommandItem, method: string) => {
-    trackSelectContent('command',item.id,{action_method:method,placement:'command_palette'});
-    if (item.href === "/resume") {
-      trackResumeOpen("command_palette",{action_method:method});
-      router.push(item.href);
-    } else if (item.newTab) {
-      window.open(item.href, "_blank");
-    } else {
-      router.push(item.href);
-    }
+    followCommand(item, method, router);
     close('selection');
   };
 
@@ -146,109 +86,18 @@ export const CommandPalette: React.FC = () => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div data-analytics-skip-global="true" className={`${portfolioStyles.shell} ${styles.overlay}`}>
-          {/* Backdrop */}
-          <m.div
-            aria-hidden="true"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => close('backdrop')}
-            className={styles.backdrop}
-          />
-
-          {/* Search panel */}
-          <m.div
-            ref={containerRef}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Command Palette"
-            initial={{ opacity: 0, y: reduceMotion ? 0 : -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: reduceMotion ? 0 : -12 }}
-            transition={{ duration: reduceMotion ? 0.1 : 0.18, ease: "easeOut" }}
-            className={styles.panel}
-          >
-            {/* Search Header */}
-            <div className={styles.header}>
-              <div className={styles.inputGroup}>
-                <svg className={styles.searchIcon} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  role="combobox"
-                  aria-label="Search pages, skills, or quick actions"
-                  aria-expanded={isOpen}
-                  aria-autocomplete="list"
-                  aria-controls="command-palette-listbox"
-                  aria-activedescendant={
-                    filteredItems[selectedIndex]
-                      ? `cmd-item-${filteredItems[selectedIndex].id}`
-                      : undefined
-                  }
-                  value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                    setSelectedIndex(0);
-                  }}
-                  onKeyDown={handleSearchKeyDown}
-                  placeholder="Search pages, skills, or quick actions..."
-                  className={styles.input}
-                />
-              </div>
-              <button type="button" className={styles.close} onClick={() => close("control")} aria-label="Close search">
-                <span>Close</span><kbd>Esc</kbd>
-              </button>
-            </div>
-
-            {/* Search results */}
-            <div
-              id="command-palette-listbox"
-              role="listbox"
-              aria-label="Search results"
-              className={styles.results}
-            >
-              {filteredItems.length === 0 ? (
-                <div className={styles.empty}>
-                  No matching results found.
-                </div>
-              ) : (
-                filteredItems.map((item, index) => (
-                  <button
-                    key={item.id}
-                    id={`cmd-item-${item.id}`}
-                    role="option"
-                    aria-selected={selectedIndex === index}
-                    type="button"
-                    onClick={(event) => selectItem(item,event.detail===0?'keyboard':'pointer')}
-                    onMouseEnter={() => setSelectedIndex(index)}
-                    className={styles.result}
-                  >
-                    <div className={styles.resultCopy}>
-                      <div className={styles.title}>
-                        {item.title}
-                      </div>
-                      {item.subtitle && (
-                        <div className={styles.subtitle}>
-                          {item.subtitle}
-                        </div>
-                      )}
-                    </div>
-                    <span className={styles.category}>
-                      {item.category}
-                    </span>
-                  </button>
-                ))
-              )}
-            </div>
-
-            {/* Footer Tip */}
-            <div className={styles.footer}>
-              <span>Use arrow keys <strong >↑ ↓</strong> to navigate, <strong >Enter</strong> to select</span>
-              <span>Command Palette</span>
-            </div>
-          </m.div>
-        </div>
+        <CommandPalettePanel
+          containerRef={containerRef}
+          inputRef={inputRef}
+          searchQuery={searchQuery}
+          filteredItems={filteredItems}
+          selectedIndex={selectedIndex}
+          close={close}
+          selectItem={selectItem}
+          setSelectedIndex={setSelectedIndex}
+          handleSearchKeyDown={handleSearchKeyDown}
+          changeQuery={query => { setSearchQuery(query); setSelectedIndex(0); }}
+        />
       )}
     </AnimatePresence>
   );

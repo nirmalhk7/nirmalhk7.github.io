@@ -1,0 +1,13 @@
+.errorSearch {
+  @apply max-w-[760px];
+}
+
+.errorLinks {
+  @apply flex flex-wrap gap-[12px] mt-[24px] [&_a]:inline-flex [&_a]:min-h-[44px] [&_a]:items-center [&_a]:p-[0_14px] [&_a]:[border:1px_solid_rgba(23,_23,_23,_0.25)]
+    [&_a]:text-portfolio-ink [&_a]:text-[14px] [&_a]:[text-decoration:none] [&_a:hover]:text-white [&_a:hover]:bg-portfolio-ink;
+}
+
+.searchResults {
+  @apply max-w-[760px] mt-[20px] [&_a]:flex [&_a]:justify-between [&_a]:gap-[20px] [&_a]:p-[16px_0] [&_a]:[border-bottom:1px_solid_rgba(23,_23,_23,_0.2)] [&_a]:text-portfolio-ink
+    [&_a]:[text-decoration:none] [&_a:hover]:text-portfolio-red;
+}

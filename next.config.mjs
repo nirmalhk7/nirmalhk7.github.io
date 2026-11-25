@@ -1,7 +1,9 @@
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
-const { execSync } = require("child_process");
+import bundleAnalyzer from "@next/bundle-analyzer";
+import { execSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+
+const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === "true" });
 
 const getGitCommitSha = () => {
   try {
@@ -21,6 +23,12 @@ const gitCommitSha =
 const nextConfig = {
   env: {
     NEXT_PUBLIC_GIT_COMMIT_SHA: gitCommitSha,
+    NEXT_PUBLIC_BLOG_IDS: JSON.stringify(
+      fs.readdirSync(path.join(import.meta.dirname, "content/blog"))
+        .filter((file) => file.endsWith(".md"))
+        .map((file) => file.slice(0, -3))
+        .sort()
+    ),
   },
   async redirects() {
     return [
@@ -55,8 +63,6 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
-  swcMinify: true,
-  optimizeFonts: true,
   productionBrowserSourceMaps: false,
   images: {
     formats: ["image/avif", "image/webp"],
@@ -83,4 +89,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+export default withBundleAnalyzer(nextConfig);
