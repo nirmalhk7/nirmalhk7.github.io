@@ -63,7 +63,6 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
-  optimizeFonts: true,
   productionBrowserSourceMaps: false,
   images: {
     formats: ["image/avif", "image/webp"],
