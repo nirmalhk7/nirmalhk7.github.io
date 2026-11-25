@@ -11,6 +11,14 @@ const sections = [
   { id: "contact", label: "Contact" },
 ];
 
+const sectionsFromBottom = [...sections].reverse();
+
+function sectionHasBeenReached(id: string, position: number) {
+  if (!id) return position < 500;
+  const element = document.getElementById(id);
+  return element && position >= element.offsetTop;
+}
+
 export default function SectionNavigator() {
   const [activeSection, setActiveSection] = useState<string>("");
 
@@ -18,22 +26,8 @@ export default function SectionNavigator() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const sec = sections[i];
-        if (!sec.id) {
-          if (scrollPosition < 500) {
-            setActiveSection("");
-            break;
-          }
-          continue;
-        }
-
-        const el = document.getElementById(sec.id);
-        if (el && scrollPosition >= el.offsetTop) {
-          setActiveSection(sec.id);
-          break;
-        }
-      }
+      const section = sectionsFromBottom.find(({ id }) => sectionHasBeenReached(id, scrollPosition));
+      if (section) setActiveSection(section.id);
     };
 
     const scheduledScroll = createRafThrottled(handleScroll);
