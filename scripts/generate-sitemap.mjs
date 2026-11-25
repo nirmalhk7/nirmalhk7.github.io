@@ -1,6 +1,7 @@
-const fs = require("fs");
-const path = require("path");
-const matter = require("gray-matter");
+import { pathToFileURL } from 'node:url';
+import fs from "node:fs";
+import path from "node:path";
+import matter from "gray-matter";
 
 const BASE_URL = "https://nirmalhk7.com";
 const EXCLUDED_PAGE_FILES = new Set([
@@ -76,15 +77,15 @@ ${urls}
 
 function generateSitemap() {
   const sitemap = buildSitemap({
-    pagesDir: path.join(__dirname, "../src/pages"),
-    blogDir: path.join(__dirname, "../content/blog"),
+    pagesDir: path.join(import.meta.dirname, "../src/pages"),
+    blogDir: path.join(import.meta.dirname, "../content/blog"),
   });
-  fs.writeFileSync(path.join(__dirname, "../public/sitemap.xml"), sitemap);
+  fs.writeFileSync(path.join(import.meta.dirname, "../public/sitemap.xml"), sitemap);
   console.log("sitemap.xml generated successfully.");
 }
 
-if (require.main === module) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   generateSitemap();
 }
 
-module.exports = { buildSitemap, generateSitemap };
+export { buildSitemap, generateSitemap };

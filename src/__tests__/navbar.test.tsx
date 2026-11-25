@@ -55,15 +55,15 @@ describe('Navbar Component', () => {
     expect(screen.getByRole('link', { name: 'Resume' })).not.toHaveAttribute('target');
     expect(screen.getByRole('link', { name: 'Resume' })).toHaveAttribute('href','/resume');
   });
-  it('renders the brand name correctly', () => {
+  it('renders the brand name correctly', async () => {
     render(<Navbar />);
-    const brandElement = screen.getByText(/nirmalhk7/i);
+    const brandElement = await screen.findByText(/nirmalhk7/i);
     expect(brandElement).toBeInTheDocument();
   });
 
-  it('renders navigation links', () => {
+  it('renders navigation links', async () => {
     render(<Navbar />);
-    expect(screen.getByText('Home')).toBeInTheDocument();
+    expect(await screen.findByText('Home')).toBeInTheDocument();
     expect(screen.getByText('About')).toBeInTheDocument();
     expect(screen.getByText('Projects')).toBeInTheDocument();
     expect(screen.getByText('Blog')).toBeInTheDocument();

@@ -1,173 +1,34 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
-import { trackSearch, trackSelectContent, trackEvent } from "@/util/analytics";
+import React from "react";
 import nasaGalaxy from "@/assets/images/nasa-earth.jpg";
 import { loadMarkdownFiles } from "@/util/loadMarkdown";
-import { cleanProjectSummary, normalizeTags, projectCategory, selectedProjects } from "@/util/projectCuration";
+import { cleanProjectSummary, normalizeTags, selectedProjects } from "@/util/projectCuration";
 import { GetStaticProps } from "next";
 import { PageHero, PageSection, editorialStyles as styles } from "@/components/Site/Editorial";
 import { DefaultPageProps } from "./_app";
-import { ProjectInterface } from "@/interfaces/projects";
+import type { ProjectInterface, ProjectListEntry } from "@/interfaces/projects";
 import { ProjectListItem } from "@/components/Project/projectListItem";
 import { renderProjectMarkdown } from "@/util/renderMarkdown";
-import { useRouter } from "next/router";
 import { openGraphImage } from "@/util/openGraph";
-import { useProjectListMotion } from "@/hooks/useProjectListMotion";
 import motionStyles from "@/components/Project/projectExplorer.module.scss";
-import { useSearchClear } from '@/hooks/useSearchClear';
+import { useProjectFilters } from "@/components/Project/useProjectFilters";
+import { useProjectSelection } from "@/components/Project/useProjectSelection";
+import { ProjectFilters } from "@/components/Project/ProjectFilters";
+import { ProjectSchemas } from "@/components/Project/ProjectSchemas";
 
 
 interface ProjectPageProps extends DefaultPageProps {
-  projects: Array<Omit<ProjectInterface, "content"> & { contentHtml: string }>;
+  projects: ProjectListEntry[];
   allTags: string[];
 }
 
 const Projects = ({ projects, allTags }: ProjectPageProps) => {
-  const [filter, setFilter] = useState("X");
-  const [searchQuery, setSearchQuery] = useState("");
-  useSearchClear(searchQuery, 'projects');
-  const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
-  const [showArchive, setShowArchive] = useState(false);
-  const [category, setCategory] = useState('All work');
-  const router = useRouter();
-  const projectId = router.query.id;
-  const localToggleId = useRef<string | null | undefined>(undefined);
-  const listRef = useRef<HTMLDivElement>(null);
-  const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-
-  useEffect(() => {
-    const id = projectId;
-    const normalizedId = typeof id === 'string' ? id : null;
-    setExpandedSlug(normalizedId);
-    if (localToggleId.current === normalizedId) {
-      localToggleId.current = undefined;
-      return;
-    }
-    if (id && typeof id === "string") {
-      if (!selectedProjects[id]) setShowArchive(true);
-      setCategory('All work');
-      setFilter('X');
-      setSearchQuery('');
-      const timer = setTimeout(() => {
-        const element = projectRefs.current[id];
-        if (element) {
-          const offset = 100; // Offset for navbar
-          const bodyRect = document.body.getBoundingClientRect().top;
-          const elementRect = element.getBoundingClientRect().top;
-          const elementPosition = elementRect - bodyRect;
-          const offsetPosition = elementPosition - offset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
-          });
-        }
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [projectId]);
-
-  const handleToggle = (slug: string) => {
-    localToggleId.current = expandedSlug === slug ? null : slug;
-    trackEvent("project_toggle", {content_id:slug,action:expandedSlug===slug?"collapse":"expand"});
-    if (expandedSlug === slug) {
-      setExpandedSlug(null);
-      router.push("/projects", undefined, { shallow: true, scroll: false });
-    } else {
-      setExpandedSlug(slug);
-      trackSelectContent("project", slug, {
-        interaction_type: "expand",
-      });
-      router.push(`/projects?id=${encodeURIComponent(slug)}`, undefined, { shallow: true, scroll: false });
-    }
-  };
-
-  const browsingAll = showArchive || searchQuery.trim().length > 0 || filter !== 'X' || category !== 'All work';
-  const filteredProjects = useMemo(() => projects.filter((project) => {
-    const matchesScope = browsingAll || Boolean(selectedProjects[project.slug]);
-    const matchesCategory = category === 'All work' || projectCategory(project) === category;
-    const matchesFilter = filter === "X" || project.frontmatter.tags?.includes(filter);
-    const searchContent = `${project.frontmatter.title} ${project.frontmatter.tags?.join(" ")} ${project.frontmatter.summary || ""} ${project.excerpt || ""} ${project.contentHtml}`.toLowerCase();
-    const matchesSearch = searchQuery === "" || searchContent.includes(searchQuery.toLowerCase());
-    return matchesScope && matchesCategory && matchesFilter && matchesSearch;
-  }), [projects,browsingAll,category,filter,searchQuery]);
-
-  const prepareListMotion = useProjectListMotion(listRef);
-
-  const clearFilters = () => { prepareListMotion(); trackEvent('project_filter',{action:'clear'}); setSearchQuery(''); setFilter('X'); setCategory('All work'); };
-
-  useEffect(() => {
-    const searchTerm = searchQuery.trim();
-    if (!searchTerm) return;
-
-    const timer = window.setTimeout(() => {
-      trackSearch(searchTerm, {
-        search_scope: "projects",
-        result_count: filteredProjects.length,
-        active_filter: filter,
-        matched_ids: filteredProjects.slice(0,5).map(project=>project.slug).join(","),
-      });
-    }, 700);
-
-    return () => {
-      window.clearTimeout(timer);
-    };
-  }, [searchQuery, filteredProjects, filter]);
-
-  const itemListSchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": projects.map((project, idx) => ({
-      "@type": "ListItem",
-      "position": idx + 1,
-      "url": `https://nirmalhk7.com/projects?id=${project.slug}`,
-      "name": project.frontmatter.title,
-      "description": project.frontmatter.summary || project.excerpt || "",
-    })),
-  };
-
-  const breadcrumbElements = [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://nirmalhk7.com",
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Projects",
-      "item": "https://nirmalhk7.com/projects",
-    },
-  ];
-
-  const currentProject = expandedSlug
-    ? projects.find((p) => p.slug === expandedSlug)
-    : null;
-
-  const filterOptions = [
-    { tag: "X", label: "All" },
-    ...allTags.slice().sort().map((tag) => ({ tag, label: tag })),
-  ];
-
-  if (currentProject) {
-    breadcrumbElements.push({
-      "@type": "ListItem",
-      "position": 3,
-      "name": currentProject.frontmatter.title,
-      "item": `https://nirmalhk7.com/projects?id=${currentProject.slug}`,
-    });
-  }
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": breadcrumbElements,
-  };
+  const filters = useProjectFilters(projects);
+  const { browsingAll, filteredProjects, hasFilters, listRef, resetFilters, setShowArchive, showArchive, toggleArchive } = filters;
+  const { expandedSlug, projectRefs, handleToggle } = useProjectSelection(setShowArchive, resetFilters);
 
   return (
     <main className={styles.page}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <ProjectSchemas projects={projects} expandedSlug={expandedSlug} />
       <PageHero
         eyebrow=""
         title="Systems, tools, and the work behind them."
@@ -176,47 +37,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
         imageAlt="Earth seen from space"
       />
       <PageSection id="projectdetailed" title={browsingAll ? 'Explore the work.' : 'My Projects'} description="Open a project for my contribution and technical details. Search covers the entire archive." className={motionStyles.explorer}>
-        <div role="search" aria-label="Search projects">
-          <label htmlFor="project-search" className="sr-only">Search projects and technologies</label>
-          <input
-            id="project-search"
-            type="search"
-            placeholder="Search projects and technologies"
-            value={searchQuery}
-            onChange={(event) => { prepareListMotion(); setSearchQuery(event.target.value); }}
-            className={styles.searchInput}
-          />
-        </div>
-        <div className={styles.searchStatus}>
-          <p role="status">{filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} · {browsingAll ? 'Full archive' : 'Selected work'}</p>
-          {(searchQuery || filter !== 'X' || category !== 'All work') && <button data-analytics-id="projects_control_1" data-analytics-skip-global="true" type="button" className={styles.filterButton} onClick={clearFilters}>Clear search and filters</button>}
-        </div>
-        {filteredProjects.length === 0 && <p className={styles.emptyState}>No matching projects. Try another term or clear the filters above.</p>}
-        <div className={styles.filterBar} aria-label="Filter projects by area">
-          {['All work', 'Systems', 'Product', 'Research'].map(area => <button data-analytics-id="projects_control_2" data-analytics-skip-global="true" key={area} type="button" aria-pressed={area === category} className={`${styles.filterButton} ${area === category ? styles.filterButtonActive : ''}`} onClick={() => { prepareListMotion(); setCategory(area); trackEvent('project_filter',{category:area,action:'category'}); }}>{area}</button>)}
-        </div>
-        <details data-analytics-id="project_technology_filters" className={styles.technologyFilters}>
-          <summary>Filter by technology{filter !== 'X' ? ` · ${filter}` : ''}</summary>
-          <div className={styles.filterBar} aria-label="Filter projects by technology">
-          {filterOptions.map(({ tag, label }) => (
-            <button data-analytics-id="projects_control_3"
-              key={tag}
-              type="button"
-              aria-pressed={tag === filter}
-              data-analytics-skip-global="true"
-              onClick={() => {
-                prepareListMotion();
-                setFilter(tag);
-                const isAll = tag === "X";
-                trackEvent("project_filter",{active_filter:isAll?"all":tag,action:"technology"});
-              }}
-              className={`${styles.filterButton} ${tag === filter ? styles.filterButtonActive : ""}`}
-            >
-              {label}
-            </button>
-          ))}
-          </div>
-        </details>
+        <ProjectFilters {...filters} allTags={allTags} total={filteredProjects.length} />
         <div ref={listRef}>
           {filteredProjects.map((project, index) => (
             <div className={motionStyles.project} data-project-motion-key={project.slug} key={project.slug} ref={(element) => { projectRefs.current[project.slug] = element; }}>
@@ -229,7 +50,7 @@ const Projects = ({ projects, allTags }: ProjectPageProps) => {
             </div>
           ))}
         </div>
-        {!searchQuery && filter === 'X' && category === 'All work' && <button data-analytics-id="projects_control_4" data-analytics-skip-global="true" className={styles.action} type="button" onClick={() => { prepareListMotion(); trackEvent('project_archive',{action:showArchive?'hide':'show'}); setShowArchive(current => !current); }}>{showArchive ? 'Return to selected work' : `View all ${projects.length} projects`}</button>}
+        {!hasFilters && <button data-analytics-id="projects_control_4" data-analytics-skip-global="true" className={styles.action} type="button" onClick={toggleArchive}>{showArchive ? 'Return to selected work' : `View all ${projects.length} projects`}</button>}
       </PageSection>
     </main>
   );

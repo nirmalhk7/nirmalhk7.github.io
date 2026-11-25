@@ -14,18 +14,24 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions: {}
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     environment: Production
     env:
       NODE_VERSION: 22.x
       DRAFT: "false"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
@@ -38,7 +44,7 @@ jobs:
 
       - name: Upload Test Report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: jest-junit-report
           path: reports/jest-junit.xml
@@ -74,7 +80,7 @@ jobs:
 
       - name: Upload Vercel artifact
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: vercel-prebuilt
           path: |
@@ -84,6 +90,8 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     environment: Production
     needs: build-and-test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -92,10 +100,12 @@ jobs:
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22.x
           cache: npm
@@ -104,7 +114,7 @@ jobs:
         run: npm i -f
 
       - name: Download Vercel artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: vercel-prebuilt
           path: .
@@ -114,17 +124,20 @@ jobs:
 
   publicity:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     environment: Production
     needs: deploy
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
+          persist-credentials: false
           fetch-depth: 0
 
       - name: Get changed blog files
         id: changed-blog-files
-        uses: tj-actions/changed-files@v46
+        uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46
         with:
           files: content/blog/**.md
           since_last_remote_commit: true
@@ -133,9 +146,11 @@ jobs:
       - name: Prepare Social Media Message
         if: steps.changed-blog-files.outputs.any_changed == 'true'
         id: prepare
+        env:
+          CHANGED_BLOG_FILES: ${{ steps.changed-blog-files.outputs.all_changed_files }}
         run: |
           # Get the first changed blog file
-          FILE=$(echo "${{ steps.changed-blog-files.outputs.all_changed_files }}" | awk '{print $1}')
+          FILE=$(printf '%s\n' "$CHANGED_BLOG_FILES" | awk '{print $1}')
           # Extract title from frontmatter
           TITLE=$(grep -m 1 '^title:' "$FILE" | sed 's/title: //; s/"//g; s/'\''//g')
           SLUG=$(basename "$FILE" .md)
@@ -159,7 +174,7 @@ jobs:
       - name: Post to Twitter
         if: steps.changed-blog-files.outputs.any_changed == 'true'
         continue-on-error: true
-        uses: ethomson/send-tweet-action@v1
+        uses: ethomson/send-tweet-action@288f9339e0412e3038dce350e0da5ecdf12133a6 # v1
         with:
           status: ${{ steps.prepare.outputs.twitter_message }}
           consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}

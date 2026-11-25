@@ -1,6 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-const zlib = require("zlib");
+import fs from "node:fs";
+import path from "node:path";
+import zlib from "node:zlib";
 
 const BUILD_DIRECTORY = path.join(process.cwd(), ".next");
 const MANIFEST_PATH = path.join(BUILD_DIRECTORY, "build-manifest.json");

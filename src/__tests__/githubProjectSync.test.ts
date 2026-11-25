@@ -1,5 +1,5 @@
 import matter from "gray-matter";
-import { buildProjectMarkdown, extractExcerpt, shouldIncludeRepo } from "../../scripts/githubProjectSync";
+import { buildProjectMarkdown, extractExcerpt, shouldIncludeRepo } from "../../scripts/githubProjectSync.mjs";
 
 describe("githubProjectSync", () => {
   it("builds markdown from README frontmatter with topic tags", () => {

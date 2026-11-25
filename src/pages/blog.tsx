@@ -5,11 +5,10 @@ import BlogListSection from "@/components/Blog/blogListSection";
 import Link from "next/link";
 import { PageHero, editorialStyles as styles } from "@/components/Site/Editorial";
 import { GetStaticProps } from "next";
-import { loadMarkdownFiles } from "@/util/loadMarkdown";
+import { loadBlogMarkdownFiles } from "@/util/loadMarkdown";
 import { DefaultPageProps } from "./_app";
-import { BlogFrontmatterInterface, BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
+import { BlogInterface, BlogMiniInterface } from "@/interfaces/blog";
 import blogWallpaper from "@/assets/images/datacenter.jpg";
-import sortBy from "lodash/sortBy";
 import { openGraphImage } from "@/util/openGraph";
 
 interface BlogPageProps extends DefaultPageProps {
@@ -86,13 +85,7 @@ const Blog = ({ blogs, blogsMiniInformation }: BlogPageProps) => {
 };
 
 export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
-  const blogDetail = sortBy(
-    loadMarkdownFiles<BlogFrontmatterInterface>("content/blog", {
-      getContent: true,
-      getExcerpt: true,
-    }),
-    (o) => o.frontmatter.date
-  ).reverse();
+  const blogDetail = loadBlogMarkdownFiles();
 
   const miniBlogInformation = blogDetail.map((blog) => ({
     ...blog,

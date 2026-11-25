@@ -20,6 +20,21 @@ interface NotFoundPageProps extends DefaultPageProps {
   searchIndex: SearchItem[];
 }
 
+function SearchResults({ query, items }: { query: string; items: SearchItem[] }) {
+  return (
+    <div className={styles.searchResults} aria-live="polite">
+      {items.length ? items.map((item) => (
+        <Link key={item.url} href={item.url} onClick={() => {
+          if (item.url === "/resume") trackResumeOpen("404_search_result");
+          else trackSelectContent(item.type, item.url, { source: "404_search_result" });
+        }} data-analytics-skip-global="true">
+          <span>{item.title}</span><span className={styles.rowEyebrow}>{item.type} ↗</span>
+        </Link>
+      )) : <p>No results for “{query}”. Try another search.</p>}
+    </div>
+  );
+}
+
 const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
   const [query, setQuery] = useState("");
   useSearchClear(query, '404');
@@ -60,18 +75,7 @@ const NotFoundPage = ({ searchIndex }: NotFoundPageProps) => {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
           />
-          {query && (
-            <div className={styles.searchResults} aria-live="polite">
-              {filteredItems.length ? filteredItems.map((item) => { const ResultLink=Link; return (
-                <ResultLink key={item.url} href={item.url} onClick={() => {
-                  if (item.url==="/resume") trackResumeOpen("404_search_result");
-                  else trackSelectContent(item.type, item.url, { source: "404_search_result" });
-                }} data-analytics-skip-global="true">
-                  <span>{item.title}</span><span className={styles.rowEyebrow}>{item.type} ↗</span>
-                </ResultLink>
-              ); }) : <p>No results for “{query}”. Try another search.</p>}
-            </div>
-          )}
+          {query && <SearchResults query={query} items={filteredItems} />}
           <nav className={styles.errorLinks} aria-label="Suggested pages">
             {[
               { title: "Home", url: "/" },

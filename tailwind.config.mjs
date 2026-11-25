@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const tailwindConfig = {
   content: ["src/**/*.{js,tsx,ts,jsx}"],
   theme: {
     screens: {
@@ -52,3 +52,5 @@ module.exports = {
   },
   plugins: [],
 };
+
+export default tailwindConfig;
