@@ -56,7 +56,7 @@ export default function HomePage({
         </div>
         <div className={styles.experienceList}>
           {groupExperience(workexperience).map(({ company, roles }) => (
-            <article data-reveal className={styles.experienceRow} key={company}>
+            <article data-reveal data-analytics-exposure={`experience_${company.toLowerCase().replace(/[^a-z0-9]+/g,"_")}`} className={styles.experienceRow} key={company}>
               <h3>{company}</h3>
               <div className={styles.roleList}>
                 {roles.map((role) => {

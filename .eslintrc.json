@@ -23,6 +23,7 @@
     // "@typescript-eslint/no-explicit-any": "off",
     // "@typescript-eslint/no-var-requires": "off"
   },
+  "ignorePatterns": ["!src/pages/api/.well-known/", "!src/pages/api/.well-known/webfinger.ts"],
   "settings": {
     "react": {
       "version": "detect"

@@ -1,8 +1,8 @@
-const fs = require("fs");
-const path = require("path");
-const React = require("react");
-const { renderToStaticMarkup } = require("react-dom/server");
-const matter = require("gray-matter");
+import fs from "node:fs";
+import path from "node:path";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import matter from "gray-matter";
 
 const PROJECTS_JSON_PATH = path.join(
   process.cwd(),

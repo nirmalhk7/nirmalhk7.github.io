@@ -28,3 +28,12 @@ test('résumé command routes to the embedded résumé page',()=>{
   expect(spy).toHaveBeenCalledWith('[Analytics] select_content',expect.objectContaining({content_type:'resume',source:'command_palette',action_method:'keyboard'}));
   opener.mockRestore();spy.mockRestore();
 });
+
+test('measures palette search clearing once',()=>{
+  const spy=jest.spyOn(console,'log').mockImplementation(()=>{});
+  render(<CommandPalette />);fireEvent.keyDown(window,{key:'k',ctrlKey:true});
+  fireEvent.change(screen.getByRole('combobox'),{target:{value:'private@example.com'}});
+  fireEvent.change(screen.getByRole('combobox'),{target:{value:''}});
+  expect(spy.mock.calls.filter(call=>call[0]==='[Analytics] search_clear')).toHaveLength(1);
+  expect(JSON.stringify(spy.mock.calls)).not.toContain('private@example.com');spy.mockRestore();
+});

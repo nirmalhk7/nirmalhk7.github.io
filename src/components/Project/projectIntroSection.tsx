@@ -4,9 +4,17 @@ import Link from "next/link";
 import WebSection from "@/elements/WebSection";
 import { ProjectInterface } from "@/interfaces/projects";
 const ProjectDrawer = dynamic(() => import("./ProjectDrawer"), { ssr: false });
-import { m, Variants, useReducedMotion } from "framer-motion";
+import { m, Variants, useReducedMotion, type HTMLMotionProps } from "framer-motion";
 import { ProjectCard } from "./projectCard";
 import { trackSelectContent } from "@/util/analytics";
+
+function revealMotion(
+  reduced: boolean | null,
+  initial: HTMLMotionProps<"div">["initial"],
+  whileInView: HTMLMotionProps<"div">["whileInView"]
+) {
+  return reduced ? { initial: false as const } : { initial, whileInView };
+}
 
 const ProjectIntroSection = ({
   projects,
@@ -36,16 +44,14 @@ const ProjectIntroSection = ({
         <m.div
           aria-hidden="true"
           className="absolute -left-24 top-16 hidden h-px w-72 bg-accent/30 laptop:block"
-          initial={shouldReduceMotion ? false : { scaleX: 0 }}
-          whileInView={shouldReduceMotion ? undefined : { scaleX: 1 }}
+          {...revealMotion(shouldReduceMotion, { scaleX: 0 }, { scaleX: 1 })}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
           style={{ originX: 0 }}
         />
         <m.div 
           className="text-center mb-16"
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 24, filter: "blur(8px)" }}
-          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
+          {...revealMotion(shouldReduceMotion, { opacity: 0, y: 24, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)" })}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -63,8 +69,7 @@ const ProjectIntroSection = ({
         <m.div
           className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-8"
           variants={gridVariants}
-          initial={shouldReduceMotion ? false : "hidden"}
-          whileInView={shouldReduceMotion ? undefined : "show"}
+          {...revealMotion(shouldReduceMotion, "hidden", "show")}
           viewport={{ once: true, amount: 0.12 }}
           style={{ perspective: 1200 }}
         >
@@ -81,12 +86,10 @@ const ProjectIntroSection = ({
         
         <m.div
           className="mt-20 text-center"
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
-          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+          {...revealMotion(shouldReduceMotion, { opacity: 0, y: 18 }, { opacity: 1, y: 0 })}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          whileHover={shouldReduceMotion ? undefined : { scale: 1.02 }}
-          whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
+          {...(!shouldReduceMotion && { whileHover: { scale: 1.02 }, whileTap: { scale: 0.98 } })}
         >
           <Link 
             href="/projects" 

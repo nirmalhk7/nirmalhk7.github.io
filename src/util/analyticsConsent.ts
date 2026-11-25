@@ -20,11 +20,16 @@ export function gaCommand(...args: unknown[]) {
   }
   win.gtag(...args);
 }
+function validExpiration(expires: number) {
+  return Number.isFinite(expires) && expires > Date.now() && expires <= Date.now() + 181 * 86400000;
+}
+
 export function readConsent(): ConsentState {
   if (typeof window === 'undefined') return denied;
   let record = memory;
   if (!record) { try { record = JSON.parse(localStorage.getItem(CONSENT_KEY) || 'null'); } catch { /* storage unavailable */ } }
-  if (!record || record.version !== 1 || !Number.isFinite(record.expires) || record.expires <= Date.now() || record.expires > Date.now() + 181 * 86400000 || typeof record.analytics !== 'boolean' || typeof record.advertising !== 'boolean') return denied;
+  if (!record || record.version !== 1 || !validExpiration(record.expires)) return denied;
+  if (typeof record.analytics !== 'boolean' || typeof record.advertising !== 'boolean') return denied;
   return { analytics: record.analytics, advertising: record.advertising, decided: true };
 }
 const googleConsent = (choice: ConsentChoice) => ({

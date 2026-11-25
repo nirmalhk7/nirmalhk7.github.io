@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import sortBy from "lodash/sortBy";
-import { loadMarkdownFiles } from "@/util/loadMarkdown";
-import { BlogFrontmatterInterface } from "@/interfaces/blog";
+import { loadBlogMarkdownFiles } from "@/util/loadMarkdown";
 import RSS from "rss";
 import dayjs from "dayjs";
 
@@ -11,14 +9,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  // Load and sort blog posts
-  const blogDetail = sortBy(
-    loadMarkdownFiles<BlogFrontmatterInterface>("content/blog", {
-      getContent: true,
-      getExcerpt: true,
-    }),
-    (o) => o.frontmatter.date
-  ).reverse();
+  const blogDetail = loadBlogMarkdownFiles();
 
   const blogDescription = `Named after the deployment process, I'm in hunt for learning all processes that make production software production grade. Good software products today cannot have downtimes, and I'm all about finding those concepts which helps engineers make resilient software.`;
 

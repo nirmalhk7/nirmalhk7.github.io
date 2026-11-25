@@ -9,7 +9,7 @@ export default function RotatingTopics() {
   const reduceMotion = useReducedMotion();
   useEffect(() => {
     if (reduceMotion) return;
-    const timer = window.setInterval(() => setIndex(current => (current + 1) % topics.length), 2600);
+    const timer = window.setInterval(() => setIndex(current => (current + 1) % topics.length), 1600);
     return () => window.clearInterval(timer);
   }, [reduceMotion]);
 
@@ -25,7 +25,7 @@ export default function RotatingTopics() {
             initial={{ y: "100%" }}
             animate={{ y: "0%" }}
             exit={{ y: "-100%" }}
-            transition={{ duration: reduceMotion ? 0 : 0.45, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: reduceMotion ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             {topics[reduceMotion ? 0 : index]}.
           </m.span>

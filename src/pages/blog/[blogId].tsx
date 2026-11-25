@@ -1,7 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import ReactMarkdown from "react-markdown";
-import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import atomDark from "react-syntax-highlighter/dist/cjs/styles/prism/atom-dark";
 import { BlogFrontmatterInterface, BlogInterface } from "@/interfaces/blog";
 import { ArticleJsonLd } from "next-seo";
 import Link from "next/link";
@@ -141,7 +141,7 @@ const BlogTemplate = ({
             <span>{current.frontmatter?.category?.join(" / ")}</span>
             <span>By Nirmal Khedkar</span>
           </div>
-          <div data-analytics-exposure={current.slug}>
+          <div data-analytics-exposure={current.slug} data-analytics-reading="true">
           <ReactMarkdown
             className={styles.articleBody}
             components={{

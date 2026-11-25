@@ -39,3 +39,26 @@ test('waits for animated page replacement before capturing the next page title',
   expect(spy).toHaveBeenCalledWith('[Analytics] page_view',expect.objectContaining({page_path:'/blog',page_title:'Writing'}));
   unmount();marker.remove();spy.mockRestore();jest.useRealTimers();
 });
+
+test('records SPA navigation duration and previous page without duplicating page views',()=>{
+  jest.useFakeTimers();const spy=jest.spyOn(console,'log').mockImplementation(()=>{});
+  mockRouter={...mockRouter,asPath:'/',pathname:'/'};
+  const {unmount}=render(<Probe />);act(()=>jest.advanceTimersByTime(0));
+  act(()=>{emit('routeChangeStart','/projects',{shallow:false});jest.advanceTimersByTime(150);emit('routeChangeComplete','/projects',{shallow:false});jest.advanceTimersByTime(0);});
+  expect(spy).toHaveBeenCalledWith('[Analytics] navigation_timing',expect.objectContaining({destination_page_path:'/projects',previous_page_path:'/',duration_msec:150,action:'complete'}));
+  expect(spy).toHaveBeenCalledWith('[Analytics] page_view',expect.objectContaining({page_path:'/projects',page_referrer:'http://localhost/'}));
+  unmount();spy.mockRestore();jest.useRealTimers();
+});
+
+test('distinguishes cancelled and failed navigation without recording exception messages',()=>{
+  jest.useFakeTimers();const spy=jest.spyOn(console,'log').mockImplementation(()=>{});
+  mockRouter={...mockRouter,asPath:'/',pathname:'/'};
+  const {unmount}=render(<Probe />);act(()=>jest.advanceTimersByTime(0));
+  act(()=>{emit('routeChangeStart','/blog');jest.advanceTimersByTime(90);emit('routeChangeError',{cancelled:true,message:'private@example.com'},'/blog');});
+  expect(spy).toHaveBeenCalledWith('[Analytics] navigation_timing',expect.objectContaining({action:'cancelled',duration_msec:90}));
+  expect(spy.mock.calls.filter(call=>call[0]==='[Analytics] exception')).toHaveLength(0);
+  act(()=>{emit('routeChangeStart','/projects');jest.advanceTimersByTime(50);emit('routeChangeError',{cancelled:false,message:'private@example.com'},'/projects');});
+  expect(spy).toHaveBeenCalledWith('[Analytics] navigation_timing',expect.objectContaining({action:'error',duration_msec:50}));
+  expect(JSON.stringify(spy.mock.calls)).not.toContain('private@example.com');
+  unmount();spy.mockRestore();jest.useRealTimers();
+});
