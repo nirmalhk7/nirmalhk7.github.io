@@ -1,54 +1,70 @@
 import { useEffect, useRef } from 'react';
-import { useRouter } from 'next/router';
-import { trackEvent, trackPageView } from '@/util/analytics';
-import { startPageTracking } from '@/util/analyticsRuntime';
+import { useRouter, type NextRouter } from 'next/router';
+import { trackEvent } from '@/util/analytics';
+import { isPrerendering, reportRouteView, scheduleRouteViews } from './analyticsRouteViews';
+
+type RouteOptions = { shallow?: boolean };
+type Navigation = { url: string; since: number };
+
+function matchesNavigation(navigation: Navigation | undefined, url?: string): navigation is Navigation {
+  return Boolean(navigation && (!url || navigation.url === url));
+}
+
+function trackRoutes(events: NextRouter['events'], getRouter: () => NextRouter) {
+  let current = '';
+  let pending: Navigation | undefined;
+  const timing = (action: string, previous: string, navigation: Navigation, destination = navigation.url) => {
+    trackEvent('navigation_timing', {
+      action, destination_page_path: destination, previous_page_path: previous,
+      duration_msec: Date.now() - navigation.since,
+    });
+    pending = undefined;
+  };
+  const views = scheduleRouteViews(url => {
+    const previous = current;
+    current = url.split('#')[0];
+    const reportError = reportRouteView(getRouter().pathname, current, previous);
+    if (pending?.url === url) timing('complete', previous, pending, current);
+    reportError();
+    return current;
+  });
+  const begin = (url: string, options?: RouteOptions) => {
+    if (!options?.shallow) pending = { url, since: Date.now() };
+  };
+  const visit = (url: string, options?: RouteOptions) => {
+    const samePage = current && current.split('?')[0] === url.split('?')[0];
+    if (options?.shallow || samePage) {
+      trackEvent('page_navigation', { interaction_type: 'state_change', destination_page_path: url });
+    } else views.schedule(url);
+  };
+  const hash = (url: string) => trackEvent('page_navigation', { interaction_type: 'anchor', destination_page_path: url });
+  const error = (failure: { cancelled?: boolean }, url?: string) => {
+    if (matchesNavigation(pending, url)) timing(failure.cancelled ? 'cancelled' : 'error', current, pending);
+    if (!failure.cancelled) trackEvent('exception', { error_category: 'navigation', fatal: false });
+  };
+  const activate = () => visit(getRouter().asPath);
+  if (!isPrerendering()) activate();
+  document.addEventListener('prerenderingchange', activate);
+  events.on('routeChangeComplete', visit);
+  events.on('routeChangeStart', begin);
+  events.on('hashChangeComplete', hash);
+  events.on('routeChangeError', error);
+  return () => {
+    views.clear();
+    document.removeEventListener('prerenderingchange', activate);
+    events.off('routeChangeComplete', visit);
+    events.off('routeChangeStart', begin);
+    events.off('hashChangeComplete', hash);
+    events.off('routeChangeError', error);
+  };
+}
 
 export const useAnalytics = () => {
   const router = useRouter();
-  const latest=useRef(router);
-  latest.current=router;
-  const events=router.events;
-  const ready=router.isReady;
+  const latest = useRef(router);
+  latest.current = router;
+  const { events, isReady } = router;
   useEffect(() => {
-    if (ready===false) return;
-    let timer: number | undefined;
-    let stop: (()=>void) | undefined;
-    let current = '';
-    let pending: {url: string; since: number} | undefined;
-    const begin = (url: string, options?: {shallow?:boolean}) => { if (!options?.shallow) pending={url,since:Date.now()}; };
-    const visit = (url: string, options?: {shallow?:boolean}) => {
-      if (options?.shallow || (current && current.split('?')[0]===url.split('?')[0])) {
-        trackEvent('page_navigation',{interaction_type:'state_change',destination_page_path:url}); return;
-      }
-      if (timer !== undefined) window.clearTimeout(timer);
-      stop?.(); stop=undefined;
-      let attempts=0;
-      const settled = () => {
-        const expectedPath=url.split('?')[0].split('#')[0];
-        const pages=Array.from(document.querySelectorAll('[data-analytics-page]'));
-        if (pages.length && !pages.some(page=>page.getAttribute('data-analytics-page')===expectedPath) && attempts++ < 125) { timer=window.setTimeout(settled,16); return; }
-        if ((document as Document & {prerendering?:boolean}).prerendering) return;
-        const previous=current;
-        current=url.split('#')[0];
-        trackPageView(current,{view_type:'route',...(previous?{page_referrer:new URL(previous,window.location.origin).href,previous_page_path:previous}:{}),...(latest.current.pathname==='/404'||latest.current.pathname==='/500'?{page_type:latest.current.pathname.slice(1)}:{})});
-        if (pending?.url===url) { trackEvent('navigation_timing',{action:'complete',destination_page_path:current,previous_page_path:previous,duration_msec:Date.now()-pending.since}); pending=undefined; }
-        if (latest.current.pathname==='/404' || latest.current.pathname==='/500') trackEvent('error_page',{error_category:latest.current.pathname==='/404'?'not_found':'server'});
-        stop=startPageTracking(current);
-      };
-      timer=window.setTimeout(settled,0);
-    };
-    const hash = (url: string) => trackEvent('page_navigation',{interaction_type:'anchor',destination_page_path:url});
-    const error = (failure: {cancelled?:boolean}, url?: string) => {
-      if (pending && (!url || pending.url===url)) { trackEvent('navigation_timing',{action:failure.cancelled?'cancelled':'error',destination_page_path:pending.url,previous_page_path:current,duration_msec:Date.now()-pending.since}); pending=undefined; }
-      if (!failure.cancelled) trackEvent('exception',{error_category:'navigation',fatal:false});
-    };
-    const activate = () => visit(latest.current.asPath);
-    if (!(document as Document & {prerendering?:boolean}).prerendering) activate();
-    document.addEventListener('prerenderingchange',activate);
-    events.on('routeChangeComplete',visit);
-    events.on('routeChangeStart',begin);
-    events.on('hashChangeComplete',hash);
-    events.on('routeChangeError',error);
-    return () => { if (timer !== undefined) window.clearTimeout(timer); stop?.(); document.removeEventListener('prerenderingchange',activate); events.off('routeChangeComplete',visit); events.off('routeChangeStart',begin); events.off('hashChangeComplete',hash); events.off('routeChangeError',error); };
-  }, [events,ready]);
+    if (isReady !== false) return trackRoutes(events, () => latest.current);
+  }, [events, isReady]);
 };

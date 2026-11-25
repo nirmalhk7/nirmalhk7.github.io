@@ -13,6 +13,13 @@ const sections: Record<string, { label: string; path: string; dark: boolean }> =
   article: { label: "The Blue Green Manual", path: "/blog", dark: false },
 };
 
+function headingSize(length: number, isArticle: boolean) {
+  if (length > 100) return 38;
+  if (length > 75) return 52;
+  if (length > 42) return 64;
+  return isArticle ? 68 : 88;
+}
+
 export default async function handler(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
@@ -22,7 +29,8 @@ export default async function handler(req: NextRequest) {
     const paper = "#f5f2eb";
     const night = "#19211f";
     const foreground = section.dark ? paper : night;
-    const titleSize = title.length > 100 ? 38 : title.length > 75 ? 52 : title.length > 42 ? 64 : section === sections.article ? 68 : 88;
+    const titleSize = headingSize(title.length, section === sections.article);
+    const secondary = section.dark ? "#b8bcb6" : "#565c58";
     const portraitWidth = Math.round(630 * beachPhoto.width / beachPhoto.height);
     const font = await fetch(new URL("/fonts/outfit-latin-600.ttf", req.url));
     if (!font.ok) throw new Error("Preview font could not load");
@@ -32,11 +40,11 @@ export default async function handler(req: NextRequest) {
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 800, padding: "64px 60px 48px" }}>
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flexGrow: 1, paddingBottom: 32 }}>
             <h1 style={{ fontSize: titleSize, fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.04, margin: "0 0 28px" }}>{title}</h1>
-            <p style={{ fontSize: 24, lineHeight: 1.35, color: section.dark ? "#b8bcb6" : "#565c58", margin: 0 }}>{subtitle}</p>
+            <p style={{ fontSize: 24, lineHeight: 1.35, color: secondary, margin: 0 }}>{subtitle}</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <span style={{ fontSize: 28 }}>Nirmal Khedkar</span>
-            <span style={{ fontSize: 20, color: section.dark ? "#b8bcb6" : "#565c58" }}>nirmalhk7.com{section.path}</span>
+            <span style={{ fontSize: 20, color: secondary }}>nirmalhk7.com{section.path}</span>
           </div>
         </div>
         <div style={{ display: "flex", width: 400, height: "100%", position: "relative", overflow: "hidden", background: night }}>

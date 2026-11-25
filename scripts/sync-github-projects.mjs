@@ -1,4 +1,4 @@
-const { syncGithubProjects } = require("./githubProjectSync");
+import { syncGithubProjects } from "./githubProjectSync.mjs";
 
 syncGithubProjects().then((result) => {
   if (!result.ok) {
