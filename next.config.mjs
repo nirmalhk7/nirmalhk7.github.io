@@ -21,6 +21,9 @@ const gitCommitSha =
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  outputFileTracingIncludes: {
+    "/api/rss": ["./content/blog/*.md"],
+  },
   env: {
     NEXT_PUBLIC_GIT_COMMIT_SHA: gitCommitSha,
     NEXT_PUBLIC_BLOG_IDS: JSON.stringify(
