@@ -1,7 +1,7 @@
 import React from "react";
 import path from "path";
 import { GetStaticProps } from "next";
-import HomePage from "@/components/Home/HomePage";
+import HomePage, { type HomepageBlogLink } from "@/components/Home/HomePage";
 import {
   CourseInterface,
   MembershipInterface,
@@ -12,7 +12,7 @@ import {
 import { ProjectInterface } from "@/interfaces/projects";
 import { DefaultPageProps } from "./_app";
 import loadYaml from "@/util/loadYaml";
-import { loadMarkdownFile } from "@/util/loadMarkdown";
+import { loadBlogMarkdownFiles, loadMarkdownFile } from "@/util/loadMarkdown";
 import { selectedProjects } from "@/util/projectCuration";
 import { openGraphImage } from "@/util/openGraph";
 
@@ -24,6 +24,7 @@ interface IndexPageProps extends DefaultPageProps {
   membership: MembershipInterface[];
   workexperience: WorkExperienceInterface[];
   projects: ProjectInterface[];
+  latestPosts: HomepageBlogLink[];
 }
 
 const featuredProjectCopy: Record<string, string> = {
@@ -35,6 +36,7 @@ const featuredProjectCopy: Record<string, string> = {
 
 export default function IndexPage({
   projects,
+  latestPosts,
   workexperience,
   onlineCourses,
   collegeCourses,
@@ -69,6 +71,7 @@ export default function IndexPage({
       />
       <HomePage
         projects={projects}
+        latestPosts={latestPosts}
         workexperience={workexperience}
         onlineCourses={onlineCourses}
         collegeCourses={collegeCourses}
@@ -109,6 +112,10 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
       membership: loadYaml<MembershipInterface[]>(path.join(contentDir, "memberships.yaml")),
       workexperience: loadYaml<WorkExperienceInterface[]>(path.join(contentDir, "workexperiences.yaml")),
       projects,
+      latestPosts: loadBlogMarkdownFiles()
+        .filter(({ frontmatter }) => frontmatter.draft !== true)
+        .slice(0, 2)
+        .map(({ slug, frontmatter }) => ({ slug, title: frontmatter.title })),
       pageMetadata: {
         enableWrap: true,
         layoutVariant: "portfolio",

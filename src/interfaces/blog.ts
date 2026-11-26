@@ -4,6 +4,7 @@ export interface BlogFrontmatterInterface {
   title: string;
   img?: string;
   date?: string;
+  draft?: boolean;
   description?: string;
 }
 

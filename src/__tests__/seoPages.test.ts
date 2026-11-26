@@ -5,7 +5,12 @@ jest.mock("react-markdown", () => ({
   __esModule: true,
   default: ({ children }: { children: React.ReactNode }) => children,
 }));
+jest.mock("@/util/loadMarkdown", () => {
+  const actual = jest.requireActual<typeof import("@/util/loadMarkdown")>("@/util/loadMarkdown");
+  return { ...actual, loadBlogMarkdownFiles: jest.fn(actual.loadBlogMarkdownFiles) };
+});
 
+import { loadBlogMarkdownFiles } from "@/util/loadMarkdown";
 import { getStaticProps as getHomeProps } from "../pages/index";
 import { getStaticProps as getProjectsProps } from "../pages/projects";
 import { getStaticProps as getBlogProps } from "../pages/blog";
@@ -55,6 +60,22 @@ const expectIndexableMetadata = (
 };
 
 describe("page SEO contracts", () => {
+  const blogPost = (slug: string, draft = false) => ({
+    slug, content: "# Full article", excerpt: null,
+    frontmatter: { title: slug, draft, tags: [], category: [] },
+  });
+
+  it.each([
+    { posts: [blogPost("draft", true), blogPost("latest"), blogPost("next"), blogPost("older")], expected: ["latest", "next"] },
+    { posts: [blogPost("draft", true), blogPost("only")], expected: ["only"] },
+    { posts: [blogPost("draft", true)], expected: [] },
+  ])("passes only the first two published blog links to the homepage ($expected)", async ({ posts, expected }) => {
+    jest.mocked(loadBlogMarkdownFiles).mockReturnValueOnce(posts);
+    const result = await getHomeProps(context);
+    if (!("props" in result)) throw new Error("Missing homepage props");
+    expect((await result.props).latestPosts).toEqual(expected.map((slug) => ({ slug, title: slug })));
+  });
+
   it("loads the four fixed, source-backed homepage projects in editorial order", async () => {
     const result = (await getHomeProps(context)) as {
       props: {
