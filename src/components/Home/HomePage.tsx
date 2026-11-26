@@ -22,8 +22,11 @@ import styles from "./portfolioHome.styles";
 
 const ContactMeSection = dynamic(() => import("@/components/ContactMe/contactMeSection"));
 
+export type HomepageBlogLink = { slug: string; title: string };
+
 type HomePageProps = {
   projects: ProjectInterface[];
+  latestPosts: HomepageBlogLink[];
   workexperience: WorkExperienceInterface[];
   onlineCourses: CourseInterface[];
   collegeCourses: CourseInterface[];
@@ -34,6 +37,7 @@ type HomePageProps = {
 
 export default function HomePage({
   projects,
+  latestPosts,
   workexperience,
   onlineCourses,
   collegeCourses,
@@ -171,8 +175,9 @@ export default function HomePage({
 
       <section data-reveal className={styles.writing} id="blog" aria-labelledby="writing-heading">
         <h2 id="writing-heading">How I approach <RotatingTopics /></h2>
-        <Link href="/blog/homelab_gitops">Homelab configuration with GitOps <span aria-hidden="true">↗</span></Link>
-        <Link href="/blog/homelab_architect">Homelab architecture and access control <span aria-hidden="true">↗</span></Link>
+        {latestPosts.map(({ slug, title }) => (
+          <Link key={slug} href={`/blog/${slug}`}>{title} <span aria-hidden="true">↗</span></Link>
+        ))}
         <Link href="/blog" className={styles.allWritingLink}>Read all writing <span aria-hidden="true">↗</span></Link>
       </section>
 
